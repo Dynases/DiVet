@@ -1,0 +1,3889 @@
+﻿
+Imports System.Data
+Imports System.Data.SqlClient
+Imports System.Text
+Imports Datos.AccesoDatos
+Public Class AccesoLogica
+    Public Shared L_Usuario As String = "DEFAULT"
+
+#Region "CONFIGURACION DEL SISTEMA"
+
+    Public Shared Function L_fnConfSistemaGeneral() As DataTable
+        Dim _Tabla As DataTable
+        Dim _Where, _campos As String
+        Dim _dtConfSist As DataTable = D_Datos_Tabla("cnumi", "TC000", "1=1")
+
+        _Where = "ccctc0=" + _dtConfSist.Rows(0).Item("cnumi").ToString
+        _campos = "*"
+        _Tabla = D_Datos_Tabla(_campos, "TC0001", _Where)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnConfSistemaModificar(ByRef _numi As String) As Boolean
+        Dim _Error As Boolean
+        Dim Sql, _where As String
+
+        Sql = "cnumi =" + _numi
+
+        _where = "1=1"
+        _Error = D_Modificar_Datos("TC000", Sql, _where)
+        Return Not _Error
+    End Function
+
+#End Region
+
+#Region "METODOS PRIVADOS"
+    Public Shared Sub L_prAbrirConexion(Optional Ip As String = "", Optional UsuarioSql As String = "", Optional ClaveSql As String = "", Optional NombreBD As String = "")
+        D_abrirConexion(Ip, UsuarioSql, ClaveSql, NombreBD)
+    End Sub
+
+    Public Shared Function _fnsAuditoria() As String
+        Return "'" + Date.Now.Date.ToString("yyyy/MM/dd") + "', '" + Now.Hour.ToString("00") + ":" + Now.Minute.ToString("00") + "' ,'" + L_Usuario + "'"
+    End Function
+#End Region
+
+#Region "SERVICIOS CON.SER002"
+#Region "Transacciones"
+
+    'Grabar --scId, scDesc, scPrecio, scEst, scFecha, scHora, scUsuario
+    Public Shared Function L_fnGrabarServicio(ByRef _scId As String, _scDesc As String, _scPrecio As String, _scEst As String) As Boolean
+
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@scId", _scId))
+        _listParam.Add(New Datos.DParametro("@scDesc", _scDesc))
+        _listParam.Add(New Datos.DParametro("@scPrecio", _scPrecio))
+        _listParam.Add(New Datos.DParametro("@scEst", _scEst))
+        _listParam.Add(New Datos.DParametro("@scUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_SER002", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _scId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    'Modificar 
+    Public Shared Function L_fnModificarServicio(ByRef _scId As String, _scDesc As String, _scPrecio As String, _scEst As String) As Boolean
+
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@scId", _scId))
+        _listParam.Add(New Datos.DParametro("@scDesc", _scDesc))
+        _listParam.Add(New Datos.DParametro("@scPrecio", _scPrecio))
+        _listParam.Add(New Datos.DParametro("@scEst", _scEst))
+        _listParam.Add(New Datos.DParametro("@scUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_SER002", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _scId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    'Eliminar 
+    Public Shared Function L_fnEliminarServicio(ByRef _scId As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@scId", _scId))
+        _listParam.Add(New Datos.DParametro("@scUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_SER002", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _scId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+#End Region
+#Region "Consultas"
+    'Mostrar 
+    Public Shared Function L_fnMostrarServicio() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@scUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_SER002", _listParam)
+        Return _Tabla
+    End Function
+#End Region
+#Region "Verificaciones"
+#End Region
+#End Region
+
+#Region "CON.LIBRERIA LIB0011"'lcidprog, lcidgrup, lcidlib, lcdesc, lcfecha, lchora, lcusuario
+#Region "TRANSACCIONES"
+    Public Shared Function L_fnGrabarLibreria(ByRef _id As String, _lcidprog As String, _lcidgrup As String, _desc As String) As Boolean
+        Dim _Error As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@lbidprog", _lcidprog))
+        _listParam.Add(New Datos.DParametro("@lbidgrup", _lcidgrup))
+        _listParam.Add(New Datos.DParametro("@lbdesc", _desc))
+        _listParam.Add(New Datos.DParametro("@lbusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_LIB0011", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _id = _Tabla.Rows(0).Item(0)
+            _Error = False
+        Else
+            _Error = True
+        End If
+        Return Not _Error
+    End Function
+    Public Shared Function L_fnGrabarLibreriasPrograma(_Id As String, _dt As DataTable) As Boolean
+        Dim _Tabla As DataTable
+        Dim _resultado As Boolean
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@LIB0011", "", _dt))
+        _listParam.Add(New Datos.DParametro("@lbusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_LIB0011", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _Id = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+#End Region
+#Region "CONSULTAS"
+    '**********Muestra las librerias
+    Public Shared Function L_fnMostrarLibreria(_lcidprog As String, _lcidgrup As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@lbidprog", _lcidprog))
+        _listParam.Add(New Datos.DParametro("@lbidgrup", _lcidgrup))
+        _Tabla = D_ProcedimientoConParam("CON.sp_LIB0011", _listParam)
+        Return _Tabla
+    End Function
+    'MUESTRA LOS PROGRAMAAS EN GENERAL
+    Public Shared Function L_fnGeneralProgramas() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@lbUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_LIB0011", _listParam)
+        Return _Tabla
+    End Function
+    'MUESTRA PROGRAMAS Y CATEGORIAS 
+    Public Shared Function L_fnGeneralProgramasCategorias(_categoria As Integer) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@lbUsuario", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@categoria", _categoria))
+        _Tabla = D_ProcedimientoConParam("CON.sp_LIB0011", _listParam)
+        Return _Tabla
+    End Function
+    'MUESTRA LISTA DE LIBRERIAS
+    Public Shared Function L_fnGeneralDetalleLibrerias(cod1 As String, cod2 As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@lbUsuario", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@cod1", cod1))
+        _listParam.Add(New Datos.DParametro("@cod2", cod2))
+        _Tabla = D_ProcedimientoConParam("CON.sp_LIB0011", _listParam)
+        Return _Tabla
+    End Function
+#End Region
+#Region "VERIFICACIONES"
+    '**********VERIFICA SI EXISTE LA LIBRERIA
+    Public Shared Function L_fnExisteLibreria(_lcidprog As String, _lcidgrup As String, _desc As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim res As Boolean = False
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@lbidprog", _lcidprog))
+        _listParam.Add(New Datos.DParametro("@lbidgrup", _lcidgrup))
+        _listParam.Add(New Datos.DParametro("@lbdesc", _desc))
+        _Tabla = D_ProcedimientoConParam("CON.sp_LIB0011", _listParam)
+        Return res = IIf(_Tabla.Rows(0).Item(0) <> 0, True, False)
+    End Function
+#End Region
+#End Region
+
+#Region " REG.CLIENTES TCLI001"
+#Region "Transacciones"
+    'Eliminar clientes
+    Public Shared Function L_fnEliminarClientes(ByRef _caid As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@caid", _caid))
+        _listParam.Add(New Datos.DParametro("@causuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_CLI001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            '_caid = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    'Grabar Clientes
+    Public Shared Function L_fnGrabarClientes(ByRef _caid As String, _caci As String, _canomb As String, _caapell As String,
+                                              _cadir As String, _catelf As String, _camail As String, _cafecha As String) As Boolean
+
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@caid", _caid))
+        _listParam.Add(New Datos.DParametro("@caci", _caci))
+        _listParam.Add(New Datos.DParametro("@canomb", _canomb))
+        _listParam.Add(New Datos.DParametro("@caapell", _caapell))
+        _listParam.Add(New Datos.DParametro("@cadir", _cadir))
+        _listParam.Add(New Datos.DParametro("@catelf", _catelf))
+        _listParam.Add(New Datos.DParametro("@camail", _camail))
+        _listParam.Add(New Datos.DParametro("@cafecha", _cafecha))
+        _listParam.Add(New Datos.DParametro("@causuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_CLI001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _caid = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    'Modificar Clientes
+    Public Shared Function L_fnModificarClientes(ByRef _caid As String, _caci As String, _canomb As String, _caapell As String,
+                                              _cadir As String, _catelf As String, _camail As String, _cafecha As String) As Boolean
+
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@caid", _caid))
+        _listParam.Add(New Datos.DParametro("@caci", _caci))
+        _listParam.Add(New Datos.DParametro("@canomb", _canomb))
+        _listParam.Add(New Datos.DParametro("@caapell", _caapell))
+        _listParam.Add(New Datos.DParametro("@cadir", _cadir))
+        _listParam.Add(New Datos.DParametro("@catelf", _catelf))
+        _listParam.Add(New Datos.DParametro("@camail", _camail))
+        _listParam.Add(New Datos.DParametro("@cafecha", _cafecha))
+        _listParam.Add(New Datos.DParametro("@causuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_CLI001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _caid = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    Public Shared Function L_fnModificarClientes(ByRef _ydnumi As String, _ydcod As String,
+                                            _ydrazonSocial As String, _yddesc As String, _ydnumiVendedor As Integer, _ydzona As Integer,
+                                             _yddct As Integer, _yddctnum As String,
+                                             _yddirec As String, _ydtelf1 As String,
+                                             _ydtelf2 As String, _ydcat As Integer, _ydest As Integer, _ydlat As Double, _ydlongi As Double, _ydobs As String,
+                                             _ydfnac As String, _ydnomfac As String,
+                                             _ydtip As Integer, _ydnit As String, _yddias As String, _ydlcred As String, _ydfecing As String, _ydultvent As String, _ydimg As String, _ydrut As String, _ydciudad As Integer, _ydprovincia As Integer, _ydalmacen As Integer) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@ydnumi", _ydnumi))
+        '_listParam.Add(New Datos.DParametro("@ydcod", _ydcod))
+        _listParam.Add(New Datos.DParametro("@ydrazonsocioal", _ydrazonSocial))
+        _listParam.Add(New Datos.DParametro("@yddesc", _yddesc))
+        _listParam.Add(New Datos.DParametro("@ydnumivend", _ydnumiVendedor))
+        _listParam.Add(New Datos.DParametro("@ydzona", _ydzona))
+        _listParam.Add(New Datos.DParametro("@yddct", _yddct))
+        _listParam.Add(New Datos.DParametro("@yddctnum", _yddctnum))
+        _listParam.Add(New Datos.DParametro("@yddirec", _yddirec))
+        _listParam.Add(New Datos.DParametro("@ydtelf1", _ydtelf1))
+        _listParam.Add(New Datos.DParametro("@ydtelf2", _ydtelf2))
+        _listParam.Add(New Datos.DParametro("@ydcat", _ydcat))
+        _listParam.Add(New Datos.DParametro("@ydest", _ydest))
+        _listParam.Add(New Datos.DParametro("@ydlat", _ydlat))
+        _listParam.Add(New Datos.DParametro("@ydlongi", _ydlongi))
+        _listParam.Add(New Datos.DParametro("@ydprconsu", 0))
+        _listParam.Add(New Datos.DParametro("@ydobs", _ydobs))
+        _listParam.Add(New Datos.DParametro("@ydfnac", _ydfnac))
+        _listParam.Add(New Datos.DParametro("@ydnomfac", _ydnomfac))
+        _listParam.Add(New Datos.DParametro("@ydtip", _ydtip))
+        _listParam.Add(New Datos.DParametro("@ydnit", _ydnit))
+        _listParam.Add(New Datos.DParametro("@yddias", _yddias))
+        _listParam.Add(New Datos.DParametro("@ydlcred", _ydlcred))
+        _listParam.Add(New Datos.DParametro("@ydfecing", _ydfecing))
+        _listParam.Add(New Datos.DParametro("@ydultvent", _ydultvent))
+        _listParam.Add(New Datos.DParametro("@ydciudad", _ydciudad))
+        _listParam.Add(New Datos.DParametro("@ydprovincia", _ydprovincia))
+        _listParam.Add(New Datos.DParametro("@ydalmacen", _ydalmacen))
+        _listParam.Add(New Datos.DParametro("@ydrut", _ydrut))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY004", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _ydnumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    Public Shared Function L_fnGeneralClientes(tipo As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@ydtip", tipo))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY004", _listParam)
+
+        Return _Tabla
+    End Function
+
+#End Region
+#Region "Consultas"
+    'Mostrar Todos los Clientes
+    Public Shared Function L_fnMostrarClientes() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@causuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_CLI001", _listParam)
+        '_Tabla = D_Procedimiento("sp_Mostrar")
+        Return _Tabla
+    End Function
+#End Region
+#Region "Verificaciones"
+    '****************Verifica si cliente tinee algun paciente relacionado
+    Public Shared Function L_fnExistePaciente(_caid As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim res As Boolean = False
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@caid", _caid))
+        _Tabla = D_ProcedimientoConParam("REG.sp_CLI001", _listParam)
+        Return res = IIf(_Tabla.Rows(0).Item(0) = 0, False, True)
+    End Function
+#End Region
+#End Region
+
+#Region "REG.PACIENTE PAC0011"
+#Region "Transacciones"
+    'REGISTRA UN PACIENTE
+    Public Shared Function L_fnGrabarPaciente(ByRef _pbid As String, _pb_caid As String, _pbnomb As String, _pbespec As String,
+                                            _pbfnac As String, _pbraza As String, _pbsex As String, _pbcolor As String, _pbester As String, _pbdest As String, _pbseñas As String,
+                                            _pbfingr As String) As Boolean
+        'pbid, pb_caid, pbnomb, pbespec, pbfnac, pbraza, pbsex, pbcolor, pbester, pbdest, pbseñas, pbfingr, pbest, pbhora, pbusuario
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@pbid", _pbid))
+        _listParam.Add(New Datos.DParametro("@pb_caid", _pb_caid))
+        _listParam.Add(New Datos.DParametro("@pbnomb", _pbnomb))
+        _listParam.Add(New Datos.DParametro("@pbespec", _pbespec))
+        _listParam.Add(New Datos.DParametro("@pbfnac", _pbfnac))
+        _listParam.Add(New Datos.DParametro("@pbraza", _pbraza))
+        _listParam.Add(New Datos.DParametro("@pbsex", _pbsex))
+        _listParam.Add(New Datos.DParametro("@pbcolor", _pbcolor))
+        _listParam.Add(New Datos.DParametro("@pbester", _pbester))
+        _listParam.Add(New Datos.DParametro("@pbdest", _pbdest))
+        _listParam.Add(New Datos.DParametro("@pbseñas", _pbseñas))
+        _listParam.Add(New Datos.DParametro("@pbfingr", _pbfingr))
+        _listParam.Add(New Datos.DParametro("@pbest", 1))
+        _listParam.Add(New Datos.DParametro("@pbusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_PAC0011", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _pbid = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    'MODIFICA A UN PACIENTE
+    Public Shared Function L_fnModificarPaciente(ByRef _pbid As String, _pb_caid As String, _pbnomb As String, _pbespec As String,
+                                           _pbfnac As String, _pbraza As String, _pbsex As String, _pbcolor As String, _pbester As String, _pbdest As String, _pbseñas As String,
+                                           _pbfingr As String) As Boolean
+        'pbid, pb_caid, pbnomb, pbespec, pbfnac, pbraza, pbsex, pbcolor, pbester, pbdest, pbseñas, pbfingr, pbest, pbhora, pbusuario
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@pbid", _pbid))
+        _listParam.Add(New Datos.DParametro("@pb_caid", _pb_caid))
+        _listParam.Add(New Datos.DParametro("@pbnomb", _pbnomb))
+        _listParam.Add(New Datos.DParametro("@pbespec", _pbespec))
+        _listParam.Add(New Datos.DParametro("@pbfnac", _pbfnac))
+        _listParam.Add(New Datos.DParametro("@pbraza", _pbraza))
+        _listParam.Add(New Datos.DParametro("@pbsex", _pbsex))
+        _listParam.Add(New Datos.DParametro("@pbcolor", _pbcolor))
+        _listParam.Add(New Datos.DParametro("@pbester", _pbester))
+        _listParam.Add(New Datos.DParametro("@pbdest", _pbdest))
+        _listParam.Add(New Datos.DParametro("@pbseñas", _pbseñas))
+        _listParam.Add(New Datos.DParametro("@pbfingr", _pbfingr))
+        _Tabla = D_ProcedimientoConParam("REG.sp_PAC0011", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _pbid = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    'Eliminar PACIENTE
+    Public Shared Function L_fnEliminarPaciente(ByRef _pbid As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@pbid", _pbid))
+        _listParam.Add(New Datos.DParametro("@pbusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_PAC0011", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            '_caid = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+#End Region
+#Region "COnsultas"
+    'Mostrar Todos los PACIENTE
+    Public Shared Function L_MostrarPacientes() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@pbusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_PAC0011", _listParam)
+        Return _Tabla
+    End Function
+    'MUESTRA LOS PASCIENTES SEGUN UN CODIGO DE CLIENTE
+    Public Shared Function L_fnMostrarPaciente(_caid As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@pb_caid", _caid))
+        _Tabla = D_ProcedimientoConParam("REG.sp_PAC0011", _listParam)
+        Return _Tabla
+    End Function
+    '****Muestra pacientes con Seleccion
+    Public Shared Function L_fnMostrarPacientesSeleccion(_caid As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@pb_caid", _caid))
+        _Tabla = D_ProcedimientoConParam("REG.sp_PAC0011", _listParam)
+        Return _Tabla
+    End Function
+
+#End Region
+
+#End Region
+#Region " REG.EMPLEADOS EMP002"
+#Region "Transacciones"
+
+    'Grabar 
+    Public Shared Function L_fnGrabarEnpleado(ByRef _ecId As String, _ec_lbIdLib As String, _ecCi As String, _ecNomb As String, _ecDir As String,
+                                              _ecTelf As String, _ecMail As String, _ecFNac As String, _ecFIngr As String, _ecImg As String, _ecEst As String) As Boolean
+        'ecId, ec_lbIdLib, ecCi, ecNomb, ecDir, ecTelf, ecMail, ecFNac, ecFIngr, ecEst, ecImg, ecFecha, ecHora, ecUsuario
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@ecId", _ecId))
+        _listParam.Add(New Datos.DParametro("@ecNomb", _ecNomb))
+        _listParam.Add(New Datos.DParametro("@ec_lbIdLib", _ec_lbIdLib))
+        _listParam.Add(New Datos.DParametro("@ecCi", _ecCi))
+        _listParam.Add(New Datos.DParametro("@ecDir", _ecDir))
+        _listParam.Add(New Datos.DParametro("@ecTelf", _ecTelf))
+        _listParam.Add(New Datos.DParametro("@ecMail", _ecMail))
+        _listParam.Add(New Datos.DParametro("@ecFNac", _ecFNac))
+        _listParam.Add(New Datos.DParametro("@ecFIngr", _ecFIngr))
+        _listParam.Add(New Datos.DParametro("@ecImg", _ecImg))
+        _listParam.Add(New Datos.DParametro("@ecEst", _ecEst))
+        _listParam.Add(New Datos.DParametro("@ecUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_EMP002", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _ecId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    'Modificar 
+    Public Shared Function L_fnModificarEnpleado(ByRef _ecId As String, _ec_lbIdLib As String, _ecCi As String, _ecNomb As String, _ecDir As String,
+                                                _ecTelf As String, _ecMail As String, _ecFNac As String, _ecFIngr As String, _ecImg As String, _ecEst As String) As Boolean
+        'ecId, ec_lbIdLib, ecCi, ecNomb, ecDir, ecTelf, ecMail, ecFNac, ecFIngr, ecEst, ecImg, ecFecha, ecHora, ecUsuario
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@ecId", _ecId))
+        _listParam.Add(New Datos.DParametro("@ecNomb", _ecNomb))
+        _listParam.Add(New Datos.DParametro("@ec_lbIdLib", _ec_lbIdLib))
+        _listParam.Add(New Datos.DParametro("@ecCi", _ecCi))
+        _listParam.Add(New Datos.DParametro("@ecDir", _ecDir))
+        _listParam.Add(New Datos.DParametro("@ecTelf", _ecTelf))
+        _listParam.Add(New Datos.DParametro("@ecMail", _ecMail))
+        _listParam.Add(New Datos.DParametro("@ecFNac", _ecFNac))
+        _listParam.Add(New Datos.DParametro("@ecFIngr", _ecFIngr))
+        _listParam.Add(New Datos.DParametro("@ecImg", _ecImg))
+        _listParam.Add(New Datos.DParametro("@ecEst", _ecEst))
+        _listParam.Add(New Datos.DParametro("@ecUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_EMP002", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _ecId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    'Eliminar 
+    Public Shared Function L_fnEliminarEmpleado(ByRef _ecId As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@ecId", _ecId))
+        _listParam.Add(New Datos.DParametro("@ecUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_EMP002", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _ecId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+#End Region
+#Region "Consultas"
+    'Mostrar 
+    Public Shared Function L_fnMostrarEmpleado() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@ecUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_EMP002", _listParam)
+        Return _Tabla
+    End Function
+#End Region
+#Region "Verificaciones"
+#End Region
+#End Region
+
+#Region "FICHA DE ATENCION FIC.ATEN001"
+#Region "Consultas"
+    '****Muestra la ficha de atencion
+    Public Shared Function L_fnMostrarFichaAtencion() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_ATEN001", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarListaFichaAtencion() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_ATEN001", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnActualizarEstadoFicha(_pbid As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@fa_pbId ", _pbid))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_ATEN001", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _pbid = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+
+#End Region
+#Region "Transacciones"
+    '*****Nueva ficha de atencion
+    Public Shared Function L_fnGrabarFichaAtencion(_faId As String, ATEN001 As DataTable) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@faUsuario", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@ATEN001", "", ATEN001))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_ATEN001", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _faId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    Public Shared Function L_fnModificarOrdenacionFichaAtencion(_faId As String, _faPriori As String, _tipoOrde As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@tipoOrde", _tipoOrde))
+        _listParam.Add(New Datos.DParametro("@faPriori", _faPriori))
+        _listParam.Add(New Datos.DParametro("@faId", "", _faId))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_ATEN001", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _faId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    Public Shared Sub L_fnOrdenarFichaAtencion(_faId As String, _faPriori As String)
+        Dim _res As Boolean = False
+        Dim _campos = String.Format("faPriori = {0}", _faPriori)
+        Dim _where = String.Format(" faId = {0} ", _faId)
+        D_Modificar_Datos("FIC.ATEN001", _campos, _where)
+    End Sub
+#End Region
+#Region "Verificaciones"
+    Public Shared Function L_fnFichaAtencionMaxPrioridad() As DataTable
+        Dim _Tabla As DataTable
+        Dim a As String = DateTime.Now.ToString("yyyy/MM/dd")
+        Dim b As String = DateTime.Now
+        Dim c As String = Date.Now
+        Dim _where = String.Format(" faFechaAten = '{0}'", DateTime.Now.ToString("dd/MM/yyyy"))
+        _Tabla = D_Datos_Tabla("ISNULL(MAX(faPriori),0) AS faPriori", "FIC.ATEN001", _where)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnFichaAtencionMaxPrioridadEmergencia() As DataTable
+        Dim _Tabla As DataTable
+        Dim a As String = DateTime.Now.ToString("yyyy/MM/dd")
+        Dim b As String = DateTime.Now
+        Dim c As String = Date.Now
+        Dim _where = String.Format(" faFechaAten = '{0}' AND faEstPac = 3", DateTime.Now.ToString("dd/MM/yyyy"))
+        _Tabla = D_Datos_Tabla("ISNULL(MAX(faPriori),0) AS faPriori", "FIC.ATEN001", _where)
+        Return _Tabla
+    End Function
+#End Region
+#End Region
+#Region "Ficha Clinica CLIN002 , CLIN0021 y CLIN0023"
+#Region "Transacciones"
+    '********Eliminar
+    Public Shared Function L_fnEliminarFichaClinica(ByRef _fbId As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@fbId", _fbId))
+        _listParam.Add(New Datos.DParametro("@fbUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _fbId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    '*********Grabar
+    Public Shared Function L_fnGrabarFichaClinica(ByRef _fbid As String, _fb_pbid As String, _fb_ecId As String, _fbFechaAten As String,
+                                                            _fbFechaProx As String, _fbHoraIni As String, _fbHoraFin As String, _fbHist As String,
+                                                            _fbExam As String, _fbTempe As String, _fbPeso As String, _fbFreCar As String,
+                                                            _fbFreRes As String, _fbSCorp As String, _fbTiemCapi As String, _fbTiemRPlie As String, _fbNotas As String,
+                                                            _fbValora As String, _fbProtMane As String, _CLIN0021 As DataTable, _faId As Integer, _CLIN0023 As DataTable, _CLIN0024 As DataTable) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@fbid", _fbid))
+        _listParam.Add(New Datos.DParametro("@fb_ecId", _fb_ecId))
+        _listParam.Add(New Datos.DParametro("@fb_pbid", _fb_pbid))
+        _listParam.Add(New Datos.DParametro("@fbFechaAten", _fbFechaAten))
+        _listParam.Add(New Datos.DParametro("@fbFechaProx", _fbFechaProx))
+        _listParam.Add(New Datos.DParametro("@fbHoraIni", _fbHoraIni))
+        _listParam.Add(New Datos.DParametro("@fbHoraFin", _fbHoraFin))
+        _listParam.Add(New Datos.DParametro("@fbHist", _fbHist))
+        _listParam.Add(New Datos.DParametro("@fbExam", _fbExam))
+        _listParam.Add(New Datos.DParametro("@fbTempe", _fbTempe))
+        _listParam.Add(New Datos.DParametro("@fbPeso", _fbPeso))
+        _listParam.Add(New Datos.DParametro("@fbFreCar", _fbFreCar))
+        _listParam.Add(New Datos.DParametro("@fbFreRes", _fbFreRes))
+        _listParam.Add(New Datos.DParametro("@fbSCorp", _fbSCorp))
+        _listParam.Add(New Datos.DParametro("@fbTiemCapi", _fbTiemCapi))
+        _listParam.Add(New Datos.DParametro("@fbTiemRPlie", _fbTiemRPlie))
+        _listParam.Add(New Datos.DParametro("@fbNotas", _fbNotas))
+        _listParam.Add(New Datos.DParametro("@fbValora", _fbValora))
+        _listParam.Add(New Datos.DParametro("@fbProtMane", _fbProtMane))
+        _listParam.Add(New Datos.DParametro("@fbUsuario", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@faId", _faId))
+        _listParam.Add(New Datos.DParametro("@CLIN0021", "", _CLIN0021))
+        _listParam.Add(New Datos.DParametro("@CLIN0023", "", _CLIN0023))
+        _listParam.Add(New Datos.DParametro("@CLIN0024", "", _CLIN0024))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _fbid = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    '*********Modificar
+    Public Shared Function L_fnModificarFichaClinica(ByRef _fbid As String, _fb_pbid As String, _fb_ecId As String, _fbFechaAten As String,
+                                                            _fbFechaProx As String, _fbHoraIni As String, _fbHoraFin As String, _fbHist As String,
+                                                            _fbExam As String, _fbTempe As String, _fbPeso As String, _fbFreCar As String,
+                                                            _fbFreRes As String, _fbSCorp As String, _fbTiemCapi As String, _fbTiemRPlie As String, _fbNotas As String,
+                                                            _fbValora As String, _fbProtMane As String, _CLIN0021 As DataTable, _faId As Integer, _CLIN0023 As DataTable, _CLIN0024 As DataTable) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@fbid", _fbid))
+        _listParam.Add(New Datos.DParametro("@fb_ecId", _fb_ecId))
+        _listParam.Add(New Datos.DParametro("@fb_pbid", _fb_pbid))
+        _listParam.Add(New Datos.DParametro("@fbFechaAten", _fbFechaAten))
+        _listParam.Add(New Datos.DParametro("@fbFechaProx", _fbFechaProx))
+        _listParam.Add(New Datos.DParametro("@fbHoraIni", _fbHoraIni))
+        _listParam.Add(New Datos.DParametro("@fbHoraFin", _fbHoraFin))
+        _listParam.Add(New Datos.DParametro("@fbHist", _fbHist))
+        _listParam.Add(New Datos.DParametro("@fbExam", _fbExam))
+        _listParam.Add(New Datos.DParametro("@fbTempe", _fbTempe))
+        _listParam.Add(New Datos.DParametro("@fbPeso", _fbPeso))
+        _listParam.Add(New Datos.DParametro("@fbFreCar", _fbFreCar))
+        _listParam.Add(New Datos.DParametro("@fbFreRes", _fbFreRes))
+        _listParam.Add(New Datos.DParametro("@fbSCorp", _fbSCorp))
+        _listParam.Add(New Datos.DParametro("@fbTiemCapi", _fbTiemCapi))
+        _listParam.Add(New Datos.DParametro("@fbTiemRPlie", _fbTiemRPlie))
+        _listParam.Add(New Datos.DParametro("@fbNotas", _fbNotas))
+        _listParam.Add(New Datos.DParametro("@fbValora", _fbValora))
+        _listParam.Add(New Datos.DParametro("@fbProtMane", _fbProtMane))
+        _listParam.Add(New Datos.DParametro("@fbUsuario", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@faId", _faId))
+        _listParam.Add(New Datos.DParametro("@CLIN0021", "", _CLIN0021))
+        _listParam.Add(New Datos.DParametro("@CLIN0023", "", _CLIN0023))
+        _listParam.Add(New Datos.DParametro("@CLIN0024", "", _CLIN0024))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _fbid = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnModificarFichaClinicaAlta(ByRef _fbId As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 21))
+        _listParam.Add(New Datos.DParametro("@fbId", _fbId))
+        _listParam.Add(New Datos.DParametro("@fbUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _fbId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+#End Region
+#Region "Consultas"
+    Public Shared Function L_fnMostrarFichaClinicaVacia() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarFichaClinica() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarFichaClinicaDetalle(_fbId As Integer) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@fbId", _fbId))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
+        Return _Tabla
+    End Function
+    '*******Muestra el ultimo registro y el codigo de  Ficha Clinica(FbId) segun un codigo de  Paciente
+    Public Shared Function L_fnMostrarIdFichaClinica(ByRef _fbId As Integer, _fb_pbId As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim _res As Boolean = False
+        Dim _where = String.Format(" clin.fbFecha = (SELECT MAX(clin2.fbFecha) FROM FIC.CLIN002 clin2 WHERE clin2.fb_pbid = {0}) 
+				                                    AND clin.fbHora = (SELECT MAX(clin2.fbHora) FROM FIC.CLIN002 clin2 WHERE clin2.fb_pbid = {0} 
+									                AND clin2.fbFecha = (SELECT MAX(clin3.fbFecha) FROM FIC.CLIN002 clin3 WHERE clin3.fb_pbid = {0}))", _fb_pbId)
+        _Tabla = D_Datos_Tabla(" fbid ", " FIC.CLIN002 clin ", _where)
+        If _Tabla.Rows.Count = 0 Then
+            _fbId = 0
+        Else
+            _fbId = _Tabla.Rows(0).Item(0)
+        End If
+        Return _res = IIf(_Tabla.Rows.Count <> 0, False, True)
+    End Function
+    Public Shared Function L_prMostrarImagenesFichaClinica(_fbId As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@fbId", _fbId))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prMostrarFichaClinicaSeguimiento(_fbId As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@fbId", _fbId))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
+        Return _Tabla
+    End Function
+
+#End Region
+#Region "Verificaciones"
+    Public Shared Function L_fnExisteFichaClinica(_fb_pbid As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim _res As Boolean = False
+        Dim _where = String.Format(" clin.fb_pbid = {0} ", _fb_pbid)
+        _Tabla = D_Datos_Tabla(" COUNT(*) ", " FIC.CLIN002 clin ", _where)
+        Return _res = IIf(_Tabla.Rows(0).Item(0) <> 0, True, False)
+    End Function
+    Public Shared Function L_fnExisteTransRelacionadasFichaClinica(_fb_pbid As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim _res As Boolean = False
+        Dim _where = String.Format(" clin.fb_pbid = {0} ", _fb_pbid)
+        _Tabla = D_Datos_Tabla(" COUNT(*) ", " FIC.CLIN002 clin ", _where)
+        Return _res = IIf(_Tabla.Rows(0).Item(0) <> 0, True, False)
+    End Function
+    Public Shared Function L_fnExisteFichaClinicaAlta(_fbId As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim _res As Boolean = False
+        Dim _where = String.Format(" clin.fbid = {0} AND fbAlta = 2 ", _fbId)
+        _Tabla = D_Datos_Tabla(" COUNT(*) ", " FIC.CLIN002 clin ", _where)
+        Return _res = IIf(_Tabla.Rows(0).Item(0) = 0, True, False)
+    End Function
+#End Region
+#End Region
+#Region "Cirugia CIR0024"
+#Region "Transacciones"
+    '********Registrar
+    Public Shared Function L_fnGrabarCirugia(ByRef cfId As String, cf_FbId As String, cfFechaAten As String, cfPeso As String, cfEdad As String,
+                                                            cfRespon As String, cfTelef As String, cfImport As String, cfClasASA As String,
+                                                            cfProc As String, cfObser As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@cfId", cfId))
+        _listParam.Add(New Datos.DParametro("@cf_FbId", cf_FbId))
+        _listParam.Add(New Datos.DParametro("@cfEst", 1))
+        _listParam.Add(New Datos.DParametro("@cfFechaAten", cfFechaAten))
+        _listParam.Add(New Datos.DParametro("@cfPeso", cfPeso))
+        _listParam.Add(New Datos.DParametro("@cfRespon", cfRespon))
+        _listParam.Add(New Datos.DParametro("@cfEdad", cfEdad))
+        _listParam.Add(New Datos.DParametro("@cfTelef", cfTelef))
+        _listParam.Add(New Datos.DParametro("@cfImport", cfImport))
+        _listParam.Add(New Datos.DParametro("@cfClasASA", cfClasASA))
+        _listParam.Add(New Datos.DParametro("@cfProc", cfProc))
+        _listParam.Add(New Datos.DParametro("@cfObser", cfObser))
+        _listParam.Add(New Datos.DParametro("@cfUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CIR0024", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            cfId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    '********Modificar
+    Public Shared Function L_fnMoficicarCirugia(ByRef cfId As String, cf_FbId As String, cfFechaAten As String, cfPeso As String, cfEdad As String,
+                                                            cfRespon As String, cfTelef As String, cfImport As String, cfClasASA As String,
+                                                            cfProc As String, cfObser As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@cfId", cfId))
+        _listParam.Add(New Datos.DParametro("@cf_FbId", cf_FbId))
+        _listParam.Add(New Datos.DParametro("@cfEst", 1))
+        _listParam.Add(New Datos.DParametro("@cfFechaAten", cfFechaAten))
+        _listParam.Add(New Datos.DParametro("@cfPeso", cfPeso))
+        _listParam.Add(New Datos.DParametro("@cfEdad", cfEdad))
+        _listParam.Add(New Datos.DParametro("@cfRespon", cfRespon))
+        _listParam.Add(New Datos.DParametro("@cfTelef", cfTelef))
+        _listParam.Add(New Datos.DParametro("@cfImport", cfImport))
+        _listParam.Add(New Datos.DParametro("@cfClasASA", cfClasASA))
+        _listParam.Add(New Datos.DParametro("@cfProc", cfProc))
+        _listParam.Add(New Datos.DParametro("@cfObser", cfObser))
+        _listParam.Add(New Datos.DParametro("@cfUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CIR0024", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            cfId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    '********Eliminar
+    Public Shared Function L_fnEliminarCirugia(ByRef _cf_FbId As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@cf_FbId", _cf_FbId))
+        _listParam.Add(New Datos.DParametro("@cfUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CIR0024", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _cf_FbId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+#End Region
+#Region "Consultas"
+    Public Shared Function L_fnMostrarCirugia() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CIR0024", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarCirugiaRecibo() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CIR0024", _listParam)
+        Return _Tabla
+    End Function
+#End Region
+#Region "Verificaciones"
+    Public Shared Function L_fnExisteCirugia(_fbId As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim _res As Boolean = False
+        Dim _where = String.Format(" cf_FbId = {0} ", _fbId)
+        _Tabla = D_Datos_Tabla(" COUNT(*) ", " FIC.CIR0024 ", _where)
+        If _Tabla.Rows(0).Item(0) = 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+#End Region
+#End Region
+#Region "Internacion INT0025"
+#Region "Transacciones"
+    '********Registrar
+    Public Shared Function L_fnGrabarInternacion(ByRef igId As String, ig_fbId As String, igFechaIng As String,
+                                                            igEdad As String, igTelf As String, igMotInter As String, igRequer As String,
+                                                            igHoraInter As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@igId", igId))
+        _listParam.Add(New Datos.DParametro("@ig_fbId", ig_fbId))
+        _listParam.Add(New Datos.DParametro("@igEst", 1))
+        _listParam.Add(New Datos.DParametro("@igFechaIng", igFechaIng))
+        _listParam.Add(New Datos.DParametro("@igEdad", igEdad))
+        _listParam.Add(New Datos.DParametro("@igTelf", igTelf))
+        _listParam.Add(New Datos.DParametro("@igMotInter", igMotInter))
+        _listParam.Add(New Datos.DParametro("@igRequer", igRequer))
+        _listParam.Add(New Datos.DParametro("@igHoraInter", igHoraInter))
+        _listParam.Add(New Datos.DParametro("@igUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT0025", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            igId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    '********Modificar
+    Public Shared Function L_fnModificarInternacion(ByRef igId As String, ig_fbId As String, igFechaIng As String,
+                                                            igEdad As String, igTelf As String, igMotInter As String, igRequer As String,
+                                                            igHoraInter As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@igId", igId))
+        _listParam.Add(New Datos.DParametro("@ig_fbId", ig_fbId))
+        _listParam.Add(New Datos.DParametro("@igEst", 1))
+        _listParam.Add(New Datos.DParametro("@igFechaIng", igFechaIng))
+        _listParam.Add(New Datos.DParametro("@igEdad", igEdad))
+        _listParam.Add(New Datos.DParametro("@igTelf", igTelf))
+        _listParam.Add(New Datos.DParametro("@igMotInter", igMotInter))
+        _listParam.Add(New Datos.DParametro("@igRequer", igRequer))
+        _listParam.Add(New Datos.DParametro("@igHoraInter", igHoraInter))
+        _listParam.Add(New Datos.DParametro("@igUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT0025", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            igId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    '********Eliminar
+    Public Shared Function L_fnEliminarInternacion(ByRef _ig_fbId As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@ig_fbId", _ig_fbId))
+        _listParam.Add(New Datos.DParametro("@igUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT0025", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _ig_fbId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+#End Region
+#Region "Consultas"
+    Public Shared Function L_fnMostrarInternacion() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT0025", _listParam)
+        Return _Tabla
+    End Function
+#End Region
+#Region "Verificaciones"
+    Public Shared Function L_fnExisteInternacion(_fbId As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim _res As Boolean = False
+        Dim _where = String.Format(" ig_FbId = {0} ", _fbId)
+        _Tabla = D_Datos_Tabla(" COUNT(*) ", " FIC.INT0025 ", _where)
+        Return _res = IIf(_Tabla.Rows(0).Item(0) <> 0, True, False)
+    End Function
+#End Region
+#End Region
+#Region "Seguimiento de Internacion INT00251"
+#Region "Transacciones"
+    'ihId, ih_fbId, ihEst, ihFechaIng, ihTurno, ihDiag, ihObser, ihPasoTur, ihFecha, ihHora, ihUsuario
+    '********Registrar
+    'iiId, ii_ihId, iiEst, iiHoraTurn, iiResp, iiFrec, iiMedPro, iiAlim, iiFecha, iiHora, iiusuario
+    Public Shared Function L_fnGrabarInternacionSeg(ByRef ihId As String, ih_fbId As String, ihFechaIng As String,
+                                                   ihDiag As String, ihResp As String,
+                                                   Tipo2 As String, iiFechaIng As String, iiTurno As String, iiHoraTurn As String, iiObser As String, iiFrec As String, iiOtros As String,
+                                                    iiMedPro As String, iiAlim As String, iiPasoTur As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@ihId", ihId))
+        _listParam.Add(New Datos.DParametro("@ih_fbId", ih_fbId))
+        _listParam.Add(New Datos.DParametro("@ihEst", 1))
+        _listParam.Add(New Datos.DParametro("@ihFechaIng", ihFechaIng))
+        _listParam.Add(New Datos.DParametro("@ihDiag", ihDiag))
+        _listParam.Add(New Datos.DParametro("@ihResp", ihResp))
+
+        _listParam.Add(New Datos.DParametro("@ihUsuario", L_Usuario))
+        'Detalle
+        _listParam.Add(New Datos.DParametro("@tipo2", Tipo2))
+        _listParam.Add(New Datos.DParametro("@iiFechaIng", iiFechaIng))
+        _listParam.Add(New Datos.DParametro("@iiTurno", iiTurno))
+        _listParam.Add(New Datos.DParametro("@iiHoraTurn", iiHoraTurn))
+        _listParam.Add(New Datos.DParametro("@iiObser", iiObser))
+        _listParam.Add(New Datos.DParametro("@iiEst", 1))
+        _listParam.Add(New Datos.DParametro("@iiMedPror", iiMedPro))
+        _listParam.Add(New Datos.DParametro("@iiFrec", iiFrec))
+        _listParam.Add(New Datos.DParametro("@iiOtros", iiOtros))
+        _listParam.Add(New Datos.DParametro("@iiAlim", iiAlim))
+        _listParam.Add(New Datos.DParametro("@iiPasoTur", iiPasoTur))
+        _listParam.Add(New Datos.DParametro("@iiUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            ihId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    '********Modificar
+    Public Shared Function L_fnModificarInternacionSeg(ByRef ihId As String, ih_fbId As String, ihFechaIng As String,
+                                                   ihDiag As String, ihResp As String,
+                                                   Tipo2 As String, iiId As String, iiFechaIng As String, iiTurno As String, iiHoraTurn As String, iiObser As String, iiFrec As String, iiOtros As String,
+                                                    iiMedPro As String, iiAlim As String, iiPasoTur As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@ihId", ihId))
+        _listParam.Add(New Datos.DParametro("@ih_fbId", ih_fbId))
+        _listParam.Add(New Datos.DParametro("@ihEst", 1))
+        _listParam.Add(New Datos.DParametro("@ihFechaIng", ihFechaIng))
+        _listParam.Add(New Datos.DParametro("@ihDiag", ihDiag))
+        _listParam.Add(New Datos.DParametro("@ihResp", ihResp))
+        _listParam.Add(New Datos.DParametro("@ihUsuario", L_Usuario))
+        '
+        _listParam.Add(New Datos.DParametro("@tipo2", Tipo2))
+        _listParam.Add(New Datos.DParametro("@iiId", iiId))
+        _listParam.Add(New Datos.DParametro("@iiFechaIng", iiFechaIng))
+        _listParam.Add(New Datos.DParametro("@iiTurno", iiTurno))
+        _listParam.Add(New Datos.DParametro("@iiHoraTurn", iiHoraTurn))
+        _listParam.Add(New Datos.DParametro("@iiObser", iiObser))
+        _listParam.Add(New Datos.DParametro("@iiEst", 1))
+        _listParam.Add(New Datos.DParametro("@iiMedPror", iiMedPro))
+        _listParam.Add(New Datos.DParametro("@iiFrec", iiFrec))
+        _listParam.Add(New Datos.DParametro("@iiOtros", iiOtros))
+        _listParam.Add(New Datos.DParametro("@iiAlim", iiAlim))
+        _listParam.Add(New Datos.DParametro("@iiPasoTur", iiPasoTur))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            ihId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    '********Eliminar
+    Public Shared Function L_fnEliminarInternacionSeg(ByRef _ihId As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@ihId", _ihId))
+        _listParam.Add(New Datos.DParametro("@ihUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _ihId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+#End Region
+#Region "Consultas"
+    Public Shared Function L_fnMostrarInternacionSeg() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarInternacionSegDet(idInternacion As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@ihId", idInternacion))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
+        Return _Tabla
+    End Function
+#End Region
+#Region "Verificaciones"
+
+#End Region
+#End Region
+
+#Region "Recibo FIC.REC003"
+#Region "Transacciones"
+    '********Registrar
+    'rkId, rk_fbId, rkEst, rkFechaIng, rkObser, rkDesc, rkTotal, rkFecha, rkHora, rkusuario
+    Public Shared Function L_fnGrabarRecibo(ByRef rkId As String, rk_fbId As String, rkFechaIng As String,
+                                            rkDesc As String, rkTotal As Decimal, _REC0031 As DataTable)
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@rkId", rkId))
+        _listParam.Add(New Datos.DParametro("@rk_fbId", rk_fbId))
+        _listParam.Add(New Datos.DParametro("@rkEst", 1))
+        _listParam.Add(New Datos.DParametro("@rkFechaIng", rkFechaIng))
+        _listParam.Add(New Datos.DParametro("@rkDesc", rkDesc))
+        _listParam.Add(New Datos.DParametro("@rkTotal", rkTotal))
+        _listParam.Add(New Datos.DParametro("@REC0031", "", _REC0031))
+        _listParam.Add(New Datos.DParametro("@rkusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_REC003", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            rkId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    '********Modificar
+    Public Shared Function L_fnModificarRecibo(ByRef rkId As String, rk_fbId As String, rkFechaIng As String,
+                                            rkDesc As String, rkTotal As Decimal, _REC0031 As DataTable)
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@rkId", rkId))
+        _listParam.Add(New Datos.DParametro("@rk_fbId", rk_fbId))
+        _listParam.Add(New Datos.DParametro("@rkEst", 1))
+        _listParam.Add(New Datos.DParametro("@rkFechaIng", rkFechaIng))
+        _listParam.Add(New Datos.DParametro("@rkDesc", rkDesc))
+        _listParam.Add(New Datos.DParametro("@rkTotal", rkTotal))
+        _listParam.Add(New Datos.DParametro("@REC0031", "", _REC0031))
+        _listParam.Add(New Datos.DParametro("@rkusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_REC003", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            rkId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    '********Eliminar
+    Public Shared Function L_fnEliminarRecibo(ByRef _rkId As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@rkId", _rkId))
+        _listParam.Add(New Datos.DParametro("@rkusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_REC003", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _rkId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+#End Region
+#Region "Consultas"
+    Public Shared Function L_fnMostrarRecibo() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@rkusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_REC003", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarReciboDetalle(rkId As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@rkId", rkId))
+        _listParam.Add(New Datos.DParametro("@rkusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_REC003", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarReciboDetalleServicio(_REC0031 As DataTable) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@REC0031", "", _REC0031))
+        _listParam.Add(New Datos.DParametro("@rkusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_REC003", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarReciboReporte(IdRecibo As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@rkId", IdRecibo))
+        _listParam.Add(New Datos.DParametro("@rkusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_REC003", _listParam)
+        Return _Tabla
+    End Function
+#End Region
+#Region "Verificaciones"
+    'Public Shared Function L_fnExisteRecibo(_fbId As String) As Boolean
+    '    Dim _Tabla As DataTable
+    '    Dim _res As Boolean = False
+    '    Dim _where = String.Format(" ig_FbId = {0} ", _fbId)
+    '    _Tabla = D_Datos_Tabla(" COUNT(*) ", " FIC.INT0025 ", _where)
+    '    Return _res = IIf(_Tabla.Rows(0).Item(0) <> 0, True, False)
+    'End Function
+#End Region
+#End Region
+
+#Region "Recibo Internacion FIC.RECINT004"
+#Region "Transacciones"
+    '********Registrar
+    'rmId, rm_IhID, rmEst, rmFechaIng, rmTratam, rmTotal, rmFecha, rmHora, rmusuario
+    Public Shared Function L_fnGrabarReciboInt(ByRef rmId As String, rm_IhID As String, rm_PbId As String, rmFechaIng As String,
+                                            rmTratam As String, rmTotal As Decimal, _RECINT0041 As DataTable)
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@rmId", rmId))
+        _listParam.Add(New Datos.DParametro("@rm_PbId", rm_PbId))
+        _listParam.Add(New Datos.DParametro("@rm_IhID", rm_IhID))
+        _listParam.Add(New Datos.DParametro("@rmEst", 1))
+        _listParam.Add(New Datos.DParametro("@rmFechaIng", rmFechaIng))
+        _listParam.Add(New Datos.DParametro("@rmTratam", rmTratam))
+        _listParam.Add(New Datos.DParametro("@rmTotal", rmTotal))
+        _listParam.Add(New Datos.DParametro("@RECINT0041", "", _RECINT0041))
+        _listParam.Add(New Datos.DParametro("@rmUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_RECINT004", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            rmId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    '********Modificar
+    Public Shared Function L_fnModificarReciboInt(ByRef rmId As String, rm_IhID As String, rm_PbId As String, rmFechaIng As String,
+                                            rmTratam As String, rmTotal As Decimal, _RECINT0041 As DataTable)
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@rmId", rmId))
+        _listParam.Add(New Datos.DParametro("@rm_IhID", rm_IhID))
+        _listParam.Add(New Datos.DParametro("@rm_PbId", rm_PbId))
+        _listParam.Add(New Datos.DParametro("@rmEst", 1))
+        _listParam.Add(New Datos.DParametro("@rmFechaIng", rmFechaIng))
+        _listParam.Add(New Datos.DParametro("@rmTratam", rmTratam))
+        _listParam.Add(New Datos.DParametro("@rmTotal", rmTotal))
+        _listParam.Add(New Datos.DParametro("@RECINT0041", "", _RECINT0041))
+        _listParam.Add(New Datos.DParametro("@rmUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_RECINT004", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            rmId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    '********Eliminar
+    Public Shared Function L_fnEliminarReciboInt(ByRef rmId As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@rmId", rmId))
+        _listParam.Add(New Datos.DParametro("@rmusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_RECINT004", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            rmId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+#End Region
+#Region "Consultas"
+    Public Shared Function L_fnMostrarReciboInt(Estado As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@rmEst", Estado))
+        _listParam.Add(New Datos.DParametro("@rmusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_RECINT004", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarReciboIntDetalle(rmId As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@rmId", rmId))
+        _listParam.Add(New Datos.DParametro("@rmusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_RECINT004", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarReciboIntXPaciente(Estado As String, _idPaciente As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@rmEst", Estado))
+        _listParam.Add(New Datos.DParametro("@rm_PbId", _idPaciente))
+        _listParam.Add(New Datos.DParametro("@rmusuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_RECINT004", _listParam)
+        Return _Tabla
+    End Function
+#End Region
+#Region "Verificaciones"
+
+#End Region
+#End Region
+
+#Region "Recibo Cirugia FIC.RECCIR005"
+#Region "Transacciones"
+    '********Registrar
+    'roId, ro_cfId, ro_PbId, ro_rmId, roEst, roFechaIng, roTotal, roFecha, roHora, rousuario
+    Public Shared Function L_fnGrabarReciboCir(ByRef roId As String, ro_cfId As String, ro_PbId As String, ro_rmId As String, roFechaIng As String,
+                                           roTotal As Decimal, _RECCIR0051 As DataTable)
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@roId", roId))
+        _listParam.Add(New Datos.DParametro("@ro_cfId", ro_cfId))
+        _listParam.Add(New Datos.DParametro("@ro_PbId", ro_PbId))
+        _listParam.Add(New Datos.DParametro("@ro_rmId", ro_rmId))
+        _listParam.Add(New Datos.DParametro("@roEst", 1))
+        _listParam.Add(New Datos.DParametro("@roFechaIng", roFechaIng))
+        _listParam.Add(New Datos.DParametro("@roTotal", roTotal))
+        _listParam.Add(New Datos.DParametro("@RECCIR0051", "", _RECCIR0051))
+        _listParam.Add(New Datos.DParametro("@roUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_RECCIR005", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            roId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    '********Modificar
+    Public Shared Function L_fnModificarReciboCir(ByRef roId As String, ro_cfId As String, ro_PbId As String, ro_rmId As String, roFechaIng As String,
+                                           roTotal As Decimal, _RECCIR0051 As DataTable)
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@roId", roId))
+        _listParam.Add(New Datos.DParametro("@ro_cfId", ro_cfId))
+        _listParam.Add(New Datos.DParametro("@ro_PbId", ro_PbId))
+        _listParam.Add(New Datos.DParametro("@ro_rmId", ro_rmId))
+        _listParam.Add(New Datos.DParametro("@roEst", 1))
+        _listParam.Add(New Datos.DParametro("@roFechaIng", roFechaIng))
+        _listParam.Add(New Datos.DParametro("@roTotal", roTotal))
+        _listParam.Add(New Datos.DParametro("@RECCIR0051", "", _RECCIR0051))
+        _listParam.Add(New Datos.DParametro("@roUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_RECCIR005", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            roId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    '********Eliminar
+    Public Shared Function L_fnEliminarReciboCir(ByRef roId As String, ByRef mensaje As String, ro_rmId As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@roId", roId))
+        _listParam.Add(New Datos.DParametro("@ro_rmId", ro_rmId))
+        _listParam.Add(New Datos.DParametro("@rousuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_RECCIR005", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            roId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+#End Region
+#Region "Consultas"
+    Public Shared Function L_fnMostrarReciboCir() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@rousuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_RECCIR005", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarReciboCirDetalle(roId As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@roId", roId))
+        _listParam.Add(New Datos.DParametro("@rousuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_RECCIR005", _listParam)
+        Return _Tabla
+    End Function
+#End Region
+#Region "Verificaciones"
+    'Verifica existencia de algun det. Recibo de Internacion (Validacion para eliminar)
+    Public Shared Function L_fnExisteReciboCir_DetalleRecInt(_rnId As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim _res As Boolean = False
+        Dim _where = String.Format(" rnId = {0} ", _rnId)
+        _Tabla = D_Datos_Tabla(" COUNT(*) ", " FIC.RECINT0041 ", _where)
+        Return _res = IIf(_Tabla.Rows(0).Item(0) <> 0, True, False)
+    End Function
+#End Region
+#End Region
+
+#Region "VENTA VEN.VEN0001"
+#Region "Transacciones"
+    '********Registrar
+    'vaId, va_rkId, va_caId, va_ecId, vaTipoVe, vaFechaDoc, vaFechaVenCre, vaObser, vaEst, vaDesc, vaTotal, vaFecha, vaHora, vausuario
+    Public Shared Function L_fnGrabarVenta(ByRef vaId As String, va_rkId As String, va_roId As String, va_rmId As String, va_pbId As String, va_caId As String, va_ecId As String, vaTipoVe As String, vaFechaDoc As String,
+                                            vaFechaVenCre As String, vaObser As String, vaDesc As String, vaTotal As String, _VEN001 As DataTable, vaAlm As String)
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@vaId", vaId))
+        _listParam.Add(New Datos.DParametro("@va_rkId", va_rkId))
+        _listParam.Add(New Datos.DParametro("@va_roId", va_roId))
+        _listParam.Add(New Datos.DParametro("@va_rmId", va_rmId))
+        _listParam.Add(New Datos.DParametro("@va_pbId", va_pbId))
+        _listParam.Add(New Datos.DParametro("@va_caId", va_caId))
+        _listParam.Add(New Datos.DParametro("@va_ecId", va_ecId))
+        _listParam.Add(New Datos.DParametro("@vaAlm", vaAlm))
+        _listParam.Add(New Datos.DParametro("@vaTipoVe", vaTipoVe))
+        _listParam.Add(New Datos.DParametro("@vaFechaDoc", vaFechaDoc))
+        _listParam.Add(New Datos.DParametro("@vaFechaVenCre", vaFechaVenCre))
+        _listParam.Add(New Datos.DParametro("@vaObser", vaObser))
+        _listParam.Add(New Datos.DParametro("@vaEst", 1))
+        _listParam.Add(New Datos.DParametro("@vaDesc", vaDesc))
+        _listParam.Add(New Datos.DParametro("@vaTotal", vaTotal))
+        _listParam.Add(New Datos.DParametro("@VEN0011", "", _VEN001))
+        _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            vaId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    '********Modificar
+    Public Shared Function L_fnModificarVenta(ByRef vaId As String, va_rkId As String, va_roId As String, va_rmId As String, va_pbId As String, va_caId As String, va_ecId As String, vaTipoVe As String, vaFechaDoc As String,
+                                            vaFechaVenCre As String, vaObser As String, vaDesc As String, vaTotal As String, _VEN001 As DataTable, vaAlm As String)
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@vaId", vaId))
+        _listParam.Add(New Datos.DParametro("@va_rkId", va_rkId))
+        _listParam.Add(New Datos.DParametro("@va_roId", va_roId))
+        _listParam.Add(New Datos.DParametro("@va_rmId", va_rmId))
+        _listParam.Add(New Datos.DParametro("@va_pbId", va_pbId))
+        _listParam.Add(New Datos.DParametro("@va_caId", va_caId))
+        _listParam.Add(New Datos.DParametro("@va_ecId", va_ecId))
+        _listParam.Add(New Datos.DParametro("@vaAlm", vaAlm))
+        _listParam.Add(New Datos.DParametro("@vaTipoVe", vaTipoVe))
+        _listParam.Add(New Datos.DParametro("@vaFechaDoc", vaFechaDoc))
+        _listParam.Add(New Datos.DParametro("@vaFechaVenCre", vaFechaVenCre))
+        _listParam.Add(New Datos.DParametro("@vaObser", vaObser))
+        _listParam.Add(New Datos.DParametro("@vaEst", 1))
+        _listParam.Add(New Datos.DParametro("@vaDesc", vaDesc))
+        _listParam.Add(New Datos.DParametro("@vaTotal", vaTotal))
+        _listParam.Add(New Datos.DParametro("@VEN0011", "", _VEN001))
+        _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            vaId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    '********Eliminar
+    Public Shared Function L_fnEliminarVenta(ByRef vaId As String, ByRef mensaje As String, va_rkId As String, va_roId As String, va_rmId As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@va_rkId", va_rkId))
+        _listParam.Add(New Datos.DParametro("@va_roId", va_roId))
+        _listParam.Add(New Datos.DParametro("@va_rmId", va_rmId))
+        _listParam.Add(New Datos.DParametro("@vaId", vaId))
+        _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            vaId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+#End Region
+#Region "Consultas"
+    Public Shared Function L_fnMostrarVenta() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarVentaDetalle(vaId As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@vaId", vaId))
+        _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarVentaProducto() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        '_listParam.Add(New Datos.DParametro("@IdProducto", IdPro))
+        _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarVentaProductoLote(IdPro As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@IdProducto", IdPro))
+        _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnMostrarVentaRecibo() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 8))
+        _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarVentaReporte(vaId As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 9))
+        _listParam.Add(New Datos.DParametro("@vaId", vaId))
+        _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarVentaReciboInternacion() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 10))
+        _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarVentaReciboCirugia() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 11))
+        _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarVentaReciboDet(va_rkId As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 12))
+        _listParam.Add(New Datos.DParametro("@va_rkId", va_rkId))
+        _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarVentaReciboCirugianDet(va_roId As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 13))
+        _listParam.Add(New Datos.DParametro("@va_roId", va_roId))
+        _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarVentaReciboInternacionDet(va_rmId As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 14))
+        _listParam.Add(New Datos.DParametro("@va_rmId", va_rmId))
+        _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_prVentasAtendidas(fechaI As String, fechaF As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_ReporteVentas", _listParam)
+        Return _Tabla
+
+    End Function
+    Public Shared Function L_prTipoRecibo() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 11))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_ReporteVentas", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_prVentasAtendidasRecibo(fechaI As String, fechaF As String, tipoRecibo As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@tipoRecibo", tipoRecibo))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_ReporteVentas", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_prVentasAtendidasReciboCliente(fechaI As String, fechaF As String, tipoRecibo As String, cliente As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@tipoRecibo", tipoRecibo))
+        _listParam.Add(New Datos.DParametro("@cliente", cliente))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_ReporteVentas", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_prVentasAtendidasCliente(fechaI As String, fechaF As String, cliente As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@cliente", cliente))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_ReporteVentas", _listParam)
+        Return _Tabla
+    End Function
+#End Region
+#Region "Verificaciones"
+    'Public Shared Function L_fnExisteRecibo(_fbId As String) As Boolean
+    '    Dim _Tabla As DataTable
+    '    Dim _res As Boolean = False
+    '    Dim _where = String.Format(" ig_FbId = {0} ", _fbId)
+    '    _Tabla = D_Datos_Tabla(" COUNT(*) ", " FIC.INT0025 ", _where)
+    '    Return _res = IIf(_Tabla.Rows(0).Item(0) <> 0, True, False)
+    'End Function
+#End Region
+#End Region
+#Region "TA001 Almacen"
+    Public Shared Function L_fnEliminarAlmacen(numi As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@aanumi", numi))
+        _listParam.Add(New Datos.DParametro("@aauact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TA001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+
+
+    Public Shared Function L_fnGrabarAlmacen(ByRef _abnumi As String, _abdesc As String, _abdir As String, _abtelf As String, _ablat As Double, _ablong As Double, _abimg As String) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        '@aanumi ,@aata2dep,@aadesc ,@aadir ,@aatelf ,@aalat ,@aalong,@aaimg ,@newFecha,@newHora,@aauact
+
+        'a.aanumi ,a.aabdes ,a.aadir ,a.aatel ,a.aalat ,a.aalong ,a.aaimg,aata2dep ,a.aafact ,a.aahact ,a.aauact
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@aanumi", _abnumi))
+        _listParam.Add(New Datos.DParametro("@aadesc", _abdesc))
+        _listParam.Add(New Datos.DParametro("@aadir", _abdir))
+        _listParam.Add(New Datos.DParametro("@aatelf", _abtelf))
+        _listParam.Add(New Datos.DParametro("@aalat", _ablat))
+        _listParam.Add(New Datos.DParametro("@aalong", _ablong))
+        _listParam.Add(New Datos.DParametro("@aaimg", _abimg))
+
+
+
+        _listParam.Add(New Datos.DParametro("@aauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TA001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _abnumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnModificarAlmacen(ByRef _abnumi As String, _abdesc As String, _abdir As String, _abtelf As String, _ablat As Double, _ablong As Double, _abimg As String) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@aanumi", _abnumi))
+        _listParam.Add(New Datos.DParametro("@aadesc", _abdesc))
+        _listParam.Add(New Datos.DParametro("@aadir", _abdir))
+        _listParam.Add(New Datos.DParametro("@aatelf", _abtelf))
+        _listParam.Add(New Datos.DParametro("@aalat", _ablat))
+        _listParam.Add(New Datos.DParametro("@aalong", _ablong))
+        _listParam.Add(New Datos.DParametro("@aaimg", _abimg))
+
+        _listParam.Add(New Datos.DParametro("@aauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TA001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _abnumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnGeneralAlmacen() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@aauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TA001", _listParam)
+
+        Return _Tabla
+    End Function
+
+
+
+#End Region
+
+#Region "TY005 PRODUCTOS"
+    Public Shared Function L_prLibreriaGrabar(ByRef _numi As String, _cod1 As String, _cod2 As String, _desc1 As String, _desc2 As String) As Boolean
+        Dim _Error As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@ylcod1", _cod1))
+        _listParam.Add(New Datos.DParametro("@ylcod2", _cod2))
+        _listParam.Add(New Datos.DParametro("@desc", _desc1))
+        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _numi = _Tabla.Rows(0).Item(0)
+            _Error = False
+        Else
+            _Error = True
+        End If
+        Return Not _Error
+    End Function
+
+    Public Shared Function L_fnEliminarProducto(numi As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@yfnumi", numi))
+        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnGrabarProducto(ByRef _yfnumi As String, _yfcprod As String,
+                                              _yfcbarra As String, _yfcdprod1 As String,
+                                              _yfcdprod2 As String, _yfgr1 As Integer, _yfgr2 As Integer,
+                                              _yfgr3 As Integer, _yfgr4 As Integer, _yfMed As Integer, _yfumin As Integer, _yfusup As Integer, _yfvsup As Double, _yfsmin As Integer, _yfap As Integer, _yfimg As String
+                                              ) As Boolean
+        Dim _resultado As Boolean
+        '@yfnumi ,@yfcprod ,@yfcbarra ,@yfcdprod1 ,@yfcdprod2 ,
+        '			@yfgr1 ,@yfgr2 ,@yfgr3 ,@yfgr4 ,@yfMed ,@yfumin ,@yfusup ,@yfvsup ,
+        '			@yfmstk ,@yfclot ,@yfsmin ,@yfap ,@yfimg ,@newFecha,@newHora,@yfuact
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@yfnumi", _yfnumi))
+        _listParam.Add(New Datos.DParametro("@yfcprod", _yfcprod))
+
+        _listParam.Add(New Datos.DParametro("@yfcbarra", _yfcbarra))
+        _listParam.Add(New Datos.DParametro("@yfcdprod1", _yfcdprod1))
+        _listParam.Add(New Datos.DParametro("@yfcdprod2", _yfcdprod2))
+        _listParam.Add(New Datos.DParametro("@yfgr1", _yfgr1))
+        _listParam.Add(New Datos.DParametro("@yfgr2", _yfgr2))
+        _listParam.Add(New Datos.DParametro("@yfgr3", _yfgr3))
+        _listParam.Add(New Datos.DParametro("@yfgr4", _yfgr4))
+        _listParam.Add(New Datos.DParametro("@yfMed", _yfMed))
+        _listParam.Add(New Datos.DParametro("@yfumin", _yfumin))
+        _listParam.Add(New Datos.DParametro("@yfusup", _yfusup))
+        _listParam.Add(New Datos.DParametro("@yfvsup", _yfvsup))
+        _listParam.Add(New Datos.DParametro("@yfmstk", 0))
+        _listParam.Add(New Datos.DParametro("@yfclot", 0))
+
+        _listParam.Add(New Datos.DParametro("@yfsmin", _yfsmin))
+        _listParam.Add(New Datos.DParametro("@yfap", _yfap))
+        _listParam.Add(New Datos.DParametro("@yfimg", _yfimg))
+        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _yfnumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnModificarProducto(ByRef _yfnumi As String, _yfcprod As String,
+                                              _yfcbarra As String, _yfcdprod1 As String,
+                                              _yfcdprod2 As String, _yfgr1 As Integer, _yfgr2 As Integer,
+                                              _yfgr3 As Integer, _yfgr4 As Integer, _yfMed As Integer, _yfumin As Integer, _yfusup As Integer, _yfvsup As Double, _yfsmin As Integer, _yfap As Integer, _yfimg As String
+                                              ) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@yfnumi", _yfnumi))
+        _listParam.Add(New Datos.DParametro("@yfcprod", _yfcprod))
+
+        _listParam.Add(New Datos.DParametro("@yfcbarra", _yfcbarra))
+        _listParam.Add(New Datos.DParametro("@yfcdprod1", _yfcdprod1))
+        _listParam.Add(New Datos.DParametro("@yfcdprod2", _yfcdprod2))
+        _listParam.Add(New Datos.DParametro("@yfgr1", _yfgr1))
+        _listParam.Add(New Datos.DParametro("@yfgr2", _yfgr2))
+        _listParam.Add(New Datos.DParametro("@yfgr3", _yfgr3))
+        _listParam.Add(New Datos.DParametro("@yfgr4", _yfgr4))
+        _listParam.Add(New Datos.DParametro("@yfMed", _yfMed))
+        _listParam.Add(New Datos.DParametro("@yfumin", _yfumin))
+        _listParam.Add(New Datos.DParametro("@yfusup", _yfusup))
+        _listParam.Add(New Datos.DParametro("@yfvsup", _yfvsup))
+        _listParam.Add(New Datos.DParametro("@yfmstk", 0))
+        _listParam.Add(New Datos.DParametro("@yfclot", 0))
+
+        _listParam.Add(New Datos.DParametro("@yfsmin", _yfsmin))
+        _listParam.Add(New Datos.DParametro("@yfap", _yfap))
+        _listParam.Add(New Datos.DParametro("@yfimg", _yfimg))
+        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _yfnumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnGeneralProductos() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnCodigoBarra() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 12))
+        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnNameLabel() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnNameReporte() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 61))
+        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prLibreriaClienteLGeneral(cod1 As Integer, cod2 As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@ylcod1", cod1))
+        _listParam.Add(New Datos.DParametro("@ylcod2", cod2))
+        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+
+        Return _Tabla
+    End Function
+
+
+
+
+
+#End Region
+
+#Region "Precio"
+
+    Public Shared Function L_fnListarProductosConPrecios(_almacen As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _listParam.Add(New Datos.DParametro("@yguact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY006", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnListarProductos() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@yguact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY006", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnListarCategorias() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@yguact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY006", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnGeneralCategorias() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@yguact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY006", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnGrabarCategorias(_ygnumi As String, cod As String, desc As String, tipo As Integer, margen As Decimal) As Boolean
+        Dim _Tabla As DataTable
+        Dim _resultado As Boolean
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@ygcod", cod))
+        _listParam.Add(New Datos.DParametro("@ygdesc", desc))
+        _listParam.Add(New Datos.DParametro("@ygpcv", tipo))
+        _listParam.Add(New Datos.DParametro("@ygmer", margen))
+        _listParam.Add(New Datos.DParametro("@yguact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY006", _listParam)
+
+
+        If _Tabla.Rows.Count > 0 Then
+            _ygnumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnGrabarPrecios(_ygnumi As String, _almacen As Integer, _precio As DataTable) As Boolean
+        Dim _Tabla As DataTable
+        Dim _resultado As Boolean
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _listParam.Add(New Datos.DParametro("@TY007", "", _precio))
+        _listParam.Add(New Datos.DParametro("@yguact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY006", _listParam)
+
+
+        If _Tabla.Rows.Count > 0 Then
+            _ygnumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnGeneralSucursales() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@yguact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY006", _listParam)
+
+        Return _Tabla
+    End Function
+#End Region
+
+#Region "Movimientos"
+
+    Public Shared Function L_prMovimientoEliminar(numi As String) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@ibid", numi))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    Public Shared Function L_prMovimientoModificar(ByRef _ibid As String, _ibfdoc As String, _ibconcep As Integer, _ibobs As String, _almacen As Integer) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@ibid", _ibid))
+        _listParam.Add(New Datos.DParametro("@ibfdoc", _ibfdoc))
+        _listParam.Add(New Datos.DParametro("@ibconcep", _ibconcep))
+        _listParam.Add(New Datos.DParametro("@ibobs", _ibobs))
+        _listParam.Add(New Datos.DParametro("@ibest", 1))
+        _listParam.Add(New Datos.DParametro("@ibalm", _almacen))
+        _listParam.Add(New Datos.DParametro("@ibiddc", 0))
+
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _ibid = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    Public Shared Function L_prMovimientoChoferGrabar(ByRef _ibid As String, _ibfdoc As String, _ibconcep As Integer, _ibobs As String, _almacen As Integer, _depositoDestino As Integer, _ibidOrigen As Integer) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@ibid", _ibid))
+        _listParam.Add(New Datos.DParametro("@ibfdoc", _ibfdoc))
+        _listParam.Add(New Datos.DParametro("@ibconcep", _ibconcep))
+        _listParam.Add(New Datos.DParametro("@ibobs", _ibobs))
+        _listParam.Add(New Datos.DParametro("@ibest", 1))
+        _listParam.Add(New Datos.DParametro("@ibalm", _almacen))
+        _listParam.Add(New Datos.DParametro("@ibdepdest", _depositoDestino))
+        _listParam.Add(New Datos.DParametro("@ibiddc", 0))
+        _listParam.Add(New Datos.DParametro("@ibidOrigen", _ibidOrigen))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _ibid = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    Public Shared Function L_prMovimientoChoferABMDetalle(numi As String, Type As Integer, detalle As DataTable) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", Type))
+        _listParam.Add(New Datos.DParametro("@ibid", numi))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@TI0021", "", detalle))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnListarProductosKardex(_almacen As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 8))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnListarLotesProductos(codproducto As Integer, _almacen As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 28))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@producto", codproducto))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnObtenerSaldoProducto(_almacen As Integer, _codProducto As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 23))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _listParam.Add(New Datos.DParametro("@producto", _codProducto))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnActualizarSaldo(_Almacen As Integer, _CodProducto As String, _Cantidad As Double) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 21))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@producto", _CodProducto))
+        _listParam.Add(New Datos.DParametro("@almacen", _Almacen))
+        _listParam.Add(New Datos.DParametro("@cantidad", _Cantidad))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnObtenerHistorialProductoporLote(_codProducto As Integer, FechaI As String, FechaF As String, _almacen As Integer, _Lote As String, _FechaVenc As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 30))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@producto", _codProducto))
+        _listParam.Add(New Datos.DParametro("@fechaI", FechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", FechaF))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _listParam.Add(New Datos.DParametro("@lote", _Lote))
+        _listParam.Add(New Datos.DParametro("@fechaVenc", _FechaVenc))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnObtenerHistorialProductoGeneralPorLote(_codProducto As Integer, FechaI As String, _almacen As Integer, _Lote As String, FechaVenc As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 29))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@producto", _codProducto))
+        _listParam.Add(New Datos.DParametro("@fechaI", FechaI))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _listParam.Add(New Datos.DParametro("@lote", _Lote))
+        _listParam.Add(New Datos.DParametro("@fechaVenc", FechaVenc))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnObtenerHistorialProducto(_codProducto As Integer, FechaI As String, FechaF As String, _almacen As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 9))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@producto", _codProducto))
+        _listParam.Add(New Datos.DParametro("@fechaI", FechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", FechaF))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnObtenerHistorialProductoGeneral(_codProducto As Integer, FechaI As String, _almacen As Integer) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 20))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@producto", _codProducto))
+        _listParam.Add(New Datos.DParametro("@fechaI", FechaI))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnListarLotesPorProductoMovimiento(_almacen As Integer, _codproducto As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 32))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _listParam.Add(New Datos.DParametro("@producto", _codproducto))
+        _listParam.Add(New Datos.DParametro("ibuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prMovimientoListarProductos(dt As DataTable, _deposito As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@almacen", _deposito))
+        _listParam.Add(New Datos.DParametro("@TI0021", "", dt))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prMovimientoListarProductosConLote(_deposito As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 31))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@almacen", _deposito))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnGeneralMovimiento() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnDetalleMovimiento(_ibid As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@ibid", _ibid))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_prMovimientoConcepto() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+
+
+#End Region
+
+#Region "Reporte Movimientoss"
+
+    Public Shared Function L_fnUnaAlmacenUnaLineasMayorCero(numiLinea As Integer, CodAlmacen As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 8))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@linea", numiLinea))
+        _listParam.Add(New Datos.DParametro("@almacen", CodAlmacen))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_SaldosProducto", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnObtenerGruposLibreria() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_SaldosProducto", _listParam)
+
+        Return _Tabla
+    End Function
+
+
+    Public Shared Function L_fnUnaAlmacenUnaLineas(numiLinea As Integer, CodAlmacen As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@linea", numiLinea))
+        _listParam.Add(New Datos.DParametro("@almacen", CodAlmacen))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_SaldosProducto", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnTodosAlmacenUnaLineas(numiLinea As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@linea", numiLinea))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_SaldosProducto", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnUnaAlmacenTodosLineasMayorCero(numialmacen As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@almacen", numialmacen))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_SaldosProducto", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prReporteUtilidad(_codAlmacen As Integer, _codCat As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 9))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@almacen", _codAlmacen))
+        _listParam.Add(New Datos.DParametro("@catPrecio", _codCat))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_VentasCredito", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prListarPrecioVenta() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_VentasCredito", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prReporteUtilidadStockMayorCero(_codAlmacen As Integer, _codCat As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 13))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@almacen", _codAlmacen))
+        _listParam.Add(New Datos.DParametro("@catPrecio", _codCat))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_VentasCredito", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnObtenerKardexPorProducto(_codProducto As Integer, FechaI As String, FechaF As String, _almacen As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 25))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@producto", _codProducto))
+        _listParam.Add(New Datos.DParametro("@fechaI", FechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", FechaF))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnObtenerProductoConMovimiento(FechaI As String, FechaF As String, _almacen As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 26))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@fechaI", FechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", FechaF))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnObtenerKardexGeneralProductosporLote(FechaI As String, FechaF As String, _almacen As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 33))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@fechaI", FechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", FechaF))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnObtenerKardexGeneralProductos(FechaI As String, FechaF As String, _almacen As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 27))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@fechaI", FechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", FechaF))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prListarPrecioCosto() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 12))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_SaldosProducto", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnUnaAlmacenTodosLineas(numialmacen As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@almacen", numialmacen))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_SaldosProducto", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnTodosAlmacenTodosLineas() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_SaldosProducto", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnTodosAlmacenTodosLineasMayorCero() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_SaldosProducto", _listParam)
+
+        Return _Tabla
+    End Function
+
+    'Buscar Stock por lote segun un criterio de busqueda
+    Public Shared Function L_fnBuscarStockLote(_valor1 As String, _laboratorio As Boolean, _valor2 As String, _fechaVenc As Boolean) As DataTable
+        Dim _Tabla As DataTable
+        Dim sb As New StringBuilder
+        sb.Append("DECLARE @FechaActual datetime = GETDATE()
+			           SELECT
+				            alm.aanumi,
+							alm.aabdes,
+				            a.yfnumi,
+				            a.yfcprod,
+				            a.yfcdprod1,
+				            a.yfMed,
+				            a.yfap,
+				            c.iccprod,
+				            c.iclot,
+				            FORMAT(c.icfven, 'yyyy-MM-dd')as icfven,
+				            c.iccven as iccven,
+				            b.yccod3,
+				            b.ycdes3,
+				            Presentacion.ycdes3 as presentacion
+			            FROM
+				            dbo.TY005  AS a 
+				            INNER JOIN dbo.TI001 AS c ON a.yfnumi  = c.iccprod 
+				            INNER JOIN dbo.TY0031 AS b ON a.yfMed  = b.yccod3 		
+							INNER JOIN TA001 alm ON alm.aanumi = c.icalm	          
+				            inner join TY0031 AS Presentacion ON Presentacion.yccod1 = 1 
+				            AND Presentacion.yccod2 = 4 
+				            AND Presentacion.yccod3 = a.yfgr4 
+				            AND c.iccven >0
+			            WHERE        
+				            (b.yccod1  = 1) AND (b.yccod2  = 5) AND   ")
+        If _laboratorio = False Then
+            sb.Append(String.Format(" Presentacion.yccod3 = {0} AND   ", _valor1))
+        End If
+        If _fechaVenc = False Then
+            sb.Append(String.Format(" c.icfven BETWEEN @FechaActual AND DATEADD(day, {0}, @FechaActual) AND   ", _valor2))
+        End If
+        sb.Length = sb.Length - 7
+        sb.Append(" GROUP BY alm.aanumi, alm.aabdes, a.yfnumi , a.yfcprod  , a.yfcdprod1 , a.yfMed, a.yfap , c.iccprod ,b.yccod3 ,
+					b.ycdes3 ,c.iclot ,c.icfven ,c.iccven ,Presentacion .ycdes3 
+                    ORDER BY alm.aabdes ASC")
+        _Tabla = D_Datos_EjecutarConulta(sb.ToString())
+        Return _Tabla
+    End Function
+#End Region
+
+#Region "Proveedor"
+    Public Shared Function L_fnGrabarCLiente(ByRef _ydnumi As String,
+                                             _ydcod As String, _ydrazonsocial As String, _yddesc As String,
+                                             _ydnumiVendedor As Integer, _ydzona As Integer, _yddct As Integer,
+                                             _yddctnum As String, _yddirec As String, _ydtelf1 As String,
+                                             _ydtelf2 As String, _ydcat As Integer, _ydest As Integer,
+                                             _ydlat As Double, _ydlongi As Double, _ydobs As String,
+                                             _ydfnac As String, _ydnomfac As String, _ydtip As Integer,
+                                             _ydnit As String, _yddias As String, _ydlcred As String,
+                                             _ydfecing As String, _ydultvent As String, _ydimg As String, _ydrut As String, _ydciudad As Integer, _ydprovincia As Integer, _ydalmacen As Integer) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        ' @ydnumi ,@ydcod  ,@yddesc  ,@ydzona  ,@yddct  ,
+        '@yddctnum  ,@yddirec  ,@ydtelf1  ,@ydtelf2  ,@ydcat  ,@ydest  ,@ydlat  ,@ydlongi  ,
+        '@ydprconsu  ,@ydobs  ,@ydfnac  ,@ydnomfac  ,@ydtip,@ydnit ,@ydfecing ,@ydultvent,@ydimg ,@newFecha,@newHora,@yduact
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@ydnumi", _ydnumi))
+        '_listParam.Add(New Datos.DParametro("@ydcod", _ydcod))
+        _listParam.Add(New Datos.DParametro("@ydrazonsocioal", _ydrazonsocial))
+        _listParam.Add(New Datos.DParametro("@yddesc", _yddesc))
+        _listParam.Add(New Datos.DParametro("@ydnumivend", _ydnumiVendedor))
+        _listParam.Add(New Datos.DParametro("@ydzona", _ydzona))
+        _listParam.Add(New Datos.DParametro("@yddct", _yddct))
+        _listParam.Add(New Datos.DParametro("@yddctnum", _yddctnum))
+        _listParam.Add(New Datos.DParametro("@yddirec", _yddirec))
+        _listParam.Add(New Datos.DParametro("@ydtelf1", _ydtelf1))
+        _listParam.Add(New Datos.DParametro("@ydtelf2", _ydtelf2))
+        _listParam.Add(New Datos.DParametro("@ydcat", _ydcat))
+        _listParam.Add(New Datos.DParametro("@ydest", _ydest))
+        _listParam.Add(New Datos.DParametro("@ydlat", _ydlat))
+        _listParam.Add(New Datos.DParametro("@ydlongi", _ydlongi))
+        _listParam.Add(New Datos.DParametro("@ydprconsu", 0))
+        _listParam.Add(New Datos.DParametro("@ydobs", _ydobs))
+        _listParam.Add(New Datos.DParametro("@ydfnac", _ydfnac))
+        _listParam.Add(New Datos.DParametro("@ydnomfac", _ydnomfac))
+        _listParam.Add(New Datos.DParametro("@ydtip", _ydtip))
+        _listParam.Add(New Datos.DParametro("@ydnit", _ydnit))
+        _listParam.Add(New Datos.DParametro("@yddias", _yddias))
+        _listParam.Add(New Datos.DParametro("@ydlcred", _ydlcred))
+        _listParam.Add(New Datos.DParametro("@ydfecing", _ydfecing))
+        _listParam.Add(New Datos.DParametro("@ydultvent", _ydultvent))
+        _listParam.Add(New Datos.DParametro("@ydprovincia", _ydprovincia))
+        _listParam.Add(New Datos.DParametro("@ydciudad", _ydciudad))
+        _listParam.Add(New Datos.DParametro("@ydalmacen", _ydalmacen))
+        _listParam.Add(New Datos.DParametro("@ydrut", _ydrut))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY004", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _ydnumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+#End Region
+
+#Region "TC001 Compras"
+
+    Public Shared Function L_fnGeneralCompras() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@cauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TC001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnDetalleCompra(_numi As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@canumi", _numi))
+        _listParam.Add(New Datos.DParametro("@cauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TC001", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnListarProductosCompra(_almacen As String, _catCosto As String, detalle As DataTable) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _listParam.Add(New Datos.DParametro("@CatCosto", _catCosto))
+        _listParam.Add(New Datos.DParametro("@cauact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@TC0011", "", detalle))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TC001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnListarProveedores() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TC001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnListarSucursales() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TC001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnListarDepositos() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 24))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnPorcUtilidad() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 8))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TC001", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnGrabarCompra(_canumi As String, _caalm As Integer, _cafdoc As String, _caTy4prov As Integer, _catven As Integer, _cafvcr As String,
+                                           _camon As Integer, _caobs As String,
+                                           _cadesc As Double, _catotal As Double, detalle As DataTable) As Boolean
+        Dim _Tabla As DataTable
+        Dim _resultado As Boolean
+        Dim _listParam As New List(Of Datos.DParametro)
+        '   @canumi ,@caalm,@cafdoc ,@caty4prov  ,@catven,
+        '@cafvcr,@camon ,@caest  ,@caobs ,@cadesc ,@newFecha,@newHora,@cauact
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@canumi", _canumi))
+        _listParam.Add(New Datos.DParametro("@caalm", _caalm))
+        _listParam.Add(New Datos.DParametro("@cafdoc", _cafdoc))
+        _listParam.Add(New Datos.DParametro("@caty4prov", _caTy4prov))
+        _listParam.Add(New Datos.DParametro("@catven", _catven))
+        _listParam.Add(New Datos.DParametro("@cafvcr", _cafvcr))
+        _listParam.Add(New Datos.DParametro("@camon", _camon))
+        _listParam.Add(New Datos.DParametro("@caest", 1))
+        _listParam.Add(New Datos.DParametro("@caobs", _caobs))
+        _listParam.Add(New Datos.DParametro("@cadesc", _cadesc))
+        _listParam.Add(New Datos.DParametro("@catotal", _catotal))
+        _listParam.Add(New Datos.DParametro("@cauact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@TC0011", "", detalle))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TC001", _listParam)
+
+
+        If _Tabla.Rows.Count > 0 Then
+            _canumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnModificarCompra(_canumi As String, _caalm As Integer, _cafdoc As String, _caTy4prov As Integer, _catven As Integer, _cafvcr As String,
+                                           _camon As Integer, _caobs As String,
+                                           _cadesc As Double, _catotal As Double, detalle As DataTable) As Boolean
+        Dim _Tabla As DataTable
+        Dim _resultado As Boolean
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@canumi", _canumi))
+        _listParam.Add(New Datos.DParametro("@caalm", _caalm))
+        _listParam.Add(New Datos.DParametro("@cafdoc", _cafdoc))
+        _listParam.Add(New Datos.DParametro("@caty4prov", _caTy4prov))
+        _listParam.Add(New Datos.DParametro("@catven", _catven))
+        _listParam.Add(New Datos.DParametro("@cafvcr", _cafvcr))
+        _listParam.Add(New Datos.DParametro("@camon", _camon))
+        _listParam.Add(New Datos.DParametro("@caest", 1))
+        _listParam.Add(New Datos.DParametro("@caobs", _caobs))
+        _listParam.Add(New Datos.DParametro("@cadesc", _cadesc))
+        _listParam.Add(New Datos.DParametro("@catotal", _catotal))
+        _listParam.Add(New Datos.DParametro("@cauact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@TC0011", "", detalle))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TC001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _canumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnEliminarCompra(numi As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@canumi", numi))
+        _listParam.Add(New Datos.DParametro("@cauact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TC001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnEliminarCategoria(numi As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@ygnumi", numi))
+        _listParam.Add(New Datos.DParametro("@yguact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY006", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+#End Region
+
+#Region "Credito"
+    Public Shared Function L_fnListarClientesUno(_cliente As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@causuario", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@caid", _cliente))
+        _Tabla = D_ProcedimientoConParam("REG.sp_CLI001", _listParam)
+        '_Tabla = D_Procedimiento("sp_Mostrar")
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnGrabarCobranza2(_tenumi As String, _tefdoc As String, _tety4vend As Integer, _teobs As String, detalle As DataTable) As Boolean
+        Dim _Tabla As DataTable
+        Dim _resultado As Boolean
+        Dim _listParam As New List(Of Datos.DParametro)
+        '   @canumi ,@caalm,@cafdoc ,@caty4prov  ,@catven,
+        '@cafvcr,@camon ,@caest  ,@caobs ,@cadesc ,@newFecha,@newHora,@cauact
+        _listParam.Add(New Datos.DParametro("@tipo", 10))
+        _listParam.Add(New Datos.DParametro("@tenumi", _tenumi))
+        _listParam.Add(New Datos.DParametro("@tefdoc", _tefdoc))
+        _listParam.Add(New Datos.DParametro("@tety4vend", _tety4vend))
+        _listParam.Add(New Datos.DParametro("@teobs", _teobs))
+        _listParam.Add(New Datos.DParametro("@teuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@TV00121", "", detalle))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV00121Cheque", _listParam)
+
+
+        If _Tabla.Rows.Count > 0 Then
+            _tenumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    Public Shared Function L_fnCobranzasObtenerLosPagos(_numi As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@teuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@tdnumi", _numi))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV00121Cheque", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnObtenerLasVentasCreditoPorCliente(_numi As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 9))
+        '_listParam.Add(New Datos.DParametro("@tduact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@tenumi", _numi))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV00121Cheque", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnReporteMorosidadTodosAlmacenVendedor(_fechai As String, _fechaf As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 10))
+        _listParam.Add(New Datos.DParametro("@fechaI", _fechai))
+        _listParam.Add(New Datos.DParametro("@fechaF", _fechaf))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_VentasCredito", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnReporteMorosidadTodosAlmacenUnVendedor(numiVendedor As Integer, _fechai As String, _fechaf As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 11))
+        _listParam.Add(New Datos.DParametro("@vendedor", numiVendedor))
+        _listParam.Add(New Datos.DParametro("@fechaI", _fechai))
+        _listParam.Add(New Datos.DParametro("@fechaF", _fechaf))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_VentasCredito", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnReporteMorosidadUnAlmacenUnVendedor(numiVendedor As Integer, numiCliente As Integer, _fechai As String, _fechaf As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 12))
+        _listParam.Add(New Datos.DParametro("@vendedor", numiVendedor))
+        _listParam.Add(New Datos.DParametro("@cliente", numiCliente))
+        _listParam.Add(New Datos.DParametro("@fechaI", _fechai))
+        _listParam.Add(New Datos.DParametro("@fechaF", _fechaf))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_VentasCredito", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnReporteMorosidadTodosAlmacenUnCliente(numiCliente As Integer, _fechai As String, _fechaf As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 121))
+        _listParam.Add(New Datos.DParametro("@Cliente", numiCliente))
+        _listParam.Add(New Datos.DParametro("@fechaI", _fechai))
+        _listParam.Add(New Datos.DParametro("@fechaF", _fechaf))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_VentasCredito", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prResumenCobrosPorVendedorTodosAlmacen(fechaI As String, fechaF As String, _numiVendedor As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 22))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@vendedor", _numiVendedor))
+        _Tabla = D_ProcedimientoConParam("Sp_Mam_ReporteVentasVsCostos", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prResumenCobrosUnaVendedorUnaAlmacen(fechaI As String, fechaF As String, _numiCliente As String, _numiVendedor As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 44))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@cliente", _numiCliente))
+        _listParam.Add(New Datos.DParametro("@vendedor", _numiVendedor))
+        _Tabla = D_ProcedimientoConParam("Sp_Mam_ReporteVentasVsCostos", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prResumenCobrosTodosVendedorUnaAlmacen(fechaI As String, fechaF As String, _numiCliente As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 33))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@cliente", _numiCliente))
+        _Tabla = D_ProcedimientoConParam("Sp_Mam_ReporteVentasVsCostos", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prResumenCobrosGeneralAlmacenVendedor(fechaI As String, fechaF As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 11))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("Sp_Mam_ReporteVentasVsCostos", _listParam)
+
+        Return _Tabla
+    End Function
+#End Region
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Region "LIBRERIAS"
+    Public Shared Function L_prLibreriaDetalleGeneral(_cod1 As String, _cod2 As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@cncod1", _cod1))
+        _listParam.Add(New Datos.DParametro("@cncod2", _cod2))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_dg_TC0051", _listParam)
+
+        Return _Tabla
+    End Function
+#End Region
+
+#Region "ROLES CORRECTO"
+
+    Public Shared Function L_prRolGeneral() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_dg_ZY002", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_prRolDetalleGeneral(_numi As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@ybnumi", _numi))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_dg_ZY002", _listParam)
+
+        Return _Tabla
+    End Function
+
+
+    Public Shared Function L_prRolGrabar(ByRef _numi As String, _rol As String, _detalle As DataTable) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@ybnumi", _numi))
+        _listParam.Add(New Datos.DParametro("@ybrol", _rol))
+        _listParam.Add(New Datos.DParametro("@ZY0021", "", _detalle))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_dg_ZY002", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _numi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+            'L_prTipoCambioGrabarHistorial(_numi, _fecha, _dolar, _ufv, "TIPO DE CAMBIO", 1)
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_prRolModificar(_numi As String, _rol As String, _detalle As DataTable) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@ybnumi", _numi))
+        _listParam.Add(New Datos.DParametro("@ybrol", _rol))
+        _listParam.Add(New Datos.DParametro("@ZY0021", "", _detalle))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_dg_ZY002", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+            'L_prTipoCambioGrabarHistorial(_numi, _fecha, _dolar, _ufv, "TIPO DE CAMBIO", 2)
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+
+
+    Public Shared Function L_prRolBorrar(_numi As String, ByRef _mensaje As String) As Boolean
+
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@ybnumi", _numi))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_dg_ZY002", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+
+
+#End Region
+
+#Region "Roles"
+    Public Shared Function L_Rol_General(_Modo As Integer, Optional _Cadena As String = "") As DataSet
+        Dim _Tabla As DataTable
+        Dim _Ds As New DataSet
+        Dim _Where As String
+        If _Modo = 0 Then
+            _Where = "ZY002.ybnumi=ZY002.ybnumi "
+        Else
+            _Where = "ZY002.ybnumi=ZY002.ybnumi " + _Cadena
+        End If
+        _Tabla = D_Datos_Tabla("ZY002.ybnumi,ZY002.ybrol", "ZY002", _Where + " order by ybnumi")
+        _Ds.Tables.Add(_Tabla)
+        Return _Ds
+    End Function
+    Public Shared Function L_RolDetalle_General(_Modo As Integer, Optional _idCabecera As String = "", Optional _idModulo As String = "") As DataTable
+        Dim _Tabla As DataTable
+        Dim _Where As String
+        If _Modo = 0 Then
+            _Where = " ycnumi = ycnumi"
+        Else
+            _Where = " ycnumi=" + _idCabecera + " and ZY001.yamod=" + _idModulo + " and ZY0021.ycyanumi=ZY001.yanumi"
+        End If
+        _Tabla = D_Datos_Tabla("ZY0021.ycnumi,ZY0021.ycyanumi,ZY0021.ycshow,ZY0021.ycadd,ZY0021.ycmod,ZY0021.ycdel,ZY001.yaprog,ZY001.yatit", "ZY0021,ZY001", _Where)
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_RolDetalle_General2(_Modo As Integer, Optional _idCabecera As String = "", Optional _where1 As String = "") As DataTable
+        Dim _Tabla As DataTable
+        Dim _Where As String
+        If _Modo = 0 Then
+            _Where = " ycnumi = ycnumi"
+        Else
+            _Where = " ycnumi=" + _idCabecera + " and " + _where1
+        End If
+        _Tabla = D_Datos_Tabla("ycnumi,ycyanumi,ycshow,ycadd,ycmod,ycdel", "ZY0021", _Where)
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_prRolDetalleGeneral(_numiRol As String, _idNombreButton As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _Where As String
+
+        _Where = "ZY0021.ycnumi=" + _numiRol + " and ZY0021.ycyanumi=ZY001.yanumi and ZY001.yaprog='" + _idNombreButton + "'"
+
+        _Tabla = D_Datos_Tabla("ycnumi,ycyanumi,ycshow,ycadd,ycmod,ycdel", "ZY0021,ZY001", _Where)
+        Return _Tabla
+    End Function
+
+    Public Shared Sub L_Rol_Grabar(ByRef _numi As String, _rol As String)
+        Dim _Actualizacion As String
+        Dim _Err As Boolean
+        Dim _Tabla As DataTable
+        _Tabla = D_Maximo("ZY002", "ybnumi", "ybnumi=ybnumi")
+        If Not IsDBNull(_Tabla.Rows(0).Item(0)) Then
+            _numi = _Tabla.Rows(0).Item(0) + 1
+        Else
+            _numi = "1"
+        End If
+
+        _Actualizacion = "'" + Date.Now.Date.ToString("yyyy/MM/dd") + "', '" + Now.Hour.ToString + ":" + Now.Minute.ToString + "' ,'" + L_Usuario + "'"
+
+        Dim Sql As String
+        Sql = _numi + ",'" + _rol + "'," + _Actualizacion
+        _Err = D_Insertar_Datos("ZY002", Sql)
+    End Sub
+    Public Shared Sub L_RolDetalle_Grabar(_idCabecera As String, _numi1 As Integer, _show As Boolean, _add As Boolean, _mod As Boolean, _del As Boolean)
+        Dim _Err As Boolean
+        Dim Sql As String
+        Sql = _idCabecera & "," & _numi1 & ",'" & _show & "','" & _add & "','" & _mod & "','" & _del & "'"
+        _Err = D_Insertar_Datos("ZY0021", Sql)
+    End Sub
+    Public Shared Sub L_Rol_Modificar(_numi As String, _desc As String)
+        Dim _Err As Boolean
+        Dim Sql, _where As String
+
+        Sql = "ybrol = '" + _desc + "' "
+
+        _where = "ybnumi = " + _numi
+        _Err = D_Modificar_Datos("ZY002", Sql, _where)
+    End Sub
+    Public Shared Sub L_Rol_Borrar(_Id As String)
+        Dim _Where As String
+        Dim _Err As Boolean
+        _Where = "ybnumi = " + _Id
+        _Err = D_Eliminar_Datos("ZY002", _Where)
+    End Sub
+    Public Shared Sub L_RolDetalle_Modificar(_idCabecera As String, _numi1 As Integer, _show As Boolean, _add As Boolean, _mod As Boolean, _del As Boolean)
+        Dim _Err As Boolean
+        Dim Sql, _where As String
+
+        Sql = "ycshow = '" & _show & "' , " & "ycadd = '" & _add & "' , " & "ycmod = '" & _mod & "' , " & "ycdel = '" & _del & "' "
+
+        _where = "ycnumi = " & _idCabecera & " and ycyanumi = " & _numi1
+        _Err = D_Modificar_Datos("ZY0021", Sql, _where)
+    End Sub
+    Public Shared Sub L_RolDetalle_Borrar(_Id As String, _Id1 As String)
+        Dim _Where As String
+        Dim _Err As Boolean
+
+        _Where = "ycnumi = " + _Id + " and ycyanumi = " + _Id1
+        _Err = D_Eliminar_Datos("ZY0021", _Where)
+    End Sub
+    Public Shared Sub L_RolDetalle_Borrar(_Id As String)
+        Dim _Where As String
+        Dim _Err As Boolean
+
+        _Where = "ycnumi = " + _Id
+        _Err = D_Eliminar_Datos("ZY0021", _Where)
+    End Sub
+
+#Region "Verificaciones"
+    '****************Verifica si el Rol esta relacionado con otros programas
+    Public Shared Function L_fnValidarEliminacion(_ybnumi As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim res As Boolean = False
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@ybnumi", _ybnumi))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_dg_ZY002", _listParam)
+        Return res = IIf(_Tabla.Rows(0).Item(0) = 0, False, True)
+    End Function
+#End Region
+#End Region
+
+#Region "CON.USUARIOS USU002"
+    Public Shared Function L_fnMostrarUsuario() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@uaUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_USU002", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnGrabarUsuario(ByRef _uaId As String, _ua_ecId As String, _uaUser As String, _uaPass As String,
+                                             _uaRol As String, _uaFIngreso As String, _uaEst As String, _uaEmer As String) As Boolean
+
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@uaId", _uaId))
+        _listParam.Add(New Datos.DParametro("@ua_ecId", _ua_ecId))
+        _listParam.Add(New Datos.DParametro("@uaUser", _uaUser))
+        _listParam.Add(New Datos.DParametro("@uaPass", _uaPass))
+        _listParam.Add(New Datos.DParametro("@uaRol", _uaRol))
+        _listParam.Add(New Datos.DParametro("@uaFIngreso", _uaFIngreso))
+        _listParam.Add(New Datos.DParametro("@uaEst", _uaEst))
+        _listParam.Add(New Datos.DParametro("@uaEmer", _uaEmer))
+        _listParam.Add(New Datos.DParametro("@uaUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_USU002", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _uaId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    Public Shared Function L_fnModificarUsuario(ByRef _uaId As String, _ua_ecId As String, _uaUser As String, _uaPass As String,
+                                             _uaRol As String, _uaFIngreso As String, _uaEst As String, _uaEmer As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@uaId", _uaId))
+        _listParam.Add(New Datos.DParametro("@ua_ecId", _ua_ecId))
+        _listParam.Add(New Datos.DParametro("@uaUser", _uaUser))
+        _listParam.Add(New Datos.DParametro("@uaPass", _uaPass))
+        _listParam.Add(New Datos.DParametro("@uaRol", _uaRol))
+        _listParam.Add(New Datos.DParametro("@uaFIngreso", _uaFIngreso))
+        _listParam.Add(New Datos.DParametro("@uaEst", _uaEst))
+        _listParam.Add(New Datos.DParametro("@uaEmer", _uaEmer))
+        _listParam.Add(New Datos.DParametro("@uaUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_USU002", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _uaId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnEliminarUsuario(ByRef _uaId As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@uaId", _uaId))
+        _listParam.Add(New Datos.DParametro("@uaUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_USU002", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _uaId = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+
+#Region "Verificaciones"
+    Public Shared Function L_fnExisteUsuarioEmergencia(_uaUser As String, _uaPass As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim _res As Boolean = False
+        Dim _where = String.Format(" uaUser= '{0}' AND uaPass = '{1}'AND uaEmer = 1 ", _uaUser, _uaPass)
+        _Tabla = D_Datos_Tabla(" COUNT(*) ", " CON.USU002 ", _where)
+        If _Tabla.Rows(0).Item(0) > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Public Shared Function L_Validar_Usuario(_Nom As String, _Pass As String) As DataTable
+        'Dim _Tabla As DataTable
+        '_Tabla = D_Datos_Tabla("uaUser,uaPpass", "CON.USU002", "uaUser = '" + _Nom + "' AND uaPpass = '" + _Pass + "'")
+        'Return _Tabla
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@uaUser", _Nom))
+        _listParam.Add(New Datos.DParametro("@uaPass", _Pass))
+        _listParam.Add(New Datos.DParametro("@uaUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_USU002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_Validar_Usuario2(_Nom As String, _Pass As String) As Boolean
+
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@uaUser", _Nom))
+        _listParam.Add(New Datos.DParametro("@uaPass", _Pass))
+        _listParam.Add(New Datos.DParametro("@uaUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_USU002", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+
+#End Region
+
+#End Region
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Region "REPORTES"
+    Public Shared Function L_fnMascotasAtendidas(fechaI As String, fechaF As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 20))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _Tabla = D_ProcedimientoConParam("REG.sp_EMP002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnUnVeterinario(fechaI As String, fechaF As String, Veterinario As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 26))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@Veterinario", Veterinario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_EMP002", _listParam)
+        Return _Tabla
+
+    End Function
+
+    Public Shared Function L_fnObtenerVeterinario() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 21))
+        '_listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_EMP002", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnTodosPacientesPorDia(fechaI As String, fechaF As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 22))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _Tabla = D_ProcedimientoConParam("REG.sp_EMP002", _listParam)
+        Return _Tabla
+
+    End Function
+
+    Public Shared Function L_fnUnVeterinarioTodosGenero(fechaI As String, fechaF As String, Veterinario As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 23))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@Veterinario", Veterinario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_EMP002", _listParam)
+        Return _Tabla
+
+    End Function
+
+    Public Shared Function L_fnUnVeterinarioUnGenero(fechaI As String, fechaF As String, Veterinario As String, Genero As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 24))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@Veterinario", Veterinario))
+        _listParam.Add(New Datos.DParametro("@Genero", Genero))
+        _Tabla = D_ProcedimientoConParam("REG.sp_EMP002", _listParam)
+        Return _Tabla
+
+    End Function
+
+    Public Shared Function L_fnTodosVeterinarioUnGenero(fechaI As String, fechaF As String, Genero As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 25))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@Genero", Genero))
+        _Tabla = D_ProcedimientoConParam("REG.sp_EMP002", _listParam)
+        Return _Tabla
+
+    End Function
+#End Region
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+End Class
