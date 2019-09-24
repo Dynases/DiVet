@@ -407,6 +407,7 @@ Partial Class F0_Reg_Clientes
         Me.txtApellidosC.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtApellidosC.ForeColor = System.Drawing.Color.Black
         Me.txtApellidosC.Location = New System.Drawing.Point(103, 91)
+        Me.txtApellidosC.MaxLength = 50
         Me.txtApellidosC.Name = "txtApellidosC"
         Me.txtApellidosC.PreventEnterBeep = True
         Me.txtApellidosC.Size = New System.Drawing.Size(248, 22)
@@ -424,6 +425,7 @@ Partial Class F0_Reg_Clientes
         Me.txtNombreC.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNombreC.ForeColor = System.Drawing.Color.Black
         Me.txtNombreC.Location = New System.Drawing.Point(103, 62)
+        Me.txtNombreC.MaxLength = 50
         Me.txtNombreC.Multiline = True
         Me.txtNombreC.Name = "txtNombreC"
         Me.txtNombreC.PreventEnterBeep = True
@@ -489,6 +491,7 @@ Partial Class F0_Reg_Clientes
         Me.txtTelfC.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTelfC.ForeColor = System.Drawing.Color.Black
         Me.txtTelfC.Location = New System.Drawing.Point(103, 150)
+        Me.txtTelfC.MaxLength = 30
         Me.txtTelfC.Name = "txtTelfC"
         Me.txtTelfC.PreventEnterBeep = True
         Me.txtTelfC.Size = New System.Drawing.Size(248, 22)
@@ -523,6 +526,7 @@ Partial Class F0_Reg_Clientes
         Me.txtDireccionC.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDireccionC.ForeColor = System.Drawing.Color.Black
         Me.txtDireccionC.Location = New System.Drawing.Point(103, 119)
+        Me.txtDireccionC.MaxLength = 50
         Me.txtDireccionC.Multiline = True
         Me.txtDireccionC.Name = "txtDireccionC"
         Me.txtDireccionC.PreventEnterBeep = True
@@ -573,6 +577,7 @@ Partial Class F0_Reg_Clientes
         Me.txtMail.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMail.ForeColor = System.Drawing.Color.Black
         Me.txtMail.Location = New System.Drawing.Point(103, 179)
+        Me.txtMail.MaxLength = 50
         Me.txtMail.Name = "txtMail"
         Me.txtMail.PreventEnterBeep = True
         Me.txtMail.Size = New System.Drawing.Size(248, 22)

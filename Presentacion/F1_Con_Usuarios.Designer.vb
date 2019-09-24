@@ -114,10 +114,6 @@ Partial Class F1_Con_Usuarios
         'btnPrimero
         '
         '
-        'MpanelBuscador
-        '
-        Me.MpanelBuscador.Size = New System.Drawing.Size(871, 546)
-        '
         'TxtNombreUsu
         '
         Me.TxtNombreUsu.Text = "DEFAULT"
@@ -409,7 +405,7 @@ Partial Class F1_Con_Usuarios
         Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX1.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX1.Location = New System.Drawing.Point(24, 52)
+        Me.LabelX1.Location = New System.Drawing.Point(24, 51)
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX1.Size = New System.Drawing.Size(71, 23)
@@ -462,6 +458,7 @@ Partial Class F1_Con_Usuarios
         Me.txtUsuario.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtUsuario.ForeColor = System.Drawing.Color.Black
         Me.txtUsuario.Location = New System.Drawing.Point(140, 51)
+        Me.txtUsuario.MaxLength = 20
         Me.txtUsuario.Name = "txtUsuario"
         Me.txtUsuario.PreventEnterBeep = True
         Me.txtUsuario.Size = New System.Drawing.Size(203, 21)

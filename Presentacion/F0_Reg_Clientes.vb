@@ -763,5 +763,6 @@ Partial Class F0_Reg_Clientes
         _prFiltrar()
     End Sub
 
+
 #End Region
 End Class

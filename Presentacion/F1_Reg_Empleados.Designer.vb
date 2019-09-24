@@ -314,6 +314,7 @@ Partial Class F1_Reg_Empleados
         Me.txtCIEmpleado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCIEmpleado.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
         Me.txtCIEmpleado.Location = New System.Drawing.Point(138, 68)
+        Me.txtCIEmpleado.MaxValue = 30
         Me.txtCIEmpleado.Name = "txtCIEmpleado"
         Me.txtCIEmpleado.Size = New System.Drawing.Size(113, 21)
         Me.txtCIEmpleado.TabIndex = 2
@@ -330,6 +331,7 @@ Partial Class F1_Reg_Empleados
         Me.txtNombApellE.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNombApellE.ForeColor = System.Drawing.Color.Black
         Me.txtNombApellE.Location = New System.Drawing.Point(138, 93)
+        Me.txtNombApellE.MaxLength = 50
         Me.txtNombApellE.Multiline = True
         Me.txtNombApellE.Name = "txtNombApellE"
         Me.txtNombApellE.PreventEnterBeep = True
@@ -364,6 +366,7 @@ Partial Class F1_Reg_Empleados
         Me.txtCelE.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCelE.ForeColor = System.Drawing.Color.Black
         Me.txtCelE.Location = New System.Drawing.Point(138, 153)
+        Me.txtCelE.MaxLength = 30
         Me.txtCelE.Name = "txtCelE"
         Me.txtCelE.PreventEnterBeep = True
         Me.txtCelE.Size = New System.Drawing.Size(248, 22)
@@ -398,6 +401,7 @@ Partial Class F1_Reg_Empleados
         Me.txtDireccionE.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDireccionE.ForeColor = System.Drawing.Color.Black
         Me.txtDireccionE.Location = New System.Drawing.Point(138, 122)
+        Me.txtDireccionE.MaxLength = 150
         Me.txtDireccionE.Multiline = True
         Me.txtDireccionE.Name = "txtDireccionE"
         Me.txtDireccionE.PreventEnterBeep = True
@@ -448,6 +452,7 @@ Partial Class F1_Reg_Empleados
         Me.txtMailE.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMailE.ForeColor = System.Drawing.Color.Black
         Me.txtMailE.Location = New System.Drawing.Point(138, 182)
+        Me.txtMailE.MaxLength = 50
         Me.txtMailE.Name = "txtMailE"
         Me.txtMailE.PreventEnterBeep = True
         Me.txtMailE.Size = New System.Drawing.Size(248, 22)

@@ -292,6 +292,7 @@ Partial Class F1_Con_Servicios
         Me.txtDescripcion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDescripcion.ForeColor = System.Drawing.Color.Black
         Me.txtDescripcion.Location = New System.Drawing.Point(138, 40)
+        Me.txtDescripcion.MaxLength = 150
         Me.txtDescripcion.Multiline = True
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.PreventEnterBeep = True
