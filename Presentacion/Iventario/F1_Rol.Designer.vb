@@ -255,6 +255,7 @@ Partial Class F1_Rol
         Me.tbRol.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbRol.ForeColor = System.Drawing.Color.Black
         Me.tbRol.Location = New System.Drawing.Point(97, 47)
+        Me.tbRol.MaxLength = 30
         Me.tbRol.Name = "tbRol"
         Me.tbRol.PreventEnterBeep = True
         Me.tbRol.Size = New System.Drawing.Size(203, 21)

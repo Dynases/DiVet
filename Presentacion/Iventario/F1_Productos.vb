@@ -953,6 +953,8 @@ Public Class F1_Productos
         P_Global.Visualizador.BringToFront() 'Comentar
     End Sub
 
+
+
 #End Region
 
 End Class

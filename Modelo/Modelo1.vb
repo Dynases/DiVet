@@ -6,6 +6,7 @@ Public Class Modelo1
 
 #Region "VARIABLES LOCALES"
     Public _MNuevo As Boolean
+
 #End Region
 #Region "EVENTOS"
     Private Sub Modelo1_Load(sender As Object, e As EventArgs) Handles MyBase.Load

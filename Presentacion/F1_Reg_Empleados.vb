@@ -520,7 +520,6 @@ Public Class F1_Reg_Empleados
         txtCIEmpleado.Focus()
     End Sub
 
-
     Public Overrides Sub _PMOModificar()
         'JGBusqEmpleados.Enabled = False 'Deshabilita el buscador de la Grilla
         _prHabilitar()

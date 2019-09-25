@@ -566,6 +566,7 @@ Partial Class Modelo2
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(930, 502)
         Me.Controls.Add(Me.panel1)
+        Me.KeyPreview = True
         Me.Name = "Modelo2"
         Me.Text = "Modelo2"
         Me.panel1.ResumeLayout(False)

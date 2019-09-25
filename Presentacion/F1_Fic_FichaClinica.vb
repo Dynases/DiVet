@@ -1750,9 +1750,14 @@ Public Class F1_Fic_FichaClinica
         End If
     End Sub
 
-    Private Sub JGListaArchivos_FormattingRow(sender As Object, e As RowLoadEventArgs) Handles JGListaArchivos.FormattingRow
-
+    Private Sub txtPeso_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPeso.KeyPress
+        g_prValidarTextBox(1, e)
     End Sub
+
+    Private Sub txtTLCapilar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtTLCapilar.KeyPress
+        g_prValidarTextBox(1, e)
+    End Sub
+
 
     '*******PMO NUevo
     Public Overrides Sub _PMONuevo()

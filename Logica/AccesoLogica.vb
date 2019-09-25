@@ -1976,7 +1976,6 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@tipo", 1))
         _listParam.Add(New Datos.DParametro("@yfnumi", _yfnumi))
         _listParam.Add(New Datos.DParametro("@yfcprod", _yfcprod))
-
         _listParam.Add(New Datos.DParametro("@yfcbarra", _yfcbarra))
         _listParam.Add(New Datos.DParametro("@yfcdprod1", _yfcdprod1))
         _listParam.Add(New Datos.DParametro("@yfcdprod2", _yfcdprod2))

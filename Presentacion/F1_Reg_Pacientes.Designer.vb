@@ -185,6 +185,10 @@ Partial Class F1_Reg_Pacientes
         Me.BubbleBarUsuario.MouseOverTabColors.BorderColor = System.Drawing.SystemColors.Highlight
         Me.BubbleBarUsuario.SelectedTabColors.BorderColor = System.Drawing.Color.Black
         '
+        'PanelUsuario
+        '
+        Me.PanelUsuario.Location = New System.Drawing.Point(317, 121)
+        '
         'gpDatosMascota
         '
         Me.gpDatosMascota.BackColor = System.Drawing.Color.White
@@ -479,6 +483,7 @@ Partial Class F1_Reg_Pacientes
         Me.txtEstado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEstado.ForeColor = System.Drawing.Color.Black
         Me.txtEstado.Location = New System.Drawing.Point(127, 203)
+        Me.txtEstado.MaxLength = 70
         Me.txtEstado.Name = "txtEstado"
         Me.txtEstado.PreventEnterBeep = True
         Me.txtEstado.Size = New System.Drawing.Size(242, 22)
@@ -528,6 +533,7 @@ Partial Class F1_Reg_Pacientes
         Me.txtSeñas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSeñas.ForeColor = System.Drawing.Color.Black
         Me.txtSeñas.Location = New System.Drawing.Point(480, 141)
+        Me.txtSeñas.MaxLength = 50
         Me.txtSeñas.Name = "txtSeñas"
         Me.txtSeñas.PreventEnterBeep = True
         Me.txtSeñas.Size = New System.Drawing.Size(233, 22)
@@ -675,6 +681,7 @@ Partial Class F1_Reg_Pacientes
         Me.txtNMascota.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNMascota.ForeColor = System.Drawing.Color.Black
         Me.txtNMascota.Location = New System.Drawing.Point(128, 80)
+        Me.txtNMascota.MaxLength = 25
         Me.txtNMascota.Name = "txtNMascota"
         Me.txtNMascota.PreventEnterBeep = True
         Me.txtNMascota.Size = New System.Drawing.Size(242, 22)
@@ -693,6 +700,7 @@ Partial Class F1_Reg_Pacientes
         Me.txtColor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtColor.ForeColor = System.Drawing.Color.Black
         Me.txtColor.Location = New System.Drawing.Point(480, 111)
+        Me.txtColor.MaxLength = 20
         Me.txtColor.Name = "txtColor"
         Me.txtColor.PreventEnterBeep = True
         Me.txtColor.Size = New System.Drawing.Size(233, 22)
