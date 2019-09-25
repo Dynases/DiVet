@@ -167,7 +167,7 @@ Public Class F1_Ven_Venta
                         _CodPaciente = Row.Cells("pbid").Value
                         txtIdPaciente.Text = Row.Cells("pbid").Value
                         txtPaciente.Text = Row.Cells("pbnomb").Value
-                        txtIdVendedor.Select()
+                        txtIdVendedor.Focus()
                     End If
                 End If
             End If
