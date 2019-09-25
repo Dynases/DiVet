@@ -16,23 +16,26 @@ Public Class F1_Fic_ReciboCirugia
     End Sub
     'DESHABILITA LA GRILLA
     Private Sub JGDetalleReciboCir_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGDetalleReciboCir.EditingCell
-        If (_fnAccesible()) Then
-            'Habilitar solo las columnas de cantidad, detalle
-            If (e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpDesc").Index Or
-                e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpPrec").Index Or
-                e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpCant").Index) Then
-                If JGDetalleReciboCir.GetValue("rpEst2").ToString = 0 Then
-                    e.Cancel = False
+        Try
+            If (_fnAccesible()) Then
+                'Habilitar solo las columnas de cantidad, detalle
+                If (e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpDesc").Index Or
+                    e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpPrec").Index Or
+                    e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpCant").Index) Then
+                    If JGDetalleReciboCir.GetValue("rpEst2").ToString = 0 Then
+                        e.Cancel = False
+                    Else
+                        e.Cancel = True
+                    End If
                 Else
                     e.Cancel = True
                 End If
             Else
                 e.Cancel = True
             End If
-        Else
-            e.Cancel = True
-        End If
-
+        Catch ex As Exception
+            MessageBox.Show(ex.StackTrace, "Consulte con el administrador del sistema")
+        End Try
     End Sub
     Public Function _fnAccesible()
         Return dtpFechaRC.Enabled = True
@@ -129,49 +132,53 @@ Public Class F1_Fic_ReciboCirugia
         End If
     End Sub
     Private Sub JGDetalleReciboCir_CellEdited(sender As Object, e As ColumnActionEventArgs) Handles JGDetalleReciboCir.CellEdited
-        If (e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpCant").Index) Then
-            If (Not IsNumeric(JGDetalleReciboCir.GetValue("rpCant")) Or JGDetalleReciboCir.GetValue("rpCant").ToString = String.Empty Or IsDBNull(JGDetalleReciboCir.GetValue("rpCant"))) Then
-                JGDetalleReciboCir.SetValue("rpCant", 0)
-                JGDetalleReciboCir.SetValue("rpTotal", JGDetalleReciboCir.GetValue("rpPrec"))
-            Else
-                If (JGDetalleReciboCir.GetValue("rpCant") > 0) Then
-                    Dim cant As Integer = JGDetalleReciboCir.GetValue("rpCant")
-                    'Dim stock As Integer = JGDetalleReciboCir.GetValue("stock"
-                    Dim stock As Integer = 1000
-                    If (cant > stock) Then
-                        Dim lin As Integer = JGDetalleReciboCir.GetValue("rpId")
-                        Dim pos As Integer = -1
-                        _fnObtenerFilaDetalle(pos, lin)
-                        CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpCant") = 0
-                        CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpTotal") = CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpPrec")
-                        CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpTotal2") = JGDetalleReciboCir.GetValue("tbpcos") * 1
-                        CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("tbtotdesc") = 0
-                        Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                        ToastNotification.Show(Me, "La cantidad de la venta no debe ser mayor al del stock" & vbCrLf &
-                        "Stock=" + Str(stock).ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
-                        JGDetalleReciboCir.SetValue("rpCant", 0)
-                        JGDetalleReciboCir.SetValue("rpTotal", JGDetalleReciboCir.GetValue("rpPrec"))
-                        JGDetalleReciboCir.SetValue("rpTotal2", JGDetalleReciboCir.GetValue("tbpcos") * 1)
-                        JGDetalleReciboCir.SetValue("tbtotdesc", 0)
-                        _prCalcularPrecioTotal()
-                    Else
-                        If (cant = stock) Then
-                            'JGDetalleReciboCir.SelectedFormatStyle.ForeColor = Color.Blue
-                            'JGDetalleReciboCir.CurrentRow.Cells.Item(e.Column).FormatStyle = New GridEXFormatStyle
-                            'JGDetalleReciboCir.CurrentRow.Cells(e.Column).FormatStyle.BackColor = Color.Pink
-                            'JGDetalleReciboCir.CurrentRow.Cells.Item(e.Column).FormatStyle.BackColor = Color.DodgerBlue
-                            'JGDetalleReciboCir.CurrentRow.Cells.Item(e.Column).FormatStyle.ForeColor = Color.White
-                            'JGDetalleReciboCir.CurrentRow.Cells.Item(e.Column).FormatStyle.FontBold = TriState.True
-                        End If
-                    End If
-
-                Else
-
+        Try
+            If (e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpCant").Index) Then
+                If (Not IsNumeric(JGDetalleReciboCir.GetValue("rpCant")) Or JGDetalleReciboCir.GetValue("rpCant").ToString = String.Empty Or IsDBNull(JGDetalleReciboCir.GetValue("rpCant"))) Then
                     JGDetalleReciboCir.SetValue("rpCant", 0)
                     JGDetalleReciboCir.SetValue("rpTotal", JGDetalleReciboCir.GetValue("rpPrec"))
+                Else
+                    If (JGDetalleReciboCir.GetValue("rpCant") > 0) Then
+                        Dim cant As Integer = JGDetalleReciboCir.GetValue("rpCant")
+                        'Dim stock As Integer = JGDetalleReciboCir.GetValue("stock"
+                        Dim stock As Integer = 1000
+                        If (cant > stock) Then
+                            Dim lin As Integer = JGDetalleReciboCir.GetValue("rpId")
+                            Dim pos As Integer = -1
+                            _fnObtenerFilaDetalle(pos, lin)
+                            CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpCant") = 0
+                            CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpTotal") = CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpPrec")
+                            CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpTotal2") = JGDetalleReciboCir.GetValue("tbpcos") * 1
+                            CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("tbtotdesc") = 0
+                            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                            ToastNotification.Show(Me, "La cantidad de la venta no debe ser mayor al del stock" & vbCrLf &
+                            "Stock=" + Str(stock).ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                            JGDetalleReciboCir.SetValue("rpCant", 0)
+                            JGDetalleReciboCir.SetValue("rpTotal", JGDetalleReciboCir.GetValue("rpPrec"))
+                            JGDetalleReciboCir.SetValue("rpTotal2", JGDetalleReciboCir.GetValue("tbpcos") * 1)
+                            JGDetalleReciboCir.SetValue("tbtotdesc", 0)
+                            _prCalcularPrecioTotal()
+                        Else
+                            If (cant = stock) Then
+                                'JGDetalleReciboCir.SelectedFormatStyle.ForeColor = Color.Blue
+                                'JGDetalleReciboCir.CurrentRow.Cells.Item(e.Column).FormatStyle = New GridEXFormatStyle
+                                'JGDetalleReciboCir.CurrentRow.Cells(e.Column).FormatStyle.BackColor = Color.Pink
+                                'JGDetalleReciboCir.CurrentRow.Cells.Item(e.Column).FormatStyle.BackColor = Color.DodgerBlue
+                                'JGDetalleReciboCir.CurrentRow.Cells.Item(e.Column).FormatStyle.ForeColor = Color.White
+                                'JGDetalleReciboCir.CurrentRow.Cells.Item(e.Column).FormatStyle.FontBold = TriState.True
+                            End If
+                        End If
+
+                    Else
+
+                        JGDetalleReciboCir.SetValue("rpCant", 0)
+                        JGDetalleReciboCir.SetValue("rpTotal", JGDetalleReciboCir.GetValue("rpPrec"))
+                    End If
                 End If
             End If
-        End If
+        Catch ex As Exception
+            MessageBox.Show(ex.StackTrace, "Consulte con el administrador del sistema")
+        End Try
     End Sub
 
     Private Sub JGDetalleReciboCir_MouseClick(sender As Object, e As MouseEventArgs) Handles JGDetalleReciboCir.MouseClick
@@ -185,52 +192,56 @@ Public Class F1_Fic_ReciboCirugia
                 Return
             End If
         Catch ex As Exception
-            MessageBox.Show(ex.Message, "Eliminar detalle")
+            MessageBox.Show(ex.Message, "Consulte con el administrador del sistema")
         End Try
     End Sub
     Private Sub JGDetalleReciboCir_CellValueChanged(sender As Object, e As ColumnActionEventArgs) Handles JGDetalleReciboCir.CellValueChanged
-        If (e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpCant").Index) Or (e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpPrec").Index) Then
-            If (Not IsNumeric(JGDetalleReciboCir.GetValue("rpCant")) Or JGDetalleReciboCir.GetValue("rpCant").ToString = String.Empty) Then
-                Dim lin As Integer = JGDetalleReciboCir.GetValue("rpId")
-                Dim pos As Integer = -1
-                _fnObtenerFilaDetalle(pos, lin)
-                CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpCant") = 1
-                CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpTotal") = CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpPrec")
-            Else
-                If (JGDetalleReciboCir.GetValue("rpCant") > 0) Then
-                    Dim rowIndex As Integer = JGDetalleReciboCir.Row
-                    Dim lin As Integer = JGDetalleReciboCir.GetValue("rpId")
-                    Dim pos As Integer = -1
-                    _fnObtenerFilaDetalle(pos, lin)
-                    P_PonerTotal(rowIndex)
-                Else
+        Try
+            If (e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpCant").Index) Or (e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpPrec").Index) Then
+                If (Not IsNumeric(JGDetalleReciboCir.GetValue("rpCant")) Or JGDetalleReciboCir.GetValue("rpCant").ToString = String.Empty) Then
                     Dim lin As Integer = JGDetalleReciboCir.GetValue("rpId")
                     Dim pos As Integer = -1
                     _fnObtenerFilaDetalle(pos, lin)
                     CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpCant") = 1
                     CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpTotal") = CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpPrec")
-                    _prCalcularPrecioTotal()
-                End If
-            End If
-        End If
-        If txtIdReciboI.Text <> String.Empty Then
-            If (e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpDesc").Index) Then
-                Dim lin As Integer = JGDetalleReciboCir.GetValue("rpId")
-                Dim pos As Integer = -1
-                _fnObtenerFilaDetalle(pos, lin)
-                Dim _tabla As DataTable = L_fnMostrarReciboIntDetalle(txtIdReciboI.Text)
-                If _tabla.Rows.Count > 0 Then
-                    Dim _fila As DataRow() = _tabla.Select("rpId =" + lin.ToString())
-                    If _fila.Count > 0 Then
-                        Dim estado As Integer = CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("estado")
-                        If (estado = 1) Then
-                            CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("estado") = 2
-                        End If
+                Else
+                    If (JGDetalleReciboCir.GetValue("rpCant") > 0) Then
+                        Dim rowIndex As Integer = JGDetalleReciboCir.Row
+                        Dim lin As Integer = JGDetalleReciboCir.GetValue("rpId")
+                        Dim pos As Integer = -1
+                        _fnObtenerFilaDetalle(pos, lin)
+                        P_PonerTotal(rowIndex)
+                    Else
+                        Dim lin As Integer = JGDetalleReciboCir.GetValue("rpId")
+                        Dim pos As Integer = -1
+                        _fnObtenerFilaDetalle(pos, lin)
+                        CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpCant") = 1
+                        CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpTotal") = CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("rpPrec")
+                        _prCalcularPrecioTotal()
                     End If
                 End If
-
             End If
-        End If
+            If txtIdReciboI.Text <> String.Empty Then
+                If (e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpDesc").Index) Then
+                    Dim lin As Integer = JGDetalleReciboCir.GetValue("rpId")
+                    Dim pos As Integer = -1
+                    _fnObtenerFilaDetalle(pos, lin)
+                    Dim _tabla As DataTable = L_fnMostrarReciboIntDetalle(txtIdReciboI.Text)
+                    If _tabla.Rows.Count > 0 Then
+                        Dim _fila As DataRow() = _tabla.Select("rpId =" + lin.ToString())
+                        If _fila.Count > 0 Then
+                            Dim estado As Integer = CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("estado")
+                            If (estado = 1) Then
+                                CType(JGDetalleReciboCir.DataSource, DataTable).Rows(pos).Item("estado") = 2
+                            End If
+                        End If
+                    End If
+
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Consulte con el administrador del sistema")
+        End Try
     End Sub
     Private Sub btnAgregarC_Click(sender As Object, e As EventArgs) Handles btnAgregarC.Click
         _prAddDetalleRecibo(0)
@@ -239,42 +250,46 @@ Public Class F1_Fic_ReciboCirugia
         JGDetalleReciboCir.Select()
     End Sub
     Private Sub txtCirugia_KeyDown(sender As Object, e As KeyEventArgs) Handles txtCirugia.KeyDown
-        If (_fnAccesible()) Then
-            If e.KeyData = Keys.Control + Keys.Enter Then
-                Dim dt As DataTable
-                dt = L_fnMostrarCirugiaRecibo()
-                Dim listEstCeldas As New List(Of Modelo.Celda)
-                listEstCeldas.Add(New Modelo.Celda("cfId", True, "ID CIRUGIA", 100))
-                listEstCeldas.Add(New Modelo.Celda("fbId", True, "ID F. CLINICA", 100))
-                listEstCeldas.Add(New Modelo.Celda("cfFechaAten", True, "FECHA", 100, "dd/MM/yyyy"))
-                listEstCeldas.Add(New Modelo.Celda("Cliente", True, "CLIENTE".ToUpper, 140))
-                listEstCeldas.Add(New Modelo.Celda("pbId", False, "IDPACIENTE".ToUpper, 140))
-                listEstCeldas.Add(New Modelo.Celda("pbnomb", True, "PACIENTE".ToUpper, 140))
-                listEstCeldas.Add(New Modelo.Celda("cfProc", True, "PROCEDIMIENTO".ToUpper, 150, "0.00"))
-                listEstCeldas.Add(New Modelo.Celda("cfObser", True, "OBSERVACION".ToUpper, 150, "0.00"))
-                Dim ef = New Efecto
-                ef.tipo = 3
-                ef.dt = dt
-                ef.SeleclCol = 2
-                ef.listEstCeldas = listEstCeldas
-                ef.alto = 50
-                ef.ancho = 350
-                ef.Context = "Seleccione una Cirugía".ToUpper
-                ef.ShowDialog()
-                Dim bandera As Boolean = False
-                bandera = ef.band
-                If (bandera = True) Then
-                    Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
-                    txtCirugia.Text = Row.Cells("cfId").Value
-                    _IdPaciente = Row.Cells("pbId").Value
-                    txtPacienteC.Text = Row.Cells("pbnomb").Value
-                    txtPropietarioC.Text = Row.Cells("Cliente").Value
-                    txtDescripcion.Select()
-                    swInternacion.Enabled = True
-                End If
+        Try
+            If (_fnAccesible()) Then
+                If e.KeyData = Keys.Control + Keys.Enter Then
+                    Dim dt As DataTable
+                    dt = L_fnMostrarCirugiaRecibo()
+                    Dim listEstCeldas As New List(Of Modelo.Celda)
+                    listEstCeldas.Add(New Modelo.Celda("cfId", True, "ID CIRUGIA", 100))
+                    listEstCeldas.Add(New Modelo.Celda("fbId", True, "ID F. CLINICA", 100))
+                    listEstCeldas.Add(New Modelo.Celda("cfFechaAten", True, "FECHA", 100, "dd/MM/yyyy"))
+                    listEstCeldas.Add(New Modelo.Celda("Cliente", True, "CLIENTE".ToUpper, 140))
+                    listEstCeldas.Add(New Modelo.Celda("pbId", False, "IDPACIENTE".ToUpper, 140))
+                    listEstCeldas.Add(New Modelo.Celda("pbnomb", True, "PACIENTE".ToUpper, 140))
+                    listEstCeldas.Add(New Modelo.Celda("cfProc", True, "PROCEDIMIENTO".ToUpper, 150, "0.00"))
+                    listEstCeldas.Add(New Modelo.Celda("cfObser", True, "OBSERVACION".ToUpper, 150, "0.00"))
+                    Dim ef = New Efecto
+                    ef.tipo = 3
+                    ef.dt = dt
+                    ef.SeleclCol = 2
+                    ef.listEstCeldas = listEstCeldas
+                    ef.alto = 50
+                    ef.ancho = 350
+                    ef.Context = "Seleccione una Cirugía".ToUpper
+                    ef.ShowDialog()
+                    Dim bandera As Boolean = False
+                    bandera = ef.band
+                    If (bandera = True) Then
+                        Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
+                        txtCirugia.Text = Row.Cells("cfId").Value
+                        _IdPaciente = Row.Cells("pbId").Value
+                        txtPacienteC.Text = Row.Cells("pbnomb").Value
+                        txtPropietarioC.Text = Row.Cells("Cliente").Value
+                        txtDescripcion.Select()
+                        swInternacion.Enabled = True
+                    End If
 
+                End If
             End If
-        End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Consulte con el administrador del sistema")
+        End Try
     End Sub
 #End Region
 
