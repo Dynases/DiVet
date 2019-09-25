@@ -123,8 +123,8 @@ Public Class F1_Almacen
     End Sub
 
     Public Sub _prMaxLength()
-        tbNombre.MaxLength = 50
-        tbDireccion.MaxLength = 50
+        tbNombre.MaxLength = 40
+        tbDireccion.MaxLength = 30
         tbTelf1.MaxLength = 30
     End Sub
 

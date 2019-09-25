@@ -282,6 +282,7 @@ Public Class F0_Movimiento
                 .Width = 120
                 .Caption = "lote".ToUpper
                 .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
+                .MaxLength = 50
                 .Visible = True
             End With
             With grdetalle.RootTable.Columns("icfvenc")
@@ -297,6 +298,7 @@ Public Class F0_Movimiento
                 .Width = 120
                 .Caption = "lote".ToUpper
                 .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
+                .MaxLength = 50
                 .Visible = False
             End With
             With grdetalle.RootTable.Columns("icfvenc")
@@ -306,7 +308,6 @@ Public Class F0_Movimiento
                 .FormatString = "yyyy/MM/dd"
                 .Visible = False
             End With
-
 
         End If
         With grdetalle.RootTable.Columns("stock")
@@ -1443,5 +1444,7 @@ salirIf:
 
 
     End Sub
+
+
 #End Region
 End Class

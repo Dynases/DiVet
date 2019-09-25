@@ -312,6 +312,7 @@ Partial Class F1_Fic_SegInternacion
         Me.txtOtros.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtOtros.ForeColor = System.Drawing.Color.Black
         Me.txtOtros.Location = New System.Drawing.Point(105, 247)
+        Me.txtOtros.MaxLength = 400
         Me.txtOtros.Multiline = True
         Me.txtOtros.Name = "txtOtros"
         Me.txtOtros.PreventEnterBeep = True
@@ -357,6 +358,7 @@ Partial Class F1_Fic_SegInternacion
         Me.txtFrecuencias.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFrecuencias.ForeColor = System.Drawing.Color.Black
         Me.txtFrecuencias.Location = New System.Drawing.Point(105, 173)
+        Me.txtFrecuencias.MaxLength = 400
         Me.txtFrecuencias.Multiline = True
         Me.txtFrecuencias.Name = "txtFrecuencias"
         Me.txtFrecuencias.PreventEnterBeep = True
@@ -389,6 +391,7 @@ Partial Class F1_Fic_SegInternacion
         Me.txtPasoTurno.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPasoTurno.ForeColor = System.Drawing.Color.Black
         Me.txtPasoTurno.Location = New System.Drawing.Point(470, 212)
+        Me.txtPasoTurno.MaxLength = 500
         Me.txtPasoTurno.Multiline = True
         Me.txtPasoTurno.Name = "txtPasoTurno"
         Me.txtPasoTurno.PreventEnterBeep = True
@@ -535,6 +538,7 @@ Partial Class F1_Fic_SegInternacion
         Me.txtAlimentacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAlimentacion.ForeColor = System.Drawing.Color.Black
         Me.txtAlimentacion.Location = New System.Drawing.Point(470, 79)
+        Me.txtAlimentacion.MaxLength = 400
         Me.txtAlimentacion.Multiline = True
         Me.txtAlimentacion.Name = "txtAlimentacion"
         Me.txtAlimentacion.PreventEnterBeep = True
@@ -580,6 +584,7 @@ Partial Class F1_Fic_SegInternacion
         Me.txtResponsable.DisabledBackColor = System.Drawing.Color.White
         Me.txtResponsable.ForeColor = System.Drawing.Color.Black
         Me.txtResponsable.Location = New System.Drawing.Point(105, 146)
+        Me.txtResponsable.MaxLength = 50
         Me.txtResponsable.Name = "txtResponsable"
         Me.txtResponsable.PreventEnterBeep = True
         Me.txtResponsable.Size = New System.Drawing.Size(200, 22)
@@ -675,6 +680,7 @@ Partial Class F1_Fic_SegInternacion
         Me.txtDiagnostico.DisabledBackColor = System.Drawing.Color.White
         Me.txtDiagnostico.ForeColor = System.Drawing.Color.Black
         Me.txtDiagnostico.Location = New System.Drawing.Point(105, 118)
+        Me.txtDiagnostico.MaxLength = 50
         Me.txtDiagnostico.Name = "txtDiagnostico"
         Me.txtDiagnostico.PreventEnterBeep = True
         Me.txtDiagnostico.Size = New System.Drawing.Size(200, 22)
@@ -706,6 +712,7 @@ Partial Class F1_Fic_SegInternacion
         Me.txtMedProtocolo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMedProtocolo.ForeColor = System.Drawing.Color.Black
         Me.txtMedProtocolo.Location = New System.Drawing.Point(470, 11)
+        Me.txtMedProtocolo.MaxLength = 400
         Me.txtMedProtocolo.Multiline = True
         Me.txtMedProtocolo.Name = "txtMedProtocolo"
         Me.txtMedProtocolo.PreventEnterBeep = True
@@ -792,6 +799,7 @@ Partial Class F1_Fic_SegInternacion
         Me.txtObsRequerimientos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtObsRequerimientos.ForeColor = System.Drawing.Color.Black
         Me.txtObsRequerimientos.Location = New System.Drawing.Point(470, 123)
+        Me.txtObsRequerimientos.MaxLength = 500
         Me.txtObsRequerimientos.Multiline = True
         Me.txtObsRequerimientos.Name = "txtObsRequerimientos"
         Me.txtObsRequerimientos.PreventEnterBeep = True

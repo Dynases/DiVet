@@ -305,11 +305,6 @@ Public Class Principal
         End If
     End Sub
 
-    Private Sub btnCobroInt_Click(sender As Object, e As EventArgs) Handles btnCobroInt.Click
-        Dim frm As New F1_Ven_CobroInternacion
-        Modelo.MGlobal._nameButton = btnCobroInt.Name
-        frm.Show()
-    End Sub
 
     Private Sub btnReciboCirugia_Click(sender As Object, e As EventArgs) Handles btnReciboCirugia.Click
         Dim frm As New F1_Fic_ReciboCirugia
@@ -345,5 +340,9 @@ Public Class Principal
         Dim frm As New PR_StockActualProductosLotes
         Modelo.MGlobal._nameButton = btnInvSaldoLote.Name
         frm.Show()
+    End Sub
+
+    Private Sub btnCobroInt_Click(sender As Object, e As EventArgs) Handles btn1.Click
+
     End Sub
 End Class

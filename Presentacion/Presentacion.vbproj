@@ -197,18 +197,6 @@
     <Compile Include="F1_Fic_SegInternacion.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="F1_Inv_Almacen.Designer.vb">
-      <DependentUpon>F1_Inv_Almacen.vb</DependentUpon>
-    </Compile>
-    <Compile Include="F1_Inv_Almacen.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="F1_Inv_Movimientos.Designer.vb">
-      <DependentUpon>F1_Inv_Movimientos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="F1_Inv_Movimientos.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="F1_Reg_Empleados.Designer.vb">
       <DependentUpon>F1_Reg_Empleados.vb</DependentUpon>
     </Compile>
@@ -219,18 +207,6 @@
       <DependentUpon>F1_Reg_Pacientes.vb</DependentUpon>
     </Compile>
     <Compile Include="F1_Reg_Pacientes.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="F1_Ven_CobroCirugia.Designer.vb">
-      <DependentUpon>F1_Ven_CobroCirugia.vb</DependentUpon>
-    </Compile>
-    <Compile Include="F1_Ven_CobroCirugia.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="F1_Ven_CobroInternacion.Designer.vb">
-      <DependentUpon>F1_Ven_CobroInternacion.vb</DependentUpon>
-    </Compile>
-    <Compile Include="F1_Ven_CobroInternacion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="F1_Ven_Venta.Designer.vb">
@@ -604,23 +580,11 @@
     <EmbeddedResource Include="F1_Fic_SegInternacion.resx">
       <DependentUpon>F1_Fic_SegInternacion.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="F1_Inv_Almacen.resx">
-      <DependentUpon>F1_Inv_Almacen.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="F1_Inv_Movimientos.resx">
-      <DependentUpon>F1_Inv_Movimientos.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="F1_Reg_Empleados.resx">
       <DependentUpon>F1_Reg_Empleados.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="F1_Reg_Pacientes.resx">
       <DependentUpon>F1_Reg_Pacientes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="F1_Ven_CobroCirugia.resx">
-      <DependentUpon>F1_Ven_CobroCirugia.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="F1_Ven_CobroInternacion.resx">
-      <DependentUpon>F1_Ven_CobroInternacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="F1_Ven_Venta.resx">
       <DependentUpon>F1_Ven_Venta.vb</DependentUpon>

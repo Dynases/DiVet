@@ -916,6 +916,7 @@ Public Class F1_Fic_ReciboCirugia
             'txtTotalRC.Value = Suma
         End If
     End Sub
+
     Public Overrides Sub _PMOModificar()
         _prHabilitar()
     End Sub

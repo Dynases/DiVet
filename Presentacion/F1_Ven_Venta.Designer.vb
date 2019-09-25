@@ -1010,6 +1010,7 @@ Partial Class F1_Ven_Venta
         Me.txtObservacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtObservacion.ForeColor = System.Drawing.Color.Black
         Me.txtObservacion.Location = New System.Drawing.Point(606, 99)
+        Me.txtObservacion.MaxLength = 250
         Me.txtObservacion.Multiline = True
         Me.txtObservacion.Name = "txtObservacion"
         Me.txtObservacion.PreventEnterBeep = True
