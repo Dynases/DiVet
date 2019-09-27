@@ -138,10 +138,6 @@ Partial Class F1_Reg_Empleados
         'btnPrimero
         '
         '
-        'MpanelBuscador
-        '
-        Me.MpanelBuscador.Size = New System.Drawing.Size(967, 621)
-        '
         'TxtNombreUsu
         '
         Me.TxtNombreUsu.Text = "DEFAULT"
@@ -314,7 +310,6 @@ Partial Class F1_Reg_Empleados
         Me.txtCIEmpleado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCIEmpleado.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
         Me.txtCIEmpleado.Location = New System.Drawing.Point(138, 68)
-        Me.txtCIEmpleado.MaxValue = 30
         Me.txtCIEmpleado.Name = "txtCIEmpleado"
         Me.txtCIEmpleado.Size = New System.Drawing.Size(113, 21)
         Me.txtCIEmpleado.TabIndex = 2

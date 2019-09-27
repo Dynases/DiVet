@@ -147,12 +147,17 @@ Public Class F1_Reg_Empleados
         End With
         With JGBusqEmpleados.RootTable.Columns("lbdesc")
             .Width = 150
-            .Caption = "Tipo de empleado"
+            .Caption = "Tipo de Empleado"
             .Visible = True
         End With
         With JGBusqEmpleados.RootTable.Columns("ecCi")
             .Width = 90
             .Caption = "CI"
+            .Visible = True
+        End With
+        With JGBusqEmpleados.RootTable.Columns("ecDir")
+            .Width = 90
+            .Caption = "Dirección"
             .Visible = True
         End With
         With JGBusqEmpleados.RootTable.Columns("Estado")

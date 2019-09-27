@@ -42,6 +42,7 @@ Public Class Login
         listaTabs.Add(Principal.mtpCompras)
         listaTabs.Add(Principal.mtpInventario)
         listaTabs.Add(Principal.mtpVentas)
+        listaTabs.Add(Principal.mtpCreditos)
 
         Dim idRolUsu As String = gi_userRol
 
