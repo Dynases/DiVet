@@ -11,7 +11,7 @@ Public Class Modelo1
 #Region "EVENTOS"
     Private Sub Modelo1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _PMhabilitar()
-        superTabControl1.SelectedTabIndex = 0
+        'superTabControl1.SelectedTabIndex = 0
         TxtNombreUsu.Text = gs_usuario
 
     End Sub

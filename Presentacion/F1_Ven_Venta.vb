@@ -147,6 +147,8 @@ Public Class F1_Ven_Venta
                     listEstCeldas.Add(New Modelo.Celda("pbseñas,", False, "ID", 50))
                     listEstCeldas.Add(New Modelo.Celda("pbfingr,", False, "ID", 50))
                     listEstCeldas.Add(New Modelo.Celda("pbest,", False, "ID", 50))
+                    listEstCeldas.Add(New Modelo.Celda("pbhora,", False, "ID", 50))
+                    listEstCeldas.Add(New Modelo.Celda("pbusuario,", False, "ID", 50))
                     Dim ef = New Efecto
                     ef.tipo = 3
                     ef.dt = dt

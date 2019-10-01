@@ -617,7 +617,7 @@ Partial Class F0_Reg_Clientes
         '
         'txtId
         '
-        Me.txtId.BackColor = System.Drawing.Color.LightGray
+        Me.txtId.BackColor = System.Drawing.Color.White
         '
         '
         '

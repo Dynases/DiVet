@@ -635,9 +635,6 @@ Partial Class Modelo1
     Protected WithEvents TxtNombreUsu As TextBox
     Protected WithEvents MEP As ErrorProvider
     Protected WithEvents MHighlighterFocus As DevComponents.DotNetBar.Validator.Highlighter
-    Protected WithEvents superTabControl1 As DevComponents.DotNetBar.SuperTabControl
-    Protected WithEvents superTabItem2 As DevComponents.DotNetBar.SuperTabItem
-    Protected WithEvents superTabItem1 As DevComponents.DotNetBar.SuperTabItem
     Protected WithEvents BBtnUsuario As DevComponents.DotNetBar.BubbleButton
     Protected WithEvents BubbleButton1 As DevComponents.DotNetBar.BubbleButton
     Protected WithEvents BubbleButton2 As DevComponents.DotNetBar.BubbleButton
@@ -652,4 +649,7 @@ Partial Class Modelo1
     Protected WithEvents lblHora As Label
     Protected WithEvents lblFecha As Label
     Protected WithEvents lblUsuario As Label
+    Public WithEvents superTabItem2 As DevComponents.DotNetBar.SuperTabItem
+    Public WithEvents superTabItem1 As DevComponents.DotNetBar.SuperTabItem
+    Public WithEvents superTabControl1 As DevComponents.DotNetBar.SuperTabControl
 End Class

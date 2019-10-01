@@ -9,6 +9,9 @@ Module P_Global
     Private Declare Auto Function SetProcessWorkingSetSize Lib "kernel32.dll" (ByVal procHandle As IntPtr, ByVal min As Int32, ByVal max As Int32) As Boolean
     Public gs_SeparadorDecimal As Char = Application.CurrentCulture.NumberFormat.NumberDecimalSeparator
     Public Visualizador As Visualizador
+    'Variable para modificar Paciente desde ventana cliente
+    Public modificarPac As Boolean = False
+    Public _caidcli As Integer
 
 #End Region
 

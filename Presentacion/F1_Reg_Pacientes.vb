@@ -7,11 +7,12 @@ Public Class F1_Reg_Pacientes
 #Region "VARIABLES"
     Public _IdCliente, _Iniciar, _MPos As Integer
     Private _Limpiar As Boolean
+
 #End Region
 #Region "EVENTOS"
     Private Sub F1_Reg_Pacientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _prIniciarTodo()
-        superTabControl1.SelectedTabIndex = 0
+        'superTabControl1.SelectedTabIndex = 0
     End Sub
     Private Sub JGBusqMascotas_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGBusqMascotas.EditingCell
         e.Cancel = True
@@ -100,7 +101,13 @@ Public Class F1_Reg_Pacientes
         _prCargarComboLibreria(cbEspecie, 2, 1)
         _prCargarComboLibreria(cbRaza, 2, 2)
         _PMAsignarPermisos()
-        _prCargarPaciente()
+        If modificarPac = False Then
+            _prCargarPaciente()
+        Else
+            _prCargarPacienteUnCliente()
+            modificarPac = False
+        End If
+
         _prMostrarPaciente(0)
         _prHabilitarMenu()
         'Inicia directo a realizar un Registro
@@ -252,6 +259,109 @@ Public Class F1_Reg_Pacientes
             .VisualStyle = VisualStyle.Office2007
         End With
     End Sub
+    Private Sub _prCargarPacienteUnCliente()
+        Dim _tabla As DataTable = L_fnMostrarPaciente(_caidcli)
+        JGBusqMascotas.DataSource = _tabla
+        JGBusqMascotas.RetrieveStructure()
+        JGBusqMascotas.AlternatingColors = True
+        With JGBusqMascotas.RootTable.Columns("pbid")
+            .Width = 65
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Caption = "Id"
+            .Visible = True
+        End With
+        With JGBusqMascotas.RootTable.Columns("pb_caid")
+            .Width = 70
+            .Caption = "Id_Cliente"
+            .Visible = False
+        End With
+        With JGBusqMascotas.RootTable.Columns("cacliente")
+            .Width = 120
+            .Caption = "Cliente"
+            .Visible = True
+        End With
+        With JGBusqMascotas.RootTable.Columns("pbnomb")
+            .Width = 120
+            .Caption = "Nombre"
+            .Visible = True
+        End With
+        With JGBusqMascotas.RootTable.Columns("pbespec")
+            .Width = 110
+            .Caption = "pbespec"
+            .Visible = False
+        End With
+        With JGBusqMascotas.RootTable.Columns("Especie")
+            .Width = 110
+            .Caption = "Especie"
+            .Visible = True
+        End With
+        With JGBusqMascotas.RootTable.Columns("pbfnac")
+            .Width = 120
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Caption = "F. Nacimiento"
+            .Visible = True
+        End With
+        With JGBusqMascotas.RootTable.Columns("pbraza")
+            .Width = 100
+            .Caption = "Raza"
+            .Visible = False
+        End With
+        With JGBusqMascotas.RootTable.Columns("Raza")
+            .Width = 100
+            .Caption = "Raza"
+            .Visible = True
+        End With
+        With JGBusqMascotas.RootTable.Columns("pbsex")
+            .Width = 82
+            .Caption = "Sexo"
+            .Visible = True
+        End With
+        With JGBusqMascotas.RootTable.Columns("pbcolor")
+            .Width = 100
+            .Caption = "Color"
+            .Visible = True
+        End With
+        With JGBusqMascotas.RootTable.Columns("pbester")
+            .Width = 100
+            .Caption = "Esterilizado"
+            .Visible = True
+        End With
+        With JGBusqMascotas.RootTable.Columns("pbdest")
+            .Width = 100
+            .Caption = "Descripción Estado"
+            .Visible = True
+        End With
+        With JGBusqMascotas.RootTable.Columns("pbseñas")
+            .Width = 100
+            .Caption = "Señas"
+            .Visible = True
+        End With
+        With JGBusqMascotas.RootTable.Columns("pbfingr")
+            .Width = 100
+            .Caption = "F. Ingreso"
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Visible = True
+        End With
+        With JGBusqMascotas.RootTable.Columns("pbest")
+            .Width = 100
+            .Caption = "Estado"
+            .Visible = False
+        End With
+        With JGBusqMascotas.RootTable.Columns("pbhora")
+            .Visible = False
+        End With
+        With JGBusqMascotas.RootTable.Columns("pbusuario")
+            .Visible = False
+        End With
+        With JGBusqMascotas
+            .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
+            .FilterMode = FilterMode.Automatic
+            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+            .GroupByBoxVisible = False
+            'diseño de la grilla
+            .VisualStyle = VisualStyle.Office2007
+        End With
+    End Sub
     '***********Pone en estado Visible el menu
     Private Sub _prHabilitarMenu()
         If _Iniciar = 1 Then
@@ -264,6 +374,12 @@ Public Class F1_Reg_Pacientes
             btnModificar.Enabled = True
             btnEliminar.Enabled = True
             btnGrabar.Enabled = False
+        ElseIf _Iniciar = 4 Then
+            btnNuevo.Enabled = True
+            btnModificar.Enabled = True
+            btnEliminar.Enabled = True
+            btnGrabar.Enabled = False
+            btnSalir.Enabled = True
         End If
     End Sub
     Private Sub _prInhabilitar()
@@ -369,6 +485,8 @@ Public Class F1_Reg_Pacientes
             _prLimpiar()
             _prCargarPaciente()
             _Limpiar = True
+            _Iniciar = 4
+            _prHabilitarMenu()
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
             ToastNotification.Show(Me, "La mascota no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)

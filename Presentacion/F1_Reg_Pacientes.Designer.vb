@@ -67,9 +67,9 @@ Partial Class F1_Reg_Pacientes
         Me.PanelNavegacion.SuspendLayout()
         Me.MpanelBuscador.SuspendLayout()
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelUsuario.SuspendLayout()
+        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpDatosMascota.SuspendLayout()
         Me.panelDatosMascota.SuspendLayout()
         CType(Me.dtpFnac, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -144,24 +144,6 @@ Partial Class F1_Reg_Pacientes
         '
         Me.TxtNombreUsu.Text = "DEFAULT"
         '
-        'superTabControl1
-        '
-        '
-        '
-        '
-        '
-        '
-        '
-        Me.superTabControl1.ControlBox.CloseBox.Name = ""
-        '
-        '
-        '
-        Me.superTabControl1.ControlBox.MenuBox.Name = ""
-        Me.superTabControl1.ControlBox.Name = ""
-        Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
-        Me.superTabControl1.SelectedTabIndex = 1
-        Me.superTabControl1.Size = New System.Drawing.Size(805, 480)
-        '
         'BubbleBarUsuario
         '
         '
@@ -188,6 +170,23 @@ Partial Class F1_Reg_Pacientes
         'PanelUsuario
         '
         Me.PanelUsuario.Location = New System.Drawing.Point(317, 121)
+        '
+        'superTabControl1
+        '
+        '
+        '
+        '
+        '
+        '
+        '
+        Me.superTabControl1.ControlBox.CloseBox.Name = ""
+        '
+        '
+        '
+        Me.superTabControl1.ControlBox.MenuBox.Name = ""
+        Me.superTabControl1.ControlBox.Name = ""
+        Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
+        Me.superTabControl1.Size = New System.Drawing.Size(805, 480)
         '
         'gpDatosMascota
         '
@@ -862,10 +861,10 @@ Partial Class F1_Reg_Pacientes
         Me.PanelNavegacion.ResumeLayout(False)
         Me.MpanelBuscador.ResumeLayout(False)
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelUsuario.ResumeLayout(False)
         Me.PanelUsuario.PerformLayout()
+        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gpDatosMascota.ResumeLayout(False)
         Me.panelDatosMascota.ResumeLayout(False)
         Me.panelDatosMascota.PerformLayout()

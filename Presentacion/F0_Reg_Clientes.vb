@@ -304,7 +304,7 @@ Partial Class F0_Reg_Clientes
         End With
         With JGBPropietario.RootTable.Columns("causuario")
             .Width = 90
-            .Visible = True
+            .Visible = False
             .Caption = "Usuario"
         End With
         With JGBPropietario
@@ -432,6 +432,16 @@ Partial Class F0_Reg_Clientes
             .Caption = "Estado"
             .Visible = False
         End With
+        With JGrM_Buscador.RootTable.Columns("pbhora")
+            .Width = 100
+            .Caption = "Hora"
+            .Visible = False
+        End With
+        With JGrM_Buscador.RootTable.Columns("pbusuario")
+            .Width = 100
+            .Caption = "Usuario"
+            .Visible = False
+        End With
         With JGrM_Buscador
             .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
             .FilterMode = FilterMode.Automatic
@@ -545,8 +555,9 @@ Partial Class F0_Reg_Clientes
                 Dim frm As New F1_Reg_Pacientes
                 frm._IdCliente = txtId.Text
                 frm._Iniciar = 1
-                frm.Focus()
+
                 frm.ShowDialog()
+                frm.txtNMascota.Focus()
                 frm._Iniciar = 0
             End If
             _prCargarClientes()
@@ -577,6 +588,9 @@ Partial Class F0_Reg_Clientes
                 frm._IdCliente = txtId.Text
                 frm._Iniciar = 2
                 frm.Focus()
+                frm.superTabControl1.SelectedTabIndex = 1
+                modificarPac = True
+                _caidcli = txtId.Text
                 frm.ShowDialog()
                 frm._Iniciar = 0
             End If
@@ -618,7 +632,7 @@ Partial Class F0_Reg_Clientes
             End If
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "No se puede eliminar debido aque tiene transacciones relacionadas", img, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "No se puede eliminar debido a que tiene mascotas registradas, primero elimine las mascotas correspondientes", img, 4000, eToastGlowColor.Red, eToastPosition.BottomCenter)
         End If
 
     End Sub
@@ -717,9 +731,13 @@ Partial Class F0_Reg_Clientes
 
     Public Overrides Sub _PMONuevo()
         _PMOHabilitar()
+        '_PMOLimpiar()
         '_prhabilitar()
         btnAgregarMascota.Enabled = False
         txtCI.Focus()
+        _prCargarPaciente(-1)
+        JDGClientes.Enabled = False
+
     End Sub
     Public Overrides Sub _PMOModificar()
         _PMOHabilitar()
@@ -761,8 +779,8 @@ Partial Class F0_Reg_Clientes
         _PMOInhabilitar()
         'prInhabiliitar()
         _prFiltrar()
+        JDGClientes.Enabled = True
     End Sub
-
 
 #End Region
 End Class
