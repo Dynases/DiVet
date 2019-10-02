@@ -222,7 +222,7 @@ Partial Class F0_Reg_Clientes
         '
         'PanelBuscador
         '
-        Me.PanelBuscador.BackgroundImage = Global.Presentacion.My.Resources.Resources.Fondo2
+        Me.PanelBuscador.BackColor = System.Drawing.SystemColors.Highlight
         Me.PanelBuscador.Controls.Add(Me.btnEmergencia)
         Me.PanelBuscador.Controls.Add(Me.dtpFechaAct)
         Me.PanelBuscador.Controls.Add(Me.btnAsignarFicha)
@@ -230,7 +230,7 @@ Partial Class F0_Reg_Clientes
         Me.PanelBuscador.Controls.Add(Me.GroupPanel2)
         Me.PanelBuscador.ForeColor = System.Drawing.Color.White
         Me.PanelBuscador.Margin = New System.Windows.Forms.Padding(4)
-        Me.PanelBuscador.Size = New System.Drawing.Size(1027, 587)
+        Me.PanelBuscador.Size = New System.Drawing.Size(1037, 591)
         '
         'SupTabItemBusqueda
         '
@@ -736,9 +736,9 @@ Partial Class F0_Reg_Clientes
         Me.GroupPanel2.Controls.Add(Me.JGMascotasAtencion)
         Me.GroupPanel2.DisabledBackColor = System.Drawing.Color.Empty
         Me.GroupPanel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupPanel2.Location = New System.Drawing.Point(20, 277)
+        Me.GroupPanel2.Location = New System.Drawing.Point(20, 316)
         Me.GroupPanel2.Name = "GroupPanel2"
-        Me.GroupPanel2.Size = New System.Drawing.Size(986, 231)
+        Me.GroupPanel2.Size = New System.Drawing.Size(986, 205)
         '
         '
         '
@@ -784,7 +784,7 @@ Partial Class F0_Reg_Clientes
         Me.JGMascotasAtencion.SelectedFormatStyle.BackColor = System.Drawing.Color.DodgerBlue
         Me.JGMascotasAtencion.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.JGMascotasAtencion.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
-        Me.JGMascotasAtencion.Size = New System.Drawing.Size(980, 208)
+        Me.JGMascotasAtencion.Size = New System.Drawing.Size(980, 182)
         Me.JGMascotasAtencion.TabIndex = 0
         '
         'GroupPanel3
@@ -797,7 +797,7 @@ Partial Class F0_Reg_Clientes
         Me.GroupPanel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupPanel3.Location = New System.Drawing.Point(88, 4)
         Me.GroupPanel3.Name = "GroupPanel3"
-        Me.GroupPanel3.Size = New System.Drawing.Size(851, 243)
+        Me.GroupPanel3.Size = New System.Drawing.Size(851, 295)
         '
         '
         '
@@ -836,7 +836,7 @@ Partial Class F0_Reg_Clientes
         Me.JGBPropietario.HeaderFormatStyle.FontBold = Janus.Windows.GridEX.TriState.[True]
         Me.JGBPropietario.Location = New System.Drawing.Point(3, 3)
         Me.JGBPropietario.Name = "JGBPropietario"
-        Me.JGBPropietario.Size = New System.Drawing.Size(839, 214)
+        Me.JGBPropietario.Size = New System.Drawing.Size(839, 266)
         Me.JGBPropietario.TabIndex = 256
         '
         'btnAsignarFicha
@@ -850,7 +850,7 @@ Partial Class F0_Reg_Clientes
         Me.btnAsignarFicha.Image = Global.Presentacion.My.Resources.Resources.checked
         Me.btnAsignarFicha.ImageFixedSize = New System.Drawing.Size(20, 20)
         Me.btnAsignarFicha.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnAsignarFicha.Location = New System.Drawing.Point(376, 529)
+        Me.btnAsignarFicha.Location = New System.Drawing.Point(376, 536)
         Me.btnAsignarFicha.Name = "btnAsignarFicha"
         Me.btnAsignarFicha.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.btnAsignarFicha.Size = New System.Drawing.Size(101, 42)
@@ -884,7 +884,7 @@ Partial Class F0_Reg_Clientes
         Me.btnEmergencia.Image = Global.Presentacion.My.Resources.Resources.emergencia
         Me.btnEmergencia.ImageFixedSize = New System.Drawing.Size(20, 20)
         Me.btnEmergencia.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnEmergencia.Location = New System.Drawing.Point(542, 529)
+        Me.btnEmergencia.Location = New System.Drawing.Point(542, 536)
         Me.btnEmergencia.Name = "btnEmergencia"
         Me.btnEmergencia.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.btnEmergencia.Size = New System.Drawing.Size(101, 42)

@@ -247,7 +247,7 @@ Partial Class F0_Reg_Clientes
     ''*****CARGA EL DATAGRID DEL PROPIETARIO*****''
     Private Sub _prCargarPropietarios()
         Dim dt As New DataTable
-        dt = L_fnMostrarClientes()
+        dt = L_fnMostrarClientesSiDebeOno()
 
         JGBPropietario.DataSource = dt
         JGBPropietario.RetrieveStructure()
@@ -266,19 +266,19 @@ Partial Class F0_Reg_Clientes
 
         End With
         With JGBPropietario.RootTable.Columns("canomb")
-            .Width = 120
+            .Width = 160
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
             .Visible = True
             .Caption = "Nombre"
         End With
         With JGBPropietario.RootTable.Columns("caapell")
-            .Width = 180
+            .Width = 190
             .Caption = "Apellidos"
             .Visible = True
         End With
 
         With JGBPropietario.RootTable.Columns("cadir")
-            .Width = 120
+            .Width = 180
             .Caption = "Dirección"
             .Visible = True
         End With
@@ -287,25 +287,46 @@ Partial Class F0_Reg_Clientes
             .Caption = "Teléfono"
             .Visible = True
         End With
-        With JGBPropietario.RootTable.Columns("camail")
-            .Width = 150
-            .Visible = False
-            .Caption = "Mail"
-        End With
-        With JGBPropietario.RootTable.Columns("cafecha")
-            .Width = 90
-            .Visible = True
-            .Caption = "Fecha"
-        End With
-        With JGBPropietario.RootTable.Columns("cahora")
-            .Width = 90
-            .Visible = False
+        'With JGBPropietario.RootTable.Columns("camail")
+        '    .Width = 150
+        '    .Visible = False
+        '    .Caption = "Mail"
+        'End With
+        'With JGBPropietario.RootTable.Columns("cafecha")
+        '    .Width = 90
+        '    .Visible = True
+        '    .Caption = "Fecha"
+        'End With
+        'With JGBPropietario.RootTable.Columns("cahora")
+        '    .Width = 90
+        '    .Visible = False
 
-        End With
-        With JGBPropietario.RootTable.Columns("causuario")
+        'End With
+        'With JGBPropietario.RootTable.Columns("causuario")
+        '    .Width = 90
+        '    .Visible = False
+        '    .Caption = "Usuario"
+
+        'End With
+        With JGBPropietario.RootTable.Columns("Monto")
             .Width = 90
+            .Caption = "Monto"
             .Visible = False
-            .Caption = "Usuario"
+        End With
+        With JGBPropietario.RootTable.Columns("Pagos")
+            .Width = 90
+            .Caption = "Pagos"
+            .Visible = False
+        End With
+        With JGBPropietario.RootTable.Columns("Saldo")
+            .Width = 90
+            .Caption = "Saldo"
+            .Visible = False
+        End With
+        With JGBPropietario.RootTable.Columns("Debe")
+            .Width = 60
+            .Caption = "Debe?"
+            .Visible = True
         End With
         With JGBPropietario
             .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
@@ -535,7 +556,7 @@ Partial Class F0_Reg_Clientes
 #End Region
 #Region "METODOS SOBRECARGADOS"
     Public Overrides Function _PMOGetTablaBuscador() As DataTable
-        Dim dtBuscador As DataTable = L_fnMostrarClientes()
+        Dim dtBuscador As DataTable = L_fnMostrarClientesSiDebeOno()
         Return dtBuscador
     End Function
     ''*****GRABAR EL REGISTRO DEL CLIENTE*****''

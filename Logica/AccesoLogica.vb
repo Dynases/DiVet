@@ -378,6 +378,16 @@ Public Class AccesoLogica
         '_Tabla = D_Procedimiento("sp_Mostrar")
         Return _Tabla
     End Function
+    Public Shared Function L_fnMostrarClientesSiDebeOno() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@causuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_CLI001", _listParam)
+        '_Tabla = D_Procedimiento("sp_Mostrar")
+        Return _Tabla
+    End Function
 #End Region
 #Region "Verificaciones"
     '****************Verifica si cliente tinee algun paciente relacionado
