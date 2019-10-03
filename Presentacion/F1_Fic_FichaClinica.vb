@@ -222,11 +222,11 @@ Public Class F1_Fic_FichaClinica
 #Region "Metodos Privados"
     Private Sub _prIniciarTodo()
         _HoraInicial = DateTime.Now.ToShortTimeString()
-        _prHabilitarMenu(1)
         _PMAsignarPermisos()
         _prCargarFichaClinica()
         _prCrearCarpetaImagenes()
         _prCrearCarpetaTemporal()
+        _prHabilitarMenu(1)
         '**Nueva Ficha, consulta o emergencia
         If _Iniciar = 1 Then
             _MNuevo = True
