@@ -66,9 +66,11 @@ Partial Class F0_Reg_Clientes
         _prInterpretarDatosFichaAtencion(tFichaAtencion, bandera)
         If (bandera = False) Then
             ToastNotification.Show(Me, "Seleccione una sola opcion en la lista de pacientes".ToUpper, img2, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Return
         End If
         If tFichaAtencion.Rows.Count = 0 Then
             ToastNotification.Show(Me, "Seleccione el check de un paciente".ToUpper, img2, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Return
         Else
             If bandera Then
                 Dim _faId As String = "" 'Codigo de ficha
@@ -195,7 +197,7 @@ Partial Class F0_Reg_Clientes
             .Caption = "Nombre"
         End With
         With JDGClientes.RootTable.Columns("caapell")
-            .Width = 180
+            .Width = 163
             .Caption = "Apellidos"
             .Visible = True
         End With
@@ -203,7 +205,7 @@ Partial Class F0_Reg_Clientes
         With JDGClientes.RootTable.Columns("cadir")
             .Width = 120
             .Caption = "Dirección"
-            .Visible = True
+            .Visible = False
         End With
         With JDGClientes.RootTable.Columns("catelf")
             .Width = 90
@@ -212,12 +214,12 @@ Partial Class F0_Reg_Clientes
         End With
         With JDGClientes.RootTable.Columns("camail")
             .Width = 150
-            .Visible = True
+            .Visible = False
             .Caption = "Mail"
         End With
         With JDGClientes.RootTable.Columns("cafecha")
             .Width = 90
-            .Visible = True
+            .Visible = False
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .Caption = "Fecha"
         End With
@@ -228,7 +230,7 @@ Partial Class F0_Reg_Clientes
         End With
         With JDGClientes.RootTable.Columns("causuario")
             .Width = 90
-            .Visible = True
+            .Visible = False
             .Caption = "Usuario"
         End With
         With JDGClientes
@@ -526,7 +528,7 @@ Partial Class F0_Reg_Clientes
             .Visible = True
         End With
         With JGMascotasAtencion.RootTable.Columns("ReConsulta")
-            .Width = 150
+            .Width = 170
             .Caption = "ReConsulta"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .Visible = True
