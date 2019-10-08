@@ -2136,8 +2136,9 @@ salirIf:
                 End If
 
                 P_Global.Visualizador = New Visualizador
-                Dim objrep As New R_Venta
-                'objrep.Subreports.Item("R_Venta.rpt").SetDataSource(dt)
+                Dim objrep As New R_VentaTotal
+
+                objrep.Subreports.Item("R_Venta.rpt").SetDataSource(dt)
                 'objrep.SetDataSource(dt)
                 'objrep.Subreports.Item("R_Venta.rpt").SetParameterValue("TotalBs", li)
 
@@ -2154,7 +2155,7 @@ salirIf:
                 objrep.SetDataSource(dt)
                 objrep.SetParameterValue("TotalBs", li)
                 P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
-                P_Global.Visualizador.WindowState = FormWindowState.Maximized
+                'P_Global.Visualizador.WindowState = FormWindowState.Maximized
                 P_Global.Visualizador.Show() 'Comentar
                 P_Global.Visualizador.BringToFront() 'Comentar
 
