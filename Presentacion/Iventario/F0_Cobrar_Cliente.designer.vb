@@ -42,22 +42,24 @@ Partial Class F0_Cobrar_Cliente
         Me.ButtonX1 = New DevComponents.DotNetBar.ButtonX()
         Me.ButtonX2 = New DevComponents.DotNetBar.ButtonX()
         Me.tbnrocod = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.gpDetalleVenta = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.JGDetalleVenta = New Janus.Windows.GridEX.GridEX()
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabPrincipal.SuspendLayout()
         Me.SuperTabControlPanelRegistro.SuspendLayout()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
-        CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelToolBar1.SuspendLayout()
         Me.PanelToolBar2.SuspendLayout()
         Me.MPanelSup.SuspendLayout()
         Me.PanelPrincipal.SuspendLayout()
         Me.GroupPanelBuscador.SuspendLayout()
         CType(Me.JGrM_Buscador, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelUsuario.SuspendLayout()
         Me.PanelNavegacion.SuspendLayout()
-        Me.MPanelUserAct.SuspendLayout()
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MPanelUserAct.SuspendLayout()
+        CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelUsuario.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.tbTotalCobrar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +67,8 @@ Partial Class F0_Cobrar_Cliente
         CType(Me.tbTotalCobrado, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFechaVenta, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gr_detalle, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gpDetalleVenta.SuspendLayout()
+        CType(Me.JGDetalleVenta, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SuperTabPrincipal
@@ -137,33 +141,6 @@ Partial Class F0_Cobrar_Cliente
         Me.PanelInferior.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
         Me.PanelInferior.Style.GradientAngle = 90
         '
-        'BubbleBarUsuario
-        '
-        '
-        '
-        '
-        Me.BubbleBarUsuario.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.BackColor = System.Drawing.Color.Transparent
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderBottomWidth = 1
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderLeftWidth = 1
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderRightWidth = 1
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderTopWidth = 1
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingBottom = 3
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingLeft = 3
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingRight = 3
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingTop = 3
-        Me.BubbleBarUsuario.MouseOverTabColors.BorderColor = System.Drawing.SystemColors.Highlight
-        Me.BubbleBarUsuario.SelectedTabColors.BorderColor = System.Drawing.Color.Black
-        '
-        'TxtNombreUsu
-        '
-        Me.TxtNombreUsu.Margin = New System.Windows.Forms.Padding(2)
-        '
         'btnSalir
         '
         Me.btnSalir.Image = Nothing
@@ -192,6 +169,7 @@ Partial Class F0_Cobrar_Cliente
         '
         'MPanelSup
         '
+        Me.MPanelSup.Controls.Add(Me.gpDetalleVenta)
         Me.MPanelSup.Controls.Add(Me.tbnrocod)
         Me.MPanelSup.Controls.Add(Me.tbFechaVenta)
         Me.MPanelSup.Controls.Add(Me.Bt1Generar)
@@ -209,6 +187,7 @@ Partial Class F0_Cobrar_Cliente
         Me.MPanelSup.Controls.SetChildIndex(Me.Bt1Generar, 0)
         Me.MPanelSup.Controls.SetChildIndex(Me.tbFechaVenta, 0)
         Me.MPanelSup.Controls.SetChildIndex(Me.tbnrocod, 0)
+        Me.MPanelSup.Controls.SetChildIndex(Me.gpDetalleVenta, 0)
         '
         'PanelPrincipal
         '
@@ -279,6 +258,33 @@ Partial Class F0_Cobrar_Cliente
         '
         Me.MPanelUserAct.Location = New System.Drawing.Point(1052, 0)
         Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(2)
+        '
+        'TxtNombreUsu
+        '
+        Me.TxtNombreUsu.Margin = New System.Windows.Forms.Padding(2)
+        '
+        'BubbleBarUsuario
+        '
+        '
+        '
+        '
+        Me.BubbleBarUsuario.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.BackColor = System.Drawing.Color.Transparent
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderBottomWidth = 1
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderLeftWidth = 1
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderRightWidth = 1
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderTopWidth = 1
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingBottom = 3
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingLeft = 3
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingRight = 3
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingTop = 3
+        Me.BubbleBarUsuario.MouseOverTabColors.BorderColor = System.Drawing.SystemColors.Highlight
+        Me.BubbleBarUsuario.SelectedTabColors.BorderColor = System.Drawing.Color.Black
         '
         'Panel1
         '
@@ -606,6 +612,67 @@ Partial Class F0_Cobrar_Cliente
         Me.tbnrocod.TabIndex = 237
         Me.tbnrocod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
+        'gpDetalleVenta
+        '
+        Me.gpDetalleVenta.CanvasColor = System.Drawing.SystemColors.Control
+        Me.gpDetalleVenta.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
+        Me.gpDetalleVenta.Controls.Add(Me.JGDetalleVenta)
+        Me.gpDetalleVenta.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpDetalleVenta.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gpDetalleVenta.Location = New System.Drawing.Point(20, 7)
+        Me.gpDetalleVenta.Name = "gpDetalleVenta"
+        Me.gpDetalleVenta.Size = New System.Drawing.Size(1121, 172)
+        '
+        '
+        '
+        Me.gpDetalleVenta.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.gpDetalleVenta.Style.BackColorGradientAngle = 90
+        Me.gpDetalleVenta.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.gpDetalleVenta.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpDetalleVenta.Style.BorderBottomWidth = 1
+        Me.gpDetalleVenta.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
+        Me.gpDetalleVenta.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpDetalleVenta.Style.BorderLeftWidth = 1
+        Me.gpDetalleVenta.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpDetalleVenta.Style.BorderRightWidth = 1
+        Me.gpDetalleVenta.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpDetalleVenta.Style.BorderTopWidth = 1
+        Me.gpDetalleVenta.Style.CornerDiameter = 4
+        Me.gpDetalleVenta.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
+        Me.gpDetalleVenta.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
+        Me.gpDetalleVenta.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
+        Me.gpDetalleVenta.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
+        '
+        '
+        '
+        Me.gpDetalleVenta.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.gpDetalleVenta.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.gpDetalleVenta.TabIndex = 3
+        Me.gpDetalleVenta.Text = "DETALLE DE VENTA"
+        Me.gpDetalleVenta.Visible = False
+        '
+        'JGDetalleVenta
+        '
+        Me.JGDetalleVenta.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.[False]
+        Me.JGDetalleVenta.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.JGDetalleVenta.EnterKeyBehavior = Janus.Windows.GridEX.EnterKeyBehavior.None
+        Me.JGDetalleVenta.FocusStyle = Janus.Windows.GridEX.FocusStyle.Solid
+        Me.JGDetalleVenta.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.JGDetalleVenta.GroupRowVisualStyle = Janus.Windows.GridEX.GroupRowVisualStyle.UseRowStyle
+        Me.JGDetalleVenta.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight
+        Me.JGDetalleVenta.Location = New System.Drawing.Point(0, 0)
+        Me.JGDetalleVenta.Name = "JGDetalleVenta"
+        Me.JGDetalleVenta.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.JGDetalleVenta.Office2007CustomColor = System.Drawing.Color.RoyalBlue
+        Me.JGDetalleVenta.SelectOnExpand = False
+        Me.JGDetalleVenta.Size = New System.Drawing.Size(1115, 149)
+        Me.JGDetalleVenta.TabIndex = 1
+        Me.JGDetalleVenta.Tag = ""
+        Me.JGDetalleVenta.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
         'F0_Cobrar_Cliente
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -620,7 +687,6 @@ Partial Class F0_Cobrar_Cliente
         Me.SuperTabControlPanelRegistro.ResumeLayout(False)
         Me.PanelSuperior.ResumeLayout(False)
         Me.PanelInferior.ResumeLayout(False)
-        CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelToolBar1.ResumeLayout(False)
         Me.PanelToolBar2.ResumeLayout(False)
         Me.MPanelSup.ResumeLayout(False)
@@ -628,12 +694,13 @@ Partial Class F0_Cobrar_Cliente
         Me.PanelPrincipal.ResumeLayout(False)
         Me.GroupPanelBuscador.ResumeLayout(False)
         CType(Me.JGrM_Buscador, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelUsuario.ResumeLayout(False)
-        Me.PanelUsuario.PerformLayout()
         Me.PanelNavegacion.ResumeLayout(False)
+        CType(Me.MEP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MPanelUserAct.ResumeLayout(False)
         Me.MPanelUserAct.PerformLayout()
-        CType(Me.MEP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelUsuario.ResumeLayout(False)
+        Me.PanelUsuario.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
@@ -642,6 +709,8 @@ Partial Class F0_Cobrar_Cliente
         CType(Me.tbTotalCobrado, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbFechaVenta, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gr_detalle, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gpDetalleVenta.ResumeLayout(False)
+        CType(Me.JGDetalleVenta, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -664,4 +733,6 @@ Partial Class F0_Cobrar_Cliente
     Friend WithEvents ButtonX2 As DevComponents.DotNetBar.ButtonX
     Friend WithEvents ButtonX1 As DevComponents.DotNetBar.ButtonX
     Friend WithEvents tbnrocod As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents gpDetalleVenta As DevComponents.DotNetBar.Controls.GroupPanel
+    Friend WithEvents JGDetalleVenta As Janus.Windows.GridEX.GridEX
 End Class

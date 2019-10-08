@@ -23,6 +23,7 @@ Public Class F0_Cobrar_Cliente
     Public _tab As SuperTabItem
     Public _modulo As SideNavItem
     Dim Bin As New MemoryStream
+    Dim G_Lote As Boolean = False '1=igual a mostrar las columnas de lote y fecha de Vencimiento
 #End Region
 #Region "METODOS PRIVADOS"
 
@@ -203,6 +204,180 @@ Public Class F0_Cobrar_Cliente
         End With
         _prAplicarCondiccionJanus()
         _prCalcularTotal()
+    End Sub
+    Private Sub _prCargarDetalleVenta(_IdVenta As String)
+        Dim dt As New DataTable
+        dt = L_fnMostrarVentaDetalle(_IdVenta)
+        JGDetalleVenta.DataSource = dt
+        JGDetalleVenta.RetrieveStructure()
+        JGDetalleVenta.AlternatingColors = True
+        With JGDetalleVenta.RootTable.Columns("vbId")
+            .Width = 100
+            .Caption = "CODIGO"
+            .Visible = False
+        End With
+        With JGDetalleVenta.RootTable.Columns("vb_vaId")
+            .Width = 90
+            .Visible = False
+        End With
+        With JGDetalleVenta.RootTable.Columns("vb_tyfnumi")
+            .Width = 80
+            .Visible = True
+            .Caption = "Id" ''Id Producto
+        End With
+        With JGDetalleVenta.RootTable.Columns("yfcprod")
+            .Caption = "Cod Producto"
+            .Width = 100
+            .Visible = False
+        End With
+        With JGDetalleVenta.RootTable.Columns("Producto")
+            .Caption = "Producto"
+            .Width = 250
+            .Visible = True
+        End With
+        With JGDetalleVenta.RootTable.Columns("vbEst")
+            .Caption = "Estado"
+            .Width = 100
+            .Visible = False
+        End With
+
+        With JGDetalleVenta.RootTable.Columns("vbUMin")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = False
+        End With
+        With JGDetalleVenta.RootTable.Columns("vbCant")
+            .Width = 120
+            .Caption = "Cantidad"
+            .FormatString = "0"
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+        End With
+        With JGDetalleVenta.RootTable.Columns("unidad")
+            .Width = 100
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .Caption = "Unidad".ToUpper
+        End With
+        With JGDetalleVenta.RootTable.Columns("vbPrec")
+            .Width = 120
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .FormatString = "0.00"
+            .Caption = "Precio U.".ToUpper
+        End With
+        With JGDetalleVenta.RootTable.Columns("vbPTotal")
+            .Width = 110
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .FormatString = "0.00"
+            .Caption = "Sub Total".ToUpper
+        End With
+        With JGDetalleVenta.RootTable.Columns("vbPorc")
+            .Width = 100
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .FormatString = "0.00"
+            .Caption = "P.Desc(%)".ToUpper
+        End With
+        With JGDetalleVenta.RootTable.Columns("vbDesc")
+            .Width = 100
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .FormatString = "0.00"
+            .Caption = "M.Desc".ToUpper
+        End With
+        With JGDetalleVenta.RootTable.Columns("vbTotDesc")
+            .Width = 110
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .FormatString = "0.00"
+            .Caption = "Total".ToUpper
+        End With
+        With JGDetalleVenta.RootTable.Columns("vbObs")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
+        With JGDetalleVenta.RootTable.Columns("vbPCosto")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = False
+        End With
+        With JGDetalleVenta.RootTable.Columns("vbPTot2")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = False
+        End With
+        With JGDetalleVenta.RootTable.Columns("vbfecha")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
+        With JGDetalleVenta.RootTable.Columns("vbHora")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
+        With JGDetalleVenta.RootTable.Columns("vbUsuario")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
+        With JGDetalleVenta.RootTable.Columns("estado")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
+        With JGDetalleVenta.RootTable.Columns("img")
+            .Width = 80
+            .Caption = "Eliminar".ToUpper
+            .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
+            .Visible = False
+        End With
+        If (G_Lote = True) Then
+            With JGDetalleVenta.RootTable.Columns("vbLote")
+                .Width = 120
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+                .Visible = False
+                .Caption = "LOTE"
+            End With
+            With JGDetalleVenta.RootTable.Columns("vbFechaVenc")
+                .Width = 120
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+                .Visible = False
+                .Caption = "FECHA VENC."
+                .FormatString = "yyyy/MM/dd"
+            End With
+        Else
+            With JGDetalleVenta.RootTable.Columns("vbLote")
+                .Width = 120
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+                .Visible = False
+                .Caption = "LOTE"
+            End With
+            With JGDetalleVenta.RootTable.Columns("vbFechaVenc")
+                .Width = 120
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+                .Visible = False
+                .Caption = "FECHA VENC."
+                .FormatString = "yyyy/MM/dd"
+            End With
+        End If
+        With JGDetalleVenta.RootTable.Columns("stock")
+            .Width = 120
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
+        With JGDetalleVenta.RootTable.Columns("vbEst2")
+            .Width = 5
+            .Visible = False
+        End With
+        With JGDetalleVenta
+            .GroupByBoxVisible = False
+            'diseño de la grilla
+            .VisualStyle = VisualStyle.Office2007
+        End With
     End Sub
     Public Sub _prAplicarCondiccionJanus()
         Dim fc As GridEXFormatCondition
@@ -400,7 +575,9 @@ Public Class F0_Cobrar_Cliente
 
         End If
     End Sub
-
+    Public Function _fnAccesible()
+        Return tbFechaVenta.Enabled = True
+    End Function
 #End Region
 
 #Region "Eventos Formulario"
@@ -538,6 +715,45 @@ Public Class F0_Cobrar_Cliente
         'tbSaldo.Value = (gr_detalle.GetTotal(gr_detalle.RootTable.Columns("pendiente"), AggregateFunction.Sum))
     End Sub
 
+    Private Sub gr_detalle_KeyDown(sender As Object, e As KeyEventArgs) Handles gr_detalle.KeyDown
+        Try
+            If (Not _fnAccesible()) Then
+                Return
+            End If
+            If (e.KeyData = Keys.Control + Keys.Enter And gr_detalle.Row >= 0) Then
+                ' Dim indexfil As Integer = JGDetalleVenta.Row
+                ' Dim indexcol As Integer = JGDetalleVenta.Col
+                _HabilitarDetalleVenta()
+            End If
+            If (e.KeyData = Keys.Escape And JGDetalleVenta.Row >= 0) Then
+                '_prEliminarFila()
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, ("Consulte con el administrador del sistema"))
+        End Try
+    End Sub
+    Private Sub _HabilitarDetalleVenta()
+        gpDetalleVenta.Visible = True
+        _prCargarDetalleVenta(gr_detalle.GetValue("tctv1numi").ToString())
+        JGDetalleVenta.Focus()
+    End Sub
+    Private Sub _prEliminarDetalleVenta()
+        CType(JGDetalleVenta.DataSource, DataTable).Rows.Clear()
+        gpDetalleVenta.Visible = False
+    End Sub
+
+    Private Sub JGDetalleVenta_KeyDown(sender As Object, e As KeyEventArgs) Handles JGDetalleVenta.KeyDown
+        Try
+            If (Not _fnAccesible()) Then
+                Return
+            End If
+            If (e.KeyData = Keys.Escape And JGDetalleVenta.Row >= 0) Then
+                _prEliminarDetalleVenta()
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, ("Consulte con el administrador del sistema"))
+        End Try
+    End Sub
 #End Region
 
 

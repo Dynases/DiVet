@@ -32,14 +32,16 @@ Partial Class F1_Cre_PagosCliente
         Me.txtNombreCli = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.gpBusqRecibos = New DevComponents.DotNetBar.Controls.GroupPanel()
-        Me.tbTotalCobrar = New DevComponents.Editors.DoubleInput()
-        Me.tbSaldo = New DevComponents.Editors.DoubleInput()
-        Me.lbCobrar = New System.Windows.Forms.Label()
-        Me.tbTotalCobrado = New DevComponents.Editors.DoubleInput()
-        Me.lbCobrado = New System.Windows.Forms.Label()
-        Me.lbSaldo = New System.Windows.Forms.Label()
         Me.panelBusqRecibos = New System.Windows.Forms.Panel()
         Me.JGVentasCredito = New Janus.Windows.GridEX.GridEX()
+        Me.JGDetalleVenta = New Janus.Windows.GridEX.GridEX()
+        Me.lbCobrado = New System.Windows.Forms.Label()
+        Me.lbSaldo = New System.Windows.Forms.Label()
+        Me.tbSaldo = New DevComponents.Editors.DoubleInput()
+        Me.tbTotalCobrado = New DevComponents.Editors.DoubleInput()
+        Me.tbTotalCobrar = New DevComponents.Editors.DoubleInput()
+        Me.lbCobrar = New System.Windows.Forms.Label()
+        Me.gpDetalleVenta = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.MpanelSuperior.SuspendLayout()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelToolBar1.SuspendLayout()
@@ -47,17 +49,19 @@ Partial Class F1_Cre_PagosCliente
         Me.MPanelUserAct.SuspendLayout()
         Me.PanelNavegacion.SuspendLayout()
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelUsuario.SuspendLayout()
+        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         CType(Me.tbFechaPago, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpBusqRecibos.SuspendLayout()
-        CType(Me.tbTotalCobrar, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tbSaldo, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tbTotalCobrado, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelBusqRecibos.SuspendLayout()
         CType(Me.JGVentasCredito, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.JGDetalleVenta, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbSaldo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbTotalCobrado, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbTotalCobrar, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gpDetalleVenta.SuspendLayout()
         Me.SuspendLayout()
         '
         'MpanelSuperior
@@ -101,31 +105,9 @@ Partial Class F1_Cre_PagosCliente
         '
         Me.MPanelUserAct.Location = New System.Drawing.Point(740, 0)
         '
-        'MpanelBuscador
-        '
-        Me.MpanelBuscador.Size = New System.Drawing.Size(940, 597)
-        '
         'TxtNombreUsu
         '
         Me.TxtNombreUsu.Text = "DEFAULT"
-        '
-        'superTabControl1
-        '
-        '
-        '
-        '
-        '
-        '
-        '
-        Me.superTabControl1.ControlBox.CloseBox.Name = ""
-        '
-        '
-        '
-        Me.superTabControl1.ControlBox.MenuBox.Name = ""
-        Me.superTabControl1.ControlBox.Name = ""
-        Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
-        Me.superTabControl1.SelectedTabIndex = 1
-        Me.superTabControl1.Size = New System.Drawing.Size(940, 622)
         '
         'BubbleBarUsuario
         '
@@ -154,6 +136,24 @@ Partial Class F1_Cre_PagosCliente
         '
         Me.PanelUsuario.Location = New System.Drawing.Point(670, 124)
         '
+        'superTabControl1
+        '
+        '
+        '
+        '
+        '
+        '
+        '
+        Me.superTabControl1.ControlBox.CloseBox.Name = ""
+        '
+        '
+        '
+        Me.superTabControl1.ControlBox.MenuBox.Name = ""
+        Me.superTabControl1.ControlBox.Name = ""
+        Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
+        Me.superTabControl1.SelectedTabIndex = 1
+        Me.superTabControl1.Size = New System.Drawing.Size(940, 622)
+        '
         'Panel2
         '
         Me.Panel2.Controls.Add(Me.btnGenerar)
@@ -179,7 +179,7 @@ Partial Class F1_Cre_PagosCliente
         Me.btnGenerar.Image = Global.Presentacion.My.Resources.Resources.checked
         Me.btnGenerar.ImageFixedSize = New System.Drawing.Size(20, 20)
         Me.btnGenerar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnGenerar.Location = New System.Drawing.Point(398, 103)
+        Me.btnGenerar.Location = New System.Drawing.Point(209, 102)
         Me.btnGenerar.Name = "btnGenerar"
         Me.btnGenerar.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.btnGenerar.Size = New System.Drawing.Size(164, 41)
@@ -198,7 +198,7 @@ Partial Class F1_Cre_PagosCliente
         Me.txtIdCliente.DisabledBackColor = System.Drawing.Color.White
         Me.txtIdCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtIdCliente.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.txtIdCliente.Location = New System.Drawing.Point(313, 28)
+        Me.txtIdCliente.Location = New System.Drawing.Point(124, 27)
         Me.txtIdCliente.Name = "txtIdCliente"
         Me.txtIdCliente.PreventEnterBeep = True
         Me.txtIdCliente.Size = New System.Drawing.Size(43, 22)
@@ -216,7 +216,7 @@ Partial Class F1_Cre_PagosCliente
         Me.tbFechaPago.ButtonDropDown.Visible = True
         Me.tbFechaPago.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbFechaPago.IsPopupCalendarOpen = False
-        Me.tbFechaPago.Location = New System.Drawing.Point(313, 61)
+        Me.tbFechaPago.Location = New System.Drawing.Point(124, 60)
         '
         '
         '
@@ -261,7 +261,7 @@ Partial Class F1_Cre_PagosCliente
         Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX4.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX4.Location = New System.Drawing.Point(209, 64)
+        Me.LabelX4.Location = New System.Drawing.Point(20, 63)
         Me.LabelX4.Name = "LabelX4"
         Me.LabelX4.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX4.Size = New System.Drawing.Size(95, 16)
@@ -279,7 +279,7 @@ Partial Class F1_Cre_PagosCliente
         Me.tbCodigo.DisabledBackColor = System.Drawing.Color.White
         Me.tbCodigo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbCodigo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbCodigo.Location = New System.Drawing.Point(126, 28)
+        Me.tbCodigo.Location = New System.Drawing.Point(9, 92)
         Me.tbCodigo.Name = "tbCodigo"
         Me.tbCodigo.PreventEnterBeep = True
         Me.tbCodigo.Size = New System.Drawing.Size(43, 22)
@@ -298,7 +298,7 @@ Partial Class F1_Cre_PagosCliente
         Me.txtNombreCli.DisabledBackColor = System.Drawing.Color.White
         Me.txtNombreCli.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNombreCli.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.txtNombreCli.Location = New System.Drawing.Point(362, 28)
+        Me.txtNombreCli.Location = New System.Drawing.Point(173, 27)
         Me.txtNombreCli.Name = "txtNombreCli"
         Me.txtNombreCli.PreventEnterBeep = True
         Me.txtNombreCli.Size = New System.Drawing.Size(249, 22)
@@ -314,7 +314,7 @@ Partial Class F1_Cre_PagosCliente
         Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX2.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX2.Location = New System.Drawing.Point(209, 30)
+        Me.LabelX2.Location = New System.Drawing.Point(20, 29)
         Me.LabelX2.Name = "LabelX2"
         Me.LabelX2.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX2.Size = New System.Drawing.Size(51, 16)
@@ -370,102 +370,10 @@ Partial Class F1_Cre_PagosCliente
         Me.gpBusqRecibos.TabIndex = 6
         Me.gpBusqRecibos.Text = "DETALLE   VENTAS   A   CRÉDITO"
         '
-        'tbTotalCobrar
-        '
-        '
-        '
-        '
-        Me.tbTotalCobrar.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.tbTotalCobrar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbTotalCobrar.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.tbTotalCobrar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbTotalCobrar.Increment = 1.0R
-        Me.tbTotalCobrar.Location = New System.Drawing.Point(812, 214)
-        Me.tbTotalCobrar.LockUpdateChecked = False
-        Me.tbTotalCobrar.MinValue = 0R
-        Me.tbTotalCobrar.Name = "tbTotalCobrar"
-        Me.tbTotalCobrar.Size = New System.Drawing.Size(104, 21)
-        Me.tbTotalCobrar.TabIndex = 9
-        Me.tbTotalCobrar.WatermarkAlignment = DevComponents.Editors.eTextAlignment.Right
-        '
-        'tbSaldo
-        '
-        '
-        '
-        '
-        Me.tbSaldo.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.tbSaldo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbSaldo.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.tbSaldo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbSaldo.Increment = 1.0R
-        Me.tbSaldo.Location = New System.Drawing.Point(812, 262)
-        Me.tbSaldo.LockUpdateChecked = False
-        Me.tbSaldo.MinValue = 0R
-        Me.tbSaldo.Name = "tbSaldo"
-        Me.tbSaldo.Size = New System.Drawing.Size(104, 21)
-        Me.tbSaldo.TabIndex = 11
-        Me.tbSaldo.WatermarkAlignment = DevComponents.Editors.eTextAlignment.Right
-        '
-        'lbCobrar
-        '
-        Me.lbCobrar.AutoSize = True
-        Me.lbCobrar.BackColor = System.Drawing.Color.Transparent
-        Me.lbCobrar.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbCobrar.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.lbCobrar.Location = New System.Drawing.Point(712, 217)
-        Me.lbCobrar.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lbCobrar.Name = "lbCobrar"
-        Me.lbCobrar.Size = New System.Drawing.Size(96, 13)
-        Me.lbCobrar.TabIndex = 6
-        Me.lbCobrar.Text = "Total a Cobrar :"
-        '
-        'tbTotalCobrado
-        '
-        '
-        '
-        '
-        Me.tbTotalCobrado.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.tbTotalCobrado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbTotalCobrado.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.tbTotalCobrado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbTotalCobrado.Increment = 1.0R
-        Me.tbTotalCobrado.Location = New System.Drawing.Point(812, 238)
-        Me.tbTotalCobrado.LockUpdateChecked = False
-        Me.tbTotalCobrado.MinValue = 0R
-        Me.tbTotalCobrado.Name = "tbTotalCobrado"
-        Me.tbTotalCobrado.Size = New System.Drawing.Size(104, 21)
-        Me.tbTotalCobrado.TabIndex = 10
-        Me.tbTotalCobrado.WatermarkAlignment = DevComponents.Editors.eTextAlignment.Right
-        '
-        'lbCobrado
-        '
-        Me.lbCobrado.AutoSize = True
-        Me.lbCobrado.BackColor = System.Drawing.Color.Transparent
-        Me.lbCobrado.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbCobrado.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.lbCobrado.Location = New System.Drawing.Point(702, 241)
-        Me.lbCobrado.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lbCobrado.Name = "lbCobrado"
-        Me.lbCobrado.Size = New System.Drawing.Size(106, 13)
-        Me.lbCobrado.TabIndex = 7
-        Me.lbCobrado.Text = "Total a Cobrado :"
-        '
-        'lbSaldo
-        '
-        Me.lbSaldo.AutoSize = True
-        Me.lbSaldo.BackColor = System.Drawing.Color.Transparent
-        Me.lbSaldo.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbSaldo.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.lbSaldo.Location = New System.Drawing.Point(761, 266)
-        Me.lbSaldo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lbSaldo.Name = "lbSaldo"
-        Me.lbSaldo.Size = New System.Drawing.Size(47, 13)
-        Me.lbSaldo.TabIndex = 8
-        Me.lbSaldo.Text = "Saldo :"
-        '
         'panelBusqRecibos
         '
         Me.panelBusqRecibos.BackColor = System.Drawing.Color.White
+        Me.panelBusqRecibos.Controls.Add(Me.gpDetalleVenta)
         Me.panelBusqRecibos.Controls.Add(Me.JGVentasCredito)
         Me.panelBusqRecibos.Location = New System.Drawing.Point(4, -1)
         Me.panelBusqRecibos.Name = "panelBusqRecibos"
@@ -495,6 +403,159 @@ Partial Class F1_Cre_PagosCliente
         Me.JGVentasCredito.TabIndex = 0
         Me.JGVentasCredito.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
+        'JGDetalleVenta
+        '
+        Me.JGDetalleVenta.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.[False]
+        Me.JGDetalleVenta.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.JGDetalleVenta.EnterKeyBehavior = Janus.Windows.GridEX.EnterKeyBehavior.None
+        Me.JGDetalleVenta.FocusStyle = Janus.Windows.GridEX.FocusStyle.Solid
+        Me.JGDetalleVenta.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.JGDetalleVenta.GroupRowVisualStyle = Janus.Windows.GridEX.GroupRowVisualStyle.UseRowStyle
+        Me.JGDetalleVenta.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight
+        Me.JGDetalleVenta.Location = New System.Drawing.Point(0, 0)
+        Me.JGDetalleVenta.Name = "JGDetalleVenta"
+        Me.JGDetalleVenta.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.JGDetalleVenta.Office2007CustomColor = System.Drawing.Color.RoyalBlue
+        Me.JGDetalleVenta.SelectOnExpand = False
+        Me.JGDetalleVenta.Size = New System.Drawing.Size(908, 149)
+        Me.JGDetalleVenta.TabIndex = 1
+        Me.JGDetalleVenta.Tag = ""
+        Me.JGDetalleVenta.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'lbCobrado
+        '
+        Me.lbCobrado.AutoSize = True
+        Me.lbCobrado.BackColor = System.Drawing.Color.Transparent
+        Me.lbCobrado.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbCobrado.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.lbCobrado.Location = New System.Drawing.Point(702, 241)
+        Me.lbCobrado.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lbCobrado.Name = "lbCobrado"
+        Me.lbCobrado.Size = New System.Drawing.Size(106, 13)
+        Me.lbCobrado.TabIndex = 7
+        Me.lbCobrado.Text = "Total a Cobrado :"
+        '
+        'lbSaldo
+        '
+        Me.lbSaldo.AutoSize = True
+        Me.lbSaldo.BackColor = System.Drawing.Color.Transparent
+        Me.lbSaldo.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbSaldo.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.lbSaldo.Location = New System.Drawing.Point(761, 266)
+        Me.lbSaldo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lbSaldo.Name = "lbSaldo"
+        Me.lbSaldo.Size = New System.Drawing.Size(47, 13)
+        Me.lbSaldo.TabIndex = 8
+        Me.lbSaldo.Text = "Saldo :"
+        '
+        'tbSaldo
+        '
+        '
+        '
+        '
+        Me.tbSaldo.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.tbSaldo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbSaldo.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.tbSaldo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbSaldo.Increment = 1.0R
+        Me.tbSaldo.Location = New System.Drawing.Point(812, 262)
+        Me.tbSaldo.LockUpdateChecked = False
+        Me.tbSaldo.MinValue = 0R
+        Me.tbSaldo.Name = "tbSaldo"
+        Me.tbSaldo.Size = New System.Drawing.Size(104, 21)
+        Me.tbSaldo.TabIndex = 11
+        Me.tbSaldo.WatermarkAlignment = DevComponents.Editors.eTextAlignment.Right
+        '
+        'tbTotalCobrado
+        '
+        '
+        '
+        '
+        Me.tbTotalCobrado.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.tbTotalCobrado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbTotalCobrado.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.tbTotalCobrado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbTotalCobrado.Increment = 1.0R
+        Me.tbTotalCobrado.Location = New System.Drawing.Point(812, 238)
+        Me.tbTotalCobrado.LockUpdateChecked = False
+        Me.tbTotalCobrado.MinValue = 0R
+        Me.tbTotalCobrado.Name = "tbTotalCobrado"
+        Me.tbTotalCobrado.Size = New System.Drawing.Size(104, 21)
+        Me.tbTotalCobrado.TabIndex = 10
+        Me.tbTotalCobrado.WatermarkAlignment = DevComponents.Editors.eTextAlignment.Right
+        '
+        'tbTotalCobrar
+        '
+        '
+        '
+        '
+        Me.tbTotalCobrar.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.tbTotalCobrar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbTotalCobrar.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.tbTotalCobrar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbTotalCobrar.Increment = 1.0R
+        Me.tbTotalCobrar.Location = New System.Drawing.Point(812, 214)
+        Me.tbTotalCobrar.LockUpdateChecked = False
+        Me.tbTotalCobrar.MinValue = 0R
+        Me.tbTotalCobrar.Name = "tbTotalCobrar"
+        Me.tbTotalCobrar.Size = New System.Drawing.Size(104, 21)
+        Me.tbTotalCobrar.TabIndex = 9
+        Me.tbTotalCobrar.WatermarkAlignment = DevComponents.Editors.eTextAlignment.Right
+        '
+        'lbCobrar
+        '
+        Me.lbCobrar.AutoSize = True
+        Me.lbCobrar.BackColor = System.Drawing.Color.Transparent
+        Me.lbCobrar.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbCobrar.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.lbCobrar.Location = New System.Drawing.Point(712, 217)
+        Me.lbCobrar.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lbCobrar.Name = "lbCobrar"
+        Me.lbCobrar.Size = New System.Drawing.Size(96, 13)
+        Me.lbCobrar.TabIndex = 6
+        Me.lbCobrar.Text = "Total a Cobrar :"
+        '
+        'gpDetalleVenta
+        '
+        Me.gpDetalleVenta.CanvasColor = System.Drawing.SystemColors.Control
+        Me.gpDetalleVenta.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
+        Me.gpDetalleVenta.Controls.Add(Me.JGDetalleVenta)
+        Me.gpDetalleVenta.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpDetalleVenta.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gpDetalleVenta.Location = New System.Drawing.Point(4, 34)
+        Me.gpDetalleVenta.Name = "gpDetalleVenta"
+        Me.gpDetalleVenta.Size = New System.Drawing.Size(914, 172)
+        '
+        '
+        '
+        Me.gpDetalleVenta.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.gpDetalleVenta.Style.BackColorGradientAngle = 90
+        Me.gpDetalleVenta.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.gpDetalleVenta.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpDetalleVenta.Style.BorderBottomWidth = 1
+        Me.gpDetalleVenta.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
+        Me.gpDetalleVenta.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpDetalleVenta.Style.BorderLeftWidth = 1
+        Me.gpDetalleVenta.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpDetalleVenta.Style.BorderRightWidth = 1
+        Me.gpDetalleVenta.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpDetalleVenta.Style.BorderTopWidth = 1
+        Me.gpDetalleVenta.Style.CornerDiameter = 4
+        Me.gpDetalleVenta.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
+        Me.gpDetalleVenta.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
+        Me.gpDetalleVenta.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
+        Me.gpDetalleVenta.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
+        '
+        '
+        '
+        Me.gpDetalleVenta.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.gpDetalleVenta.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.gpDetalleVenta.TabIndex = 2
+        Me.gpDetalleVenta.Text = "DETALLE DE VENTA"
+        '
         'F1_Cre_PagosCliente
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -512,20 +573,22 @@ Partial Class F1_Cre_PagosCliente
         Me.MPanelUserAct.PerformLayout()
         Me.PanelNavegacion.ResumeLayout(False)
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelUsuario.ResumeLayout(False)
         Me.PanelUsuario.PerformLayout()
+        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         CType(Me.tbFechaPago, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gpBusqRecibos.ResumeLayout(False)
         Me.gpBusqRecibos.PerformLayout()
-        CType(Me.tbTotalCobrar, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tbSaldo, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tbTotalCobrado, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelBusqRecibos.ResumeLayout(False)
         CType(Me.JGVentasCredito, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.JGDetalleVenta, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbSaldo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbTotalCobrado, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbTotalCobrar, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gpDetalleVenta.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -539,12 +602,14 @@ Partial Class F1_Cre_PagosCliente
     Friend WithEvents gpBusqRecibos As DevComponents.DotNetBar.Controls.GroupPanel
     Friend WithEvents panelBusqRecibos As Panel
     Friend WithEvents JGVentasCredito As Janus.Windows.GridEX.GridEX
+    Friend WithEvents tbFechaPago As DevComponents.Editors.DateTimeAdv.DateTimeInput
+    Friend WithEvents LabelX4 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents JGDetalleVenta As Janus.Windows.GridEX.GridEX
     Friend WithEvents tbTotalCobrar As DevComponents.Editors.DoubleInput
     Friend WithEvents tbSaldo As DevComponents.Editors.DoubleInput
     Friend WithEvents lbCobrar As Label
     Friend WithEvents tbTotalCobrado As DevComponents.Editors.DoubleInput
     Friend WithEvents lbCobrado As Label
     Friend WithEvents lbSaldo As Label
-    Friend WithEvents tbFechaPago As DevComponents.Editors.DateTimeAdv.DateTimeInput
-    Friend WithEvents LabelX4 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents gpDetalleVenta As DevComponents.DotNetBar.Controls.GroupPanel
 End Class
