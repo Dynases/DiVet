@@ -14,6 +14,8 @@ Imports GMap.NET
 Imports GMap.NET.WindowsForms.Markers
 Imports System.Reflection
 Imports System.Runtime.InteropServices
+Imports System.Text
+
 
 Public Class F0_Cobrar_Cliente
 
@@ -32,7 +34,7 @@ Public Class F0_Cobrar_Cliente
 
         L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
         'Me.WindowState = FormWindowState.Maximized
-        _prAsignarPermisos()
+        '_prAsignarPermisos()
         Me.Text = "PAGO CLIENTE"
         Dim blah As New Bitmap(New Bitmap(My.Resources.cobro), 20, 20)
         Dim ico As Icon = Icon.FromHandle(blah.GetHicon())
@@ -63,25 +65,22 @@ Public Class F0_Cobrar_Cliente
 
 
     End Sub
-    Private Sub _prAsignarPermisos()
-
-        'Dim dtRolUsu As DataTable = L_prRolDetalleGeneral(gi_userRol, _nameButton)
-
-        'Dim show As Boolean = dtRolUsu.Rows(0).Item("ycshow")
-        'Dim add As Boolean = dtRolUsu.Rows(0).Item("ycadd")
-        'Dim modif As Boolean = dtRolUsu.Rows(0).Item("ycmod")
-        'Dim del As Boolean = dtRolUsu.Rows(0).Item("ycdel")
-
-        'If add = False Then
-        '    btnNuevo.Visible = False
-        'End If
-        'If modif = False Then
-        '    btnModificar.Visible = False
-        'End If
-        'If del = False Then
-        '    btnEliminar.Visible = False
-        'End If
-    End Sub
+    'Private Sub _prAsignarPermisos()
+    '    Dim dtRolUsu As DataTable = L_prRolDetalleGeneral(gi_userRol, _nameButton)
+    '    Dim show As Boolean = dtRolUsu.Rows(0).Item("ycshow")
+    '    Dim add As Boolean = dtRolUsu.Rows(0).Item("ycadd")
+    '    Dim modif As Boolean = dtRolUsu.Rows(0).Item("ycmod")
+    '    Dim del As Boolean = dtRolUsu.Rows(0).Item("ycdel")
+    '    If add = False Then
+    '        btnNuevo.Visible = False
+    '    End If
+    '    If modif = False Then
+    '        btnModificar.Visible = False
+    '    End If
+    '    If del = False Then
+    '        btnEliminar.Visible = False
+    '    End If
+    'End Sub
     Private Sub _prCargarTablaPagos(_numi As Integer)
 
         Dim dt As New DataTable
@@ -379,14 +378,78 @@ Public Class F0_Cobrar_Cliente
             .VisualStyle = VisualStyle.Office2007
         End With
     End Sub
+    Private Sub P_GenerarReporte(_IdCliente As String, _IdVenta As String)
+        Try
+            Dim dt As DataTable = L_fnCobranzaRecibo(_IdCliente, _IdVenta)
+            Dim Pendiente As Double = dt.Compute("SUM(pendiente)", "")
+            Dim Pago As Double = dt.Compute("SUM(UltimoPago)", "")
+            Dim total As Double = Pendiente - Pago
+            Dim totald As Double = (total / 6.96)
+            Dim fechaven As String = dt.Rows(0).Item("tcfdoc")
+            If Not IsNothing(P_Global.Visualizador) Then
+                P_Global.Visualizador.Close()
+            End If
+            Dim ParteEntera As Long
+            Dim ParteDecimal As Double
+            ParteEntera = Int(total)
+            ParteDecimal = total - ParteEntera
+            Dim li As String = Modelo.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
+        IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Bolivianos"
+
+            If (dt.Rows.Count > 0) Then
+                If Not IsNothing(P_Global.Visualizador) Then
+                    P_Global.Visualizador.Close()
+                End If
+
+                P_Global.Visualizador = New Visualizador
+                Dim objrep As New R_CreditoPago
+                'objrep.Item("R_CreditoPago.rpt").SetDataSource(dt)
+                objrep.SetDataSource(dt)
+                objrep.SetParameterValue("TotalBs", li)
+                P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
+                P_Global.Visualizador.Show() 'Comentar
+                P_Global.Visualizador.BringToFront() 'Comentar
+            Else
+                ToastNotification.Show(Me, "NO HAY DATOS PARA LOS PARAMETROS SELECCIONADOS..!!!",
+                                           My.Resources.WARNING, 2000,
+                                           eToastGlowColor.Blue,
+                                           eToastPosition.BottomLeft)
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+    End Sub
     Public Sub _prAplicarCondiccionJanus()
         Dim fc As GridEXFormatCondition
         fc = New GridEXFormatCondition(gr_detalle.RootTable.Columns("pendiente"), ConditionOperator.Equal, 0)
         fc.FormatStyle.BackColor = Color.Green
         gr_detalle.RootTable.FormatConditions.Add(fc)
     End Sub
-
-
+    Function _prObtenerCodigo() As String
+        Dim s As String = ""
+        Dim sb As StringBuilder = New StringBuilder()
+        For i As Integer = 0 To CType(gr_detalle.DataSource, DataTable).Rows.Count - 1 Step 1
+            If CType(gr_detalle.DataSource, DataTable).Rows(i).Item("PagoAc") <> 0 Then
+                s = CType(gr_detalle.DataSource, DataTable).Rows(i).Item("tctv1numi").ToString() + "," + s
+            End If
+        Next
+        sb.Append(s)
+        sb.Length -= 1
+        Return sb.ToString()
+    End Function
+    Public Sub _prImiprimirNotaVenta(IdCliente As String, IdVenta As String)
+        Dim ef = New Efecto
+        ef.tipo = 2
+        ef.Context = "MENSAJE PRINCIPAL".ToUpper
+        ef.Header = "¿Desea imprimir la nota de venta?".ToUpper
+        ef.ShowDialog()
+        Dim bandera As Boolean = False
+        bandera = ef.band
+        If (bandera = True) Then
+            P_GenerarReporte(IdCliente, IdVenta) 'Imprime Directo
+        End If
+    End Sub
     Private Sub F0_Cobrar_Cliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _IniciarTodo()
     End Sub
@@ -550,6 +613,7 @@ Public Class F0_Cobrar_Cliente
         Dim bandera As Boolean = False
 
         _prInterpretarDatosCobranza(dtCobro, bandera)
+        _prObtenerCodigo()
         If (bandera = False) Then
             ToastNotification.Show(Me, "Seleccione un detalle de la lista de pendientes".ToUpper, img2, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
             Return
@@ -566,7 +630,7 @@ Public Class F0_Cobrar_Cliente
                                       eToastPosition.TopCenter
                                       )
 
-
+            _prImiprimirNotaVenta(tbnrocod.Text, _prObtenerCodigo)
             _Limpiar()
 
         Else
@@ -734,12 +798,14 @@ Public Class F0_Cobrar_Cliente
     End Sub
     Private Sub _HabilitarDetalleVenta()
         gpDetalleVenta.Visible = True
+        gpDetalleVenta.Height = 172
         _prCargarDetalleVenta(gr_detalle.GetValue("tctv1numi").ToString())
         JGDetalleVenta.Focus()
     End Sub
     Private Sub _prEliminarDetalleVenta()
         CType(JGDetalleVenta.DataSource, DataTable).Rows.Clear()
         gpDetalleVenta.Visible = False
+        gpDetalleVenta.Height = 40
     End Sub
 
     Private Sub JGDetalleVenta_KeyDown(sender As Object, e As KeyEventArgs) Handles JGDetalleVenta.KeyDown

@@ -3078,6 +3078,16 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
+    Public Shared Function L_fnCobranzaRecibo(_numi As Integer, IdVenta As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 11))
+        _listParam.Add(New Datos.DParametro("@teuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@tenumi", _numi))
+        _listParam.Add(New Datos.DParametro("@IdVenta", IdVenta))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV00121Cheque", _listParam)
+        Return _Tabla
+    End Function
 
     Public Shared Function L_fnReporteMorosidadTodosAlmacenUnVendedor(numiVendedor As Integer, _fechai As String, _fechaf As String) As DataTable
         Dim _Tabla As DataTable

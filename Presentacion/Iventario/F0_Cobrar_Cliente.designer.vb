@@ -619,9 +619,9 @@ Partial Class F0_Cobrar_Cliente
         Me.gpDetalleVenta.Controls.Add(Me.JGDetalleVenta)
         Me.gpDetalleVenta.DisabledBackColor = System.Drawing.Color.Empty
         Me.gpDetalleVenta.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gpDetalleVenta.Location = New System.Drawing.Point(20, 7)
+        Me.gpDetalleVenta.Location = New System.Drawing.Point(19, -1)
         Me.gpDetalleVenta.Name = "gpDetalleVenta"
-        Me.gpDetalleVenta.Size = New System.Drawing.Size(1121, 172)
+        Me.gpDetalleVenta.Size = New System.Drawing.Size(1121, 40)
         '
         '
         '
@@ -668,7 +668,7 @@ Partial Class F0_Cobrar_Cliente
         Me.JGDetalleVenta.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.JGDetalleVenta.Office2007CustomColor = System.Drawing.Color.RoyalBlue
         Me.JGDetalleVenta.SelectOnExpand = False
-        Me.JGDetalleVenta.Size = New System.Drawing.Size(1115, 149)
+        Me.JGDetalleVenta.Size = New System.Drawing.Size(1115, 17)
         Me.JGDetalleVenta.TabIndex = 1
         Me.JGDetalleVenta.Tag = ""
         Me.JGDetalleVenta.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
