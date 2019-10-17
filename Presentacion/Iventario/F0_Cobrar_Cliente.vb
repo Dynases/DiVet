@@ -191,8 +191,6 @@ Public Class F0_Cobrar_Cliente
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
-
-
             .VisualStyle = VisualStyle.Office2007
 
 
@@ -400,12 +398,16 @@ Public Class F0_Cobrar_Cliente
                 End If
 
                 P_Global.Visualizador = New Visualizador
-                Dim objrep As New R_CreditoPago
-                'objrep.Item("R_CreditoPago.rpt").SetDataSource(dt)
+                Dim objrep As New R_CreditoPagoTotal
+                objrep.Subreports.Item("R_CreditoPago.rpt").SetDataSource(dt)
                 objrep.SetDataSource(dt)
-                objrep.SetParameterValue("TotalBs", li)
+
+                'objrep.SetParameterValue("TotalBs", li)
+                objrep.SetParameterValue("TotalBs", li, "R_CreditoPago.rpt")
+                objrep.SetParameterValue("TotalBs", li, "R_CreditoPago.rpt - 01")
+
                 P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
-                P_Global.Visualizador.Show() 'Comentar
+                P_Global.Visualizador.ShowDialog() 'Comentar
                 P_Global.Visualizador.BringToFront() 'Comentar
             Else
                 ToastNotification.Show(Me, "NO HAY DATOS PARA LOS PARAMETROS SELECCIONADOS..!!!",
@@ -717,7 +719,7 @@ Public Class F0_Cobrar_Cliente
             dt = L_fnMostrarClientes()
             'caid, caci, canomb, caapell, cadir, catelf, camail, cafecha, cahora, causuario
             Dim listEstCeldas As New List(Of Modelo.Celda)
-            listEstCeldas.Add(New Modelo.Celda("caid,", False, "ID", 50))
+            listEstCeldas.Add(New Modelo.Celda("caid,", False, "ID", 80))
             listEstCeldas.Add(New Modelo.Celda("caci", True, "CI", 50))
             listEstCeldas.Add(New Modelo.Celda("canomb", True, "NOMBRE", 180))
             listEstCeldas.Add(New Modelo.Celda("caapell", True, "APELLIDO", 280))
@@ -735,7 +737,7 @@ Public Class F0_Cobrar_Cliente
             ef.alto = 50
             ef.ancho = 350
             ef.NameLabel = "CLIENTE :"
-            ef.NamelColumna = "yddesc"
+            ef.NamelColumna = "canomb"
             ef.Context = "Seleccione Cliente".ToUpper
             ef.ShowDialog()
             Dim bandera As Boolean = False

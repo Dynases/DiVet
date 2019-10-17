@@ -42,6 +42,7 @@ Public Class F1_Fic_FichaClinica
             'If (archivo.ShowDialog = DialogResult.OK) Then
 
             'End If
+            btnGuardarArchivo.Enabled = True
             _fnCopiarImagenRutaDefinida()
         Catch ex As Exception
             Console.WriteLine(ex.Message)
@@ -82,6 +83,8 @@ Public Class F1_Fic_FichaClinica
     End Sub
     Private Sub btnGuardarArchivo_Click(sender As Object, e As EventArgs) Handles btnGuardarArchivo.Click
         _prPasarIamgenTabla()
+        btnGuardarArchivo.Enabled = False
+        txtDecripcionA.Clear()
     End Sub
     '********Muestra la imagen en visualizador
     Private Sub JGListaArchivos_DoubleClick(sender As Object, e As EventArgs) Handles JGListaArchivos.DoubleClick
@@ -1179,6 +1182,7 @@ Public Class F1_Fic_FichaClinica
         chbHiperemicasM.Enabled = False
         chbNormalD.Enabled = False
         chbAnormalD.Enabled = False
+        chbRuidosRespP.Enabled = False
         chbunoDP.Enabled = False
         chbdosDP.Enabled = False
         chbtresDP.Enabled = False

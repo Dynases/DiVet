@@ -83,6 +83,7 @@ Partial Class F0_Reg_Clientes
                 _prCargarPaciente(JGBPropietario.GetValue("caid"))
                 '***Cargar la ventana de Ficha de Atención***'
                 F_Fic_FichaAtencion._prCargarFichaAtencion()
+                'btnAsignarFicha.Enabled = False
             End If
         End If
     End Sub

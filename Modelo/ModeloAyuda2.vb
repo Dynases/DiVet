@@ -82,9 +82,9 @@ Public Class ModeloAyuda2
 
         'Habilitar Filtradores
         With grJBuscador
-            '.DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
-            '.FilterMode = FilterMode.Automatic
-            '.FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+            .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
+            .FilterMode = FilterMode.Automatic
+            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
 
             'diseño de la grilla
             .GroupByBoxVisible = False
@@ -159,7 +159,7 @@ Public Class ModeloAyuda2
         If (tbtitulo.Text.Trim <> String.Empty) Then
 
             If (_fnEsClientes()) Then
-                Dim criterio As String = "FCIA. " + tbtitulo.Text.Trim
+                Dim criterio As String = tbtitulo.Text.Trim
                 grJBuscador.RootTable.ApplyFilter(New Janus.Windows.GridEX.GridEXFilterCondition(grJBuscador.RootTable.Columns(NameColumna), Janus.Windows.GridEX.ConditionOperator.BeginsWith, criterio))
             Else
                 Dim criterio As String = tbtitulo.Text.Trim

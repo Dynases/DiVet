@@ -2179,7 +2179,7 @@ salirIf:
                 objrep.SetParameterValue("TotalBs", li)
                 P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
                 'P_Global.Visualizador.WindowState = FormWindowState.Maximized
-                P_Global.Visualizador.Show() 'Comentar
+                P_Global.Visualizador.ShowDialog() 'Comentar
                 P_Global.Visualizador.BringToFront() 'Comentar
 
                 'objrep.Subreports.Item("R_Venta.rpt").SetDataSource(dt)
