@@ -1646,7 +1646,7 @@ Public Class AccesoLogica
         Return _resultado
     End Function
     '********Eliminar
-    Public Shared Function L_fnEliminarVenta(ByRef vaId As String, ByRef mensaje As String, va_rkId As String, va_roId As String, va_rmId As String) As Boolean
+    Public Shared Function L_fnEliminarVenta(ByRef vaId As String, va_rkId As String, va_roId As String, va_rmId As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
@@ -1655,7 +1655,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@va_roId", va_roId))
         _listParam.Add(New Datos.DParametro("@va_rmId", va_rmId))
         _listParam.Add(New Datos.DParametro("@vaId", vaId))
-        _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@vaUsuario", L_Usuario))
         _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
         If _Tabla.Rows.Count > 0 Then
             vaId = _Tabla.Rows(0).Item(0)
@@ -3078,16 +3078,26 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
-    Public Shared Function L_fnCobranzaRecibo(_numi As Integer, IdVenta As String) As DataTable
+    Public Shared Function L_fnCobranzaRecibo(_numi As Integer, IdVenta As DataTable) As DataTable
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
         _listParam.Add(New Datos.DParametro("@tipo", 11))
         _listParam.Add(New Datos.DParametro("@teuact", L_Usuario))
         _listParam.Add(New Datos.DParametro("@tenumi", _numi))
-        _listParam.Add(New Datos.DParametro("@IdVenta", IdVenta))
+        _listParam.Add(New Datos.DParametro("@TV0012", "", IdVenta))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TV00121Cheque", _listParam)
         Return _Tabla
     End Function
+    Public Shared Function L_fnObtenerEncabezadoPago(_numi As Integer) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 12))
+        _listParam.Add(New Datos.DParametro("@teuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@tenumi", _numi))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV00121Cheque", _listParam)
+        Return _Tabla
+    End Function
+
 
     Public Shared Function L_fnReporteMorosidadTodosAlmacenUnVendedor(numiVendedor As Integer, _fechai As String, _fechaf As String) As DataTable
         Dim _Tabla As DataTable

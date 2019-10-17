@@ -378,12 +378,10 @@ Public Class F0_Cobrar_Cliente
             .VisualStyle = VisualStyle.Office2007
         End With
     End Sub
-    Private Sub P_GenerarReporte(_IdCliente As String, _IdVenta As String)
+    Private Sub P_GenerarReporte(_IdCliente As String, _IdVenta As DataTable)
         Try
             Dim dt As DataTable = L_fnCobranzaRecibo(_IdCliente, _IdVenta)
-            Dim Pendiente As Double = dt.Compute("SUM(pendiente)", "")
-            Dim Pago As Double = dt.Compute("SUM(UltimoPago)", "")
-            Dim total As Double = Pendiente - Pago
+            Dim total As Double = dt.Compute("SUM(UltimoPago)", "")
             Dim totald As Double = (total / 6.96)
             Dim fechaven As String = dt.Rows(0).Item("tcfdoc")
             If Not IsNothing(P_Global.Visualizador) Then
@@ -426,19 +424,25 @@ Public Class F0_Cobrar_Cliente
         fc.FormatStyle.BackColor = Color.Green
         gr_detalle.RootTable.FormatConditions.Add(fc)
     End Sub
-    Function _prObtenerCodigo() As String
+    Function _prObtenerCodigo() As DataTable
         Dim s As String = ""
+        Dim dt As DataTable = L_fnObtenerEncabezadoPago(-1)
         Dim sb As StringBuilder = New StringBuilder()
+        Dim tcnumi As Integer = 0
+        Dim vbtctv1 As Integer = 0
         For i As Integer = 0 To CType(gr_detalle.DataSource, DataTable).Rows.Count - 1 Step 1
             If CType(gr_detalle.DataSource, DataTable).Rows(i).Item("PagoAc") <> 0 Then
-                s = CType(gr_detalle.DataSource, DataTable).Rows(i).Item("tctv1numi").ToString() + "," + s
+                tcnumi = CType(gr_detalle.DataSource, DataTable).Rows(i).Item("tcnumi")
+                vbtctv1 = CType(gr_detalle.DataSource, DataTable).Rows(i).Item("tctv1numi")
+                dt.Rows.Add(tcnumi, vbtctv1)
+                's = CType(gr_detalle.DataSource, DataTable).Rows(i).Item("tctv1numi").ToString() + "," + s
             End If
         Next
-        sb.Append(s)
-        sb.Length -= 1
-        Return sb.ToString()
+        'sb.Append(s)
+        'sb.Length -= 1
+        Return dt
     End Function
-    Public Sub _prImiprimirNotaVenta(IdCliente As String, IdVenta As String)
+    Public Sub _prImiprimirNotaPago(IdCliente As String, IdVenta As DataTable)
         Dim ef = New Efecto
         ef.tipo = 2
         ef.Context = "MENSAJE PRINCIPAL".ToUpper
@@ -613,7 +617,7 @@ Public Class F0_Cobrar_Cliente
         Dim bandera As Boolean = False
 
         _prInterpretarDatosCobranza(dtCobro, bandera)
-        _prObtenerCodigo()
+
         If (bandera = False) Then
             ToastNotification.Show(Me, "Seleccione un detalle de la lista de pendientes".ToUpper, img2, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
             Return
@@ -630,7 +634,7 @@ Public Class F0_Cobrar_Cliente
                                       eToastPosition.TopCenter
                                       )
 
-            _prImiprimirNotaVenta(tbnrocod.Text, _prObtenerCodigo)
+            _prImiprimirNotaPago(tbnrocod.Text, _prObtenerCodigo)
             _Limpiar()
 
         Else

@@ -28,6 +28,7 @@ Public Class F1_Ven_Venta
     Dim FilaSelectLote As DataRow = Nothing
     Dim Table_Producto As DataTable
     Dim G_Lote As Boolean = False '1=igual a mostrar las columnas de lote y fecha de Vencimiento
+    Dim _tablaDetalle As DataTable
 #End Region
 #Region "Eventos"
     Private Sub F1_Ven_Venta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -1888,7 +1889,7 @@ salirIf:
         Dim bandera As Boolean = False
         bandera = ef.band
         If (bandera = True) Then
-            '' P_GenerarReporte(numi) 'Imprime Directo
+            P_GenerarReporte(numi) 'Imprime Directo
         End If
     End Sub
     'Public Sub _prImiprimirFacturaPreimpresa(numi As String)
@@ -2007,8 +2008,10 @@ salirIf:
         End If
         Dim Suma As Decimal = 0
         If (dt.Rows.Count > 0) Then
-            _prEliminarFilaRecibo2()
-            'CType(JGdetalleVenta.DataSource, DataTable).Rows.Clear()
+            '_prEliminarFilaRecibo2()
+            ' _prExtraer()
+            _tablaDetalle = JGdetalleVenta.DataSource
+            CType(JGdetalleVenta.DataSource, DataTable).Rows.Clear()
             For i As Integer = 0 To dt.Rows.Count - 1
                 Dim numiServicio As Integer = dt.Rows(i).Item("IdProducto")
                 Dim nameServicio As String = dt.Rows(i).Item("Producto")
@@ -2085,6 +2088,26 @@ salirIf:
         Next
         Return res
     End Function
+    Sub _prExtraer()
+        Dim estado As Integer
+        If _MNuevo = False Then 'Modificar
+            For i As Integer = 0 To CType(JGdetalleVenta.DataSource, DataTable).Rows.Count - 1 Step 1
+                estado = CType(JGdetalleVenta.DataSource, DataTable).Rows(i).Item("estado")
+                If (estado = 0) Then
+                    CType(JGdetalleVenta.DataSource, DataTable).Rows(i).Item("estado") = -2
+                End If
+                If (estado = 1) Then
+                    CType(JGdetalleVenta.DataSource, DataTable).Rows(i).Item("estado") = -1
+                End If
+            Next
+        End If
+    End Sub
+    Sub _prUnirTabla()
+        If _MNuevo = False Then 'Modificar
+            _tablaDetalle.Merge(CType(JGdetalleVenta.DataSource, DataTable), True, MissingSchemaAction.Add)
+            JGdetalleVenta.DataSource = _tablaDetalle
+        End If
+    End Sub
     Public Sub _prPedirLotesProducto(ByRef lote As String, ByRef FechaVenc As Date, ByRef iccven As Double, CodProducto As Integer, nameProducto As String, cant As Integer)
         Dim dt As New DataTable
         dt = L_fnMostrarVentaProductoLote(CodProducto)  ''1=Almacen
@@ -2187,11 +2210,10 @@ salirIf:
                                       eToastGlowColor.Green,
                                       eToastPosition.TopCenter
                                       )
-            '_prImiprimirNotaVenta(txtIdVenta.Text)
+            _prImiprimirNotaVenta(txtIdVenta.Text)
             If swTipoVenta.Value = True Then
 
             End If
-
             _prCargarVenta()
             _prLimpiar()
         Else
@@ -2203,6 +2225,7 @@ salirIf:
 
     ''*****MODDIFICA EL REGISTRO*****''
     Public Overrides Function _PMOModificarRegistro() As Boolean
+        ' _prUnirTabla()
         Dim res As Boolean = L_fnModificarVenta(txtIdVenta.Text, IIf(swServicio.Value, txtIdReciboV.Text, 0), IIf(swCirugia.Value, txtIdReciboV.Text, 0), IIf(swInternacion.Value, txtIdReciboV.Text, 0), _CodPaciente, _CodCliente, _CodEmpleado, IIf(swTipoVenta.Value = True, 1, 0), dtpFVenta.Value.ToString("yyyy/MM/dd"),
                                              dtpFCredito.Value.ToString("yyyy/MM/dd"), txtObservacion.Text, txtMdesc.Value, txtTotalNeto.Value,
                                              CType(JGdetalleVenta.DataSource, DataTable), cbSucursal.Value)
@@ -2213,7 +2236,7 @@ salirIf:
                                       eToastGlowColor.Green,
                                       eToastPosition.TopCenter
                                       )
-            ' _prImiprimirNotaVenta(txtIdVenta.Text)
+            _prImiprimirNotaVenta(txtIdVenta.Text)
             _prInhabiliitar()
             _prFiltrar(2)
         Else
@@ -2233,7 +2256,7 @@ salirIf:
         bandera = ef.band
         If (bandera = True) Then
             Dim mensajeError As String = ""
-            Dim res As Boolean = L_fnEliminarVenta(IIf(swServicio.Value, txtIdReciboV.Text, 0), IIf(swCirugia.Value, txtIdReciboV.Text, 0), IIf(swInternacion.Value, txtIdReciboV.Text, 0), txtIdVenta.Text, mensajeError)
+            Dim res As Boolean = L_fnEliminarVenta(txtIdVenta.Text, IIf(swServicio.Value, txtIdReciboV.Text, "0"), IIf(swCirugia.Value, txtIdReciboV.Text, "0"), IIf(swInternacion.Value, txtIdReciboV.Text, "0"), mensajeError)
             If res Then
                 Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
 
