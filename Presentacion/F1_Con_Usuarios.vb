@@ -47,6 +47,8 @@ Public Class F1_Con_Usuarios
         swEstadoU.Enabled = False
         swEmergencia.Enabled = False
 
+        JGBusqUsuarios.Enabled = True
+
         _Limpiar = False
     End Sub
     Private Sub _prLimpiar()
@@ -195,6 +197,7 @@ Public Class F1_Con_Usuarios
     Public Overrides Sub _PMONuevo()
         _prLimpiar()
         _prHabilitar()
+        JGBusqUsuarios.Enabled = False
         txtUsuario.Focus()
     End Sub
     ''*****GRABA EL REGISTRO*****''

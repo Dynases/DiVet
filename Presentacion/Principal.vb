@@ -214,11 +214,6 @@ Public Class Principal
         frm.Show()
     End Sub
 
-    Private Sub btnRepClientesMasc_Click(sender As Object, e As EventArgs) Handles btnRepClientesMasc.Click
-        Dim frm As New Pr_Clientes_Mascotas
-        frm.Show()
-    End Sub
-
     Private Sub btnSegInternacion_Click(sender As Object, e As EventArgs) Handles btnSegInternacion.Click
         Dim frm As New F1_FIC_SegInternacion
         Modelo.MGlobal._nameButton = btnSegInternacion.Name

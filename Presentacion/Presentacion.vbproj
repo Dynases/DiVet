@@ -131,12 +131,6 @@
     <Compile Include="F0_Reg_Clientes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="F1_Com_Compras.Designer.vb">
-      <DependentUpon>F1_Com_Compras.vb</DependentUpon>
-    </Compile>
-    <Compile Include="F1_Com_Compras.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="F1_Con_Librerias.Designer.vb">
       <DependentUpon>F1_Con_Librerias.vb</DependentUpon>
     </Compile>
@@ -552,9 +546,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="F0_Reg_Clientes.resx">
       <DependentUpon>F0_Reg_Clientes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="F1_Com_Compras.resx">
-      <DependentUpon>F1_Com_Compras.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="F1_Con_Librerias.resx">
       <DependentUpon>F1_Con_Librerias.vb</DependentUpon>

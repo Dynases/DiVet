@@ -172,7 +172,7 @@ Public Class F1_Reg_Empleados
         End With
         With JGBusqEmpleados.RootTable.Columns("ecTelf")
             .Width = 130
-            .Caption = "Telefono"
+            .Caption = "Teléfono"
             .Visible = True
         End With
         With JGBusqEmpleados.RootTable.Columns("ecMail")
@@ -188,12 +188,12 @@ Public Class F1_Reg_Empleados
         End With
         With JGBusqEmpleados.RootTable.Columns("ecFNac")
             .Width = 120
-            .Caption = "Fecha de nacimiento"
+            .Caption = "Fecha Nacimiento"
             .Visible = True
         End With
         With JGBusqEmpleados.RootTable.Columns("ecFIngr")
             .Width = 120
-            .Caption = "Fecha de Ingreso"
+            .Caption = "Fecha Ingreso"
             .Visible = True
         End With
         With JGBusqEmpleados.RootTable.Columns("ecFecha")
@@ -227,6 +227,8 @@ Public Class F1_Reg_Empleados
         swEstadoE.Enabled = False
         cbTipoEmpleado.Enabled = False
         btnTipoEmpleado.Enabled = False
+
+        JGBusqEmpleados.Enabled = True
         'btnEspecie.Visible = False
         'btnRaza.Visible = False
         _Limpiar = False
@@ -522,6 +524,7 @@ Public Class F1_Reg_Empleados
         'JGBusqEmpleados.Enabled = False 'Deshabilita el buscador de la Grilla
         _prLimpiar()
         _prHabilitar()
+        JGBusqEmpleados.Enabled = False
         txtCIEmpleado.Focus()
     End Sub
 

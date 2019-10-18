@@ -100,7 +100,7 @@ Public Class F1_Fic_FichaClinica
     Private Sub txtIdVeterinario_KeyDown(sender As Object, e As KeyEventArgs) Handles txtIdVeterinario.KeyDown
         If e.KeyData = Keys.Control + Keys.Enter Then
             Dim dt As DataTable
-            dt = L_fnMostrarEmpleado()
+            dt = L_fnMostrarEmpleadoVeterinarios()
             Dim listEstCeldas As New List(Of Modelo.Celda)
             listEstCeldas.Add(New Modelo.Celda("ecId,", True, "ID", 50))
             listEstCeldas.Add(New Modelo.Celda("ecNomb", True, "Nombre", 180))

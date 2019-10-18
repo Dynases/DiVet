@@ -616,6 +616,14 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("REG.sp_EMP002", _listParam)
         Return _Tabla
     End Function
+    Public Shared Function L_fnMostrarEmpleadoVeterinarios() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@ecUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("REG.sp_EMP002", _listParam)
+        Return _Tabla
+    End Function
 #End Region
 #Region "Verificaciones"
 #End Region

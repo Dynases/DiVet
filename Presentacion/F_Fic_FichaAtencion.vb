@@ -9,7 +9,7 @@ Public Class F_Fic_FichaAtencion
     Private Sub btnAbrirFicha_Click(sender As Object, e As EventArgs) Handles btnAbrirFicha.Click
         Modelo.MGlobal._nameButton = Principal.btnFichaClinica.Name
         L_fnActualizarEstadoFicha(JGFichasAtencion.GetValue("pbid"))
-        _prCargarFichaAtencion()
+        '_prCargarFichaAtencion()
 
         If JGFichasAtencion.RowCount > 0 Then
             Dim frm As New F1_Fic_FichaClinica

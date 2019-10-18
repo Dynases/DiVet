@@ -66,9 +66,9 @@ Partial Class F1_Reg_Empleados
         Me.MPanelUserAct.SuspendLayout()
         Me.PanelNavegacion.SuspendLayout()
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelUsuario.SuspendLayout()
+        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GPDatosGral.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.cbTipoEmpleado, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,27 +142,6 @@ Partial Class F1_Reg_Empleados
         '
         Me.TxtNombreUsu.Text = "DEFAULT"
         '
-        'superTabControl1
-        '
-        '
-        '
-        '
-        '
-        '
-        '
-        Me.superTabControl1.ControlBox.CloseBox.Name = ""
-        '
-        '
-        '
-        Me.superTabControl1.ControlBox.MenuBox.Name = ""
-        Me.superTabControl1.ControlBox.Name = ""
-        Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
-        Me.superTabControl1.Size = New System.Drawing.Size(967, 646)
-        '
-        'superTabItem2
-        '
-        Me.superTabItem2.Visible = False
-        '
         'BubbleBarUsuario
         '
         '
@@ -185,6 +164,27 @@ Partial Class F1_Reg_Empleados
         Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingTop = 3
         Me.BubbleBarUsuario.MouseOverTabColors.BorderColor = System.Drawing.SystemColors.Highlight
         Me.BubbleBarUsuario.SelectedTabColors.BorderColor = System.Drawing.Color.Black
+        '
+        'superTabItem2
+        '
+        Me.superTabItem2.Visible = False
+        '
+        'superTabControl1
+        '
+        '
+        '
+        '
+        '
+        '
+        '
+        Me.superTabControl1.ControlBox.CloseBox.Name = ""
+        '
+        '
+        '
+        Me.superTabControl1.ControlBox.MenuBox.Name = ""
+        Me.superTabControl1.ControlBox.Name = ""
+        Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
+        Me.superTabControl1.Size = New System.Drawing.Size(967, 646)
         '
         'GPDatosGral
         '
@@ -699,6 +699,7 @@ Partial Class F1_Reg_Empleados
         'JGBusqEmpleados
         '
         Me.JGBusqEmpleados.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.JGBusqEmpleados.HeaderFormatStyle.FontBold = Janus.Windows.GridEX.TriState.[True]
         Me.JGBusqEmpleados.Location = New System.Drawing.Point(3, 3)
         Me.JGBusqEmpleados.Name = "JGBusqEmpleados"
         Me.JGBusqEmpleados.Size = New System.Drawing.Size(927, 223)
@@ -872,10 +873,10 @@ Partial Class F1_Reg_Empleados
         Me.MPanelUserAct.PerformLayout()
         Me.PanelNavegacion.ResumeLayout(False)
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelUsuario.ResumeLayout(False)
         Me.PanelUsuario.PerformLayout()
+        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GPDatosGral.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()

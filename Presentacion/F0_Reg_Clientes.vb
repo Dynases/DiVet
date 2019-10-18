@@ -78,12 +78,12 @@ Partial Class F0_Reg_Clientes
                 resultado = L_fnGrabarFichaAtencion(_faId, tFichaAtencion)
                 Dim mensaje = IIf(resultado, "El paciente paso a fichas de atencion y fue".ToUpper + " Grabado con Exito.", "La paciente no pudo ser insertado".ToUpper)
                 Dim imagen As Bitmap = New Bitmap(IIf(resultado, My.Resources.checked, My.Resources.cancel), 50, 50)
-                ToastNotification.Show(Me, mensaje.ToUpper, imagen, 2000, eToastGlowColor.Green, eToastPosition.TopCenter)
+                ToastNotification.Show(Me, mensaje.ToUpper, imagen, 3000, eToastGlowColor.Green, eToastPosition.TopCenter)
                 'Carga las mascotas en estado Sin atencion
                 _prCargarPaciente(JGBPropietario.GetValue("caid"))
                 '***Cargar la ventana de Ficha de Atención***'
                 F_Fic_FichaAtencion._prCargarFichaAtencion()
-                'btnAsignarFicha.Enabled = False
+                btnAsignarFicha.Enabled = False
             End If
         End If
     End Sub
@@ -117,6 +117,7 @@ Partial Class F0_Reg_Clientes
         If (JGBPropietario.RowCount >= 0 And JGBPropietario.Row >= 0) Then
             'Carga la grilla de Mascotas atencion
             _prCargarPacienteSeleccion(JGBPropietario.GetValue("caid"))
+            btnAsignarFicha.Enabled = True
         End If
     End Sub
     'Seleccion de propietarios
@@ -188,7 +189,7 @@ Partial Class F0_Reg_Clientes
         End With
         With JDGClientes.RootTable.Columns("caci")
             .Width = 90
-            .Caption = "Ci"
+            .Caption = "CI"
             .Visible = True
 
         End With
@@ -216,7 +217,7 @@ Partial Class F0_Reg_Clientes
         With JDGClientes.RootTable.Columns("camail")
             .Width = 150
             .Visible = False
-            .Caption = "Mail"
+            .Caption = "Email"
         End With
         With JDGClientes.RootTable.Columns("cafecha")
             .Width = 90
@@ -264,7 +265,7 @@ Partial Class F0_Reg_Clientes
         End With
         With JGBPropietario.RootTable.Columns("caci")
             .Width = 90
-            .Caption = "Ci"
+            .Caption = "CI"
             .Visible = True
 
         End With
@@ -416,7 +417,7 @@ Partial Class F0_Reg_Clientes
             .Visible = False
         End With
         With JGrM_Buscador.RootTable.Columns("Raza")
-            .Width = 75
+            .Width = 120
             .Caption = "Raza"
             .Visible = True
         End With
@@ -498,22 +499,22 @@ Partial Class F0_Reg_Clientes
             .Visible = False
         End With
         With JGMascotasAtencion.RootTable.Columns("pbnomb")
-            .Width = 170
+            .Width = 200
             .Caption = "Nombre"
             .Visible = True
         End With
         With JGMascotasAtencion.RootTable.Columns("Especie")
-            .Width = 170
+            .Width = 120
             .Caption = "Especie"
             .Visible = True
         End With
-        With JGrM_Buscador.RootTable.Columns("Raza")
-            .Width = 170
+        With JGMascotasAtencion.RootTable.Columns("Raza")
+            .Width = 180
             .Caption = "Raza"
             .Visible = True
         End With
         With JGMascotasAtencion.RootTable.Columns("pbsex")
-            .Width = 150
+            .Width = 130
             .Caption = "Sexo"
             .Visible = True
         End With
@@ -523,14 +524,14 @@ Partial Class F0_Reg_Clientes
             .Visible = False
         End With
         With JGMascotasAtencion.RootTable.Columns("Consulta")
-            .Width = 150
+            .Width = 100
             .Caption = "Consulta"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .Visible = True
         End With
         With JGMascotasAtencion.RootTable.Columns("ReConsulta")
-            .Width = 170
-            .Caption = "ReConsulta"
+            .Width = 120
+            .Caption = "Reconsulta"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .Visible = True
         End With
@@ -805,6 +806,7 @@ Partial Class F0_Reg_Clientes
         _prFiltrar()
         JDGClientes.Enabled = True
     End Sub
+
 
 #End Region
 End Class
