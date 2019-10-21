@@ -29,6 +29,7 @@ Public Class F1_Ven_Venta
     Dim Table_Producto As DataTable
     Dim G_Lote As Boolean = False '1=igual a mostrar las columnas de lote y fecha de Vencimiento
     Dim _tablaDetalle As DataTable
+    Dim _tablaDetalle2 As DataTable
 #End Region
 #Region "Eventos"
     Private Sub F1_Ven_Venta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -1359,7 +1360,7 @@ salirIf:
             dt = Table_Producto.Copy
         Else
             If (G_Lote = True) Then
-                dt = L_fnMostrarVentaProducto()
+                dt = L_fnMostrarVentaProducto(cbSucursal.Value)
                 Table_Producto = dt.Copy
             Else
                 'dt = L_fnMostrarVentaProducto(cbSucursal.Value, _cliente, CType(JGdetalleVenta.DataSource, DataTable))  ''1=Almacen
@@ -1817,7 +1818,7 @@ salirIf:
         If (JGdetalleVenta.Row >= 0) Then
             If (JGdetalleVenta.RowCount >= 2) Then
                 Dim estado, estado2 As Integer
-                If txtIdReciboV.Text <> String.Empty Or txtIdReciboV.Text <> 0 Then
+                If txtIdReciboV.Text <> String.Empty Or txtIdReciboV.Text <> "0" Then
                     estado2 = JGdetalleVenta.GetValue("vbEst2")
                     If estado2 <> 0 Then
                         Dim ef = New Efecto
@@ -2009,8 +2010,9 @@ salirIf:
         Dim Suma As Decimal = 0
         If (dt.Rows.Count > 0) Then
             '_prEliminarFilaRecibo2()
-            ' _prExtraer()
-            _tablaDetalle = JGdetalleVenta.DataSource
+            '_prExtraer()
+            '_tablaDetalle = CType(JGdetalleVenta.DataSource, DataTable)
+            '_tablaDetalle2 = _tablaDetalle
             CType(JGdetalleVenta.DataSource, DataTable).Rows.Clear()
             For i As Integer = 0 To dt.Rows.Count - 1
                 Dim numiServicio As Integer = dt.Rows(i).Item("IdProducto")
@@ -2225,7 +2227,7 @@ salirIf:
 
     ''*****MODDIFICA EL REGISTRO*****''
     Public Overrides Function _PMOModificarRegistro() As Boolean
-        ' _prUnirTabla()
+        '_prUnirTabla()
         Dim res As Boolean = L_fnModificarVenta(txtIdVenta.Text, IIf(swServicio.Value, txtIdReciboV.Text, 0), IIf(swCirugia.Value, txtIdReciboV.Text, 0), IIf(swInternacion.Value, txtIdReciboV.Text, 0), _CodPaciente, _CodCliente, _CodEmpleado, IIf(swTipoVenta.Value = True, 1, 0), dtpFVenta.Value.ToString("yyyy/MM/dd"),
                                              dtpFCredito.Value.ToString("yyyy/MM/dd"), txtObservacion.Text, txtMdesc.Value, txtTotalNeto.Value,
                                              CType(JGdetalleVenta.DataSource, DataTable), cbSucursal.Value)

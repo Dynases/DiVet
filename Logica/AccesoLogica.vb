@@ -1692,10 +1692,11 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
         Return _Tabla
     End Function
-    Public Shared Function L_fnMostrarVentaProducto() As DataTable
+    Public Shared Function L_fnMostrarVentaProducto(_vaAlm As String) As DataTable
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
         _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@vaAlm", _vaAlm))
         '_listParam.Add(New Datos.DParametro("@IdProducto", IdPro))
         _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
         _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
