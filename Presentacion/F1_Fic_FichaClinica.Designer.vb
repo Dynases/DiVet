@@ -525,8 +525,8 @@ Partial Class F1_Fic_FichaClinica
         Me.stcFichaClinica.ControlBox.MenuBox.Name = ""
         Me.stcFichaClinica.ControlBox.Name = ""
         Me.stcFichaClinica.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.stcFichaClinica.ControlBox.MenuBox, Me.stcFichaClinica.ControlBox.CloseBox})
-        Me.stcFichaClinica.Controls.Add(Me.stcpDatos4)
         Me.stcFichaClinica.Controls.Add(Me.stcpDatos1)
+        Me.stcFichaClinica.Controls.Add(Me.stcpDatos4)
         Me.stcFichaClinica.Controls.Add(Me.stcpDatos2)
         Me.stcFichaClinica.Controls.Add(Me.stcpCirugia)
         Me.stcFichaClinica.Controls.Add(Me.stcpInternacion)
