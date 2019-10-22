@@ -18,6 +18,7 @@ Public Class F1_Con_Usuarios
         _PMAsignarPermisos()
         _prCargarUsuario()
         _prMostrarUsuario(0)
+        _prCargarIcono()
     End Sub
 
     Private Sub _PCargarComboRol(ByVal cb As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
@@ -73,6 +74,11 @@ Public Class F1_Con_Usuarios
         dtpFIngresoU.Enabled = True
         swEstadoU.Enabled = True
         swEmergencia.Enabled = True
+    End Sub
+    Private Sub _prCargarIcono()
+        Dim blah As New Bitmap(New Bitmap(My.Resources.user), 20, 20)
+        Dim ico As Icon = Icon.FromHandle(blah.GetHicon())
+        Me.Icon = ico
     End Sub
     Private Sub _prCargarUsuario()
         Dim _tabla As DataTable = L_fnMostrarUsuario()

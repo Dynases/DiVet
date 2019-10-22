@@ -37,5 +37,12 @@ Public Class F_Reg_Emergencia
             L_fnOrdenarFichaAtencion(fila.Item("faid"), prioridad)
         Next
     End Sub
+
+    Private Sub txtUsuario_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtUsuario.KeyPress, txtContraseña.KeyPress
+        If (e.KeyChar = ChrW(Keys.Enter)) Then
+            e.Handled = True
+            SendKeys.Send("{TAB}")
+        End If
+    End Sub
 #End Region
 End Class

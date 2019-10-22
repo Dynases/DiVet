@@ -186,6 +186,7 @@ Partial Class F1_Reg_Pacientes
         Me.superTabControl1.ControlBox.MenuBox.Name = ""
         Me.superTabControl1.ControlBox.Name = ""
         Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
+        Me.superTabControl1.SelectedTabIndex = 1
         Me.superTabControl1.Size = New System.Drawing.Size(805, 480)
         '
         'gpDatosMascota

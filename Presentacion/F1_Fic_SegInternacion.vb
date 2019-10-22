@@ -20,26 +20,26 @@ Public Class F1_Fic_SegInternacion
             dt = L_fnMostrarInternacion()
             Dim listEstCeldas As New List(Of Modelo.Celda)
             listEstCeldas.Add(New Modelo.Celda("igId,", False, "ID", 50))
-            listEstCeldas.Add(New Modelo.Celda("ig_fbId", True, "ID Ficha", 90))
+            listEstCeldas.Add(New Modelo.Celda("ig_fbId", True, "Id Ficha", 90))
             listEstCeldas.Add(New Modelo.Celda("igEst", False, "Estado", 180))
-            listEstCeldas.Add(New Modelo.Celda("cacliente", True, "Propietario", 150))
+            listEstCeldas.Add(New Modelo.Celda("cacliente", True, "Propietario", 170))
             listEstCeldas.Add(New Modelo.Celda("pbId", False, "IdPaciente", 150))
             listEstCeldas.Add(New Modelo.Celda("pbnomb", True, "Paciente", 150))
             listEstCeldas.Add(New Modelo.Celda("Especie", True, "Especie", 120))
             listEstCeldas.Add(New Modelo.Celda("pbsex", True, "Sexo", 120))
-            listEstCeldas.Add(New Modelo.Celda("igEdad", True, "Edad", 130))
+            listEstCeldas.Add(New Modelo.Celda("igFechaIng", True, "Fecha Int.", 90))
+            listEstCeldas.Add(New Modelo.Celda("igEdad", True, "Edad", 100))
             listEstCeldas.Add(New Modelo.Celda("igTelf", False, "Telefono", 130))
             listEstCeldas.Add(New Modelo.Celda("igMotInter", False, "igMotInter", 180))
             listEstCeldas.Add(New Modelo.Celda("igRequer", False, "igRequer", 180))
-            listEstCeldas.Add(New Modelo.Celda("igFechaIng", True, "Fecha Int.", 120))
             listEstCeldas.Add(New Modelo.Celda("igHoraInter", True, "Hora Int.".ToUpper, 130))
             Dim ef = New Efecto
             ef.tipo = 3
             ef.dt = dt
             ef.SeleclCol = 2
             ef.listEstCeldas = listEstCeldas
-            ef.alto = 50
-            ef.ancho = 350
+            ef.alto = 60
+            ef.ancho = 250
             ef.Context = "Seleccione una Internación".ToUpper
             ef.ShowDialog()
             Dim bandera As Boolean = False
@@ -198,7 +198,7 @@ Public Class F1_Fic_SegInternacion
         JGBusqSeguimiento.AlternatingColors = True
         'ihId, ih_fbId, ihFechaIng,pac.pbnomb, ihTurno, ihDiag, ihResp, ihPasoTur
         With JGBusqSeguimiento.RootTable.Columns("ihId")
-            .Width = 100
+            .Width = 65
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .Caption = "Id"
             .Visible = True
@@ -209,7 +209,7 @@ Public Class F1_Fic_SegInternacion
             .Visible = False
         End With
         With JGBusqSeguimiento.RootTable.Columns("ihFechaIng")
-            .Width = 130
+            .Width = 100
             .Caption = "Fecha"
             .Visible = True
         End With
@@ -219,18 +219,23 @@ Public Class F1_Fic_SegInternacion
             .Caption = "IdPaciente"
             .Visible = False
         End With
+        With JGBusqSeguimiento.RootTable.Columns("cliente")
+            .Width = 170
+            .Caption = "Cliente"
+            .Visible = True
+        End With
         With JGBusqSeguimiento.RootTable.Columns("pbnomb")
             .Width = 160
             .Caption = "Paciente"
             .Visible = True
         End With
         With JGBusqSeguimiento.RootTable.Columns("ihResp")
-            .Width = 150
+            .Width = 170
             .Caption = "Responsable"
             .Visible = True
         End With
         With JGBusqSeguimiento.RootTable.Columns("ihDiag")
-            .Width = 180
+            .Width = 280
             .Caption = "Diagnóstico"
             .Visible = True
         End With
@@ -243,7 +248,7 @@ Public Class F1_Fic_SegInternacion
         With JGBusqSeguimiento.RootTable.Columns("ihUsuario")
             .Visible = False
         End With
-        With JGBusqSeguimiento.RootTable.Columns("pbId")
+        With JGBusqSeguimiento.RootTable.Columns("pbId1")
             .Visible = False
         End With
         With JGBusqSeguimiento

@@ -691,11 +691,11 @@ salirIf:
             _prInhabilitar()
             _prFiltrar(2)
             _Limpiar = True
-            Dim info As New TaskDialogInfo("RECIBO".ToUpper, eTaskDialogIcon.Delete, "RECIBO".ToUpper, "¿Desea imprimir el recibo?".ToUpper, eTaskDialogButton.Yes Or eTaskDialogButton.Cancel, eTaskDialogBackgroundColor.Blue)
-            Dim result As eTaskDialogResult = TaskDialog.Show(info)
-            If result = eTaskDialogResult.Yes Then
-                _prImprimir()
-            End If
+            'Dim info As New TaskDialogInfo("RECIBO".ToUpper, eTaskDialogIcon.Delete, "RECIBO".ToUpper, "¿Desea imprimir el recibo?".ToUpper, eTaskDialogButton.Yes Or eTaskDialogButton.Cancel, eTaskDialogBackgroundColor.Blue)
+            'Dim result As eTaskDialogResult = TaskDialog.Show(info)
+            'If result = eTaskDialogResult.Yes Then
+            '    _prImprimir()
+            'End If
         Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
             ToastNotification.Show(Me, "El recibo no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)

@@ -78,12 +78,15 @@ Partial Class F_Reg_Emergencia
         'txtContraseña
         '
         Me.txtContraseña.AcceptsTab = True
+        Me.txtContraseña.BackColor = System.Drawing.Color.White
         '
         '
         '
         Me.txtContraseña.Border.Class = "TextBoxBorder"
         Me.txtContraseña.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtContraseña.DisabledBackColor = System.Drawing.Color.White
         Me.txtContraseña.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtContraseña.ForeColor = System.Drawing.Color.Black
         Me.txtContraseña.Location = New System.Drawing.Point(91, 107)
         Me.txtContraseña.Name = "txtContraseña"
         Me.txtContraseña.PreventEnterBeep = True

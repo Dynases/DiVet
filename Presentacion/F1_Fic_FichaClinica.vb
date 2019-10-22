@@ -226,6 +226,7 @@ Public Class F1_Fic_FichaClinica
     Private Sub _prIniciarTodo()
         _HoraInicial = DateTime.Now.ToShortTimeString()
         _PMAsignarPermisos()
+        _prCargarIcono()
         _prCargarFichaClinica()
         _prCrearCarpetaImagenes()
         _prCrearCarpetaTemporal()
@@ -257,7 +258,12 @@ Public Class F1_Fic_FichaClinica
             _prInhabilitar()
         End If
     End Sub
-    'prueb
+
+    Private Sub _prCargarIcono()
+        Dim blah As New Bitmap(New Bitmap(My.Resources.fichaclinica1), 20, 20)
+        Dim ico As Icon = Icon.FromHandle(blah.GetHicon())
+        Me.Icon = ico
+    End Sub
     Private Sub _prMostrarPaciente()
         Dim _dtPaciente As DataTable = L_MostrarPacientes()
         Dim _FilaPaciente As DataRow()
@@ -413,7 +419,7 @@ Public Class F1_Fic_FichaClinica
         JGBusqFichaClinica.RetrieveStructure()
         JGBusqFichaClinica.AlternatingColors = True
         With JGBusqFichaClinica.RootTable.Columns("fbid")
-            .Width = 100
+            .Width = 65
             .Caption = "Id"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .Visible = True
@@ -430,28 +436,33 @@ Public Class F1_Fic_FichaClinica
             .Caption = "Id Paciente"
         End With
         With JGBusqFichaClinica.RootTable.Columns("ecNomb")
-            .Width = 180
+            .Width = 170
             .Caption = "Veterinario"
             .Visible = True
         End With
+        With JGBusqFichaClinica.RootTable.Columns("cliente")
+            .Width = 185
+            .Caption = "Cliente"
+            .Visible = True
+        End With
         With JGBusqFichaClinica.RootTable.Columns("pbnomb")
-            .Width = 180
+            .Width = 160
             .Caption = "Paciente"
             .Visible = True
         End With
         With JGBusqFichaClinica.RootTable.Columns("fbPeso")
-            .Width = 130
+            .Width = 90
             .Visible = True
             .Caption = "Peso Kg."
         End With
         With JGBusqFichaClinica.RootTable.Columns("fbFechaAten")
-            .Width = 150
-            .Caption = "Fecha Atención"
+            .Width = 100
+            .Caption = "F. Atención"
             .Visible = True
         End With
         With JGBusqFichaClinica.RootTable.Columns("fbFechaProx")
-            .Width = 150
-            .Caption = "Fecha Reconsulta"
+            .Width = 120
+            .Caption = "F. Reconsulta"
             .Visible = True
         End With
         With JGBusqFichaClinica.RootTable.Columns("fbHist")
@@ -1762,7 +1773,9 @@ Public Class F1_Fic_FichaClinica
         g_prValidarTextBox(1, e)
     End Sub
 
-
+    Private Sub JGBusqFichaClinica_DoubleClick(sender As Object, e As EventArgs) Handles JGBusqFichaClinica.DoubleClick
+        superTabControl1.SelectedTabIndex = 0
+    End Sub
     '*******PMO NUevo
     Public Overrides Sub _PMONuevo()
         JGBusqFichaClinica.Enabled = False 'Deshabilita el buscador de la Grilla
