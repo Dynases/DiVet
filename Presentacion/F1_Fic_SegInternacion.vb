@@ -22,7 +22,7 @@ Public Class F1_Fic_SegInternacion
             listEstCeldas.Add(New Modelo.Celda("igId,", False, "ID", 50))
             listEstCeldas.Add(New Modelo.Celda("ig_fbId", True, "Id Ficha", 90))
             listEstCeldas.Add(New Modelo.Celda("igEst", False, "Estado", 180))
-            listEstCeldas.Add(New Modelo.Celda("cacliente", True, "Propietario", 170))
+            listEstCeldas.Add(New Modelo.Celda("cacliente", True, "Propietario", 210))
             listEstCeldas.Add(New Modelo.Celda("pbId", False, "IdPaciente", 150))
             listEstCeldas.Add(New Modelo.Celda("pbnomb", True, "Paciente", 150))
             listEstCeldas.Add(New Modelo.Celda("Especie", True, "Especie", 120))
@@ -32,14 +32,14 @@ Public Class F1_Fic_SegInternacion
             listEstCeldas.Add(New Modelo.Celda("igTelf", False, "Telefono", 130))
             listEstCeldas.Add(New Modelo.Celda("igMotInter", False, "igMotInter", 180))
             listEstCeldas.Add(New Modelo.Celda("igRequer", False, "igRequer", 180))
-            listEstCeldas.Add(New Modelo.Celda("igHoraInter", True, "Hora Int.".ToUpper, 130))
+            listEstCeldas.Add(New Modelo.Celda("igHoraInter", True, "Hora Int.".ToUpper, 100))
             Dim ef = New Efecto
             ef.tipo = 3
             ef.dt = dt
             ef.SeleclCol = 2
             ef.listEstCeldas = listEstCeldas
-            ef.alto = 60
-            ef.ancho = 250
+            ef.alto = 80
+            ef.ancho = 190
             ef.Context = "Seleccione una Internación".ToUpper
             ef.ShowDialog()
             Dim bandera As Boolean = False

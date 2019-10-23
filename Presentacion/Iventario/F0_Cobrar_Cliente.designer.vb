@@ -44,6 +44,7 @@ Partial Class F0_Cobrar_Cliente
         Me.tbnrocod = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.gpDetalleVenta = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.JGDetalleVenta = New Janus.Windows.GridEX.GridEX()
+        Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabPrincipal.SuspendLayout()
         Me.SuperTabControlPanelRegistro.SuspendLayout()
@@ -169,6 +170,7 @@ Partial Class F0_Cobrar_Cliente
         '
         'MPanelSup
         '
+        Me.MPanelSup.Controls.Add(Me.LabelX1)
         Me.MPanelSup.Controls.Add(Me.gpDetalleVenta)
         Me.MPanelSup.Controls.Add(Me.tbnrocod)
         Me.MPanelSup.Controls.Add(Me.tbFechaVenta)
@@ -188,6 +190,7 @@ Partial Class F0_Cobrar_Cliente
         Me.MPanelSup.Controls.SetChildIndex(Me.tbFechaVenta, 0)
         Me.MPanelSup.Controls.SetChildIndex(Me.tbnrocod, 0)
         Me.MPanelSup.Controls.SetChildIndex(Me.gpDetalleVenta, 0)
+        Me.MPanelSup.Controls.SetChildIndex(Me.LabelX1, 0)
         '
         'PanelPrincipal
         '
@@ -415,6 +418,7 @@ Partial Class F0_Cobrar_Cliente
         '
         Me.tbNombre.Border.Class = "TextBoxBorder"
         Me.tbNombre.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbNombre.DisabledBackColor = System.Drawing.Color.White
         Me.tbNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbNombre.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.tbNombre.Location = New System.Drawing.Point(265, 37)
@@ -448,6 +452,7 @@ Partial Class F0_Cobrar_Cliente
         '
         Me.tbCodigo.Border.Class = "TextBoxBorder"
         Me.tbCodigo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbCodigo.DisabledBackColor = System.Drawing.Color.White
         Me.tbCodigo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbCodigo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.tbCodigo.Location = New System.Drawing.Point(206, 108)
@@ -603,6 +608,7 @@ Partial Class F0_Cobrar_Cliente
         '
         Me.tbnrocod.Border.Class = "TextBoxBorder"
         Me.tbnrocod.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbnrocod.DisabledBackColor = System.Drawing.Color.White
         Me.tbnrocod.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbnrocod.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.tbnrocod.Location = New System.Drawing.Point(206, 37)
@@ -614,12 +620,13 @@ Partial Class F0_Cobrar_Cliente
         '
         'gpDetalleVenta
         '
+        Me.gpDetalleVenta.BackColor = System.Drawing.Color.White
         Me.gpDetalleVenta.CanvasColor = System.Drawing.SystemColors.Control
         Me.gpDetalleVenta.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.gpDetalleVenta.Controls.Add(Me.JGDetalleVenta)
         Me.gpDetalleVenta.DisabledBackColor = System.Drawing.Color.Empty
         Me.gpDetalleVenta.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gpDetalleVenta.Location = New System.Drawing.Point(19, -1)
+        Me.gpDetalleVenta.Location = New System.Drawing.Point(19, 0)
         Me.gpDetalleVenta.Name = "gpDetalleVenta"
         Me.gpDetalleVenta.Size = New System.Drawing.Size(1121, 40)
         '
@@ -672,6 +679,23 @@ Partial Class F0_Cobrar_Cliente
         Me.JGDetalleVenta.TabIndex = 1
         Me.JGDetalleVenta.Tag = ""
         Me.JGDetalleVenta.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'LabelX1
+        '
+        Me.LabelX1.AutoSize = True
+        Me.LabelX1.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX1.Font = New System.Drawing.Font("Georgia", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX1.Location = New System.Drawing.Point(206, 21)
+        Me.LabelX1.Name = "LabelX1"
+        Me.LabelX1.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX1.Size = New System.Drawing.Size(55, 13)
+        Me.LabelX1.TabIndex = 238
+        Me.LabelX1.Text = "Ctrl+Enter"
         '
         'F0_Cobrar_Cliente
         '
@@ -735,4 +759,5 @@ Partial Class F0_Cobrar_Cliente
     Friend WithEvents tbnrocod As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents gpDetalleVenta As DevComponents.DotNetBar.Controls.GroupPanel
     Friend WithEvents JGDetalleVenta As Janus.Windows.GridEX.GridEX
+    Friend WithEvents LabelX1 As DevComponents.DotNetBar.LabelX
 End Class

@@ -259,18 +259,18 @@ Public Class F1_Fic_ReciboCirugia
                     listEstCeldas.Add(New Modelo.Celda("cfId", True, "ID CIRUGIA", 100))
                     listEstCeldas.Add(New Modelo.Celda("fbId", True, "ID F. CLINICA", 100))
                     listEstCeldas.Add(New Modelo.Celda("cfFechaAten", True, "FECHA", 100, "dd/MM/yyyy"))
-                    listEstCeldas.Add(New Modelo.Celda("Cliente", True, "CLIENTE".ToUpper, 140))
+                    listEstCeldas.Add(New Modelo.Celda("Cliente", True, "CLIENTE".ToUpper, 190))
                     listEstCeldas.Add(New Modelo.Celda("pbId", False, "IDPACIENTE".ToUpper, 140))
                     listEstCeldas.Add(New Modelo.Celda("pbnomb", True, "PACIENTE".ToUpper, 140))
-                    listEstCeldas.Add(New Modelo.Celda("cfProc", True, "PROCEDIMIENTO".ToUpper, 150, "0.00"))
-                    listEstCeldas.Add(New Modelo.Celda("cfObser", True, "OBSERVACION".ToUpper, 150, "0.00"))
+                    listEstCeldas.Add(New Modelo.Celda("cfProc", True, "PROCEDIMIENTO".ToUpper, 170, "0.00"))
+                    listEstCeldas.Add(New Modelo.Celda("cfObser", True, "OBSERVACION".ToUpper, 170, "0.00"))
                     Dim ef = New Efecto
                     ef.tipo = 3
                     ef.dt = dt
                     ef.SeleclCol = 2
                     ef.listEstCeldas = listEstCeldas
-                    ef.alto = 50
-                    ef.ancho = 350
+                    ef.alto = 80
+                    ef.ancho = 240
                     ef.Context = "Seleccione una Cirugía".ToUpper
                     ef.ShowDialog()
                     Dim bandera As Boolean = False
@@ -300,7 +300,7 @@ Public Class F1_Fic_ReciboCirugia
         _prHabilitar()
         _prLimpiar()
         _prHabilitarMenu(1)
-        txtCirugia.Focus()
+        'txtCirugia.Focus()
         'txtCirugia.Select()
     End Sub
 
@@ -580,6 +580,7 @@ Public Class F1_Fic_ReciboCirugia
         diPrecio.ResetText()
         dtpFechaRC.Value = DateTime.Today()
         _prCargarReciboDetalle(-1)
+        txtCirugia.Focus()
         'swInternacion.Value = False
         '_prAddDetalleRecibo()
     End Sub

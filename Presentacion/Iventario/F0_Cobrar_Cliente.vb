@@ -44,7 +44,8 @@ Public Class F0_Cobrar_Cliente
 
         tbNombre.ReadOnly = True
         tbFechaVenta.Value = Now.Date
-        tbnrocod.Focus()
+        'tbnrocod.Focus()
+        tbnrocod.Select()
 
     End Sub
 
@@ -734,10 +735,10 @@ Public Class F0_Cobrar_Cliente
             ef.dt = dt
             ef.SeleclCol = 2
             ef.listEstCeldas = listEstCeldas
-            ef.alto = 50
-            ef.ancho = 350
-            ef.NameLabel = "CLIENTE :"
-            ef.NamelColumna = "canomb"
+            ef.alto = 70
+            ef.ancho = 190
+            ef.NameLabel = "APELLIDOS:"
+            ef.NamelColumna = "caapell"
             ef.Context = "Seleccione Cliente".ToUpper
             ef.ShowDialog()
             Dim bandera As Boolean = False

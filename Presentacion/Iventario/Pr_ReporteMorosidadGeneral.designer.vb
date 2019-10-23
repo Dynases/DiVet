@@ -25,6 +25,7 @@ Partial Class Pr_ReporteMorosidadGeneral
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Pr_ReporteMorosidadGeneral))
         Dim tbAlmacen_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.tbClientes = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.tbFechaF = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
@@ -39,7 +40,6 @@ Partial Class Pr_ReporteMorosidadGeneral
         Me.checkUnaVendedor = New DevComponents.DotNetBar.Controls.CheckBoxX()
         Me.tbCodigoVendedor = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
-        Me.tbClientes = New DevComponents.DotNetBar.Controls.TextBoxX()
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabPrincipal.SuspendLayout()
         Me.SuperTabControlPanelRegistro.SuspendLayout()
@@ -218,6 +218,23 @@ Partial Class Pr_ReporteMorosidadGeneral
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Datos"
         '
+        'tbClientes
+        '
+        Me.tbClientes.BackColor = System.Drawing.Color.Gainsboro
+        '
+        '
+        '
+        Me.tbClientes.Border.Class = "TextBoxBorder"
+        Me.tbClientes.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbClientes.DisabledBackColor = System.Drawing.Color.White
+        Me.tbClientes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbClientes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.tbClientes.Location = New System.Drawing.Point(73, 100)
+        Me.tbClientes.Name = "tbClientes"
+        Me.tbClientes.PreventEnterBeep = True
+        Me.tbClientes.Size = New System.Drawing.Size(167, 22)
+        Me.tbClientes.TabIndex = 252
+        '
         'LabelX1
         '
         Me.LabelX1.BackColor = System.Drawing.Color.Transparent
@@ -356,6 +373,7 @@ Partial Class Pr_ReporteMorosidadGeneral
         Me.tbAlmacen.SelectedItem = Nothing
         Me.tbAlmacen.Size = New System.Drawing.Size(164, 22)
         Me.tbAlmacen.TabIndex = 247
+        Me.tbAlmacen.Visible = False
         Me.tbAlmacen.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'tbVendedor
@@ -496,23 +514,6 @@ Partial Class Pr_ReporteMorosidadGeneral
         Me.LabelX2.Size = New System.Drawing.Size(74, 23)
         Me.LabelX2.TabIndex = 236
         Me.LabelX2.Text = "Vendedor:"
-        '
-        'tbClientes
-        '
-        Me.tbClientes.BackColor = System.Drawing.Color.Gainsboro
-        '
-        '
-        '
-        Me.tbClientes.Border.Class = "TextBoxBorder"
-        Me.tbClientes.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbClientes.DisabledBackColor = System.Drawing.Color.White
-        Me.tbClientes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbClientes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbClientes.Location = New System.Drawing.Point(73, 100)
-        Me.tbClientes.Name = "tbClientes"
-        Me.tbClientes.PreventEnterBeep = True
-        Me.tbClientes.Size = New System.Drawing.Size(167, 22)
-        Me.tbClientes.TabIndex = 252
         '
         'Pr_ReporteMorosidadGeneral
         '

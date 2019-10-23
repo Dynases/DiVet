@@ -896,10 +896,10 @@ Public Class F0_MCompras
                 ef.dt = dt
                 ef.SeleclCol = 2
                 ef.listEstCeldas = listEstCeldas
-                ef.alto = 50
+                ef.alto = 60
                 ef.NameLabel = "PROVEEDOR: "
                 ef.NamelColumna = "yddesc"
-                ef.ancho = 350
+                ef.ancho = 200
                 ef.Context = "Seleccione Proveedor".ToUpper
                 ef.ShowDialog()
                 Dim bandera As Boolean = False
@@ -1366,6 +1366,10 @@ salirIf:
             _prCargarDetalleVenta(-1)
             _prAddDetalleVenta()
         End If
+    End Sub
+
+    Private Sub LabelX9_Click(sender As Object, e As EventArgs) Handles LabelX9.Click
+
     End Sub
 
 

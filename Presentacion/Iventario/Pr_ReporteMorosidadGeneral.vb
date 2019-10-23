@@ -192,7 +192,7 @@ Public Class Pr_ReporteMorosidadGeneral
                 listEstCeldas.Add(New Modelo.Celda("lbdesc", True, "Tipo de Empleado", 180))
                 listEstCeldas.Add(New Modelo.Celda("ecCi", True, "N. Documento", 100))
                 listEstCeldas.Add(New Modelo.Celda("ecDir", False, "Direccion", 180))
-                listEstCeldas.Add(New Modelo.Celda("ecTelf", True, "ecTelf", 180))
+                listEstCeldas.Add(New Modelo.Celda("ecTelf", True, "Teléfono", 180))
                 listEstCeldas.Add(New Modelo.Celda("ecMail", False, "ecMail", 180))
                 listEstCeldas.Add(New Modelo.Celda("ecEst", False, "ecEst".ToUpper, 150))
                 listEstCeldas.Add(New Modelo.Celda("Estado", True, "Estado".ToUpper, 150))
@@ -207,8 +207,8 @@ Public Class Pr_ReporteMorosidadGeneral
                 ef.dt = dt
                 ef.SeleclCol = 1
                 ef.listEstCeldas = listEstCeldas
-                ef.alto = 50
-                ef.ancho = 350
+                ef.alto = 70
+                ef.ancho = 200
                 ef.Context = "Seleccione Vendedor".ToUpper
                 ef.ShowDialog()
                 Dim bandera As Boolean = False
@@ -232,43 +232,47 @@ Public Class Pr_ReporteMorosidadGeneral
     Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
         Me.Close()
     End Sub
+
     Private Sub tbClientes_KeyDown(sender As Object, e As KeyEventArgs) Handles tbClientes.KeyDown
-        If e.KeyData = Keys.Control + Keys.Enter Then
-            Dim dt As DataTable
-            dt = L_fnMostrarClientes()
-            'caid, caci, canomb, caapell, cadir, catelf, camail, cafecha, cahora, causuario
-            Dim listEstCeldas As New List(Of Modelo.Celda)
-            listEstCeldas.Add(New Modelo.Celda("caid,", False, "ID", 50))
-            listEstCeldas.Add(New Modelo.Celda("caci", True, "CI", 50))
-            listEstCeldas.Add(New Modelo.Celda("canomb", True, "NOMBRE", 180))
-            listEstCeldas.Add(New Modelo.Celda("caapell", True, "APELLIDO", 280))
-            listEstCeldas.Add(New Modelo.Celda("cadir", True, "DIRECCION".ToUpper, 150))
-            listEstCeldas.Add(New Modelo.Celda("catelf", True, "TELEFONO", 220))
-            listEstCeldas.Add(New Modelo.Celda("camail", True, "E MAIL".ToUpper, 200))
-            listEstCeldas.Add(New Modelo.Celda("cafecha", False, "FECHA".ToUpper, 150, "MM/dd,YYYY"))
-            listEstCeldas.Add(New Modelo.Celda("cahora,", False, "ID", 50))
-            listEstCeldas.Add(New Modelo.Celda("causuario,", False, "ID", 50))
-            Dim ef = New Efecto
-            ef.tipo = 5
-            ef.dt = dt
-            ef.SeleclCol = 2
-            ef.listEstCeldas = listEstCeldas
-            ef.alto = 50
-            ef.ancho = 350
-            ef.NameLabel = "CLIENTE :"
-            ef.NamelColumna = "yddesc"
-            ef.Context = "Seleccione Cliente".ToUpper
-            ef.ShowDialog()
-            Dim bandera As Boolean = False
-            bandera = ef.band
-            If (bandera = True) Then
-                Try
-                    Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
-                    tbCodCliente.Text = Row.Cells("caid").Value
-                    tbClientes.Text = Row.Cells("canomb").Value + " " + Row.Cells("caapell").Value
-                Catch ex As Exception
-                End Try
+        If (CheckUnaCliente.Checked) Then
+            If e.KeyData = Keys.Control + Keys.Enter Then
+                Dim dt As DataTable
+                dt = L_fnMostrarClientes()
+                'caid, caci, canomb, caapell, cadir, catelf, camail, cafecha, cahora, causuario
+                Dim listEstCeldas As New List(Of Modelo.Celda)
+                listEstCeldas.Add(New Modelo.Celda("caid,", False, "ID", 50))
+                listEstCeldas.Add(New Modelo.Celda("caci", True, "CI", 50))
+                listEstCeldas.Add(New Modelo.Celda("canomb", True, "NOMBRE", 180))
+                listEstCeldas.Add(New Modelo.Celda("caapell", True, "APELLIDO", 280))
+                listEstCeldas.Add(New Modelo.Celda("cadir", True, "DIRECCION".ToUpper, 150))
+                listEstCeldas.Add(New Modelo.Celda("catelf", True, "TELEFONO", 220))
+                listEstCeldas.Add(New Modelo.Celda("camail", True, "E MAIL".ToUpper, 200))
+                listEstCeldas.Add(New Modelo.Celda("cafecha", False, "FECHA".ToUpper, 150, "MM/dd,YYYY"))
+                listEstCeldas.Add(New Modelo.Celda("cahora,", False, "ID", 50))
+                listEstCeldas.Add(New Modelo.Celda("causuario,", False, "ID", 50))
+                Dim ef = New Efecto
+                ef.tipo = 5
+                ef.dt = dt
+                ef.SeleclCol = 2
+                ef.listEstCeldas = listEstCeldas
+                ef.alto = 70
+                ef.ancho = 250
+                ef.NameLabel = "APELLIDOS:"
+                ef.NamelColumna = "caapell"
+                ef.Context = "Seleccione Cliente".ToUpper
+                ef.ShowDialog()
+                Dim bandera As Boolean = False
+                bandera = ef.band
+                If (bandera = True) Then
+                    Try
+                        Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
+                        tbCodCliente.Text = Row.Cells("caid").Value
+                        tbClientes.Text = Row.Cells("canomb").Value + " " + Row.Cells("caapell").Value
+                    Catch ex As Exception
+                    End Try
+                End If
             End If
         End If
     End Sub
+
 End Class

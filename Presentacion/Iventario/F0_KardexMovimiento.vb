@@ -130,14 +130,14 @@ Public Class F0_KardexMovimiento
             listEstCeldas.Add(New Modelo.Celda("descripcioncorta", True, "DESC. CORTA".ToUpper, 150))
             listEstCeldas.Add(New Modelo.Celda("yfcprod", False, "COD PRODUCTO", 150))
 
-            listEstCeldas.Add(New Modelo.Celda("stock", True, "StockGeneral".ToUpper, 100))
+            listEstCeldas.Add(New Modelo.Celda("stock", True, "StockGeneral".ToUpper, 140))
             Dim ef = New Efecto
             ef.tipo = 3
             ef.dt = dt
             ef.SeleclCol = 2
             ef.listEstCeldas = listEstCeldas
             ef.alto = 50
-            ef.ancho = 350
+            ef.ancho = 200
             ef.Context = "Seleccione PRODUCTO".ToUpper
             ef.ShowDialog()
             Dim bandera As Boolean = False

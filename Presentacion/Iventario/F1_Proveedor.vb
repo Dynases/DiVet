@@ -529,6 +529,15 @@ Public Class F1_Proveedor
         listEstCeldas.Add(New Modelo.Celda("documento".ToUpper, True, "Tipo Documento".ToUpper, 150))
         listEstCeldas.Add(New Modelo.Celda("ydnumivend", False))
         listEstCeldas.Add(New Modelo.Celda("vendedor", False))
+        listEstCeldas.Add(New Modelo.Celda("yddias", False))
+        listEstCeldas.Add(New Modelo.Celda("ydlcred", False))
+        listEstCeldas.Add(New Modelo.Celda("ydciudad", False))
+        listEstCeldas.Add(New Modelo.Celda("ydprovincia", False))
+        listEstCeldas.Add(New Modelo.Celda("ydalmacen", False))
+        listEstCeldas.Add(New Modelo.Celda("provincia", False))
+        listEstCeldas.Add(New Modelo.Celda("ciudad", False))
+        listEstCeldas.Add(New Modelo.Celda("zonatitulo", False))
+
         Return listEstCeldas
     End Function
 
