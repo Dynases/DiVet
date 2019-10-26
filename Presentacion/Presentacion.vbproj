@@ -417,6 +417,12 @@
       <DependentUpon>R_ResumenCreditoAlmacen.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reporte\R_ResumenCreditoCliente1.vb">
+      <DependentUpon>R_ResumenCreditoCliente1.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reporte\R_ResumenCreditoCliente.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -712,6 +718,10 @@
     <EmbeddedResource Include="Reporte\R_ResumenCreditoAlmacen.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_ResumenCreditoAlmacen.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\R_ResumenCreditoCliente1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_ResumenCreditoCliente1.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\R_ResumenCreditoCliente.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -37,10 +37,14 @@ Public Class ModeloAyuda
     End Sub
     Public Sub _prSeleccionar()
         If (Columna >= 0) Then
-            grJBuscador.Select()
-            ''  grJBuscador.Focus()
-            grJBuscador.MoveTo(grJBuscador.FilterRow)
+
+            grJBuscador.Row = 0
             grJBuscador.Col = Columna
+            'grJBuscador.Select()
+            'grJBuscador.Focus()
+            grJBuscador.MoveTo(grJBuscador.FilterRow)
+            'grJBuscador.Col = Columna
+
         End If
     End Sub
 
@@ -71,9 +75,9 @@ Public Class ModeloAyuda
                 End If
             End With
         Next
-
         'Habilitar Filtradores
         With grJBuscador
+            '.DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
             .DefaultFilterRowComparison = FilterConditionOperator.Contains
             .FilterMode = FilterMode.Automatic
             .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges

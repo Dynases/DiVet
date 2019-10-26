@@ -97,6 +97,7 @@ Public Class F1_Fic_FichaClinica
             ToastNotification.Show(Me, "Para vizualizar la imagen debe guardar la ficha clinica".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
         End If
     End Sub
+
     Private Sub txtIdVeterinario_KeyDown(sender As Object, e As KeyEventArgs) Handles txtIdVeterinario.KeyDown
         If e.KeyData = Keys.Control + Keys.Enter Then
             Dim dt As DataTable
@@ -121,7 +122,7 @@ Public Class F1_Fic_FichaClinica
             Dim ef = New Efecto
             ef.tipo = 3
             ef.dt = dt
-            ef.SeleclCol = 2
+            ef.SeleclCol = 1
             ef.listEstCeldas = listEstCeldas
             ef.alto = 160
             ef.ancho = 310
