@@ -136,7 +136,9 @@ Partial Class F1_Reg_Pacientes
         '
         'MpanelBuscador
         '
+        Me.MpanelBuscador.BackColor = System.Drawing.Color.CornflowerBlue
         Me.MpanelBuscador.BackgroundImage = Global.Presentacion.My.Resources.Resources.Fondo2
+        Me.MpanelBuscador.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.MpanelBuscador.Controls.Add(Me.gpBusqMascotas)
         Me.MpanelBuscador.Size = New System.Drawing.Size(805, 455)
         '
@@ -204,9 +206,9 @@ Partial Class F1_Reg_Pacientes
         '
         '
         '
-        Me.gpDatosMascota.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.MenuBackground
+        Me.gpDatosMascota.Style.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
+        Me.gpDatosMascota.Style.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
         Me.gpDatosMascota.Style.BackColorGradientAngle = 90
-        Me.gpDatosMascota.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarCaptionText
         Me.gpDatosMascota.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
         Me.gpDatosMascota.Style.BorderBottomWidth = 1
         Me.gpDatosMascota.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
@@ -219,8 +221,7 @@ Partial Class F1_Reg_Pacientes
         Me.gpDatosMascota.Style.CornerDiameter = 4
         Me.gpDatosMascota.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
         Me.gpDatosMascota.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
-        Me.gpDatosMascota.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
-        Me.gpDatosMascota.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
+        Me.gpDatosMascota.Style.TextColor = System.Drawing.Color.White
         '
         '
         '

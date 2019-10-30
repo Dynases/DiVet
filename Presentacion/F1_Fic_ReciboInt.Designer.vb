@@ -25,8 +25,6 @@ Partial Class F1_Fic_ReciboInt
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F1_Fic_ReciboInt))
         Me.gpDatosGral = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.txtTotalR = New DevComponents.Editors.DoubleInput()
-        Me.lbTotalR = New DevComponents.DotNetBar.LabelX()
         Me.txtObservacionI = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.txtObservacion = New DevComponents.DotNetBar.LabelX()
         Me.txtTratamiento = New DevComponents.DotNetBar.Controls.TextBoxX()
@@ -44,6 +42,8 @@ Partial Class F1_Fic_ReciboInt
         Me.lbIdReciboI = New DevComponents.DotNetBar.LabelX()
         Me.lbPrecio = New DevComponents.DotNetBar.LabelX()
         Me.txtIdReciboI = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.txtTotalR = New DevComponents.Editors.DoubleInput()
+        Me.lbTotalR = New DevComponents.DotNetBar.LabelX()
         Me.gpReciboInt = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.panelServicios = New System.Windows.Forms.Panel()
         Me.JGDetalleReciboInt = New Janus.Windows.GridEX.GridEX()
@@ -58,13 +58,13 @@ Partial Class F1_Fic_ReciboInt
         Me.PanelNavegacion.SuspendLayout()
         Me.MpanelBuscador.SuspendLayout()
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelUsuario.SuspendLayout()
+        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpDatosGral.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        CType(Me.txtTotalR, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.diPrecio, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTotalR, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpReciboInt.SuspendLayout()
         Me.panelServicios.SuspendLayout()
         CType(Me.JGDetalleReciboInt, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,6 +75,9 @@ Partial Class F1_Fic_ReciboInt
         '
         'MpanelSuperior
         '
+        Me.MpanelSuperior.BackColor = System.Drawing.Color.DodgerBlue
+        Me.MpanelSuperior.Controls.Add(Me.txtTotalR)
+        Me.MpanelSuperior.Controls.Add(Me.lbTotalR)
         Me.MpanelSuperior.Controls.Add(Me.gpReciboInt)
         Me.MpanelSuperior.Controls.Add(Me.gpDatosGral)
         Me.MpanelSuperior.Dock = System.Windows.Forms.DockStyle.Fill
@@ -135,24 +138,6 @@ Partial Class F1_Fic_ReciboInt
         '
         Me.TxtNombreUsu.Text = "DEFAULT"
         '
-        'superTabControl1
-        '
-        '
-        '
-        '
-        '
-        '
-        '
-        Me.superTabControl1.ControlBox.CloseBox.Name = ""
-        '
-        '
-        '
-        Me.superTabControl1.ControlBox.MenuBox.Name = ""
-        Me.superTabControl1.ControlBox.Name = ""
-        Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
-        Me.superTabControl1.SelectedTabIndex = 1
-        Me.superTabControl1.Size = New System.Drawing.Size(899, 573)
-        '
         'BubbleBarUsuario
         '
         '
@@ -180,9 +165,27 @@ Partial Class F1_Fic_ReciboInt
         '
         Me.PanelUsuario.Location = New System.Drawing.Point(304, 236)
         '
+        'superTabControl1
+        '
+        '
+        '
+        '
+        '
+        '
+        '
+        Me.superTabControl1.ControlBox.CloseBox.Name = ""
+        '
+        '
+        '
+        Me.superTabControl1.ControlBox.MenuBox.Name = ""
+        Me.superTabControl1.ControlBox.Name = ""
+        Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
+        Me.superTabControl1.SelectedTabIndex = 1
+        Me.superTabControl1.Size = New System.Drawing.Size(899, 573)
+        '
         'gpDatosGral
         '
-        Me.gpDatosGral.BackColor = System.Drawing.Color.White
+        Me.gpDatosGral.BackColor = System.Drawing.Color.Transparent
         Me.gpDatosGral.CanvasColor = System.Drawing.SystemColors.Control
         Me.gpDatosGral.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.gpDatosGral.Controls.Add(Me.Panel2)
@@ -227,8 +230,6 @@ Partial Class F1_Fic_ReciboInt
         '
         Me.Panel2.AutoScroll = True
         Me.Panel2.BackColor = System.Drawing.Color.LightSkyBlue
-        Me.Panel2.Controls.Add(Me.txtTotalR)
-        Me.Panel2.Controls.Add(Me.lbTotalR)
         Me.Panel2.Controls.Add(Me.txtObservacionI)
         Me.Panel2.Controls.Add(Me.txtObservacion)
         Me.Panel2.Controls.Add(Me.txtTratamiento)
@@ -251,39 +252,6 @@ Partial Class F1_Fic_ReciboInt
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(887, 151)
         Me.Panel2.TabIndex = 234
-        '
-        'txtTotalR
-        '
-        '
-        '
-        '
-        Me.txtTotalR.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.txtTotalR.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtTotalR.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtTotalR.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTotalR.Increment = 1.0R
-        Me.txtTotalR.Location = New System.Drawing.Point(332, 11)
-        Me.txtTotalR.MinValue = 0R
-        Me.txtTotalR.Name = "txtTotalR"
-        Me.txtTotalR.Size = New System.Drawing.Size(119, 21)
-        Me.txtTotalR.TabIndex = 350
-        Me.txtTotalR.WatermarkAlignment = DevComponents.Editors.eTextAlignment.Right
-        '
-        'lbTotalR
-        '
-        Me.lbTotalR.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbTotalR.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbTotalR.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbTotalR.ForeColor = System.Drawing.Color.White
-        Me.lbTotalR.Location = New System.Drawing.Point(281, 13)
-        Me.lbTotalR.Name = "lbTotalR"
-        Me.lbTotalR.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbTotalR.Size = New System.Drawing.Size(41, 18)
-        Me.lbTotalR.TabIndex = 351
-        Me.lbTotalR.Text = "Total:"
         '
         'txtObservacionI
         '
@@ -572,9 +540,42 @@ Partial Class F1_Fic_ReciboInt
         Me.txtIdReciboI.Size = New System.Drawing.Size(73, 22)
         Me.txtIdReciboI.TabIndex = 100
         '
+        'txtTotalR
+        '
+        '
+        '
+        '
+        Me.txtTotalR.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtTotalR.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtTotalR.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtTotalR.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTotalR.Increment = 1.0R
+        Me.txtTotalR.Location = New System.Drawing.Point(773, 407)
+        Me.txtTotalR.MinValue = 0R
+        Me.txtTotalR.Name = "txtTotalR"
+        Me.txtTotalR.Size = New System.Drawing.Size(119, 21)
+        Me.txtTotalR.TabIndex = 350
+        Me.txtTotalR.WatermarkAlignment = DevComponents.Editors.eTextAlignment.Right
+        '
+        'lbTotalR
+        '
+        Me.lbTotalR.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbTotalR.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbTotalR.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbTotalR.ForeColor = System.Drawing.Color.White
+        Me.lbTotalR.Location = New System.Drawing.Point(726, 408)
+        Me.lbTotalR.Name = "lbTotalR"
+        Me.lbTotalR.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbTotalR.Size = New System.Drawing.Size(41, 18)
+        Me.lbTotalR.TabIndex = 351
+        Me.lbTotalR.Text = "Total:"
+        '
         'gpReciboInt
         '
-        Me.gpReciboInt.BackColor = System.Drawing.Color.White
+        Me.gpReciboInt.BackColor = System.Drawing.Color.Transparent
         Me.gpReciboInt.CanvasColor = System.Drawing.SystemColors.Control
         Me.gpReciboInt.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.gpReciboInt.Controls.Add(Me.panelServicios)
@@ -582,13 +583,13 @@ Partial Class F1_Fic_ReciboInt
         Me.gpReciboInt.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpReciboInt.Location = New System.Drawing.Point(3, 186)
         Me.gpReciboInt.Name = "gpReciboInt"
-        Me.gpReciboInt.Size = New System.Drawing.Size(893, 245)
+        Me.gpReciboInt.Size = New System.Drawing.Size(893, 217)
         '
         '
         '
-        Me.gpReciboInt.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.gpReciboInt.Style.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
+        Me.gpReciboInt.Style.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
         Me.gpReciboInt.Style.BackColorGradientAngle = 90
-        Me.gpReciboInt.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.gpReciboInt.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
         Me.gpReciboInt.Style.BorderBottomWidth = 1
         Me.gpReciboInt.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
@@ -601,7 +602,7 @@ Partial Class F1_Fic_ReciboInt
         Me.gpReciboInt.Style.CornerDiameter = 4
         Me.gpReciboInt.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
         Me.gpReciboInt.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
-        Me.gpReciboInt.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
+        Me.gpReciboInt.Style.TextColor = System.Drawing.Color.White
         Me.gpReciboInt.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
         '
         '
@@ -621,7 +622,7 @@ Partial Class F1_Fic_ReciboInt
         Me.panelServicios.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelServicios.Location = New System.Drawing.Point(0, 0)
         Me.panelServicios.Name = "panelServicios"
-        Me.panelServicios.Size = New System.Drawing.Size(887, 222)
+        Me.panelServicios.Size = New System.Drawing.Size(887, 194)
         Me.panelServicios.TabIndex = 0
         '
         'JGDetalleReciboInt
@@ -635,7 +636,7 @@ Partial Class F1_Fic_ReciboInt
         Me.JGDetalleReciboInt.Name = "JGDetalleReciboInt"
         Me.JGDetalleReciboInt.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.JGDetalleReciboInt.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.JGDetalleReciboInt.Size = New System.Drawing.Size(887, 222)
+        Me.JGDetalleReciboInt.Size = New System.Drawing.Size(887, 194)
         Me.JGDetalleReciboInt.TabIndex = 0
         Me.JGDetalleReciboInt.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -733,15 +734,15 @@ Partial Class F1_Fic_ReciboInt
         Me.PanelNavegacion.ResumeLayout(False)
         Me.MpanelBuscador.ResumeLayout(False)
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelUsuario.ResumeLayout(False)
         Me.PanelUsuario.PerformLayout()
+        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gpDatosGral.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        CType(Me.txtTotalR, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.diPrecio, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTotalR, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gpReciboInt.ResumeLayout(False)
         Me.panelServicios.ResumeLayout(False)
         CType(Me.JGDetalleReciboInt, System.ComponentModel.ISupportInitialize).EndInit()

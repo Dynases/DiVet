@@ -149,6 +149,7 @@ Partial Class F1_Fic_SegInternacion
         'MpanelBuscador
         '
         Me.MpanelBuscador.BackgroundImage = Global.Presentacion.My.Resources.Resources.Fondo2
+        Me.MpanelBuscador.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.MpanelBuscador.Controls.Add(Me.gpBusqSeguimiento)
         Me.MpanelBuscador.Size = New System.Drawing.Size(929, 666)
         '
@@ -444,9 +445,9 @@ Partial Class F1_Fic_SegInternacion
         '
         '
         '
-        Me.gpSeguimiento.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.gpSeguimiento.Style.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
+        Me.gpSeguimiento.Style.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
         Me.gpSeguimiento.Style.BackColorGradientAngle = 90
-        Me.gpSeguimiento.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.gpSeguimiento.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
         Me.gpSeguimiento.Style.BorderBottomWidth = 1
         Me.gpSeguimiento.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
@@ -459,7 +460,7 @@ Partial Class F1_Fic_SegInternacion
         Me.gpSeguimiento.Style.CornerDiameter = 4
         Me.gpSeguimiento.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
         Me.gpSeguimiento.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
-        Me.gpSeguimiento.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
+        Me.gpSeguimiento.Style.TextColor = System.Drawing.Color.White
         Me.gpSeguimiento.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
         '
         '

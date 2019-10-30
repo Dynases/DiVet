@@ -64,9 +64,9 @@ Partial Class F1_Fic_ReciboCirugia
         Me.PanelNavegacion.SuspendLayout()
         Me.MpanelBuscador.SuspendLayout()
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelUsuario.SuspendLayout()
+        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpDatosGral.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.gpReciboInt.SuspendLayout()
@@ -137,27 +137,11 @@ Partial Class F1_Fic_ReciboCirugia
         'MpanelBuscador
         '
         Me.MpanelBuscador.Controls.Add(Me.gpBusqRecibos)
+        Me.MpanelBuscador.Size = New System.Drawing.Size(918, 656)
         '
         'TxtNombreUsu
         '
         Me.TxtNombreUsu.Text = "DEFAULT"
-        '
-        'superTabControl1
-        '
-        '
-        '
-        '
-        '
-        '
-        '
-        Me.superTabControl1.ControlBox.CloseBox.Name = ""
-        '
-        '
-        '
-        Me.superTabControl1.ControlBox.MenuBox.Name = ""
-        Me.superTabControl1.ControlBox.Name = ""
-        Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
-        Me.superTabControl1.Size = New System.Drawing.Size(918, 681)
         '
         'BubbleBarUsuario
         '
@@ -185,6 +169,24 @@ Partial Class F1_Fic_ReciboCirugia
         'PanelUsuario
         '
         Me.PanelUsuario.Location = New System.Drawing.Point(220, 273)
+        '
+        'superTabControl1
+        '
+        '
+        '
+        '
+        '
+        '
+        '
+        Me.superTabControl1.ControlBox.CloseBox.Name = ""
+        '
+        '
+        '
+        Me.superTabControl1.ControlBox.MenuBox.Name = ""
+        Me.superTabControl1.ControlBox.Name = ""
+        Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
+        Me.superTabControl1.SelectedTabIndex = 1
+        Me.superTabControl1.Size = New System.Drawing.Size(918, 681)
         '
         'gpDatosGral
         '
@@ -658,7 +660,7 @@ Partial Class F1_Fic_ReciboCirugia
         '
         'txtIdReciboC
         '
-        Me.txtIdReciboC.BackColor = System.Drawing.Color.White
+        Me.txtIdReciboC.BackColor = System.Drawing.Color.LightGray
         '
         '
         '
@@ -780,7 +782,7 @@ Partial Class F1_Fic_ReciboCirugia
         Me.gpBusqRecibos.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpBusqRecibos.Location = New System.Drawing.Point(0, 0)
         Me.gpBusqRecibos.Name = "gpBusqRecibos"
-        Me.gpBusqRecibos.Size = New System.Drawing.Size(930, 477)
+        Me.gpBusqRecibos.Size = New System.Drawing.Size(918, 656)
         '
         '
         '
@@ -863,10 +865,10 @@ Partial Class F1_Fic_ReciboCirugia
         Me.PanelNavegacion.ResumeLayout(False)
         Me.MpanelBuscador.ResumeLayout(False)
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelUsuario.ResumeLayout(False)
         Me.PanelUsuario.PerformLayout()
+        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gpDatosGral.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()

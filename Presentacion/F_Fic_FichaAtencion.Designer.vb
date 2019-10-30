@@ -44,6 +44,7 @@ Partial Class F_Fic_FichaAtencion
         'Panel1
         '
         Me.Panel1.BackgroundImage = Global.Presentacion.My.Resources.Resources.Fondo2
+        Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel1.Controls.Add(Me.btnAbajo)
         Me.Panel1.Controls.Add(Me.btnArriba)
         Me.Panel1.Controls.Add(Me.btnActualizar)

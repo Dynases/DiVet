@@ -6,7 +6,8 @@ Public Class PR_ResumenCaja
     Public _nameButton As String
     Public _tab As SuperTabItem
     Public _modulo As SideNavItem
-
+    Dim Vendedor As String = ""
+    Dim Cliente As String = ""
 
 
     Public Sub _prIniciarTodo()
@@ -51,6 +52,8 @@ Public Class PR_ResumenCaja
         If (checkUnaVendedor.Checked And CheckUnaCliente.Checked) Then
             If (tbCodCliente.Text.Length >= 0 And tbCodigoVendedor.Text.Length > 0) Then
                 _dt = L_prResumenCobrosUnaVendedorUnaAlmacen(tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"), tbCodCliente.Text, tbCodigoVendedor.Text)
+                Vendedor = "" + tbVendedor.Text
+                Cliente = "" + tbClientes.Text
             End If
         End If
     End Sub
@@ -58,14 +61,16 @@ Public Class PR_ResumenCaja
         Dim _dt As New DataTable
         _prInterpretarDatos(_dt)
         If (_dt.Rows.Count > 0) Then
-            If (swTipoVenta.Value = True) Then
-                Dim objrep As New R_ResumenCreditoCliente
+            If (checkUnaVendedor.Checked And CheckUnaCliente.Checked And tbCodigoVendedor.Text.Length > 0 And tbCodCliente.Text.Length > 0) Then
+                Dim objrep As New R_ResumenCreditoCliente1
                 objrep.SetDataSource(_dt)
                 Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
                 Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
                 objrep.SetParameterValue("usuario", L_Usuario)
                 objrep.SetParameterValue("fechaI", fechaI)
                 objrep.SetParameterValue("fechaF", fechaF)
+                objrep.SetParameterValue("vendedor", Vendedor)
+                objrep.SetParameterValue("cliente", Cliente)
                 MReportViewer.ReportSource = objrep
                 MReportViewer.Show()
                 MReportViewer.BringToFront()
@@ -81,6 +86,7 @@ Public Class PR_ResumenCaja
                 MReportViewer.Show()
                 MReportViewer.BringToFront()
             End If
+
 
         Else
             ToastNotification.Show(Me, "NO HAY DATOS PARA LOS PARAMETROS SELECCIONADOS..!!!",
@@ -122,11 +128,11 @@ Public Class PR_ResumenCaja
     Private Sub CheckUnaALmacen_CheckValueChanged(sender As Object, e As EventArgs) Handles CheckUnaCliente.CheckValueChanged
         If (CheckUnaCliente.Checked) Then
             CheckTodoCliente.CheckValue = False
-            tbCliente.Enabled = True
+            tbClientes.Enabled = True
             tbCliente.BackColor = Color.White
             tbClientes.BackColor = Color.White
-            tbCliente.Focus()
-            tbCliente.ReadOnly = False
+            tbClientes.Focus()
+            tbClientes.ReadOnly = False
             _prCargarComboLibreriaSucursal(tbCliente)
             If (CType(tbCliente.DataSource, DataTable).Rows.Count > 0) Then
                 tbCliente.SelectedIndex = 0
@@ -170,7 +176,7 @@ Public Class PR_ResumenCaja
         If (checkUnaVendedor.Checked) Then
             If e.KeyData = Keys.Control + Keys.Enter Then
                 Dim dt As DataTable
-                dt = L_fnMostrarEmpleado()
+                dt = L_fnMostrarEmpleadoVendedor()
                 Dim listEstCeldas As New List(Of Modelo.Celda)
                 listEstCeldas.Add(New Modelo.Celda("ecId", True, "ID", 50))
                 listEstCeldas.Add(New Modelo.Celda("ecNomb", True, "Nombre", 180))
@@ -181,8 +187,8 @@ Public Class PR_ResumenCaja
                 listEstCeldas.Add(New Modelo.Celda("ecTelf", True, "Teléfono", 180))
                 listEstCeldas.Add(New Modelo.Celda("ecMail", False, "ecMail", 180))
                 listEstCeldas.Add(New Modelo.Celda("ecEst", False, "ecEst".ToUpper, 150))
-                listEstCeldas.Add(New Modelo.Celda("Estado", True, "Estado".ToUpper, 150))
-                listEstCeldas.Add(New Modelo.Celda("ecFNac", True, "F.de Nacimiento".ToUpper, 150))
+                listEstCeldas.Add(New Modelo.Celda("Estado", True, "Estado", 150))
+                listEstCeldas.Add(New Modelo.Celda("ecFNac", True, "F.de Nacimiento", 150))
                 listEstCeldas.Add(New Modelo.Celda("ecFIngr", False, "F.de Ingreso".ToUpper, 150))
                 listEstCeldas.Add(New Modelo.Celda("ecImg", False, "ecImg".ToUpper, 150))
                 listEstCeldas.Add(New Modelo.Celda("ecFecha", False, "ecImg".ToUpper, 150))
@@ -194,7 +200,7 @@ Public Class PR_ResumenCaja
                 ef.SeleclCol = 1
                 ef.listEstCeldas = listEstCeldas
                 ef.alto = 50
-                ef.ancho = 350
+                ef.ancho = 260
                 ef.Context = "Seleccione Vendedor".ToUpper
                 ef.ShowDialog()
                 Dim bandera As Boolean = False
@@ -227,9 +233,9 @@ Public Class PR_ResumenCaja
                 'caid, caci, canomb, caapell, cadir, catelf, camail, cafecha, cahora, causuario
                 Dim listEstCeldas As New List(Of Modelo.Celda)
                 listEstCeldas.Add(New Modelo.Celda("caid,", False, "ID", 50))
-                listEstCeldas.Add(New Modelo.Celda("caci", True, "CI", 50))
+                listEstCeldas.Add(New Modelo.Celda("caci", True, "CI", 80))
                 listEstCeldas.Add(New Modelo.Celda("canomb", True, "NOMBRE", 180))
-                listEstCeldas.Add(New Modelo.Celda("caapell", True, "APELLIDO", 280))
+                listEstCeldas.Add(New Modelo.Celda("caapell", True, "APELLIDOS", 280))
                 listEstCeldas.Add(New Modelo.Celda("cadir", True, "DIRECCION".ToUpper, 150))
                 listEstCeldas.Add(New Modelo.Celda("catelf", True, "TELEFONO", 220))
                 listEstCeldas.Add(New Modelo.Celda("camail", True, "E MAIL".ToUpper, 200))

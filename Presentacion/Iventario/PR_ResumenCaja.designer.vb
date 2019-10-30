@@ -24,9 +24,9 @@ Partial Class PR_ResumenCaja
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PR_ResumenCaja))
         Dim tbCliente_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.swTipoVenta = New DevComponents.DotNetBar.Controls.SwitchButton()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.tbClientes = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.tbCliente = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.tbVendedor = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.CheckTodoCliente = New DevComponents.DotNetBar.Controls.CheckBoxX()
         Me.CheckUnaCliente = New DevComponents.DotNetBar.Controls.CheckBoxX()
@@ -40,8 +40,6 @@ Partial Class PR_ResumenCaja
         Me.tbFechaF = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
         Me.tbFechaI = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
-        Me.tbClientes = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.tbCliente = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabPrincipal.SuspendLayout()
         Me.SuperTabControlPanelRegistro.SuspendLayout()
@@ -55,11 +53,10 @@ Partial Class PR_ResumenCaja
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MGPFiltros.SuspendLayout()
         Me.PanelIzq.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.tbCliente, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFechaF, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFechaI, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tbCliente, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SuperTabPrincipal
@@ -82,12 +79,12 @@ Partial Class PR_ResumenCaja
         '
         'SuperTabControlPanelBuscador
         '
-        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(2)
         Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(858, 561)
         '
         'SuperTabControlPanelRegistro
         '
-        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(2)
         Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(852, 561)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelIzq, 0)
@@ -106,7 +103,7 @@ Partial Class PR_ResumenCaja
         '
         'PanelInferior
         '
-        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(2)
         Me.PanelInferior.Size = New System.Drawing.Size(852, 36)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Gold
@@ -148,23 +145,21 @@ Partial Class PR_ResumenCaja
         '
         'PanelPrincipal
         '
-        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(2)
         Me.PanelPrincipal.Size = New System.Drawing.Size(489, 525)
         '
         'MPanelUserAct
         '
-        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(2)
         '
         'MReportViewer
         '
-        Me.MReportViewer.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.MReportViewer.Margin = New System.Windows.Forms.Padding(2)
         Me.MReportViewer.Size = New System.Drawing.Size(489, 525)
         '
         'MGPFiltros
         '
         Me.MGPFiltros.Controls.Add(Me.GroupBox2)
-        Me.MGPFiltros.Controls.Add(Me.GroupBox1)
-        Me.MGPFiltros.Size = New System.Drawing.Size(363, 445)
         '
         '
         '
@@ -196,39 +191,6 @@ Partial Class PR_ResumenCaja
         Me.PanelIzq.Controls.SetChildIndex(Me.PanelSuperior, 0)
         Me.PanelIzq.Controls.SetChildIndex(Me.MGPFiltros, 0)
         '
-        'GroupBox1
-        '
-        Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox1.Controls.Add(Me.swTipoVenta)
-        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox1.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(357, 68)
-        Me.GroupBox1.TabIndex = 1
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Agrupados"
-        '
-        'swTipoVenta
-        '
-        '
-        '
-        '
-        Me.swTipoVenta.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.swTipoVenta.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.swTipoVenta.Location = New System.Drawing.Point(96, 20)
-        Me.swTipoVenta.Name = "swTipoVenta"
-        Me.swTipoVenta.OffBackColor = System.Drawing.Color.DarkSlateGray
-        Me.swTipoVenta.OffText = "Vendedor - Cliente"
-        Me.swTipoVenta.OffTextColor = System.Drawing.Color.White
-        Me.swTipoVenta.OnBackColor = System.Drawing.Color.Gold
-        Me.swTipoVenta.OnText = "Cliente - Vendedor"
-        Me.swTipoVenta.Size = New System.Drawing.Size(162, 22)
-        Me.swTipoVenta.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.swTipoVenta.TabIndex = 6
-        Me.swTipoVenta.Value = True
-        Me.swTipoVenta.ValueObject = "Y"
-        '
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
@@ -249,12 +211,45 @@ Partial Class PR_ResumenCaja
         Me.GroupBox2.Controls.Add(Me.tbFechaI)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(0, 68)
+        Me.GroupBox2.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(357, 354)
+        Me.GroupBox2.Size = New System.Drawing.Size(357, 430)
         Me.GroupBox2.TabIndex = 2
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Datos"
+        '
+        'tbClientes
+        '
+        Me.tbClientes.BackColor = System.Drawing.Color.Gainsboro
+        '
+        '
+        '
+        Me.tbClientes.Border.Class = "TextBoxBorder"
+        Me.tbClientes.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbClientes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbClientes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.tbClientes.Location = New System.Drawing.Point(73, 164)
+        Me.tbClientes.Name = "tbClientes"
+        Me.tbClientes.PreventEnterBeep = True
+        Me.tbClientes.Size = New System.Drawing.Size(167, 22)
+        Me.tbClientes.TabIndex = 248
+        '
+        'tbCliente
+        '
+        Me.tbCliente.BackColor = System.Drawing.Color.Gainsboro
+        tbCliente_DesignTimeLayout.LayoutString = resources.GetString("tbCliente_DesignTimeLayout.LayoutString")
+        Me.tbCliente.DesignTimeLayout = tbCliente_DesignTimeLayout
+        Me.tbCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbCliente.Location = New System.Drawing.Point(75, 203)
+        Me.tbCliente.Name = "tbCliente"
+        Me.tbCliente.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.tbCliente.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.tbCliente.SelectedIndex = -1
+        Me.tbCliente.SelectedItem = Nothing
+        Me.tbCliente.Size = New System.Drawing.Size(164, 22)
+        Me.tbCliente.TabIndex = 247
+        Me.tbCliente.Visible = False
+        Me.tbCliente.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'tbVendedor
         '
@@ -514,46 +509,13 @@ Partial Class PR_ResumenCaja
         Me.tbFechaI.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.tbFechaI.TabIndex = 232
         '
-        'tbClientes
-        '
-        Me.tbClientes.BackColor = System.Drawing.Color.Gainsboro
-        '
-        '
-        '
-        Me.tbClientes.Border.Class = "TextBoxBorder"
-        Me.tbClientes.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbClientes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbClientes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbClientes.Location = New System.Drawing.Point(73, 164)
-        Me.tbClientes.Name = "tbClientes"
-        Me.tbClientes.PreventEnterBeep = True
-        Me.tbClientes.Size = New System.Drawing.Size(167, 22)
-        Me.tbClientes.TabIndex = 248
-        '
-        'tbCliente
-        '
-        Me.tbCliente.BackColor = System.Drawing.Color.Gainsboro
-        tbCliente_DesignTimeLayout.LayoutString = resources.GetString("tbCliente_DesignTimeLayout.LayoutString")
-        Me.tbCliente.DesignTimeLayout = tbCliente_DesignTimeLayout
-        Me.tbCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbCliente.Location = New System.Drawing.Point(75, 203)
-        Me.tbCliente.Name = "tbCliente"
-        Me.tbCliente.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
-        Me.tbCliente.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.tbCliente.SelectedIndex = -1
-        Me.tbCliente.SelectedItem = Nothing
-        Me.tbCliente.Size = New System.Drawing.Size(164, 22)
-        Me.tbCliente.TabIndex = 247
-        Me.tbCliente.Visible = False
-        Me.tbCliente.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
-        '
         'PR_ResumenCaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(884, 561)
         Me.Location = New System.Drawing.Point(0, 0)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "PR_ResumenCaja"
         Me.Text = "PR_ResumenCaja"
         Me.Controls.SetChildIndex(Me.SuperTabPrincipal, 0)
@@ -571,18 +533,14 @@ Partial Class PR_ResumenCaja
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MGPFiltros.ResumeLayout(False)
         Me.PanelIzq.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.tbCliente, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbFechaF, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbFechaI, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tbCliente, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents swTipoVenta As DevComponents.DotNetBar.Controls.SwitchButton
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents tbVendedor As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents CheckTodoCliente As DevComponents.DotNetBar.Controls.CheckBoxX

@@ -82,7 +82,7 @@ Public Class F1_Ven_Venta
                 'caid, caci, canomb, caapell, cadir, catelf, camail, cafecha, cahora, causuario
                 Dim listEstCeldas As New List(Of Modelo.Celda)
                 listEstCeldas.Add(New Modelo.Celda("caid,", False, "ID", 50))
-                listEstCeldas.Add(New Modelo.Celda("caci", True, "CI", 50))
+                listEstCeldas.Add(New Modelo.Celda("caci", True, "CI", 80))
                 listEstCeldas.Add(New Modelo.Celda("canomb", True, "NOMBRE", 180))
                 listEstCeldas.Add(New Modelo.Celda("caapell", True, "APELLIDO", 280))
                 listEstCeldas.Add(New Modelo.Celda("cadir", True, "DIRECCION".ToUpper, 150))
@@ -97,7 +97,7 @@ Public Class F1_Ven_Venta
                 ef.SeleclCol = 2
                 ef.listEstCeldas = listEstCeldas
                 ef.alto = 50
-                ef.ancho = 350
+                ef.ancho = 280
                 ef.Context = "Seleccione Cliente".ToUpper
                 ef.ShowDialog()
                 Dim bandera As Boolean = False
@@ -140,10 +140,10 @@ Public Class F1_Ven_Venta
                     listEstCeldas.Add(New Modelo.Celda("pbespec", False, "ESPECIE".ToUpper, 150))
                     listEstCeldas.Add(New Modelo.Celda("Especie", True, "ESPECIE", 220))
                     listEstCeldas.Add(New Modelo.Celda("pbfnac", False, "pbfnac", 220))
-                    listEstCeldas.Add(New Modelo.Celda("pbraza", True, "E MAIL".ToUpper, 200))
-                    listEstCeldas.Add(New Modelo.Celda("Raza", False, "RAZA".ToUpper, 120))
-                    listEstCeldas.Add(New Modelo.Celda("pbsex,", True, "SEXO", 120))
-                    listEstCeldas.Add(New Modelo.Celda("pbcolor,", True, "Color", 50))
+                    listEstCeldas.Add(New Modelo.Celda("pbraza", False, "E MAIL".ToUpper, 200))
+                    listEstCeldas.Add(New Modelo.Celda("Raza", False, "RAZA", 120))
+                    listEstCeldas.Add(New Modelo.Celda("pbsex,", True, "SEXO", 100))
+                    listEstCeldas.Add(New Modelo.Celda("pbcolor,", True, "COLOR", 120))
                     listEstCeldas.Add(New Modelo.Celda("pbester,", False, "Esterilacion", 50))
                     listEstCeldas.Add(New Modelo.Celda("pbdest,", False, "ID", 50))
                     listEstCeldas.Add(New Modelo.Celda("pbseñas,", False, "ID", 50))
@@ -156,8 +156,8 @@ Public Class F1_Ven_Venta
                     ef.dt = dt
                     ef.SeleclCol = 2
                     ef.listEstCeldas = listEstCeldas
-                    ef.alto = 50
-                    ef.ancho = 350
+                    ef.alto = 70
+                    ef.ancho = 310
                     ef.Context = "Seleccione un Paciente".ToUpper
                     ef.ShowDialog()
                     Dim bandera As Boolean = False
@@ -182,7 +182,7 @@ Public Class F1_Ven_Venta
     Private Sub txtIdVendedor_KeyDown(sender As Object, e As KeyEventArgs) Handles txtIdVendedor.KeyDown
         If e.KeyData = Keys.Control + Keys.Enter Then
             Dim dt As DataTable
-            dt = L_fnMostrarEmpleado()
+            dt = L_fnMostrarEmpleadoVendedor()
             Dim listEstCeldas As New List(Of Modelo.Celda)
             listEstCeldas.Add(New Modelo.Celda("ecId,", True, "ID", 50))
             listEstCeldas.Add(New Modelo.Celda("ecNomb", True, "Nombre", 180))
@@ -190,12 +190,12 @@ Public Class F1_Ven_Venta
             listEstCeldas.Add(New Modelo.Celda("lbdesc", True, "Tipo de Empleado", 180))
             listEstCeldas.Add(New Modelo.Celda("ecCi", True, "N. Documento", 100))
             listEstCeldas.Add(New Modelo.Celda("ecDir", False, "Direccion", 180))
-            listEstCeldas.Add(New Modelo.Celda("ecTelf", True, "ecTelf", 180))
+            listEstCeldas.Add(New Modelo.Celda("ecTelf", True, "Teléfono", 180))
             listEstCeldas.Add(New Modelo.Celda("ecMail", False, "ecMail", 180))
             listEstCeldas.Add(New Modelo.Celda("ecEst", False, "ecEst".ToUpper, 150))
-            listEstCeldas.Add(New Modelo.Celda("Estado", True, "Estado".ToUpper, 150))
-            listEstCeldas.Add(New Modelo.Celda("ecFNac", True, "F.de Nacimiento".ToUpper, 150))
-            listEstCeldas.Add(New Modelo.Celda("ecFIngr", False, "F.de Ingreso".ToUpper, 150))
+            listEstCeldas.Add(New Modelo.Celda("Estado", True, "Estado", 150))
+            listEstCeldas.Add(New Modelo.Celda("ecFNac", False, "F. de Nacimiento", 150))
+            listEstCeldas.Add(New Modelo.Celda("ecFIngr", False, "F. de Ingreso".ToUpper, 150))
             listEstCeldas.Add(New Modelo.Celda("ecImg", False, "ecImg".ToUpper, 150))
             listEstCeldas.Add(New Modelo.Celda("ecFecha", False, "ecImg".ToUpper, 150))
             listEstCeldas.Add(New Modelo.Celda("ecHora", False, "ecImg".ToUpper, 150))
@@ -871,7 +871,11 @@ salirIf:
             .Visible = True
             .Caption = "Cliente"
         End With
-
+        With grVentas.RootTable.Columns("pbnomb")
+            .Width = 190
+            .Visible = True
+            .Caption = "Paciente"
+        End With
         With grVentas.RootTable.Columns("va_ecId")
             .Width = 160
             .Visible = False
@@ -879,7 +883,7 @@ salirIf:
         With grVentas.RootTable.Columns("Empleado")
             .Width = 220
             .Visible = True
-            .Caption = "Vendedor".ToUpper
+            .Caption = "Vendedor"
         End With
         With grVentas.RootTable.Columns("vaTipoVe")
             .Width = 50

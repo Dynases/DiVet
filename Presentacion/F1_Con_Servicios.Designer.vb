@@ -380,9 +380,9 @@ Partial Class F1_Con_Servicios
         '
         '
         '
-        Me.gpServicios.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.gpServicios.Style.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
+        Me.gpServicios.Style.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
         Me.gpServicios.Style.BackColorGradientAngle = 90
-        Me.gpServicios.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.gpServicios.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
         Me.gpServicios.Style.BorderBottomWidth = 1
         Me.gpServicios.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
@@ -395,8 +395,7 @@ Partial Class F1_Con_Servicios
         Me.gpServicios.Style.CornerDiameter = 4
         Me.gpServicios.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
         Me.gpServicios.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
-        Me.gpServicios.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
-        Me.gpServicios.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
+        Me.gpServicios.Style.TextColor = System.Drawing.Color.White
         '
         '
         '

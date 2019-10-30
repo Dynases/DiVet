@@ -415,7 +415,9 @@ Partial Class F1_Fic_FichaClinica
         'MpanelBuscador
         '
         Me.MpanelBuscador.BackgroundImage = Global.Presentacion.My.Resources.Resources.Fondo2
+        Me.MpanelBuscador.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.MpanelBuscador.Controls.Add(Me.gpBusqFichaClinica)
+        Me.MpanelBuscador.Size = New System.Drawing.Size(935, 668)
         '
         'TxtNombreUsu
         '

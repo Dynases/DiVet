@@ -138,6 +138,10 @@ Partial Class F1_Reg_Empleados
         'btnPrimero
         '
         '
+        'MpanelBuscador
+        '
+        Me.MpanelBuscador.Size = New System.Drawing.Size(967, 621)
+        '
         'TxtNombreUsu
         '
         Me.TxtNombreUsu.Text = "DEFAULT"

@@ -222,7 +222,8 @@ Partial Class F0_Reg_Clientes
         '
         'PanelBuscador
         '
-        Me.PanelBuscador.BackColor = System.Drawing.SystemColors.Highlight
+        Me.PanelBuscador.BackColor = System.Drawing.Color.SteelBlue
+        Me.PanelBuscador.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PanelBuscador.Controls.Add(Me.btnEmergencia)
         Me.PanelBuscador.Controls.Add(Me.dtpFechaAct)
         Me.PanelBuscador.Controls.Add(Me.btnAsignarFicha)

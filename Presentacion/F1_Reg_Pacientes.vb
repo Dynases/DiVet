@@ -12,7 +12,7 @@ Public Class F1_Reg_Pacientes
 #Region "EVENTOS"
     Private Sub F1_Reg_Pacientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _prIniciarTodo()
-        'superTabControl1.SelectedTabIndex = 0
+        superTabControl1.SelectedTabIndex = 0
     End Sub
     Private Sub JGBusqMascotas_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGBusqMascotas.EditingCell
         e.Cancel = True

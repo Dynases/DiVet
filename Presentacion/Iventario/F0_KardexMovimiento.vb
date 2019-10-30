@@ -127,7 +127,7 @@ Public Class F0_KardexMovimiento
             Dim listEstCeldas As New List(Of Modelo.Celda)
             listEstCeldas.Add(New Modelo.Celda("yfnumi", True, "ID", 50))
             listEstCeldas.Add(New Modelo.Celda("producto", True, "PRODUCTO", 280))
-            listEstCeldas.Add(New Modelo.Celda("descripcioncorta", True, "DESC. CORTA".ToUpper, 150))
+            listEstCeldas.Add(New Modelo.Celda("descripcioncorta", False, "DESC. CORTA".ToUpper, 150))
             listEstCeldas.Add(New Modelo.Celda("yfcprod", False, "COD PRODUCTO", 150))
 
             listEstCeldas.Add(New Modelo.Celda("stock", True, "StockGeneral".ToUpper, 140))
@@ -136,7 +136,7 @@ Public Class F0_KardexMovimiento
             ef.dt = dt
             ef.SeleclCol = 2
             ef.listEstCeldas = listEstCeldas
-            ef.alto = 50
+            ef.alto = 120
             ef.ancho = 200
             ef.Context = "Seleccione PRODUCTO".ToUpper
             ef.ShowDialog()
@@ -649,8 +649,8 @@ Public Class F0_KardexMovimiento
             ef.dt = dt
             ef.SeleclCol = 2
             ef.listEstCeldas = listEstCeldas
-            ef.alto = 50
-            ef.ancho = 350
+            ef.alto = 580
+            ef.ancho = 200
             ef.Context = "Seleccione Lote del producto".ToUpper
             ef.ShowDialog()
             Dim bandera As Boolean = False

@@ -147,12 +147,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="F0_Com_Proveedor.Designer.vb">
-      <DependentUpon>F0_Com_Proveedor.vb</DependentUpon>
-    </Compile>
-    <Compile Include="F0_Com_Proveedor.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="F0_Reg_Clientes.Designer.vb">
       <DependentUpon>F0_Reg_Clientes.vb</DependentUpon>
     </Compile>
@@ -163,12 +157,6 @@
       <DependentUpon>F1_Con_Librerias.vb</DependentUpon>
     </Compile>
     <Compile Include="F1_Con_Librerias.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="F1_Con_Precios.Designer.vb">
-      <DependentUpon>F1_Con_Precios.vb</DependentUpon>
-    </Compile>
-    <Compile Include="F1_Con_Precios.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="F1_Con_Servicios.Designer.vb">
@@ -575,17 +563,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="F0_Com_Proveedor.resx">
-      <DependentUpon>F0_Com_Proveedor.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="F0_Reg_Clientes.resx">
       <DependentUpon>F0_Reg_Clientes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="F1_Con_Librerias.resx">
       <DependentUpon>F1_Con_Librerias.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="F1_Con_Precios.resx">
-      <DependentUpon>F1_Con_Precios.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="F1_Con_Servicios.resx">
       <DependentUpon>F1_Con_Servicios.vb</DependentUpon>

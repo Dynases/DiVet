@@ -285,7 +285,7 @@ salirIf:
         With JGBusqRecibos.RootTable.Columns("rk_fbId")
             .Width = 70
             .Caption = "IdFicha"
-            .Visible = True
+            .Visible = False
         End With
         With JGBusqRecibos.RootTable.Columns("rkEst")
             .Width = 100
@@ -294,11 +294,11 @@ salirIf:
         End With
         With JGBusqRecibos.RootTable.Columns("rkFechaIng")
             .Width = 120
-            .Caption = "fecha"
+            .Caption = "Fecha"
             .Visible = True
         End With
         With JGBusqRecibos.RootTable.Columns("Cliente")
-            .Width = 150
+            .Width = 190
             .Caption = "Cliente"
             .Visible = True
         End With
@@ -798,6 +798,7 @@ salirIf:
         'JGBusqRecibos.Enabled = False 'Deshabilita el buscador de la Grilla
         _prHabilitar()
     End Sub
+
 
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
         _prImprimir()

@@ -395,7 +395,7 @@ Public Class F1_Fic_ReciboCirugia
             .Visible = True
         End With
         With JGBusqRecibosC.RootTable.Columns("Cliente")
-            .Width = 180
+            .Width = 240
             .Caption = "Cliente"
             .Visible = True
         End With
@@ -405,7 +405,7 @@ Public Class F1_Fic_ReciboCirugia
             .Visible = False
         End With
         With JGBusqRecibosC.RootTable.Columns("pbnomb")
-            .Width = 180
+            .Width = 190
             .Caption = "Paciente"
             .Visible = True
         End With
@@ -932,6 +932,7 @@ Public Class F1_Fic_ReciboCirugia
             'txtTotalRC.Value = Suma
         End If
     End Sub
+
 
     Public Overrides Sub _PMOModificar()
         _prHabilitar()

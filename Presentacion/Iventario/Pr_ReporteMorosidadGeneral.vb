@@ -14,6 +14,8 @@ Public Class Pr_ReporteMorosidadGeneral
 
     Public Sub _prIniciarTodo()
         'L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
+        tbFechaI.Value = Now.Date
+        tbFechaF.Value = Now.Date
         _PMIniciarTodo()
         Me.Text = "NOTAS POR COBRAR"
         MReportViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
@@ -184,7 +186,7 @@ Public Class Pr_ReporteMorosidadGeneral
         If (checkUnaVendedor.Checked) Then
             If e.KeyData = Keys.Control + Keys.Enter Then
                 Dim dt As DataTable
-                dt = L_fnMostrarEmpleado()
+                dt = L_fnMostrarEmpleadoVendedor()
                 Dim listEstCeldas As New List(Of Modelo.Celda)
                 listEstCeldas.Add(New Modelo.Celda("ecId", True, "ID", 50))
                 listEstCeldas.Add(New Modelo.Celda("ecNomb", True, "Nombre", 180))
@@ -195,8 +197,8 @@ Public Class Pr_ReporteMorosidadGeneral
                 listEstCeldas.Add(New Modelo.Celda("ecTelf", True, "Teléfono", 180))
                 listEstCeldas.Add(New Modelo.Celda("ecMail", False, "ecMail", 180))
                 listEstCeldas.Add(New Modelo.Celda("ecEst", False, "ecEst".ToUpper, 150))
-                listEstCeldas.Add(New Modelo.Celda("Estado", True, "Estado".ToUpper, 150))
-                listEstCeldas.Add(New Modelo.Celda("ecFNac", True, "F.de Nacimiento".ToUpper, 150))
+                listEstCeldas.Add(New Modelo.Celda("Estado", True, "Estado", 150))
+                listEstCeldas.Add(New Modelo.Celda("ecFNac", True, "F.de Nacimiento", 150))
                 listEstCeldas.Add(New Modelo.Celda("ecFIngr", False, "F.de Ingreso".ToUpper, 150))
                 listEstCeldas.Add(New Modelo.Celda("ecImg", False, "ecImg".ToUpper, 150))
                 listEstCeldas.Add(New Modelo.Celda("ecFecha", False, "ecImg".ToUpper, 150))
@@ -241,7 +243,7 @@ Public Class Pr_ReporteMorosidadGeneral
                 'caid, caci, canomb, caapell, cadir, catelf, camail, cafecha, cahora, causuario
                 Dim listEstCeldas As New List(Of Modelo.Celda)
                 listEstCeldas.Add(New Modelo.Celda("caid,", False, "ID", 50))
-                listEstCeldas.Add(New Modelo.Celda("caci", True, "CI", 50))
+                listEstCeldas.Add(New Modelo.Celda("caci", True, "CI", 80))
                 listEstCeldas.Add(New Modelo.Celda("canomb", True, "NOMBRE", 180))
                 listEstCeldas.Add(New Modelo.Celda("caapell", True, "APELLIDO", 280))
                 listEstCeldas.Add(New Modelo.Celda("cadir", True, "DIRECCION".ToUpper, 150))

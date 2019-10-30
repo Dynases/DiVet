@@ -52,9 +52,9 @@ Partial Class F1_Con_Usuarios
         Me.MPanelUserAct.SuspendLayout()
         Me.PanelNavegacion.SuspendLayout()
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelUsuario.SuspendLayout()
+        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         CType(Me.cbRol, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpBusquedaUsuarios.SuspendLayout()
@@ -118,27 +118,6 @@ Partial Class F1_Con_Usuarios
         '
         Me.TxtNombreUsu.Text = "DEFAULT"
         '
-        'superTabControl1
-        '
-        '
-        '
-        '
-        '
-        '
-        '
-        Me.superTabControl1.ControlBox.CloseBox.Name = ""
-        '
-        '
-        '
-        Me.superTabControl1.ControlBox.MenuBox.Name = ""
-        Me.superTabControl1.ControlBox.Name = ""
-        Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
-        Me.superTabControl1.Size = New System.Drawing.Size(871, 571)
-        '
-        'superTabItem2
-        '
-        Me.superTabItem2.Visible = False
-        '
         'BubbleBarUsuario
         '
         '
@@ -165,6 +144,27 @@ Partial Class F1_Con_Usuarios
         'PanelUsuario
         '
         Me.PanelUsuario.Location = New System.Drawing.Point(637, 146)
+        '
+        'superTabItem2
+        '
+        Me.superTabItem2.Visible = False
+        '
+        'superTabControl1
+        '
+        '
+        '
+        '
+        '
+        '
+        '
+        Me.superTabControl1.ControlBox.CloseBox.Name = ""
+        '
+        '
+        '
+        Me.superTabControl1.ControlBox.MenuBox.Name = ""
+        Me.superTabControl1.ControlBox.Name = ""
+        Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
+        Me.superTabControl1.Size = New System.Drawing.Size(871, 571)
         '
         'Panel2
         '
@@ -513,9 +513,9 @@ Partial Class F1_Con_Usuarios
         '
         '
         '
-        Me.gpBusquedaUsuarios.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.gpBusquedaUsuarios.Style.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
+        Me.gpBusquedaUsuarios.Style.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
         Me.gpBusquedaUsuarios.Style.BackColorGradientAngle = 90
-        Me.gpBusquedaUsuarios.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.gpBusquedaUsuarios.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
         Me.gpBusquedaUsuarios.Style.BorderBottomWidth = 1
         Me.gpBusquedaUsuarios.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
@@ -529,7 +529,7 @@ Partial Class F1_Con_Usuarios
         Me.gpBusquedaUsuarios.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
         Me.gpBusquedaUsuarios.Style.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpBusquedaUsuarios.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
-        Me.gpBusquedaUsuarios.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
+        Me.gpBusquedaUsuarios.Style.TextColor = System.Drawing.Color.White
         Me.gpBusquedaUsuarios.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
         '
         '
@@ -580,10 +580,10 @@ Partial Class F1_Con_Usuarios
         Me.MPanelUserAct.PerformLayout()
         Me.PanelNavegacion.ResumeLayout(False)
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelUsuario.ResumeLayout(False)
         Me.PanelUsuario.PerformLayout()
+        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         CType(Me.cbRol, System.ComponentModel.ISupportInitialize).EndInit()

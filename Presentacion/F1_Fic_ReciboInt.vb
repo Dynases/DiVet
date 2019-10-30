@@ -746,6 +746,11 @@ Public Class F1_Fic_ReciboInt
         _prLimpiar()
         _prHabilitar()
     End Sub
+
+    Private Sub MpanelSuperior_Paint(sender As Object, e As PaintEventArgs) Handles MpanelSuperior.Paint
+
+    End Sub
+
     Public Overrides Sub _PMOModificar()
         'JGBusqRecibosI.Enabled = False 'Deshabilita el buscador de la Grilla
         _prHabilitar()
