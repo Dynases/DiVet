@@ -41,6 +41,39 @@ Public Class AccesoLogica
     End Function
 #End Region
 
+#Region "VALIDAR ELIMINACION"
+    Public Shared Function L_fnbValidarEliminacion(_numi As String, _tablaOri As String, _campoOri As String, ByRef _respuesta As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim _Where, _campos As String
+        _Where = "bbtori='" + _tablaOri + "' and bbtran=1"
+        _campos = "bbnumi,bbtran,bbtori,bbcori,bbtdes,bbcdes,bbprog"
+        _Tabla = D_Datos_Tabla(_campos, "TB002", _Where)
+        _respuesta = "no se puede eliminar el registro: ".ToUpper + _numi + " por que esta siendo usado en los siguientes programas: ".ToUpper + vbCrLf
+
+        Dim result As Boolean = True
+        For Each fila As DataRow In _Tabla.Rows
+            If L_fnbExisteRegEnTabla(_numi, fila.Item("bbtdes").ToString, fila.Item("bbcdes").ToString) = True Then
+                _respuesta = _respuesta + fila.Item("bbprog").ToString + vbCrLf
+                result = False
+            End If
+        Next
+        Return result
+    End Function
+
+    Private Shared Function L_fnbExisteRegEnTabla(_numiOri As String, _tablaDest As String, _campoDest As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim _Where, _campos As String
+        _Where = _campoDest + "=" + _numiOri
+        _campos = _campoDest
+        _Tabla = D_Datos_Tabla(_campos, _tablaDest, _Where)
+        If _Tabla.Rows.Count > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+#End Region
+
 #Region "SERVICIOS CON.SER002"
 #Region "Transacciones"
 
@@ -92,16 +125,20 @@ Public Class AccesoLogica
     'Eliminar 
     Public Shared Function L_fnEliminarServicio(ByRef _scId As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
-        Dim _Tabla As DataTable
-        Dim _listParam As New List(Of Datos.DParametro)
+        If L_fnbValidarEliminacion(_scId, "CON.SER002", "scId", mensaje) = True Then
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
 
-        _listParam.Add(New Datos.DParametro("@tipo", 3))
-        _listParam.Add(New Datos.DParametro("@scId", _scId))
-        _listParam.Add(New Datos.DParametro("@scUsuario", L_Usuario))
-        _Tabla = D_ProcedimientoConParam("CON.sp_SER002", _listParam)
-        If _Tabla.Rows.Count > 0 Then
-            _scId = _Tabla.Rows(0).Item(0)
-            _resultado = True
+            _listParam.Add(New Datos.DParametro("@tipo", 3))
+            _listParam.Add(New Datos.DParametro("@scId", _scId))
+            _listParam.Add(New Datos.DParametro("@scUsuario", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("CON.sp_SER002", _listParam)
+            If _Tabla.Rows.Count > 0 Then
+                _scId = _Tabla.Rows(0).Item(0)
+                _resultado = True
+            Else
+                _resultado = False
+            End If
         Else
             _resultado = False
         End If
@@ -218,22 +255,26 @@ Public Class AccesoLogica
 #End Region
 #End Region
 
-#Region " REG.CLIENTES TCLI001"
+#Region " REG.CLIENTES CLI001"
 #Region "Transacciones"
     'Eliminar clientes
     Public Shared Function L_fnEliminarClientes(ByRef _caid As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
-        Dim _Tabla As DataTable
-        Dim _listParam As New List(Of Datos.DParametro)
+        If L_fnbValidarEliminacion(_caid, "REG.CLI001", "caid", mensaje) = True Then
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
 
-        _listParam.Add(New Datos.DParametro("@tipo", -1))
-        _listParam.Add(New Datos.DParametro("@caid", _caid))
-        _listParam.Add(New Datos.DParametro("@causuario", L_Usuario))
-        _Tabla = D_ProcedimientoConParam("REG.sp_CLI001", _listParam)
+            _listParam.Add(New Datos.DParametro("@tipo", -1))
+            _listParam.Add(New Datos.DParametro("@caid", _caid))
+            _listParam.Add(New Datos.DParametro("@causuario", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("REG.sp_CLI001", _listParam)
 
-        If _Tabla.Rows.Count > 0 Then
-            '_caid = _Tabla.Rows(0).Item(0)
-            _resultado = True
+            If _Tabla.Rows.Count > 0 Then
+                '_caid = _Tabla.Rows(0).Item(0)
+                _resultado = True
+            Else
+                _resultado = False
+            End If
         Else
             _resultado = False
         End If
@@ -473,17 +514,21 @@ Public Class AccesoLogica
     'Eliminar PACIENTE
     Public Shared Function L_fnEliminarPaciente(ByRef _pbid As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
-        Dim _Tabla As DataTable
-        Dim _listParam As New List(Of Datos.DParametro)
+        If L_fnbValidarEliminacion(_pbid, "REG.PAC0011", "pbid", mensaje) = True Then
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
 
-        _listParam.Add(New Datos.DParametro("@tipo", -1))
-        _listParam.Add(New Datos.DParametro("@pbid", _pbid))
-        _listParam.Add(New Datos.DParametro("@pbusuario", L_Usuario))
-        _Tabla = D_ProcedimientoConParam("REG.sp_PAC0011", _listParam)
+            _listParam.Add(New Datos.DParametro("@tipo", -1))
+            _listParam.Add(New Datos.DParametro("@pbid", _pbid))
+            _listParam.Add(New Datos.DParametro("@pbusuario", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("REG.sp_PAC0011", _listParam)
 
-        If _Tabla.Rows.Count > 0 Then
-            '_caid = _Tabla.Rows(0).Item(0)
-            _resultado = True
+            If _Tabla.Rows.Count > 0 Then
+                '_caid = _Tabla.Rows(0).Item(0)
+                _resultado = True
+            Else
+                _resultado = False
+            End If
         Else
             _resultado = False
         End If
@@ -590,16 +635,19 @@ Public Class AccesoLogica
     'Eliminar 
     Public Shared Function L_fnEliminarEmpleado(ByRef _ecId As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
-        Dim _Tabla As DataTable
-        Dim _listParam As New List(Of Datos.DParametro)
-
-        _listParam.Add(New Datos.DParametro("@tipo", 3))
-        _listParam.Add(New Datos.DParametro("@ecId", _ecId))
-        _listParam.Add(New Datos.DParametro("@ecUsuario", L_Usuario))
-        _Tabla = D_ProcedimientoConParam("REG.sp_EMP002", _listParam)
-        If _Tabla.Rows.Count > 0 Then
-            _ecId = _Tabla.Rows(0).Item(0)
-            _resultado = True
+        If L_fnbValidarEliminacion(_ecId, "REG.EMP002", "ecId", mensaje) = True Then
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
+            _listParam.Add(New Datos.DParametro("@tipo", 3))
+            _listParam.Add(New Datos.DParametro("@ecId", _ecId))
+            _listParam.Add(New Datos.DParametro("@ecUsuario", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("REG.sp_EMP002", _listParam)
+            If _Tabla.Rows.Count > 0 Then
+                _ecId = _Tabla.Rows(0).Item(0)
+                _resultado = True
+            Else
+                _resultado = False
+            End If
         Else
             _resultado = False
         End If
@@ -740,17 +788,21 @@ Public Class AccesoLogica
     '********Eliminar
     Public Shared Function L_fnEliminarFichaClinica(ByRef _fbId As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
-        Dim _Tabla As DataTable
-        Dim _listParam As New List(Of Datos.DParametro)
+        If L_fnbValidarEliminacion(_fbId, "FIC.CLIN002", "fbId", mensaje) = True Then
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
 
-        _listParam.Add(New Datos.DParametro("@tipo", -1))
-        _listParam.Add(New Datos.DParametro("@fbId", _fbId))
-        _listParam.Add(New Datos.DParametro("@fbUsuario", L_Usuario))
-        _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
+            _listParam.Add(New Datos.DParametro("@tipo", -1))
+            _listParam.Add(New Datos.DParametro("@fbId", _fbId))
+            _listParam.Add(New Datos.DParametro("@fbUsuario", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
 
-        If _Tabla.Rows.Count > 0 Then
-            _fbId = _Tabla.Rows(0).Item(0)
-            _resultado = True
+            If _Tabla.Rows.Count > 0 Then
+                _fbId = _Tabla.Rows(0).Item(0)
+                _resultado = True
+            Else
+                _resultado = False
+            End If
         Else
             _resultado = False
         End If
@@ -1321,15 +1373,19 @@ Public Class AccesoLogica
     '********Eliminar
     Public Shared Function L_fnEliminarRecibo(ByRef _rkId As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
-        Dim _Tabla As DataTable
-        Dim _listParam As New List(Of Datos.DParametro)
-        _listParam.Add(New Datos.DParametro("@tipo", 3))
-        _listParam.Add(New Datos.DParametro("@rkId", _rkId))
-        _listParam.Add(New Datos.DParametro("@rkusuario", L_Usuario))
-        _Tabla = D_ProcedimientoConParam("FIC.sp_REC003", _listParam)
-        If _Tabla.Rows.Count > 0 Then
-            _rkId = _Tabla.Rows(0).Item(0)
-            _resultado = True
+        If L_fnbValidarEliminacion(_rkId, "FIC.REC003", "rkId", mensaje) = True Then
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
+            _listParam.Add(New Datos.DParametro("@tipo", 3))
+            _listParam.Add(New Datos.DParametro("@rkId", _rkId))
+            _listParam.Add(New Datos.DParametro("@rkusuario", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("FIC.sp_REC003", _listParam)
+            If _Tabla.Rows.Count > 0 Then
+                _rkId = _Tabla.Rows(0).Item(0)
+                _resultado = True
+            Else
+                _resultado = False
+            End If
         Else
             _resultado = False
         End If
@@ -1440,19 +1496,25 @@ Public Class AccesoLogica
     '********Eliminar
     Public Shared Function L_fnEliminarReciboInt(ByRef rmId As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
-        Dim _Tabla As DataTable
-        Dim _listParam As New List(Of Datos.DParametro)
-        _listParam.Add(New Datos.DParametro("@tipo", 3))
-        _listParam.Add(New Datos.DParametro("@rmId", rmId))
-        _listParam.Add(New Datos.DParametro("@rmusuario", L_Usuario))
-        _Tabla = D_ProcedimientoConParam("FIC.sp_RECINT004", _listParam)
-        If _Tabla.Rows.Count > 0 Then
-            rmId = _Tabla.Rows(0).Item(0)
-            _resultado = True
+        If L_fnbValidarEliminacion(rmId, "FIC.RECINT004", "rmId", mensaje) = True Then
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
+            _listParam.Add(New Datos.DParametro("@tipo", 3))
+            _listParam.Add(New Datos.DParametro("@rmId", rmId))
+            _listParam.Add(New Datos.DParametro("@rmusuario", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("FIC.sp_RECINT004", _listParam)
+            If _Tabla.Rows.Count > 0 Then
+                rmId = _Tabla.Rows(0).Item(0)
+                _resultado = True
+            Else
+                _resultado = False
+            End If
+            Return _resultado
         Else
             _resultado = False
         End If
         Return _resultado
+
     End Function
 #End Region
 #Region "Consultas"
@@ -1546,16 +1608,20 @@ Public Class AccesoLogica
     '********Eliminar
     Public Shared Function L_fnEliminarReciboCir(ByRef roId As String, ByRef mensaje As String, ro_rmId As String) As Boolean
         Dim _resultado As Boolean
-        Dim _Tabla As DataTable
-        Dim _listParam As New List(Of Datos.DParametro)
-        _listParam.Add(New Datos.DParametro("@tipo", 3))
-        _listParam.Add(New Datos.DParametro("@roId", roId))
-        _listParam.Add(New Datos.DParametro("@ro_rmId", ro_rmId))
-        _listParam.Add(New Datos.DParametro("@rousuario", L_Usuario))
-        _Tabla = D_ProcedimientoConParam("FIC.sp_RECCIR005", _listParam)
-        If _Tabla.Rows.Count > 0 Then
-            roId = _Tabla.Rows(0).Item(0)
-            _resultado = True
+        If L_fnbValidarEliminacion(roId, "FIC.RECCIR005", "roId", mensaje) = True Then
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
+            _listParam.Add(New Datos.DParametro("@tipo", 3))
+            _listParam.Add(New Datos.DParametro("@roId", roId))
+            _listParam.Add(New Datos.DParametro("@ro_rmId", ro_rmId))
+            _listParam.Add(New Datos.DParametro("@rousuario", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("FIC.sp_RECCIR005", _listParam)
+            If _Tabla.Rows.Count > 0 Then
+                roId = _Tabla.Rows(0).Item(0)
+                _resultado = True
+            Else
+                _resultado = False
+            End If
         Else
             _resultado = False
         End If
@@ -1836,33 +1902,36 @@ Public Class AccesoLogica
     End Function
 #End Region
 #Region "Verificaciones"
-    'Public Shared Function L_fnExisteRecibo(_fbId As String) As Boolean
-    '    Dim _Tabla As DataTable
-    '    Dim _res As Boolean = False
-    '    Dim _where = String.Format(" ig_FbId = {0} ", _fbId)
-    '    _Tabla = D_Datos_Tabla(" COUNT(*) ", " FIC.INT0025 ", _where)
-    '    Return _res = IIf(_Tabla.Rows(0).Item(0) <> 0, True, False)
-    'End Function
+    Public Shared Function L_fnExisteEliminarVenta(_fbId As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim _res As Boolean = False
+        Dim _where = String.Format(" ig_FbId = {0} ", _fbId)
+        _Tabla = D_Datos_Tabla(" COUNT(*) ", " FIC.INT0025 ", _where)
+        Return _res = IIf(_Tabla.Rows(0).Item(0) <> 0, True, False)
+    End Function
 #End Region
 #End Region
 #Region "TA001 Almacen"
     Public Shared Function L_fnEliminarAlmacen(numi As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
-        Dim _Tabla As DataTable
-        Dim _listParam As New List(Of Datos.DParametro)
+        If L_fnbValidarEliminacion(numi, "TA001", "aanumi", mensaje) = True Then
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
 
-        _listParam.Add(New Datos.DParametro("@tipo", -1))
-        _listParam.Add(New Datos.DParametro("@aanumi", numi))
-        _listParam.Add(New Datos.DParametro("@aauact", L_Usuario))
+            _listParam.Add(New Datos.DParametro("@tipo", -1))
+            _listParam.Add(New Datos.DParametro("@aanumi", numi))
+            _listParam.Add(New Datos.DParametro("@aauact", L_Usuario))
 
-        _Tabla = D_ProcedimientoConParam("sp_Mam_TA001", _listParam)
+            _Tabla = D_ProcedimientoConParam("sp_Mam_TA001", _listParam)
 
-        If _Tabla.Rows.Count > 0 Then
-            _resultado = True
+            If _Tabla.Rows.Count > 0 Then
+                _resultado = True
+            Else
+                _resultado = False
+            End If
         Else
             _resultado = False
         End If
-
         Return _resultado
     End Function
 
@@ -1970,22 +2039,21 @@ Public Class AccesoLogica
 
     Public Shared Function L_fnEliminarProducto(numi As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
-
-        Dim _Tabla As DataTable
-        Dim _listParam As New List(Of Datos.DParametro)
-
-        _listParam.Add(New Datos.DParametro("@tipo", -1))
-        _listParam.Add(New Datos.DParametro("@yfnumi", numi))
-        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
-
-        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
-
-        If _Tabla.Rows.Count > 0 Then
-            _resultado = True
+        If L_fnbValidarEliminacion(numi, "TY005", "yfnumi", mensaje) = True Then
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
+            _listParam.Add(New Datos.DParametro("@tipo", -1))
+            _listParam.Add(New Datos.DParametro("@yfnumi", numi))
+            _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+            If _Tabla.Rows.Count > 0 Then
+                _resultado = True
+            Else
+                _resultado = False
+            End If
         Else
             _resultado = False
         End If
-
         Return _resultado
     End Function
 
@@ -2981,6 +3049,7 @@ Public Class AccesoLogica
     End Function
 
     Public Shared Function L_fnEliminarCompra(numi As String, ByRef mensaje As String) As Boolean
+
         Dim _resultado As Boolean
 
         Dim _Tabla As DataTable
