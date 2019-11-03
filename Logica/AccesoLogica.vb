@@ -1664,7 +1664,7 @@ Public Class AccesoLogica
     '********Registrar
     'vaId, va_rkId, va_caId, va_ecId, vaTipoVe, vaFechaDoc, vaFechaVenCre, vaObser, vaEst, vaDesc, vaTotal, vaFecha, vaHora, vausuario
     Public Shared Function L_fnGrabarVenta(ByRef vaId As String, va_rkId As String, va_roId As String, va_rmId As String, va_pbId As String, va_caId As String, va_ecId As String, vaTipoVe As String, vaFechaDoc As String,
-                                            vaFechaVenCre As String, vaObser As String, vaDesc As String, vaTotal As String, _VEN001 As DataTable, vaAlm As String)
+                                            vaFechaVenCre As String, vaObser As String, vaDesc As String, vaTotal As String, _VEN001 As DataTable, vaAlm As String, vaCuenta As String)
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
@@ -1684,6 +1684,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@vaEst", 1))
         _listParam.Add(New Datos.DParametro("@vaDesc", vaDesc))
         _listParam.Add(New Datos.DParametro("@vaTotal", vaTotal))
+        _listParam.Add(New Datos.DParametro("@vaCuenta", vaCuenta))
         _listParam.Add(New Datos.DParametro("@VEN0011", "", _VEN001))
         _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
         _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
@@ -1697,7 +1698,7 @@ Public Class AccesoLogica
     End Function
     '********Modificar
     Public Shared Function L_fnModificarVenta(ByRef vaId As String, va_rkId As String, va_roId As String, va_rmId As String, va_pbId As String, va_caId As String, va_ecId As String, vaTipoVe As String, vaFechaDoc As String,
-                                            vaFechaVenCre As String, vaObser As String, vaDesc As String, vaTotal As String, _VEN001 As DataTable, vaAlm As String)
+                                            vaFechaVenCre As String, vaObser As String, vaDesc As String, vaTotal As String, _VEN001 As DataTable, vaAlm As String, vaCuenta As String)
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
@@ -1717,6 +1718,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@vaEst", 1))
         _listParam.Add(New Datos.DParametro("@vaDesc", vaDesc))
         _listParam.Add(New Datos.DParametro("@vaTotal", vaTotal))
+        _listParam.Add(New Datos.DParametro("@vaCuenta", vaCuenta))
         _listParam.Add(New Datos.DParametro("@VEN0011", "", _VEN001))
         _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
         _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
@@ -3118,15 +3120,12 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@teuact", L_Usuario))
         _listParam.Add(New Datos.DParametro("@TV00121", "", detalle))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TV00121Cheque", _listParam)
-
-
         If _Tabla.Rows.Count > 0 Then
             _tenumi = _Tabla.Rows(0).Item(0)
             _resultado = True
         Else
             _resultado = False
         End If
-
         Return _resultado
     End Function
     Public Shared Function L_fnCobranzasObtenerLosPagos(_numi As Integer) As DataTable

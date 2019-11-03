@@ -653,8 +653,6 @@ Public Class F0_Cobrar_Cliente
 
 #Region "Eventos Formulario"
     Sub _prInterpretarDatosCobranza(ByRef dt As DataTable, ByRef bandera As Boolean)
-
-
         '       numidetalle, NroDoc, factura, numiCredito, numiCobranza, A.tctv1numi
         ',a.tcty4clie ,cliente,detalle.tdfechaPago, PagoAc, NumeroRecibo, DescBanco, banco, detalle.tdnrocheque,
         'img,estado,pendiente
@@ -682,6 +680,7 @@ Public Class F0_Cobrar_Cliente
 
         Next
     End Sub
+
 
     Private Sub tbnrocod_KeyDown(sender As Object, e As KeyEventArgs) Handles tbnrocod.KeyDown
         If e.KeyData = Keys.Enter Then

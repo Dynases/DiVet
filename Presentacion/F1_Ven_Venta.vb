@@ -1171,6 +1171,8 @@ salirIf:
         txtMdesc.Value = grVentas.GetValue("vaDesc")
         'tbIce.Value = grVentas.GetValue("taice")
         _prCalcularPrecioTotal()
+        txtAcuenta.Value = grVentas.GetValue("vaCuenta")
+        txtSaldo.Value = txtTotalNeto.Value - txtAcuenta.Value
         LblPaginacion.Text = Str(grVentas.Row + 1) + "/" + grVentas.RowCount.ToString
         txtMontoPagado.Text = "0.00"
         txtCambio.Text = "0.00"
@@ -1228,7 +1230,7 @@ salirIf:
         'btnGrabar.Enabled = False
         'btnNuevo.Enabled = True
         'btnEliminar.Enabled = True
-
+        txtAcuenta.IsInputReadOnly = True
         txtSubTotal.IsInputReadOnly = True
         txtTotalNeto.IsInputReadOnly = True
         txtMontoPagado.IsInputReadOnly = True
@@ -1259,7 +1261,7 @@ salirIf:
         'btnGrabar.Enabled = False
         'btnNuevo.Enabled = True
         'btnEliminar.Enabled = True
-
+        txtAcuenta.IsInputReadOnly = False
         txtSubTotal.IsInputReadOnly = False
         txtTotalNeto.IsInputReadOnly = False
         txtMontoPagado.IsInputReadOnly = False
@@ -2208,7 +2210,7 @@ salirIf:
     Public Overrides Function _PMOGrabarRegistro() As Boolean
         Dim res As Boolean = L_fnGrabarVenta(txtIdVenta.Text, IIf(swServicio.Value, txtIdReciboV.Text, 0), IIf(swCirugia.Value, txtIdReciboV.Text, 0), IIf(swInternacion.Value, txtIdReciboV.Text, 0), _CodPaciente, _CodCliente, _CodEmpleado, IIf(swTipoVenta.Value = True, 1, 0), dtpFVenta.Value.ToString("yyyy/MM/dd"),
                                              dtpFCredito.Value.ToString("yyyy/MM/dd"), txtObservacion.Text, txtMdesc.Value, txtTotalNeto.Value,
-                                             CType(JGdetalleVenta.DataSource, DataTable), cbSucursal.Value)
+                                             CType(JGdetalleVenta.DataSource, DataTable), cbSucursal.Value, IIf(swTipoVenta.Value = True, 0, txtAcuenta.Value))
         If res Then
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
             ToastNotification.Show(Me, "Código de Venta ".ToUpper + txtIdVenta.Text + " Grabado con Exito.".ToUpper,
@@ -2234,7 +2236,7 @@ salirIf:
         '_prUnirTabla()
         Dim res As Boolean = L_fnModificarVenta(txtIdVenta.Text, IIf(swServicio.Value, txtIdReciboV.Text, 0), IIf(swCirugia.Value, txtIdReciboV.Text, 0), IIf(swInternacion.Value, txtIdReciboV.Text, 0), _CodPaciente, _CodCliente, _CodEmpleado, IIf(swTipoVenta.Value = True, 1, 0), dtpFVenta.Value.ToString("yyyy/MM/dd"),
                                              dtpFCredito.Value.ToString("yyyy/MM/dd"), txtObservacion.Text, txtMdesc.Value, txtTotalNeto.Value,
-                                             CType(JGdetalleVenta.DataSource, DataTable), cbSucursal.Value)
+                                             CType(JGdetalleVenta.DataSource, DataTable), cbSucursal.Value, IIf(swTipoVenta.Value = True, 0, txtAcuenta.Value))
         If res Then
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
             ToastNotification.Show(Me, "Código de Venta ".ToUpper + txtIdVenta.Text + " Modificado con Exito.".ToUpper,
