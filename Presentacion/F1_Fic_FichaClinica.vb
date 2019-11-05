@@ -636,10 +636,10 @@ Public Class F1_Fic_FichaClinica
             _prLimpiarInternacion()
             _prMostrarPaciente()
             'Habilitar ALTA 
-            btnModificar.Enabled = IIf(L_fnExisteFichaClinicaAlta(txtIdFicha.Text), False, True)
-            btnEliminar.Enabled = IIf(L_fnExisteFichaClinicaAlta(txtIdFicha.Text), False, True)
-            btnRecibo.Enabled = IIf(L_fnExisteFichaClinicaAlta(txtIdFicha.Text), False, True)
-            btnAlta.Enabled = IIf(L_fnExisteFichaClinicaAlta(txtIdFicha.Text), False, True)
+            btnModificar.Enabled = IIf(L_fnExisteFichaClinicaAlta(txtIdFicha.Text), True, False)
+            btnEliminar.Enabled = IIf(L_fnExisteFichaClinicaAlta(txtIdFicha.Text), True, False)
+            btnRecibo.Enabled = IIf(L_fnExisteFichaClinicaAlta(txtIdFicha.Text), True, False)
+            btnAlta.Enabled = IIf(L_fnExisteFichaClinicaAlta(txtIdFicha.Text), True, False)
             'Cirugia
             If Not L_fnExisteCirugia(txtIdFicha.Text) Then
                 Dim _tabla As DataTable = L_fnMostrarCirugia()
@@ -1799,24 +1799,27 @@ Public Class F1_Fic_FichaClinica
         bandera = ef.band
         If (bandera = True) Then
             Dim mensajeError As String = ""
-            'VALIDAR QUE NO ELIMINE CUANDO UNA FICHA CLINICA TENGA SEGUIMIENTO DE INTERNACION...           
-            'Elimina la ficha clinica
-            Dim res As Boolean = L_fnEliminarFichaClinica(txtIdFicha.Text, mensajeError)
-            'Elimina Cirugia
-            L_fnEliminarCirugia(txtIdFicha.Text, mensajeError)
-            'Elimina internacion
-            L_fnEliminarInternacion(txtIdFicha.Text, mensajeError)
-            If res Then
-                Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
-
-                ToastNotification.Show(Me, "Código de la ficha clinica ".ToUpper + txtIdFicha.Text + " eliminado con Exito.".ToUpper,
-                                          img, 2000,
-                                          eToastGlowColor.Green,
-                                          eToastPosition.TopCenter)
-                _prFiltrar(1)
+            If L_fnExisteEliminarCirugia(txtIdFicha.Text) Then
+                'Elimina la ficha clinica
+                Dim res As Boolean = L_fnEliminarFichaClinica(txtIdFicha.Text, mensajeError)
+                If res Then
+                    'Elimina Cirugia
+                    L_fnEliminarCirugia(txtIdFicha.Text, mensajeError)
+                    'Elimina internacion
+                    L_fnEliminarInternacion(txtIdFicha.Text, mensajeError)
+                    Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
+                    ToastNotification.Show(Me, "Código de la ficha clinica ".ToUpper + txtIdFicha.Text + " eliminado con Exito.".ToUpper,
+                                              img, 2000,
+                                              eToastGlowColor.Green,
+                                              eToastPosition.TopCenter)
+                    _prFiltrar(1)
+                Else
+                    Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+                    ToastNotification.Show(Me, mensajeError, img, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                End If
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, mensajeError, img, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "No se puede eliminar el registro de Cirugia por que esta siendo usado por el siguiente programa: RECIBO DE CIRUGIA", img, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
             End If
         End If
     End Sub

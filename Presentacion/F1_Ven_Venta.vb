@@ -2233,25 +2233,33 @@ salirIf:
 
     ''*****MODDIFICA EL REGISTRO*****''
     Public Overrides Function _PMOModificarRegistro() As Boolean
-        '_prUnirTabla()
-        Dim res As Boolean = L_fnModificarVenta(txtIdVenta.Text, IIf(swServicio.Value, txtIdReciboV.Text, 0), IIf(swCirugia.Value, txtIdReciboV.Text, 0), IIf(swInternacion.Value, txtIdReciboV.Text, 0), _CodPaciente, _CodCliente, _CodEmpleado, IIf(swTipoVenta.Value = True, 1, 0), dtpFVenta.Value.ToString("yyyy/MM/dd"),
-                                             dtpFCredito.Value.ToString("yyyy/MM/dd"), txtObservacion.Text, txtMdesc.Value, txtTotalNeto.Value,
-                                             CType(JGdetalleVenta.DataSource, DataTable), cbSucursal.Value, IIf(swTipoVenta.Value = True, 0, txtAcuenta.Value))
-        If res Then
-            Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
-            ToastNotification.Show(Me, "Código de Venta ".ToUpper + txtIdVenta.Text + " Modificado con Exito.".ToUpper,
-                                      img, 2000,
-                                      eToastGlowColor.Green,
-                                      eToastPosition.TopCenter
-                                      )
-            _prImiprimirNotaVenta(txtIdVenta.Text)
-            _prInhabiliitar()
-            _prFiltrar(2)
+        '_prUnirTabla(
+        Dim res As Boolean
+        If L_fnVerificarCantidadPagoCredito(txtIdVenta.Text, txtAcuenta.Value, txtTotalNeto.Value) Then
+            res = L_fnModificarVenta(txtIdVenta.Text, IIf(swServicio.Value, txtIdReciboV.Text, 0), IIf(swCirugia.Value, txtIdReciboV.Text, 0), IIf(swInternacion.Value, txtIdReciboV.Text, 0), _CodPaciente, _CodCliente, _CodEmpleado, IIf(swTipoVenta.Value = True, 1, 0), dtpFVenta.Value.ToString("yyyy/MM/dd"),
+                                            dtpFCredito.Value.ToString("yyyy/MM/dd"), txtObservacion.Text, txtMdesc.Value, txtTotalNeto.Value,
+                                            CType(JGdetalleVenta.DataSource, DataTable), cbSucursal.Value, IIf(swTipoVenta.Value = True, 0, txtAcuenta.Value))
+            If res Then
+                Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
+                ToastNotification.Show(Me, "Código de Venta ".ToUpper + txtIdVenta.Text + " Modificado con Exito.".ToUpper,
+                                          img, 2000,
+                                          eToastGlowColor.Green,
+                                          eToastPosition.TopCenter
+                                          )
+                _prImiprimirNotaVenta(txtIdVenta.Text)
+                _prInhabiliitar()
+                _prFiltrar(2)
+            Else
+                Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+                ToastNotification.Show(Me, "La Venta no pudo ser Modificada".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            End If
+
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La Venta no pudo ser Modificada".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La Venta no pudo ser Modificada, la Cuenta supera al saldo total".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
         End If
-        Return res
+        Return Res
+
     End Function
     ''*****ELIMINAR EL REGISTRO*****''
     Public Overrides Sub _PMOEliminarRegistro()

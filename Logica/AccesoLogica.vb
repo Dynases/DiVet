@@ -686,6 +686,7 @@ Public Class AccesoLogica
 #End Region
 #End Region
 
+
 #Region "FICHA DE ATENCION FIC.ATEN001"
 #Region "Consultas"
     '****Muestra la ficha de atencion
@@ -990,7 +991,19 @@ Public Class AccesoLogica
         Dim _res As Boolean = False
         Dim _where = String.Format(" clin.fbid = {0} AND fbAlta = 2 ", _fbId)
         _Tabla = D_Datos_Tabla(" COUNT(*) ", " FIC.CLIN002 clin ", _where)
-        Return _res = IIf(_Tabla.Rows(0).Item(0) = 0, True, False)
+        If _Tabla.Rows(0).Item(0) = 0 Then
+            _res = True
+        Else
+            _res = False
+        End If
+        Return _res
+    End Function
+    Public Shared Function L_fnExisteEliminarCirugia(_cfId As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim _res As Boolean = False
+        Dim _where = String.Format(" a.cf_FbId =  {0} AND b.roEst <> -1 ", _cfId)
+        _Tabla = D_Datos_Tabla(" COUNT(*) ", " FIC.CIR0024 a JOIN FIC.RECCIR005 b  ON a.cfId = b.ro_cfId JOIN FIC.CLIN002 c ON c.fbid = a.cf_FbId  ", _where)
+        Return _res = IIf(_Tabla.Rows(0).Item(0) <> 0, True, False)
     End Function
 #End Region
 #End Region
@@ -1910,6 +1923,21 @@ Public Class AccesoLogica
         Dim _where = String.Format(" ig_FbId = {0} ", _fbId)
         _Tabla = D_Datos_Tabla(" COUNT(*) ", " FIC.INT0025 ", _where)
         Return _res = IIf(_Tabla.Rows(0).Item(0) <> 0, True, False)
+    End Function
+    Public Shared Function L_fnVerificarCantidadPagoCredito(_vaid As String, _vaCuenta As Decimal, _vaTotal As Decimal) As Boolean
+        Dim _Tabla As DataTable
+        Dim _res As Boolean = False
+        Dim _where = String.Format(" b.tdnumi <> (SELECT top 1 (b.tdnumi)  FROM  TV0012 a JOIN TV00121 b on a.tcnumi = b.tdtv12numi WHERE A.tctv1numi = {0}) AND A.tctv1numi = {0} ", _vaid)
+        _Tabla = D_Datos_Tabla(" Isnull(Sum(b.tdmonto ),0) ", " TV0012 a JOIN TV00121 b on a.tcnumi = b.tdtv12numi ", _where)
+        If _Tabla.Rows(0).Item(0) <> 0 Then
+            If _vaTotal >= _vaCuenta Then
+                Dim saldo As Decimal = _vaTotal - _Tabla.Rows(0).Item(0)
+                If _vaCuenta <= saldo Then
+                    _res = True
+                End If
+            End If
+        End If
+        Return _res
     End Function
 #End Region
 #End Region
