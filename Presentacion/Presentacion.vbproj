@@ -144,6 +144,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="F0_PagosCreditoCompraUlt.designer.vb">
+      <DependentUpon>F0_PagosCreditoCompraUlt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F0_PagosCreditoCompraUlt.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F0_Reg_Clientes.Designer.vb">
       <DependentUpon>F0_Reg_Clientes.vb</DependentUpon>
     </Compile>
@@ -421,6 +427,12 @@
       <DependentUpon>R_ReporteCobranzas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reporte\R_ReportePagosCobranzas.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_ReportePagosCobranzas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reporte\R_ResumenCreditoAlmacen.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -585,6 +597,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="F0_PagosCreditoCompraUlt.resx">
+      <DependentUpon>F0_PagosCreditoCompraUlt.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F0_Reg_Clientes.resx">
       <DependentUpon>F0_Reg_Clientes.vb</DependentUpon>
     </EmbeddedResource>
@@ -732,6 +747,10 @@
     <EmbeddedResource Include="Reporte\R_ReporteCobranzas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_ReporteCobranzas.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\R_ReportePagosCobranzas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_ReportePagosCobranzas.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\R_ResumenCreditoAlmacen.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

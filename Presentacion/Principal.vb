@@ -353,4 +353,10 @@ Public Class Principal
         Modelo.MGlobal._nameButton = btnReporteKArdex.Name
         frm.Show()
     End Sub
+
+    Private Sub btComPagosCredito_Click(sender As Object, e As EventArgs) Handles btComPagosCredito.Click
+        Dim frm As New F0_PagosCreditoCompraUlt
+        Modelo.MGlobal._nameButton = btComPagosCredito.Name
+        frm.Show()
+    End Sub
 End Class

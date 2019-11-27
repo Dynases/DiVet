@@ -55,6 +55,7 @@ Partial Class Principal
         Me.btnReporteNotasPorCobrar = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btnReportePagos = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btnRealizarPAgos = New DevComponents.DotNetBar.Metro.MetroTileItem()
+        Me.btnReporteKArdex = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.mtpVentas = New DevComponents.DotNetBar.Metro.MetroTilePanel()
         Me.btnVenta = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btnVentasAtendidas = New DevComponents.DotNetBar.Metro.MetroTileItem()
@@ -79,7 +80,6 @@ Partial Class Principal
         Me.mtpCompras = New DevComponents.DotNetBar.Metro.MetroTilePanel()
         Me.btnProveedor = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btnCompras = New DevComponents.DotNetBar.Metro.MetroTileItem()
-        Me.MetroTileItem17 = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.mtp1Configuracion = New DevComponents.DotNetBar.Metro.MetroTilePanel()
         Me.btnRoles = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btnUsuarios = New DevComponents.DotNetBar.Metro.MetroTileItem()
@@ -91,7 +91,7 @@ Partial Class Principal
         Me.btnEmpleados = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btnProductos = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btnPrecios = New DevComponents.DotNetBar.Metro.MetroTileItem()
-        Me.btnReporteKArdex = New DevComponents.DotNetBar.Metro.MetroTileItem()
+        Me.btComPagosCredito = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.sideNav1.SuspendLayout()
         Me.sideNavPanel4.SuspendLayout()
         Me.sideNavPanel3.SuspendLayout()
@@ -106,11 +106,11 @@ Partial Class Principal
         'sideNav1
         '
         Me.sideNav1.BackColor = System.Drawing.Color.White
+        Me.sideNav1.Controls.Add(Me.SideNavPanel8)
         Me.sideNav1.Controls.Add(Me.sideNavPanel4)
         Me.sideNav1.Controls.Add(Me.sideNavPanel3)
         Me.sideNav1.Controls.Add(Me.sideNavPanel2)
         Me.sideNav1.Controls.Add(Me.SideNavPanel7)
-        Me.sideNav1.Controls.Add(Me.SideNavPanel8)
         Me.sideNav1.Controls.Add(Me.sideNavPanel1)
         Me.sideNav1.Controls.Add(Me.SideNavPanel6)
         Me.sideNav1.Controls.Add(Me.sideNavPanel5)
@@ -133,6 +133,7 @@ Partial Class Principal
         Me.sideNavPanel4.Name = "sideNavPanel4"
         Me.sideNavPanel4.Size = New System.Drawing.Size(1200, 649)
         Me.sideNavPanel4.TabIndex = 28
+        Me.sideNavPanel4.Visible = False
         '
         'sideNavPanel3
         '
@@ -173,12 +174,11 @@ Partial Class Principal
         '
         Me.SideNavPanel8.Controls.Add(Me.mtpCompras)
         Me.SideNavPanel8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SideNavPanel8.Location = New System.Drawing.Point(189, 44)
+        Me.SideNavPanel8.Location = New System.Drawing.Point(165, 40)
         Me.SideNavPanel8.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.SideNavPanel8.Name = "SideNavPanel8"
-        Me.SideNavPanel8.Size = New System.Drawing.Size(1175, 645)
+        Me.SideNavPanel8.Size = New System.Drawing.Size(1200, 649)
         Me.SideNavPanel8.TabIndex = 84
-        Me.SideNavPanel8.Visible = False
         '
         'sideNavPanel1
         '
@@ -258,6 +258,7 @@ Partial Class Principal
         '
         'M_Compras
         '
+        Me.M_Compras.Checked = True
         Me.M_Compras.Name = "M_Compras"
         Me.M_Compras.Panel = Me.SideNavPanel8
         Me.M_Compras.Symbol = ""
@@ -281,7 +282,6 @@ Partial Class Principal
         '
         'M_Creditos
         '
-        Me.M_Creditos.Checked = True
         Me.M_Creditos.Name = "M_Creditos"
         Me.M_Creditos.Panel = Me.sideNavPanel4
         Me.M_Creditos.Symbol = ""
@@ -504,6 +504,22 @@ Partial Class Principal
         Me.btnRealizarPAgos.TileStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
         Me.btnRealizarPAgos.TitleText = "REALIZAR PAGOS"
         Me.btnRealizarPAgos.TitleTextColor = System.Drawing.Color.White
+        '
+        'btnReporteKArdex
+        '
+        Me.btnReporteKArdex.Image = Global.Presentacion.My.Resources.Resources.hojaruta
+        Me.btnReporteKArdex.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btnReporteKArdex.Name = "btnReporteKArdex"
+        Me.btnReporteKArdex.SymbolColor = System.Drawing.Color.Empty
+        Me.btnReporteKArdex.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Azure
+        Me.btnReporteKArdex.TileSize = New System.Drawing.Size(250, 135)
+        '
+        '
+        '
+        Me.btnReporteKArdex.TileStyle.BackColor = System.Drawing.Color.Magenta
+        Me.btnReporteKArdex.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(196, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnReporteKArdex.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.btnReporteKArdex.TitleText = "ESTADO DE CUENTAS"
         '
         'mtpVentas
         '
@@ -925,13 +941,13 @@ Partial Class Principal
         Me.mtpCompras.DragDropSupport = True
         Me.mtpCompras.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.mtpCompras.ForeColor = System.Drawing.Color.White
-        Me.mtpCompras.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btnProveedor, Me.btnCompras, Me.MetroTileItem17})
+        Me.mtpCompras.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btnProveedor, Me.btnCompras, Me.btComPagosCredito})
         Me.mtpCompras.ItemSpacing = 10
         Me.mtpCompras.Location = New System.Drawing.Point(0, 0)
         Me.mtpCompras.Margin = New System.Windows.Forms.Padding(5)
         Me.mtpCompras.MultiLine = True
         Me.mtpCompras.Name = "mtpCompras"
-        Me.mtpCompras.Size = New System.Drawing.Size(1175, 645)
+        Me.mtpCompras.Size = New System.Drawing.Size(1200, 649)
         Me.mtpCompras.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
         Me.mtpCompras.TabIndex = 1
         Me.mtpCompras.Text = "MetroTilePanel3"
@@ -975,20 +991,6 @@ Partial Class Principal
         Me.btnCompras.TileStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
         Me.btnCompras.TitleText = "COMPRAS"
         Me.btnCompras.TitleTextColor = System.Drawing.Color.White
-        '
-        'MetroTileItem17
-        '
-        Me.MetroTileItem17.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        Me.MetroTileItem17.Name = "MetroTileItem17"
-        Me.MetroTileItem17.SymbolColor = System.Drawing.Color.Empty
-        Me.MetroTileItem17.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Azure
-        Me.MetroTileItem17.TileSize = New System.Drawing.Size(250, 135)
-        '
-        '
-        '
-        Me.MetroTileItem17.TileStyle.BackColor = System.Drawing.Color.Crimson
-        Me.MetroTileItem17.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(150, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.MetroTileItem17.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
         'mtp1Configuracion
         '
@@ -1196,21 +1198,26 @@ Partial Class Principal
         Me.btnPrecios.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.btnPrecios.TitleText = "PRECIOS"
         '
-        'btnReporteKArdex
+        'btComPagosCredito
         '
-        Me.btnReporteKArdex.Image = Global.Presentacion.My.Resources.Resources.hojaruta
-        Me.btnReporteKArdex.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btnReporteKArdex.Name = "btnReporteKArdex"
-        Me.btnReporteKArdex.SymbolColor = System.Drawing.Color.Empty
-        Me.btnReporteKArdex.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Azure
-        Me.btnReporteKArdex.TileSize = New System.Drawing.Size(250, 135)
+        Me.btComPagosCredito.Image = Global.Presentacion.My.Resources.Resources.precio
+        Me.btComPagosCredito.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btComPagosCredito.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center
+        Me.btComPagosCredito.Name = "btComPagosCredito"
+        Me.btComPagosCredito.SymbolColor = System.Drawing.Color.Empty
+        Me.btComPagosCredito.Text = "PAGOS COMPRA CREDITOS"
+        Me.btComPagosCredito.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Blueish
+        Me.btComPagosCredito.TileSize = New System.Drawing.Size(250, 135)
         '
         '
         '
-        Me.btnReporteKArdex.TileStyle.BackColor = System.Drawing.Color.Magenta
-        Me.btnReporteKArdex.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(196, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btnReporteKArdex.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.btnReporteKArdex.TitleText = "ESTADO DE CUENTAS"
+        Me.btComPagosCredito.TileStyle.BackColor = System.Drawing.Color.Blue
+        Me.btComPagosCredito.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(187, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btComPagosCredito.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.btComPagosCredito.TileStyle.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btComPagosCredito.TileStyle.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Far
+        Me.btComPagosCredito.TitleTextAlignment = System.Drawing.ContentAlignment.BottomCenter
+        Me.btComPagosCredito.TitleTextColor = System.Drawing.Color.Red
         '
         'Principal
         '
@@ -1282,7 +1289,6 @@ Partial Class Principal
     Friend WithEvents mtpCompras As DevComponents.DotNetBar.Metro.MetroTilePanel
     Friend WithEvents btnCompras As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btnProveedor As DevComponents.DotNetBar.Metro.MetroTileItem
-    Friend WithEvents MetroTileItem17 As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btnRepVetMascAten As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btnServicios As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btnKardex As DevComponents.DotNetBar.Metro.MetroTileItem
@@ -1309,4 +1315,5 @@ Partial Class Principal
     Friend WithEvents btnInvSaldoLote As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btnRealizarPAgos As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btnReporteKArdex As DevComponents.DotNetBar.Metro.MetroTileItem
+    Friend WithEvents btComPagosCredito As DevComponents.DotNetBar.Metro.MetroTileItem
 End Class
