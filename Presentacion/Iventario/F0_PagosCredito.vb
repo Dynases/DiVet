@@ -29,6 +29,7 @@ Public Class F0_PagosCredito
 
     Private Sub _IniciarTodo()
         MSuperTabControl.SelectedTabIndex = 0
+        btnModificar.Visible = False
         'Dim img As New Bitmap(My.Resources.delete, 28, 28)
         'img.Save(Bin, Imaging.ImageFormat.Png)
 

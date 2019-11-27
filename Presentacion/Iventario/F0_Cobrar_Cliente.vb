@@ -406,6 +406,8 @@ Public Class F0_Cobrar_Cliente
                 'objrep.SetParameterValue("TotalBs", li)
                 objrep.SetParameterValue("TotalBs", li, "R_CreditoPago.rpt")
                 objrep.SetParameterValue("TotalBs", li, "R_CreditoPago.rpt - 01")
+                objrep.SetParameterValue("usuario", L_Usuario, "R_CreditoPago.rpt")
+                objrep.SetParameterValue("usuario", L_Usuario, "R_CreditoPago.rpt - 01")
 
                 P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
                 P_Global.Visualizador.ShowDialog() 'Comentar
