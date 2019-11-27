@@ -340,4 +340,17 @@ Public Class Principal
     Private Sub btnCobroInt_Click(sender As Object, e As EventArgs) Handles btn1.Click
 
     End Sub
+
+    Private Sub btnRealizarPAgos_Click(sender As Object, e As EventArgs) Handles btnRealizarPAgos.Click
+        Dim frm As New F0_PagosCredito
+        Modelo.MGlobal._nameButton = btnRealizarPAgos.Name
+        frm.Show()
+    End Sub
+
+    Private Sub btnReporteKArdex_Click(sender As Object, e As EventArgs) Handles btnReporteKArdex.Click
+        Dim frm As New Pr_KardexCredito
+
+        Modelo.MGlobal._nameButton = btnReporteKArdex.Name
+        frm.Show()
+    End Sub
 End Class

@@ -154,29 +154,23 @@
       <HintPath>C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.DotNetBar2, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
-    <Reference Include="Janus.Data.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\DINASES\DinoM\Dinases\Librerias\Janus\Janus.Data.v3.dll</HintPath>
+    <Reference Include="Janus.Data.v3">
+      <HintPath>..\..\..\Google Drive\Librerias\Janus\Janus.Data.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.CalendarCombo.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\DINASES\DinoM\Dinases\Librerias\Janus\Janus.Windows.CalendarCombo.v3.dll</HintPath>
+    <Reference Include="Janus.Windows.CalendarCombo.v3">
+      <HintPath>..\..\..\Google Drive\Librerias\Janus\Janus.Windows.CalendarCombo.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.Common.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\DINASES\DinoM\Dinases\Librerias\Janus\Janus.Windows.Common.v3.dll</HintPath>
+    <Reference Include="Janus.Windows.Common.v3">
+      <HintPath>..\..\..\Google Drive\Librerias\Janus\Janus.Windows.Common.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.GridEX.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\DINASES\DinoM\Dinases\Librerias\Janus\Janus.Windows.GridEX.v3.dll</HintPath>
+    <Reference Include="Janus.Windows.GridEX.v3">
+      <HintPath>..\..\..\Google Drive\Librerias\Janus\Janus.Windows.GridEX.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.Ribbon.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\DINASES\DinoM\Dinases\Librerias\Janus\Janus.Windows.Ribbon.v3.dll</HintPath>
+    <Reference Include="Janus.Windows.Ribbon.v3">
+      <HintPath>..\..\..\Google Drive\Librerias\Janus\Janus.Windows.Ribbon.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\DINASES\DinoM\Dinases\Librerias\Janus\Janus.Windows.UI.v3.dll</HintPath>
+    <Reference Include="Janus.Windows.UI.v3">
+      <HintPath>..\..\..\Google Drive\Librerias\Janus\Janus.Windows.UI.v3.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
