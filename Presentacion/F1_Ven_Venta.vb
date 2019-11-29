@@ -639,7 +639,8 @@ salirIf:
                     listEstCeldas.Add(New Modelo.Celda("IdPaciente", False, "IDPACIENTE".ToUpper, 150))
                     listEstCeldas.Add(New Modelo.Celda("Paciente", True, "PACIENTE".ToUpper, 150))
                     listEstCeldas.Add(New Modelo.Celda("Observacion", True, "OBSERVACION".ToUpper, 120))
-                    listEstCeldas.Add(New Modelo.Celda("Total", True, "TOTAL".ToUpper, 120, "0.00"))
+                    listEstCeldas.Add(New Modelo.Celda("Total", True, "TOTAL".ToUpper, 120))
+
                     Dim ef = New Efecto
                     ef.tipo = 3
                     ef.dt = dt
@@ -792,8 +793,9 @@ salirIf:
         Try
             If txtMontoPagado.Focus Then
                 If Not txtTotalNeto.Text = String.Empty And Not txtTotalNeto.Text = "0.00" Then
-                    If Not txtTotalNeto.Value = 0 And txtMontoPagado.Value >= txtTotalNeto.Value Then
-                        txtCambio.Text = txtMontoPagado.Value - txtTotalNeto.Value
+                    If Not txtTotalNeto.Value = 0 And txtMontoPagado.Value >= txtAcuenta.Value Then
+                        'txtCambio.Text = txtMontoPagado.Value - txtTotalNeto.Value
+                        txtCambio.Text = txtMontoPagado.Value - txtAcuenta.Value
                     Else
                         txtCambio.Value = 0
                     End If
@@ -928,6 +930,11 @@ salirIf:
         End With
         With grVentas.RootTable.Columns("vaUsuario")
             .Width = 150
+            .Visible = False
+        End With
+        With grVentas.RootTable.Columns("vaCuenta")
+            .Width = 150
+            .FormatString = "0.00"
             .Visible = False
         End With
         With grVentas
@@ -1171,8 +1178,14 @@ salirIf:
         txtMdesc.Value = grVentas.GetValue("vaDesc")
         'tbIce.Value = grVentas.GetValue("taice")
         _prCalcularPrecioTotal()
-        txtAcuenta.Value = grVentas.GetValue("vaCuenta")
-        txtSaldo.Value = txtTotalNeto.Value - txtAcuenta.Value
+        If swTipoVenta.Value = True Then
+            txtAcuenta.Value = grVentas.GetValue("vaTotal")
+            txtSaldo.Value = txtTotalNeto.Value - txtAcuenta.Value
+        Else
+            txtAcuenta.Value = grVentas.GetValue("vaCuenta")
+            txtSaldo.Value = txtTotalNeto.Value - txtAcuenta.Value
+        End If
+
         LblPaginacion.Text = Str(grVentas.Row + 1) + "/" + grVentas.RowCount.ToString
         txtMontoPagado.Text = "0.00"
         txtCambio.Text = "0.00"
@@ -2146,9 +2159,17 @@ salirIf:
     End Sub
     Private Sub P_GenerarReporte(vaId As String)
         Try
+            Dim total As Double
             Dim dt As DataTable = L_fnMostrarVentaReporte(vaId)
 
-            Dim total As Double = dt.Compute("SUM(vbTotDesc)", "")
+            If dt.Rows(0).Item("vaCuenta") = 0 Then
+                total = dt.Compute("SUM(vbTotDesc)", "") - dt.Rows(0).Item("vaDesc")
+            Else
+                total = dt.Rows(0).Item("vaCuenta")
+            End If
+
+            'Dim total As Double = dt.Compute("SUM(vbTotDesc)", "")
+
             Dim totald As Double = (total / 6.96)
             Dim fechaven As String = dt.Rows(0).Item("vaFechaDoc")
             If Not IsNothing(P_Global.Visualizador) Then
@@ -2158,41 +2179,64 @@ salirIf:
             Dim ParteDecimal As Double
             ParteEntera = Int(total)
             ParteDecimal = total - ParteEntera
+            Dim _TotalDecimal2 As String = Math.Truncate(CDbl(ParteDecimal) * 100)
+
+            '    Dim li As String = ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
+            'IIf(ParteDecimal.ToString.Equals("0"), "00", (ParteDecimal.ToString)) + "/100 Bolivianos"
+
             Dim li As String = ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
-        IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Bolivianos"
+            IIf(ParteDecimal.ToString.Equals("0"), "00", (_TotalDecimal2)) + "/100 Bolivianos"
 
             If (dt.Rows.Count > 0) Then
                 If Not IsNothing(P_Global.Visualizador) Then
                     P_Global.Visualizador.Close()
                 End If
 
-                P_Global.Visualizador = New Visualizador
-                Dim objrep As New R_VentaTotal
+                If dt.Rows.Count <= 6 Then
+                    P_Global.Visualizador = New Visualizador
+                    Dim objrep As New R_VentaTotal
 
-                objrep.Subreports.Item("R_Venta.rpt").SetDataSource(dt)
-                'objrep.SetDataSource(dt)
-                'objrep.Subreports.Item("R_Venta.rpt").SetParameterValue("TotalBs", li)
+                    objrep.Subreports.Item("R_Venta.rpt").SetDataSource(dt)
+                    'objrep.SetDataSource(dt)
+                    'objrep.Subreports.Item("R_Venta.rpt").SetParameterValue("TotalBs", li)
 
-                'objrep.Subreports.Item("R_Venta.rpt").SetParameterValue("usuario", L_Usuario)
-                'objrep.Subreports.Item("R_Venta.rpt").SetParameterValue("estado", 1)
+                    'objrep.Subreports.Item("R_Venta.rpt").SetParameterValue("usuario", L_Usuario)
+                    'objrep.Subreports.Item("R_Venta.rpt").SetParameterValue("estado", 1)
 
-                '
-                'P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
-                'P_Global.Visualizador.Show() 'Comentar
-                'P_Global.Visualizador.BringToFront() 'Comentar
+                    '
+                    'P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
+                    'P_Global.Visualizador.Show() 'Comentar
+                    'P_Global.Visualizador.BringToFront() 'Comentar
 
-                'objrep.SetParameterValue("usuario", L_Usuario)
-                'objrep.SetParameterValue("estado", 1)
-                objrep.SetDataSource(dt)
-                objrep.SetParameterValue("TotalBs", li)
-                P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
-                'P_Global.Visualizador.WindowState = FormWindowState.Maximized
-                P_Global.Visualizador.ShowDialog() 'Comentar
-                P_Global.Visualizador.BringToFront() 'Comentar
+                    'objrep.SetParameterValue("usuario", L_Usuario)
+                    'objrep.SetParameterValue("estado", 1)
+                    objrep.SetDataSource(dt)
+                    objrep.SetParameterValue("TotalBs", li)
+                    P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
+                    'P_Global.Visualizador.WindowState = FormWindowState.Maximized
+                    P_Global.Visualizador.ShowDialog() 'Comentar
+                    P_Global.Visualizador.BringToFront() 'Comentar
 
-                'objrep.Subreports.Item("R_Venta.rpt").SetDataSource(dt)
-                'objrep.SetDataSource(dt)
-                'objrep.PrintToPrinter(1, False, 1, 1)
+                    'objrep.Subreports.Item("R_Venta.rpt").SetDataSource(dt)
+                    'objrep.SetDataSource(dt)
+                    'objrep.PrintToPrinter(1, False, 1, 1)
+
+                Else
+                    P_Global.Visualizador = New Visualizador
+                    Dim objrep As New R_Venta
+
+                    'objrep.Subreports.Item("R_Venta.rpt").SetDataSource(dt)
+
+                    objrep.SetDataSource(dt)
+                    objrep.SetParameterValue("TotalBs", li)
+                    P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
+                    P_Global.Visualizador.ShowDialog() 'Comentar
+                    P_Global.Visualizador.BringToFront() 'Comentar
+
+
+                End If
+
+
             Else
                 ToastNotification.Show(Me, "NO HAY DATOS PARA LOS PARAMETROS SELECCIONADOS..!!!",
                                            My.Resources.WARNING, 2000,
@@ -2208,6 +2252,10 @@ salirIf:
 #End Region
 #Region "Metodos Overridable"
     Public Overrides Function _PMOGrabarRegistro() As Boolean
+        If _prValidar() = False Then
+            Exit Function
+        End If
+
         Dim res As Boolean = L_fnGrabarVenta(txtIdVenta.Text, IIf(swServicio.Value, txtIdReciboV.Text, 0), IIf(swCirugia.Value, txtIdReciboV.Text, 0), IIf(swInternacion.Value, txtIdReciboV.Text, 0), _CodPaciente, _CodCliente, _CodEmpleado, IIf(swTipoVenta.Value = True, 1, 0), dtpFVenta.Value.ToString("yyyy/MM/dd"),
                                              dtpFCredito.Value.ToString("yyyy/MM/dd"), txtObservacion.Text, txtMdesc.Value, txtTotalNeto.Value,
                                              CType(JGdetalleVenta.DataSource, DataTable), cbSucursal.Value, IIf(swTipoVenta.Value = True, 0, txtAcuenta.Value))
@@ -2230,6 +2278,21 @@ salirIf:
         End If
         Return res
     End Function
+    Public Function _prValidar() As Boolean
+        If (txtAcuenta.Value = 0) Then
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "Por Favor debe especificar el campo A Cuenta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Return False
+        End If
+        If (txtAcuenta.Value < txtTotalNeto.Value) Then
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "Por Favor debe cambiar el Tipo Venta a 'CRÉDITO' ".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Return False
+        End If
+
+        Return True
+    End Function
+
 
     ''*****MODDIFICA EL REGISTRO*****''
     Public Overrides Function _PMOModificarRegistro() As Boolean
@@ -2330,8 +2393,10 @@ salirIf:
         P_GenerarReporte(txtIdVenta.Text)
     End Sub
 
-    Private Sub txtIdReciboV_TextChanged(sender As Object, e As EventArgs) Handles txtIdReciboV.TextChanged
-
+    Private Sub txtAcuenta_ValueChanged(sender As Object, e As EventArgs) Handles txtAcuenta.ValueChanged
+        txtSaldo.Text = txtTotalNeto.Value - txtAcuenta.Value
     End Sub
+
+
 #End Region
 End Class

@@ -67,11 +67,11 @@ Partial Class F1_Con_Usuarios
         Me.MpanelSuperior.Controls.Add(Me.Panel2)
         Me.MpanelSuperior.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MpanelSuperior.Location = New System.Drawing.Point(0, 72)
-        Me.MpanelSuperior.Size = New System.Drawing.Size(871, 435)
+        Me.MpanelSuperior.Size = New System.Drawing.Size(882, 435)
         '
         'PanelSuperior
         '
-        Me.PanelSuperior.Size = New System.Drawing.Size(871, 72)
+        Me.PanelSuperior.Size = New System.Drawing.Size(882, 72)
         Me.PanelSuperior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelSuperior.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PanelSuperior.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
@@ -88,7 +88,7 @@ Partial Class F1_Con_Usuarios
         'PanelInferior
         '
         Me.PanelInferior.Location = New System.Drawing.Point(0, 507)
-        Me.PanelInferior.Size = New System.Drawing.Size(871, 39)
+        Me.PanelInferior.Size = New System.Drawing.Size(882, 39)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Transparent
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Transparent
@@ -100,7 +100,7 @@ Partial Class F1_Con_Usuarios
         '
         'MPanelUserAct
         '
-        Me.MPanelUserAct.Location = New System.Drawing.Point(671, 0)
+        Me.MPanelUserAct.Location = New System.Drawing.Point(682, 0)
         '
         'btnUltimo
         '
@@ -164,7 +164,7 @@ Partial Class F1_Con_Usuarios
         Me.superTabControl1.ControlBox.MenuBox.Name = ""
         Me.superTabControl1.ControlBox.Name = ""
         Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
-        Me.superTabControl1.Size = New System.Drawing.Size(871, 571)
+        Me.superTabControl1.Size = New System.Drawing.Size(882, 571)
         '
         'Panel2
         '
@@ -189,7 +189,7 @@ Partial Class F1_Con_Usuarios
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(871, 153)
+        Me.Panel2.Size = New System.Drawing.Size(882, 153)
         Me.Panel2.TabIndex = 46
         '
         'lbCtrlEnter
@@ -509,7 +509,7 @@ Partial Class F1_Con_Usuarios
         Me.gpBusquedaUsuarios.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpBusquedaUsuarios.Location = New System.Drawing.Point(0, 153)
         Me.gpBusquedaUsuarios.Name = "gpBusquedaUsuarios"
-        Me.gpBusquedaUsuarios.Size = New System.Drawing.Size(871, 282)
+        Me.gpBusquedaUsuarios.Size = New System.Drawing.Size(882, 282)
         '
         '
         '
@@ -548,19 +548,19 @@ Partial Class F1_Con_Usuarios
         Me.JGBusqUsuarios.Dock = System.Windows.Forms.DockStyle.Fill
         Me.JGBusqUsuarios.FlatBorderColor = System.Drawing.Color.AliceBlue
         Me.JGBusqUsuarios.FocusStyle = Janus.Windows.GridEX.FocusStyle.Solid
-        Me.JGBusqUsuarios.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.JGBusqUsuarios.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
         Me.JGBusqUsuarios.HeaderFormatStyle.Alpha = 0
         Me.JGBusqUsuarios.HeaderFormatStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
-        Me.JGBusqUsuarios.HeaderFormatStyle.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.JGBusqUsuarios.HeaderFormatStyle.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold)
         Me.JGBusqUsuarios.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight
         Me.JGBusqUsuarios.Location = New System.Drawing.Point(0, 0)
         Me.JGBusqUsuarios.Name = "JGBusqUsuarios"
         Me.JGBusqUsuarios.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.JGBusqUsuarios.Office2007CustomColor = System.Drawing.Color.DodgerBlue
         Me.JGBusqUsuarios.SelectedFormatStyle.BackColor = System.Drawing.Color.DodgerBlue
-        Me.JGBusqUsuarios.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.JGBusqUsuarios.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.JGBusqUsuarios.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
-        Me.JGBusqUsuarios.Size = New System.Drawing.Size(865, 259)
+        Me.JGBusqUsuarios.Size = New System.Drawing.Size(876, 259)
         Me.JGBusqUsuarios.TabIndex = 0
         Me.JGBusqUsuarios.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -568,7 +568,7 @@ Partial Class F1_Con_Usuarios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(871, 571)
+        Me.ClientSize = New System.Drawing.Size(882, 571)
         Me.Name = "F1_Con_Usuarios"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "REGISTRO DE USUARIOS"

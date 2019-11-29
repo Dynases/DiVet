@@ -187,8 +187,8 @@ Public Class Pr_KardexCredito
                 dt = L_fnMostrarClientes()
                 'caid, caci, canomb, caapell, cadir, catelf, camail, cafecha, cahora, causuario
                 Dim listEstCeldas As New List(Of Modelo.Celda)
-                listEstCeldas.Add(New Modelo.Celda("caid", False, "ID", 50))
-                listEstCeldas.Add(New Modelo.Celda("caci", True, "CI", 50))
+                listEstCeldas.Add(New Modelo.Celda("caid", False, "ID", 80))
+                listEstCeldas.Add(New Modelo.Celda("caci", True, "CI", 80))
                 listEstCeldas.Add(New Modelo.Celda("canomb", True, "NOMBRE", 180))
                 listEstCeldas.Add(New Modelo.Celda("caapell", True, "APELLIDO", 280))
                 listEstCeldas.Add(New Modelo.Celda("cadir", True, "DIRECCION".ToUpper, 150))
@@ -203,9 +203,9 @@ Public Class Pr_KardexCredito
                 ef.SeleclCol = 2
                 ef.listEstCeldas = listEstCeldas
                 ef.alto = 50
-                ef.ancho = 350
-                ef.NameLabel = "CLIENTE :"
-                ef.NamelColumna = "yddesc"
+                ef.ancho = 330
+                ef.NameLabel = "APELLIDOS:"
+                ef.NamelColumna = "caapell"
                 ef.Context = "Seleccione Cliente".ToUpper
                 ef.ShowDialog()
                 Dim bandera As Boolean = False

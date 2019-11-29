@@ -49,13 +49,11 @@ Partial Class F0_PagosCredito
         Me.grcobranza = New Janus.Windows.GridEX.GridEX()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
-        CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelToolBar1.SuspendLayout()
         Me.PanelToolBar2.SuspendLayout()
         Me.PanelPrincipal.SuspendLayout()
         Me.PanelUsuario.SuspendLayout()
         Me.PanelNavegacion.SuspendLayout()
-        Me.MPanelUserAct.SuspendLayout()
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelContent.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -63,6 +61,8 @@ Partial Class F0_PagosCredito
         CType(Me.MSuperTabControl, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MSuperTabControl.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MPanelUserAct.SuspendLayout()
+        CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.GroupPanel2.SuspendLayout()
         CType(Me.grpagos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,36 +109,6 @@ Partial Class F0_PagosCredito
         Me.PanelInferior.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
         Me.PanelInferior.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
         Me.PanelInferior.Style.GradientAngle = 90
-        '
-        'BubbleBarUsuario
-        '
-        '
-        '
-        '
-        Me.BubbleBarUsuario.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.BackColor = System.Drawing.Color.Transparent
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderBottomWidth = 1
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderLeftWidth = 1
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderRightWidth = 1
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderTopWidth = 1
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingBottom = 3
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingLeft = 3
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingRight = 3
-        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingTop = 3
-        Me.BubbleBarUsuario.MouseOverTabColors.BorderColor = System.Drawing.SystemColors.Highlight
-        Me.BubbleBarUsuario.SelectedTabColors.BorderColor = System.Drawing.Color.Black
-        '
-        'TxtNombreUsu
-        '
-        Me.TxtNombreUsu.Margin = New System.Windows.Forms.Padding(4)
-        Me.TxtNombreUsu.ReadOnly = True
-        Me.TxtNombreUsu.Size = New System.Drawing.Size(135, 32)
-        Me.TxtNombreUsu.Text = "DEFAULT"
         '
         'PanelToolBar1
         '
@@ -192,10 +162,6 @@ Partial Class F0_PagosCredito
         '
         'btnPrimero
         '
-        '
-        'MPanelUserAct
-        '
-        Me.MPanelUserAct.Location = New System.Drawing.Point(1084, 0)
         '
         'MRlAccion
         '
@@ -255,6 +221,40 @@ Partial Class F0_PagosCredito
         '
         Me.PictureBox1.Location = New System.Drawing.Point(940, 0)
         '
+        'MPanelUserAct
+        '
+        Me.MPanelUserAct.Location = New System.Drawing.Point(1084, 0)
+        '
+        'TxtNombreUsu
+        '
+        Me.TxtNombreUsu.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtNombreUsu.ReadOnly = True
+        Me.TxtNombreUsu.Size = New System.Drawing.Size(135, 32)
+        Me.TxtNombreUsu.Text = "DEFAULT"
+        '
+        'BubbleBarUsuario
+        '
+        '
+        '
+        '
+        Me.BubbleBarUsuario.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.BackColor = System.Drawing.Color.Transparent
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderBottomWidth = 1
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderLeftWidth = 1
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderRightWidth = 1
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.BorderTopWidth = 1
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingBottom = 3
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingLeft = 3
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingRight = 3
+        Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingTop = 3
+        Me.BubbleBarUsuario.MouseOverTabColors.BorderColor = System.Drawing.SystemColors.Highlight
+        Me.BubbleBarUsuario.SelectedTabColors.BorderColor = System.Drawing.Color.Black
+        '
         'Panel2
         '
         Me.Panel2.Controls.Add(Me.GroupPanel2)
@@ -267,6 +267,7 @@ Partial Class F0_PagosCredito
         '
         'GroupPanel2
         '
+        Me.GroupPanel2.BackColor = System.Drawing.Color.White
         Me.GroupPanel2.CanvasColor = System.Drawing.SystemColors.Control
         Me.GroupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.GroupPanel2.Controls.Add(Me.grpagos)
@@ -325,6 +326,7 @@ Partial Class F0_PagosCredito
         '
         'GroupPanel1
         '
+        Me.GroupPanel1.BackColor = System.Drawing.Color.White
         Me.GroupPanel1.CanvasColor = System.Drawing.SystemColors.Control
         Me.GroupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.GroupPanel1.Controls.Add(Me.cbbanco)
@@ -394,6 +396,7 @@ Partial Class F0_PagosCredito
         '
         Me.tbcodVendedor.Border.Class = "TextBoxBorder"
         Me.tbcodVendedor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbcodVendedor.DisabledBackColor = System.Drawing.Color.White
         Me.tbcodVendedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbcodVendedor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.tbcodVendedor.Location = New System.Drawing.Point(376, 82)
@@ -406,11 +409,13 @@ Partial Class F0_PagosCredito
         '
         'tbObservacion
         '
+        Me.tbObservacion.BackColor = System.Drawing.Color.White
         '
         '
         '
         Me.tbObservacion.Border.Class = "TextBoxBorder"
         Me.tbObservacion.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbObservacion.DisabledBackColor = System.Drawing.Color.White
         Me.tbObservacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbObservacion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.tbObservacion.Location = New System.Drawing.Point(142, 111)
@@ -526,6 +531,7 @@ Partial Class F0_PagosCredito
         '
         Me.tbcobrador.Border.Class = "TextBoxBorder"
         Me.tbcobrador.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbcobrador.DisabledBackColor = System.Drawing.Color.White
         Me.tbcobrador.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbcobrador.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.tbcobrador.Location = New System.Drawing.Point(142, 82)
@@ -560,6 +566,7 @@ Partial Class F0_PagosCredito
         '
         Me.tbnrodoc.Border.Class = "TextBoxBorder"
         Me.tbnrodoc.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbnrodoc.DisabledBackColor = System.Drawing.Color.White
         Me.tbnrodoc.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbnrodoc.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.tbnrodoc.Location = New System.Drawing.Point(142, 20)
@@ -571,6 +578,7 @@ Partial Class F0_PagosCredito
         '
         'GroupPanel3
         '
+        Me.GroupPanel3.BackColor = System.Drawing.Color.White
         Me.GroupPanel3.CanvasColor = System.Drawing.SystemColors.Control
         Me.GroupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.GroupPanel3.Controls.Add(Me.grfactura)
@@ -627,7 +635,7 @@ Partial Class F0_PagosCredito
         Me.grfactura.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
         Me.grfactura.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelectionSameTable
         Me.grfactura.Size = New System.Drawing.Size(1245, 80)
-        Me.grfactura.TabIndex = 0
+        Me.grfactura.TabIndex = 5
         Me.grfactura.TotalRowFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grfactura.TotalRowFormatStyle.ForeColor = System.Drawing.Color.Black
         Me.grfactura.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
@@ -645,6 +653,7 @@ Partial Class F0_PagosCredito
         '
         'GpanelDeudas
         '
+        Me.GpanelDeudas.BackColor = System.Drawing.Color.White
         Me.GpanelDeudas.CanvasColor = System.Drawing.SystemColors.Control
         Me.GpanelDeudas.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.GpanelDeudas.Controls.Add(Me.grPendiente)
@@ -794,15 +803,12 @@ Partial Class F0_PagosCredito
         Me.Controls.SetChildIndex(Me.PanelPrincipal, 0)
         Me.PanelSuperior.ResumeLayout(False)
         Me.PanelInferior.ResumeLayout(False)
-        CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelToolBar1.ResumeLayout(False)
         Me.PanelToolBar2.ResumeLayout(False)
         Me.PanelPrincipal.ResumeLayout(False)
         Me.PanelUsuario.ResumeLayout(False)
         Me.PanelUsuario.PerformLayout()
         Me.PanelNavegacion.ResumeLayout(False)
-        Me.MPanelUserAct.ResumeLayout(False)
-        Me.MPanelUserAct.PerformLayout()
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelContent.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
@@ -810,6 +816,9 @@ Partial Class F0_PagosCredito
         CType(Me.MSuperTabControl, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MSuperTabControl.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.MPanelUserAct.ResumeLayout(False)
+        Me.MPanelUserAct.PerformLayout()
+        CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.GroupPanel2.ResumeLayout(False)
         CType(Me.grpagos, System.ComponentModel.ISupportInitialize).EndInit()

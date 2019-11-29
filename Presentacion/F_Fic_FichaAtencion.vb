@@ -120,7 +120,7 @@ Public Class F_Fic_FichaAtencion
             .Visible = False
         End With
         With JGFichasAtencion.RootTable.Columns("Propietario")
-            .Width = 180
+            .Width = 250
             .Caption = "Propietario"
             .Visible = True
         End With
@@ -130,7 +130,7 @@ Public Class F_Fic_FichaAtencion
             .Visible = False
         End With
         With JGFichasAtencion.RootTable.Columns("pbnomb")
-            .Width = 170
+            .Width = 190
             .Caption = "Paciente"
             .Visible = True
         End With
@@ -140,7 +140,7 @@ Public Class F_Fic_FichaAtencion
             .Visible = True
         End With
         With JGFichasAtencion.RootTable.Columns("EstadoPaciente")
-            .Width = 140
+            .Width = 170
             .Caption = "Estado de Paciente"
             .Visible = True
         End With

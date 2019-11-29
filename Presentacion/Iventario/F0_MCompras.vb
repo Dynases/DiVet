@@ -897,9 +897,9 @@ Public Class F0_MCompras
                 ef.SeleclCol = 2
                 ef.listEstCeldas = listEstCeldas
                 ef.alto = 60
-                ef.NameLabel = "PROVEEDOR: "
+                ef.NameLabel = "PROVEEDOR:"
                 ef.NamelColumna = "yddesc"
-                ef.ancho = 200
+                ef.ancho = 230
                 ef.Context = "Seleccione Proveedor".ToUpper
                 ef.ShowDialog()
                 Dim bandera As Boolean = False

@@ -36,6 +36,7 @@ Public Class Principal
         M_Configuracion.Select()
         'L_Usuario = gs_user
         'lbUsuario.Text = gs_user
+        M_Informes.Visible = False
     End Sub
     Private Sub _prLeerArchivoConfig()
         Try
