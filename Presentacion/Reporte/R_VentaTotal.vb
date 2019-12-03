@@ -134,15 +134,15 @@ Public Class R_VentaTotal
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Parameter_R_Ventarpt___01_usuario() As CrystalDecisions.[Shared].IParameterField
+    Public ReadOnly Property Parameter_R_Ventarpt_Paciente() As CrystalDecisions.[Shared].IParameterField
         Get
-            Return Me.DataDefinition.ParameterFields(7)
+            Return Me.DataDefinition.ParameterFields(6)
         End Get
     End Property
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Parameter_R_Ventarpt___01_estado() As CrystalDecisions.[Shared].IParameterField
+    Public ReadOnly Property Parameter_R_Ventarpt___01_usuario() As CrystalDecisions.[Shared].IParameterField
         Get
             Return Me.DataDefinition.ParameterFields(8)
         End Get
@@ -150,7 +150,7 @@ Public Class R_VentaTotal
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Parameter_R_Ventarpt___01_TotalDo() As CrystalDecisions.[Shared].IParameterField
+    Public ReadOnly Property Parameter_R_Ventarpt___01_estado() As CrystalDecisions.[Shared].IParameterField
         Get
             Return Me.DataDefinition.ParameterFields(9)
         End Get
@@ -158,9 +158,25 @@ Public Class R_VentaTotal
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Parameter_R_Ventarpt___01_TotalDoN() As CrystalDecisions.[Shared].IParameterField
+    Public ReadOnly Property Parameter_R_Ventarpt___01_TotalDo() As CrystalDecisions.[Shared].IParameterField
         Get
             Return Me.DataDefinition.ParameterFields(10)
+        End Get
+    End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Parameter_R_Ventarpt___01_TotalDoN() As CrystalDecisions.[Shared].IParameterField
+        Get
+            Return Me.DataDefinition.ParameterFields(11)
+        End Get
+    End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Parameter_R_Ventarpt___01_Paciente() As CrystalDecisions.[Shared].IParameterField
+        Get
+            Return Me.DataDefinition.ParameterFields(12)
         End Get
     End Property
 End Class

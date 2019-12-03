@@ -162,9 +162,6 @@ Partial Class F1_Ven_Venta
         Me.PanelSuperior.Controls.SetChildIndex(Me.PanelToolBar1, 0)
         Me.PanelSuperior.Controls.SetChildIndex(Me.PanelToolBar2, 0)
         '
-        'btnGrabar
-        '
-        '
         'PanelInferior
         '
         Me.PanelInferior.Location = New System.Drawing.Point(0, 606)
@@ -513,6 +510,7 @@ Partial Class F1_Ven_Venta
         Me.LabelX17.Size = New System.Drawing.Size(85, 23)
         Me.LabelX17.TabIndex = 268
         Me.LabelX17.Text = "Sucursal:"
+        Me.LabelX17.Visible = False
         '
         'cbSucursal
         '
@@ -527,6 +525,7 @@ Partial Class F1_Ven_Venta
         Me.cbSucursal.SelectedItem = Nothing
         Me.cbSucursal.Size = New System.Drawing.Size(164, 22)
         Me.cbSucursal.TabIndex = 267
+        Me.cbSucursal.Visible = False
         Me.cbSucursal.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'swServicio

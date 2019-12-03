@@ -627,6 +627,7 @@ salirIf:
                     End If
                     If swInternacion.Value Then
                         dt = L_fnMostrarVentaReciboInternacion()
+
                     End If
                     If swCirugia.Value Then
                         dt = L_fnMostrarVentaReciboCirugia()
@@ -647,21 +648,28 @@ salirIf:
                     ef.SeleclCol = 2
                     ef.listEstCeldas = listEstCeldas
                     ef.alto = 50
-                    ef.ancho = 350
+                    ef.ancho = 255
                     ef.Context = "Seleccione Recibo".ToUpper
-                    ef.ShowDialog()
-                    Dim bandera As Boolean = False
-                    bandera = ef.band
-                    If (bandera = True) Then
-                        Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
-                        _CodCliente = Row.Cells("IdCliente").Value
-                        _CodPaciente = Row.Cells("IdPaciente").Value
-                        txtIdPaciente.Text = Row.Cells("IdPaciente").Value
-                        txtPaciente.Text = Row.Cells("Paciente").Value
-                        txtIdCliente.Text = Row.Cells("IdCliente").Value
-                        txtCliente.Text = Row.Cells("cliente").Value
-                        txtIdReciboV.Text = Row.Cells("Id").Value
-                        _prCargarProductoDeRecibo(Row.Cells("Id").Value)
+                    If ef.dt.Rows.Count = 0 Then
+                        Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                        ToastNotification.Show(Me, "No existen Recibos de Internación Para la Cobranza".ToUpper, img, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                        Exit Sub
+                    Else
+
+                        ef.ShowDialog()
+                        Dim bandera As Boolean = False
+                        bandera = ef.band
+                        If (bandera = True) Then
+                            Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
+                            _CodCliente = Row.Cells("IdCliente").Value
+                            _CodPaciente = Row.Cells("IdPaciente").Value
+                            txtIdPaciente.Text = Row.Cells("IdPaciente").Value
+                            txtPaciente.Text = Row.Cells("Paciente").Value
+                            txtIdCliente.Text = Row.Cells("IdCliente").Value
+                            txtCliente.Text = Row.Cells("cliente").Value
+                            txtIdReciboV.Text = Row.Cells("Id").Value
+                            _prCargarProductoDeRecibo(Row.Cells("Id").Value)
+                        End If
                     End If
                 End If
             End If
@@ -1227,6 +1235,9 @@ salirIf:
     End Sub
     Private Sub _prInhabiliitar()
         swServicio.IsReadOnly = True
+        swInternacion.IsReadOnly = True
+        swCirugia.IsReadOnly = True
+
         swTipoVenta.IsReadOnly = True
         txtIdVenta.ReadOnly = True
         txtCliente.ReadOnly = True
@@ -1258,6 +1269,9 @@ salirIf:
     End Sub
     Private Sub _prhabilitar()
         swServicio.IsReadOnly = False
+        swInternacion.IsReadOnly = False
+        swCirugia.IsReadOnly = False
+
         swTipoVenta.IsReadOnly = False
         txtIdVenta.ReadOnly = False
         txtCliente.ReadOnly = True
@@ -2162,6 +2176,7 @@ salirIf:
             Dim total As Double
             Dim dt As DataTable = L_fnMostrarVentaReporte(vaId)
 
+
             If dt.Rows(0).Item("vaCuenta") = 0 Then
                 total = dt.Compute("SUM(vbTotDesc)", "") - dt.Rows(0).Item("vaDesc")
             Else
@@ -2212,6 +2227,8 @@ salirIf:
                     'objrep.SetParameterValue("estado", 1)
                     objrep.SetDataSource(dt)
                     objrep.SetParameterValue("TotalBs", li)
+                    objrep.SetParameterValue("Paciente", txtPaciente.Text)
+                    objrep.SetParameterValue("Paciente", txtPaciente.Text, "R_Venta.rpt - 01")
                     P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
                     'P_Global.Visualizador.WindowState = FormWindowState.Maximized
                     P_Global.Visualizador.ShowDialog() 'Comentar
@@ -2229,6 +2246,7 @@ salirIf:
 
                     objrep.SetDataSource(dt)
                     objrep.SetParameterValue("TotalBs", li)
+                    objrep.SetParameterValue("Paciente", txtPaciente.Text)
                     P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
                     P_Global.Visualizador.ShowDialog() 'Comentar
                     P_Global.Visualizador.BringToFront() 'Comentar
