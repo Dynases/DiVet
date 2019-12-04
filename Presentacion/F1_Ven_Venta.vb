@@ -2270,9 +2270,9 @@ salirIf:
 #End Region
 #Region "Metodos Overridable"
     Public Overrides Function _PMOGrabarRegistro() As Boolean
-        If _prValidar() = False Then
-            Exit Function
-        End If
+        'If _prValidar() = False Then
+        '    Exit Function
+        'End If
 
         Dim res As Boolean = L_fnGrabarVenta(txtIdVenta.Text, IIf(swServicio.Value, txtIdReciboV.Text, 0), IIf(swCirugia.Value, txtIdReciboV.Text, 0), IIf(swInternacion.Value, txtIdReciboV.Text, 0), _CodPaciente, _CodCliente, _CodEmpleado, IIf(swTipoVenta.Value = True, 1, 0), dtpFVenta.Value.ToString("yyyy/MM/dd"),
                                              dtpFCredito.Value.ToString("yyyy/MM/dd"), txtObservacion.Text, txtMdesc.Value, txtTotalNeto.Value,
@@ -2297,18 +2297,18 @@ salirIf:
         Return res
     End Function
     Public Function _prValidar() As Boolean
-        If (txtAcuenta.Value = 0) Then
-            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Por Favor debe especificar el campo A Cuenta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
-            Return False
-        End If
-        If (txtAcuenta.Value < txtTotalNeto.Value) Then
-            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Por Favor debe cambiar el Tipo Venta a 'CRÉDITO' ".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
-            Return False
-        End If
+        'If (txtAcuenta.Value = 0) Then
+        '    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+        '    ToastNotification.Show(Me, "Por Favor debe especificar el campo A Cuenta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        '    Return False
+        'End If
+        'If (txtAcuenta.Value < txtTotalNeto.Value) Then
+        '    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+        '    ToastNotification.Show(Me, "Por Favor debe cambiar el Tipo Venta a 'CRÉDITO' ".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        '    Return False
+        'End If
 
-        Return True
+        'Return True
     End Function
 
 
