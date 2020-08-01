@@ -36,6 +36,7 @@ Public Class Principal
         M_Configuracion.Select()
         'L_Usuario = gs_user
         'lbUsuario.Text = gs_user
+        M_Informes.Visible = False
     End Sub
     Private Sub _prLeerArchivoConfig()
         Try
@@ -339,5 +340,24 @@ Public Class Principal
 
     Private Sub btnCobroInt_Click(sender As Object, e As EventArgs) Handles btn1.Click
 
+    End Sub
+
+    Private Sub btnRealizarPAgos_Click(sender As Object, e As EventArgs) Handles btnRealizarPAgos.Click
+        Dim frm As New F0_PagosCredito
+        Modelo.MGlobal._nameButton = btnRealizarPAgos.Name
+        frm.Show()
+    End Sub
+
+    Private Sub btnReporteKArdex_Click(sender As Object, e As EventArgs) Handles btnReporteKArdex.Click
+        Dim frm As New Pr_KardexCredito
+
+        Modelo.MGlobal._nameButton = btnReporteKArdex.Name
+        frm.Show()
+    End Sub
+
+    Private Sub btComPagosCredito_Click(sender As Object, e As EventArgs) Handles btComPagosCredito.Click
+        Dim frm As New F0_PagosCreditoCompraUlt
+        Modelo.MGlobal._nameButton = btComPagosCredito.Name
+        frm.Show()
     End Sub
 End Class

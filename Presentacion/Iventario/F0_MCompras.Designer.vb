@@ -60,6 +60,7 @@ Partial Class F0_MCompras
         Me.GroupPanel2 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.grCompra = New Janus.Windows.GridEX.GridEX()
+        Me.lbCtrlEnter = New DevComponents.DotNetBar.LabelX()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
         Me.PanelToolBar1.SuspendLayout()
@@ -516,6 +517,7 @@ Partial Class F0_MCompras
         '
         Me.Panel2.AutoScroll = True
         Me.Panel2.BackColor = System.Drawing.Color.White
+        Me.Panel2.Controls.Add(Me.lbCtrlEnter)
         Me.Panel2.Controls.Add(Me.tbCodigo)
         Me.Panel2.Controls.Add(Me.cbSucursal)
         Me.Panel2.Controls.Add(Me.LabelX7)
@@ -838,6 +840,11 @@ Partial Class F0_MCompras
         '
         '
         '
+        Me.tbnrocod.Border.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.tbnrocod.Border.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.tbnrocod.Border.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.tbnrocod.Border.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.tbnrocod.Border.Class = "TextBoxBorder"
         Me.tbnrocod.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbnrocod.DisabledBackColor = System.Drawing.Color.White
         Me.tbnrocod.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -845,7 +852,7 @@ Partial Class F0_MCompras
         Me.tbnrocod.Location = New System.Drawing.Point(172, 11)
         Me.tbnrocod.Name = "tbnrocod"
         Me.tbnrocod.PreventEnterBeep = True
-        Me.tbnrocod.Size = New System.Drawing.Size(63, 16)
+        Me.tbnrocod.Size = New System.Drawing.Size(63, 22)
         Me.tbnrocod.TabIndex = 0
         '
         'BUSCADOR
@@ -969,6 +976,22 @@ Partial Class F0_MCompras
         Me.grCompra.TabIndex = 0
         Me.grCompra.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
+        'lbCtrlEnter
+        '
+        Me.lbCtrlEnter.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbCtrlEnter.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbCtrlEnter.Font = New System.Drawing.Font("Georgia", 7.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbCtrlEnter.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbCtrlEnter.Location = New System.Drawing.Point(363, 26)
+        Me.lbCtrlEnter.Name = "lbCtrlEnter"
+        Me.lbCtrlEnter.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbCtrlEnter.Size = New System.Drawing.Size(60, 12)
+        Me.lbCtrlEnter.TabIndex = 353
+        Me.lbCtrlEnter.Text = "Ctrl+Enter"
+        '
         'F0_MCompras
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1057,4 +1080,5 @@ Partial Class F0_MCompras
     Friend WithEvents Panel6 As System.Windows.Forms.Panel
     Friend WithEvents grCompra As Janus.Windows.GridEX.GridEX
     Friend WithEvents tbCodigo As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents lbCtrlEnter As DevComponents.DotNetBar.LabelX
 End Class

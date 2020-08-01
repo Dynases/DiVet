@@ -39,21 +39,17 @@ Partial Class F_Fic_FichaAtencion
         'TmActualizar
         '
         Me.TmActualizar.Enabled = True
-        Me.TmActualizar.Interval = 5000
+        Me.TmActualizar.Interval = 9000
         '
         'Panel1
         '
         Me.Panel1.BackgroundImage = Global.Presentacion.My.Resources.Resources.Fondo2
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Panel1.Controls.Add(Me.btnAbajo)
-        Me.Panel1.Controls.Add(Me.btnArriba)
-        Me.Panel1.Controls.Add(Me.btnActualizar)
-        Me.Panel1.Controls.Add(Me.btnAbrirFicha)
         Me.Panel1.Controls.Add(Me.gpFichasAtencion)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(999, 541)
+        Me.Panel1.Size = New System.Drawing.Size(1134, 651)
         Me.Panel1.TabIndex = 0
         '
         'btnAbajo
@@ -67,7 +63,7 @@ Partial Class F_Fic_FichaAtencion
         Me.btnAbajo.Image = Global.Presentacion.My.Resources.Resources.abajo
         Me.btnAbajo.ImageFixedSize = New System.Drawing.Size(30, 30)
         Me.btnAbajo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right
-        Me.btnAbajo.Location = New System.Drawing.Point(428, 480)
+        Me.btnAbajo.Location = New System.Drawing.Point(489, 572)
         Me.btnAbajo.Name = "btnAbajo"
         Me.btnAbajo.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.btnAbajo.Size = New System.Drawing.Size(50, 50)
@@ -85,7 +81,7 @@ Partial Class F_Fic_FichaAtencion
         Me.btnArriba.Image = Global.Presentacion.My.Resources.Resources.arriba
         Me.btnArriba.ImageFixedSize = New System.Drawing.Size(30, 30)
         Me.btnArriba.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnArriba.Location = New System.Drawing.Point(365, 480)
+        Me.btnArriba.Location = New System.Drawing.Point(426, 572)
         Me.btnArriba.Name = "btnArriba"
         Me.btnArriba.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.btnArriba.Size = New System.Drawing.Size(50, 50)
@@ -103,7 +99,7 @@ Partial Class F_Fic_FichaAtencion
         Me.btnActualizar.Image = Global.Presentacion.My.Resources.Resources.reload_5
         Me.btnActualizar.ImageFixedSize = New System.Drawing.Size(30, 30)
         Me.btnActualizar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnActualizar.Location = New System.Drawing.Point(585, 480)
+        Me.btnActualizar.Location = New System.Drawing.Point(646, 572)
         Me.btnActualizar.Name = "btnActualizar"
         Me.btnActualizar.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.btnActualizar.Size = New System.Drawing.Size(72, 50)
@@ -122,7 +118,7 @@ Partial Class F_Fic_FichaAtencion
         Me.btnAbrirFicha.Image = Global.Presentacion.My.Resources.Resources.checked
         Me.btnAbrirFicha.ImageFixedSize = New System.Drawing.Size(30, 30)
         Me.btnAbrirFicha.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnAbrirFicha.Location = New System.Drawing.Point(493, 480)
+        Me.btnAbrirFicha.Location = New System.Drawing.Point(554, 572)
         Me.btnAbrirFicha.Name = "btnAbrirFicha"
         Me.btnAbrirFicha.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.btnAbrirFicha.Size = New System.Drawing.Size(72, 50)
@@ -135,12 +131,17 @@ Partial Class F_Fic_FichaAtencion
         Me.gpFichasAtencion.BackColor = System.Drawing.Color.Transparent
         Me.gpFichasAtencion.CanvasColor = System.Drawing.SystemColors.Control
         Me.gpFichasAtencion.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
+        Me.gpFichasAtencion.Controls.Add(Me.btnAbrirFicha)
+        Me.gpFichasAtencion.Controls.Add(Me.btnActualizar)
+        Me.gpFichasAtencion.Controls.Add(Me.btnArriba)
+        Me.gpFichasAtencion.Controls.Add(Me.btnAbajo)
         Me.gpFichasAtencion.Controls.Add(Me.JGFichasAtencion)
         Me.gpFichasAtencion.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpFichasAtencion.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpFichasAtencion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gpFichasAtencion.Location = New System.Drawing.Point(7, 3)
+        Me.gpFichasAtencion.Location = New System.Drawing.Point(0, 0)
         Me.gpFichasAtencion.Name = "gpFichasAtencion"
-        Me.gpFichasAtencion.Size = New System.Drawing.Size(989, 466)
+        Me.gpFichasAtencion.Size = New System.Drawing.Size(1134, 651)
         '
         '
         '
@@ -180,7 +181,7 @@ Partial Class F_Fic_FichaAtencion
         Me.JGFichasAtencion.Location = New System.Drawing.Point(3, 3)
         Me.JGFichasAtencion.Name = "JGFichasAtencion"
         Me.JGFichasAtencion.SelectedFormatStyle.BackColor = System.Drawing.Color.Empty
-        Me.JGFichasAtencion.Size = New System.Drawing.Size(977, 437)
+        Me.JGFichasAtencion.Size = New System.Drawing.Size(1186, 557)
         Me.JGFichasAtencion.TabIndex = 256
         '
         'F_Fic_FichaAtencion
@@ -188,7 +189,7 @@ Partial Class F_Fic_FichaAtencion
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(999, 541)
+        Me.ClientSize = New System.Drawing.Size(1134, 651)
         Me.Controls.Add(Me.Panel1)
         Me.MaximizeBox = False
         Me.Name = "F_Fic_FichaAtencion"

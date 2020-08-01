@@ -40,9 +40,9 @@ Partial Class ModeloAyuda2
         Me.GPPanelP.DisabledBackColor = System.Drawing.Color.Empty
         Me.GPPanelP.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GPPanelP.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GPPanelP.Location = New System.Drawing.Point(0, 81)
+        Me.GPPanelP.Location = New System.Drawing.Point(0, 66)
         Me.GPPanelP.Name = "GPPanelP"
-        Me.GPPanelP.Size = New System.Drawing.Size(661, 217)
+        Me.GPPanelP.Size = New System.Drawing.Size(661, 286)
         '
         '
         '
@@ -85,7 +85,7 @@ Partial Class ModeloAyuda2
         Me.grJBuscador.Name = "grJBuscador"
         Me.grJBuscador.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.grJBuscador.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.grJBuscador.Size = New System.Drawing.Size(655, 195)
+        Me.grJBuscador.Size = New System.Drawing.Size(655, 264)
         Me.grJBuscador.TabIndex = 0
         Me.grJBuscador.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -98,7 +98,7 @@ Partial Class ModeloAyuda2
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(661, 81)
+        Me.Panel1.Size = New System.Drawing.Size(661, 66)
         Me.Panel1.TabIndex = 1
         '
         'tbtitulo
@@ -112,7 +112,7 @@ Partial Class ModeloAyuda2
         Me.tbtitulo.DisabledBackColor = System.Drawing.Color.White
         Me.tbtitulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbtitulo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbtitulo.Location = New System.Drawing.Point(121, 35)
+        Me.tbtitulo.Location = New System.Drawing.Point(121, 24)
         Me.tbtitulo.Name = "tbtitulo"
         Me.tbtitulo.PreventEnterBeep = True
         Me.tbtitulo.Size = New System.Drawing.Size(189, 22)
@@ -128,7 +128,7 @@ Partial Class ModeloAyuda2
         Me.lbtitulo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbtitulo.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbtitulo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbtitulo.Location = New System.Drawing.Point(34, 39)
+        Me.lbtitulo.Location = New System.Drawing.Point(31, 28)
         Me.lbtitulo.Name = "lbtitulo"
         Me.lbtitulo.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbtitulo.Size = New System.Drawing.Size(83, 16)
@@ -140,7 +140,7 @@ Partial Class ModeloAyuda2
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(49, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(661, 298)
+        Me.ClientSize = New System.Drawing.Size(661, 352)
         Me.Controls.Add(Me.GPPanelP)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None

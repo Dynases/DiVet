@@ -88,38 +88,35 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\librerias\DotNet\DevComponents.Instrumentation.Design.dll</HintPath>
     </Reference>
+    <Reference Include="Gma.QrCodeNet.Encoding">
+      <HintPath>C:\Users\usuario\Dropbox\Utilitarios\Aplicaciones\Qrcode_Barcode\Gma.QrCodeNet.Encoding.dll</HintPath>
+    </Reference>
     <Reference Include="GMap.NET.Core">
-      <HintPath>..\..\..\..\DINASES\DinoM\Dinases\Librerias\Gmap\GMap.NET.Core.dll</HintPath>
+      <HintPath>..\..\..\Google Drive\Librerias\GMap\GMap.NET.Core.dll</HintPath>
     </Reference>
     <Reference Include="GMap.NET.WindowsForms">
-      <HintPath>..\..\..\..\DINASES\DinoM\Dinases\Librerias\Gmap\GMap.NET.WindowsForms.dll</HintPath>
+      <HintPath>..\..\..\Google Drive\Librerias\GMap\GMap.NET.WindowsForms.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp">
-      <HintPath>..\..\..\..\DINASES\DinoM\Dinases\Librerias\Gmap\itextsharp.dll</HintPath>
+      <HintPath>..\..\..\..\Publica\Test Codebar\GenerarCodigos\GenerarCodigos\bin\Debug\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Data.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\DINASES\DinoM\Dinases\Librerias\Janus\Janus.Data.v3.dll</HintPath>
+    <Reference Include="Janus.Data.v3">
+      <HintPath>..\..\..\Google Drive\Librerias\Janus\Janus.Data.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.CalendarCombo.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\DINASES\DinoM\Dinases\Librerias\Janus\Janus.Windows.CalendarCombo.v3.dll</HintPath>
+    <Reference Include="Janus.Windows.CalendarCombo.v3">
+      <HintPath>..\..\..\Google Drive\Librerias\Janus\Janus.Windows.CalendarCombo.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.Common.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\DINASES\DinoM\Dinases\Librerias\Janus\Janus.Windows.Common.v3.dll</HintPath>
+    <Reference Include="Janus.Windows.Common.v3">
+      <HintPath>..\..\..\Google Drive\Librerias\Janus\Janus.Windows.Common.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.GridEX.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\DINASES\DinoM\Dinases\Librerias\Janus\Janus.Windows.GridEX.v3.dll</HintPath>
+    <Reference Include="Janus.Windows.GridEX.v3">
+      <HintPath>..\..\..\Google Drive\Librerias\Janus\Janus.Windows.GridEX.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.Ribbon.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\DINASES\DinoM\Dinases\Librerias\Janus\Janus.Windows.Ribbon.v3.dll</HintPath>
+    <Reference Include="Janus.Windows.Ribbon.v3">
+      <HintPath>..\..\..\Google Drive\Librerias\Janus\Janus.Windows.Ribbon.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\DINASES\DinoM\Dinases\Librerias\Janus\Janus.Windows.UI.v3.dll</HintPath>
+    <Reference Include="Janus.Windows.UI.v3">
+      <HintPath>..\..\..\Google Drive\Librerias\Janus\Janus.Windows.UI.v3.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -147,6 +144,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="F0_PagosCreditoCompraUlt.designer.vb">
+      <DependentUpon>F0_PagosCreditoCompraUlt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F0_PagosCreditoCompraUlt.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F0_Reg_Clientes.Designer.vb">
       <DependentUpon>F0_Reg_Clientes.vb</DependentUpon>
     </Compile>
@@ -243,6 +246,7 @@
     <Compile Include="F_Reg_Emergencia.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Iventario\ConvertirLiteral.vb" />
     <Compile Include="Iventario\F0_Cobrar_Cliente.designer.vb">
       <DependentUpon>F0_Cobrar_Cliente.vb</DependentUpon>
     </Compile>
@@ -265,6 +269,12 @@
       <DependentUpon>F0_Movimiento.vb</DependentUpon>
     </Compile>
     <Compile Include="Iventario\F0_Movimiento.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iventario\F0_PagosCredito.designer.vb">
+      <DependentUpon>F0_PagosCredito.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Iventario\F0_PagosCredito.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Iventario\F0_Precios.designer.vb">
@@ -295,6 +305,12 @@
       <DependentUpon>F1_Rol.vb</DependentUpon>
     </Compile>
     <Compile Include="Iventario\F1_Rol.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iventario\Pr_KardexCredito.designer.vb">
+      <DependentUpon>Pr_KardexCredito.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Iventario\Pr_KardexCredito.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Iventario\Pr_KardexProductos.designer.vb">
@@ -369,6 +385,12 @@
       <DependentUpon>R_FichaClinica.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reporte\R_HisotorialCobrosVentasCredito.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_HisotorialCobrosVentasCredito.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reporte\R_MorosidadCredito.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -397,6 +419,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>R_Recibo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\R_ReporteCobranzas.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_ReporteCobranzas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\R_ReportePagosCobranzas.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_ReportePagosCobranzas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reporte\R_ResumenCreditoAlmacen.vb">
@@ -563,6 +597,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="F0_PagosCreditoCompraUlt.resx">
+      <DependentUpon>F0_PagosCreditoCompraUlt.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F0_Reg_Clientes.resx">
       <DependentUpon>F0_Reg_Clientes.vb</DependentUpon>
     </EmbeddedResource>
@@ -623,6 +660,9 @@
     <EmbeddedResource Include="Iventario\F0_Movimiento.resx">
       <DependentUpon>F0_Movimiento.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Iventario\F0_PagosCredito.resx">
+      <DependentUpon>F0_PagosCredito.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Iventario\F0_Precios.resx">
       <DependentUpon>F0_Precios.vb</DependentUpon>
     </EmbeddedResource>
@@ -637,6 +677,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Iventario\F1_Rol.resx">
       <DependentUpon>F1_Rol.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Iventario\Pr_KardexCredito.resx">
+      <DependentUpon>Pr_KardexCredito.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Iventario\Pr_KardexProductos.resx">
       <DependentUpon>Pr_KardexProductos.vb</DependentUpon>
@@ -677,6 +720,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_FichaClinica.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\R_HisotorialCobrosVentasCredito.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_HisotorialCobrosVentasCredito.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reporte\R_MorosidadCredito.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_MorosidadCredito.vb</LastGenOutput>
@@ -696,6 +743,14 @@
     <EmbeddedResource Include="Reporte\R_Recibo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_Recibo.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\R_ReporteCobranzas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_ReporteCobranzas.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\R_ReportePagosCobranzas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_ReportePagosCobranzas.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\R_ResumenCreditoAlmacen.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
