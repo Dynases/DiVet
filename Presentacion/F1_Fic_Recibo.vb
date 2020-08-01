@@ -675,7 +675,6 @@ salirIf:
         End Try
     End Sub
 #End Region
-
 #Region "METODOS PRIVADOS OVERRRIDABLES"
     Public Overrides Function _PMOGrabarRegistro() As Boolean
         Dim res As Boolean = L_fnGrabarRecibo(txtIdRecibo.Text, _IdFicha, dtpFrecibo.Value, txtObservacionR.Text, txtTotalR.Text, CType(JGDetalleRecibo.DataSource, DataTable))
