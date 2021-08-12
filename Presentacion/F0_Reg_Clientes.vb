@@ -18,10 +18,10 @@ Partial Class F0_Reg_Clientes
         'TxtNombreUsu.Text = L_Usuario
 
     End Sub
-    Private Sub JGBPropietario_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGBPropietario.EditingCell
+    Private Sub JGBPropietario_EditingCell(sender As Object, e As EditingCellEventArgs)
         e.Cancel = True
     End Sub
-    Private Sub JDGClientes_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JDGClientes.EditingCell
+    Private Sub JDGClientes_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JDGClientes.EditingCell, JGBPropietario.EditingCell
         e.Cancel = True
     End Sub
     Private Sub btnAgregarMascota_Click(sender As Object, e As EventArgs) Handles btnAgregarMascota.Click
@@ -42,9 +42,9 @@ Partial Class F0_Reg_Clientes
         Dim _prioridad As Integer = dt.Rows(0).Item("fapriori")
         If _prioridad > 0 Then
             _prioridad = _prioridad
-            tFichaAtencion.Rows.Add(Convert.ToInt32(JGMascotasAtencion.GetValue("pbid")), 3, 0, _prioridad)
+            tFichaAtencion.Rows.Add(Convert.ToInt32(JGMascotasAtencion.GetValue("pbid")), 3, 0, _prioridad, JGMascotasAtencion.GetValue("Consultorio"))
         Else
-            tFichaAtencion.Rows.Add(Convert.ToInt32(JGMascotasAtencion.GetValue("pbid")), 3, 0, -1)
+            tFichaAtencion.Rows.Add(Convert.ToInt32(JGMascotasAtencion.GetValue("pbid")), 3, 0, -1, JGMascotasAtencion.GetValue("Consultorio"))
         End If
         frm._Tabla = tFichaAtencion
         frm.ShowDialog()
@@ -97,15 +97,16 @@ Partial Class F0_Reg_Clientes
         For Each fila As DataRow In tMascota.Rows
             If fila.Item("Consulta") = True And fila.Item("ReConsulta") = False Then
                 faPriori = faPriori + 1
-                dt.Rows.Add(Convert.ToInt32(fila.Item("pbid")), 1, 0, faPriori)
+                dt.Rows.Add(Convert.ToInt32(fila.Item("pbid")), 1, 0, faPriori, fila.Item("Consultorio"))
             End If
             If fila.Item("Consulta") = False And fila.Item("ReConsulta") = True Then
                 faPriori = faPriori + 1
-                dt.Rows.Add(Convert.ToInt32(fila.Item("pbid")), 2, 0, faPriori)
+                dt.Rows.Add(Convert.ToInt32(fila.Item("pbid")), 2, 0, faPriori, fila.Item("Consultorio"))
             End If
             If fila.Item("Consulta") = False And fila.Item("ReConsulta") = False Then
                 contador = contador + 1
             End If
+
         Next
         bandera = True
             If tMascota.Rows.Count <> dt.Rows.Count + contador Then
@@ -155,7 +156,7 @@ Partial Class F0_Reg_Clientes
     End Sub
     '***************SELECCION EL CHECK DE LA GRILLA MASCOTAS
     Private Sub JGMascotasAtencion_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGMascotasAtencion.EditingCell
-        If (e.Column.Index = JGMascotasAtencion.RootTable.Columns("Consulta").Index Or e.Column.Index = JGMascotasAtencion.RootTable.Columns("ReConsulta").Index) Then
+        If (e.Column.Index = JGMascotasAtencion.RootTable.Columns("Consulta").Index Or e.Column.Index = JGMascotasAtencion.RootTable.Columns("ReConsulta").Index Or e.Column.Index = JGMascotasAtencion.RootTable.Columns("Consultorio").Index) Then
             e.Cancel = False
         Else
             e.Cancel = True
@@ -165,11 +166,30 @@ Partial Class F0_Reg_Clientes
 #Region "METODOS PRIVADOS"
     Public Sub _prIniciarTodo()
         'Asignar permiso
+        _prCargarComboConsultorios(cbConsultorio)
         _PMInhabilitar()
         _PMAsignarPermisos()
         _prCargarClientes()
         _prCargarPropietarios()
         _PMOInhabilitar()
+
+    End Sub
+
+    Private Sub _prCargarComboConsultorios(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
+        Dim dt As New DataTable
+        dt = L_fnMostrarConsultorio()
+
+        With mCombo
+            .DropDownList.Columns.Clear()
+            '.DropDownList.Columns.Add("ccId").Width = 60
+            '.DropDownList.Columns("ccId").Caption = "ID"
+            .DropDownList.Columns.Add("ccNro").Width = 120
+            .DropDownList.Columns("ccNro").Caption = "Consultorio Nro."
+            .ValueMember = "ccNro"
+            .DisplayMember = "ccNro"
+            .DataSource = dt
+            .Refresh()
+        End With
     End Sub
     ''*****CARGA EL DATAGRID DEL CLIENTE*****''
     Private Sub _prCargarClientes()
@@ -181,7 +201,7 @@ Partial Class F0_Reg_Clientes
         JDGClientes.AlternatingColors = True
 
         With JDGClientes.RootTable.Columns("caid")
-            .Width = 50
+            .Width = 80
             .Caption = "Id"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .Visible = True
@@ -194,18 +214,18 @@ Partial Class F0_Reg_Clientes
 
         End With
         With JDGClientes.RootTable.Columns("canomb")
-            .Width = 120
+            .Width = 150
             .Visible = True
             .Caption = "Nombre"
         End With
         With JDGClientes.RootTable.Columns("caapell")
-            .Width = 163
+            .Width = 150
             .Caption = "Apellidos"
             .Visible = True
         End With
 
         With JDGClientes.RootTable.Columns("cadir")
-            .Width = 120
+            .Width = 150
             .Caption = "Dirección"
             .Visible = False
         End With
@@ -258,7 +278,7 @@ Partial Class F0_Reg_Clientes
         JGBPropietario.AlternatingColors = True
 
         With JGBPropietario.RootTable.Columns("caid")
-            .Width = 50
+            .Width = 90
             .Caption = "Id"
             .Visible = True
 
@@ -270,19 +290,19 @@ Partial Class F0_Reg_Clientes
 
         End With
         With JGBPropietario.RootTable.Columns("canomb")
-            .Width = 160
+            .Width = 250
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
             .Visible = True
             .Caption = "Nombre"
         End With
         With JGBPropietario.RootTable.Columns("caapell")
-            .Width = 190
+            .Width = 250
             .Caption = "Apellidos"
             .Visible = True
         End With
 
         With JGBPropietario.RootTable.Columns("cadir")
-            .Width = 180
+            .Width = 250
             .Caption = "Dirección"
             .Visible = True
         End With
@@ -328,7 +348,7 @@ Partial Class F0_Reg_Clientes
             .Visible = False
         End With
         With JGBPropietario.RootTable.Columns("Debe")
-            .Width = 60
+            .Width = 90
             .Caption = "Debe?"
             .Visible = True
         End With
@@ -533,6 +553,14 @@ Partial Class F0_Reg_Clientes
             .Width = 120
             .Caption = "Reconsulta"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Visible = True
+        End With
+        With JGMascotasAtencion.RootTable.Columns("Consultorio")
+            .Caption = "Consultorio Nro."
+            .EditType = EditType.MultiColumnDropDown
+            .DropDown = cbConsultorio.DropDownList
+            '.DefaultValue = cbConsultorio.ValueMember
+            .Width = 150
             .Visible = True
         End With
         With JGMascotasAtencion

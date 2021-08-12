@@ -24,6 +24,7 @@ Partial Class F0_Reg_Clientes
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F0_Reg_Clientes))
+        Dim cbConsultorio_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GPDatosGral = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -55,6 +56,11 @@ Partial Class F0_Reg_Clientes
         Me.MHighlighterFocus = New DevComponents.DotNetBar.Validator.Highlighter()
         Me.dtpFechaAct = New System.Windows.Forms.DateTimePicker()
         Me.btnEmergencia = New DevComponents.DotNetBar.ButtonX()
+        Me.cbConsultorio = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.Panel6 = New System.Windows.Forms.Panel()
         Me.GroupPanelBuscador.SuspendLayout()
         Me.MpanelSuperior.SuspendLayout()
         Me.PanelSuperior.SuspendLayout()
@@ -81,13 +87,18 @@ Partial Class F0_Reg_Clientes
         CType(Me.JGMascotasAtencion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanel3.SuspendLayout()
         CType(Me.JGBPropietario, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cbConsultorio, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
+        Me.Panel3.SuspendLayout()
+        Me.Panel5.SuspendLayout()
+        Me.Panel6.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupPanelBuscador
         '
-        Me.GroupPanelBuscador.Location = New System.Drawing.Point(5, 382)
+        Me.GroupPanelBuscador.Location = New System.Drawing.Point(5, 380)
         Me.GroupPanelBuscador.Margin = New System.Windows.Forms.Padding(4)
-        Me.GroupPanelBuscador.Size = New System.Drawing.Size(1028, 171)
+        Me.GroupPanelBuscador.Size = New System.Drawing.Size(1175, 175)
         '
         '
         '
@@ -121,17 +132,18 @@ Partial Class F0_Reg_Clientes
         '
         'MpanelSuperior
         '
-        Me.MpanelSuperior.Controls.Add(Me.TableLayoutPanel1)
-        Me.MpanelSuperior.Location = New System.Drawing.Point(3, 72)
+        Me.MpanelSuperior.Controls.Add(Me.Panel6)
+        Me.MpanelSuperior.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.MpanelSuperior.Location = New System.Drawing.Point(0, 69)
         Me.MpanelSuperior.Margin = New System.Windows.Forms.Padding(4)
-        Me.MpanelSuperior.Size = New System.Drawing.Size(1028, 304)
-        Me.MpanelSuperior.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
+        Me.MpanelSuperior.Size = New System.Drawing.Size(1184, 490)
         Me.MpanelSuperior.Controls.SetChildIndex(Me.PanelUsuario, 0)
+        Me.MpanelSuperior.Controls.SetChildIndex(Me.Panel6, 0)
         '
         'PanelSuperior
         '
         Me.PanelSuperior.Margin = New System.Windows.Forms.Padding(4)
-        Me.PanelSuperior.Size = New System.Drawing.Size(1038, 69)
+        Me.PanelSuperior.Size = New System.Drawing.Size(1184, 69)
         Me.PanelSuperior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelSuperior.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PanelSuperior.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
@@ -179,7 +191,7 @@ Partial Class F0_Reg_Clientes
         '
         Me.PanelInferior.Location = New System.Drawing.Point(0, 559)
         Me.PanelInferior.Margin = New System.Windows.Forms.Padding(4)
-        Me.PanelInferior.Size = New System.Drawing.Size(1038, 39)
+        Me.PanelInferior.Size = New System.Drawing.Size(1184, 39)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Transparent
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Transparent
@@ -191,7 +203,7 @@ Partial Class F0_Reg_Clientes
         '
         'MPanelUserAct
         '
-        Me.MPanelUserAct.Location = New System.Drawing.Point(838, 0)
+        Me.MPanelUserAct.Location = New System.Drawing.Point(984, 0)
         Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(4)
         '
         'LblPaginacion
@@ -218,20 +230,20 @@ Partial Class F0_Reg_Clientes
         Me.JGrM_Buscador.SelectedFormatStyle.BackColor = System.Drawing.Color.DodgerBlue
         Me.JGrM_Buscador.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.JGrM_Buscador.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
-        Me.JGrM_Buscador.Size = New System.Drawing.Size(1022, 148)
+        Me.JGrM_Buscador.Size = New System.Drawing.Size(1169, 152)
         '
         'PanelBuscador
         '
         Me.PanelBuscador.BackColor = System.Drawing.Color.SteelBlue
         Me.PanelBuscador.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PanelBuscador.Controls.Add(Me.btnEmergencia)
-        Me.PanelBuscador.Controls.Add(Me.dtpFechaAct)
-        Me.PanelBuscador.Controls.Add(Me.btnAsignarFicha)
-        Me.PanelBuscador.Controls.Add(Me.GroupPanel3)
-        Me.PanelBuscador.Controls.Add(Me.GroupPanel2)
+        Me.PanelBuscador.Controls.Add(Me.Panel5)
+        Me.PanelBuscador.Controls.Add(Me.Panel3)
+        Me.PanelBuscador.Controls.Add(Me.Panel2)
+        Me.PanelBuscador.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelBuscador.ForeColor = System.Drawing.Color.White
+        Me.PanelBuscador.Location = New System.Drawing.Point(0, 0)
         Me.PanelBuscador.Margin = New System.Windows.Forms.Padding(4)
-        Me.PanelBuscador.Size = New System.Drawing.Size(1037, 591)
+        Me.PanelBuscador.Size = New System.Drawing.Size(1184, 598)
         '
         'SupTabItemBusqueda
         '
@@ -282,12 +294,12 @@ Partial Class F0_Reg_Clientes
         Me.superTabControl1.ControlBox.Name = ""
         Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
         Me.superTabControl1.SelectedTabIndex = 1
-        Me.superTabControl1.Size = New System.Drawing.Size(1038, 623)
+        Me.superTabControl1.Size = New System.Drawing.Size(1184, 623)
         Me.superTabControl1.Controls.SetChildIndex(Me.superTabControlPanel1, 0)
         '
         'superTabControlPanel1
         '
-        Me.superTabControlPanel1.Size = New System.Drawing.Size(1038, 598)
+        Me.superTabControlPanel1.Size = New System.Drawing.Size(1184, 598)
         Me.superTabControlPanel1.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.superTabControlPanel1.Controls.SetChildIndex(Me.PanelSuperior, 0)
         Me.superTabControlPanel1.Controls.SetChildIndex(Me.MpanelSuperior, 0)
@@ -309,8 +321,7 @@ Partial Class F0_Reg_Clientes
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 304.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1028, 304)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1184, 310)
         Me.TableLayoutPanel1.TabIndex = 237
         '
         'GPDatosGral
@@ -320,11 +331,12 @@ Partial Class F0_Reg_Clientes
         Me.GPDatosGral.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.GPDatosGral.Controls.Add(Me.Panel1)
         Me.GPDatosGral.DisabledBackColor = System.Drawing.Color.Empty
+        Me.GPDatosGral.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GPDatosGral.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GPDatosGral.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.GPDatosGral.Location = New System.Drawing.Point(3, 3)
         Me.GPDatosGral.Name = "GPDatosGral"
-        Me.GPDatosGral.Size = New System.Drawing.Size(488, 297)
+        Me.GPDatosGral.Size = New System.Drawing.Size(563, 304)
         '
         '
         '
@@ -376,9 +388,10 @@ Partial Class F0_Reg_Clientes
         Me.Panel1.Controls.Add(Me.txtId)
         Me.Panel1.Controls.Add(Me.lbFechaIngr)
         Me.Panel1.Controls.Add(Me.dtpFIngresoC)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(482, 275)
+        Me.Panel1.Size = New System.Drawing.Size(557, 281)
         Me.Panel1.TabIndex = 234
         '
         'txtCI
@@ -668,10 +681,11 @@ Partial Class F0_Reg_Clientes
         Me.GPClientes.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.GPClientes.Controls.Add(Me.Panel4)
         Me.GPClientes.DisabledBackColor = System.Drawing.Color.Empty
+        Me.GPClientes.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GPClientes.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GPClientes.Location = New System.Drawing.Point(497, 3)
+        Me.GPClientes.Location = New System.Drawing.Point(572, 3)
         Me.GPClientes.Name = "GPClientes"
-        Me.GPClientes.Size = New System.Drawing.Size(528, 297)
+        Me.GPClientes.Size = New System.Drawing.Size(609, 304)
         '
         '
         '
@@ -712,20 +726,21 @@ Partial Class F0_Reg_Clientes
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel4.Location = New System.Drawing.Point(0, 0)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(522, 274)
+        Me.Panel4.Size = New System.Drawing.Size(603, 281)
         Me.Panel4.TabIndex = 216
         '
         'JDGClientes
         '
+        Me.JDGClientes.Dock = System.Windows.Forms.DockStyle.Fill
         Me.JDGClientes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.JDGClientes.HeaderFormatStyle.BackColor = System.Drawing.SystemColors.Highlight
         Me.JDGClientes.HeaderFormatStyle.BackColorGradient = System.Drawing.Color.Lavender
         Me.JDGClientes.HeaderFormatStyle.FontBold = Janus.Windows.GridEX.TriState.[True]
-        Me.JDGClientes.Location = New System.Drawing.Point(3, 3)
+        Me.JDGClientes.Location = New System.Drawing.Point(0, 0)
         Me.JDGClientes.Name = "JDGClientes"
         Me.JDGClientes.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.JDGClientes.Office2007CustomColor = System.Drawing.SystemColors.HotTrack
-        Me.JDGClientes.Size = New System.Drawing.Size(516, 269)
+        Me.JDGClientes.Size = New System.Drawing.Size(603, 281)
         Me.JDGClientes.TabIndex = 0
         Me.JDGClientes.TotalRowFormatStyle.BackColor = System.Drawing.Color.White
         '
@@ -736,10 +751,11 @@ Partial Class F0_Reg_Clientes
         Me.GroupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.GroupPanel2.Controls.Add(Me.JGMascotasAtencion)
         Me.GroupPanel2.DisabledBackColor = System.Drawing.Color.Empty
+        Me.GroupPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupPanel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupPanel2.Location = New System.Drawing.Point(20, 316)
+        Me.GroupPanel2.Location = New System.Drawing.Point(0, 0)
         Me.GroupPanel2.Name = "GroupPanel2"
-        Me.GroupPanel2.Size = New System.Drawing.Size(986, 205)
+        Me.GroupPanel2.Size = New System.Drawing.Size(1184, 203)
         '
         '
         '
@@ -785,7 +801,7 @@ Partial Class F0_Reg_Clientes
         Me.JGMascotasAtencion.SelectedFormatStyle.BackColor = System.Drawing.Color.DodgerBlue
         Me.JGMascotasAtencion.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.JGMascotasAtencion.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
-        Me.JGMascotasAtencion.Size = New System.Drawing.Size(980, 182)
+        Me.JGMascotasAtencion.Size = New System.Drawing.Size(1178, 180)
         Me.JGMascotasAtencion.TabIndex = 0
         '
         'GroupPanel3
@@ -795,10 +811,11 @@ Partial Class F0_Reg_Clientes
         Me.GroupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.GroupPanel3.Controls.Add(Me.JGBPropietario)
         Me.GroupPanel3.DisabledBackColor = System.Drawing.Color.Empty
+        Me.GroupPanel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupPanel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupPanel3.Location = New System.Drawing.Point(88, 4)
+        Me.GroupPanel3.Location = New System.Drawing.Point(0, 0)
         Me.GroupPanel3.Name = "GroupPanel3"
-        Me.GroupPanel3.Size = New System.Drawing.Size(851, 295)
+        Me.GroupPanel3.Size = New System.Drawing.Size(1184, 316)
         '
         '
         '
@@ -833,11 +850,12 @@ Partial Class F0_Reg_Clientes
         '
         'JGBPropietario
         '
+        Me.JGBPropietario.Dock = System.Windows.Forms.DockStyle.Fill
         Me.JGBPropietario.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.JGBPropietario.HeaderFormatStyle.FontBold = Janus.Windows.GridEX.TriState.[True]
-        Me.JGBPropietario.Location = New System.Drawing.Point(3, 3)
+        Me.JGBPropietario.Location = New System.Drawing.Point(0, 0)
         Me.JGBPropietario.Name = "JGBPropietario"
-        Me.JGBPropietario.Size = New System.Drawing.Size(839, 266)
+        Me.JGBPropietario.Size = New System.Drawing.Size(1178, 293)
         Me.JGBPropietario.TabIndex = 256
         '
         'btnAsignarFicha
@@ -851,7 +869,7 @@ Partial Class F0_Reg_Clientes
         Me.btnAsignarFicha.Image = Global.Presentacion.My.Resources.Resources.checked
         Me.btnAsignarFicha.ImageFixedSize = New System.Drawing.Size(20, 20)
         Me.btnAsignarFicha.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnAsignarFicha.Location = New System.Drawing.Point(376, 536)
+        Me.btnAsignarFicha.Location = New System.Drawing.Point(470, 26)
         Me.btnAsignarFicha.Name = "btnAsignarFicha"
         Me.btnAsignarFicha.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.btnAsignarFicha.Size = New System.Drawing.Size(101, 42)
@@ -867,7 +885,7 @@ Partial Class F0_Reg_Clientes
         '
         Me.dtpFechaAct.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpFechaAct.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFechaAct.Location = New System.Drawing.Point(20, 549)
+        Me.dtpFechaAct.Location = New System.Drawing.Point(23, 29)
         Me.dtpFechaAct.Name = "dtpFechaAct"
         Me.dtpFechaAct.Size = New System.Drawing.Size(122, 22)
         Me.dtpFechaAct.TabIndex = 262
@@ -885,7 +903,7 @@ Partial Class F0_Reg_Clientes
         Me.btnEmergencia.Image = Global.Presentacion.My.Resources.Resources.emergencia
         Me.btnEmergencia.ImageFixedSize = New System.Drawing.Size(20, 20)
         Me.btnEmergencia.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnEmergencia.Location = New System.Drawing.Point(542, 536)
+        Me.btnEmergencia.Location = New System.Drawing.Point(654, 26)
         Me.btnEmergencia.Name = "btnEmergencia"
         Me.btnEmergencia.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.btnEmergencia.Size = New System.Drawing.Size(101, 42)
@@ -894,14 +912,68 @@ Partial Class F0_Reg_Clientes
         Me.btnEmergencia.Text = "Emergencia"
         Me.btnEmergencia.TextColor = System.Drawing.Color.Red
         '
+        'cbConsultorio
+        '
+        cbConsultorio_DesignTimeLayout.LayoutString = resources.GetString("cbConsultorio_DesignTimeLayout.LayoutString")
+        Me.cbConsultorio.DesignTimeLayout = cbConsultorio_DesignTimeLayout
+        Me.cbConsultorio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbConsultorio.Location = New System.Drawing.Point(151, 30)
+        Me.cbConsultorio.Name = "cbConsultorio"
+        Me.cbConsultorio.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.cbConsultorio.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.cbConsultorio.SelectedIndex = -1
+        Me.cbConsultorio.SelectedItem = Nothing
+        Me.cbConsultorio.Size = New System.Drawing.Size(125, 21)
+        Me.cbConsultorio.TabIndex = 264
+        Me.cbConsultorio.Visible = False
+        Me.cbConsultorio.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.GroupPanel3)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(1184, 316)
+        Me.Panel2.TabIndex = 265
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.btnEmergencia)
+        Me.Panel3.Controls.Add(Me.btnAsignarFicha)
+        Me.Panel3.Controls.Add(Me.cbConsultorio)
+        Me.Panel3.Controls.Add(Me.dtpFechaAct)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel3.Location = New System.Drawing.Point(0, 519)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(1184, 79)
+        Me.Panel3.TabIndex = 266
+        '
+        'Panel5
+        '
+        Me.Panel5.Controls.Add(Me.GroupPanel2)
+        Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel5.Location = New System.Drawing.Point(0, 316)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(1184, 203)
+        Me.Panel5.TabIndex = 267
+        '
+        'Panel6
+        '
+        Me.Panel6.Controls.Add(Me.TableLayoutPanel1)
+        Me.Panel6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel6.Location = New System.Drawing.Point(0, 0)
+        Me.Panel6.Name = "Panel6"
+        Me.Panel6.Size = New System.Drawing.Size(1184, 310)
+        Me.Panel6.TabIndex = 2
+        '
         'F0_Reg_Clientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(1038, 623)
+        Me.ClientSize = New System.Drawing.Size(1184, 623)
         Me.Margin = New System.Windows.Forms.Padding(4)
-        Me.MaximizeBox = False
         Me.Name = "F0_Reg_Clientes"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "REGISTRO DE CLIENTES Y PACIENTES"
@@ -934,6 +1006,12 @@ Partial Class F0_Reg_Clientes
         CType(Me.JGMascotasAtencion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupPanel3.ResumeLayout(False)
         CType(Me.JGBPropietario, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cbConsultorio, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
+        Me.Panel5.ResumeLayout(False)
+        Me.Panel6.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -969,4 +1047,9 @@ Partial Class F0_Reg_Clientes
     Friend WithEvents dtpFechaAct As DateTimePicker
     Friend WithEvents txtCI As DevComponents.Editors.IntegerInput
     Friend WithEvents btnEmergencia As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents cbConsultorio As Janus.Windows.GridEX.EditControls.MultiColumnCombo
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Panel6 As Panel
+    Friend WithEvents Panel5 As Panel
 End Class

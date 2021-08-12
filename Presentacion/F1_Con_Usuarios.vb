@@ -368,6 +368,10 @@ Public Class F1_Con_Usuarios
         End If
     End Sub
 
+    Private Sub JGBusqUsuarios_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGBusqUsuarios.EditingCell
+        e.Cancel = True
+    End Sub
+
 #End Region
 
 

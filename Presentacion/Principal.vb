@@ -360,4 +360,10 @@ Public Class Principal
         Modelo.MGlobal._nameButton = btComPagosCredito.Name
         frm.Show()
     End Sub
+
+    Private Sub btnConsultorios_Click(sender As Object, e As EventArgs) Handles btnConsultorios.Click
+        Dim frm As New F1_Con_Consultorios
+        Modelo.MGlobal._nameButton = btnConsultorios.Name
+        frm.Show()
+    End Sub
 End Class

@@ -4208,7 +4208,79 @@ Public Class AccesoLogica
 
 #End Region
 
+#Region "CON.CONSULTORIOS CONS001"
+    Public Shared Function L_fnMostrarConsultorio() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@ccUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_CONS001", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnGrabarConsultorio(ByRef _Id As String, _Fecha As String, _Nro As String, _Est As String) As Boolean
 
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@ccId", _Id))
+        _listParam.Add(New Datos.DParametro("@ccFecha", _Fecha))
+        _listParam.Add(New Datos.DParametro("@ccNro", _Nro))
+        _listParam.Add(New Datos.DParametro("@ccEst", _Est))
+        _listParam.Add(New Datos.DParametro("@ccUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_CONS001", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _Id = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    Public Shared Function L_fnModificarConsultorio(ByRef _Id As String, _Fecha As String, _Nro As String, _Est As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@ccId", _Id))
+        _listParam.Add(New Datos.DParametro("@ccFecha", _Fecha))
+        _listParam.Add(New Datos.DParametro("@ccNro", _Nro))
+        _listParam.Add(New Datos.DParametro("@ccEst", _Est))
+        _listParam.Add(New Datos.DParametro("@ccUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_CONS001", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _Id = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnEliminarConsultorio(ByRef _Id As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@ccId", _Id))
+        _listParam.Add(New Datos.DParametro("@ccUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_CONS001", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _Id = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+
+
+
+#End Region
 
 
 

@@ -34,8 +34,8 @@ Partial Class F1_Con_Servicios
         Me.lbPrecio = New DevComponents.DotNetBar.LabelX()
         Me.txtIdServicio = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.gpServicios = New DevComponents.DotNetBar.Controls.GroupPanel()
-        Me.panelServicios = New System.Windows.Forms.Panel()
         Me.JGServicios = New Janus.Windows.GridEX.GridEX()
+        Me.Panel3 = New System.Windows.Forms.Panel()
         CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MpanelSuperior.SuspendLayout()
         Me.PanelSuperior.SuspendLayout()
@@ -50,8 +50,8 @@ Partial Class F1_Con_Servicios
         Me.Panel2.SuspendLayout()
         CType(Me.diPrecio, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpServicios.SuspendLayout()
-        Me.panelServicios.SuspendLayout()
         CType(Me.JGServicios, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'superTabControl1
@@ -74,13 +74,13 @@ Partial Class F1_Con_Servicios
         'MpanelSuperior
         '
         Me.MpanelSuperior.Controls.Add(Me.gpServicios)
-        Me.MpanelSuperior.Controls.Add(Me.gpDatosGral)
+        Me.MpanelSuperior.Controls.Add(Me.Panel3)
         Me.MpanelSuperior.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MpanelSuperior.Location = New System.Drawing.Point(0, 72)
         Me.MpanelSuperior.Size = New System.Drawing.Size(846, 490)
-        Me.MpanelSuperior.Controls.SetChildIndex(Me.gpDatosGral, 0)
-        Me.MpanelSuperior.Controls.SetChildIndex(Me.gpServicios, 0)
         Me.MpanelSuperior.Controls.SetChildIndex(Me.PanelUsuario, 0)
+        Me.MpanelSuperior.Controls.SetChildIndex(Me.Panel3, 0)
+        Me.MpanelSuperior.Controls.SetChildIndex(Me.gpServicios, 0)
         '
         'PanelSuperior
         '
@@ -169,11 +169,12 @@ Partial Class F1_Con_Servicios
         Me.gpDatosGral.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.gpDatosGral.Controls.Add(Me.Panel2)
         Me.gpDatosGral.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpDatosGral.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpDatosGral.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpDatosGral.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.gpDatosGral.Location = New System.Drawing.Point(12, 6)
+        Me.gpDatosGral.Location = New System.Drawing.Point(0, 0)
         Me.gpDatosGral.Name = "gpDatosGral"
-        Me.gpDatosGral.Size = New System.Drawing.Size(822, 167)
+        Me.gpDatosGral.Size = New System.Drawing.Size(846, 167)
         '
         '
         '
@@ -219,7 +220,7 @@ Partial Class F1_Con_Servicios
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(816, 144)
+        Me.Panel2.Size = New System.Drawing.Size(840, 144)
         Me.Panel2.TabIndex = 234
         '
         'swEstadoS
@@ -308,7 +309,7 @@ Partial Class F1_Con_Servicios
         Me.lbDescripcion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbDescripcion.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbDescripcion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbDescripcion.Location = New System.Drawing.Point(18, 41)
+        Me.lbDescripcion.Location = New System.Drawing.Point(18, 39)
         Me.lbDescripcion.Name = "lbDescripcion"
         Me.lbDescripcion.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbDescripcion.Size = New System.Drawing.Size(81, 23)
@@ -325,7 +326,7 @@ Partial Class F1_Con_Servicios
         Me.lbIdServicio.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbIdServicio.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbIdServicio.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbIdServicio.Location = New System.Drawing.Point(17, 15)
+        Me.lbIdServicio.Location = New System.Drawing.Point(18, 14)
         Me.lbIdServicio.Name = "lbIdServicio"
         Me.lbIdServicio.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbIdServicio.Size = New System.Drawing.Size(73, 16)
@@ -371,12 +372,13 @@ Partial Class F1_Con_Servicios
         Me.gpServicios.BackColor = System.Drawing.Color.White
         Me.gpServicios.CanvasColor = System.Drawing.SystemColors.Control
         Me.gpServicios.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
-        Me.gpServicios.Controls.Add(Me.panelServicios)
+        Me.gpServicios.Controls.Add(Me.JGServicios)
         Me.gpServicios.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpServicios.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpServicios.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gpServicios.Location = New System.Drawing.Point(6, 173)
+        Me.gpServicios.Location = New System.Drawing.Point(0, 167)
         Me.gpServicios.Name = "gpServicios"
-        Me.gpServicios.Size = New System.Drawing.Size(834, 311)
+        Me.gpServicios.Size = New System.Drawing.Size(846, 323)
         '
         '
         '
@@ -407,16 +409,6 @@ Partial Class F1_Con_Servicios
         Me.gpServicios.TabIndex = 386
         Me.gpServicios.Text = "S E R V I C I O S"
         '
-        'panelServicios
-        '
-        Me.panelServicios.BackColor = System.Drawing.Color.White
-        Me.panelServicios.Controls.Add(Me.JGServicios)
-        Me.panelServicios.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panelServicios.Location = New System.Drawing.Point(0, 0)
-        Me.panelServicios.Name = "panelServicios"
-        Me.panelServicios.Size = New System.Drawing.Size(828, 288)
-        Me.panelServicios.TabIndex = 0
-        '
         'JGServicios
         '
         Me.JGServicios.BackColor = System.Drawing.Color.GhostWhite
@@ -428,16 +420,24 @@ Partial Class F1_Con_Servicios
         Me.JGServicios.Name = "JGServicios"
         Me.JGServicios.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.JGServicios.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.JGServicios.Size = New System.Drawing.Size(828, 288)
+        Me.JGServicios.Size = New System.Drawing.Size(840, 300)
         Me.JGServicios.TabIndex = 0
         Me.JGServicios.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.gpDatosGral)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel3.Location = New System.Drawing.Point(0, 0)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(846, 167)
+        Me.Panel3.TabIndex = 235
         '
         'F1_Con_Servicios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(846, 626)
-        Me.MaximizeBox = False
         Me.Name = "F1_Con_Servicios"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "REGISTRO DE SERVICIOS"
@@ -458,8 +458,8 @@ Partial Class F1_Con_Servicios
         Me.Panel2.PerformLayout()
         CType(Me.diPrecio, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gpServicios.ResumeLayout(False)
-        Me.panelServicios.ResumeLayout(False)
         CType(Me.JGServicios, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -472,9 +472,9 @@ Partial Class F1_Con_Servicios
     Friend WithEvents lbPrecio As DevComponents.DotNetBar.LabelX
     Friend WithEvents txtIdServicio As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents gpServicios As DevComponents.DotNetBar.Controls.GroupPanel
-    Friend WithEvents panelServicios As Panel
     Friend WithEvents JGServicios As Janus.Windows.GridEX.GridEX
     Friend WithEvents diPrecio As DevComponents.Editors.DoubleInput
     Friend WithEvents swEstadoS As DevComponents.DotNetBar.Controls.SwitchButton
     Friend WithEvents lbEstado As DevComponents.DotNetBar.LabelX
+    Friend WithEvents Panel3 As Panel
 End Class
