@@ -592,6 +592,7 @@ salirIf:
                             'Else
                             '    CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbPCosto") = 0
                             'End If
+                            CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbPCosto") = FilaSelectLote.Item("pcos")
                             CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbPTot2") = FilaSelectLote.Item("pcos")
 
                             CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbLote") = JGProductos.GetValue("iclot")

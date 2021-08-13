@@ -140,10 +140,10 @@ Partial Class F1_Reg_Pacientes
         Me.MpanelBuscador.BackgroundImage = Global.Presentacion.My.Resources.Resources.Fondo2
         Me.MpanelBuscador.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.MpanelBuscador.Controls.Add(Me.gpBusqMascotas)
-        Me.MpanelBuscador.Size = New System.Drawing.Size(805, 455)
         '
         'TxtNombreUsu
         '
+        Me.TxtNombreUsu.Enabled = False
         Me.TxtNombreUsu.Text = "DEFAULT"
         '
         'BubbleBarUsuario
@@ -422,7 +422,7 @@ Partial Class F1_Reg_Pacientes
         '
         'pictureBox1
         '
-        Me.pictureBox1.Image = Global.Presentacion.My.Resources.Resources.Fondo_
+        Me.pictureBox1.Image = Global.Presentacion.My.Resources.Resources.VidaVet5
         Me.pictureBox1.Location = New System.Drawing.Point(651, 6)
         Me.pictureBox1.Name = "pictureBox1"
         Me.pictureBox1.Size = New System.Drawing.Size(100, 100)

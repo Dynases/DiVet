@@ -192,7 +192,7 @@ Partial Class Login
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image = Global.Presentacion.My.Resources.Resources.Vete20
+        Me.PictureBox1.Image = Global.Presentacion.My.Resources.Resources.VidaVet5
         Me.PictureBox1.Location = New System.Drawing.Point(109, 88)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(121, 119)

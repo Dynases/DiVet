@@ -182,6 +182,10 @@ Public Class F0_Movimiento
         _prAddDetalleVenta()
         cbConcepto.Focus()
         FilaSelectLote = Nothing
+
+
+        btnModificar.Enabled = False
+
     End Sub
     Public Sub _prMostrarRegistro(_N As Integer)
         '      a.ibid ,a.ibfdoc ,a.ibconcep ,b.cpdesc as concepto,a.ibobs ,a.ibest ,a.ibalm ,a.ibiddc 
@@ -1420,7 +1424,7 @@ salirIf:
                     End If
                 End If
             Else
-                btnModificar.Enabled = True
+                'btnModificar.Enabled = True
                 lbDepositoDestino.Visible = False
                 cbDepositoDestino.Visible = False
                 lbDepositoOrigen.Text = "Deposito:"

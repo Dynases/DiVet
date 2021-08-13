@@ -243,7 +243,7 @@ Partial Class F0_Reg_Clientes
         Me.PanelBuscador.ForeColor = System.Drawing.Color.White
         Me.PanelBuscador.Location = New System.Drawing.Point(0, 0)
         Me.PanelBuscador.Margin = New System.Windows.Forms.Padding(4)
-        Me.PanelBuscador.Size = New System.Drawing.Size(1184, 598)
+        Me.PanelBuscador.Size = New System.Drawing.Size(962, 551)
         '
         'SupTabItemBusqueda
         '
@@ -275,6 +275,7 @@ Partial Class F0_Reg_Clientes
         '
         'TxtNombreUsu
         '
+        Me.TxtNombreUsu.Enabled = False
         Me.TxtNombreUsu.Location = New System.Drawing.Point(48, 10)
         Me.TxtNombreUsu.Margin = New System.Windows.Forms.Padding(4)
         '
@@ -483,10 +484,10 @@ Partial Class F0_Reg_Clientes
         Me.btnAgregarMascota.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.btnAgregarMascota.BackColor = System.Drawing.Color.White
         Me.btnAgregarMascota.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.btnAgregarMascota.Image = Global.Presentacion.My.Resources.Resources.vet18
+        Me.btnAgregarMascota.Image = Global.Presentacion.My.Resources.Resources.VidaVet5
         Me.btnAgregarMascota.ImageFixedSize = New System.Drawing.Size(70, 70)
         Me.btnAgregarMascota.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnAgregarMascota.Location = New System.Drawing.Point(357, 181)
+        Me.btnAgregarMascota.Location = New System.Drawing.Point(382, 181)
         Me.btnAgregarMascota.Name = "btnAgregarMascota"
         Me.btnAgregarMascota.Size = New System.Drawing.Size(120, 92)
         Me.btnAgregarMascota.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -755,7 +756,7 @@ Partial Class F0_Reg_Clientes
         Me.GroupPanel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupPanel2.Location = New System.Drawing.Point(0, 0)
         Me.GroupPanel2.Name = "GroupPanel2"
-        Me.GroupPanel2.Size = New System.Drawing.Size(1184, 203)
+        Me.GroupPanel2.Size = New System.Drawing.Size(962, 156)
         '
         '
         '
@@ -801,7 +802,7 @@ Partial Class F0_Reg_Clientes
         Me.JGMascotasAtencion.SelectedFormatStyle.BackColor = System.Drawing.Color.DodgerBlue
         Me.JGMascotasAtencion.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.JGMascotasAtencion.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
-        Me.JGMascotasAtencion.Size = New System.Drawing.Size(1178, 180)
+        Me.JGMascotasAtencion.Size = New System.Drawing.Size(956, 133)
         Me.JGMascotasAtencion.TabIndex = 0
         '
         'GroupPanel3
@@ -815,7 +816,7 @@ Partial Class F0_Reg_Clientes
         Me.GroupPanel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupPanel3.Location = New System.Drawing.Point(0, 0)
         Me.GroupPanel3.Name = "GroupPanel3"
-        Me.GroupPanel3.Size = New System.Drawing.Size(1184, 316)
+        Me.GroupPanel3.Size = New System.Drawing.Size(962, 316)
         '
         '
         '
@@ -855,7 +856,7 @@ Partial Class F0_Reg_Clientes
         Me.JGBPropietario.HeaderFormatStyle.FontBold = Janus.Windows.GridEX.TriState.[True]
         Me.JGBPropietario.Location = New System.Drawing.Point(0, 0)
         Me.JGBPropietario.Name = "JGBPropietario"
-        Me.JGBPropietario.Size = New System.Drawing.Size(1178, 293)
+        Me.JGBPropietario.Size = New System.Drawing.Size(956, 293)
         Me.JGBPropietario.TabIndex = 256
         '
         'btnAsignarFicha
@@ -934,7 +935,7 @@ Partial Class F0_Reg_Clientes
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1184, 316)
+        Me.Panel2.Size = New System.Drawing.Size(962, 316)
         Me.Panel2.TabIndex = 265
         '
         'Panel3
@@ -944,9 +945,9 @@ Partial Class F0_Reg_Clientes
         Me.Panel3.Controls.Add(Me.cbConsultorio)
         Me.Panel3.Controls.Add(Me.dtpFechaAct)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel3.Location = New System.Drawing.Point(0, 519)
+        Me.Panel3.Location = New System.Drawing.Point(0, 472)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1184, 79)
+        Me.Panel3.Size = New System.Drawing.Size(962, 79)
         Me.Panel3.TabIndex = 266
         '
         'Panel5
@@ -955,7 +956,7 @@ Partial Class F0_Reg_Clientes
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel5.Location = New System.Drawing.Point(0, 316)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(1184, 203)
+        Me.Panel5.Size = New System.Drawing.Size(962, 156)
         Me.Panel5.TabIndex = 267
         '
         'Panel6

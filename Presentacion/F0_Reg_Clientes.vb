@@ -97,11 +97,11 @@ Partial Class F0_Reg_Clientes
         For Each fila As DataRow In tMascota.Rows
             If fila.Item("Consulta") = True And fila.Item("ReConsulta") = False Then
                 faPriori = faPriori + 1
-                dt.Rows.Add(Convert.ToInt32(fila.Item("pbid")), 1, 0, faPriori, fila.Item("Consultorio"))
+                dt.Rows.Add(Convert.ToInt32(fila.Item("pbid")), 1, 0, faPriori, _fnObtenerNumiConsultorio(fila.Item("Consultorio")))
             End If
             If fila.Item("Consulta") = False And fila.Item("ReConsulta") = True Then
                 faPriori = faPriori + 1
-                dt.Rows.Add(Convert.ToInt32(fila.Item("pbid")), 2, 0, faPriori, fila.Item("Consultorio"))
+                dt.Rows.Add(Convert.ToInt32(fila.Item("pbid")), 2, 0, faPriori, _fnObtenerNumiConsultorio(fila.Item("Consultorio")))
             End If
             If fila.Item("Consulta") = False And fila.Item("ReConsulta") = False Then
                 contador = contador + 1
@@ -109,10 +109,22 @@ Partial Class F0_Reg_Clientes
 
         Next
         bandera = True
-            If tMascota.Rows.Count <> dt.Rows.Count + contador Then
-                bandera = False
-            End If
+        If tMascota.Rows.Count <> dt.Rows.Count + contador Then
+            bandera = False
+        End If
     End Sub
+    Public Function _fnObtenerNumiConsultorio(name As String) As Integer
+        Dim dt As New DataTable
+        dt = L_fnMostrarConsultorio()
+
+        For i As Integer = 0 To dt.Rows.Count - 1 Step 1
+            Dim data As String = dt.Rows(i).Item("ccNro")
+            If (data.Equals(name)) Then
+                Return dt.Rows(i).Item("ccId")
+            End If
+        Next
+        Return -1
+    End Function
     Private Sub JGBPropietario_SelectionChanged(sender As Object, e As EventArgs) Handles JGBPropietario.SelectionChanged
         'Verifica si existe filas en JDG
         If (JGBPropietario.RowCount >= 0 And JGBPropietario.Row >= 0) Then

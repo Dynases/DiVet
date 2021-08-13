@@ -105,6 +105,7 @@ Partial Class F1_Con_Consultorios
         '
         'TxtNombreUsu
         '
+        Me.TxtNombreUsu.Enabled = False
         Me.TxtNombreUsu.Text = "DEFAULT"
         '
         'BubbleBarUsuario

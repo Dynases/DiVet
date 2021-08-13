@@ -26,6 +26,7 @@ Public Class Principal
         'ct.ItemsBackColor=  Color.LightSeaGreen ;
         ct.SideNavItem.Selected.BackColors = New Color() {Color.SkyBlue}
 
+
     End Sub
     Private Sub _prIniciarTodo()
         'Leer Archivo de Configuración

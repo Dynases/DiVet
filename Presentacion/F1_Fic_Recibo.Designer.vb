@@ -132,10 +132,10 @@ Partial Class F1_Fic_Recibo
         'MpanelBuscador
         '
         Me.MpanelBuscador.Controls.Add(Me.gpBusqRecibos)
-        Me.MpanelBuscador.Size = New System.Drawing.Size(913, 595)
         '
         'TxtNombreUsu
         '
+        Me.TxtNombreUsu.Enabled = False
         Me.TxtNombreUsu.Text = "DEFAULT"
         '
         'BubbleBarUsuario

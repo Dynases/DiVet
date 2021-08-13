@@ -154,6 +154,17 @@ Public Class F1_Con_Consultorios
         JGBusqConsultorios.Enabled = False
         txtNro.Focus()
     End Sub
+
+
+    Public Overrides Function _PMOValidarCampos() As Boolean
+        Dim Existe As Boolean = L_fnValidarSiExisteConsultorio(txtNro.Text)
+        If Existe Then
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "No Puede agregar este Nro. de Consultorio porque ya existe ".ToUpper, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            Return False
+        End If
+        Return True
+    End Function
     ''*****GRABA EL REGISTRO*****''
     Public Overrides Function _PMOGrabarRegistro() As Boolean
 
@@ -279,6 +290,9 @@ Public Class F1_Con_Consultorios
     Private Sub JGBusqConsultorios_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGBusqConsultorios.EditingCell
         e.Cancel = True
     End Sub
+
+
+
 
 #End Region
 

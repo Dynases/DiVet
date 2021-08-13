@@ -151,10 +151,10 @@ Partial Class F1_Fic_SegInternacion
         Me.MpanelBuscador.BackgroundImage = Global.Presentacion.My.Resources.Resources.Fondo2
         Me.MpanelBuscador.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.MpanelBuscador.Controls.Add(Me.gpBusqSeguimiento)
-        Me.MpanelBuscador.Size = New System.Drawing.Size(929, 666)
         '
         'TxtNombreUsu
         '
+        Me.TxtNombreUsu.Enabled = False
         Me.TxtNombreUsu.Text = "DEFAULT"
         '
         'BubbleBarUsuario

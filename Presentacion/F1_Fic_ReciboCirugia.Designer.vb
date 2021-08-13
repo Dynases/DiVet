@@ -137,10 +137,10 @@ Partial Class F1_Fic_ReciboCirugia
         'MpanelBuscador
         '
         Me.MpanelBuscador.Controls.Add(Me.gpBusqRecibos)
-        Me.MpanelBuscador.Size = New System.Drawing.Size(918, 656)
         '
         'TxtNombreUsu
         '
+        Me.TxtNombreUsu.Enabled = False
         Me.TxtNombreUsu.Text = "DEFAULT"
         '
         'BubbleBarUsuario
@@ -782,7 +782,7 @@ Partial Class F1_Fic_ReciboCirugia
         Me.gpBusqRecibos.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpBusqRecibos.Location = New System.Drawing.Point(0, 0)
         Me.gpBusqRecibos.Name = "gpBusqRecibos"
-        Me.gpBusqRecibos.Size = New System.Drawing.Size(918, 656)
+        Me.gpBusqRecibos.Size = New System.Drawing.Size(930, 477)
         '
         '
         '

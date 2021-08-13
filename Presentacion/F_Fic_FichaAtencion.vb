@@ -4,10 +4,22 @@ Imports Logica.AccesoLogica
 Public Class F_Fic_FichaAtencion
 #Region "Variables"
     Public _nameButton As String
+    Public idVet As String
+    Public NombVet As String
 #End Region
 #Region "Eventos"
     Private Sub btnAbrirFicha_Click(sender As Object, e As EventArgs) Handles btnAbrirFicha.Click
         Modelo.MGlobal._nameButton = Principal.btnFichaClinica.Name
+        Dim dtVeterinario As DataTable = L_ObtenerVeterinario(L_Usuario)
+        If dtVeterinario.Rows.Count > 0 Then
+            idVet = dtVeterinario.Rows(0).Item("ua_ecId")
+            NombVet = dtVeterinario.Rows(0).Item("ecNomb")
+        Else
+            Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+            ToastNotification.Show(Me, "Su usuario no está enlazado a un Veterinario, no puede abrir ficha".ToUpper, img, 4500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Exit Sub
+        End If
+
         L_fnActualizarEstadoFicha(JGFichasAtencion.GetValue("pbid"))
         '_prCargarFichaAtencion()
 
@@ -23,12 +35,16 @@ Public Class F_Fic_FichaAtencion
                     frm._faId = JGFichasAtencion.GetValue("faid")
                     frm._Iniciar = 1
                     frm._fbEstado = IIf(JGFichasAtencion.GetValue("EstadoPaciente") = "Emergencia", 3, 1)
+                    frm._Consultorio = JGFichasAtencion.GetValue("faConsultorio")
+                    frm._IdVeterinario = idVet
+                    frm._NombreVeterinario = NombVet
                 Else
                     'Modificar ficha
                     frm._fbId = _fbId
                     frm._faId = JGFichasAtencion.GetValue("faid")
                     frm._Iniciar = 2
                     frm._fbEstado = IIf(JGFichasAtencion.GetValue("EstadoPaciente") = "Emergencia", 3, 2)
+
                 End If
             Else
                 'Nueva Ficha
@@ -37,9 +53,12 @@ Public Class F_Fic_FichaAtencion
                 frm._faId = JGFichasAtencion.GetValue("faid")
                 frm._Iniciar = 1
                 frm._fbEstado = frm._Iniciar = IIf(JGFichasAtencion.GetValue("EstadoPaciente") = "Emergencia", 3, 1)
+                frm._Consultorio = JGFichasAtencion.GetValue("faConsultorio")
+                frm._IdVeterinario = idVet
+                frm._NombreVeterinario = NombVet
             End If
             frm.Show()
-            frm.txtIdVeterinario.Focus()
+            frm.txtHistoria.Focus()
             Me.Refresh()
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
@@ -156,9 +175,19 @@ Public Class F_Fic_FichaAtencion
             .Visible = True
         End With
         With JGFichasAtencion.RootTable.Columns("fbFechaProx")
-            .Width = 140
+            .Width = 130
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .Caption = "Fecha Reconsulta"
+            .Visible = True
+        End With
+        With JGFichasAtencion.RootTable.Columns("faConsultorio")
+            .Caption = "IdConsul"
+            .Visible = False
+        End With
+        With JGFichasAtencion.RootTable.Columns("ccNro")
+            .Width = 130
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Caption = "Consultorio Nro."
             .Visible = True
         End With
         With JGFichasAtencion

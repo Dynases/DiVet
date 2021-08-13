@@ -25,15 +25,17 @@ Partial Class F_Fic_FichaAtencion
         Me.components = New System.ComponentModel.Container()
         Me.TmActualizar = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.btnAbajo = New DevComponents.DotNetBar.ButtonX()
-        Me.btnArriba = New DevComponents.DotNetBar.ButtonX()
-        Me.btnActualizar = New DevComponents.DotNetBar.ButtonX()
-        Me.btnAbrirFicha = New DevComponents.DotNetBar.ButtonX()
         Me.gpFichasAtencion = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.btnAbrirFicha = New DevComponents.DotNetBar.ButtonX()
+        Me.btnActualizar = New DevComponents.DotNetBar.ButtonX()
+        Me.btnArriba = New DevComponents.DotNetBar.ButtonX()
+        Me.btnAbajo = New DevComponents.DotNetBar.ButtonX()
         Me.JGFichasAtencion = New Janus.Windows.GridEX.GridEX()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         Me.gpFichasAtencion.SuspendLayout()
         CType(Me.JGFichasAtencion, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'TmActualizar
@@ -49,99 +51,22 @@ Partial Class F_Fic_FichaAtencion
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1134, 651)
+        Me.Panel1.Size = New System.Drawing.Size(1234, 651)
         Me.Panel1.TabIndex = 0
-        '
-        'btnAbajo
-        '
-        Me.btnAbajo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btnAbajo.BackColor = System.Drawing.Color.White
-        Me.btnAbajo.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
-        Me.btnAbajo.FadeEffect = False
-        Me.btnAbajo.FocusCuesEnabled = False
-        Me.btnAbajo.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAbajo.Image = Global.Presentacion.My.Resources.Resources.abajo
-        Me.btnAbajo.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.btnAbajo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right
-        Me.btnAbajo.Location = New System.Drawing.Point(489, 572)
-        Me.btnAbajo.Name = "btnAbajo"
-        Me.btnAbajo.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.btnAbajo.Size = New System.Drawing.Size(50, 50)
-        Me.btnAbajo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
-        Me.btnAbajo.TabIndex = 330
-        '
-        'btnArriba
-        '
-        Me.btnArriba.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btnArriba.BackColor = System.Drawing.Color.White
-        Me.btnArriba.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
-        Me.btnArriba.FadeEffect = False
-        Me.btnArriba.FocusCuesEnabled = False
-        Me.btnArriba.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnArriba.Image = Global.Presentacion.My.Resources.Resources.arriba
-        Me.btnArriba.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.btnArriba.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnArriba.Location = New System.Drawing.Point(426, 572)
-        Me.btnArriba.Name = "btnArriba"
-        Me.btnArriba.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.btnArriba.Size = New System.Drawing.Size(50, 50)
-        Me.btnArriba.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
-        Me.btnArriba.TabIndex = 329
-        '
-        'btnActualizar
-        '
-        Me.btnActualizar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btnActualizar.BackColor = System.Drawing.Color.White
-        Me.btnActualizar.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
-        Me.btnActualizar.FadeEffect = False
-        Me.btnActualizar.FocusCuesEnabled = False
-        Me.btnActualizar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnActualizar.Image = Global.Presentacion.My.Resources.Resources.reload_5
-        Me.btnActualizar.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.btnActualizar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnActualizar.Location = New System.Drawing.Point(646, 572)
-        Me.btnActualizar.Name = "btnActualizar"
-        Me.btnActualizar.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.btnActualizar.Size = New System.Drawing.Size(72, 50)
-        Me.btnActualizar.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
-        Me.btnActualizar.TabIndex = 264
-        Me.btnActualizar.Text = "Actualizar"
-        '
-        'btnAbrirFicha
-        '
-        Me.btnAbrirFicha.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btnAbrirFicha.BackColor = System.Drawing.Color.White
-        Me.btnAbrirFicha.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
-        Me.btnAbrirFicha.FadeEffect = False
-        Me.btnAbrirFicha.FocusCuesEnabled = False
-        Me.btnAbrirFicha.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAbrirFicha.Image = Global.Presentacion.My.Resources.Resources.checked
-        Me.btnAbrirFicha.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.btnAbrirFicha.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnAbrirFicha.Location = New System.Drawing.Point(554, 572)
-        Me.btnAbrirFicha.Name = "btnAbrirFicha"
-        Me.btnAbrirFicha.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.btnAbrirFicha.Size = New System.Drawing.Size(72, 50)
-        Me.btnAbrirFicha.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
-        Me.btnAbrirFicha.TabIndex = 262
-        Me.btnAbrirFicha.Text = "Abrir Ficha"
         '
         'gpFichasAtencion
         '
         Me.gpFichasAtencion.BackColor = System.Drawing.Color.Transparent
         Me.gpFichasAtencion.CanvasColor = System.Drawing.SystemColors.Control
         Me.gpFichasAtencion.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
-        Me.gpFichasAtencion.Controls.Add(Me.btnAbrirFicha)
-        Me.gpFichasAtencion.Controls.Add(Me.btnActualizar)
-        Me.gpFichasAtencion.Controls.Add(Me.btnArriba)
-        Me.gpFichasAtencion.Controls.Add(Me.btnAbajo)
+        Me.gpFichasAtencion.Controls.Add(Me.Panel2)
         Me.gpFichasAtencion.Controls.Add(Me.JGFichasAtencion)
         Me.gpFichasAtencion.DisabledBackColor = System.Drawing.Color.Empty
         Me.gpFichasAtencion.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpFichasAtencion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpFichasAtencion.Location = New System.Drawing.Point(0, 0)
         Me.gpFichasAtencion.Name = "gpFichasAtencion"
-        Me.gpFichasAtencion.Size = New System.Drawing.Size(1134, 651)
+        Me.gpFichasAtencion.Size = New System.Drawing.Size(1234, 651)
         '
         '
         '
@@ -174,30 +99,117 @@ Partial Class F_Fic_FichaAtencion
         Me.gpFichasAtencion.TabIndex = 260
         Me.gpFichasAtencion.Text = "FICHAS PARA ATENCIÓN"
         '
+        'btnAbrirFicha
+        '
+        Me.btnAbrirFicha.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnAbrirFicha.BackColor = System.Drawing.Color.White
+        Me.btnAbrirFicha.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
+        Me.btnAbrirFicha.FadeEffect = False
+        Me.btnAbrirFicha.FocusCuesEnabled = False
+        Me.btnAbrirFicha.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAbrirFicha.Image = Global.Presentacion.My.Resources.Resources.checked
+        Me.btnAbrirFicha.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btnAbrirFicha.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btnAbrirFicha.Location = New System.Drawing.Point(541, 12)
+        Me.btnAbrirFicha.Name = "btnAbrirFicha"
+        Me.btnAbrirFicha.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.btnAbrirFicha.Size = New System.Drawing.Size(72, 50)
+        Me.btnAbrirFicha.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
+        Me.btnAbrirFicha.TabIndex = 262
+        Me.btnAbrirFicha.Text = "Abrir Ficha"
+        '
+        'btnActualizar
+        '
+        Me.btnActualizar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnActualizar.BackColor = System.Drawing.Color.White
+        Me.btnActualizar.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
+        Me.btnActualizar.FadeEffect = False
+        Me.btnActualizar.FocusCuesEnabled = False
+        Me.btnActualizar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnActualizar.Image = Global.Presentacion.My.Resources.Resources.reload_5
+        Me.btnActualizar.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btnActualizar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btnActualizar.Location = New System.Drawing.Point(633, 12)
+        Me.btnActualizar.Name = "btnActualizar"
+        Me.btnActualizar.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.btnActualizar.Size = New System.Drawing.Size(72, 50)
+        Me.btnActualizar.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
+        Me.btnActualizar.TabIndex = 264
+        Me.btnActualizar.Text = "Actualizar"
+        '
+        'btnArriba
+        '
+        Me.btnArriba.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnArriba.BackColor = System.Drawing.Color.White
+        Me.btnArriba.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
+        Me.btnArriba.FadeEffect = False
+        Me.btnArriba.FocusCuesEnabled = False
+        Me.btnArriba.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnArriba.Image = Global.Presentacion.My.Resources.Resources.arriba
+        Me.btnArriba.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btnArriba.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btnArriba.Location = New System.Drawing.Point(413, 12)
+        Me.btnArriba.Name = "btnArriba"
+        Me.btnArriba.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.btnArriba.Size = New System.Drawing.Size(50, 50)
+        Me.btnArriba.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
+        Me.btnArriba.TabIndex = 329
+        '
+        'btnAbajo
+        '
+        Me.btnAbajo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnAbajo.BackColor = System.Drawing.Color.White
+        Me.btnAbajo.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
+        Me.btnAbajo.FadeEffect = False
+        Me.btnAbajo.FocusCuesEnabled = False
+        Me.btnAbajo.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAbajo.Image = Global.Presentacion.My.Resources.Resources.abajo
+        Me.btnAbajo.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btnAbajo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right
+        Me.btnAbajo.Location = New System.Drawing.Point(476, 12)
+        Me.btnAbajo.Name = "btnAbajo"
+        Me.btnAbajo.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.btnAbajo.Size = New System.Drawing.Size(50, 50)
+        Me.btnAbajo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
+        Me.btnAbajo.TabIndex = 330
+        '
         'JGFichasAtencion
         '
         Me.JGFichasAtencion.CausesValidation = False
+        Me.JGFichasAtencion.Dock = System.Windows.Forms.DockStyle.Fill
         Me.JGFichasAtencion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.JGFichasAtencion.Location = New System.Drawing.Point(3, 3)
+        Me.JGFichasAtencion.Location = New System.Drawing.Point(0, 0)
         Me.JGFichasAtencion.Name = "JGFichasAtencion"
         Me.JGFichasAtencion.SelectedFormatStyle.BackColor = System.Drawing.Color.Empty
-        Me.JGFichasAtencion.Size = New System.Drawing.Size(1186, 557)
+        Me.JGFichasAtencion.Size = New System.Drawing.Size(1228, 628)
         Me.JGFichasAtencion.TabIndex = 256
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.btnArriba)
+        Me.Panel2.Controls.Add(Me.btnAbrirFicha)
+        Me.Panel2.Controls.Add(Me.btnAbajo)
+        Me.Panel2.Controls.Add(Me.btnActualizar)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel2.Location = New System.Drawing.Point(0, 559)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(1228, 69)
+        Me.Panel2.TabIndex = 331
         '
         'F_Fic_FichaAtencion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(1134, 651)
+        Me.ClientSize = New System.Drawing.Size(1234, 651)
         Me.Controls.Add(Me.Panel1)
-        Me.MaximizeBox = False
         Me.Name = "F_Fic_FichaAtencion"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FICHAS PARA LA ATENCIÓN"
         Me.Panel1.ResumeLayout(False)
         Me.gpFichasAtencion.ResumeLayout(False)
         CType(Me.JGFichasAtencion, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -210,4 +222,5 @@ Partial Class F_Fic_FichaAtencion
     Friend WithEvents TmActualizar As Timer
     Friend WithEvents btnAbajo As DevComponents.DotNetBar.ButtonX
     Friend WithEvents btnArriba As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents Panel2 As Panel
 End Class

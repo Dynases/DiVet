@@ -963,6 +963,46 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property VidaVet1() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("VidaVet1", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property VidaVet2() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("VidaVet2", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property VidaVet3() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("VidaVet3", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property VidaVet5() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("VidaVet5", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property WARNING() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("WARNING", resourceCulture)

@@ -813,8 +813,9 @@ Public Class AccesoLogica
     Public Shared Function L_fnGrabarFichaClinica(ByRef _fbid As String, _fb_pbid As String, _fb_ecId As String, _fbFechaAten As String,
                                                             _fbFechaProx As String, _fbHoraIni As String, _fbHoraFin As String, _fbHist As String,
                                                             _fbExam As String, _fbTempe As String, _fbPeso As String, _fbFreCar As String,
-                                                            _fbFreRes As String, _fbSCorp As String, _fbTiemCapi As String, _fbTiemRPlie As String, _fbNotas As String,
-                                                            _fbValora As String, _fbProtMane As String, _CLIN0021 As DataTable, _faId As Integer, _CLIN0023 As DataTable, _CLIN0024 As DataTable) As Boolean
+                                                            _fbFreRes As String, _fbSCorp As String, _fbTiemCapi As String, _fbTiemRPlie As String,
+                                                            _fbNotas As String, _fbValora As String, _fbProtMane As String, _CLIN0021 As DataTable,
+                                                            _faId As Integer, _CLIN0023 As DataTable, _CLIN0024 As DataTable, _fbConsultorio As String) As Boolean
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
@@ -843,6 +844,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@CLIN0021", "", _CLIN0021))
         _listParam.Add(New Datos.DParametro("@CLIN0023", "", _CLIN0023))
         _listParam.Add(New Datos.DParametro("@CLIN0024", "", _CLIN0024))
+        _listParam.Add(New Datos.DParametro("@fbConsultorio", _fbConsultorio))
         _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
         If _Tabla.Rows.Count > 0 Then
             _fbid = _Tabla.Rows(0).Item(0)
@@ -4203,7 +4205,18 @@ Public Class AccesoLogica
         End If
         Return _resultado
     End Function
+    Public Shared Function L_ObtenerVeterinario(_Usuario As String) As DataTable
 
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@uaUser", _Usuario))
+        _listParam.Add(New Datos.DParametro("@uaUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_USU002", _listParam)
+
+        Return _Tabla
+    End Function
 #End Region
 
 #End Region
@@ -4262,23 +4275,47 @@ Public Class AccesoLogica
 
     Public Shared Function L_fnEliminarConsultorio(ByRef _Id As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
-        Dim _Tabla As DataTable
-        Dim _listParam As New List(Of Datos.DParametro)
+        If L_fnbValidarEliminacion(_Id, "CON.CONS001", "ccId", mensaje) = True Then
 
-        _listParam.Add(New Datos.DParametro("@tipo", 3))
-        _listParam.Add(New Datos.DParametro("@ccId", _Id))
-        _listParam.Add(New Datos.DParametro("@ccUsuario", L_Usuario))
-        _Tabla = D_ProcedimientoConParam("CON.sp_CONS001", _listParam)
-        If _Tabla.Rows.Count > 0 Then
-            _Id = _Tabla.Rows(0).Item(0)
-            _resultado = True
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
+
+            _listParam.Add(New Datos.DParametro("@tipo", 3))
+            _listParam.Add(New Datos.DParametro("@ccId", _Id))
+            _listParam.Add(New Datos.DParametro("@ccUsuario", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("CON.sp_CONS001", _listParam)
+            If _Tabla.Rows.Count > 0 Then
+                _Id = _Tabla.Rows(0).Item(0)
+                _resultado = True
+            Else
+                _resultado = False
+            End If
         Else
             _resultado = False
         End If
         Return _resultado
+
     End Function
 
+    Public Shared Function L_fnValidarSiExisteConsultorio(ByRef _Nro As String) As Boolean
 
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@ccNro", _Nro))
+        _listParam.Add(New Datos.DParametro("@ccUsuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("CON.sp_CONS001", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _Nro = _Tabla.Rows(0).Item(2)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
 
 #End Region
 

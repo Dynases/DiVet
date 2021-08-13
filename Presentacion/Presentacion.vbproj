@@ -1086,6 +1086,10 @@
     <None Include="Resources\vet18.png" />
     <None Include="Resources\WARNING.png" />
     <None Include="Resources\Vete20.png" />
+    <None Include="Resources\VidaVet1.png" />
+    <None Include="Resources\VidaVet5.png" />
+    <None Include="Resources\VidaVet2.png" />
+    <None Include="Resources\VidaVet3.png" />
     <Content Include="Resources\zona.png" />
     <Content Include="Resources\zoomin.png" />
     <Content Include="Resources\zoomout.png" />

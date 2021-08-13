@@ -132,10 +132,10 @@ Partial Class F1_Fic_ReciboInt
         'MpanelBuscador
         '
         Me.MpanelBuscador.Controls.Add(Me.gpBusqRecibos)
-        Me.MpanelBuscador.Size = New System.Drawing.Size(899, 548)
         '
         'TxtNombreUsu
         '
+        Me.TxtNombreUsu.Enabled = False
         Me.TxtNombreUsu.Text = "DEFAULT"
         '
         'BubbleBarUsuario
@@ -651,7 +651,7 @@ Partial Class F1_Fic_ReciboInt
         Me.gpBusqRecibos.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpBusqRecibos.Location = New System.Drawing.Point(0, 0)
         Me.gpBusqRecibos.Name = "gpBusqRecibos"
-        Me.gpBusqRecibos.Size = New System.Drawing.Size(899, 548)
+        Me.gpBusqRecibos.Size = New System.Drawing.Size(930, 477)
         '
         '
         '
@@ -691,7 +691,7 @@ Partial Class F1_Fic_ReciboInt
         Me.panelBusqRecibos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelBusqRecibos.Location = New System.Drawing.Point(0, 0)
         Me.panelBusqRecibos.Name = "panelBusqRecibos"
-        Me.panelBusqRecibos.Size = New System.Drawing.Size(893, 525)
+        Me.panelBusqRecibos.Size = New System.Drawing.Size(924, 454)
         Me.panelBusqRecibos.TabIndex = 0
         '
         'JGBusqRecibosI
@@ -713,7 +713,7 @@ Partial Class F1_Fic_ReciboInt
         Me.JGBusqRecibosI.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.JGBusqRecibosI.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
         Me.JGBusqRecibosI.SelectOnExpand = False
-        Me.JGBusqRecibosI.Size = New System.Drawing.Size(893, 525)
+        Me.JGBusqRecibosI.Size = New System.Drawing.Size(924, 454)
         Me.JGBusqRecibosI.TabIndex = 0
         Me.JGBusqRecibosI.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '

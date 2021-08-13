@@ -6,8 +6,8 @@ Imports System.IO
 
 Public Class F1_Fic_FichaClinica
 #Region "Variables"
-    Public _IdPaciente, _Iniciar, _MPos, _faId, _fbId, _fbEstado As Integer
-    Public _Paciente As String
+    Public _IdPaciente, _Iniciar, _MPos, _faId, _fbId, _fbEstado, _Consultorio, _IdVeterinario As Integer
+    Public _Paciente, _NombreVeterinario As String
     Private _Limpiar As Boolean
     Private _HoraInicial As String
     Public TablaImagenes As DataTable
@@ -227,6 +227,7 @@ Public Class F1_Fic_FichaClinica
     Private Sub _prIniciarTodo()
         _HoraInicial = DateTime.Now.ToShortTimeString()
         _PMAsignarPermisos()
+        _prCargarComboConsultorios(cbConsultorio)
         _prCargarIcono()
         _prCargarFichaClinica()
         _prCrearCarpetaImagenes()
@@ -238,6 +239,9 @@ Public Class F1_Fic_FichaClinica
             _prLimpiar()
             txtIdMascota.Text = _IdPaciente
             txtMascota.Text = _Paciente
+            cbConsultorio.Value = _Consultorio
+            txtIdVeterinario.Text = _IdVeterinario
+            txtNombVeterinario.Text = _NombreVeterinario
             _prMostrarPaciente()
             _prCargarFichaClinicaSeguimiento(-1)
             _prHabilitar()
@@ -259,7 +263,22 @@ Public Class F1_Fic_FichaClinica
             _prInhabilitar()
         End If
     End Sub
+    Private Sub _prCargarComboConsultorios(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
+        Dim dt As New DataTable
+        dt = L_fnMostrarConsultorio()
 
+        With mCombo
+            .DropDownList.Columns.Clear()
+            '.DropDownList.Columns.Add("ccId").Width = 60
+            '.DropDownList.Columns("ccId").Caption = "ID"
+            .DropDownList.Columns.Add("ccNro").Width = 120
+            .DropDownList.Columns("ccNro").Caption = "Consultorio Nro."
+            .ValueMember = "ccId"
+            .DisplayMember = "ccNro"
+            .DataSource = dt
+            .Refresh()
+        End With
+    End Sub
     Private Sub _prCargarIcono()
         Dim blah As New Bitmap(New Bitmap(My.Resources.fichaclinica1), 20, 20)
         Dim ico As Icon = Icon.FromHandle(blah.GetHicon())
@@ -539,6 +558,9 @@ Public Class F1_Fic_FichaClinica
         With JGBusqFichaClinica.RootTable.Columns("fbUsuario")
             .Visible = False
         End With
+        With JGBusqFichaClinica.RootTable.Columns("fbConsultorio")
+            .Visible = False
+        End With
         With JGBusqFichaClinica
             .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
             .FilterMode = FilterMode.Automatic
@@ -607,6 +629,7 @@ Public Class F1_Fic_FichaClinica
         JGBusqFichaClinica.Row = _N
         With JGBusqFichaClinica
             txtIdFicha.Text = .GetValue("fbid")
+            cbConsultorio.Value = IIf(IsDBNull(.GetValue("fbConsultorio")), Nothing, .GetValue("fbConsultorio"))
             txtIdVeterinario.Text = .GetValue("fb_ecId")
             txtNombVeterinario.Text = .GetValue("ecNomb")
             txtIdMascota.Text = .GetValue("fb_pbid")
@@ -837,6 +860,7 @@ Public Class F1_Fic_FichaClinica
         dtpFechaAnexo.Value = DateTime.Today
         'Texbox
         txtIdFicha.Clear()
+        cbConsultorio.Value = Nothing
         txtIdVeterinario.Clear()
         txtIdVeterinario.Focus()
         txtExaminacion.Clear()
@@ -997,17 +1021,17 @@ Public Class F1_Fic_FichaClinica
         txtDecripcionA.ReadOnly = False
         'Texbox
         txtIdFicha.ReadOnly = False
-        txtIdVeterinario.ReadOnly = False
+        cbConsultorio.Enabled = True
+        'txtIdVeterinario.ReadOnly = False
         txtExaminacion.ReadOnly = False
         txtFCardiaca.ReadOnly = False
         txtFRespiratoria.ReadOnly = False
         txtHistoria.ReadOnly = False
         txtIdFicha.ReadOnly = False
         txtIdMascota.ReadOnly = False
-        txtIdVeterinario.ReadOnly = False
         txtMascota.ReadOnly = False
-        TxtNombreUsu.ReadOnly = False
-        txtNombVeterinario.ReadOnly = False
+        'TxtNombreUsu.ReadOnly = False
+        'txtNombVeterinario.ReadOnly = False
         txtNotas.ReadOnly = False
         txtPeso.ReadOnly = False
         txtProManejo.ReadOnly = False
@@ -1156,7 +1180,7 @@ Public Class F1_Fic_FichaClinica
         txtDecripcionA.ReadOnly = True
         'Texbox
         txtIdFicha.ReadOnly = True
-
+        cbConsultorio.Enabled = False
         txtIdVeterinario.ReadOnly = True
         txtExaminacion.ReadOnly = True
         txtFCardiaca.ReadOnly = True
@@ -1655,7 +1679,7 @@ Public Class F1_Fic_FichaClinica
         Dim res As Boolean = L_fnGrabarFichaClinica(txtIdFicha.Text, txtIdMascota.Text, txtIdVeterinario.Text, dtpFechaFC.Value.ToString("yyyy/MM/dd"),
                                                     dtpFProxVisita.Value.ToString("yyyy/MM/dd"), _HoraInicial, DateTime.Now.ToShortTimeString(), txtHistoria.Text, txtExaminacion.Text,
                                                     txtTemperatura.Text, txtPeso.Text, txtFCardiaca.Text, txtFRespiratoria.Text, txtScoreCorporal.Text,
-                                                    txtTLCapilar.Text, txtTRPliegue.Text, txtNotas.Text, txtValoracion.Text, txtProManejo.Text, tFichaClinicaDetalle, _faId, TablaImagenes, CType(JGFechasSeg.DataSource, DataTable))
+                                                    txtTLCapilar.Text, txtTRPliegue.Text, txtNotas.Text, txtValoracion.Text, txtProManejo.Text, tFichaClinicaDetalle, _faId, TablaImagenes, CType(JGFechasSeg.DataSource, DataTable), cbConsultorio.Value)
         If res Then
             'Guarda la Cirugia
             If chbCirugia.Checked Then
@@ -1766,6 +1790,7 @@ Public Class F1_Fic_FichaClinica
         End If
     End Sub
 
+
     Private Sub txtPeso_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPeso.KeyPress
         g_prValidarTextBox(1, e)
     End Sub
@@ -1787,6 +1812,10 @@ Public Class F1_Fic_FichaClinica
     Public Overrides Sub _PMOModificar()
         JGBusqFichaClinica.Enabled = False 'Deshabilita el buscador de la Grilla
         _prHabilitar()
+        ''Deshabilitar campos que no deberian poder modificarse
+        cbConsultorio.ReadOnly = True
+        txtIdVeterinario.Enabled = False
+        dtpFechaFC.Enabled = False
     End Sub
     ''*****POM Eliminar
     Public Overrides Sub _PMOEliminarRegistro()

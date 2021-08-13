@@ -22,12 +22,14 @@ Partial Class F1_Fic_FichaClinica
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim cbConsultorio_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F1_Fic_FichaClinica))
         Me.gpFichaClinica = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.stcFichaClinica = New DevComponents.DotNetBar.SuperTabControl()
         Me.stcpDatos1 = New DevComponents.DotNetBar.SuperTabControlPanel()
         Me.panelDatos1 = New System.Windows.Forms.Panel()
-        Me.lbCtrlEnter = New DevComponents.DotNetBar.LabelX()
+        Me.cbConsultorio = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
+        Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
         Me.txtTRPliegue = New DevComponents.Editors.IntegerInput()
         Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
         Me.txtMascota = New DevComponents.DotNetBar.Controls.TextBoxX()
@@ -303,6 +305,7 @@ Partial Class F1_Fic_FichaClinica
         Me.stcFichaClinica.SuspendLayout()
         Me.stcpDatos1.SuspendLayout()
         Me.panelDatos1.SuspendLayout()
+        CType(Me.cbConsultorio, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTRPliegue, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel16.SuspendLayout()
         Me.Panel9.SuspendLayout()
@@ -420,6 +423,7 @@ Partial Class F1_Fic_FichaClinica
         '
         'TxtNombreUsu
         '
+        Me.TxtNombreUsu.Enabled = False
         Me.TxtNombreUsu.Text = "DEFAULT"
         '
         'BubbleBarUsuario
@@ -447,7 +451,8 @@ Partial Class F1_Fic_FichaClinica
         '
         'PanelUsuario
         '
-        Me.PanelUsuario.Location = New System.Drawing.Point(344, 277)
+        Me.PanelUsuario.Location = New System.Drawing.Point(738, 218)
+        Me.PanelUsuario.Size = New System.Drawing.Size(167, 52)
         '
         'superTabControl1
         '
@@ -559,7 +564,8 @@ Partial Class F1_Fic_FichaClinica
         'panelDatos1
         '
         Me.panelDatos1.BackColor = System.Drawing.Color.LightSkyBlue
-        Me.panelDatos1.Controls.Add(Me.lbCtrlEnter)
+        Me.panelDatos1.Controls.Add(Me.cbConsultorio)
+        Me.panelDatos1.Controls.Add(Me.LabelX5)
         Me.panelDatos1.Controls.Add(Me.txtTRPliegue)
         Me.panelDatos1.Controls.Add(Me.LabelX3)
         Me.panelDatos1.Controls.Add(Me.txtMascota)
@@ -615,21 +621,37 @@ Partial Class F1_Fic_FichaClinica
         Me.panelDatos1.Size = New System.Drawing.Size(929, 509)
         Me.panelDatos1.TabIndex = 1
         '
-        'lbCtrlEnter
+        'cbConsultorio
         '
-        Me.lbCtrlEnter.BackColor = System.Drawing.Color.Transparent
+        cbConsultorio_DesignTimeLayout.LayoutString = resources.GetString("cbConsultorio_DesignTimeLayout.LayoutString")
+        Me.cbConsultorio.DesignTimeLayout = cbConsultorio_DesignTimeLayout
+        Me.cbConsultorio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbConsultorio.Location = New System.Drawing.Point(126, 100)
+        Me.cbConsultorio.Name = "cbConsultorio"
+        Me.cbConsultorio.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.cbConsultorio.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.cbConsultorio.SelectedIndex = -1
+        Me.cbConsultorio.SelectedItem = Nothing
+        Me.cbConsultorio.Size = New System.Drawing.Size(142, 21)
+        Me.cbConsultorio.TabIndex = 352
+        Me.cbConsultorio.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'LabelX5
+        '
+        Me.LabelX5.AutoSize = True
+        Me.LabelX5.BackColor = System.Drawing.Color.Transparent
         '
         '
         '
-        Me.lbCtrlEnter.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbCtrlEnter.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbCtrlEnter.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbCtrlEnter.Location = New System.Drawing.Point(128, 96)
-        Me.lbCtrlEnter.Name = "lbCtrlEnter"
-        Me.lbCtrlEnter.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbCtrlEnter.Size = New System.Drawing.Size(79, 15)
-        Me.lbCtrlEnter.TabIndex = 351
-        Me.lbCtrlEnter.Text = "Ctrl+Enter:"
+        Me.LabelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX5.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX5.Location = New System.Drawing.Point(23, 104)
+        Me.LabelX5.Name = "LabelX5"
+        Me.LabelX5.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX5.Size = New System.Drawing.Size(80, 16)
+        Me.LabelX5.TabIndex = 351
+        Me.LabelX5.Text = "Consultorio:"
         '
         'txtTRPliegue
         '
@@ -692,7 +714,7 @@ Partial Class F1_Fic_FichaClinica
         Me.txtIdVeterinario.DisabledBackColor = System.Drawing.Color.White
         Me.txtIdVeterinario.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtIdVeterinario.ForeColor = System.Drawing.Color.Black
-        Me.txtIdVeterinario.Location = New System.Drawing.Point(128, 114)
+        Me.txtIdVeterinario.Location = New System.Drawing.Point(128, 129)
         Me.txtIdVeterinario.Name = "txtIdVeterinario"
         Me.txtIdVeterinario.PreventEnterBeep = True
         Me.txtIdVeterinario.Size = New System.Drawing.Size(43, 22)
@@ -710,7 +732,7 @@ Partial Class F1_Fic_FichaClinica
         Me.txtNombVeterinario.DisabledBackColor = System.Drawing.Color.White
         Me.txtNombVeterinario.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNombVeterinario.ForeColor = System.Drawing.Color.Black
-        Me.txtNombVeterinario.Location = New System.Drawing.Point(178, 114)
+        Me.txtNombVeterinario.Location = New System.Drawing.Point(178, 129)
         Me.txtNombVeterinario.Name = "txtNombVeterinario"
         Me.txtNombVeterinario.PreventEnterBeep = True
         Me.txtNombVeterinario.Size = New System.Drawing.Size(240, 22)
@@ -725,7 +747,7 @@ Partial Class F1_Fic_FichaClinica
         Me.lbVeterinario.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbVeterinario.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbVeterinario.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbVeterinario.Location = New System.Drawing.Point(23, 111)
+        Me.lbVeterinario.Location = New System.Drawing.Point(23, 126)
         Me.lbVeterinario.Name = "lbVeterinario"
         Me.lbVeterinario.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbVeterinario.Size = New System.Drawing.Size(79, 23)
@@ -1219,7 +1241,7 @@ Partial Class F1_Fic_FichaClinica
         Me.Panel4.Controls.Add(Me.chbPorDeshi2)
         Me.Panel4.Controls.Add(Me.chbPorDeshi4)
         Me.Panel4.Controls.Add(Me.chbPorDeshi3)
-        Me.Panel4.Location = New System.Drawing.Point(446, 363)
+        Me.Panel4.Location = New System.Drawing.Point(446, 375)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(458, 125)
         Me.Panel4.TabIndex = 320
@@ -1359,7 +1381,7 @@ Partial Class F1_Fic_FichaClinica
         Me.txtFCardiaca.DisabledBackColor = System.Drawing.Color.White
         Me.txtFCardiaca.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFCardiaca.ForeColor = System.Drawing.Color.Black
-        Me.txtFCardiaca.Location = New System.Drawing.Point(323, 360)
+        Me.txtFCardiaca.Location = New System.Drawing.Point(323, 373)
         Me.txtFCardiaca.MaxLength = 25
         Me.txtFCardiaca.Name = "txtFCardiaca"
         Me.txtFCardiaca.PreventEnterBeep = True
@@ -1377,7 +1399,7 @@ Partial Class F1_Fic_FichaClinica
         Me.txtExaminacion.DisabledBackColor = System.Drawing.Color.White
         Me.txtExaminacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtExaminacion.ForeColor = System.Drawing.Color.Black
-        Me.txtExaminacion.Location = New System.Drawing.Point(114, 271)
+        Me.txtExaminacion.Location = New System.Drawing.Point(114, 284)
         Me.txtExaminacion.MaxLength = 400
         Me.txtExaminacion.Multiline = True
         Me.txtExaminacion.Name = "txtExaminacion"
@@ -1465,7 +1487,7 @@ Partial Class F1_Fic_FichaClinica
         Me.PanelCondicionCorporal.Controls.Add(Me.chbBajoPesoCC)
         Me.PanelCondicionCorporal.Controls.Add(Me.chbSobrepesoCC)
         Me.PanelCondicionCorporal.Controls.Add(Me.chbPesoIdealCC)
-        Me.PanelCondicionCorporal.Location = New System.Drawing.Point(23, 432)
+        Me.PanelCondicionCorporal.Location = New System.Drawing.Point(23, 445)
         Me.PanelCondicionCorporal.Name = "PanelCondicionCorporal"
         Me.PanelCondicionCorporal.Size = New System.Drawing.Size(395, 57)
         Me.PanelCondicionCorporal.TabIndex = 310
@@ -1553,7 +1575,7 @@ Partial Class F1_Fic_FichaClinica
         Me.lbCondCorporal.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbCondCorporal.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbCondCorporal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbCondCorporal.Location = New System.Drawing.Point(23, 416)
+        Me.lbCondCorporal.Location = New System.Drawing.Point(23, 429)
         Me.lbCondCorporal.Name = "lbCondCorporal"
         Me.lbCondCorporal.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbCondCorporal.Size = New System.Drawing.Size(129, 16)
@@ -1571,7 +1593,7 @@ Partial Class F1_Fic_FichaClinica
         Me.txtFRespiratoria.DisabledBackColor = System.Drawing.Color.White
         Me.txtFRespiratoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFRespiratoria.ForeColor = System.Drawing.Color.Black
-        Me.txtFRespiratoria.Location = New System.Drawing.Point(323, 389)
+        Me.txtFRespiratoria.Location = New System.Drawing.Point(323, 402)
         Me.txtFRespiratoria.MaxLength = 25
         Me.txtFRespiratoria.Name = "txtFRespiratoria"
         Me.txtFRespiratoria.PreventEnterBeep = True
@@ -1588,7 +1610,7 @@ Partial Class F1_Fic_FichaClinica
         Me.lbFResp.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbFResp.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbFResp.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbFResp.Location = New System.Drawing.Point(203, 391)
+        Me.lbFResp.Location = New System.Drawing.Point(203, 404)
         Me.lbFResp.Name = "lbFResp"
         Me.lbFResp.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbFResp.Size = New System.Drawing.Size(120, 16)
@@ -1606,7 +1628,7 @@ Partial Class F1_Fic_FichaClinica
         Me.txtPeso.DisabledBackColor = System.Drawing.Color.White
         Me.txtPeso.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPeso.ForeColor = System.Drawing.Color.Black
-        Me.txtPeso.Location = New System.Drawing.Point(114, 389)
+        Me.txtPeso.Location = New System.Drawing.Point(114, 402)
         Me.txtPeso.MaxLength = 25
         Me.txtPeso.Name = "txtPeso"
         Me.txtPeso.PreventEnterBeep = True
@@ -1623,7 +1645,7 @@ Partial Class F1_Fic_FichaClinica
         Me.lbPeso.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbPeso.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbPeso.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbPeso.Location = New System.Drawing.Point(23, 391)
+        Me.lbPeso.Location = New System.Drawing.Point(23, 404)
         Me.lbPeso.Name = "lbPeso"
         Me.lbPeso.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbPeso.Size = New System.Drawing.Size(70, 16)
@@ -1640,7 +1662,7 @@ Partial Class F1_Fic_FichaClinica
         Me.lbFcardiaca.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbFcardiaca.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbFcardiaca.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbFcardiaca.Location = New System.Drawing.Point(203, 363)
+        Me.lbFcardiaca.Location = New System.Drawing.Point(203, 376)
         Me.lbFcardiaca.Name = "lbFcardiaca"
         Me.lbFcardiaca.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbFcardiaca.Size = New System.Drawing.Size(96, 16)
@@ -1658,7 +1680,7 @@ Partial Class F1_Fic_FichaClinica
         Me.txtTemperatura.DisabledBackColor = System.Drawing.Color.White
         Me.txtTemperatura.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTemperatura.ForeColor = System.Drawing.Color.Black
-        Me.txtTemperatura.Location = New System.Drawing.Point(114, 361)
+        Me.txtTemperatura.Location = New System.Drawing.Point(114, 374)
         Me.txtTemperatura.MaxLength = 25
         Me.txtTemperatura.Name = "txtTemperatura"
         Me.txtTemperatura.PreventEnterBeep = True
@@ -1675,7 +1697,7 @@ Partial Class F1_Fic_FichaClinica
         Me.lbTemperatura.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbTemperatura.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbTemperatura.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbTemperatura.Location = New System.Drawing.Point(23, 363)
+        Me.lbTemperatura.Location = New System.Drawing.Point(23, 376)
         Me.lbTemperatura.Name = "lbTemperatura"
         Me.lbTemperatura.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbTemperatura.Size = New System.Drawing.Size(89, 16)
@@ -1692,7 +1714,7 @@ Partial Class F1_Fic_FichaClinica
         Me.lbExaminacion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbExaminacion.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbExaminacion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbExaminacion.Location = New System.Drawing.Point(23, 274)
+        Me.lbExaminacion.Location = New System.Drawing.Point(23, 287)
         Me.lbExaminacion.Name = "lbExaminacion"
         Me.lbExaminacion.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbExaminacion.Size = New System.Drawing.Size(88, 16)
@@ -1710,7 +1732,7 @@ Partial Class F1_Fic_FichaClinica
         Me.txtHistoria.DisabledBackColor = System.Drawing.Color.White
         Me.txtHistoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtHistoria.ForeColor = System.Drawing.Color.Black
-        Me.txtHistoria.Location = New System.Drawing.Point(114, 161)
+        Me.txtHistoria.Location = New System.Drawing.Point(114, 174)
         Me.txtHistoria.MaxLength = 400
         Me.txtHistoria.Multiline = True
         Me.txtHistoria.Name = "txtHistoria"
@@ -1728,7 +1750,7 @@ Partial Class F1_Fic_FichaClinica
         Me.lbHistoria.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbHistoria.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbHistoria.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbHistoria.Location = New System.Drawing.Point(23, 163)
+        Me.lbHistoria.Location = New System.Drawing.Point(23, 176)
         Me.lbHistoria.Name = "lbHistoria"
         Me.lbHistoria.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbHistoria.Size = New System.Drawing.Size(58, 16)
@@ -1742,7 +1764,7 @@ Partial Class F1_Fic_FichaClinica
         '
         Me.chbEmergenciaH.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.chbEmergenciaH.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbEmergenciaH.Location = New System.Drawing.Point(199, 135)
+        Me.chbEmergenciaH.Location = New System.Drawing.Point(199, 150)
         Me.chbEmergenciaH.Name = "chbEmergenciaH"
         Me.chbEmergenciaH.Size = New System.Drawing.Size(101, 23)
         Me.chbEmergenciaH.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -1759,7 +1781,7 @@ Partial Class F1_Fic_FichaClinica
         Me.chbNormalH.Checked = True
         Me.chbNormalH.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chbNormalH.CheckValue = "Y"
-        Me.chbNormalH.Location = New System.Drawing.Point(114, 135)
+        Me.chbNormalH.Location = New System.Drawing.Point(114, 150)
         Me.chbNormalH.Name = "chbNormalH"
         Me.chbNormalH.Size = New System.Drawing.Size(76, 23)
         Me.chbNormalH.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -1776,7 +1798,7 @@ Partial Class F1_Fic_FichaClinica
         Me.lbHonorarios.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbHonorarios.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbHonorarios.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbHonorarios.Location = New System.Drawing.Point(23, 139)
+        Me.lbHonorarios.Location = New System.Drawing.Point(23, 154)
         Me.lbHonorarios.Name = "lbHonorarios"
         Me.lbHonorarios.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbHonorarios.Size = New System.Drawing.Size(79, 16)
@@ -4677,10 +4699,11 @@ Partial Class F1_Fic_FichaClinica
         Me.gpBusqFichaClinica.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.gpBusqFichaClinica.Controls.Add(Me.JGBusqFichaClinica)
         Me.gpBusqFichaClinica.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpBusqFichaClinica.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpBusqFichaClinica.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gpBusqFichaClinica.Location = New System.Drawing.Point(12, 20)
+        Me.gpBusqFichaClinica.Location = New System.Drawing.Point(0, 0)
         Me.gpBusqFichaClinica.Name = "gpBusqFichaClinica"
-        Me.gpBusqFichaClinica.Size = New System.Drawing.Size(911, 628)
+        Me.gpBusqFichaClinica.Size = New System.Drawing.Size(930, 477)
         '
         '
         '
@@ -4715,11 +4738,12 @@ Partial Class F1_Fic_FichaClinica
         '
         'JGBusqFichaClinica
         '
+        Me.JGBusqFichaClinica.Dock = System.Windows.Forms.DockStyle.Fill
         Me.JGBusqFichaClinica.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.JGBusqFichaClinica.HeaderFormatStyle.FontBold = Janus.Windows.GridEX.TriState.[True]
-        Me.JGBusqFichaClinica.Location = New System.Drawing.Point(3, 3)
+        Me.JGBusqFichaClinica.Location = New System.Drawing.Point(0, 0)
         Me.JGBusqFichaClinica.Name = "JGBusqFichaClinica"
-        Me.JGBusqFichaClinica.Size = New System.Drawing.Size(899, 599)
+        Me.JGBusqFichaClinica.Size = New System.Drawing.Size(924, 454)
         Me.JGBusqFichaClinica.TabIndex = 256
         '
         'F1_Fic_FichaClinica
@@ -4727,6 +4751,7 @@ Partial Class F1_Fic_FichaClinica
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(935, 693)
+        Me.MaximizeBox = False
         Me.Name = "F1_Fic_FichaClinica"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FICHA CLÍNICA"
@@ -4749,6 +4774,7 @@ Partial Class F1_Fic_FichaClinica
         Me.stcpDatos1.ResumeLayout(False)
         Me.panelDatos1.ResumeLayout(False)
         Me.panelDatos1.PerformLayout()
+        CType(Me.cbConsultorio, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTRPliegue, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel16.ResumeLayout(False)
         Me.Panel9.ResumeLayout(False)
@@ -4814,8 +4840,6 @@ Partial Class F1_Fic_FichaClinica
     Friend WithEvents txtTRPliegue As DevComponents.Editors.IntegerInput
     Friend WithEvents LabelX3 As DevComponents.DotNetBar.LabelX
     Friend WithEvents txtMascota As DevComponents.DotNetBar.Controls.TextBoxX
-    Friend WithEvents txtIdVeterinario As DevComponents.DotNetBar.Controls.TextBoxX
-    Friend WithEvents txtNombVeterinario As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents lbVeterinario As DevComponents.DotNetBar.LabelX
     Friend WithEvents Panel16 As Panel
     Friend WithEvents chbMasaOral As DevComponents.DotNetBar.Controls.CheckBoxX
@@ -5070,5 +5094,8 @@ Partial Class F1_Fic_FichaClinica
     Protected WithEvents btnRecibo As DevComponents.DotNetBar.ButtonX
     Protected WithEvents gpBusqFichaClinica As DevComponents.DotNetBar.Controls.GroupPanel
     Friend WithEvents JGBusqFichaClinica As Janus.Windows.GridEX.GridEX
-    Friend WithEvents lbCtrlEnter As DevComponents.DotNetBar.LabelX
+    Public WithEvents txtIdVeterinario As DevComponents.DotNetBar.Controls.TextBoxX
+    Public WithEvents txtNombVeterinario As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents LabelX5 As DevComponents.DotNetBar.LabelX
+    Public WithEvents cbConsultorio As Janus.Windows.GridEX.EditControls.MultiColumnCombo
 End Class
