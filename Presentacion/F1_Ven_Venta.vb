@@ -12,6 +12,7 @@ Imports System.Drawing.Printing
 Imports CrystalDecisions.Shared
 Imports System.Math
 Imports Modelo
+Imports Facturacion
 
 Public Class F1_Ven_Venta
 #Region "Variables Globales"
@@ -226,17 +227,8 @@ Public Class F1_Ven_Venta
             End If
         End If
     End Sub
-    'Seleccion de Tipo de venta
-    Private Sub swTipoVenta_ValueChanged(sender As Object, e As EventArgs) Handles swTipoVenta.ValueChanged
-        If (swTipoVenta.Value = False) Then
-            lbVencCredito.Visible = True
-            dtpFCredito.Visible = True
-            dtpFCredito.Value = DateAdd(DateInterval.Day, _dias, Now.Date)
-        Else
-            lbVencCredito.Visible = False
-            dtpFCredito.Visible = False
-        End If
-    End Sub
+
+
     'Celdas que se podran Modificar
     Private Sub JGdetalleVenta_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGdetalleVenta.EditingCell
         If (_fnAccesible()) Then
@@ -802,11 +794,19 @@ salirIf:
         Try
             If txtMontoPagado.Focus Then
                 If Not txtTotalNeto.Text = String.Empty And Not txtTotalNeto.Text = "0.00" Then
-                    If Not txtTotalNeto.Value = 0 And txtMontoPagado.Value >= txtAcuenta.Value Then
-                        'txtCambio.Text = txtMontoPagado.Value - txtTotalNeto.Value
-                        txtCambio.Text = txtMontoPagado.Value - txtAcuenta.Value
+                    If cbTipoVenta.Value = 0 Then 'CREDITO
+                        If Not txtTotalNeto.Value = 0 And txtMontoPagado.Value >= txtAcuenta.Value Then
+                            'txtCambio.Text = txtMontoPagado.Value - txtTotalNeto.Value
+                            txtCambio.Text = txtMontoPagado.Value - txtAcuenta.Value
+                        Else
+                            txtCambio.Value = 0
+                        End If
                     Else
-                        txtCambio.Value = 0
+                        If Not txtTotalNeto.Value = 0 And txtMontoPagado.Value >= txtTotalNeto.Value Then
+                            txtCambio.Text = txtMontoPagado.Value - txtTotalNeto.Value
+                        Else
+                            txtCambio.Value = 0
+                        End If
                     End If
                 End If
             End If
@@ -817,8 +817,11 @@ salirIf:
 #End Region
 #Region "Metodos Privados"
     Private Sub _prIniciarTodo()
+        P_prCargarVariablesIndispensables()
         _prValidarLote()
         _prCargarComboLibreriaSucursal(cbSucursal)
+        _prCargarComboLibreria(cbEmision, 6, 1)
+        _prCargarComboLibreria(cbTipoVenta, 6, 2)
         _prCargarVenta()
         _prInhabiliitar()
         grVentas.Focus()
@@ -830,6 +833,12 @@ salirIf:
         cbSucursal.Value = 1
     End Sub
 
+    Private Sub P_prCargarVariablesIndispensables()
+        If (gb_FacturaEmite) Then
+            gi_IVA = CDbl(IIf(L_fnGetIVA().Rows(0).Item("scdebfis").ToString.Equals(""), gi_IVA, L_fnGetIVA().Rows(0).Item("scdebfis").ToString))
+            gi_ICE = CDbl(IIf(L_fnGetICE().Rows(0).Item("scice").ToString.Equals(""), gi_ICE, L_fnGetICE().Rows(0).Item("scice").ToString))
+        End If
+    End Sub
     Private Sub _prCargarVenta()
         Dim dt As New DataTable
         dt = L_fnMostrarVenta()
@@ -1021,21 +1030,21 @@ salirIf:
         With JGdetalleVenta.RootTable.Columns("vbPTotal")
             .Width = 110
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = True
+            .Visible = False
             .FormatString = "0.00"
             .Caption = "Sub Total".ToUpper
         End With
         With JGdetalleVenta.RootTable.Columns("vbPorc")
             .Width = 100
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = True
+            .Visible = False
             .FormatString = "0.00"
             .Caption = "P.Desc(%)".ToUpper
         End With
         With JGdetalleVenta.RootTable.Columns("vbDesc")
             .Width = 100
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = True
+            .Visible = False
             .FormatString = "0.00"
             .Caption = "M.Desc".ToUpper
         End With
@@ -1141,7 +1150,8 @@ salirIf:
             txtIdVendedor.Text = .GetValue("va_ecId")
             txtVendedor.Text = .GetValue("Empleado")
             _CodEmpleado = .GetValue("va_ecId")
-            swTipoVenta.Value = .GetValue("vaTipoVe")
+            cbEmision.Value = .GetValue("vaEmision")
+            cbTipoVenta.Value = .GetValue("vaTipoVe")
             dtpFVenta.Value = .GetValue("vaFechaDoc")
             dtpFCredito.Value = .GetValue("vaFechaVenCre")
             cbSucursal.Value = .GetValue("vaAlm")
@@ -1187,13 +1197,45 @@ salirIf:
         txtMdesc.Value = grVentas.GetValue("vaDesc")
         'tbIce.Value = grVentas.GetValue("taice")
         _prCalcularPrecioTotal()
-        If swTipoVenta.Value = True Then
-            txtAcuenta.Value = grVentas.GetValue("vaTotal")
-            txtSaldo.Value = txtTotalNeto.Value - txtAcuenta.Value
-        Else
+
+        'If swTipoVenta.Value = True Then
+        '    txtAcuenta.Value = grVentas.GetValue("vaTotal")
+        '    txtSaldo.Value = txtTotalNeto.Value - txtAcuenta.Value
+        'Else
+        '    txtAcuenta.Value = grVentas.GetValue("vaCuenta")
+        '    txtSaldo.Value = txtTotalNeto.Value - txtAcuenta.Value
+        'End If
+
+        If cbTipoVenta.Value = 0 Then
             txtAcuenta.Value = grVentas.GetValue("vaCuenta")
             txtSaldo.Value = txtTotalNeto.Value - txtAcuenta.Value
+
+        Else
+            'txtAcuenta.Value = grVentas.GetValue("vaTotal")
+            'txtSaldo.Value = txtTotalNeto.Value - txtAcuenta.Value
+            txtAcuenta.Value = 0
+            txtSaldo.Value = 0
         End If
+
+        Dim dt As DataTable = L_fnObtenerTabla("TFV001", "fvanitcli, fvadescli1, fvadescli2, fvaautoriz, fvanfac, fvaccont, fvafec", "fvanumi=" + txtIdVenta.Text.Trim)
+        If (dt.Rows.Count = 1) Then
+            TbNit.Text = dt.Rows(0).Item("fvanitcli").ToString
+            TbNombre1.Text = dt.Rows(0).Item("fvadescli1").ToString
+
+            tbNroAutoriz.Text = dt.Rows(0).Item("fvaautoriz").ToString
+            tbNroFactura.Text = dt.Rows(0).Item("fvanfac").ToString
+            tbCodigoControl.Text = dt.Rows(0).Item("fvaccont").ToString
+            dtiFechaFactura.Value = dt.Rows(0).Item("fvafec")
+        Else
+            TbNit.Clear()
+            TbNombre1.Clear()
+
+            tbNroAutoriz.Clear()
+            tbNroFactura.Clear()
+            tbCodigoControl.Clear()
+            dtiFechaFactura.Value = "2000/01/01"
+        End If
+
 
         LblPaginacion.Text = Str(grVentas.Row + 1) + "/" + grVentas.RowCount.ToString
         txtMontoPagado.Text = "0.00"
@@ -1239,7 +1281,9 @@ salirIf:
         swInternacion.IsReadOnly = True
         swCirugia.IsReadOnly = True
 
-        swTipoVenta.IsReadOnly = True
+        cbEmision.ReadOnly = True
+        cbTipoVenta.ReadOnly = True
+
         txtIdVenta.ReadOnly = True
         txtCliente.ReadOnly = True
         txtIdReciboV.ReadOnly = True
@@ -1267,13 +1311,23 @@ salirIf:
             _DesHabilitarProductos()
         End If
         FilaSelectLote = Nothing
+
+        'Datos facturacion
+        tbNroAutoriz.ReadOnly = True
+        tbNroFactura.ReadOnly = True
+        tbCodigoControl.ReadOnly = True
+        dtiFechaFactura.IsInputReadOnly = True
+        dtiFechaFactura.ButtonDropDown.Enabled = False
+        TbNit.ReadOnly = True
+        TbNombre1.ReadOnly = True
     End Sub
     Private Sub _prhabilitar()
         swServicio.IsReadOnly = False
         swInternacion.IsReadOnly = False
         swCirugia.IsReadOnly = False
 
-        swTipoVenta.IsReadOnly = False
+        cbEmision.ReadOnly = False
+        cbTipoVenta.ReadOnly = False
         txtIdVenta.ReadOnly = False
         txtCliente.ReadOnly = True
         txtIdReciboV.ReadOnly = True
@@ -1295,6 +1349,10 @@ salirIf:
         txtMontoPagado.IsInputReadOnly = False
         txtCambio.IsInputReadOnly = False
         grVentas.Enabled = False
+
+        'Datos facturacion
+        TbNit.ReadOnly = False
+        TbNombre1.ReadOnly = False
     End Sub
     Private Sub _prLimpiar()
         txtIdVenta.Clear()
@@ -1310,9 +1368,11 @@ salirIf:
         swServicio.Value = False
         swCirugia.Value = False
         swInternacion.Value = False
-        swTipoVenta.Value = True
+        cbEmision.SelectedIndex = 0
+        cbTipoVenta.SelectedIndex = 1
         _CodCliente = 0
         _CodEmpleado = 0
+        _CodPaciente = 0
         dtpFVenta.Value = Now.Date
         dtpFCredito.Value = Now.Date
         dtpFCredito.Visible = False
@@ -1344,6 +1404,15 @@ salirIf:
         swServicio.Value = False
         txtIdCliente.Focus()
         Table_Producto = Nothing
+
+
+        ''Datos Facturacion
+        tbNroAutoriz.Clear()
+        tbNroFactura.Clear()
+        tbCodigoControl.Clear()
+        dtiFechaFactura.Value = Now.Date
+        TbNit.Clear()
+        TbNombre1.Clear()
     End Sub
 
     Public Sub _prFiltrar(tipo As Integer)
@@ -1915,6 +1984,21 @@ salirIf:
             .Refresh()
         End With
     End Sub
+    Private Sub _prCargarComboLibreria(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo, cod1 As String, cod2 As String)
+        Dim dt As New DataTable
+        dt = L_fnMostrarLibreria(cod1, cod2)
+        With mCombo
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("lbidlib").Width = 70
+            .DropDownList.Columns("lbidlib").Caption = "COD"
+            .DropDownList.Columns.Add("lbdesc").Width = 150
+            .DropDownList.Columns("lbdesc").Caption = "DESCRIPCION"
+            .ValueMember = "lbidlib"
+            .DisplayMember = "lbdesc"
+            .DataSource = dt
+            .Refresh()
+        End With
+    End Sub
     Public Sub _prImiprimirNotaVenta(numi As String)
         Dim ef = New Efecto
         ef.tipo = 2
@@ -2275,10 +2359,19 @@ salirIf:
         '    Exit Function
         'End If
 
-        Dim res As Boolean = L_fnGrabarVenta(txtIdVenta.Text, IIf(swServicio.Value, txtIdReciboV.Text, 0), IIf(swCirugia.Value, txtIdReciboV.Text, 0), IIf(swInternacion.Value, txtIdReciboV.Text, 0), _CodPaciente, _CodCliente, _CodEmpleado, IIf(swTipoVenta.Value = True, 1, 0), dtpFVenta.Value.ToString("yyyy/MM/dd"),
+        'cbTipoVenta.Value=0 Credito, cbTipoVenta.Value=1 Contado, cbTipoVenta.Value=2 Tarjeta, cbTipoVenta.Value=3 Transferencia   
+        Dim res As Boolean = L_fnGrabarVenta(txtIdVenta.Text, IIf(swServicio.Value, txtIdReciboV.Text, 0), IIf(swCirugia.Value, txtIdReciboV.Text, 0), IIf(swInternacion.Value, txtIdReciboV.Text, 0), _CodPaciente, _CodCliente, _CodEmpleado, cbTipoVenta.Value, dtpFVenta.Value.ToString("yyyy/MM/dd"),
                                              dtpFCredito.Value.ToString("yyyy/MM/dd"), txtObservacion.Text, txtMdesc.Value, txtTotalNeto.Value,
-                                             CType(JGdetalleVenta.DataSource, DataTable), cbSucursal.Value, IIf(swTipoVenta.Value = True, 0, txtAcuenta.Value))
+                                             CType(JGdetalleVenta.DataSource, DataTable), cbSucursal.Value, IIf(cbTipoVenta.Value = 0, txtAcuenta.Value, 0), cbEmision.Value, IIf(cbTipoVenta.Value = 2, txtTotalNeto.Value, 0), IIf(cbTipoVenta.Value = 3, txtTotalNeto.Value, 0))
         If res Then
+
+            If (gb_FacturaEmite) Then
+                'And TbNit.Text <> String.Empty And TbNit.Text <> String.Empty
+                If cbEmision.SelectedIndex = 0 Then
+                    P_fnGenerarFactura(txtIdVenta.Text)
+                End If
+            End If
+
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
             ToastNotification.Show(Me, "Código de Venta ".ToUpper + txtIdVenta.Text + " Grabado con Exito.".ToUpper,
                                       img, 2000,
@@ -2286,9 +2379,6 @@ salirIf:
                                       eToastPosition.TopCenter
                                       )
             _prImiprimirNotaVenta(txtIdVenta.Text)
-            If swTipoVenta.Value = True Then
-
-            End If
             _prCargarVenta()
             _prLimpiar()
         Else
@@ -2297,6 +2387,256 @@ salirIf:
         End If
         Return res
     End Function
+
+    Private Function P_fnGenerarFactura(numi As String) As Boolean
+        Dim res As Boolean = False
+        res = P_fnGrabarFacturarTFV001(numi) ' Grabar en la TFV001
+        If (res) Then
+            If (P_fnValidarFactura()) Then
+                'Validar para facturar
+                P_prImprimirFacturar(numi, True, True) '_Codigo de a tabla TV001
+            Else
+                'Volver todo al estada anterior
+                ToastNotification.Show(Me, "No es posible facturar, vuelva a ingresar he intente nuevamente!!!".ToUpper,
+                                       My.Resources.OK,
+                                       5 * 1000,
+                                       eToastGlowColor.Red,
+                                       eToastPosition.MiddleCenter)
+            End If
+
+            If (Not TbNit.Text.Trim.Equals("0")) Then
+                L_Grabar_Nit(TbNit.Text.Trim, TbNombre1.Text.Trim, "")
+            Else
+                L_Grabar_Nit(TbNit.Text, "S/N", "")
+            End If
+        End If
+
+        Return res
+    End Function
+    Private Function P_fnGrabarFacturarTFV001(numi As String) As Boolean
+        Dim a As Double = CDbl(txtTotalNeto.Value + txtMdesc.Value)
+        'Dim b As Double = CDbl(IIf(IsDBNull(tbIce.Value), 0, tbIce.Value)) 'Ya esta calculado el 55% del ICE
+        Dim b As Double = CDbl("0")
+        Dim c As Double = CDbl("0")
+        Dim d As Double = CDbl("0")
+        Dim e As Double = a - b - c - d
+        Dim f As Double = CDbl(txtMdesc.Value)
+        Dim g As Double = e - f
+        Dim h As Double = g * (gi_IVA / 100)
+        Dim _Hora As String = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
+        Dim res As Boolean = False
+        'Grabado de Cabecera Factura
+        L_Grabar_Factura(numi,
+                        dtiFechaFactura.Value.ToString("yyyy/MM/dd"),
+                        IIf(Val(tbNroFactura.Text) = 0, "0", tbNroFactura.Text),
+                        IIf(Val(tbNroAutoriz.Text) = 0, "0", tbNroAutoriz.Text),
+                        "1",
+                        TbNit.Text.Trim,
+                        "0",
+                        TbNombre1.Text,
+                        "",
+                        CStr(Format(a, "####0.00")),
+                        CStr(Format(b, "####0.00")),
+                        CStr(Format(c, "####0.00")),
+                        CStr(Format(d, "####0.00")),
+                        CStr(Format(e, "####0.00")),
+                        CStr(Format(f, "####0.00")),
+                        CStr(Format(g, "####0.00")),
+                        CStr(Format(h, "####0.00")),
+                        "",
+                        Now.Date.ToString("yyyy/MM/dd"),
+                        "''",
+                        cbSucursal.Value,
+                        numi,
+                         _Hora)
+
+        'Grabado de Detalle de Factura
+        JGdetalleVenta.Update()
+
+        'Dim s As String = ""
+        For Each fil As GridEXRow In JGdetalleVenta.GetRows
+            If (Not fil.Cells("vbCant").Value.ToString.Trim.Equals("") And
+                Not fil.Cells("vb_tyfnumi").Value.ToString.Trim.Equals("0")) Then
+                's = fil.Cells("codP").Value
+                's = fil.Cells("des").Value
+                's = fil.Cells("can").Value
+                's = fil.Cells("imp").Value
+                L_Grabar_Factura_Detalle(numi.ToString,
+                                        fil.Cells("vb_tyfnumi").Value.ToString.Trim,
+                                        fil.Cells("Producto").Value.ToString.Trim,
+                                        fil.Cells("vbCant").Value.ToString.Trim,
+                                        fil.Cells("vbPrec").Value.ToString.Trim,
+                                        numi)
+                res = True
+            End If
+        Next
+        Return res
+    End Function
+    Private Function P_fnValidarFactura() As Boolean
+        Return True
+    End Function
+    Private Sub P_prImprimirFacturar(numi As String, impFactura As Boolean, grabarPDF As Boolean)
+        MP_ImprimirFactura(numi, impFactura, grabarPDF, False)
+    End Sub
+    Private Sub MP_ImprimirFactura(numi As String, impFactura As Boolean, grabarPDF As Boolean, reimprimir As Boolean)
+
+        Dim _Fecha, _FechaAl As Date
+        Dim _DsFactura, _DsDosificacion, _DsDatos_Factura, _DsRutaImpresora As New DataSet
+        Dim _Autorizacion, _Nit, _Fechainv, _Total, _Key, _Cod_Control, _Hora,
+            _Literal, _TotalDecimal, _TotalDecimal2 As String
+        Dim I, _NumFac, _numidosif, _TotalCC As Integer
+        Dim ice, _Desc, _TotalLi As Decimal
+        Dim _VistaPrevia As Integer = 0
+
+        _Desc = CDbl(txtMdesc.Value)
+        If Not IsNothing(P_Global.Visualizador) Then
+            P_Global.Visualizador.Close()
+        End If
+
+        _DsFactura = L_Reporte_Factura(numi, numi)
+        _DsDosificacion = L_Dosificacion("1", "1", _Fecha)
+        If reimprimir Then
+            _Fecha = _DsFactura.Tables(0).Rows(0).Item("fvafec").ToString
+            _Hora = _DsFactura.Tables(0).Rows(0).Item("fvahora").ToString
+            _NumFac = CInt(_DsFactura.Tables(0).Rows(0).Item("fvanfac"))
+        Else
+            _Fecha = Now.Date
+            _Hora = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
+            _NumFac = CInt(_DsDosificacion.Tables(0).Rows(0).Item("sbnfac")) + 1
+        End If
+        _Autorizacion = _DsDosificacion.Tables(0).Rows(0).Item("sbautoriz").ToString
+
+
+        _Nit = _DsFactura.Tables(0).Rows(0).Item("fvanitcli").ToString
+        _Fechainv = Microsoft.VisualBasic.Right(_Fecha.ToShortDateString, 4) +
+                    Microsoft.VisualBasic.Right(Microsoft.VisualBasic.Left(_Fecha.ToShortDateString, 5), 2) +
+                    Microsoft.VisualBasic.Left(_Fecha.ToShortDateString, 2)
+        _Total = _DsFactura.Tables(0).Rows(0).Item("fvatotal").ToString
+        ice = _DsFactura.Tables(0).Rows(0).Item("fvaimpsi")
+        _numidosif = _DsDosificacion.Tables(0).Rows(0).Item("sbnumi").ToString
+        _Key = _DsDosificacion.Tables(0).Rows(0).Item("sbkey")
+        _FechaAl = _DsDosificacion.Tables(0).Rows(0).Item("sbfal")
+
+        If reimprimir = False Then
+            Dim maxNFac As Integer = L_fnObtenerMaxIdTabla("TFV001", "fvanfac", "fvaautoriz = " + _Autorizacion)
+            _NumFac = maxNFac + 1
+        End If
+
+        _TotalCC = Math.Round(CDbl(_Total), MidpointRounding.AwayFromZero)
+        _Cod_Control = ControlCode.generateControlCode(_Autorizacion, _NumFac, _Nit, _Fechainv, CStr(_TotalCC), _Key)
+
+        'Literal 
+        _TotalLi = _DsFactura.Tables(0).Rows(0).Item("fvasubtotal") - _DsFactura.Tables(0).Rows(0).Item("fvadesc")
+        _TotalDecimal = _TotalLi - Math.Truncate(_TotalLi)
+        _TotalDecimal2 = CDbl(_TotalDecimal) * 100
+
+        'Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(_Total) - CDbl(_TotalDecimal)) + " con " + IIf(_TotalDecimal2.Equals("0"), "00", _TotalDecimal2) + "/100 Bolivianos"
+        _Literal = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(_TotalLi) - CDbl(_TotalDecimal)) + " con " + IIf(_TotalDecimal2.Equals("0"), "00", _TotalDecimal2) + "/100 Bolivianos"
+        _DsDatos_Factura = L_Reporte_Factura_Cia("1")
+
+        L_Modificar_Factura("fvanumi = " + CStr(numi),
+                            "",
+                            CStr(_NumFac),
+                            CStr(_Autorizacion),
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            _Cod_Control,
+                            _FechaAl.ToString("yyyy/MM/dd"),
+                            "",
+                            "",
+                            CStr(numi))
+
+        QrFactura.Text = _DsDatos_Factura.Tables(0).Rows(0).Item("scnit").ToString + "|" + Str(_NumFac).Trim + "|" + _Autorizacion + "|" + _Fecha + "|" + _Total + "|" + _TotalLi.ToString + "|" + _Cod_Control + "|" + TbNit.Text.Trim + "|" + ice.ToString + "|0|0|" + Str(_Desc).Trim
+        _DsFactura = L_Reporte_Factura(numi, numi)
+
+        For I = 0 To _DsFactura.Tables(0).Rows.Count - 1
+            _DsFactura.Tables(0).Rows(I).Item("fvaimgqr") = P_fnImageToByteArray(QrFactura.Image)
+        Next
+        If (impFactura) Then
+            _DsRutaImpresora = L_ObtenerRutaImpresora("1") ' Datos de Impresion de Facturación
+            If (_DsRutaImpresora.Tables(0).Rows(0).Item("cbvp")) Then 'Vista Previa de la Ventana de Vizualización 1 = True 0 = False
+                P_Global.Visualizador = New Visualizador 'Comentar
+            End If
+            Dim objrep As Object = Nothing
+            If (gi_FacturaTipo = 1) Then
+                'objrep = New R_FacturaG
+            ElseIf (gi_FacturaTipo = 2) Then
+                objrep = New R_FacturaCarta
+                'If (Not _Ds.Tables(0).Rows.Count = gi_FacturaCantidadItems) Then
+                '    For index = _Ds.Tables(0).Rows.Count To gi_FacturaCantidadItems - 1
+                '        'Insertamos la primera fila con el saldo Inicial
+                '        Dim f As DataRow = _Ds.Tables(0).NewRow
+                '        f.ItemArray() = _Ds.Tables(0).Rows(0).ItemArray
+                '        f.Item("fvbcant") = -1
+                '        _Ds.Tables(0).Rows.Add(f)
+                '    Next
+                'End If
+            End If
+
+            objrep.SetDataSource(_DsFactura.Tables(0))
+            objrep.SetParameterValue("Hora", _Hora)
+            objrep.SetParameterValue("Direccionpr", _DsDatos_Factura.Tables(0).Rows(0).Item("scdir").ToString)
+            objrep.SetParameterValue("Telefonopr", _DsDatos_Factura.Tables(0).Rows(0).Item("sctelf").ToString)
+            objrep.SetParameterValue("Literal1", _Literal)
+            'objrep.SetParameterValue("Literal2", " ")
+            'objrep.SetParameterValue("Literal3", " ")
+            objrep.SetParameterValue("NroFactura", _NumFac)
+            objrep.SetParameterValue("NroAutoriz", _Autorizacion)
+            objrep.SetParameterValue("ENombre", _DsDatos_Factura.Tables(0).Rows(0).Item("scneg").ToString) '?
+            objrep.SetParameterValue("ECasaMatriz", _DsDatos_Factura.Tables(0).Rows(0).Item("scsuc").ToString)
+            objrep.SetParameterValue("ECiudadPais", _DsDatos_Factura.Tables(0).Rows(0).Item("scpai").ToString)
+            objrep.SetParameterValue("ESFC", _DsDosificacion.Tables(0).Rows(0).Item("sbsfc").ToString)
+            objrep.SetParameterValue("Tipo", "ORIGINAL")
+            objrep.SetParameterValue("ENit", _DsDatos_Factura.Tables(0).Rows(0).Item("scnit").ToString)
+            objrep.SetParameterValue("EActividad", _DsDatos_Factura.Tables(0).Rows(0).Item("scact").ToString)
+            objrep.SetParameterValue("ENota", "''" + _DsDosificacion.Tables(0).Rows(0).Item("sbnota").ToString + "''")
+            objrep.SetParameterValue("ELey", "''" + _DsDosificacion.Tables(0).Rows(0).Item("sbnota2").ToString + "''")
+            ' objrep.SetParameterValue("EDuenho", _DsDatos_Factura.Tables(0).Rows(0).Item("scnom").ToString) '?
+            'objrep.SetParameterValue("URLImageLogo", gs_CarpetaRaiz + "\LogoFactura.jpg")
+            'objrep.SetParameterValue("URLImageMarcaAgua", gs_CarpetaRaiz + "\MarcaAguaFactura.jpg")
+
+            'Ruta de impresion, visualizador o Directa
+            If (_DsRutaImpresora.Tables(0).Rows(0).Item("cbvp")) Then 'Vista Previa de la Ventana de Vizualización 1 = True 0 = False
+                P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
+                P_Global.Visualizador.ShowDialog() 'Comentar
+                P_Global.Visualizador.BringToFront() 'Comentar
+            Else
+                Dim pd As New PrintDocument()
+                pd.PrinterSettings.PrinterName = _DsRutaImpresora.Tables(0).Rows(0).Item("cbrut").ToString
+                If (Not pd.PrinterSettings.IsValid) Then
+                    ToastNotification.Show(Me, "La Impresora ".ToUpper + _DsRutaImpresora.Tables(0).Rows(0).Item("cbrut").ToString + Chr(13) + "No Existe".ToUpper,
+                                           My.Resources.WARNING, 5 * 1000,
+                                           eToastGlowColor.Blue, eToastPosition.BottomRight)
+                Else
+                    objrep.PrintOptions.PrinterName = _DsRutaImpresora.Tables(0).Rows(0).Item("cbrut").ToString
+                    objrep.PrintToPrinter(1, False, 1, 1)
+                End If
+            End If
+            If reimprimir = False Then
+                'Copia la factura en PDF
+                If (grabarPDF) Then
+                    If (Not Directory.Exists(gs_CarpetaRaiz + "\Facturas")) Then
+                        Directory.CreateDirectory(gs_CarpetaRaiz + "\Facturas")
+                    End If
+                    objrep.ExportToDisk(ExportFormatType.PortableDocFormat, gs_CarpetaRaiz + "\Facturas\" + CStr(_NumFac) + "_" + CStr(_Autorizacion) + ".pdf")
+                End If
+            End If
+        End If
+        If reimprimir = False Then
+            L_Actualiza_Dosificacion(_numidosif, _NumFac, numi)
+        End If
+    End Sub
     Public Function _prValidar() As Boolean
         'If (txtAcuenta.Value = 0) Then
         '    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
@@ -2318,9 +2658,9 @@ salirIf:
         '_prUnirTabla(
         Dim res As Boolean
         If L_fnVerificarCantidadPagoCredito(txtIdVenta.Text, txtAcuenta.Value, txtTotalNeto.Value) Then
-            res = L_fnModificarVenta(txtIdVenta.Text, IIf(swServicio.Value, txtIdReciboV.Text, 0), IIf(swCirugia.Value, txtIdReciboV.Text, 0), IIf(swInternacion.Value, txtIdReciboV.Text, 0), _CodPaciente, _CodCliente, _CodEmpleado, IIf(swTipoVenta.Value = True, 1, 0), dtpFVenta.Value.ToString("yyyy/MM/dd"),
+            res = L_fnModificarVenta(txtIdVenta.Text, IIf(swServicio.Value, txtIdReciboV.Text, 0), IIf(swCirugia.Value, txtIdReciboV.Text, 0), IIf(swInternacion.Value, txtIdReciboV.Text, 0), _CodPaciente, _CodCliente, _CodEmpleado, cbTipoVenta.Value = True, dtpFVenta.Value.ToString("yyyy/MM/dd"),
                                             dtpFCredito.Value.ToString("yyyy/MM/dd"), txtObservacion.Text, txtMdesc.Value, txtTotalNeto.Value,
-                                            CType(JGdetalleVenta.DataSource, DataTable), cbSucursal.Value, IIf(swTipoVenta.Value = True, 0, txtAcuenta.Value))
+                                            CType(JGdetalleVenta.DataSource, DataTable), cbSucursal.Value, IIf(cbTipoVenta.Value = 0, txtAcuenta.Value, 0), cbEmision.Value, IIf(cbTipoVenta.Value = 2, txtTotalNeto.Value, 0), IIf(cbTipoVenta.Value = 3, txtTotalNeto.Value, 0))
             If res Then
                 Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
                 ToastNotification.Show(Me, "Código de Venta ".ToUpper + txtIdVenta.Text + " Modificado con Exito.".ToUpper,
@@ -2394,6 +2734,80 @@ salirIf:
         End If
         Return True
     End Function
+    Public Overrides Function _PMOValidarCampos() As Boolean
+        Try
+            Dim fecha As String = Now.Date
+            Dim dtDosificacion As DataSet = L_Dosificacion("1", "1", fecha)
+
+            If (_CodCliente <= 0) Then
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Por Favor Seleccione un Cliente con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                txtIdCliente.Focus()
+                Return False
+            End If
+            If (_CodPaciente <= 0) Then
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Por Favor Seleccione un Paciente con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                txtIdPaciente.Focus()
+                Return False
+            End If
+            If (_CodEmpleado <= 0) Then
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Por Favor Seleccione un Vendedor con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                txtIdVendedor.Focus()
+                Return False
+            End If
+
+            'Validar datos de factura
+            If cbEmision.SelectedIndex = 0 Then
+                If (TbNit.Text = String.Empty) Then
+                    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                    ToastNotification.Show(Me, "Por Favor ponga el nit del cliente.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    TbNit.Focus()
+                    Return False
+                End If
+
+                If (TbNombre1.Text = String.Empty) Then
+                    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                    ToastNotification.Show(Me, "Por Favor ponga la razón social del cliente.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    TbNombre1.Focus()
+                    Return False
+                End If
+
+                If dtDosificacion.Tables(0).Rows.Count = 0 Then
+                    'dtDosificacion.Tables.Cast(Of DataTable)().Any(Function(x) x.DefaultView.Count = 0)
+                    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                    ToastNotification.Show(Me, "La Dosificación para las facturas ya caducó, ingrese nueva dosificación".ToUpper, img, 3500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    Return False
+                End If
+            End If
+
+
+            If (JGdetalleVenta.RowCount = 1) Then
+                JGdetalleVenta.Row = JGdetalleVenta.RowCount - 1
+                If (JGdetalleVenta.GetValue("vb_tyfnumi") = 0) Then
+                    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                    ToastNotification.Show(Me, "Por Favor Seleccione  un detalle para la Venta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    Return False
+                End If
+            End If
+
+
+            Return True
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+            Return False
+        End Try
+    End Function
+    Private Sub MostrarMensajeError(mensaje As String)
+        ToastNotification.Show(Me,
+                               mensaje.ToUpper,
+                               My.Resources.WARNING,
+                               5000,
+                               eToastGlowColor.Red,
+                               eToastPosition.TopCenter)
+
+    End Sub
     Public Overrides Sub _PMONuevo()
         'JGBusqRecibos.Enabled = False 'Deshabilita el buscador de la Grilla
         _prLimpiar()
@@ -2414,6 +2828,54 @@ salirIf:
 
     Private Sub txtAcuenta_ValueChanged(sender As Object, e As EventArgs) Handles txtAcuenta.ValueChanged
         txtSaldo.Text = txtTotalNeto.Value - txtAcuenta.Value
+    End Sub
+
+    'Seleccion de Tipo de venta
+    Private Sub cbTipoVenta_ValueChanged(sender As Object, e As EventArgs) Handles cbTipoVenta.ValueChanged
+        'cbTipoVenta.Value=0 Credito, cbTipoVenta.Value=1 Contado, cbTipoVenta.Value=2 Tarjeta, cbTipoVenta.Value=3 Transferencia   
+        If (cbTipoVenta.Value = 0) Then
+            lbVencCredito.Visible = True
+            dtpFCredito.Visible = True
+            dtpFCredito.Value = DateAdd(DateInterval.Day, _dias, Now.Date)
+
+            lbAcuenta.Visible = True
+            txtAcuenta.Visible = True
+            lbSaldo.Visible = True
+            txtSaldo.Visible = True
+        Else
+            lbVencCredito.Visible = False
+            dtpFCredito.Visible = False
+
+            lbAcuenta.Visible = False
+            txtAcuenta.Visible = False
+            lbSaldo.Visible = False
+            txtSaldo.Visible = False
+        End If
+
+    End Sub
+
+    Private Sub cbEmision_ValueChanged(sender As Object, e As EventArgs) Handles cbEmision.ValueChanged
+        If cbEmision.Value = 1 Then
+            GroupPanelFactura2.Visible = True
+        Else
+            GroupPanelFactura2.Visible = False
+        End If
+    End Sub
+
+    Private Sub TbNit_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TbNit.Validating
+        Dim nom1, nom2 As String
+        nom1 = ""
+        nom2 = ""
+        If (TbNit.Text.Trim = String.Empty) Then
+            TbNit.Text = "0"
+        End If
+        L_Validar_Nit(TbNit.Text.Trim, nom1, nom2)
+        TbNombre1.Text = nom1
+    End Sub
+
+
+    Private Sub TbNit_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TbNit.KeyPress
+        g_prValidarTextBox(1, e)
     End Sub
 
 

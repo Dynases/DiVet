@@ -1,8 +1,7 @@
-﻿Imports Logica.AccesoLogica
-Imports DevComponents.DotNetBar.Controls
-Imports DevComponents.DotNetBar.Metro
-Imports DevComponents.DotNetBar
+﻿Imports DevComponents.DotNetBar
 Imports DevComponents.DotNetBar.Rendering
+Imports Logica.AccesoLogica
+Imports Modelo.MGlobal
 
 Public Class Principal
     Inherits DevComponents.DotNetBar.Metro.MetroForm
@@ -38,6 +37,26 @@ Public Class Principal
         'L_Usuario = gs_user
         'lbUsuario.Text = gs_user
         M_Informes.Visible = False
+
+        P_prCargarParametros()
+        _prValidarMayusculas()
+    End Sub
+    Private Sub P_prCargarParametros()
+        Dim dtConfSistema As DataTable = L_fnConfSistemaGeneral()
+
+        gb_FacturaEmite = dtConfSistema.Rows(0).Item("cccefac")
+        gi_FacturaTipo = dtConfSistema.Rows(0).Item("ccctfac")
+        gi_FacturaCantidadItems = dtConfSistema.Rows(0).Item("ccccite")
+        gb_FacturaIncluirICE = dtConfSistema.Rows(0).Item("ccciice")
+        'gi_codeBar = dtConfSistema.Rows(0).Item("ccciice")
+        gb_CodigoBarra = dtConfSistema.Rows(0).Item("ccccbar")
+        'gb_DetalleProducto = dtConfSistema.Rows(0).Item("cccdetp")
+    End Sub
+    Public Sub _prValidarMayusculas()
+        Dim dt As DataTable = L_fnPorcUtilidad()
+        If (dt.Rows.Count > 0) Then
+            Modelo.MGlobal.gs_mayusculas = dt.Rows(0).Item("mayusculas")
+        End If
     End Sub
     Private Sub _prLeerArchivoConfig()
         Try
@@ -365,6 +384,12 @@ Public Class Principal
     Private Sub btnConsultorios_Click(sender As Object, e As EventArgs) Handles btnConsultorios.Click
         Dim frm As New F1_Con_Consultorios
         Modelo.MGlobal._nameButton = btnConsultorios.Name
+        frm.Show()
+    End Sub
+
+    Private Sub btnDosificacion_Click(sender As Object, e As EventArgs) Handles btnDosificacion.Click
+        Dim frm As New F1_Dosificacion
+        Modelo.MGlobal._nameButton = btnDosificacion.Name
         frm.Show()
     End Sub
 End Class

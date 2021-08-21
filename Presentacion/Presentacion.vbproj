@@ -225,6 +225,12 @@
     <Compile Include="F1_Con_Usuarios.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="F1_Dosificacion.designer.vb">
+      <DependentUpon>F1_Dosificacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F1_Dosificacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F1_Fic_FichaClinica.Designer.vb">
       <DependentUpon>F1_Fic_FichaClinica.vb</DependentUpon>
     </Compile>
@@ -434,6 +440,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>R_CreditoPagoTotal.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\R_FacturaCarta.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_FacturaCarta.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reporte\R_FichaClinica.vb">
@@ -672,6 +684,9 @@
     <EmbeddedResource Include="F1_Con_Usuarios.resx">
       <DependentUpon>F1_Con_Usuarios.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="F1_Dosificacion.resx">
+      <DependentUpon>F1_Dosificacion.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F1_Fic_FichaClinica.resx">
       <DependentUpon>F1_Fic_FichaClinica.vb</DependentUpon>
     </EmbeddedResource>
@@ -775,6 +790,10 @@
     <EmbeddedResource Include="Reporte\R_CreditoPagoTotal.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_CreditoPagoTotal.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\R_FacturaCarta.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_FacturaCarta.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\R_FichaClinica.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1095,6 +1114,10 @@
     <Content Include="Resources\zoomout.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Facturacion\Facturacion.vbproj">
+      <Project>{49d8fccb-6e29-4320-ad90-ab16f88b84d8}</Project>
+      <Name>Facturacion</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logica\Logica.vbproj">
       <Project>{9a5c1709-b1ce-4ddf-9756-11b338ae783b}</Project>
       <Name>Logica</Name>

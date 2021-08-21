@@ -200,6 +200,9 @@ Public Class Modelo3
     End Sub
 
     Private Sub Modelo0_KeyPress(sender As Object, e As KeyPressEventArgs) Handles MyBase.KeyPress
+        If (gs_mayusculas <> 0) Then
+            e.KeyChar = e.KeyChar.ToString.ToUpper
+        End If
         If (e.KeyChar = ChrW(Keys.Enter)) Then
             e.Handled = True
             P_Moverenfoque()

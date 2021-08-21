@@ -261,6 +261,7 @@ Public Class F1_Fic_FichaClinica
         End If
         If _Iniciar = 3 Then
             _prInhabilitar()
+            btnNuevo.Enabled = False
         End If
     End Sub
     Private Sub _prCargarComboConsultorios(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
@@ -312,7 +313,7 @@ Public Class F1_Fic_FichaClinica
                 superTabItem2.Enabled = False
             End If
         Else
-            btnNuevo.Enabled = True
+            'btnNuevo.Enabled = True
             btnModificar.Enabled = True
             btnEliminar.Enabled = True
             btnAlta.Enabled = True
@@ -659,6 +660,7 @@ Public Class F1_Fic_FichaClinica
             _prLimpiarInternacion()
             _prMostrarPaciente()
             'Habilitar ALTA 
+
             btnModificar.Enabled = IIf(L_fnExisteFichaClinicaAlta(txtIdFicha.Text), True, False)
             btnEliminar.Enabled = IIf(L_fnExisteFichaClinicaAlta(txtIdFicha.Text), True, False)
             btnRecibo.Enabled = IIf(L_fnExisteFichaClinicaAlta(txtIdFicha.Text), True, False)

@@ -2,6 +2,7 @@
 Imports Modelo.MGlobal
 Imports Logica.AccesoLogica
 
+
 Public Class Modelo0
 #Region "VARIABLES LOCALES"
     Public _MPos As Integer
@@ -200,6 +201,10 @@ Public Class Modelo0
     End Sub
 
     Private Sub Modelo0_KeyPress(sender As Object, e As KeyPressEventArgs) Handles MyBase.KeyPress
+        If (gs_mayusculas <> 0) Then
+            e.KeyChar = e.KeyChar.ToString.ToUpper
+        End If
+
         If (e.KeyChar = ChrW(Keys.Enter)) Then
             e.Handled = True
             P_Moverenfoque()
@@ -218,6 +223,8 @@ Public Class Modelo0
             MFlyoutUsuario.Content = PanelUsuario
         End If
     End Sub
+
+
 
 
 #End Region

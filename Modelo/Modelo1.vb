@@ -52,6 +52,9 @@ Public Class Modelo1
         _PMOEliminarRegistro()
     End Sub
     Private Sub ModeloHor_KeyPress(sender As Object, e As KeyPressEventArgs) Handles MyBase.KeyPress
+        If (gs_mayusculas <> 0) Then
+            e.KeyChar = e.KeyChar.ToString.ToUpper
+        End If
         If (e.KeyChar = ChrW(Keys.Enter)) Then
             e.Handled = True
             P_Moverenfoque()
