@@ -3225,6 +3225,23 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("sp_Mam_TV00121Cheque", _listParam)
         Return _Tabla
     End Function
+    Public Shared Function L_fnVerificarPagosVentas(numi As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 13))
+        _listParam.Add(New Datos.DParametro("@tenumi", numi))
+        _listParam.Add(New Datos.DParametro("@teuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV00121Cheque", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
 
     Public Shared Function L_fnObtenerLosPagos(_numi As Integer) As DataTable
         Dim _Tabla As DataTable
@@ -4709,9 +4726,191 @@ Public Class AccesoLogica
 #End Region
 
 
+#Region "Anular Factura"
+
+    Public Shared Function L_Obtener_Facturas() As DataSet
+        Dim _Tabla1 As New DataTable
+        Dim _Tabla2 As New DataTable
+        Dim _Ds As New DataSet
+        Dim _Where As String
+        _Where = " 1 = 1"
+        'Cambiar la logica para visualizar las facturas esto en el programa de facturas
+        _Tabla1 = D_Datos_Tabla("concat(fvanfac, '_', fvaautoriz) as Archivo, fvanumi as Codigo, fvanfac as [Nro Factura], " _
+                                + "fvafec as Fecha, fvacodcli as [Cod Cliente], " _
+                                + " fvadescli1 as [Nombre 1], fvadescli2 as [Nombre 2], fvanitcli as Nit, " _
+                                + " fvastot as Subtotal, fvadesc as Descuento, fvatotal as Total, " _
+                                + " fvaccont as [Cod Control], fvaflim as [Fec Limite], fvaest as Estado",
+                                "TFV001", _Where)
+        '_Tabla1.Columns(0).ColumnMapping = MappingType.Hidden
+        _Ds.Tables.Add(_Tabla1)
+
+        _Tabla2 = D_Datos_Tabla("concat(fvanfac, '_', fvaautoriz) as Archivo, fvbnumi as Codigo, fvbcprod as [Cod Producto], fvbdesprod as Descripcion, " _
+                                + " fvbcant as Cantidad, fvbprecio as [Precio Unitario], (fvbcant * fvbprecio) as Precio",
+                                "TFV001, TFV0011", "fvanumi = fvbnumi and fvanumi2 = fvbnumi2")
+        _Ds.Tables.Add(_Tabla2)
+        _Ds.Relations.Add("1", _Tabla1.Columns("Archivo"), _Tabla2.Columns("Archivo"), False)
+        Return _Ds
+    End Function
+
+    Public Shared Function L_ObtenerDetalleFactura(_CodFact As String) As DataSet 'Modifcar para que solo Traiga los productos Con Stock
+        Dim _Tabla As DataTable
+        Dim _Ds As New DataSet
+        Dim _Where As String
+        _Where = "fvbnumi = " + _CodFact
+        _Tabla = D_Datos_Tabla("fvbcprod as codP, fvbcant as can, '1' as sto", "TFV0011", _Where)
+        _Ds.Tables.Add(_Tabla)
+        Return _Ds
+    End Function
+
+#End Region
+
+
+#Region "Libro de ventas"
+    Public Shared Function L_fnObtenerLibroVentaAmbosTipoFactura(_CodAlm As String, _fechai As String, _FechaF As String, TipoFactura As Integer) As DataTable
+        Dim _Tabla As DataTable
+        Dim _Where As String = ""
+
+        If _CodAlm > 0 Then
+            If (TipoFactura = 1) Then
+                _Where = "sbcia=1 and fvaalm = " + _CodAlm + " and fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' " + " ORDER BY fvanfac"
+
+            End If
+            If (TipoFactura = 2) Then
+                _Where = "sbcia=2 and fvaalm = " + _CodAlm + " and fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' " + " ORDER BY fvanfac"
+
+            End If
+            If (TipoFactura = 3) Then
+                _Where = " fvaalm = " + _CodAlm + " and fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' " + " ORDER BY fvanfac"
+
+            End If
+        End If
+        If _CodAlm = 0 Then 'todas las sucursales
+            If (TipoFactura = 1) Then
+                _Where = "sbcia=1 and  fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' " + " ORDER BY fvanfac"
+
+            End If
+            If (TipoFactura = 2) Then
+                _Where = "sbcia=2 and  fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' " + " ORDER BY fvanfac"
+
+            End If
+            If (TipoFactura = 3) Then
+                _Where = " fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' " + " ORDER BY fvanfac"
+
+            End If
+
+
+        End If
+        If _CodAlm = -1 Then 'todas las sucursales menos la principal
+            If (TipoFactura = 1) Then
+
+                _Where = "sbcia=1 and fvaalm <>1 " + " and fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' " + " ORDER BY fvanfac"
+
+            End If
+            If (TipoFactura = 2) Then
+                _Where = "sbcia=2 and fvaalm <>1 " + " and fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' " + " ORDER BY fvanfac"
+
+            End If
+            If (TipoFactura = 3) Then
+                _Where = "fvaalm <>1 " + " and fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' " + " ORDER BY fvanfac"
+
+            End If
+
+
+        End If
+
+        Dim _select As String = "fvanumi, FORMAT(fvafec,'dd/MM/yyyy') as fvafec, fvanfac, fvaautoriz,fvaest, fvanitcli, fvadescli, fvastot, fvaimpsi, fvaimpeo, fvaimptc, fvasubtotal, fvadesc, fvatotal, fvadebfis, fvaccont,fvaflim,fvaalm,scneg, factura"
+
+        _Tabla = D_Datos_Tabla(_select,
+                               "VR_GO_LibroVenta2", _Where)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnObtenerLibroVenta(_CodAlm As String, _Mes As String, _Anho As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _Where As String = "fvaalm = " + _CodAlm + "and Month(fvafec) = " + _Mes + " and Year(fvafec) = " + _Anho + " ORDER BY fvanfac"
+        _Tabla = D_Datos_Tabla("*",
+                               "VR_GO_LibroVenta", _Where)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnObtenerLibroVenta2(_CodAlm As String, _fechai As String, _FechaF As String, factura As Integer, TipoFactura As Integer) As DataTable
+        Dim _Tabla As DataTable
+        Dim _Where As String = ""
+        If _CodAlm > 0 Then
+            If (TipoFactura = 1) Then
+
+                _Where = "sbcia=1 and fvaalm = " + _CodAlm + " and fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' and factura=" + Str(factura) + " ORDER BY fvanfac"
+
+            End If
+            If (TipoFactura = 2) Then
+                _Where = "sbcia=2 and fvaalm = " + _CodAlm + " and fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' and factura=" + Str(factura) + " ORDER BY fvanfac"
+
+            End If
+            If (TipoFactura = 3) Then
+                _Where = " fvaalm = " + _CodAlm + " and fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' and factura=" + Str(factura) + " ORDER BY fvanfac"
+
+            End If
 
 
 
+        End If
+        If _CodAlm = 0 Then 'todas las sucursales
+
+            If (TipoFactura = 1) Then
+
+
+                _Where = "sbcia=1 and fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' and factura=" + Str(factura) + " ORDER BY fvanfac"
+
+            End If
+            If (TipoFactura = 2) Then
+                _Where = "sbcia=2 and fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' and factura=" + Str(factura) + " ORDER BY fvanfac"
+
+            End If
+            If (TipoFactura = 3) Then
+                _Where = "fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' and factura=" + Str(factura) + " ORDER BY fvanfac"
+
+            End If
+
+        End If
+        If _CodAlm = -1 Then 'todas las sucursales menos la principal
+            If (TipoFactura = 1) Then
+
+
+                _Where = "sbcia=1 and fvaalm <>1 " + " and fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' and factura=" + Str(factura) + " ORDER BY fvanfac"
+            End If
+            If (TipoFactura = 2) Then
+                _Where = "sbcia=2 and fvaalm <>1 " + " and fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' and factura=" + Str(factura) + " ORDER BY fvanfac"
+
+            End If
+            If (TipoFactura = 3) Then
+                _Where = "fvaalm <>1 " + " and fvafec >= '" + _fechai + "' and fvafec <= '" + _FechaF + "' and factura=" + Str(factura) + " ORDER BY fvanfac"
+
+            End If
+
+
+        End If
+        Dim _select As String = "fvanumi, FORMAT(fvafec,'dd/MM/yyyy') as fvafec, fvanfac, fvaautoriz,fvaest, fvanitcli, fvadescli, fvastot, fvaimpsi, fvaimpeo, fvaimptc, fvasubtotal, fvadesc, fvatotal, fvadebfis, fvaccont,fvaflim,fvaalm,scneg, factura"
+
+        _Tabla = D_Datos_Tabla(_select,
+                               "VR_GO_LibroVenta2", _Where)
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_ObtenerAnhoFactura() As DataTable
+        Dim _Tabla As DataTable
+        Dim _Where As String = "1 = 1 ORDER BY year(fvafec)"
+        _Tabla = D_Datos_Tabla("Distinct(year(fvafec)) AS anho",
+                               "VR_GO_LibroVenta", _Where)
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_ObtenerSucursalesFactura() As DataTable
+        Dim _Tabla As DataTable
+        Dim _Where As String = "1 = 1 ORDER BY a.scneg"
+        _Tabla = D_Datos_Tabla("a.scnumi, a.scneg, a.scnit",
+                               "TS003 a", _Where)
+        Return _Tabla
+    End Function
+
+#End Region
 
 
 

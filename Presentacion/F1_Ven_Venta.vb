@@ -1217,25 +1217,29 @@ salirIf:
             txtSaldo.Value = 0
         End If
 
-        Dim dt As DataTable = L_fnObtenerTabla("TFV001", "fvanitcli, fvadescli1, fvadescli2, fvaautoriz, fvanfac, fvaccont, fvafec", "fvanumi=" + txtIdVenta.Text.Trim)
-        If (dt.Rows.Count = 1) Then
-            TbNit.Text = dt.Rows(0).Item("fvanitcli").ToString
-            TbNombre1.Text = dt.Rows(0).Item("fvadescli1").ToString
+        If cbEmision.Value = 1 Then
+            Dim dt As DataTable = L_fnObtenerTabla("TFV001", "fvanitcli, fvadescli1, fvadescli2, fvaautoriz, fvanfac, fvaccont, fvafec", "fvanumi=" + txtIdVenta.Text.Trim)
+            If (dt.Rows.Count = 1) Then
+                TbNit.Text = dt.Rows(0).Item("fvanitcli").ToString
+                TbNombre1.Text = dt.Rows(0).Item("fvadescli1").ToString
 
-            tbNroAutoriz.Text = dt.Rows(0).Item("fvaautoriz").ToString
-            tbNroFactura.Text = dt.Rows(0).Item("fvanfac").ToString
-            tbCodigoControl.Text = dt.Rows(0).Item("fvaccont").ToString
-            dtiFechaFactura.Value = dt.Rows(0).Item("fvafec")
+                tbNroAutoriz.Text = dt.Rows(0).Item("fvaautoriz").ToString
+                tbNroFactura.Text = dt.Rows(0).Item("fvanfac").ToString
+                tbCodigoControl.Text = dt.Rows(0).Item("fvaccont").ToString
+                dtiFechaFactura.Value = dt.Rows(0).Item("fvafec")
+            Else
+                TbNit.Clear()
+                TbNombre1.Clear()
+
+                tbNroAutoriz.Clear()
+                tbNroFactura.Clear()
+                tbCodigoControl.Clear()
+                dtiFechaFactura.Value = "2000/01/01"
+            End If
+            btnModificar.Visible = False
         Else
-            TbNit.Clear()
-            TbNombre1.Clear()
-
-            tbNroAutoriz.Clear()
-            tbNroFactura.Clear()
-            tbCodigoControl.Clear()
-            dtiFechaFactura.Value = "2000/01/01"
+            btnModificar.Visible = True
         End If
-
 
         LblPaginacion.Text = Str(grVentas.Row + 1) + "/" + grVentas.RowCount.ToString
         txtMontoPagado.Text = "0.00"
@@ -2260,6 +2264,7 @@ salirIf:
         Try
             Dim total As Double
             Dim dt As DataTable = L_fnMostrarVentaReporte(vaId)
+            Dim _DsDatos_Factura As DataSet = L_Reporte_Factura_Cia("1")
 
 
             If dt.Rows(0).Item("vaCuenta") = 0 Then
@@ -2313,7 +2318,16 @@ salirIf:
                     objrep.SetDataSource(dt)
                     objrep.SetParameterValue("TotalBs", li)
                     objrep.SetParameterValue("Paciente", txtPaciente.Text)
+                    objrep.SetParameterValue("ENombre", _DsDatos_Factura.Tables(0).Rows(0).Item("scneg").ToString)
+                    objrep.SetParameterValue("Direccionpr", _DsDatos_Factura.Tables(0).Rows(0).Item("scdir").ToString)
+                    objrep.SetParameterValue("Telefonopr", _DsDatos_Factura.Tables(0).Rows(0).Item("sctelf").ToString)
+                    objrep.SetParameterValue("ECiudadPais", _DsDatos_Factura.Tables(0).Rows(0).Item("scpai").ToString)
+
                     objrep.SetParameterValue("Paciente", txtPaciente.Text, "R_Venta.rpt - 01")
+                    objrep.SetParameterValue("ENombre", _DsDatos_Factura.Tables(0).Rows(0).Item("scneg").ToString, "R_Venta.rpt - 01")
+                    objrep.SetParameterValue("Direccionpr", _DsDatos_Factura.Tables(0).Rows(0).Item("scdir").ToString, "R_Venta.rpt - 01")
+                    objrep.SetParameterValue("Telefonopr", _DsDatos_Factura.Tables(0).Rows(0).Item("sctelf").ToString, "R_Venta.rpt - 01")
+                    objrep.SetParameterValue("ECiudadPais", _DsDatos_Factura.Tables(0).Rows(0).Item("scpai").ToString, "R_Venta.rpt - 01")
                     P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
                     'P_Global.Visualizador.WindowState = FormWindowState.Maximized
                     P_Global.Visualizador.ShowDialog() 'Comentar
@@ -2332,6 +2346,10 @@ salirIf:
                     objrep.SetDataSource(dt)
                     objrep.SetParameterValue("TotalBs", li)
                     objrep.SetParameterValue("Paciente", txtPaciente.Text)
+                    objrep.SetParameterValue("ENombre", _DsDatos_Factura.Tables(0).Rows(0).Item("scneg").ToString)
+                    objrep.SetParameterValue("Direccionpr", _DsDatos_Factura.Tables(0).Rows(0).Item("scdir").ToString)
+                    objrep.SetParameterValue("Telefonopr", _DsDatos_Factura.Tables(0).Rows(0).Item("sctelf").ToString)
+                    objrep.SetParameterValue("ECiudadPais", _DsDatos_Factura.Tables(0).Rows(0).Item("scpai").ToString)
                     P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
                     P_Global.Visualizador.ShowDialog() 'Comentar
                     P_Global.Visualizador.BringToFront() 'Comentar
@@ -2560,6 +2578,8 @@ salirIf:
         QrFactura.Text = _DsDatos_Factura.Tables(0).Rows(0).Item("scnit").ToString + "|" + Str(_NumFac).Trim + "|" + _Autorizacion + "|" + _Fecha + "|" + _Total + "|" + _TotalLi.ToString + "|" + _Cod_Control + "|" + TbNit.Text.Trim + "|" + ice.ToString + "|0|0|" + Str(_Desc).Trim
         _DsFactura = L_Reporte_Factura(numi, numi)
 
+        Dim fechaLiteral = ObtenerFechaLiteral(_Fecha, _DsDatos_Factura.Tables(0).Rows(0).Item("scciu").ToString)
+
         For I = 0 To _DsFactura.Tables(0).Rows.Count - 1
             _DsFactura.Tables(0).Rows(I).Item("fvaimgqr") = P_fnImageToByteArray(QrFactura.Image)
         Next
@@ -2586,17 +2606,19 @@ salirIf:
 
             objrep.SetDataSource(_DsFactura.Tables(0))
             objrep.SetParameterValue("Hora", _Hora)
+            objrep.SetParameterValue("Fecliteral", fechaLiteral)
+            objrep.SetParameterValue("ENombre", _DsDatos_Factura.Tables(0).Rows(0).Item("scneg").ToString)
+            objrep.SetParameterValue("ECasaMatriz", _DsDatos_Factura.Tables(0).Rows(0).Item("scsuc").ToString)
             objrep.SetParameterValue("Direccionpr", _DsDatos_Factura.Tables(0).Rows(0).Item("scdir").ToString)
             objrep.SetParameterValue("Telefonopr", _DsDatos_Factura.Tables(0).Rows(0).Item("sctelf").ToString)
+            objrep.SetParameterValue("ECiudadPais", _DsDatos_Factura.Tables(0).Rows(0).Item("scpai").ToString)
+
+            objrep.SetParameterValue("ESFC", _DsDosificacion.Tables(0).Rows(0).Item("sbsfc").ToString)
             objrep.SetParameterValue("Literal1", _Literal)
             'objrep.SetParameterValue("Literal2", " ")
             'objrep.SetParameterValue("Literal3", " ")
             objrep.SetParameterValue("NroFactura", _NumFac)
             objrep.SetParameterValue("NroAutoriz", _Autorizacion)
-            objrep.SetParameterValue("ENombre", _DsDatos_Factura.Tables(0).Rows(0).Item("scneg").ToString) '?
-            objrep.SetParameterValue("ECasaMatriz", _DsDatos_Factura.Tables(0).Rows(0).Item("scsuc").ToString)
-            objrep.SetParameterValue("ECiudadPais", _DsDatos_Factura.Tables(0).Rows(0).Item("scpai").ToString)
-            objrep.SetParameterValue("ESFC", _DsDosificacion.Tables(0).Rows(0).Item("sbsfc").ToString)
             objrep.SetParameterValue("Tipo", "ORIGINAL")
             objrep.SetParameterValue("ENit", _DsDatos_Factura.Tables(0).Rows(0).Item("scnit").ToString)
             objrep.SetParameterValue("EActividad", _DsDatos_Factura.Tables(0).Rows(0).Item("scact").ToString)
@@ -2637,6 +2659,51 @@ salirIf:
             L_Actualiza_Dosificacion(_numidosif, _NumFac, numi)
         End If
     End Sub
+    Private Function ObtenerFechaLiteral(Fecliteral As String, ciudad As String) As String
+        Dim dia, mes, ano As Integer
+        Dim mesl As String
+        dia = Microsoft.VisualBasic.Left(Fecliteral, 2)
+        mes = Microsoft.VisualBasic.Mid(Fecliteral, 4, 2)
+        ano = Microsoft.VisualBasic.Mid(Fecliteral, 7, 4)
+        If mes = 1 Then
+            mesl = "Enero"
+        End If
+        If mes = 2 Then
+            mesl = "Febrero"
+        End If
+        If mes = 3 Then
+            mesl = "Marzo"
+        End If
+        If mes = 4 Then
+            mesl = "Abril"
+        End If
+        If mes = 5 Then
+            mesl = "Mayo"
+        End If
+        If mes = 6 Then
+            mesl = "Junio"
+        End If
+        If mes = 7 Then
+            mesl = "Julio"
+        End If
+        If mes = 8 Then
+            mesl = "Agosto"
+        End If
+        If mes = 9 Then
+            mesl = "Septiembre"
+        End If
+        If mes = 10 Then
+            mesl = "Octubre"
+        End If
+        If mes = 11 Then
+            mesl = "Noviembre"
+        End If
+        If mes = 12 Then
+            mesl = "Diciembre"
+        End If
+        Fecliteral = ciudad + ", " + dia.ToString + " de " + mesl + " del " + ano.ToString
+        Return Fecliteral
+    End Function
     Public Function _prValidar() As Boolean
         'If (txtAcuenta.Value = 0) Then
         '    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
@@ -2685,6 +2752,30 @@ salirIf:
     End Function
     ''*****ELIMINAR EL REGISTRO*****''
     Public Overrides Sub _PMOEliminarRegistro()
+        If (gb_FacturaEmite) Then
+            If (P_fnValidarFacturaVigente()) Then
+                Dim img As Bitmap = New Bitmap(My.Resources.WARNING, 50, 50)
+
+                ToastNotification.Show(Me, "No se puede eliminar la venta con codigo: ".ToUpper + txtIdVenta.Text + ", su factura está vigente, por favor primero anule la factura".ToUpper,
+                                              img, 2000,
+                                              eToastGlowColor.Green,
+                                              eToastPosition.TopCenter)
+                Exit Sub
+            End If
+        End If
+        If (cbTipoVenta.Value = 0) Then
+            Dim res1 As Boolean = L_fnVerificarPagosVentas(txtIdVenta.Text)
+            If res1 Then
+                Dim img As Bitmap = New Bitmap(My.Resources.WARNING, 50, 50)
+                ToastNotification.Show(Me, "No se puede eliminar la venta con código ".ToUpper + txtIdVenta.Text + ", porque tiene pagos realizados, por favor primero elimine los pagos correspondientes a esta venta".ToUpper,
+                                              img, 5000,
+                                              eToastGlowColor.Green,
+                                              eToastPosition.TopCenter)
+                Exit Sub
+            End If
+        End If
+
+
         Dim ef = New Efecto
         ef.tipo = 2
         ef.Context = "¿esta seguro de eliminar el registro?".ToUpper
@@ -2710,6 +2801,10 @@ salirIf:
             End If
         End If
     End Sub
+    Private Function P_fnValidarFacturaVigente() As Boolean
+        Dim est As String = L_fnObtenerDatoTabla("TFV001", "fvaest", "fvanumi=" + txtIdVenta.Text.Trim)
+        Return (est.Equals("True"))
+    End Function
     Public Function _ValidarCampos() As Boolean
         If (_CodCliente <= 0) Then
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
@@ -2815,6 +2910,7 @@ salirIf:
     End Sub
     Public Overrides Sub _PMOModificar()
         'JGBusqRecibos.Enabled = False 'Deshabilita el buscador de la Grilla
+
         _prhabilitar()
     End Sub
     Public Overrides Sub _PMOSalir()
@@ -2823,6 +2919,9 @@ salirIf:
     End Sub
 
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
+        If cbEmision.Value = 1 Then
+            MP_ImprimirFactura(txtIdVenta.Text, True, True, True)
+        End If
         P_GenerarReporte(txtIdVenta.Text)
     End Sub
 
@@ -2877,6 +2976,8 @@ salirIf:
     Private Sub TbNit_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TbNit.KeyPress
         g_prValidarTextBox(1, e)
     End Sub
+
+
 
 
 #End Region

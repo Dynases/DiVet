@@ -139,6 +139,38 @@ Public Class R_Venta
             Return Me.DataDefinition.ParameterFields(5)
         End Get
     End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Parameter_ECiudadPais() As CrystalDecisions.[Shared].IParameterField
+        Get
+            Return Me.DataDefinition.ParameterFields(6)
+        End Get
+    End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Parameter_Telefonopr() As CrystalDecisions.[Shared].IParameterField
+        Get
+            Return Me.DataDefinition.ParameterFields(7)
+        End Get
+    End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Parameter_Direccionpr() As CrystalDecisions.[Shared].IParameterField
+        Get
+            Return Me.DataDefinition.ParameterFields(8)
+        End Get
+    End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Parameter_ENombre() As CrystalDecisions.[Shared].IParameterField
+        Get
+            Return Me.DataDefinition.ParameterFields(9)
+        End Get
+    End Property
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _

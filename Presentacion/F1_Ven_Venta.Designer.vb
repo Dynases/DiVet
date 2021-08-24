@@ -176,6 +176,9 @@ Partial Class F1_Ven_Venta
         Me.PanelSuperior.Controls.SetChildIndex(Me.PanelToolBar1, 0)
         Me.PanelSuperior.Controls.SetChildIndex(Me.PanelToolBar2, 0)
         '
+        'btnGrabar
+        '
+        '
         'PanelInferior
         '
         Me.PanelInferior.Location = New System.Drawing.Point(0, 606)

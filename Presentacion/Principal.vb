@@ -358,7 +358,7 @@ Public Class Principal
         frm.Show()
     End Sub
 
-    Private Sub btnCobroInt_Click(sender As Object, e As EventArgs) Handles btn1.Click
+    Private Sub btnCobroInt_Click(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -390,6 +390,18 @@ Public Class Principal
     Private Sub btnDosificacion_Click(sender As Object, e As EventArgs) Handles btnDosificacion.Click
         Dim frm As New F1_Dosificacion
         Modelo.MGlobal._nameButton = btnDosificacion.Name
+        frm.Show()
+    End Sub
+
+    Private Sub btnAnularFactura_Click(sender As Object, e As EventArgs) Handles btnAnularFactura.Click
+        Dim frm As New F0_AnularFactura
+        Modelo.MGlobal._nameButton = btnAnularFactura.Name
+        frm.Show()
+    End Sub
+
+    Private Sub btnLibroVenta_Click(sender As Object, e As EventArgs) Handles btnLibroVenta.Click
+        Dim frm As New F0_LibroVenta2
+        Modelo.MGlobal._nameButton = btnLibroVenta.Name
         frm.Show()
     End Sub
 End Class

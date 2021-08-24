@@ -189,6 +189,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="F0_AnularFactura.designer.vb">
+      <DependentUpon>F0_AnularFactura.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F0_AnularFactura.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F0_LibroVenta2.designer.vb">
+      <DependentUpon>F0_LibroVenta2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F0_LibroVenta2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F0_PagosCreditoCompraUlt.designer.vb">
       <DependentUpon>F0_PagosCreditoCompraUlt.vb</DependentUpon>
     </Compile>
@@ -666,6 +678,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="F0_AnularFactura.resx">
+      <DependentUpon>F0_AnularFactura.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F0_LibroVenta2.resx">
+      <DependentUpon>F0_LibroVenta2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F0_PagosCreditoCompraUlt.resx">
       <DependentUpon>F0_PagosCreditoCompraUlt.vb</DependentUpon>
     </EmbeddedResource>
@@ -984,6 +1002,7 @@
     <Content Include="Resources\efectoS.png" />
     <Content Include="Resources\eliminar.jpg" />
     <None Include="Resources\emergencia.png" />
+    <None Include="Resources\eliminar.png" />
     <Content Include="Resources\empleados.png" />
     <Content Include="Resources\esqueleto5.png" />
     <Content Include="Resources\estadistico.png" />
