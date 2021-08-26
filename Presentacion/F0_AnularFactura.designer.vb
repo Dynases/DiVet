@@ -32,12 +32,12 @@ Partial Class F0_AnularFactura
         Me.GroupPanelDatosGenerales = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.PanelExDatosGenerales = New DevComponents.DotNetBar.PanelEx()
         Me.btSalir = New DevComponents.DotNetBar.ButtonX()
+        Me.btnGuardar1 = New DevComponents.DotNetBar.ButtonX()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.Tb2NroFactura = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.Tb1Codigo = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LabelX13 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
-        Me.Bt1Guardar = New DevComponents.DotNetBar.ButtonX()
         Me.Tb2Fecha = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.Sb1Estado = New DevComponents.DotNetBar.Controls.SwitchButton()
         Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
@@ -297,6 +297,8 @@ Partial Class F0_AnularFactura
         '
         '
         Me.DgdFactura.PrimaryGrid.DefaultRowHeight = 30
+        Me.DgdFactura.PrimaryGrid.DefaultVisualStyles.AlternateRowCellStyles.Default.TextColor = System.Drawing.Color.Black
+        Me.DgdFactura.PrimaryGrid.DefaultVisualStyles.CellStyles.Default.TextColor = System.Drawing.Color.Black
         Me.DgdFactura.PrimaryGrid.InitialSelection = DevComponents.DotNetBar.SuperGrid.RelativeSelection.Row
         Me.DgdFactura.PrimaryGrid.MouseEditMode = DevComponents.DotNetBar.SuperGrid.MouseEditMode.SingleClick
         Me.DgdFactura.PrimaryGrid.MultiSelect = False
@@ -354,12 +356,12 @@ Partial Class F0_AnularFactura
         Me.PanelExDatosGenerales.AutoScroll = True
         Me.PanelExDatosGenerales.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.PanelExDatosGenerales.Controls.Add(Me.btSalir)
+        Me.PanelExDatosGenerales.Controls.Add(Me.btnGuardar1)
         Me.PanelExDatosGenerales.Controls.Add(Me.LabelX1)
         Me.PanelExDatosGenerales.Controls.Add(Me.Tb2NroFactura)
         Me.PanelExDatosGenerales.Controls.Add(Me.Tb1Codigo)
         Me.PanelExDatosGenerales.Controls.Add(Me.LabelX13)
         Me.PanelExDatosGenerales.Controls.Add(Me.LabelX2)
-        Me.PanelExDatosGenerales.Controls.Add(Me.Bt1Guardar)
         Me.PanelExDatosGenerales.Controls.Add(Me.Tb2Fecha)
         Me.PanelExDatosGenerales.Controls.Add(Me.Sb1Estado)
         Me.PanelExDatosGenerales.Controls.Add(Me.LabelX3)
@@ -401,14 +403,28 @@ Partial Class F0_AnularFactura
         Me.btSalir.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btSalir.Image = Global.Presentacion.My.Resources.Resources.atras1
         Me.btSalir.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.btSalir.Location = New System.Drawing.Point(882, 90)
+        Me.btSalir.Location = New System.Drawing.Point(869, 96)
         Me.btSalir.Name = "btSalir"
-        Me.btSalir.Size = New System.Drawing.Size(150, 40)
-        Me.btSalir.SplitButton = True
+        Me.btSalir.Size = New System.Drawing.Size(120, 50)
         Me.btSalir.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btSalir.TabIndex = 29
+        Me.btSalir.TabIndex = 31
         Me.btSalir.Text = "Salir"
         Me.btSalir.TextColor = System.Drawing.Color.White
+        '
+        'btnGuardar1
+        '
+        Me.btnGuardar1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnGuardar1.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
+        Me.btnGuardar1.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnGuardar1.Image = Global.Presentacion.My.Resources.Resources.OK
+        Me.btnGuardar1.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btnGuardar1.Location = New System.Drawing.Point(739, 96)
+        Me.btnGuardar1.Name = "btnGuardar1"
+        Me.btnGuardar1.Size = New System.Drawing.Size(120, 50)
+        Me.btnGuardar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btnGuardar1.TabIndex = 30
+        Me.btnGuardar1.Text = "Guardar"
+        Me.btnGuardar1.TextColor = System.Drawing.Color.White
         '
         'LabelX1
         '
@@ -492,22 +508,6 @@ Partial Class F0_AnularFactura
         Me.LabelX2.TabIndex = 2
         Me.LabelX2.Text = "Fecha:"
         Me.LabelX2.TextAlignment = System.Drawing.StringAlignment.Far
-        '
-        'Bt1Guardar
-        '
-        Me.Bt1Guardar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.Bt1Guardar.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
-        Me.Bt1Guardar.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Bt1Guardar.Image = Global.Presentacion.My.Resources.Resources.OK
-        Me.Bt1Guardar.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.Bt1Guardar.Location = New System.Drawing.Point(721, 90)
-        Me.Bt1Guardar.Name = "Bt1Guardar"
-        Me.Bt1Guardar.Size = New System.Drawing.Size(150, 40)
-        Me.Bt1Guardar.SplitButton = True
-        Me.Bt1Guardar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.Bt1Guardar.TabIndex = 24
-        Me.Bt1Guardar.Text = "Guardar"
-        Me.Bt1Guardar.TextColor = System.Drawing.Color.White
         '
         'Tb2Fecha
         '
@@ -967,7 +967,6 @@ Partial Class F0_AnularFactura
     Friend WithEvents GroupPanelDatosGenerales As DevComponents.DotNetBar.Controls.GroupPanel
     Friend WithEvents Tb2NroFactura As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents LabelX13 As DevComponents.DotNetBar.LabelX
-    Friend WithEvents Bt1Guardar As DevComponents.DotNetBar.ButtonX
     Friend WithEvents Sb1Estado As DevComponents.DotNetBar.Controls.SwitchButton
     Friend WithEvents Tb6Nit As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents Tb11FechaLim As DevComponents.DotNetBar.Controls.TextBoxX
@@ -998,5 +997,6 @@ Partial Class F0_AnularFactura
     Friend WithEvents SuperTabControlPanel2 As DevComponents.DotNetBar.SuperTabControlPanel
     Friend WithEvents GroupPanelFactura As DevComponents.DotNetBar.Controls.GroupPanel
     Friend WithEvents SuperTabItem1 As DevComponents.DotNetBar.SuperTabItem
+    Friend WithEvents btnGuardar1 As DevComponents.DotNetBar.ButtonX
     Friend WithEvents btSalir As DevComponents.DotNetBar.ButtonX
 End Class

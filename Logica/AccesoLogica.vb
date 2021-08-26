@@ -1941,12 +1941,12 @@ Public Class AccesoLogica
     Public Shared Function L_fnVerificarCantidadPagoCredito(_vaid As String, _vaCuenta As Decimal, _vaTotal As Decimal) As Boolean
         Dim _Tabla As DataTable
         Dim _res As Boolean = False
-        Dim _where = String.Format(" b.tdnumi <> (SELECT top 1 (b.tdnumi)  FROM  TV0012 a JOIN TV00121 b on a.tcnumi = b.tdtv12numi WHERE A.tctv1numi = {0}) AND A.tctv1numi = {0} ", _vaid)
+        Dim _where = String.Format(" b.tdnumi = (SELECT top 1 (b.tdnumi)  FROM  TV0012 a JOIN TV00121 b on a.tcnumi = b.tdtv12numi WHERE A.tctv1numi = {0}) AND A.tctv1numi = {0} ", _vaid)
         _Tabla = D_Datos_Tabla(" Isnull(Sum(b.tdmonto ),0) ", " TV0012 a JOIN TV00121 b on a.tcnumi = b.tdtv12numi ", _where)
         If _Tabla.Rows(0).Item(0) <> 0 Then
             If _vaTotal >= _vaCuenta Then
-                Dim saldo As Decimal = _vaTotal - _Tabla.Rows(0).Item(0)
-                If _vaCuenta <= saldo Then
+                Dim saldo As Decimal = _vaTotal - _vaCuenta
+                If saldo <= _vaCuenta Then
                     _res = True
                 End If
             End If
@@ -4483,7 +4483,7 @@ Public Class AccesoLogica
         Dim _Tabla As DataTable
         Dim _Ds As New DataSet
         Dim _Where As String
-        _fecha = Now.Date.ToString("yyyy/MM/dd")
+        '_fecha = Now.Date.ToString("yyyy/MM/dd")
         _Where = "sbcia = " + _cia + " AND sbalm = " + _alm + " AND sbfdel <= '" + _fecha + "' AND sbfal >= '" + _fecha + "' AND sbest = 1"
 
         _Tabla = D_Datos_Tabla("*", "TS002", _Where)

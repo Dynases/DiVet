@@ -293,27 +293,7 @@ Public Class F0_AnularFactura
 
     End Sub
 
-    Private Sub Bt1Guardar_Click(sender As Object, e As EventArgs) Handles Bt1Guardar.Click
-        If (Sb1Estado.Value) Then
-            If (MessageBox.Show("Esta seguro de poner VIGENTE la Factura " + Tb2NroFactura.Text + "?", "PREGUNTA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes) Then
-                L_Modificar_Factura("fvanumi = " + Tb1Codigo.Text + " and fvanfac = " + NroFactura + " and fvaautoriz = " + NroAutorizacion, "", "", "", IIf(Sb1Estado.Value, "1", "0"))
-                'P_ActStock()
-                P_LlenarDatosGrilla()
-                ToastNotification.Show(Me, "La Factura con Codigo " + Tb2NroFactura.Text + ", Se puso VIGENTE correctamente",
-                                       My.Resources.OK, _DuracionSms * 1000,
-                                       eToastGlowColor.Blue, eToastPosition.BottomLeft)
-            End If
-        Else
-            If (MessageBox.Show("Esta seguro de ANULAR la Factura " + Tb2NroFactura.Text + "?", "PREGUNTA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes) Then
-                L_Modificar_Factura("fvanumi = " + Tb1Codigo.Text + " and fvanfac = " + NroFactura + " and fvaautoriz = " + NroAutorizacion, "", "", "", IIf(Sb1Estado.Value, "1", "0"))
-                'P_ActStock()
-                P_LlenarDatosGrilla()
-                ToastNotification.Show(Me, "La Factura " + Tb2NroFactura.Text + ", Se ANULADO correctamente",
-                                       My.Resources.OK, _DuracionSms * 1000,
-                                       eToastGlowColor.Blue, eToastPosition.BottomLeft)
-            End If
-        End If
-    End Sub
+
 
     Private Sub Sb1Estado_ValueChanged(sender As Object, e As EventArgs) Handles Sb1Estado.ValueChanged
         If (Sb1Estado.Value) Then
@@ -336,6 +316,30 @@ Public Class F0_AnularFactura
     '    _Ds = L_ObtenerDetalleFactura(Tb1Codigo.Text)
     '    G_ActStock(_Ds.Tables(0), Not Sb1Estado.Value, 1)
     'End Sub
+
+
+
+    Private Sub btnGuardar1_Click(sender As Object, e As EventArgs) Handles btnGuardar1.Click
+        If (Sb1Estado.Value) Then
+            If (MessageBox.Show("Esta seguro de poner VIGENTE la Factura " + Tb2NroFactura.Text + "?", "PREGUNTA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes) Then
+                L_Modificar_Factura("fvanumi = " + Tb1Codigo.Text + " and fvanfac = " + NroFactura + " and fvaautoriz = " + NroAutorizacion, "", "", "", IIf(Sb1Estado.Value, "1", "0"))
+                'P_ActStock()
+                P_LlenarDatosGrilla()
+                ToastNotification.Show(Me, "La Factura con Codigo " + Tb2NroFactura.Text + ", Se puso VIGENTE correctamente",
+                                       My.Resources.OK, _DuracionSms * 1000,
+                                       eToastGlowColor.Blue, eToastPosition.BottomLeft)
+            End If
+        Else
+            If (MessageBox.Show("Esta seguro de ANULAR la Factura " + Tb2NroFactura.Text + "?", "PREGUNTA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes) Then
+                L_Modificar_Factura("fvanumi = " + Tb1Codigo.Text + " and fvanfac = " + NroFactura + " and fvaautoriz = " + NroAutorizacion, "", "", "", IIf(Sb1Estado.Value, "1", "0"))
+                'P_ActStock()
+                P_LlenarDatosGrilla()
+                ToastNotification.Show(Me, "La Factura " + Tb2NroFactura.Text + ", Se ANULADO correctamente",
+                                       My.Resources.OK, _DuracionSms * 1000,
+                                       eToastGlowColor.Blue, eToastPosition.BottomLeft)
+            End If
+        End If
+    End Sub
 
     Private Sub btSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
         Me.Close()
