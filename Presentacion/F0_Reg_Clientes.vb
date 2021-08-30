@@ -65,11 +65,11 @@ Partial Class F0_Reg_Clientes
 #End Region
         _prInterpretarDatosFichaAtencion(tFichaAtencion, bandera)
         If (bandera = False) Then
-            ToastNotification.Show(Me, "Seleccione una sola opcion en la lista de pacientes".ToUpper, img2, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Seleccione consultorio y una sola opción en la lista de pacientes".ToUpper, img2, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
             Return
         End If
         If tFichaAtencion.Rows.Count = 0 Then
-            ToastNotification.Show(Me, "Seleccione el check de un paciente".ToUpper, img2, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Seleccione consultorio y el check de un paciente".ToUpper, img2, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
             Return
         Else
             If bandera Then
@@ -95,17 +95,24 @@ Partial Class F0_Reg_Clientes
         Dim contador As Integer = 0
         Dim faPriori As Integer = tFicha.Rows(0).Item("faPriori")
         For Each fila As DataRow In tMascota.Rows
-            If fila.Item("Consulta") = True And fila.Item("ReConsulta") = False Then
+            If fila.Item("Consulta") = True And fila.Item("ReConsulta") = False And fila.Item("Consultorio") <> String.Empty Then
                 faPriori = faPriori + 1
                 dt.Rows.Add(Convert.ToInt32(fila.Item("pbid")), 1, 0, faPriori, _fnObtenerNumiConsultorio(fila.Item("Consultorio")))
             End If
-            If fila.Item("Consulta") = False And fila.Item("ReConsulta") = True Then
+            If fila.Item("Consulta") = False And fila.Item("ReConsulta") = True And fila.Item("Consultorio") <> String.Empty Then
                 faPriori = faPriori + 1
                 dt.Rows.Add(Convert.ToInt32(fila.Item("pbid")), 2, 0, faPriori, _fnObtenerNumiConsultorio(fila.Item("Consultorio")))
             End If
-            If fila.Item("Consulta") = False And fila.Item("ReConsulta") = False Then
+            If fila.Item("Consulta") = False And fila.Item("ReConsulta") = False And fila.Item("Consultorio") = String.Empty Then
                 contador = contador + 1
             End If
+            If fila.Item("Consulta") = True And fila.Item("ReConsulta") = False And fila.Item("Consultorio") = String.Empty Then
+                contador = contador + 1
+            End If
+            If fila.Item("Consulta") = False And fila.Item("ReConsulta") = True And fila.Item("Consultorio") = String.Empty Then
+                contador = contador + 1
+            End If
+
 
         Next
         bandera = True
@@ -201,7 +208,9 @@ Partial Class F0_Reg_Clientes
             .DisplayMember = "ccNro"
             .DataSource = dt
             .Refresh()
+
         End With
+
     End Sub
     ''*****CARGA EL DATAGRID DEL CLIENTE*****''
     Private Sub _prCargarClientes()
@@ -511,6 +520,7 @@ Partial Class F0_Reg_Clientes
     End Sub
     Private Sub _prCargarPacienteSeleccion(_id As Integer)
         Dim _tabla As DataTable = L_fnMostrarPacientesSeleccion(_id)
+
         JGMascotasAtencion.DataSource = _tabla
         JGMascotasAtencion.RetrieveStructure()
         JGMascotasAtencion.AlternatingColors = True
@@ -568,6 +578,7 @@ Partial Class F0_Reg_Clientes
             .Visible = True
         End With
         With JGMascotasAtencion.RootTable.Columns("Consultorio")
+
             .Caption = "Consultorio Nro."
             .EditType = EditType.MultiColumnDropDown
             .DropDown = cbConsultorio.DropDownList

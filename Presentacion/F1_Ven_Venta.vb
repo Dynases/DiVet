@@ -1354,13 +1354,13 @@ salirIf:
         txtCliente.ReadOnly = True
         txtIdReciboV.ReadOnly = True
         txtIdVendedor.ReadOnly = False
-        txtIdCliente.ReadOnly = False
-        txtVendedor.ReadOnly = False
+        txtIdCliente.ReadOnly = True
+        txtVendedor.ReadOnly = True
         txtObservacion.ReadOnly = False
         dtpFVenta.Enabled = True
         dtpFCredito.Enabled = True
         txtIdPaciente.ReadOnly = False
-        txtPaciente.ReadOnly = False
+        txtPaciente.ReadOnly = True
         'btnModificar.Enabled = True
         'btnGrabar.Enabled = False
         'btnNuevo.Enabled = True
@@ -2942,6 +2942,7 @@ salirIf:
         'Deshabilito Emision y Tipo Venta 
         cbEmision.ReadOnly = True
         cbTipoVenta.ReadOnly = True
+        txtIdVendedor.Enabled = False
     End Sub
     Public Overrides Sub _PMOSalir()
         _prInhabiliitar()

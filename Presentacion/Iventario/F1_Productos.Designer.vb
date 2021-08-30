@@ -176,12 +176,12 @@ Partial Class F1_Productos
         '
         Me.PanelToolBar2.Controls.Add(Me.ButtonX1)
         Me.PanelToolBar2.Controls.Add(Me.btExcel)
-        Me.PanelToolBar2.Location = New System.Drawing.Point(866, 0)
+        Me.PanelToolBar2.Location = New System.Drawing.Point(779, 0)
         Me.PanelToolBar2.Margin = New System.Windows.Forms.Padding(2)
-        Me.PanelToolBar2.Size = New System.Drawing.Size(219, 72)
-        Me.PanelToolBar2.Controls.SetChildIndex(Me.btnImprimir, 0)
+        Me.PanelToolBar2.Size = New System.Drawing.Size(306, 72)
         Me.PanelToolBar2.Controls.SetChildIndex(Me.btExcel, 0)
         Me.PanelToolBar2.Controls.SetChildIndex(Me.ButtonX1, 0)
+        Me.PanelToolBar2.Controls.SetChildIndex(Me.btnImprimir, 0)
         '
         'MPanelSup
         '
@@ -244,7 +244,7 @@ Partial Class F1_Productos
         'btnImprimir
         '
         Me.btnImprimir.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnImprimir.Size = New System.Drawing.Size(219, 72)
+        Me.btnImprimir.Size = New System.Drawing.Size(106, 72)
         Me.btnImprimir.Visible = False
         '
         'MPanelUserAct
@@ -993,7 +993,7 @@ Partial Class F1_Productos
         Me.btExcel.Image = Global.Presentacion.My.Resources.Resources.sheets
         Me.btExcel.ImageFixedSize = New System.Drawing.Size(45, 50)
         Me.btExcel.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btExcel.Location = New System.Drawing.Point(126, 0)
+        Me.btExcel.Location = New System.Drawing.Point(213, 0)
         Me.btExcel.Name = "btExcel"
         Me.btExcel.Padding = New System.Windows.Forms.Padding(0, 0, 0, 20)
         Me.btExcel.Size = New System.Drawing.Size(93, 72)
@@ -1011,10 +1011,10 @@ Partial Class F1_Productos
         Me.ButtonX1.Image = Global.Presentacion.My.Resources.Resources.codigobarra
         Me.ButtonX1.ImageFixedSize = New System.Drawing.Size(45, 50)
         Me.ButtonX1.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.ButtonX1.Location = New System.Drawing.Point(0, 0)
+        Me.ButtonX1.Location = New System.Drawing.Point(106, 0)
         Me.ButtonX1.Name = "ButtonX1"
         Me.ButtonX1.Padding = New System.Windows.Forms.Padding(0, 0, 0, 20)
-        Me.ButtonX1.Size = New System.Drawing.Size(126, 72)
+        Me.ButtonX1.Size = New System.Drawing.Size(107, 72)
         Me.ButtonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
         Me.ButtonX1.TabIndex = 13
         Me.ButtonX1.Text = "Codigo Barras"

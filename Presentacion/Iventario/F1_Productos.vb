@@ -225,7 +225,7 @@ Public Class F1_Productos
         JGrM_Buscador.Focus()
         Limpiar = False
         btExcel.Visible = True
-        btnImprimir.Visible = True
+
     End Sub
 
     Public Overrides Sub _PMOLimpiar()
