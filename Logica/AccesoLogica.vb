@@ -4913,7 +4913,115 @@ Public Class AccesoLogica
 #End Region
 
 
+#Region "INGRESOS/EGRESOS"
 
+    Public Shared Function L_prIngresoEgresoGeneral() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@ieuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TIE001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prIngresoEgresoGrabar(ByRef _ienumi As String, _ieFecha As String, _ieTipo As String,
+                                           _ieDescripcion As String, _ieConcepto As String, _ieMonto As Decimal,
+                                           _ieObs As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@ienumi", _ienumi))
+        _listParam.Add(New Datos.DParametro("@ieFecha", _ieFecha))
+        _listParam.Add(New Datos.DParametro("@ieTipo", _ieTipo))
+        _listParam.Add(New Datos.DParametro("@ieDescripcion", _ieDescripcion))
+        _listParam.Add(New Datos.DParametro("@ieConcepto", _ieConcepto))
+        _listParam.Add(New Datos.DParametro("@ieMonto", _ieMonto))
+        _listParam.Add(New Datos.DParametro("@ieObs", _ieObs))
+        _listParam.Add(New Datos.DParametro("@ieEstado", 1))
+        _listParam.Add(New Datos.DParametro("@ieuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TIE001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _ienumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_prIngresoEgresoBorrar(_numi As String, ByRef _mensaje As String) As Boolean
+
+        Dim _resultado As Boolean
+
+        If L_fnbValidarEliminacion(_numi, "TIE001", "ienumi", _mensaje) = True Then
+            Dim _Tabla As DataTable
+
+            Dim _listParam As New List(Of Datos.DParametro)
+
+            _listParam.Add(New Datos.DParametro("@tipo", -1))
+            _listParam.Add(New Datos.DParametro("@ienumi", _numi))
+            _listParam.Add(New Datos.DParametro("@ieuact", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("sp_Mam_TIE001", _listParam)
+
+            If _Tabla.Rows.Count > 0 Then
+                _numi = _Tabla.Rows(0).Item(0)
+                _resultado = True
+            Else
+                _resultado = False
+            End If
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_prIngresoEgresoModificar(ByRef _ienumi As String, _ieFecha As String, _ieTipo As String,
+                                           _ieDescripcion As String, _ieConcepto As String, _ieMonto As Decimal,
+                                           _ieObs As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@ienumi", _ienumi))
+        _listParam.Add(New Datos.DParametro("@ieFecha", _ieFecha))
+        _listParam.Add(New Datos.DParametro("@ieTipo", _ieTipo))
+        _listParam.Add(New Datos.DParametro("@ieDescripcion", _ieDescripcion))
+        _listParam.Add(New Datos.DParametro("@ieConcepto", _ieConcepto))
+        _listParam.Add(New Datos.DParametro("@ieMonto", _ieMonto))
+        _listParam.Add(New Datos.DParametro("@ieObs", _ieObs))
+        _listParam.Add(New Datos.DParametro("@ieEstado", 2))
+        _listParam.Add(New Datos.DParametro("@ieuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TIE001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _ienumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    Public Shared Function L_prIngresoEgresoPorFecha(fecha As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@ieFecha", fecha))
+        _listParam.Add(New Datos.DParametro("@ieuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TIE001", _listParam)
+
+        Return _Tabla
+    End Function
+#End Region
 
 
 

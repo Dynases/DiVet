@@ -163,7 +163,7 @@ Partial Class F1_Fic_ReciboInt
         '
         'PanelUsuario
         '
-        Me.PanelUsuario.Location = New System.Drawing.Point(304, 236)
+        Me.PanelUsuario.Location = New System.Drawing.Point(253, 231)
         '
         'superTabControl1
         '
@@ -264,7 +264,7 @@ Partial Class F1_Fic_ReciboInt
         Me.txtObservacionI.DisabledBackColor = System.Drawing.Color.White
         Me.txtObservacionI.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtObservacionI.ForeColor = System.Drawing.Color.Black
-        Me.txtObservacionI.Location = New System.Drawing.Point(557, 40)
+        Me.txtObservacionI.Location = New System.Drawing.Point(570, 40)
         Me.txtObservacionI.Multiline = True
         Me.txtObservacionI.Name = "txtObservacionI"
         Me.txtObservacionI.PreventEnterBeep = True
@@ -298,7 +298,7 @@ Partial Class F1_Fic_ReciboInt
         Me.txtTratamiento.DisabledBackColor = System.Drawing.Color.White
         Me.txtTratamiento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTratamiento.ForeColor = System.Drawing.Color.Black
-        Me.txtTratamiento.Location = New System.Drawing.Point(557, 11)
+        Me.txtTratamiento.Location = New System.Drawing.Point(570, 11)
         Me.txtTratamiento.Multiline = True
         Me.txtTratamiento.Name = "txtTratamiento"
         Me.txtTratamiento.PreventEnterBeep = True
@@ -317,9 +317,9 @@ Partial Class F1_Fic_ReciboInt
         Me.lbTratamiento.Location = New System.Drawing.Point(458, 11)
         Me.lbTratamiento.Name = "lbTratamiento"
         Me.lbTratamiento.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbTratamiento.Size = New System.Drawing.Size(93, 23)
+        Me.lbTratamiento.Size = New System.Drawing.Size(106, 23)
         Me.lbTratamiento.TabIndex = 347
-        Me.lbTratamiento.Text = "Tratamiento:"
+        Me.lbTratamiento.Text = "Tratamiento(*):"
         '
         'lbFechaI
         '
@@ -429,7 +429,7 @@ Partial Class F1_Fic_ReciboInt
         Me.btnAgregarI.Image = Global.Presentacion.My.Resources.Resources.checked
         Me.btnAgregarI.ImageFixedSize = New System.Drawing.Size(20, 20)
         Me.btnAgregarI.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnAgregarI.Location = New System.Drawing.Point(699, 100)
+        Me.btnAgregarI.Location = New System.Drawing.Point(712, 100)
         Me.btnAgregarI.Name = "btnAgregarI"
         Me.btnAgregarI.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.btnAgregarI.Size = New System.Drawing.Size(110, 39)
@@ -447,7 +447,7 @@ Partial Class F1_Fic_ReciboInt
         Me.diPrecio.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.diPrecio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.diPrecio.Increment = 1.0R
-        Me.diPrecio.Location = New System.Drawing.Point(557, 101)
+        Me.diPrecio.Location = New System.Drawing.Point(570, 101)
         Me.diPrecio.LockUpdateChecked = False
         Me.diPrecio.MinValue = 0R
         Me.diPrecio.Name = "diPrecio"
@@ -466,7 +466,7 @@ Partial Class F1_Fic_ReciboInt
         Me.txtDescripcion.DisabledBackColor = System.Drawing.Color.White
         Me.txtDescripcion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDescripcion.ForeColor = System.Drawing.Color.Black
-        Me.txtDescripcion.Location = New System.Drawing.Point(557, 70)
+        Me.txtDescripcion.Location = New System.Drawing.Point(570, 70)
         Me.txtDescripcion.Multiline = True
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.PreventEnterBeep = True
@@ -485,9 +485,9 @@ Partial Class F1_Fic_ReciboInt
         Me.lbDescripcion.Location = New System.Drawing.Point(458, 70)
         Me.lbDescripcion.Name = "lbDescripcion"
         Me.lbDescripcion.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbDescripcion.Size = New System.Drawing.Size(81, 23)
+        Me.lbDescripcion.Size = New System.Drawing.Size(106, 23)
         Me.lbDescripcion.TabIndex = 249
-        Me.lbDescripcion.Text = "Descripción:"
+        Me.lbDescripcion.Text = "Descripción(*):"
         '
         'lbIdReciboI
         '
@@ -520,7 +520,7 @@ Partial Class F1_Fic_ReciboInt
         Me.lbPrecio.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbPrecio.Size = New System.Drawing.Size(66, 23)
         Me.lbPrecio.TabIndex = 226
-        Me.lbPrecio.Text = "Precio:"
+        Me.lbPrecio.Text = "Precio(*):"
         '
         'txtIdReciboI
         '

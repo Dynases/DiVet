@@ -404,4 +404,10 @@ Public Class Principal
         Modelo.MGlobal._nameButton = btnLibroVenta.Name
         frm.Show()
     End Sub
+
+    Private Sub btnIngresoEgreso_Click(sender As Object, e As EventArgs) Handles btnIngresoEgreso.Click
+        Dim frm As New F1_IngresosEgresos
+        Modelo.MGlobal._nameButton = btnIngresoEgreso.Name
+        frm.Show()
+    End Sub
 End Class

@@ -282,9 +282,9 @@ Partial Class F1_Fic_ReciboCirugia
         Me.gpReciboInt.Controls.Add(Me.Panel3)
         Me.gpReciboInt.DisabledBackColor = System.Drawing.Color.Empty
         Me.gpReciboInt.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gpReciboInt.Location = New System.Drawing.Point(467, 99)
+        Me.gpReciboInt.Location = New System.Drawing.Point(458, 99)
         Me.gpReciboInt.Name = "gpReciboInt"
-        Me.gpReciboInt.Size = New System.Drawing.Size(381, 107)
+        Me.gpReciboInt.Size = New System.Drawing.Size(409, 107)
         '
         '
         '
@@ -328,7 +328,7 @@ Partial Class F1_Fic_ReciboCirugia
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(375, 84)
+        Me.Panel3.Size = New System.Drawing.Size(403, 84)
         Me.Panel3.TabIndex = 216
         '
         'lbInternacion
@@ -563,7 +563,7 @@ Partial Class F1_Fic_ReciboCirugia
         Me.btnAgregarC.Image = Global.Presentacion.My.Resources.Resources.checked
         Me.btnAgregarC.ImageFixedSize = New System.Drawing.Size(20, 20)
         Me.btnAgregarC.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnAgregarC.Location = New System.Drawing.Point(738, 53)
+        Me.btnAgregarC.Location = New System.Drawing.Point(757, 53)
         Me.btnAgregarC.Name = "btnAgregarC"
         Me.btnAgregarC.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.btnAgregarC.Size = New System.Drawing.Size(110, 39)
@@ -582,7 +582,7 @@ Partial Class F1_Fic_ReciboCirugia
         Me.diPrecio.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.diPrecio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.diPrecio.Increment = 1.0R
-        Me.diPrecio.Location = New System.Drawing.Point(548, 55)
+        Me.diPrecio.Location = New System.Drawing.Point(567, 55)
         Me.diPrecio.LockUpdateChecked = False
         Me.diPrecio.MinValue = 0R
         Me.diPrecio.Name = "diPrecio"
@@ -601,7 +601,7 @@ Partial Class F1_Fic_ReciboCirugia
         Me.txtDescripcion.DisabledBackColor = System.Drawing.Color.White
         Me.txtDescripcion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDescripcion.ForeColor = System.Drawing.Color.Black
-        Me.txtDescripcion.Location = New System.Drawing.Point(548, 10)
+        Me.txtDescripcion.Location = New System.Drawing.Point(567, 10)
         Me.txtDescripcion.MaxLength = 150
         Me.txtDescripcion.Multiline = True
         Me.txtDescripcion.Name = "txtDescripcion"
@@ -621,9 +621,9 @@ Partial Class F1_Fic_ReciboCirugia
         Me.lbDescripcion.Location = New System.Drawing.Point(457, 11)
         Me.lbDescripcion.Name = "lbDescripcion"
         Me.lbDescripcion.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbDescripcion.Size = New System.Drawing.Size(81, 22)
+        Me.lbDescripcion.Size = New System.Drawing.Size(104, 22)
         Me.lbDescripcion.TabIndex = 249
-        Me.lbDescripcion.Text = "Descripción:"
+        Me.lbDescripcion.Text = "Descripción(*):"
         '
         'lbIdReciboI
         '
@@ -656,7 +656,7 @@ Partial Class F1_Fic_ReciboCirugia
         Me.lbPrecio.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbPrecio.Size = New System.Drawing.Size(66, 19)
         Me.lbPrecio.TabIndex = 226
-        Me.lbPrecio.Text = "Precio:"
+        Me.lbPrecio.Text = "Precio(*):"
         '
         'txtIdReciboC
         '

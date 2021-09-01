@@ -754,11 +754,11 @@ Public Class F1_Fic_ReciboCirugia
                                       )
             _prInhabilitar()
             _prFiltrar(2)
-            Dim info As New TaskDialogInfo("RECIBO".ToUpper, eTaskDialogIcon.Delete, "RECIBO".ToUpper, "¿Desea imprimir el recibo?".ToUpper, eTaskDialogButton.Yes Or eTaskDialogButton.Cancel, eTaskDialogBackgroundColor.Blue)
-            Dim result As eTaskDialogResult = TaskDialog.Show(info)
-            If result = eTaskDialogResult.Yes Then
-                '_prImprimir()
-            End If
+            'Dim info As New TaskDialogInfo("RECIBO".ToUpper, eTaskDialogIcon.Delete, "RECIBO".ToUpper, "¿Desea imprimir el recibo?".ToUpper, eTaskDialogButton.Yes Or eTaskDialogButton.Cancel, eTaskDialogBackgroundColor.Blue)
+            'Dim result As eTaskDialogResult = TaskDialog.Show(info)
+            'If result = eTaskDialogResult.Yes Then
+            '    '_prImprimir()
+            'End If
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
             ToastNotification.Show(Me, "El recibo no pudo ser modificado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)

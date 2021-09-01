@@ -8,6 +8,7 @@ Public Class F1_Con_Consultorios
     Public _MPos As Integer
     Private _Limpiar As Boolean
     Dim Modificado As Boolean = False
+    Public Modificar As Boolean = False
 #End Region
 
 
@@ -153,16 +154,20 @@ Public Class F1_Con_Consultorios
         _prHabilitar()
         JGBusqConsultorios.Enabled = False
         txtNro.Focus()
+        Modificar = False
     End Sub
 
 
     Public Overrides Function _PMOValidarCampos() As Boolean
         Dim Existe As Boolean = L_fnValidarSiExisteConsultorio(txtNro.Text)
-        If Existe Then
-            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "No Puede agregar este Nro. de Consultorio porque ya existe ".ToUpper, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
-            Return False
+        If Modificar = False Then
+            If Existe Then
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "No Puede agregar este Nro. de Consultorio porque ya existe ".ToUpper, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
+                Return False
+            End If
         End If
+
         Return True
     End Function
     ''*****GRABA EL REGISTRO*****''
@@ -191,6 +196,8 @@ Public Class F1_Con_Consultorios
     End Function
     Public Overrides Sub _PMOModificar()
         _prHabilitar()
+        txtNro.IsInputReadOnly = True
+        Modificar = True
     End Sub
 
     ''*****MODIFICA EL REGISTRO*****''
@@ -205,6 +212,7 @@ Public Class F1_Con_Consultorios
                                       )
             _prFiltrar()
             _Limpiar = True
+            Modificar = False
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
             ToastNotification.Show(Me, "El consultorio no pudo ser modificado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
