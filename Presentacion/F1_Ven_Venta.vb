@@ -2750,7 +2750,7 @@ salirIf:
         '_prUnirTabla(
         Dim res As Boolean = False
         If cbTipoVenta.Value = 0 Then 'Quiere decir si es al Crédito
-            If Not L_fnVerificarCantidadPagoCredito(txtIdVenta.Text, txtAcuenta.Value, txtTotalNeto.Value) Then
+            If L_fnVerificarCantidadPagoCredito(txtIdVenta.Text, txtAcuenta.Value, txtTotalNeto.Value) Then
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
                 ToastNotification.Show(Me, "La Venta no puede ser Modificada, el A cuenta supera al Total Neto, modifíquelo".ToUpper, img, 4000, eToastGlowColor.Red, eToastPosition.BottomCenter)
 

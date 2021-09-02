@@ -1944,12 +1944,15 @@ Public Class AccesoLogica
         Dim _where = String.Format(" b.tdnumi = (SELECT top 1 (b.tdnumi)  FROM  TV0012 a JOIN TV00121 b on a.tcnumi = b.tdtv12numi WHERE A.tctv1numi = {0}) AND A.tctv1numi = {0} ", _vaid)
         _Tabla = D_Datos_Tabla(" Isnull(Sum(b.tdmonto ),0) ", " TV0012 a JOIN TV00121 b on a.tcnumi = b.tdtv12numi ", _where)
         If _Tabla.Rows(0).Item(0) <> 0 Then
-            If _vaTotal >= _vaCuenta Then
-                Dim saldo As Decimal = _vaTotal - _vaCuenta
-                If saldo <= _vaCuenta Then
-                    _res = True
-                End If
+            If _vaTotal <= _vaCuenta Then
+                _res = True
+                'Dim saldo As Decimal = _vaTotal - _vaCuenta
+                'If _vaCuenta > _vaTotal Then
+                '    _res = True
+                'End If
             End If
+        ElseIf _vaCuenta = 0 Then
+            _res = False
         End If
         Return _res
     End Function

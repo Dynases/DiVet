@@ -282,7 +282,7 @@ Public Class F0_PagosCreditoCompraUlt
             .Visible = True
         End With
         With grfactura.RootTable.Columns("DescBanco")
-            .Caption = "Banco"
+            .Caption = "Tipo Pago"
             .EditType = EditType.MultiColumnDropDown
             .DropDown = cbbanco.DropDownList
             .Width = 160
