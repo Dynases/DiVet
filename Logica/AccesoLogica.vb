@@ -1682,7 +1682,7 @@ Public Class AccesoLogica
                                            va_pbId As String, va_caId As String, va_ecId As String, vaTipoVe As String,
                                            vaFechaDoc As String, vaFechaVenCre As String, vaObser As String, vaDesc As String,
                                            vaTotal As String, _VEN001 As DataTable, vaAlm As String, vaCuenta As String,
-                                           vaEmision As String, vaTarjeta As String, vaTransferencia As String)
+                                           vaEmision As String, vaTarjeta As String, vaTransferencia As String, vaTurno As Integer)
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
@@ -1706,6 +1706,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@vaEmision", vaEmision))
         _listParam.Add(New Datos.DParametro("@vaTarjeta", vaTarjeta))
         _listParam.Add(New Datos.DParametro("@vaTransferencia", vaTransferencia))
+        _listParam.Add(New Datos.DParametro("@vaTurno", vaTurno))
         _listParam.Add(New Datos.DParametro("@VEN0011", "", _VEN001))
         _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
         _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
@@ -3151,7 +3152,7 @@ Public Class AccesoLogica
         '_Tabla = D_Procedimiento("sp_Mostrar")
         Return _Tabla
     End Function
-    Public Shared Function L_fnGrabarCobranza2(_tenumi As String, _tefdoc As String, _tety4vend As Integer, _teobs As String, detalle As DataTable) As Boolean
+    Public Shared Function L_fnGrabarCobranza2(_tenumi As String, _tefdoc As String, _tety4vend As Integer, _teobs As String, detalle As DataTable, teturno As Integer) As Boolean
         Dim _Tabla As DataTable
         Dim _resultado As Boolean
         Dim _listParam As New List(Of Datos.DParametro)
@@ -3162,6 +3163,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@tefdoc", _tefdoc))
         _listParam.Add(New Datos.DParametro("@tety4vend", _tety4vend))
         _listParam.Add(New Datos.DParametro("@teobs", _teobs))
+        _listParam.Add(New Datos.DParametro("@teTurno", teturno))
         _listParam.Add(New Datos.DParametro("@teuact", L_Usuario))
         _listParam.Add(New Datos.DParametro("@TV00121", "", detalle))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TV00121Cheque", _listParam)
@@ -3496,7 +3498,7 @@ Public Class AccesoLogica
         Return _Tabla
     End Function
 
-    Public Shared Function L_fnGrabarCobranza(_tenumi As String, _tefdoc As String, _tety4vend As Integer, _teobs As String, detalle As DataTable) As Boolean
+    Public Shared Function L_fnGrabarCobranza(_tenumi As String, _tefdoc As String, _tety4vend As Integer, _teobs As String, detalle As DataTable, _teturno As Integer) As Boolean
         Dim _Tabla As DataTable
         Dim _resultado As Boolean
         Dim _listParam As New List(Of Datos.DParametro)
@@ -3507,6 +3509,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@tefdoc", _tefdoc))
         _listParam.Add(New Datos.DParametro("@tety4vend", _tety4vend))
         _listParam.Add(New Datos.DParametro("@teobs", _teobs))
+        _listParam.Add(New Datos.DParametro("@teTurno", _teturno))
         _listParam.Add(New Datos.DParametro("@teuact", L_Usuario))
         _listParam.Add(New Datos.DParametro("@TV00121", "", detalle))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TV00121Cheque", _listParam)
@@ -4930,7 +4933,7 @@ Public Class AccesoLogica
     End Function
     Public Shared Function L_prIngresoEgresoGrabar(ByRef _ienumi As String, _ieFecha As String, _ieTipo As String,
                                            _ieDescripcion As String, _ieConcepto As String, _ieMonto As Decimal,
-                                           _ieObs As String) As Boolean
+                                           _ieObs As String, _ieTurno As Integer) As Boolean
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
@@ -4944,6 +4947,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@ieMonto", _ieMonto))
         _listParam.Add(New Datos.DParametro("@ieObs", _ieObs))
         _listParam.Add(New Datos.DParametro("@ieEstado", 1))
+        _listParam.Add(New Datos.DParametro("@ieTurno", _ieTurno))
         _listParam.Add(New Datos.DParametro("@ieuact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TIE001", _listParam)
 
@@ -5026,7 +5030,19 @@ Public Class AccesoLogica
     End Function
 #End Region
 
+#Region "ARQUEO DIARIO"
+    Public Shared Function L_DeterminarTurno() As DataTable
+        Dim _Tabla As DataTable
 
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_ArqueoDiario", _listParam)
+
+        Return _Tabla
+    End Function
+#End Region
 
 
 

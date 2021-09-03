@@ -240,8 +240,10 @@ Public Class F1_IngresosEgresos
     End Sub
     Public Overrides Function _PMOGrabarRegistro() As Boolean
 
+        Dim Turno As Integer = 0
+        P_DeterminarTurno(Turno)
         Dim tipo As Integer = IIf(swTipo.Value = True, 1, 0)
-        Dim res As Boolean = L_prIngresoEgresoGrabar(tbcodigo.Text, dpFecha.Value, tipo, tbDescripcion.Text, cbConcepto.Value, tbMonto.Value, tbObservacion.Text)
+        Dim res As Boolean = L_prIngresoEgresoGrabar(tbcodigo.Text, dpFecha.Value, tipo, tbDescripcion.Text, cbConcepto.Value, tbMonto.Value, tbObservacion.Text, Turno)
         If res Then
             Modificado = False
             _PMOLimpiar()

@@ -623,11 +623,14 @@ Public Class F0_Cobrar_Cliente
 
         _prInterpretarDatosCobranza(dtCobro, bandera)
 
+        Dim Turno As Integer = 0
+        P_DeterminarTurno(Turno)
+
         If (bandera = False) Then
             ToastNotification.Show(Me, "Seleccione un detalle de la lista de pendientes".ToUpper, img2, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
             Return
         End If
-        Dim res As Boolean = L_fnGrabarCobranza2(numi, tbFechaVenta.Value.ToString("yyyy/MM/dd"), 0, "", dtCobro)
+        Dim res As Boolean = L_fnGrabarCobranza2(numi, tbFechaVenta.Value.ToString("yyyy/MM/dd"), 0, "", dtCobro, Turno)
 
 
         If res Then

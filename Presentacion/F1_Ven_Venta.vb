@@ -2397,11 +2397,13 @@ salirIf:
         'If _prValidar() = False Then
         '    Exit Function
         'End If
+        Dim Turno As Integer = 0
+        P_DeterminarTurno(Turno)
 
         'cbTipoVenta.Value=0 Credito, cbTipoVenta.Value=1 Contado, cbTipoVenta.Value=2 Tarjeta, cbTipoVenta.Value=3 Transferencia   
         Dim res As Boolean = L_fnGrabarVenta(txtIdVenta.Text, IIf(swServicio.Value, txtIdReciboV.Text, 0), IIf(swCirugia.Value, txtIdReciboV.Text, 0), IIf(swInternacion.Value, txtIdReciboV.Text, 0), _CodPaciente, _CodCliente, _CodEmpleado, cbTipoVenta.Value, dtpFVenta.Value.ToString("yyyy/MM/dd"),
                                              dtpFCredito.Value.ToString("yyyy/MM/dd"), txtObservacion.Text, txtMdesc.Value, txtTotalNeto.Value,
-                                             CType(JGdetalleVenta.DataSource, DataTable), cbSucursal.Value, IIf(cbTipoVenta.Value = 0, txtAcuenta.Value, 0), cbEmision.Value, IIf(cbTipoVenta.Value = 2, txtTotalNeto.Value, 0), IIf(cbTipoVenta.Value = 3, txtTotalNeto.Value, 0))
+                                             CType(JGdetalleVenta.DataSource, DataTable), cbSucursal.Value, IIf(cbTipoVenta.Value = 0, txtAcuenta.Value, 0), cbEmision.Value, IIf(cbTipoVenta.Value = 2, txtTotalNeto.Value, 0), IIf(cbTipoVenta.Value = 3, txtTotalNeto.Value, 0), Turno)
         If res Then
 
             If (gb_FacturaEmite) Then
@@ -2426,6 +2428,7 @@ salirIf:
         End If
         Return res
     End Function
+
 
     Private Function P_fnGenerarFactura(numi As String) As Boolean
         Dim res As Boolean = False
@@ -2934,6 +2937,7 @@ salirIf:
         'JGBusqRecibos.Enabled = False 'Deshabilita el buscador de la Grilla
         _prLimpiar()
         _prhabilitar()
+
     End Sub
     Public Overrides Sub _PMOModificar()
         'JGBusqRecibos.Enabled = False 'Deshabilita el buscador de la Grilla

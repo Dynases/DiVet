@@ -148,5 +148,26 @@ Module P_Global
     Public gb_DetalleProducto As Boolean = False 'False=No habilita ingreso de detalle de producto, True=Si habilita el ingreso de detalle de producto
 
 #End Region
+#Region "DETERMINAR TURNO"
 
+    Public Sub P_DeterminarTurno(ByRef turno As Integer)
+        Dim dt As DataTable = L_DeterminarTurno()
+
+        Dim HoraMañanaI As String = dt.Rows(0).Item("haHoraIni") 'Inicio turno de mañana
+        Dim HoraMañanaF As String = dt.Rows(0).Item("haHorafin") 'Fin turno de mañana
+
+        Dim HoraTardeI As String = dt.Rows(1).Item("haHoraIni") 'Inicio turno tarde
+        Dim HoraTardeF As String = dt.Rows(1).Item("haHorafin") 'Fin turno de tarde
+
+        Dim Hora = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2") 'Hora actual del sistema
+
+        If Hora >= HoraMañanaI And Hora <= HoraMañanaF Then
+            turno = 1 'Turno Mañana
+        ElseIf Hora >= HoraTardeI And Hora <= HoraTardeF Then
+            turno = 2 'Turno Tarde
+        Else
+            turno = 3 'Turno Noche
+        End If
+    End Sub
+#End Region
 End Module
