@@ -24,9 +24,9 @@ Partial Class Principal
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Principal))
         Me.sideNav1 = New DevComponents.DotNetBar.Controls.SideNav()
+        Me.sideNavPanel3 = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.SideNavPanel8 = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.sideNavPanel4 = New DevComponents.DotNetBar.Controls.SideNavPanel()
-        Me.sideNavPanel3 = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.sideNavPanel5 = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.sideNavPanel2 = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.SideNavPanel7 = New DevComponents.DotNetBar.Controls.SideNavPanel()
@@ -55,6 +55,7 @@ Partial Class Principal
         Me.btnAnularFactura = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btnLibroVenta = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btnIngresoEgreso = New DevComponents.DotNetBar.Metro.MetroTileItem()
+        Me.btnArqueoDiario = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btn2 = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.mtpCompras = New DevComponents.DotNetBar.Metro.MetroTilePanel()
         Me.btnProveedor = New DevComponents.DotNetBar.Metro.MetroTileItem()
@@ -96,9 +97,9 @@ Partial Class Principal
         Me.btnConsultorios = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btnDosificacion = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.sideNav1.SuspendLayout()
+        Me.sideNavPanel3.SuspendLayout()
         Me.SideNavPanel8.SuspendLayout()
         Me.sideNavPanel4.SuspendLayout()
-        Me.sideNavPanel3.SuspendLayout()
         Me.sideNavPanel2.SuspendLayout()
         Me.SideNavPanel7.SuspendLayout()
         Me.SideNavPanel6.SuspendLayout()
@@ -127,6 +128,15 @@ Partial Class Principal
         Me.sideNav1.TabIndex = 0
         Me.sideNav1.Text = "sideNav1"
         '
+        'sideNavPanel3
+        '
+        Me.sideNavPanel3.Controls.Add(Me.mtpVentas)
+        Me.sideNavPanel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.sideNavPanel3.Location = New System.Drawing.Point(142, 36)
+        Me.sideNavPanel3.Name = "sideNavPanel3"
+        Me.sideNavPanel3.Size = New System.Drawing.Size(881, 524)
+        Me.sideNavPanel3.TabIndex = 24
+        '
         'SideNavPanel8
         '
         Me.SideNavPanel8.Controls.Add(Me.mtpCompras)
@@ -146,15 +156,6 @@ Partial Class Principal
         Me.sideNavPanel4.Size = New System.Drawing.Size(881, 524)
         Me.sideNavPanel4.TabIndex = 28
         Me.sideNavPanel4.Visible = False
-        '
-        'sideNavPanel3
-        '
-        Me.sideNavPanel3.Controls.Add(Me.mtpVentas)
-        Me.sideNavPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.sideNavPanel3.Location = New System.Drawing.Point(142, 36)
-        Me.sideNavPanel3.Name = "sideNavPanel3"
-        Me.sideNavPanel3.Size = New System.Drawing.Size(881, 524)
-        Me.sideNavPanel3.TabIndex = 24
         '
         'sideNavPanel5
         '
@@ -379,7 +380,7 @@ Partial Class Principal
         Me.mtpVentas.DragDropSupport = True
         Me.mtpVentas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.mtpVentas.ForeColor = System.Drawing.Color.White
-        Me.mtpVentas.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btnVenta, Me.btnVentasAtendidas, Me.btnAnularFactura, Me.btnLibroVenta, Me.btnIngresoEgreso, Me.btn2})
+        Me.mtpVentas.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btnVenta, Me.btnVentasAtendidas, Me.btnAnularFactura, Me.btnLibroVenta, Me.btnIngresoEgreso, Me.btnArqueoDiario, Me.btn2})
         Me.mtpVentas.ItemSpacing = 10
         Me.mtpVentas.Location = New System.Drawing.Point(0, 0)
         Me.mtpVentas.Margin = New System.Windows.Forms.Padding(4)
@@ -476,7 +477,7 @@ Partial Class Principal
         '
         'btnIngresoEgreso
         '
-        Me.btnIngresoEgreso.Image = Global.Presentacion.My.Resources.Resources.cuentas
+        Me.btnIngresoEgreso.Image = Global.Presentacion.My.Resources.Resources.VENT_PAGOS
         Me.btnIngresoEgreso.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
         Me.btnIngresoEgreso.Name = "btnIngresoEgreso"
         Me.btnIngresoEgreso.SymbolColor = System.Drawing.Color.Empty
@@ -491,6 +492,24 @@ Partial Class Principal
         Me.btnIngresoEgreso.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.btnIngresoEgreso.TileStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnIngresoEgreso.TitleTextColor = System.Drawing.Color.White
+        '
+        'btnArqueoDiario
+        '
+        Me.btnArqueoDiario.Image = Global.Presentacion.My.Resources.Resources.cuentas
+        Me.btnArqueoDiario.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btnArqueoDiario.Name = "btnArqueoDiario"
+        Me.btnArqueoDiario.SymbolColor = System.Drawing.Color.Empty
+        Me.btnArqueoDiario.Text = "ARQUEO DIARIO"
+        Me.btnArqueoDiario.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.[Default]
+        Me.btnArqueoDiario.TileSize = New System.Drawing.Size(250, 135)
+        '
+        '
+        '
+        Me.btnArqueoDiario.TileStyle.BackColor = System.Drawing.Color.MediumOrchid
+        Me.btnArqueoDiario.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(111, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnArqueoDiario.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.btnArqueoDiario.TileStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnArqueoDiario.TitleTextColor = System.Drawing.Color.White
         '
         'btn2
         '
@@ -1298,9 +1317,9 @@ Partial Class Principal
         Me.Text = "VIDA VET"
         Me.sideNav1.ResumeLayout(False)
         Me.sideNav1.PerformLayout()
+        Me.sideNavPanel3.ResumeLayout(False)
         Me.SideNavPanel8.ResumeLayout(False)
         Me.sideNavPanel4.ResumeLayout(False)
-        Me.sideNavPanel3.ResumeLayout(False)
         Me.sideNavPanel2.ResumeLayout(False)
         Me.SideNavPanel7.ResumeLayout(False)
         Me.SideNavPanel6.ResumeLayout(False)
@@ -1382,4 +1401,5 @@ Partial Class Principal
     Friend WithEvents btnDosificacion As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btnAnularFactura As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btnLibroVenta As DevComponents.DotNetBar.Metro.MetroTileItem
+    Friend WithEvents btnArqueoDiario As DevComponents.DotNetBar.Metro.MetroTileItem
 End Class

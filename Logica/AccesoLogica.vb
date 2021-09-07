@@ -5031,6 +5031,20 @@ Public Class AccesoLogica
 #End Region
 
 #Region "ARQUEO DIARIO"
+    Public Shared Function L_ArqueoDiarioTurno(fechaI As String, fechaF As String, turno As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@turno", turno))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_ArqueoDiario", _listParam)
+
+        Return _Tabla
+    End Function
     Public Shared Function L_DeterminarTurno() As DataTable
         Dim _Tabla As DataTable
 

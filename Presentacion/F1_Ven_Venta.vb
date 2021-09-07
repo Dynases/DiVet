@@ -36,7 +36,7 @@ Public Class F1_Ven_Venta
     Private Sub F1_Ven_Venta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _prIniciarTodo()
         superTabControl1.SelectedTabIndex = 0
-        'PRUEBA
+
     End Sub
     'Primero
     Private Sub btnPrimero_Click(sender As Object, e As EventArgs) Handles btnPrimero.Click
@@ -877,8 +877,8 @@ salirIf:
         End With
 
         With grVentas.RootTable.Columns("vaFechaDoc")
-            .Width = 130
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Width = 100
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
             .Visible = True
             .Caption = "Fecha Venta"
         End With
@@ -892,7 +892,7 @@ salirIf:
             .Caption = "Cliente"
         End With
         With grVentas.RootTable.Columns("pbnomb")
-            .Width = 190
+            .Width = 170
             .Visible = True
             .Caption = "Paciente"
         End With
@@ -901,7 +901,7 @@ salirIf:
             .Visible = False
         End With
         With grVentas.RootTable.Columns("Empleado")
-            .Width = 220
+            .Width = 200
             .Visible = True
             .Caption = "Vendedor"
         End With
@@ -932,7 +932,7 @@ salirIf:
             .Visible = False
         End With
         With grVentas.RootTable.Columns("vaTotal")
-            .Width = 150
+            .Width = 100
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
             .Visible = True
             .FormatString = "0.00"
@@ -968,6 +968,16 @@ salirIf:
         End With
         With grVentas.RootTable.Columns("vaTransferencia")
             .Visible = False
+        End With
+        With grVentas.RootTable.Columns("TipoVenta")
+            .Width = 100
+            .Visible = True
+            .Caption = "Tipo Venta"
+        End With
+        With grVentas.RootTable.Columns("Turno")
+            .Width = 90
+            .Visible = True
+            .Caption = "Turno"
         End With
         With grVentas
             .DefaultFilterRowComparison = FilterConditionOperator.Contains

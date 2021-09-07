@@ -410,4 +410,10 @@ Public Class Principal
         Modelo.MGlobal._nameButton = btnIngresoEgreso.Name
         frm.Show()
     End Sub
+
+    Private Sub btnArqueoDiario_Click(sender As Object, e As EventArgs) Handles btnArqueoDiario.Click
+        Dim frm As New Pr_ArqueoDiario
+        Modelo.MGlobal._nameButton = btnArqueoDiario.Name
+        frm.Show()
+    End Sub
 End Class

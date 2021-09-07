@@ -442,6 +442,12 @@
     <Compile Include="Pr_StockActualProductosLotes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Pr_Arqueo Diario.Designer.vb">
+      <DependentUpon>Pr_Arqueo Diario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pr_Arqueo Diario.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Pr_VentasAtendidas.Designer.vb">
       <DependentUpon>Pr_VentasAtendidas.vb</DependentUpon>
     </Compile>
@@ -657,6 +663,12 @@
       <DependentUpon>R_Venta.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reporte\R_ArqueoDiario.vb">
+      <DependentUpon>R_ArqueoDiario.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reporte\R_VentasAtendidas.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -807,6 +819,9 @@
     <EmbeddedResource Include="Pr_StockActualProductosLotes.resx">
       <DependentUpon>Pr_StockActualProductosLotes.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pr_Arqueo Diario.resx">
+      <DependentUpon>Pr_Arqueo Diario.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pr_VentasAtendidas.resx">
       <DependentUpon>Pr_VentasAtendidas.vb</DependentUpon>
     </EmbeddedResource>
@@ -940,6 +955,10 @@
     <EmbeddedResource Include="Reporte\R_Venta.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_Venta.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\R_ArqueoDiario.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_ArqueoDiario.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\R_VentasAtendidas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1129,6 +1148,7 @@
     <None Include="Resources\Venta.png" />
     <Content Include="Resources\ventasCostos.png" />
     <None Include="Resources\ver.png" />
+    <None Include="Resources\VENT_PAGOS.png" />
     <Content Include="Resources\verRegistros2.png" />
     <None Include="Resources\vet17.PNG" />
     <None Include="Resources\vet18.png" />
