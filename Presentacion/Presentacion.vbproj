@@ -430,6 +430,12 @@
     <Compile Include="Login.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Pr_DetalleAtencionesDiarias.Designer.vb">
+      <DependentUpon>Pr_DetalleAtencionesDiarias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pr_DetalleAtencionesDiarias.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Pr_PacientesPorDia.Designer.vb">
       <DependentUpon>Pr_PacientesPorDia.vb</DependentUpon>
     </Compile>
@@ -812,6 +818,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pr_DetalleAtencionesDiarias.resx">
+      <DependentUpon>Pr_DetalleAtencionesDiarias.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pr_PacientesPorDia.resx">
       <DependentUpon>Pr_PacientesPorDia.vb</DependentUpon>

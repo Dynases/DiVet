@@ -1,7 +1,7 @@
 ﻿Imports Logica.AccesoLogica
 Imports DevComponents.DotNetBar
 Imports DevComponents.DotNetBar.Controls
-Public Class Pr_ArqueoDiario
+Public Class Pr_DetalleAtencionesDiarias
     Public _nameButton As String
     Public _tab As SuperTabItem
     Public _modulo As SideNavItem
@@ -10,25 +10,21 @@ Public Class Pr_ArqueoDiario
         tbFechaI.Value = Now.Date
         tbFechaF.Value = Now.Date
         _PMIniciarTodo()
-        'L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
-        Me.Text = "ARQUEO DIARIO"
+
+        Me.Text = "DETALLE DE ATENCIONES DIARIAS"
         MReportViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
         _IniciarComponentes()
     End Sub
     Public Sub _IniciarComponentes()
         _prCargarComboLibreriaSucursal(cbTurno)
-        'cbTurno.ReadOnly = True
-        'cbTurno.Enabled = False
+
     End Sub
 
     Private Sub _prCargarReporte()
         Dim _dt As New DataTable
-        _dt = L_ArqueoDiarioTurno(tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"), cbTurno.Value)
+        _dt = L_DetalleAtencionDiarioTurno(tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"), cbTurno.Value)
 
-        If (_dt.Rows.Count > 0 And _dt.Rows(0).Item("Importe") > 0) Then
-            Dim TotalIngresos As Decimal = _dt.Compute("SUM(Importe)", "Glosa='10 TOTAL INGRESOS'")
-            Dim TotalEgresos As Decimal = _dt.Compute("SUM(Importe)", "Glosa='11 TOTAL EGRESOS'")
-            Dim Total As Decimal = TotalIngresos - TotalEgresos
+        If (_dt.Rows.Count > 0) Then
 
             Dim objrep As New R_ArqueoDiario
             objrep.SetDataSource(_dt)
@@ -38,9 +34,6 @@ Public Class Pr_ArqueoDiario
             objrep.SetParameterValue("fechaI", fechaI)
             objrep.SetParameterValue("fechaF", fechaF)
             objrep.SetParameterValue("Turno", cbTurno.Text)
-            objrep.SetParameterValue("TotalIngresos", TotalIngresos)
-            objrep.SetParameterValue("TotalEgresos", TotalEgresos)
-            objrep.SetParameterValue("Total", Total)
             MReportViewer.ReportSource = objrep
             MReportViewer.Show()
             MReportViewer.BringToFront()

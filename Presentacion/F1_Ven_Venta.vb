@@ -847,7 +847,7 @@ salirIf:
         grVentas.AlternatingColors = True
         With grVentas.RootTable.Columns("vaId")
             .Width = 100
-            .Caption = "Id"
+            .Caption = "Nro Recibo"
             .Visible = True
         End With
         With grVentas.RootTable.Columns("va_rkId")
