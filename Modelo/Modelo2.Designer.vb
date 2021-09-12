@@ -22,7 +22,6 @@ Partial Class Modelo2
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Modelo2))
         Me.panel1 = New System.Windows.Forms.Panel()
         Me.superTabControl1 = New DevComponents.DotNetBar.SuperTabControl()
@@ -45,7 +44,7 @@ Partial Class Modelo2
         Me.PanelInferior = New DevComponents.DotNetBar.PanelEx()
         Me.MPanelUserAct = New System.Windows.Forms.Panel()
         Me.BubbleBarUsuario = New DevComponents.DotNetBar.BubbleBar()
-        Me.BubbleBarTabUsuario = New DevComponents.DotNetBar.BubbleBarTab(Me.components)
+        Me.BubbleBarTabUsuario = New DevComponents.DotNetBar.BubbleBarTab()
         Me.BubbleButton3 = New DevComponents.DotNetBar.BubbleButton()
         Me.TxtNombreUsu = New System.Windows.Forms.TextBox()
         Me.PanelNavegacion = New System.Windows.Forms.Panel()
@@ -58,9 +57,9 @@ Partial Class Modelo2
         Me.superTabControlPanel2 = New DevComponents.DotNetBar.SuperTabControlPanel()
         Me.MpanelBuscador = New System.Windows.Forms.Panel()
         Me.superTabItem2 = New DevComponents.DotNetBar.SuperTabItem()
-        Me.MEP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.MEP = New System.Windows.Forms.ErrorProvider()
         Me.MHighlighterFocus = New DevComponents.DotNetBar.Validator.Highlighter()
-        Me.MFlyoutUsuario = New DevComponents.DotNetBar.Controls.Flyout(Me.components)
+        Me.MFlyoutUsuario = New DevComponents.DotNetBar.Controls.Flyout()
         Me.panel1.SuspendLayout()
         CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.superTabControl1.SuspendLayout()
@@ -83,7 +82,7 @@ Partial Class Modelo2
         Me.panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panel1.Location = New System.Drawing.Point(0, 0)
         Me.panel1.Name = "panel1"
-        Me.panel1.Size = New System.Drawing.Size(930, 502)
+        Me.panel1.Size = New System.Drawing.Size(1008, 502)
         Me.panel1.TabIndex = 2
         '
         'superTabControl1
@@ -111,7 +110,7 @@ Partial Class Modelo2
         Me.superTabControl1.ReorderTabsEnabled = True
         Me.superTabControl1.SelectedTabFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
         Me.superTabControl1.SelectedTabIndex = 0
-        Me.superTabControl1.Size = New System.Drawing.Size(930, 502)
+        Me.superTabControl1.Size = New System.Drawing.Size(1008, 502)
         Me.superTabControl1.TabFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.superTabControl1.TabIndex = 88
         Me.superTabControl1.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabItem1, Me.superTabItem2})
@@ -125,7 +124,7 @@ Partial Class Modelo2
         Me.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.superTabControlPanel1.Location = New System.Drawing.Point(0, 25)
         Me.superTabControlPanel1.Name = "superTabControlPanel1"
-        Me.superTabControlPanel1.Size = New System.Drawing.Size(930, 477)
+        Me.superTabControlPanel1.Size = New System.Drawing.Size(1008, 477)
         Me.superTabControlPanel1.TabIndex = 1
         Me.superTabControlPanel1.TabItem = Me.superTabItem1
         '
@@ -133,9 +132,10 @@ Partial Class Modelo2
         '
         Me.MpanelSuperior.BackColor = System.Drawing.Color.White
         Me.MpanelSuperior.Controls.Add(Me.PanelUsuario)
-        Me.MpanelSuperior.Location = New System.Drawing.Point(3, 72)
+        Me.MpanelSuperior.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.MpanelSuperior.Location = New System.Drawing.Point(0, 72)
         Me.MpanelSuperior.Name = "MpanelSuperior"
-        Me.MpanelSuperior.Size = New System.Drawing.Size(924, 363)
+        Me.MpanelSuperior.Size = New System.Drawing.Size(1008, 366)
         Me.MpanelSuperior.TabIndex = 103
         '
         'PanelUsuario
@@ -222,7 +222,7 @@ Partial Class Modelo2
         Me.PanelSuperior.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelSuperior.Location = New System.Drawing.Point(0, 0)
         Me.PanelSuperior.Name = "PanelSuperior"
-        Me.PanelSuperior.Size = New System.Drawing.Size(930, 72)
+        Me.PanelSuperior.Size = New System.Drawing.Size(1008, 72)
         Me.PanelSuperior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelSuperior.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PanelSuperior.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
@@ -347,7 +347,7 @@ Partial Class Modelo2
         Me.PanelInferior.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelInferior.Location = New System.Drawing.Point(0, 438)
         Me.PanelInferior.Name = "PanelInferior"
-        Me.PanelInferior.Size = New System.Drawing.Size(930, 39)
+        Me.PanelInferior.Size = New System.Drawing.Size(1008, 39)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Transparent
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Transparent
@@ -363,7 +363,7 @@ Partial Class Modelo2
         Me.MPanelUserAct.Controls.Add(Me.BubbleBarUsuario)
         Me.MPanelUserAct.Controls.Add(Me.TxtNombreUsu)
         Me.MPanelUserAct.Dock = System.Windows.Forms.DockStyle.Right
-        Me.MPanelUserAct.Location = New System.Drawing.Point(730, 0)
+        Me.MPanelUserAct.Location = New System.Drawing.Point(808, 0)
         Me.MPanelUserAct.Name = "MPanelUserAct"
         Me.MPanelUserAct.Size = New System.Drawing.Size(200, 39)
         Me.MPanelUserAct.TabIndex = 21
@@ -564,7 +564,7 @@ Partial Class Modelo2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(930, 502)
+        Me.ClientSize = New System.Drawing.Size(1008, 502)
         Me.Controls.Add(Me.panel1)
         Me.KeyPreview = True
         Me.Name = "Modelo2"

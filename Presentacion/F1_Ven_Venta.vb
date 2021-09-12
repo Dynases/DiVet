@@ -2845,30 +2845,30 @@ salirIf:
         Dim est As String = L_fnObtenerDatoTabla("TFV001", "fvaest", "fvanumi=" + txtIdVenta.Text.Trim)
         Return (est.Equals("True"))
     End Function
-    Public Function _ValidarCampos() As Boolean
-        If (_CodCliente <= 0) Then
-            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Por Favor Seleccione un Cliente con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
-            txtIdCliente.Focus()
-            Return False
+    'Public Function _ValidarCampos() As Boolean
+    '    If (_CodCliente <= 0) Then
+    '        Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+    '        ToastNotification.Show(Me, "Por Favor Seleccione un Cliente con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+    '        txtIdCliente.Focus()
+    '        Return False
 
-        End If
-        If (_CodEmpleado <= 0) Then
-            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Por Favor Seleccione un Vendedor con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
-            txtIdVendedor.Focus()
-            Return False
-        End If
-        If (JGdetalleVenta.RowCount = 1) Then
-            JGdetalleVenta.Row = JGdetalleVenta.RowCount - 1
-            If (JGdetalleVenta.GetValue("vb_tyfnumi") = 0) Then
-                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                ToastNotification.Show(Me, "Por Favor Seleccione  un detalle de producto".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
-                Return False
-            End If
-        End If
-        Return True
-    End Function
+    '    End If
+    '    If (_CodEmpleado <= 0) Then
+    '        Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+    '        ToastNotification.Show(Me, "Por Favor Seleccione un Vendedor con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+    '        txtIdVendedor.Focus()
+    '        Return False
+    '    End If
+    '    If (JGdetalleVenta.RowCount = 1) Then
+    '        JGdetalleVenta.Row = JGdetalleVenta.RowCount - 1
+    '        If (JGdetalleVenta.GetValue("vb_tyfnumi") = 0) Then
+    '            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+    '            ToastNotification.Show(Me, "Por Favor Seleccione  un detalle de producto".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+    '            Return False
+    '        End If
+    '    End If
+    '    Return True
+    'End Function
     Public Overrides Function _PMOValidarCampos() As Boolean
         Try
             Dim fecha As String = Now.Date
@@ -2891,6 +2891,16 @@ salirIf:
                 ToastNotification.Show(Me, "Por Favor Seleccione un Vendedor con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
                 txtIdVendedor.Focus()
                 Return False
+            End If
+
+            'Valida que al Credito solo vayan las ventas de atencion y no ventas normales
+            If cbTipoVenta.Value = 0 Then
+                If (swServicio.Value = False And swInternacion.Value = False And swCirugia.Value = False) Then
+                    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                    ToastNotification.Show(Me, "Esta venta no puede ser grabada al Crédito, elija otro tipo de venta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    TbNit.Focus()
+                    Return False
+                End If
             End If
 
             'Validar datos de factura
