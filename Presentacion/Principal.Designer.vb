@@ -110,14 +110,14 @@ Partial Class Principal
         'sideNav1
         '
         Me.sideNav1.BackColor = System.Drawing.Color.White
+        Me.sideNav1.Controls.Add(Me.SideNavPanel7)
+        Me.sideNav1.Controls.Add(Me.SideNavPanel8)
         Me.sideNav1.Controls.Add(Me.sideNavPanel3)
         Me.sideNav1.Controls.Add(Me.sideNavPanel4)
         Me.sideNav1.Controls.Add(Me.sideNavPanel5)
         Me.sideNav1.Controls.Add(Me.SideNavPanel6)
         Me.sideNav1.Controls.Add(Me.sideNavPanel1)
         Me.sideNav1.Controls.Add(Me.sideNavPanel2)
-        Me.sideNav1.Controls.Add(Me.SideNavPanel8)
-        Me.sideNav1.Controls.Add(Me.SideNavPanel7)
         Me.sideNav1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.sideNav1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.sideNavItem1, Me.separator1, Me.M_Configuracion, Me.M_Registros, Me.M_Fichas, Me.M_Compras, Me.M_Inventario, Me.M_Ventas, Me.M_Creditos, Me.M_Informes, Me.Separator2, Me.CerrarSesion})
         Me.sideNav1.Location = New System.Drawing.Point(0, 0)
@@ -136,6 +136,7 @@ Partial Class Principal
         Me.sideNavPanel3.Name = "sideNavPanel3"
         Me.sideNavPanel3.Size = New System.Drawing.Size(881, 524)
         Me.sideNavPanel3.TabIndex = 24
+        Me.sideNavPanel3.Visible = False
         '
         'mtpVentas
         '
@@ -904,9 +905,9 @@ Partial Class Principal
         '
         Me.SideNavPanel8.Controls.Add(Me.mtpCompras)
         Me.SideNavPanel8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SideNavPanel8.Location = New System.Drawing.Point(1, 1)
+        Me.SideNavPanel8.Location = New System.Drawing.Point(142, 36)
         Me.SideNavPanel8.Name = "SideNavPanel8"
-        Me.SideNavPanel8.Size = New System.Drawing.Size(1026, 559)
+        Me.SideNavPanel8.Size = New System.Drawing.Size(881, 524)
         Me.SideNavPanel8.TabIndex = 84
         Me.SideNavPanel8.Visible = False
         '
@@ -932,7 +933,7 @@ Partial Class Principal
         Me.mtpCompras.Margin = New System.Windows.Forms.Padding(4)
         Me.mtpCompras.MultiLine = True
         Me.mtpCompras.Name = "mtpCompras"
-        Me.mtpCompras.Size = New System.Drawing.Size(1026, 559)
+        Me.mtpCompras.Size = New System.Drawing.Size(881, 524)
         Me.mtpCompras.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
         Me.mtpCompras.TabIndex = 1
         Me.mtpCompras.Text = "MetroTilePanel3"
@@ -1002,11 +1003,10 @@ Partial Class Principal
         '
         Me.SideNavPanel7.Controls.Add(Me.mtpFichas)
         Me.SideNavPanel7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SideNavPanel7.Location = New System.Drawing.Point(1, 1)
+        Me.SideNavPanel7.Location = New System.Drawing.Point(142, 36)
         Me.SideNavPanel7.Name = "SideNavPanel7"
-        Me.SideNavPanel7.Size = New System.Drawing.Size(1026, 559)
+        Me.SideNavPanel7.Size = New System.Drawing.Size(881, 524)
         Me.SideNavPanel7.TabIndex = 68
-        Me.SideNavPanel7.Visible = False
         '
         'mtpFichas
         '
@@ -1030,7 +1030,7 @@ Partial Class Principal
         Me.mtpFichas.Margin = New System.Windows.Forms.Padding(4)
         Me.mtpFichas.MultiLine = True
         Me.mtpFichas.Name = "mtpFichas"
-        Me.mtpFichas.Size = New System.Drawing.Size(1026, 559)
+        Me.mtpFichas.Size = New System.Drawing.Size(881, 524)
         Me.mtpFichas.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
         Me.mtpFichas.TabIndex = 2
         Me.mtpFichas.Text = "MetroTilePanel3"
@@ -1186,6 +1186,7 @@ Partial Class Principal
         '
         'M_Fichas
         '
+        Me.M_Fichas.Checked = True
         Me.M_Fichas.Name = "M_Fichas"
         Me.M_Fichas.Panel = Me.SideNavPanel7
         Me.M_Fichas.Symbol = ""
@@ -1209,7 +1210,6 @@ Partial Class Principal
         '
         'M_Ventas
         '
-        Me.M_Ventas.Checked = True
         Me.M_Ventas.Name = "M_Ventas"
         Me.M_Ventas.Panel = Me.sideNavPanel3
         Me.M_Ventas.Symbol = ""

@@ -236,7 +236,7 @@ Public Class Principal
     End Sub
 
     Private Sub btnSegInternacion_Click(sender As Object, e As EventArgs) Handles btnSegInternacion.Click
-        Dim frm As New F1_FIC_SegInternacion
+        Dim frm As New F1_Fic_SegInternacion2
         Modelo.MGlobal._nameButton = btnSegInternacion.Name
         frm.Show()
     End Sub

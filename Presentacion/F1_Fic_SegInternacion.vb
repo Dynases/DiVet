@@ -432,88 +432,88 @@ Public Class F1_Fic_SegInternacion
         End With
     End Sub
     Private Sub _prGuardarSeguimiento()
-        Dim ihId As Integer
-        Dim res As Boolean = L_fnModificarInternacionSeg(JGBusqSeguimiento.GetValue("ihId"), txtIdFicClinica.Text, dtpFechaSeg.Value.ToString("yyyy/MM/dd"),
-                                                      txtDiagnostico.Text, txtResponsable.Text,
-                                                      1, 0, DateTime.Now.Date.ToString("yyyy/MM/dd"), cbTurno.Value, DateTime.Now.ToShortTimeString(),
-                                                      txtObsRequerimientos.Text, txtFrecuencias.Text, txtOtros.Text, txtMedProtocolo.Text, txtAlimentacion.Text, txtPasoTurno.Text)
-        If res Then
-            Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
-            ToastNotification.Show(Me, "Id del Seguimiento de internacion fue ".ToUpper + ihId.ToString() + " Grabado con Exito.".ToUpper,
-                                      img, 3000,
-                                      eToastGlowColor.Green,
-                                      eToastPosition.TopCenter
-                                      )
-            _prInhabilitar()
-            _prFiltrar(2)
-            _Limpiar = True
-            NuevoSeg = False
+        'Dim ihId As Integer
+        'Dim res As Boolean = L_fnModificarInternacionSeg(JGBusqSeguimiento.GetValue("ihId"), txtIdFicClinica.Text, dtpFechaSeg.Value.ToString("yyyy/MM/dd"),
+        '                                              txtDiagnostico.Text, txtResponsable.Text,
+        '                                              1, 0, DateTime.Now.Date.ToString("yyyy/MM/dd"), cbTurno.Value, DateTime.Now.ToShortTimeString(),
+        '                                              txtObsRequerimientos.Text, txtFrecuencias.Text, txtOtros.Text, txtMedProtocolo.Text, txtAlimentacion.Text, txtPasoTurno.Text)
+        'If res Then
+        '    Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
+        '    ToastNotification.Show(Me, "Id del Seguimiento de internacion fue ".ToUpper + ihId.ToString() + " Grabado con Exito.".ToUpper,
+        '                              img, 3000,
+        '                              eToastGlowColor.Green,
+        '                              eToastPosition.TopCenter
+        '                              )
+        '    _prInhabilitar()
+        '    _prFiltrar(2)
+        '    _Limpiar = True
+        '    NuevoSeg = False
 
-        Else
-            Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El seguimiento no pudo ser Grabado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        'Else
+        '    Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+        '    ToastNotification.Show(Me, "El seguimiento no pudo ser Grabado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
 
-        End If
+        'End If
     End Sub
 #End Region
 #Region "METODOS PRIVADOS OVERRRIDABLES"
     Public Overrides Function _PMOGrabarRegistro() As Boolean
-        Dim ihId As Integer
+        'Dim ihId As Integer
 
-        Dim res As Boolean = L_fnGrabarInternacionSeg(ihId, txtIdFicClinica.Text, dtpFechaSeg.Value.ToString("yyyy/MM/dd"),
-                                                      txtDiagnostico.Text, txtResponsable.Text,
-                                                      1, DateTime.Now.Date.ToString("yyyy/MM/dd"), cbTurno.Value, DateTime.Now.ToShortTimeString(),
-                                                      txtObsRequerimientos.Text, txtFrecuencias.Text, txtOtros.Text, txtMedProtocolo.Text, txtAlimentacion.Text, txtPasoTurno.Text)
-        If res Then
-            Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
-            ToastNotification.Show(Me, "Id del Seguimiento de internacion ".ToUpper + ihId.ToString() + " Grabado con Exito.".ToUpper,
-                                          img, 3000,
-                                          eToastGlowColor.Green,
-                                          eToastPosition.TopCenter
-                                          )
-            _Limpiar = True
-            NuevoSeg = False
-            _prHabilitarMenu(2)
-            _prInhabilitar()
-            _prFiltrar(2)
-        Else
-            Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El seguimiento no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        'Dim res As Boolean = L_fnGrabarInternacionSeg(ihId, txtIdFicClinica.Text, _IdPaciente, dtpFechaSeg.Value.ToString("yyyy/MM/dd"),
+        '                                              txtDiagnostico.Text, txtResponsable.Text,
+        '                                              1, DateTime.Now.Date.ToString("yyyy/MM/dd"), cbTurno.Value, DateTime.Now.ToShortTimeString(),
+        '                                              txtObsRequerimientos.Text, txtFrecuencias.Text, txtOtros.Text, txtMedProtocolo.Text, txtAlimentacion.Text, txtPasoTurno.Text)
+        'If res Then
+        '    Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
+        '    ToastNotification.Show(Me, "Id del Seguimiento de internacion ".ToUpper + ihId.ToString() + " Grabado con Exito.".ToUpper,
+        '                                  img, 3000,
+        '                                  eToastGlowColor.Green,
+        '                                  eToastPosition.TopCenter
+        '                                  )
+        '    _Limpiar = True
+        '    NuevoSeg = False
+        '    _prHabilitarMenu(2)
+        '    _prInhabilitar()
+        '    _prFiltrar(2)
+        'Else
+        '    Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+        '    ToastNotification.Show(Me, "El seguimiento no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
 
-        End If
-        Return res
+        'End If
+        'Return res
 
     End Function
     ''*****MODDIFICA EL REGISTRO*****''
     Public Overrides Function _PMOModificarRegistro() As Boolean
-        Dim ihId As Integer
-        Dim res As Boolean
-        If NuevoSeg Then
-            _prGuardarSeguimiento()
-            res = True
-        Else
-            res = L_fnModificarInternacionSeg(JGBusqSeguimiento.GetValue("ihId"), txtIdFicClinica.Text, dtpFechaSeg.Value.ToString("yyyy/MM/dd"),
-                                              txtDiagnostico.Text, txtResponsable.Text,
-                                              2, JGSeguimiento.GetValue("iiId"), DateTime.Now.Date.ToString("yyyy/MM/dd"), cbTurno.Value,
-                                              JGSeguimiento.GetValue("iiHoraTurn"), txtObsRequerimientos.Text, txtFrecuencias.Text, txtOtros.Text, txtMedProtocolo.Text, txtAlimentacion.Text, txtPasoTurno.Text)
-            If res Then
-                Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
-                ToastNotification.Show(Me, "Id del Seguimiento de internacion fue ".ToUpper + ihId.ToString() + " Modificado con Exito.".ToUpper,
-                                          img, 3000,
-                                          eToastGlowColor.Green,
-                                          eToastPosition.TopCenter
-                                          )
-                _prInhabilitar()
-                _prFiltrar(2)
-                _Limpiar = True
-                NuevoSeg = False
-            Else
-                Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, "El seguimiento no pudo ser Modificado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        'Dim ihId As Integer
+        'Dim res As Boolean
+        'If NuevoSeg Then
+        '    _prGuardarSeguimiento()
+        '    res = True
+        'Else
+        '    res = L_fnModificarInternacionSeg(JGBusqSeguimiento.GetValue("ihId"), txtIdFicClinica.Text, dtpFechaSeg.Value.ToString("yyyy/MM/dd"),
+        '                                      txtDiagnostico.Text, txtResponsable.Text,
+        '                                      2, JGSeguimiento.GetValue("iiId"), DateTime.Now.Date.ToString("yyyy/MM/dd"), cbTurno.Value,
+        '                                      JGSeguimiento.GetValue("iiHoraTurn"), txtObsRequerimientos.Text, txtFrecuencias.Text, txtOtros.Text, txtMedProtocolo.Text, txtAlimentacion.Text, txtPasoTurno.Text)
+        '    If res Then
+        '        Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
+        '        ToastNotification.Show(Me, "Id del Seguimiento de internacion fue ".ToUpper + ihId.ToString() + " Modificado con Exito.".ToUpper,
+        '                                  img, 3000,
+        '                                  eToastGlowColor.Green,
+        '                                  eToastPosition.TopCenter
+        '                                  )
+        '        _prInhabilitar()
+        '        _prFiltrar(2)
+        '        _Limpiar = True
+        '        NuevoSeg = False
+        '    Else
+        '        Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+        '        ToastNotification.Show(Me, "El seguimiento no pudo ser Modificado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
 
-            End If
-        End If
-        Return res
+        '    End If
+        'End If
+        'Return res
     End Function
     ''*****ELIMINAR EL REGISTRO*****''
     Public Overrides Sub _PMOEliminarRegistro()

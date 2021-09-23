@@ -1218,35 +1218,23 @@ Public Class AccesoLogica
     'ihId, ih_fbId, ihEst, ihFechaIng, ihTurno, ihDiag, ihObser, ihPasoTur, ihFecha, ihHora, ihUsuario
     '********Registrar
     'iiId, ii_ihId, iiEst, iiHoraTurn, iiResp, iiFrec, iiMedPro, iiAlim, iiFecha, iiHora, iiusuario
-    Public Shared Function L_fnGrabarInternacionSeg(ByRef ihId As String, ih_fbId As String, ihFechaIng As String,
-                                                   ihDiag As String, ihResp As String,
-                                                   Tipo2 As String, iiFechaIng As String, iiTurno As String, iiHoraTurn As String, iiObser As String, iiFrec As String, iiOtros As String,
-                                                    iiMedPro As String, iiAlim As String, iiPasoTur As String) As Boolean
+    Public Shared Function L_fnGrabarInternacionSeg(ByRef ihId As String, ih_fbId As String, ih_pbId As String, ihFechaIng As String,
+                                                    ihTurno As String, Tipo2 As String, _INT00252 As DataTable) As Boolean
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
         _listParam.Add(New Datos.DParametro("@tipo", 1))
         _listParam.Add(New Datos.DParametro("@ihId", ihId))
         _listParam.Add(New Datos.DParametro("@ih_fbId", ih_fbId))
-        _listParam.Add(New Datos.DParametro("@ihEst", 1))
+        _listParam.Add(New Datos.DParametro("@ih_pbId", ih_pbId))
         _listParam.Add(New Datos.DParametro("@ihFechaIng", ihFechaIng))
-        _listParam.Add(New Datos.DParametro("@ihDiag", ihDiag))
-        _listParam.Add(New Datos.DParametro("@ihResp", ihResp))
-
-        _listParam.Add(New Datos.DParametro("@ihUsuario", L_Usuario))
-        'Detalle
+        _listParam.Add(New Datos.DParametro("@ihTurno", ihTurno))
         _listParam.Add(New Datos.DParametro("@tipo2", Tipo2))
-        _listParam.Add(New Datos.DParametro("@iiFechaIng", iiFechaIng))
-        _listParam.Add(New Datos.DParametro("@iiTurno", iiTurno))
-        _listParam.Add(New Datos.DParametro("@iiHoraTurn", iiHoraTurn))
-        _listParam.Add(New Datos.DParametro("@iiObser", iiObser))
-        _listParam.Add(New Datos.DParametro("@iiEst", 1))
-        _listParam.Add(New Datos.DParametro("@iiMedPror", iiMedPro))
-        _listParam.Add(New Datos.DParametro("@iiFrec", iiFrec))
-        _listParam.Add(New Datos.DParametro("@iiOtros", iiOtros))
-        _listParam.Add(New Datos.DParametro("@iiAlim", iiAlim))
-        _listParam.Add(New Datos.DParametro("@iiPasoTur", iiPasoTur))
-        _listParam.Add(New Datos.DParametro("@iiUsuario", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@ihEst", 1))
+        _listParam.Add(New Datos.DParametro("@ihUsuario", L_Usuario))
+        'Detalles
+        _listParam.Add(New Datos.DParametro("@INT00252", "", _INT00252))
+
         _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
         If _Tabla.Rows.Count > 0 Then
             ihId = _Tabla.Rows(0).Item(0)
@@ -1257,35 +1245,24 @@ Public Class AccesoLogica
         Return _resultado
     End Function
     '********Modificar
-    Public Shared Function L_fnModificarInternacionSeg(ByRef ihId As String, ih_fbId As String, ihFechaIng As String,
-                                                   ihDiag As String, ihResp As String,
-                                                   Tipo2 As String, iiId As String, iiFechaIng As String, iiTurno As String, iiHoraTurn As String, iiObser As String, iiFrec As String, iiOtros As String,
-                                                    iiMedPro As String, iiAlim As String, iiPasoTur As String) As Boolean
+    Public Shared Function L_fnModificarInternacionSeg(ByRef ihId As String, ih_fbId As String, ih_pbId As String, ihFechaIng As String,
+                                                    ihTurno As String, Tipo2 As String, _INT00252 As DataTable) As Boolean
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
         _listParam.Add(New Datos.DParametro("@tipo", 2))
         _listParam.Add(New Datos.DParametro("@ihId", ihId))
         _listParam.Add(New Datos.DParametro("@ih_fbId", ih_fbId))
-        _listParam.Add(New Datos.DParametro("@ihEst", 1))
+        _listParam.Add(New Datos.DParametro("@ih_pbId", ih_pbId))
         _listParam.Add(New Datos.DParametro("@ihFechaIng", ihFechaIng))
-        _listParam.Add(New Datos.DParametro("@ihDiag", ihDiag))
-        _listParam.Add(New Datos.DParametro("@ihResp", ihResp))
-        _listParam.Add(New Datos.DParametro("@ihUsuario", L_Usuario))
-        '
+        _listParam.Add(New Datos.DParametro("@ihTurno", ihTurno))
         _listParam.Add(New Datos.DParametro("@tipo2", Tipo2))
-        _listParam.Add(New Datos.DParametro("@iiId", iiId))
-        _listParam.Add(New Datos.DParametro("@iiFechaIng", iiFechaIng))
-        _listParam.Add(New Datos.DParametro("@iiTurno", iiTurno))
-        _listParam.Add(New Datos.DParametro("@iiHoraTurn", iiHoraTurn))
-        _listParam.Add(New Datos.DParametro("@iiObser", iiObser))
-        _listParam.Add(New Datos.DParametro("@iiEst", 1))
-        _listParam.Add(New Datos.DParametro("@iiMedPror", iiMedPro))
-        _listParam.Add(New Datos.DParametro("@iiFrec", iiFrec))
-        _listParam.Add(New Datos.DParametro("@iiOtros", iiOtros))
-        _listParam.Add(New Datos.DParametro("@iiAlim", iiAlim))
-        _listParam.Add(New Datos.DParametro("@iiPasoTur", iiPasoTur))
+        _listParam.Add(New Datos.DParametro("@ihEst", 1))
+        _listParam.Add(New Datos.DParametro("@ihUsuario", L_Usuario))
+        'Detalles
+        _listParam.Add(New Datos.DParametro("@INT00252", "", _INT00252))
         _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
+
         If _Tabla.Rows.Count > 0 Then
             ihId = _Tabla.Rows(0).Item(0)
             _resultado = True
@@ -1324,6 +1301,14 @@ Public Class AccesoLogica
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
         _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@ihId", idInternacion))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarSignosVitales(idInternacion As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
         _listParam.Add(New Datos.DParametro("@ihId", idInternacion))
         _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
         Return _Tabla
