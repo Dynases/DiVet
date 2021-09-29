@@ -8,7 +8,14 @@ Public Class F1_Fic_SegInternacion2
     Private _Limpiar As Boolean
     Dim Modificado As Boolean = False
     Dim NuevoSeg As Boolean = False
+    Dim ModificarEncabezado As Integer = 1
     Dim ModificarEF As Boolean = False
+    Dim ModificarSV As Boolean = False
+    Dim ModificarM As Boolean = False
+    Dim ModificarA As Boolean = False
+    Dim ModificarF As Boolean = False
+    Dim ModificarEC As Boolean = False
+    Dim ModificarT As Boolean = False
 
 #End Region
 #Region "Eventos"
@@ -19,7 +26,7 @@ Public Class F1_Fic_SegInternacion2
     Private Sub txtIdFicClinica_KeyDown(sender As Object, e As KeyEventArgs) Handles txtIdFicClinica.KeyDown
         If e.KeyData = Keys.Control + Keys.Enter Then
             Dim dt As DataTable
-            dt = L_fnMostrarInternacion()
+            dt = L_fnMostrarFichaClinicaConInternacion()
             Dim listEstCeldas As New List(Of Modelo.Celda)
             listEstCeldas.Add(New Modelo.Celda("igId,", False, "ID", 50))
             listEstCeldas.Add(New Modelo.Celda("ig_fbId", True, "Id Ficha", 90))
@@ -29,7 +36,7 @@ Public Class F1_Fic_SegInternacion2
             listEstCeldas.Add(New Modelo.Celda("pbnomb", True, "Paciente", 150))
             listEstCeldas.Add(New Modelo.Celda("Especie", True, "Especie", 120))
             listEstCeldas.Add(New Modelo.Celda("pbsex", True, "Sexo", 120))
-            listEstCeldas.Add(New Modelo.Celda("igFechaIng", True, "Fecha Int.", 90))
+            listEstCeldas.Add(New Modelo.Celda("igFechaIng", True, "Fecha Int.", 90, ("dd/MM/yyyy")))
             listEstCeldas.Add(New Modelo.Celda("igEdad", True, "Edad", 100))
             listEstCeldas.Add(New Modelo.Celda("igTelf", False, "Telefono", 130))
             listEstCeldas.Add(New Modelo.Celda("igMotInter", False, "igMotInter", 180))
@@ -64,7 +71,7 @@ Public Class F1_Fic_SegInternacion2
         e.Cancel = True
     End Sub
 
-    Private Sub JGSeguimiento_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGSeguimiento.EditingCell
+    Private Sub JGSeguimiento_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGMonitoreo.EditingCell
         e.Cancel = True
     End Sub
 
@@ -120,18 +127,13 @@ Public Class F1_Fic_SegInternacion2
         End If
     End Sub
 
-    Private Sub JGSeguimiento_SelectionChanged(sender As Object, e As EventArgs)
-        If JGSeguimiento.Row >= 0 And JGSeguimiento.RowCount > 0 Then
-            _MPos2 = JGSeguimiento.Row 'Count - 1
-            _prMostrarInternacionSegDet(_MPos2)
-        End If
-    End Sub
+
     Private Sub btnSeguimiento_Click(sender As Object, e As EventArgs) Handles btnSeguimiento.Click
         _prHabilitar()
         _prHabilitarMenu(1)
         _LimpiarDet()
         NuevoSeg = True
-        JGSeguimiento.Enabled = False
+        JGMonitoreo.Enabled = False
         _MNuevo = False 'Manda a Formulario 1, Modificar
 
         'Deshabilito el Id Ficha Clinica
@@ -186,7 +188,13 @@ Public Class F1_Fic_SegInternacion2
 
                 'Mostrar Detalles
                 _prDetalleExamenFisico(.GetValue("ihId"))
-                '_prCargarInternacionSegDet(.GetValue("ihId"))
+                _prDetalleSignosVitales(.GetValue("ihId"))
+                _prDetalleMonitoreo(.GetValue("ihId"))
+                _prDetalleAlimentacion(.GetValue("ihId"))
+                _prDetalleFluidoTerapia(.GetValue("ihId"))
+                _prDetalleEstudiosC(.GetValue("ihId"))
+                _prDetalleTratamiento(.GetValue("ihId"))
+
 
                 'Muestra la cantidad DE FILAS en la Grilla
                 LblPaginacion.Text = Str(JGBusqSeguimiento.Row + 1) + "/" + JGBusqSeguimiento.RowCount.ToString
@@ -258,19 +266,100 @@ Public Class F1_Fic_SegInternacion2
             chbComa.Checked = True
         End If
     End Sub
-    Private Sub _prMostrarInternacionSegDet(_POS As Integer)
-        If JGSeguimiento.RowCount <> 0 Then
-            JGSeguimiento.Row = _POS
-            With JGSeguimiento
-                ''iiId, ii_ihId, iiHoraTurn, iiObser, iiFrec, iiMedPro, iiAlim
-                'txtObsRequerimientos.Text = .GetValue("iiObser")
-                'txtFrecuencias.Text = .GetValue("iiFrec")
-                'txtOtros.Text = .GetValue("iiOtros")
-                'txtMedProtocolo.Text = .GetValue("iiMedPro")
-                'txtAlimentacion.Text = .GetValue("iiAlim")
-                'txtPasoTurno.Text = .GetValue("iiPasoTur")
-                cbTurno.Value = .GetValue("iiTurno")
-                'Falta Mostrar el iiFechaReg
+    Private Sub _prMostrarSignosVitales(_POS As Integer)
+        If JGSignosVitales.RowCount <> 0 Then
+            JGSignosVitales.Row = _POS
+            With JGSignosVitales
+                txtVomitos.Text = .GetValue("ijVomitos")
+                txtDiarreas.Text = .GetValue("ijDiarreas")
+                txtConvulsiones.Text = .GetValue("ijConvulsiones")
+                txtInfartos.Text = .GetValue("ijInfartos")
+                txtMiccion.Text = .GetValue("ijMiccion")
+                txtDefecacion.Text = .GetValue("ijDefecacion")
+                txtOtrosSV.Text = .GetValue("ijOtros")
+
+                dtpFechaSV.Value = .GetValue("ijFechaSV")
+                txtHoraSV.Text = .GetValue("ijHoraSV")
+
+            End With
+        End If
+    End Sub
+    Private Sub _prMostrarMonitoreo(_POS As Integer)
+        If JGMonitoreo.RowCount <> 0 Then
+            JGMonitoreo.Row = _POS
+            With JGMonitoreo
+                txtT.Text = .GetValue("ikT")
+                txtFC.Text = .GetValue("ikFC")
+                txtFR.Text = .GetValue("ikFR")
+                txtPeso.Text = .GetValue("ikPeso")
+                txtSPO2.Text = .GetValue("ikSPO2")
+                txtPSys.Text = .GetValue("ikPSys")
+                txtPDys.Text = .GetValue("ikPDys")
+                txtMED.Text = .GetValue("ikMED")
+                txtTRC.Text = .GetValue("ikTRC")
+
+                dtpFechaM.Value = .GetValue("ikFechaM")
+                txtHoraM.Text = .GetValue("ikHoraM")
+
+            End With
+        End If
+    End Sub
+    Private Sub _prMostrarAlimentacion(_POS As Integer)
+        If JGAlimentacion.RowCount <> 0 Then
+            JGAlimentacion.Row = _POS
+            With JGAlimentacion
+                txtRequerimiento.Text = .GetValue("ilReq")
+                txtPVM.Text = .GetValue("ilPVM")
+                txtRecovery.Text = .GetValue("ilRecovery")
+                txtPolloLic.Text = .GetValue("ilPolloLic")
+                txtPolloDesm.Text = .GetValue("ilPolloDesm")
+                txtNPO.Text = .GetValue("ilNPO")
+                txtAgua.Text = .GetValue("ilAgua")
+                txtObs.Text = .GetValue("ilObs")
+
+                dtpFechaA.Value = .GetValue("ilFechaA")
+                txtHoraA.Text = .GetValue("ilHoraA")
+
+            End With
+        End If
+    End Sub
+
+    Private Sub _prMostrarFluidoterapia(_POS As Integer)
+        If JGFluidoterapia.RowCount <> 0 Then
+            JGFluidoterapia.Row = _POS
+            With JGFluidoterapia
+                cbTurnoF.Value = .GetValue("imTurnoF")
+                txtFluidos.Text = .GetValue("imFluidos")
+                txtHoraInicio.Text = .GetValue("imHoraI")
+                txtHoraTermino.Text = .GetValue("imHoraT")
+                txtCantidad.Text = .GetValue("imCantidad")
+
+                dtpFechaF.Value = .GetValue("imFechaF")
+                txtHoraF.Text = .GetValue("imHoraF")
+
+            End With
+        End If
+    End Sub
+
+    Private Sub _prMostrarEstudiosC(_POS As Integer)
+        If JGEstudiosC.RowCount <> 0 Then
+            JGEstudiosC.Row = _POS
+            With JGEstudiosC
+                txtEstudiosComplem.Text = .GetValue("inEstudiosC")
+                dtpFechaEC.Value = .GetValue("inFechaEC")
+                txtHoraEC.Text = .GetValue("inHoraEC")
+
+            End With
+        End If
+    End Sub
+    Private Sub _prMostrarTratamiento(_POS As Integer)
+        If JGTratamiento.RowCount <> 0 Then
+            JGTratamiento.Row = _POS
+            With JGTratamiento
+                txtTratamiento.Text = .GetValue("ioTratamiento")
+                dtpFechaT.Value = .GetValue("ioFechaT")
+                txtHoraT.Text = .GetValue("ioHoraT")
+
             End With
         End If
     End Sub
@@ -287,8 +376,8 @@ Public Class F1_Fic_SegInternacion2
             .Visible = True
         End With
         With JGBusqSeguimiento.RootTable.Columns("ih_fbId")
-            .Width = 150
-            .Caption = "IdFicha"
+            .Width = 140
+            .Caption = "IdFichaClínica"
             .Visible = True
         End With
         With JGBusqSeguimiento.RootTable.Columns("ih_pbId")
@@ -296,8 +385,11 @@ Public Class F1_Fic_SegInternacion2
             .Caption = "IdPaciente"
             .Visible = False
         End With
+        With JGBusqSeguimiento.RootTable.Columns("caid")
+            .Visible = False
+        End With
         With JGBusqSeguimiento.RootTable.Columns("cliente")
-            .Width = 170
+            .Width = 250
             .Caption = "Cliente"
             .Visible = True
         End With
@@ -311,7 +403,7 @@ Public Class F1_Fic_SegInternacion2
             .Visible = False
         End With
         With JGBusqSeguimiento.RootTable.Columns("pbnomb")
-            .Width = 160
+            .Width = 150
             .Caption = "Paciente"
             .Visible = True
         End With
@@ -319,10 +411,14 @@ Public Class F1_Fic_SegInternacion2
             .Visible = False
         End With
         With JGBusqSeguimiento.RootTable.Columns("pbsex")
-            .Visible = False
+            .Width = 120
+            .Caption = "Sexo"
+            .Visible = True
         End With
         With JGBusqSeguimiento.RootTable.Columns("Especie")
-            .Visible = False
+            .Width = 130
+            .Visible = True
+            .Caption = "Especie"
         End With
         With JGBusqSeguimiento.RootTable.Columns("igMotInter")
             .Visible = False
@@ -348,7 +444,7 @@ Public Class F1_Fic_SegInternacion2
             .Visible = False
         End With
         With JGBusqSeguimiento.RootTable.Columns("ihUsuario")
-            .Width = 100
+            .Width = 130
             .Caption = "Usuario"
             .Visible = True
         End With
@@ -363,7 +459,7 @@ Public Class F1_Fic_SegInternacion2
         End With
     End Sub
     Private Sub _prDetalleExamenFisico(idInternacion As String)
-        Dim _tabla As DataTable = L_fnMostrarInternacionSegDet(idInternacion)
+        Dim _tabla As DataTable = L_fnMostrarExamenFisico(idInternacion)
         JGExamenFisico.DataSource = _tabla
         JGExamenFisico.RetrieveStructure()
         JGExamenFisico.AlternatingColors = True
@@ -438,8 +534,6 @@ Public Class F1_Fic_SegInternacion2
             .Visible = True
         End With
         With JGExamenFisico.RootTable.Columns("estado")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
             .Visible = False
         End With
         With JGExamenFisico.RootTable.Columns("img")
@@ -461,92 +555,95 @@ Public Class F1_Fic_SegInternacion2
 
     Private Sub _prDetalleSignosVitales(idInternacion As String)
         Dim _tabla As DataTable = L_fnMostrarSignosVitales(idInternacion)
-        JGExamenFisico.DataSource = _tabla
-        JGExamenFisico.RetrieveStructure()
-        JGExamenFisico.AlternatingColors = True
+        JGSignosVitales.DataSource = _tabla
+        JGSignosVitales.RetrieveStructure()
+        JGSignosVitales.AlternatingColors = True
 
-        With JGExamenFisico.RootTable.Columns("iiId")
+        With JGSignosVitales.RootTable.Columns("ijId")
             .Width = 100
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .Caption = "Id"
             .Visible = False
         End With
-        With JGExamenFisico.RootTable.Columns("ii_ihId")
+        With JGSignosVitales.RootTable.Columns("ij_ihId")
             .Width = 150
             .Caption = "IdInteracion"
             .Visible = False
         End With
-        With JGExamenFisico.RootTable.Columns("iiEst")
+        With JGSignosVitales.RootTable.Columns("ijEst")
             .Visible = False
         End With
-        With JGExamenFisico.RootTable.Columns("iiFechaEF")
+        With JGSignosVitales.RootTable.Columns("ijFechaSV")
             .Width = 100
             .Caption = "Fecha"
             .Visible = True
         End With
-        With JGExamenFisico.RootTable.Columns("iiHoraEF")
+        With JGSignosVitales.RootTable.Columns("ijHoraSV")
             .Width = 100
             .Caption = "Hora"
             .Visible = True
         End With
-        With JGExamenFisico.RootTable.Columns("iiTurnoEF")
+        With JGSignosVitales.RootTable.Columns("ijVomitos")
             .Width = 100
-            .Caption = "IdTurno"
-            .Visible = False
-        End With
-        With JGExamenFisico.RootTable.Columns("haTurno")
-            .Width = 100
-            .Caption = "Turno"
+            .Caption = "Vómitos"
             .Visible = True
         End With
-        With JGExamenFisico.RootTable.Columns("iiMucosas")
+        With JGSignosVitales.RootTable.Columns("ijDiarreas")
             .Width = 100
-            .Caption = "Mucosas"
+            .Caption = "Diarreas"
             .Visible = True
         End With
-        With JGExamenFisico.RootTable.Columns("iiDeshidratacion")
+        With JGSignosVitales.RootTable.Columns("ijConvulsiones")
             .Width = 100
-            .Caption = "Deshidratación"
+            .Caption = "Convulsiones"
             .Visible = True
         End With
-        With JGExamenFisico.RootTable.Columns("iiDolor")
+        With JGSignosVitales.RootTable.Columns("ijInfartos")
             .Width = 100
-            .Caption = "Dolor"
+            .Caption = "Infartos"
             .Visible = True
         End With
-        With JGExamenFisico.RootTable.Columns("iiGradoConciencia")
+        With JGSignosVitales.RootTable.Columns("ijMiccion")
+            .Width = 100
+            .Caption = "Micción"
+            .Visible = True
+        End With
+        With JGSignosVitales.RootTable.Columns("ijDefecacion")
+            .Width = 100
+            .Caption = "Defecación"
+            .Visible = True
+        End With
+        With JGSignosVitales.RootTable.Columns("ijOtros")
             .Width = 150
-            .Caption = "Grado de Conciencia"
+            .Caption = "Otros"
             .Visible = True
         End With
-        With JGExamenFisico.RootTable.Columns("iiFecha")
+        With JGSignosVitales.RootTable.Columns("ijFecha")
             .Width = 100
             .Caption = "Fecha"
             .Visible = False
         End With
-        With JGExamenFisico.RootTable.Columns("iiHora")
+        With JGSignosVitales.RootTable.Columns("ijHora")
             .Width = 100
             .Caption = "Hora"
             .Visible = False
         End With
-        With JGExamenFisico.RootTable.Columns("iiusuario")
+        With JGSignosVitales.RootTable.Columns("ijUsuario")
             .Width = 150
             .Caption = "Usuario"
             .Visible = True
         End With
-        With JGExamenFisico.RootTable.Columns("estado")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        With JGSignosVitales.RootTable.Columns("estado")
             .Visible = False
         End With
-        With JGExamenFisico.RootTable.Columns("img")
+        With JGSignosVitales.RootTable.Columns("img")
             .Width = 80
             .Caption = "Eliminar".ToUpper
             .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
             .Visible = False
         End With
 
-        With JGExamenFisico
+        With JGSignosVitales
             '.DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
             '.FilterMode = FilterMode.Automatic
             '.FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
@@ -555,75 +652,451 @@ Public Class F1_Fic_SegInternacion2
             .VisualStyle = VisualStyle.Office2007
         End With
     End Sub
-    Private Sub _prCargarInternacionSegDet(idInternacion As String)
-        Dim _tabla As DataTable = L_fnMostrarInternacionSegDet(idInternacion)
-        JGSeguimiento.DataSource = _tabla
-        JGSeguimiento.RetrieveStructure()
-        JGSeguimiento.AlternatingColors = True
-        'iiId, ii_ihId, iiHoraTurn, iiObser, iiFrec, iiMedPro, iiAlim
-        With JGSeguimiento.RootTable.Columns("iiId")
+
+    Private Sub _prDetalleMonitoreo(idInternacion As String)
+        Dim _tabla As DataTable = L_fnMostrarMonitoreo(idInternacion)
+        JGMonitoreo.DataSource = _tabla
+        JGMonitoreo.RetrieveStructure()
+        JGMonitoreo.AlternatingColors = True
+
+        With JGMonitoreo.RootTable.Columns("ikId")
             .Width = 100
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .Caption = "Id"
             .Visible = False
         End With
-        With JGSeguimiento.RootTable.Columns("ii_ihId")
+        With JGMonitoreo.RootTable.Columns("ik_ihId")
             .Width = 150
             .Caption = "IdInteracion"
             .Visible = False
         End With
-        With JGSeguimiento.RootTable.Columns("iiTurnoEF")
-            .Width = 100
-            .Caption = "Turno"
+        With JGMonitoreo.RootTable.Columns("ikEst")
+            .Caption = "Estado"
             .Visible = False
         End With
-        With JGSeguimiento.RootTable.Columns("iiFechaIng")
+        With JGMonitoreo.RootTable.Columns("ikFechaM")
             .Width = 100
             .Caption = "Fecha"
             .Visible = True
         End With
-        With JGSeguimiento.RootTable.Columns("lbdesc")
-            .Width = 100
-            .Caption = "Turno"
-            .Visible = True
-        End With
-        With JGSeguimiento.RootTable.Columns("iiHoraTurn")
+        With JGMonitoreo.RootTable.Columns("ikHoraM")
             .Width = 100
             .Caption = "Hora"
             .Visible = True
         End With
-        With JGSeguimiento.RootTable.Columns("iiObser")
-            .Width = 200
-            .Caption = "Observación"
+        With JGMonitoreo.RootTable.Columns("ikT")
+            .Width = 100
+            .Caption = "T"
             .Visible = True
         End With
-        With JGSeguimiento.RootTable.Columns("iiFrec")
-            .Width = 200
-            .Caption = "Frecuencia"
+        With JGMonitoreo.RootTable.Columns("ikFC")
+            .Width = 100
+            .Caption = "FC"
             .Visible = True
         End With
-        With JGSeguimiento.RootTable.Columns("iiMedPro")
-            .Width = 200
-            .Caption = "Medicación"
+        With JGMonitoreo.RootTable.Columns("ikFR")
+            .Width = 100
+            .Caption = "FR"
             .Visible = True
         End With
-        With JGSeguimiento.RootTable.Columns("iiAlim")
-            .Width = 200
-            .Caption = "Alimentación"
+        With JGMonitoreo.RootTable.Columns("ikPeso")
+            .Width = 100
+            .Caption = "Peso"
             .Visible = True
         End With
-        With JGSeguimiento.RootTable.Columns("iiPasoTur")
-            .Width = 180
-            .Caption = "Paso de Turno"
+        With JGMonitoreo.RootTable.Columns("ikSPO2")
+            .Width = 100
+            .Caption = "SPO2"
             .Visible = True
         End With
-        With JGSeguimiento.RootTable.Columns("iiOtros")
-            .Width = 200
-            .Caption = "Otros"
+        With JGMonitoreo.RootTable.Columns("ikPSys")
+            .Width = 100
+            .Caption = "PSys"
+            .Visible = True
+        End With
+        With JGMonitoreo.RootTable.Columns("ikPDys")
+            .Width = 100
+            .Caption = "PDys"
+            .Visible = True
+        End With
+        With JGMonitoreo.RootTable.Columns("ikMED")
+            .Width = 100
+            .Caption = "MED"
+            .Visible = True
+        End With
+        With JGMonitoreo.RootTable.Columns("ikTRC")
+            .Width = 100
+            .Caption = "TRC"
+            .Visible = True
+        End With
+        With JGMonitoreo.RootTable.Columns("ikFecha")
+            .Width = 100
+            .Caption = "Fecha"
+            .Visible = False
+        End With
+        With JGMonitoreo.RootTable.Columns("ikHora")
+            .Width = 100
+            .Caption = "Hora"
+            .Visible = False
+        End With
+        With JGMonitoreo.RootTable.Columns("ikUsuario")
+            .Width = 150
+            .Caption = "Usuario"
+            .Visible = True
+        End With
+        With JGMonitoreo.RootTable.Columns("estado")
+            .Visible = False
+        End With
+        With JGMonitoreo.RootTable.Columns("img")
+            .Width = 80
+            .Caption = "Eliminar".ToUpper
+            .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
+            .Visible = False
+        End With
+
+        With JGMonitoreo
+            '.DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
+            '.FilterMode = FilterMode.Automatic
+            '.FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+            .GroupByBoxVisible = False
+            'diseño de la grilla
+            .VisualStyle = VisualStyle.Office2007
+        End With
+    End Sub
+
+    Private Sub _prDetalleAlimentacion(idInternacion As String)
+        Dim _tabla As DataTable = L_fnMostrarAlimentacion(idInternacion)
+        JGAlimentacion.DataSource = _tabla
+        JGAlimentacion.RetrieveStructure()
+        JGAlimentacion.AlternatingColors = True
+
+        With JGAlimentacion.RootTable.Columns("ilId")
+            .Width = 100
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Caption = "Id"
+            .Visible = False
+        End With
+        With JGAlimentacion.RootTable.Columns("il_ihId")
+            .Width = 150
+            .Caption = "IdInteracion"
+            .Visible = False
+        End With
+        With JGAlimentacion.RootTable.Columns("ilEst")
+            .Visible = False
+        End With
+        With JGAlimentacion.RootTable.Columns("ilFechaA")
+            .Width = 100
+            .Caption = "Fecha"
+            .Visible = True
+        End With
+        With JGAlimentacion.RootTable.Columns("ilHoraA")
+            .Width = 100
+            .Caption = "Hora"
+            .Visible = True
+        End With
+        With JGAlimentacion.RootTable.Columns("ilReq")
+            .Width = 100
+            .Caption = "Requerimiento"
+            .Visible = True
+        End With
+        With JGAlimentacion.RootTable.Columns("ilPVM")
+            .Width = 100
+            .Caption = "PVM"
+            .Visible = True
+        End With
+        With JGAlimentacion.RootTable.Columns("ilRecovery")
+            .Width = 100
+            .Caption = "Recovery"
+            .Visible = True
+        End With
+        With JGAlimentacion.RootTable.Columns("ilPolloLic")
+            .Width = 100
+            .Caption = "PolloLicuado"
+            .Visible = True
+        End With
+        With JGAlimentacion.RootTable.Columns("ilPolloDesm")
+            .Width = 100
+            .Caption = "PolloDesmenuzado"
+            .Visible = True
+        End With
+        With JGAlimentacion.RootTable.Columns("ilNPO")
+            .Width = 100
+            .Caption = "NPO"
+            .Visible = True
+        End With
+        With JGAlimentacion.RootTable.Columns("ilAgua")
+            .Width = 100
+            .Caption = "Agua"
+            .Visible = True
+        End With
+        With JGAlimentacion.RootTable.Columns("ilObs")
+            .Width = 150
+            .Caption = "Observaciones"
+            .Visible = True
+        End With
+        With JGAlimentacion.RootTable.Columns("ilFecha")
+            .Width = 100
+            .Caption = "Fecha"
+            .Visible = False
+        End With
+        With JGAlimentacion.RootTable.Columns("ilHora")
+            .Width = 100
+            .Caption = "Hora"
+            .Visible = False
+        End With
+        With JGAlimentacion.RootTable.Columns("ilUsuario")
+            .Width = 150
+            .Caption = "Usuario"
+            .Visible = True
+        End With
+        With JGAlimentacion.RootTable.Columns("estado")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
+        With JGAlimentacion.RootTable.Columns("img")
+            .Width = 80
+            .Caption = "Eliminar".ToUpper
+            .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
+            .Visible = False
+        End With
+
+        With JGAlimentacion
+            '.DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
+            '.FilterMode = FilterMode.Automatic
+            '.FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+            .GroupByBoxVisible = False
+            'diseño de la grilla
+            .VisualStyle = VisualStyle.Office2007
+        End With
+    End Sub
+    Private Sub _prDetalleFluidoTerapia(idInternacion As String)
+        Dim _tabla As DataTable = L_fnMostrarFluidoterapia(idInternacion)
+        JGFluidoterapia.DataSource = _tabla
+        JGFluidoterapia.RetrieveStructure()
+        JGFluidoterapia.AlternatingColors = True
+
+        With JGFluidoterapia.RootTable.Columns("imId")
+            .Width = 100
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Caption = "Id"
+            .Visible = False
+        End With
+        With JGFluidoterapia.RootTable.Columns("im_ihId")
+            .Width = 150
+            .Caption = "IdInteracion"
+            .Visible = False
+        End With
+        With JGFluidoterapia.RootTable.Columns("imEst")
+            .Visible = False
+        End With
+        With JGFluidoterapia.RootTable.Columns("imFechaF")
+            .Width = 100
+            .Caption = "Fecha"
+            .Visible = True
+        End With
+        With JGFluidoterapia.RootTable.Columns("imHoraF")
+            .Width = 100
+            .Caption = "Hora"
+            .Visible = True
+        End With
+        With JGFluidoterapia.RootTable.Columns("imTurnoF")
+            .Width = 100
+            .Caption = "IdTurno"
+            .Visible = False
+        End With
+        With JGFluidoterapia.RootTable.Columns("haTurno")
+            .Width = 100
+            .Caption = "Turno"
+            .Visible = True
+        End With
+        With JGFluidoterapia.RootTable.Columns("imFluidos")
+            .Width = 100
+            .Caption = "Fluidos"
+            .Visible = True
+        End With
+        With JGFluidoterapia.RootTable.Columns("imHoraI")
+            .Width = 100
+            .Caption = "HoraInicio"
             .Visible = True
         End With
 
-        With JGSeguimiento
+        With JGFluidoterapia.RootTable.Columns("imHoraT")
+            .Width = 100
+            .Caption = "HoraTermino"
+            .Visible = True
+        End With
+        With JGFluidoterapia.RootTable.Columns("imCantidad")
+            .Width = 100
+            .Caption = "Cantidad"
+            .Visible = True
+        End With
+        With JGFluidoterapia.RootTable.Columns("imFecha")
+            .Width = 100
+            .Caption = "Fecha"
+            .Visible = False
+        End With
+        With JGFluidoterapia.RootTable.Columns("imHora")
+            .Width = 100
+            .Caption = "Hora"
+            .Visible = False
+        End With
+        With JGFluidoterapia.RootTable.Columns("imUsuario")
+            .Width = 150
+            .Caption = "Usuario"
+            .Visible = True
+        End With
+        With JGFluidoterapia.RootTable.Columns("estado")
+            .Visible = False
+        End With
+        With JGFluidoterapia.RootTable.Columns("img")
+            .Width = 80
+            .Caption = "Eliminar".ToUpper
+            .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
+            .Visible = False
+        End With
+
+        With JGFluidoterapia
+            '.DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
+            '.FilterMode = FilterMode.Automatic
+            '.FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+            .GroupByBoxVisible = False
+            'diseño de la grilla
+            .VisualStyle = VisualStyle.Office2007
+        End With
+    End Sub
+
+    Private Sub _prDetalleEstudiosC(idInternacion As String)
+        Dim _tabla As DataTable = L_fnMostrarEstudiosC(idInternacion)
+        JGEstudiosC.DataSource = _tabla
+        JGEstudiosC.RetrieveStructure()
+        JGEstudiosC.AlternatingColors = True
+
+        With JGEstudiosC.RootTable.Columns("inId")
+            .Width = 100
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Caption = "Id"
+            .Visible = False
+        End With
+        With JGEstudiosC.RootTable.Columns("in_ihId")
+            .Width = 150
+            .Caption = "IdInteracion"
+            .Visible = False
+        End With
+        With JGEstudiosC.RootTable.Columns("inEst")
+            .Visible = False
+        End With
+        With JGEstudiosC.RootTable.Columns("inFechaEC")
+            .Width = 100
+            .Caption = "Fecha"
+            .Visible = True
+        End With
+        With JGEstudiosC.RootTable.Columns("inHoraEC")
+            .Width = 100
+            .Caption = "Hora"
+            .Visible = True
+        End With
+        With JGEstudiosC.RootTable.Columns("inEstudiosC")
+            .Width = 250
+            .Caption = "EstudiosComplementarios"
+            .Visible = True
+        End With
+        With JGEstudiosC.RootTable.Columns("inFecha")
+            .Width = 100
+            .Caption = "Fecha"
+            .Visible = False
+        End With
+        With JGEstudiosC.RootTable.Columns("inHora")
+            .Width = 100
+            .Caption = "Hora"
+            .Visible = False
+        End With
+        With JGEstudiosC.RootTable.Columns("inUsuario")
+            .Width = 150
+            .Caption = "Usuario"
+            .Visible = True
+        End With
+        With JGEstudiosC.RootTable.Columns("estado")
+            .Visible = False
+        End With
+        With JGEstudiosC.RootTable.Columns("img")
+            .Width = 80
+            .Caption = "Eliminar".ToUpper
+            .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
+            .Visible = False
+        End With
+
+        With JGEstudiosC
+            '.DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
+            '.FilterMode = FilterMode.Automatic
+            '.FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+            .GroupByBoxVisible = False
+            'diseño de la grilla
+            .VisualStyle = VisualStyle.Office2007
+        End With
+    End Sub
+
+    Private Sub _prDetalleTratamiento(idInternacion As String)
+        Dim _tabla As DataTable = L_fnMostrarTratamiento(idInternacion)
+        JGTratamiento.DataSource = _tabla
+        JGTratamiento.RetrieveStructure()
+        JGTratamiento.AlternatingColors = True
+
+        With JGTratamiento.RootTable.Columns("ioId")
+            .Width = 100
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Caption = "Id"
+            .Visible = False
+        End With
+        With JGTratamiento.RootTable.Columns("io_ihId")
+            .Width = 150
+            .Caption = "IdInteracion"
+            .Visible = False
+        End With
+        With JGTratamiento.RootTable.Columns("ioEst")
+            .Visible = False
+        End With
+        With JGTratamiento.RootTable.Columns("ioFechaT")
+            .Width = 100
+            .Caption = "Fecha"
+            .Visible = True
+        End With
+        With JGTratamiento.RootTable.Columns("ioHoraT")
+            .Width = 100
+            .Caption = "Hora"
+            .Visible = True
+        End With
+        With JGTratamiento.RootTable.Columns("ioTratamiento")
+            .Width = 350
+            .Caption = "Tratamiento"
+            .Visible = True
+        End With
+        With JGTratamiento.RootTable.Columns("ioFecha")
+            .Width = 100
+            .Caption = "Fecha"
+            .Visible = False
+        End With
+        With JGTratamiento.RootTable.Columns("ioHora")
+            .Width = 100
+            .Caption = "Hora"
+            .Visible = False
+        End With
+        With JGTratamiento.RootTable.Columns("ioUsuario")
+            .Width = 150
+            .Caption = "Usuario"
+            .Visible = True
+        End With
+        With JGTratamiento.RootTable.Columns("estado")
+            .Visible = False
+        End With
+        With JGTratamiento.RootTable.Columns("img")
+            .Width = 80
+            .Caption = "Eliminar".ToUpper
+            .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
+            .Visible = False
+        End With
+
+        With JGTratamiento
             '.DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
             '.FilterMode = FilterMode.Automatic
             '.FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
@@ -633,7 +1106,7 @@ Public Class F1_Fic_SegInternacion2
         End With
     End Sub
     Private Sub _prInhabilitar()
-        JGSeguimiento.Enabled = True
+        JGMonitoreo.Enabled = True
         txtIdFicClinica.ReadOnly = True
         txtIdFicClinica.Enabled = False
         'txtPacienteI.ReadOnly = True
@@ -671,13 +1144,14 @@ Public Class F1_Fic_SegInternacion2
         btnAgregarM.Enabled = False
 
         ''Detalle Alimentacion
-        txtRequerimiento.ReadOnly = True
+        txtRequerimiento.IsInputReadOnly = True
         txtPVM.ReadOnly = True
         txtRecovery.ReadOnly = True
         txtPolloLic.ReadOnly = True
         txtPolloDesm.ReadOnly = True
         txtNPO.ReadOnly = True
         txtAgua.ReadOnly = True
+        txtObs.ReadOnly = True
         btnAgregarA.Enabled = False
 
         ''Detalle Fluidoterapia
@@ -699,7 +1173,7 @@ Public Class F1_Fic_SegInternacion2
         _Limpiar = False
     End Sub
     Private Sub _prHabilitar()
-        JGSeguimiento.Enabled = True
+        JGMonitoreo.Enabled = True
         'txtPacienteI.ReadOnly = False
         txtIdFicClinica.ReadOnly = False
         txtIdFicClinica.Enabled = True
@@ -737,13 +1211,14 @@ Public Class F1_Fic_SegInternacion2
         btnAgregarM.Enabled = True
 
         ''Detalle Alimentacion
-        txtRequerimiento.ReadOnly = False
+        txtRequerimiento.IsInputReadOnly = False
         txtPVM.ReadOnly = False
         txtRecovery.ReadOnly = False
         txtPolloLic.ReadOnly = False
         txtPolloDesm.ReadOnly = False
         txtNPO.ReadOnly = False
         txtAgua.ReadOnly = False
+        txtObs.ReadOnly = False
         btnAgregarA.Enabled = True
 
         ''Detalle Fluidoterapia
@@ -799,13 +1274,14 @@ Public Class F1_Fic_SegInternacion2
         dtpFechaM.Value = Date.Now
 
         ''Limpio Alimentacion
-        txtRequerimiento.Clear()
+        txtRequerimiento.ResetText()
         txtPVM.Clear()
         txtRecovery.Clear()
         txtPolloLic.Clear()
         txtPolloDesm.Clear()
         txtNPO.Clear()
         txtAgua.Clear()
+        txtObs.Clear()
         txtHoraA.Clear()
         dtpFechaA.Value = Date.Now
 
@@ -815,7 +1291,7 @@ Public Class F1_Fic_SegInternacion2
         txtHoraInicio.Clear()
         txtHoraTermino.Clear()
         txtCantidad.Clear()
-        txtHoraA.Clear()
+        txtHoraF.Clear()
         dtpFechaF.Value = Date.Now
 
         ''Detalle Estudios Complementarios
@@ -828,12 +1304,14 @@ Public Class F1_Fic_SegInternacion2
         txtHoraT.Clear()
         dtpFechaT.Value = Date.Now
 
+
+
     End Sub
     Private Sub _prLimpiar()
-        JGSeguimiento.Enabled = True
+        JGMonitoreo.Enabled = True
         txtId.Clear()
         txtIdFicClinica.Clear()
-        txtIdFicClinica.Focus()
+        'txtIdFicClinica.Focus()
         txtPropietarioI.Clear()
         txtTelefonoI.Clear()
         txtPacienteI.Clear()
@@ -843,6 +1321,7 @@ Public Class F1_Fic_SegInternacion2
         dtpFechaSeg.Value = DateTime.Now
         txtMotivoI.Clear()
 
+
         If (_Limpiar = False) Then
             _prSeleccionarCombo(cbTurno)
         End If
@@ -850,8 +1329,23 @@ Public Class F1_Fic_SegInternacion2
         _LimpiarDet()
 
         _prDetalleExamenFisico(-1)
+        _prDetalleSignosVitales(-1)
+        _prDetalleMonitoreo(-1)
+        _prDetalleAlimentacion(-1)
+        _prDetalleFluidoTerapia(-1)
+        _prDetalleEstudiosC(-1)
+        _prDetalleTratamiento(-1)
 
+        ModificarEncabezado = 1
+        ModificarEF = False
+        ModificarSV = False
+        ModificarM = False
+        ModificarA = False
+        ModificarF = False
+        ModificarEC = False
+        ModificarT = False
 
+        txtIdFicClinica.Focus()
     End Sub
     Public Sub _prFiltrar(tipo As Integer)
         'cargo el buscador
@@ -925,13 +1419,67 @@ Public Class F1_Fic_SegInternacion2
 
         'End If
     End Sub
-    Public Sub _prCargarIconELiminar()
+    Public Sub _prCargarIconELiminarEF()
         For i As Integer = 0 To CType(JGExamenFisico.DataSource, DataTable).Rows.Count - 1 Step 1
             Dim Bin As New MemoryStream
             Dim img As New Bitmap(My.Resources.delete, 28, 28)
             img.Save(Bin, Imaging.ImageFormat.Png)
             CType(JGExamenFisico.DataSource, DataTable).Rows(i).Item("img") = Bin.GetBuffer
             JGExamenFisico.RootTable.Columns("img").Visible = True
+        Next
+    End Sub
+    Public Sub _prCargarIconELiminarSV()
+        For i As Integer = 0 To CType(JGSignosVitales.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim Bin As New MemoryStream
+            Dim img As New Bitmap(My.Resources.delete, 28, 28)
+            img.Save(Bin, Imaging.ImageFormat.Png)
+            CType(JGSignosVitales.DataSource, DataTable).Rows(i).Item("img") = Bin.GetBuffer
+            JGSignosVitales.RootTable.Columns("img").Visible = True
+        Next
+    End Sub
+    Public Sub _prCargarIconELiminarM()
+        For i As Integer = 0 To CType(JGMonitoreo.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim Bin As New MemoryStream
+            Dim img As New Bitmap(My.Resources.delete, 28, 28)
+            img.Save(Bin, Imaging.ImageFormat.Png)
+            CType(JGMonitoreo.DataSource, DataTable).Rows(i).Item("img") = Bin.GetBuffer
+            JGMonitoreo.RootTable.Columns("img").Visible = True
+        Next
+    End Sub
+    Public Sub _prCargarIconELiminarA()
+        For i As Integer = 0 To CType(JGAlimentacion.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim Bin As New MemoryStream
+            Dim img As New Bitmap(My.Resources.delete, 28, 28)
+            img.Save(Bin, Imaging.ImageFormat.Png)
+            CType(JGAlimentacion.DataSource, DataTable).Rows(i).Item("img") = Bin.GetBuffer
+            JGAlimentacion.RootTable.Columns("img").Visible = True
+        Next
+    End Sub
+    Public Sub _prCargarIconELiminarF()
+        For i As Integer = 0 To CType(JGFluidoterapia.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim Bin As New MemoryStream
+            Dim img As New Bitmap(My.Resources.delete, 28, 28)
+            img.Save(Bin, Imaging.ImageFormat.Png)
+            CType(JGFluidoterapia.DataSource, DataTable).Rows(i).Item("img") = Bin.GetBuffer
+            JGFluidoterapia.RootTable.Columns("img").Visible = True
+        Next
+    End Sub
+    Public Sub _prCargarIconELiminarEC()
+        For i As Integer = 0 To CType(JGEstudiosC.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim Bin As New MemoryStream
+            Dim img As New Bitmap(My.Resources.delete, 28, 28)
+            img.Save(Bin, Imaging.ImageFormat.Png)
+            CType(JGEstudiosC.DataSource, DataTable).Rows(i).Item("img") = Bin.GetBuffer
+            JGEstudiosC.RootTable.Columns("img").Visible = True
+        Next
+    End Sub
+    Public Sub _prCargarIconELiminarT()
+        For i As Integer = 0 To CType(JGTratamiento.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim Bin As New MemoryStream
+            Dim img As New Bitmap(My.Resources.delete, 28, 28)
+            img.Save(Bin, Imaging.ImageFormat.Png)
+            CType(JGTratamiento.DataSource, DataTable).Rows(i).Item("img") = Bin.GetBuffer
+            JGTratamiento.RootTable.Columns("img").Visible = True
         Next
     End Sub
     Private Sub _prAddDetalleExamenFisico()
@@ -949,11 +1497,10 @@ Public Class F1_Fic_SegInternacion2
         _prObtenerGradoConciencia(GradoConciencia)
         Dim Hora = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
 
-        '_prDetalleExamenFisico(-1)
         If ModificarEF = False Then
-            CType(JGExamenFisico.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 1, Date.Now, Hora, cbTurnoEF.Value, cbTurnoEF.Text, Mucosas, Deshidratacion, Dolor, GradoConciencia, Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
+            CType(JGExamenFisico.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, cbTurnoEF.Value, cbTurnoEF.Text, Mucosas, Deshidratacion, Dolor, GradoConciencia, Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
         Else
-            CType(JGExamenFisico.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 1, dtpFechaEF.Value, txtHoraEF.Text, cbTurnoEF.Value, cbTurnoEF.Text, Mucosas, Deshidratacion, Dolor, GradoConciencia, Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
+            CType(JGExamenFisico.DataSource, DataTable).Rows.Add(1, 0, 1, dtpFechaEF.Value, txtHoraEF.Text, cbTurnoEF.Value, cbTurnoEF.Text, Mucosas, Deshidratacion, Dolor, GradoConciencia, Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
         End If
     End Sub
     Private Sub _prObtenerMucosas(ByRef mucosas As String)
@@ -994,7 +1541,7 @@ Public Class F1_Fic_SegInternacion2
             gradoconc = chbComa.Text
         End If
     End Sub
-    Public Function _fnSiguienteNumi()
+    Public Function _fnSiguienteNumiEF()
         Dim dt As DataTable = CType(JGExamenFisico.DataSource, DataTable)
         Dim rows() As DataRow = dt.Select("iiId=MAX(iiId)")
         If (rows.Count > 0) Then
@@ -1002,13 +1549,131 @@ Public Class F1_Fic_SegInternacion2
         End If
         Return 1
     End Function
+
+    Private Sub _prAddDetalleSignosVitales()
+        Dim Bin As New MemoryStream
+        Dim img As New Bitmap(My.Resources.delete, 28, 28)
+        img.Save(Bin, Imaging.ImageFormat.Png)
+
+        Dim Hora = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
+
+        If ModificarSV = False Then
+            CType(JGSignosVitales.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, txtVomitos.Text,
+                                                                  txtDiarreas.Text, txtConvulsiones.Text, txtInfartos.Text,
+                                                                  txtMiccion.Text, txtDefecacion.Text, txtOtrosSV.Text, Now.Date,
+                                                                  Hora, gs_user, 0, Bin.GetBuffer)
+        Else
+            CType(JGSignosVitales.DataSource, DataTable).Rows.Add(1, 0, 1, dtpFechaSV.Value, txtHoraSV.Text, txtVomitos.Text,
+                                                                  txtDiarreas.Text, txtConvulsiones.Text, txtInfartos.Text,
+                                                                  txtMiccion.Text, txtDefecacion.Text, txtOtrosSV.Text, Now.Date,
+                                                                  Hora, gs_user, 0, Bin.GetBuffer)
+        End If
+    End Sub
+    Public Function _fnSiguienteNumiSV()
+        Dim dt As DataTable = CType(JGSignosVitales.DataSource, DataTable)
+        Dim rows() As DataRow = dt.Select("ijId=MAX(ijId)")
+        If (rows.Count > 0) Then
+            Return rows(rows.Count - 1).Item("ijId")
+        End If
+        Return 1
+    End Function
+
+    Private Sub _prAddDetalleMonitoreo()
+        Dim Bin As New MemoryStream
+        Dim img As New Bitmap(My.Resources.delete, 28, 28)
+        img.Save(Bin, Imaging.ImageFormat.Png)
+
+        Dim Hora = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
+
+        If ModificarM = False Then
+            CType(JGMonitoreo.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, txtT.Text,
+                                                                  txtFC.Text, txtFR.Text, txtPeso.Text, txtSPO2.Text,
+                                                                  txtPSys.Text, txtPDys.Text, txtMED.Text, txtTRC.Text, Now.Date,
+                                                                  Hora, gs_user, 0, Bin.GetBuffer)
+        Else
+            CType(JGMonitoreo.DataSource, DataTable).Rows.Add(1, 0, 1, dtpFechaM.Value, txtHoraM.Text, txtT.Text,
+                                                                  txtFC.Text, txtFR.Text, txtPeso.Text, txtSPO2.Text,
+                                                                  txtPSys.Text, txtPDys.Text, txtMED.Text, txtTRC.Text, Now.Date,
+                                                                  Hora, gs_user, 0, Bin.GetBuffer)
+        End If
+    End Sub
+    Private Sub _prAddDetalleAlimentacion()
+        Dim Bin As New MemoryStream
+        Dim img As New Bitmap(My.Resources.delete, 28, 28)
+        img.Save(Bin, Imaging.ImageFormat.Png)
+
+        Dim Hora = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
+
+        If ModificarA = False Then
+            CType(JGAlimentacion.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, txtRequerimiento.Text,
+                                                                  txtPVM.Text, txtRecovery.Text, txtPolloLic.Text,
+                                                                  txtPolloDesm.Text, txtNPO.Text, txtAgua.Text, txtObs.Text,
+                                                                  Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
+        Else
+            CType(JGAlimentacion.DataSource, DataTable).Rows.Add(1, 0, 1, dtpFechaA.Value, txtHoraA.Text, txtRequerimiento.Text,
+                                                                  txtPVM.Text, txtRecovery.Text, txtPolloLic.Text,
+                                                                  txtPolloDesm.Text, txtNPO.Text, txtAgua.Text, txtObs.Text,
+                                                                  Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
+        End If
+    End Sub
+    Private Sub _prAddDetalleFluidoterapia()
+        Dim Bin As New MemoryStream
+        Dim img As New Bitmap(My.Resources.delete, 28, 28)
+        img.Save(Bin, Imaging.ImageFormat.Png)
+
+        Dim Hora = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
+
+        If ModificarF = False Then
+            CType(JGFluidoterapia.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, cbTurnoF.Value, cbTurnoF.Text,
+                                                                  txtFluidos.Text, txtHoraInicio.Text, txtHoraTermino.Text,
+                                                                  txtCantidad.Text, Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
+        Else
+            CType(JGFluidoterapia.DataSource, DataTable).Rows.Add(1, 0, 1, dtpFechaF.Value, txtHoraT.Text, cbTurnoF.Value, cbTurnoF.Text,
+                                                                  txtFluidos.Text, txtHoraInicio.Text, txtHoraTermino.Text,
+                                                                  txtCantidad.Text, Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
+        End If
+    End Sub
+    Private Sub _prAddDetalleEstudiosC()
+        Dim Bin As New MemoryStream
+        Dim img As New Bitmap(My.Resources.delete, 28, 28)
+        img.Save(Bin, Imaging.ImageFormat.Png)
+
+        Dim Hora = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
+
+        If ModificarEC = False Then
+            CType(JGEstudiosC.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, txtEstudiosComplem.Text,
+                                                               Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
+        Else
+            CType(JGEstudiosC.DataSource, DataTable).Rows.Add(1, 0, 1, dtpFechaEC.Value, txtHoraEC.Text, txtEstudiosComplem.Text,
+                                                               Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
+        End If
+    End Sub
+
+    Private Sub _prAddDetalleTratamiento()
+        Dim Bin As New MemoryStream
+        Dim img As New Bitmap(My.Resources.delete, 28, 28)
+        img.Save(Bin, Imaging.ImageFormat.Png)
+
+        Dim Hora = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
+
+        If ModificarEC = False Then
+            CType(JGTratamiento.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, txtTratamiento.Text,
+                                                               Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
+        Else
+            CType(JGTratamiento.DataSource, DataTable).Rows.Add(1, 0, 1, dtpFechaT.Value, txtHoraT.Text, txtTratamiento.Text,
+                                                               Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
+        End If
+    End Sub
 #End Region
 #Region "METODOS PRIVADOS OVERRRIDABLES"
     Public Overrides Function _PMOGrabarRegistro() As Boolean
         Dim ihId As Integer
 
         Dim res As Boolean = L_fnGrabarInternacionSeg(ihId, txtIdFicClinica.Text, _IdPaciente, dtpFechaSeg.Value.ToString("yyyy/MM/dd"),
-                                                      cbTurno.Value, 1, CType(JGExamenFisico.DataSource, DataTable))
+                                                      cbTurno.Value, 1, CType(JGExamenFisico.DataSource, DataTable),
+                                                      CType(JGSignosVitales.DataSource, DataTable), CType(JGMonitoreo.DataSource, DataTable),
+                                                      CType(JGAlimentacion.DataSource, DataTable), CType(JGFluidoterapia.DataSource, DataTable),
+                                                      CType(JGEstudiosC.DataSource, DataTable), CType(JGTratamiento.DataSource, DataTable))
         If res Then
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
             ToastNotification.Show(Me, "Id del Seguimiento de internacion ".ToUpper + ihId.ToString() + " Grabado con Exito.".ToUpper,
@@ -1035,7 +1700,10 @@ Public Class F1_Fic_SegInternacion2
         Dim res As Boolean
 
         res = L_fnModificarInternacionSeg(txtId.Text, txtIdFicClinica.Text, _IdPaciente, dtpFechaSeg.Value.ToString("yyyy/MM/dd"),
-                                                      cbTurno.Value, 2, CType(JGExamenFisico.DataSource, DataTable))
+                                                      cbTurno.Value, 2, CType(JGExamenFisico.DataSource, DataTable),
+                                                      CType(JGSignosVitales.DataSource, DataTable), CType(JGMonitoreo.DataSource, DataTable),
+                                                      CType(JGAlimentacion.DataSource, DataTable), CType(JGFluidoterapia.DataSource, DataTable),
+                                                      CType(JGEstudiosC.DataSource, DataTable), CType(JGTratamiento.DataSource, DataTable))
         If res Then
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
             ToastNotification.Show(Me, "Id del Seguimiento de internacion fue ".ToUpper + ihId.ToString() + " Modificado con Exito.".ToUpper,
@@ -1180,15 +1848,15 @@ Public Class F1_Fic_SegInternacion2
     End Sub
 
     Private Sub JGExamenFisico_MouseClick(sender As Object, e As MouseEventArgs) Handles JGExamenFisico.MouseClick
-        If (Not _fnAccesible()) Then
-            Return
-        End If
+        'If (Not _fnAccesible()) Then
+        '    Return
+        'End If
 
-        If (JGExamenFisico.RowCount >= 2) Then
-            If (JGExamenFisico.CurrentColumn.Index = JGExamenFisico.RootTable.Columns("img").Index) Then
-                _prEliminarFilaEF()
-            End If
-        End If
+        'If (JGExamenFisico.RowCount >= 2) Then
+        '    If (JGExamenFisico.CurrentColumn.Index = JGExamenFisico.RootTable.Columns("img").Index) Then
+        '        _prEliminarFilaEF()
+        '    End If
+        'End If
     End Sub
     Public Function _fnAccesible()
         Return dtpFechaSeg.Enabled = True
@@ -1222,8 +1890,339 @@ Public Class F1_Fic_SegInternacion2
 
     End Sub
 
-    Private Sub txtPVM_TextChanged(sender As Object, e As EventArgs) Handles txtPVM.TextChanged
+    Public Sub _prEliminarFilaSV()
+        If (JGSignosVitales.Row >= 0) Then
+            If (JGSignosVitales.RowCount >= 2) Then
+                Dim estado As Integer = JGSignosVitales.GetValue("estado")
+                Dim pos As Integer = -1
+                Dim lin As Integer = JGSignosVitales.GetValue("ijId")
+                _fnObtenerFilaDetalleSV(pos, lin)
+                If (estado = 0) Then
+                    CType(JGSignosVitales.DataSource, DataTable).Rows(pos).Item("estado") = -2
+                End If
+                If (estado = 1) Then
+                    CType(JGSignosVitales.DataSource, DataTable).Rows(pos).Item("estado") = -1
+                End If
+                JGSignosVitales.RootTable.ApplyFilter(New Janus.Windows.GridEX.GridEXFilterCondition(JGSignosVitales.RootTable.Columns("estado"), Janus.Windows.GridEX.ConditionOperator.GreaterThanOrEqualTo, 0))
 
+            End If
+        End If
+    End Sub
+    Public Sub _fnObtenerFilaDetalleSV(ByRef pos As Integer, numi As Integer)
+        For i As Integer = 0 To CType(JGSignosVitales.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _numi As Integer = CType(JGSignosVitales.DataSource, DataTable).Rows(i).Item("ijId")
+            If (_numi = numi) Then
+                pos = i
+                Return
+            End If
+        Next
+    End Sub
+    Public Sub _prEliminarFilaM()
+        If (JGMonitoreo.Row >= 0) Then
+            If (JGMonitoreo.RowCount >= 2) Then
+                Dim estado As Integer = JGMonitoreo.GetValue("estado")
+                Dim pos As Integer = -1
+                Dim lin As Integer = JGMonitoreo.GetValue("ikId")
+                _fnObtenerFilaDetalleM(pos, lin)
+                If (estado = 0) Then
+                    CType(JGMonitoreo.DataSource, DataTable).Rows(pos).Item("estado") = -2
+                End If
+                If (estado = 1) Then
+                    CType(JGMonitoreo.DataSource, DataTable).Rows(pos).Item("estado") = -1
+                End If
+                JGMonitoreo.RootTable.ApplyFilter(New Janus.Windows.GridEX.GridEXFilterCondition(JGMonitoreo.RootTable.Columns("estado"), Janus.Windows.GridEX.ConditionOperator.GreaterThanOrEqualTo, 0))
+
+            End If
+        End If
+    End Sub
+    Public Sub _fnObtenerFilaDetalleM(ByRef pos As Integer, numi As Integer)
+        For i As Integer = 0 To CType(JGMonitoreo.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _numi As Integer = CType(JGMonitoreo.DataSource, DataTable).Rows(i).Item("ikId")
+            If (_numi = numi) Then
+                pos = i
+                Return
+            End If
+        Next
+    End Sub
+
+    Public Sub _prEliminarFilaA()
+        If (JGAlimentacion.Row >= 0) Then
+            If (JGAlimentacion.RowCount >= 2) Then
+                Dim estado As Integer = JGAlimentacion.GetValue("estado")
+                Dim pos As Integer = -1
+                Dim lin As Integer = JGAlimentacion.GetValue("ilId")
+                _fnObtenerFilaDetalleA(pos, lin)
+                If (estado = 0) Then
+                    CType(JGAlimentacion.DataSource, DataTable).Rows(pos).Item("estado") = -2
+                End If
+                If (estado = 1) Then
+                    CType(JGAlimentacion.DataSource, DataTable).Rows(pos).Item("estado") = -1
+                End If
+                JGAlimentacion.RootTable.ApplyFilter(New Janus.Windows.GridEX.GridEXFilterCondition(JGAlimentacion.RootTable.Columns("estado"), Janus.Windows.GridEX.ConditionOperator.GreaterThanOrEqualTo, 0))
+
+            End If
+        End If
+    End Sub
+    Public Sub _fnObtenerFilaDetalleA(ByRef pos As Integer, numi As Integer)
+        For i As Integer = 0 To CType(JGAlimentacion.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _numi As Integer = CType(JGAlimentacion.DataSource, DataTable).Rows(i).Item("ilId")
+            If (_numi = numi) Then
+                pos = i
+                Return
+            End If
+        Next
+    End Sub
+
+    Public Sub _prEliminarFilaF()
+        If (JGFluidoterapia.Row >= 0) Then
+            If (JGFluidoterapia.RowCount >= 2) Then
+                Dim estado As Integer = JGFluidoterapia.GetValue("estado")
+                Dim pos As Integer = -1
+                Dim lin As Integer = JGFluidoterapia.GetValue("imId")
+                _fnObtenerFilaDetalleF(pos, lin)
+                If (estado = 0) Then
+                    CType(JGFluidoterapia.DataSource, DataTable).Rows(pos).Item("estado") = -2
+                End If
+                If (estado = 1) Then
+                    CType(JGFluidoterapia.DataSource, DataTable).Rows(pos).Item("estado") = -1
+                End If
+                JGFluidoterapia.RootTable.ApplyFilter(New Janus.Windows.GridEX.GridEXFilterCondition(JGFluidoterapia.RootTable.Columns("estado"), Janus.Windows.GridEX.ConditionOperator.GreaterThanOrEqualTo, 0))
+
+            End If
+        End If
+    End Sub
+    Public Sub _fnObtenerFilaDetalleF(ByRef pos As Integer, numi As Integer)
+        For i As Integer = 0 To CType(JGFluidoterapia.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _numi As Integer = CType(JGFluidoterapia.DataSource, DataTable).Rows(i).Item("imId")
+            If (_numi = numi) Then
+                pos = i
+                Return
+            End If
+        Next
+    End Sub
+
+    Public Sub _prEliminarFilaEC()
+        If (JGEstudiosC.Row >= 0) Then
+            If (JGEstudiosC.RowCount >= 2) Then
+                Dim estado As Integer = JGEstudiosC.GetValue("estado")
+                Dim pos As Integer = -1
+                Dim lin As Integer = JGEstudiosC.GetValue("inId")
+                _fnObtenerFilaDetalleEC(pos, lin)
+                If (estado = 0) Then
+                    CType(JGEstudiosC.DataSource, DataTable).Rows(pos).Item("estado") = -2
+                End If
+                If (estado = 1) Then
+                    CType(JGEstudiosC.DataSource, DataTable).Rows(pos).Item("estado") = -1
+                End If
+                JGEstudiosC.RootTable.ApplyFilter(New Janus.Windows.GridEX.GridEXFilterCondition(JGEstudiosC.RootTable.Columns("estado"), Janus.Windows.GridEX.ConditionOperator.GreaterThanOrEqualTo, 0))
+
+            End If
+        End If
+    End Sub
+    Public Sub _fnObtenerFilaDetalleEC(ByRef pos As Integer, numi As Integer)
+        For i As Integer = 0 To CType(JGEstudiosC.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _numi As Integer = CType(JGEstudiosC.DataSource, DataTable).Rows(i).Item("inId")
+            If (_numi = numi) Then
+                pos = i
+                Return
+            End If
+        Next
+    End Sub
+    Public Sub _prEliminarFilaT()
+        If (JGTratamiento.Row >= 0) Then
+            If (JGTratamiento.RowCount >= 2) Then
+                Dim estado As Integer = JGTratamiento.GetValue("estado")
+                Dim pos As Integer = -1
+                Dim lin As Integer = JGTratamiento.GetValue("ioId")
+                _fnObtenerFilaDetalleT(pos, lin)
+                If (estado = 0) Then
+                    CType(JGTratamiento.DataSource, DataTable).Rows(pos).Item("estado") = -2
+                End If
+                If (estado = 1) Then
+                    CType(JGTratamiento.DataSource, DataTable).Rows(pos).Item("estado") = -1
+                End If
+                JGTratamiento.RootTable.ApplyFilter(New Janus.Windows.GridEX.GridEXFilterCondition(JGTratamiento.RootTable.Columns("estado"), Janus.Windows.GridEX.ConditionOperator.GreaterThanOrEqualTo, 0))
+
+            End If
+        End If
+    End Sub
+    Public Sub _fnObtenerFilaDetalleT(ByRef pos As Integer, numi As Integer)
+        For i As Integer = 0 To CType(JGTratamiento.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _numi As Integer = CType(JGTratamiento.DataSource, DataTable).Rows(i).Item("ioId")
+            If (_numi = numi) Then
+                pos = i
+                Return
+            End If
+        Next
+    End Sub
+    Private Sub btnAgregarSV_Click(sender As Object, e As EventArgs) Handles btnAgregarSV.Click
+        _prAddDetalleSignosVitales()
+    End Sub
+
+    Private Sub btnAgregarM_Click(sender As Object, e As EventArgs) Handles btnAgregarM.Click
+        _prAddDetalleMonitoreo()
+    End Sub
+
+    Private Sub btnAgregarA_Click(sender As Object, e As EventArgs) Handles btnAgregarA.Click
+        _prAddDetalleAlimentacion()
+    End Sub
+
+    Private Sub btnAgregarF_Click(sender As Object, e As EventArgs) Handles btnAgregarF.Click
+        _prAddDetalleFluidoterapia()
+    End Sub
+
+    Private Sub btnAgregarEC_Click(sender As Object, e As EventArgs) Handles btnAgregarEC.Click
+        _prAddDetalleEstudiosC()
+    End Sub
+
+    Private Sub btnAgregarT_Click(sender As Object, e As EventArgs) Handles btnAgregarT.Click
+        _prAddDetalleTratamiento()
+    End Sub
+
+    Private Sub JGSignosVitales_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGSignosVitales.EditingCell
+        e.Cancel = True
+    End Sub
+
+    Private Sub JGAlimentacion_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGAlimentacion.EditingCell
+        e.Cancel = True
+    End Sub
+
+    Private Sub JGFluidoterapia_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGFluidoterapia.EditingCell
+        e.Cancel = True
+    End Sub
+
+    Private Sub JGEstudiosC_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGEstudiosC.EditingCell
+        e.Cancel = True
+    End Sub
+
+    Private Sub JGTratamiento_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGTratamiento.EditingCell
+        e.Cancel = True
+    End Sub
+
+    Private Sub JGExamenFisico_Click(sender As Object, e As EventArgs) Handles JGExamenFisico.Click
+        If (Not _fnAccesible()) Then
+            Return
+        End If
+
+        If (JGExamenFisico.RowCount >= 2) Then
+            If (JGExamenFisico.CurrentColumn.Index = JGExamenFisico.RootTable.Columns("img").Index) Then
+                _prEliminarFilaEF()
+            End If
+        End If
+    End Sub
+
+    Private Sub JGSignosVitales_SelectionChanged(sender As Object, e As EventArgs) Handles JGSignosVitales.SelectionChanged
+        If JGSignosVitales.Row >= 0 And JGSignosVitales.RowCount > 0 Then
+            _MPos2 = JGSignosVitales.Row
+            _prMostrarSignosVitales(_MPos2)
+        End If
+    End Sub
+
+    Private Sub JGMonitoreo_SelectionChanged(sender As Object, e As EventArgs) Handles JGMonitoreo.SelectionChanged
+        If JGMonitoreo.Row >= 0 And JGMonitoreo.RowCount > 0 Then
+            _MPos2 = JGMonitoreo.Row
+            _prMostrarMonitoreo(_MPos2)
+        End If
+    End Sub
+
+    Private Sub JGAlimentacion_SelectionChanged(sender As Object, e As EventArgs) Handles JGAlimentacion.SelectionChanged
+        If JGAlimentacion.Row >= 0 And JGAlimentacion.RowCount > 0 Then
+            _MPos2 = JGAlimentacion.Row
+            _prMostrarAlimentacion(_MPos2)
+        End If
+    End Sub
+
+    Private Sub JGFluidoterapia_SelectionChanged(sender As Object, e As EventArgs) Handles JGFluidoterapia.SelectionChanged
+        If JGFluidoterapia.Row >= 0 And JGFluidoterapia.RowCount > 0 Then
+            _MPos2 = JGFluidoterapia.Row
+            _prMostrarFluidoterapia(_MPos2)
+        End If
+    End Sub
+
+    Private Sub JGEstudiosC_SelectionChanged(sender As Object, e As EventArgs) Handles JGEstudiosC.SelectionChanged
+        If JGEstudiosC.Row >= 0 And JGEstudiosC.RowCount > 0 Then
+            _MPos2 = JGEstudiosC.Row
+            _prMostrarEstudiosC(_MPos2)
+        End If
+    End Sub
+
+    Private Sub JGTratamiento_SelectionChanged(sender As Object, e As EventArgs) Handles JGTratamiento.SelectionChanged
+        If JGTratamiento.Row >= 0 And JGTratamiento.RowCount > 0 Then
+            _MPos2 = JGTratamiento.Row
+            _prMostrarTratamiento(_MPos2)
+        End If
+    End Sub
+
+    Private Sub JGSignosVitales_Click(sender As Object, e As EventArgs) Handles JGSignosVitales.Click
+        If (Not _fnAccesible()) Then
+            Return
+        End If
+
+        If (JGSignosVitales.RowCount >= 2) Then
+            If (JGSignosVitales.CurrentColumn.Index = JGSignosVitales.RootTable.Columns("img").Index) Then
+                _prEliminarFilaSV()
+            End If
+        End If
+    End Sub
+
+    Private Sub JGMonitoreo_Click(sender As Object, e As EventArgs) Handles JGMonitoreo.Click
+        If (Not _fnAccesible()) Then
+            Return
+        End If
+
+        If (JGMonitoreo.RowCount >= 2) Then
+            If (JGMonitoreo.CurrentColumn.Index = JGMonitoreo.RootTable.Columns("img").Index) Then
+                _prEliminarFilaM()
+            End If
+        End If
+    End Sub
+
+    Private Sub JGAlimentacion_Click(sender As Object, e As EventArgs) Handles JGAlimentacion.Click
+        If (Not _fnAccesible()) Then
+            Return
+        End If
+
+        If (JGAlimentacion.RowCount >= 2) Then
+            If (JGAlimentacion.CurrentColumn.Index = JGAlimentacion.RootTable.Columns("img").Index) Then
+                _prEliminarFilaA()
+            End If
+        End If
+    End Sub
+
+    Private Sub JGFluidoterapia_Click(sender As Object, e As EventArgs) Handles JGFluidoterapia.Click
+        If (Not _fnAccesible()) Then
+            Return
+        End If
+
+        If (JGFluidoterapia.RowCount >= 2) Then
+            If (JGFluidoterapia.CurrentColumn.Index = JGFluidoterapia.RootTable.Columns("img").Index) Then
+                _prEliminarFilaF()
+            End If
+        End If
+    End Sub
+
+    Private Sub JGEstudiosC_Click(sender As Object, e As EventArgs) Handles JGEstudiosC.Click
+        If (Not _fnAccesible()) Then
+            Return
+        End If
+
+        If (JGEstudiosC.RowCount >= 2) Then
+            If (JGEstudiosC.CurrentColumn.Index = JGEstudiosC.RootTable.Columns("img").Index) Then
+                _prEliminarFilaEC()
+            End If
+        End If
+    End Sub
+
+    Private Sub JGTratamiento_Click(sender As Object, e As EventArgs) Handles JGTratamiento.Click
+        If (Not _fnAccesible()) Then
+            Return
+        End If
+
+        If (JGTratamiento.RowCount >= 2) Then
+            If (JGTratamiento.CurrentColumn.Index = JGTratamiento.RootTable.Columns("img").Index) Then
+                _prEliminarFilaT()
+            End If
+        End If
     End Sub
 
     Private Sub btnReciboI_Click(sender As Object, e As EventArgs) Handles btnReciboI.Click
@@ -1242,8 +2241,22 @@ Public Class F1_Fic_SegInternacion2
         'JGBusqEmpleados.Enabled = False 'Deshabilita el buscador de la Grilla
         _prHabilitar()
 
+        ModificarEncabezado = 2
         ModificarEF = True
-        _prCargarIconELiminar()
+        ModificarSV = True
+        ModificarM = True
+        ModificarA = True
+        ModificarF = True
+        ModificarEC = True
+        ModificarT = True
+
+        _prCargarIconELiminarEF()
+        _prCargarIconELiminarSV()
+        _prCargarIconELiminarM()
+        _prCargarIconELiminarA()
+        _prCargarIconELiminarF()
+        _prCargarIconELiminarEC()
+        _prCargarIconELiminarT()
 
     End Sub
 

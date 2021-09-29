@@ -1105,6 +1105,13 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("FIC.sp_CIR0024", _listParam)
         Return _Tabla
     End Function
+    Public Shared Function L_fnMostrarFichaClinicaCirugiaRecibo() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CIR0024", _listParam)
+        Return _Tabla
+    End Function
 #End Region
 #Region "Verificaciones"
     Public Shared Function L_fnExisteCirugia(_fbId As String) As Boolean
@@ -1202,6 +1209,13 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("FIC.sp_INT0025", _listParam)
         Return _Tabla
     End Function
+    Public Shared Function L_fnMostrarFichaClinicaConInternacion() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT0025", _listParam)
+        Return _Tabla
+    End Function
 #End Region
 #Region "Verificaciones"
     Public Shared Function L_fnExisteInternacion(_fbId As String) As Boolean
@@ -1218,8 +1232,10 @@ Public Class AccesoLogica
     'ihId, ih_fbId, ihEst, ihFechaIng, ihTurno, ihDiag, ihObser, ihPasoTur, ihFecha, ihHora, ihUsuario
     '********Registrar
     'iiId, ii_ihId, iiEst, iiHoraTurn, iiResp, iiFrec, iiMedPro, iiAlim, iiFecha, iiHora, iiusuario
-    Public Shared Function L_fnGrabarInternacionSeg(ByRef ihId As String, ih_fbId As String, ih_pbId As String, ihFechaIng As String,
-                                                    ihTurno As String, Tipo2 As String, _INT00252 As DataTable) As Boolean
+    Public Shared Function L_fnGrabarInternacionSeg(ByRef ihId As String, ih_fbId As String, ih_pbId As String,
+                                                    ihFechaIng As String, ihTurno As String, Tipo2 As String, _INT00252 As DataTable,
+                                                    _INT00253 As DataTable, _INT00254 As DataTable, _INT00255 As DataTable,
+                                                    _INT00256 As DataTable, _INT00257 As DataTable, _INT00258 As DataTable) As Boolean
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
@@ -1234,6 +1250,12 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@ihUsuario", L_Usuario))
         'Detalles
         _listParam.Add(New Datos.DParametro("@INT00252", "", _INT00252))
+        _listParam.Add(New Datos.DParametro("@INT00253", "", _INT00253))
+        _listParam.Add(New Datos.DParametro("@INT00254", "", _INT00254))
+        _listParam.Add(New Datos.DParametro("@INT00255", "", _INT00255))
+        _listParam.Add(New Datos.DParametro("@INT00256", "", _INT00256))
+        _listParam.Add(New Datos.DParametro("@INT00257", "", _INT00257))
+        _listParam.Add(New Datos.DParametro("@INT00258", "", _INT00258))
 
         _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
         If _Tabla.Rows.Count > 0 Then
@@ -1245,8 +1267,10 @@ Public Class AccesoLogica
         Return _resultado
     End Function
     '********Modificar
-    Public Shared Function L_fnModificarInternacionSeg(ByRef ihId As String, ih_fbId As String, ih_pbId As String, ihFechaIng As String,
-                                                    ihTurno As String, Tipo2 As String, _INT00252 As DataTable) As Boolean
+    Public Shared Function L_fnModificarInternacionSeg(ByRef ihId As String, ih_fbId As String, ih_pbId As String,
+                                                     ihFechaIng As String, ihTurno As String, Tipo2 As String, _INT00252 As DataTable,
+                                                    _INT00253 As DataTable, _INT00254 As DataTable, _INT00255 As DataTable,
+                                                    _INT00256 As DataTable, _INT00257 As DataTable, _INT00258 As DataTable) As Boolean
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
@@ -1261,6 +1285,13 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@ihUsuario", L_Usuario))
         'Detalles
         _listParam.Add(New Datos.DParametro("@INT00252", "", _INT00252))
+        _listParam.Add(New Datos.DParametro("@INT00253", "", _INT00253))
+        _listParam.Add(New Datos.DParametro("@INT00254", "", _INT00254))
+        _listParam.Add(New Datos.DParametro("@INT00255", "", _INT00255))
+        _listParam.Add(New Datos.DParametro("@INT00256", "", _INT00256))
+        _listParam.Add(New Datos.DParametro("@INT00257", "", _INT00257))
+        _listParam.Add(New Datos.DParametro("@INT00258", "", _INT00258))
+
         _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
 
         If _Tabla.Rows.Count > 0 Then
@@ -1276,17 +1307,27 @@ Public Class AccesoLogica
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
-        _listParam.Add(New Datos.DParametro("@tipo", 3))
-        _listParam.Add(New Datos.DParametro("@ihId", _ihId))
-        _listParam.Add(New Datos.DParametro("@ihUsuario", L_Usuario))
-        _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
-        If _Tabla.Rows.Count > 0 Then
-            _ihId = _Tabla.Rows(0).Item(0)
-            _resultado = True
+
+        If L_fnbValidarEliminacion(_ihId, "FIC.INT00251", "ihId", mensaje) = True Then
+
+            _listParam.Add(New Datos.DParametro("@tipo", 3))
+            _listParam.Add(New Datos.DParametro("@ihId", _ihId))
+            _listParam.Add(New Datos.DParametro("@ihUsuario", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
+            If _Tabla.Rows.Count > 0 Then
+                _ihId = _Tabla.Rows(0).Item(0)
+                _resultado = True
+            Else
+                _resultado = False
+            End If
+            Return _resultado
         Else
             _resultado = False
         End If
         Return _resultado
+
+
+
     End Function
 #End Region
 #Region "Consultas"
@@ -1297,7 +1338,7 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
         Return _Tabla
     End Function
-    Public Shared Function L_fnMostrarInternacionSegDet(idInternacion As String) As DataTable
+    Public Shared Function L_fnMostrarExamenFisico(idInternacion As String) As DataTable
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
         _listParam.Add(New Datos.DParametro("@tipo", 5))
@@ -1309,6 +1350,46 @@ Public Class AccesoLogica
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
         _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@ihId", idInternacion))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarMonitoreo(idInternacion As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@ihId", idInternacion))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarAlimentacion(idInternacion As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 8))
+        _listParam.Add(New Datos.DParametro("@ihId", idInternacion))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarFluidoterapia(idInternacion As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 9))
+        _listParam.Add(New Datos.DParametro("@ihId", idInternacion))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarEstudiosC(idInternacion As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 10))
+        _listParam.Add(New Datos.DParametro("@ihId", idInternacion))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarTratamiento(idInternacion As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 11))
         _listParam.Add(New Datos.DParametro("@ihId", idInternacion))
         _Tabla = D_ProcedimientoConParam("FIC.sp_INT00251", _listParam)
         Return _Tabla

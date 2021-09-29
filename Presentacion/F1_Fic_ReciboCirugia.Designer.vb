@@ -87,11 +87,11 @@ Partial Class F1_Fic_ReciboCirugia
         Me.MpanelSuperior.Controls.Add(Me.gpDatosGral)
         Me.MpanelSuperior.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MpanelSuperior.Location = New System.Drawing.Point(0, 72)
-        Me.MpanelSuperior.Size = New System.Drawing.Size(918, 545)
+        Me.MpanelSuperior.Size = New System.Drawing.Size(984, 545)
         '
         'PanelSuperior
         '
-        Me.PanelSuperior.Size = New System.Drawing.Size(918, 72)
+        Me.PanelSuperior.Size = New System.Drawing.Size(984, 72)
         Me.PanelSuperior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelSuperior.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PanelSuperior.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
@@ -108,7 +108,7 @@ Partial Class F1_Fic_ReciboCirugia
         'PanelInferior
         '
         Me.PanelInferior.Location = New System.Drawing.Point(0, 617)
-        Me.PanelInferior.Size = New System.Drawing.Size(918, 39)
+        Me.PanelInferior.Size = New System.Drawing.Size(984, 39)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Transparent
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Transparent
@@ -120,7 +120,7 @@ Partial Class F1_Fic_ReciboCirugia
         '
         'MPanelUserAct
         '
-        Me.MPanelUserAct.Location = New System.Drawing.Point(718, 0)
+        Me.MPanelUserAct.Location = New System.Drawing.Point(784, 0)
         '
         'btnUltimo
         '
@@ -186,7 +186,7 @@ Partial Class F1_Fic_ReciboCirugia
         Me.superTabControl1.ControlBox.Name = ""
         Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
         Me.superTabControl1.SelectedTabIndex = 1
-        Me.superTabControl1.Size = New System.Drawing.Size(918, 681)
+        Me.superTabControl1.Size = New System.Drawing.Size(984, 681)
         '
         'gpDatosGral
         '
@@ -195,11 +195,12 @@ Partial Class F1_Fic_ReciboCirugia
         Me.gpDatosGral.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.gpDatosGral.Controls.Add(Me.Panel2)
         Me.gpDatosGral.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpDatosGral.Dock = System.Windows.Forms.DockStyle.Top
         Me.gpDatosGral.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpDatosGral.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.gpDatosGral.Location = New System.Drawing.Point(9, 6)
+        Me.gpDatosGral.Location = New System.Drawing.Point(0, 0)
         Me.gpDatosGral.Name = "gpDatosGral"
-        Me.gpDatosGral.Size = New System.Drawing.Size(900, 243)
+        Me.gpDatosGral.Size = New System.Drawing.Size(984, 243)
         '
         '
         '
@@ -255,7 +256,7 @@ Partial Class F1_Fic_ReciboCirugia
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(894, 220)
+        Me.Panel2.Size = New System.Drawing.Size(978, 220)
         Me.Panel2.TabIndex = 234
         '
         'LabelX1
@@ -679,9 +680,10 @@ Partial Class F1_Fic_ReciboCirugia
         'PanelDetalleRecibo
         '
         Me.PanelDetalleRecibo.Controls.Add(Me.gpDetalleRecibo)
-        Me.PanelDetalleRecibo.Location = New System.Drawing.Point(6, 252)
+        Me.PanelDetalleRecibo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelDetalleRecibo.Location = New System.Drawing.Point(0, 243)
         Me.PanelDetalleRecibo.Name = "PanelDetalleRecibo"
-        Me.PanelDetalleRecibo.Size = New System.Drawing.Size(905, 291)
+        Me.PanelDetalleRecibo.Size = New System.Drawing.Size(984, 302)
         Me.PanelDetalleRecibo.TabIndex = 303
         '
         'gpDetalleRecibo
@@ -693,10 +695,11 @@ Partial Class F1_Fic_ReciboCirugia
         Me.gpDetalleRecibo.Controls.Add(Me.lbTotal)
         Me.gpDetalleRecibo.Controls.Add(Me.JGDetalleReciboCir)
         Me.gpDetalleRecibo.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpDetalleRecibo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpDetalleRecibo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gpDetalleRecibo.Location = New System.Drawing.Point(3, 4)
+        Me.gpDetalleRecibo.Location = New System.Drawing.Point(0, 0)
         Me.gpDetalleRecibo.Name = "gpDetalleRecibo"
-        Me.gpDetalleRecibo.Size = New System.Drawing.Size(896, 280)
+        Me.gpDetalleRecibo.Size = New System.Drawing.Size(984, 302)
         '
         '
         '
@@ -739,10 +742,10 @@ Partial Class F1_Fic_ReciboCirugia
         Me.txtTotalRC.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtTotalRC.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotalRC.Increment = 1.0R
-        Me.txtTotalRC.Location = New System.Drawing.Point(756, 231)
+        Me.txtTotalRC.Location = New System.Drawing.Point(830, 240)
         Me.txtTotalRC.MinValue = 0R
         Me.txtTotalRC.Name = "txtTotalRC"
-        Me.txtTotalRC.Size = New System.Drawing.Size(119, 21)
+        Me.txtTotalRC.Size = New System.Drawing.Size(139, 21)
         Me.txtTotalRC.TabIndex = 3
         Me.txtTotalRC.WatermarkAlignment = DevComponents.Editors.eTextAlignment.Right
         '
@@ -755,7 +758,7 @@ Partial Class F1_Fic_ReciboCirugia
         Me.lbTotal.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbTotal.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbTotal.ForeColor = System.Drawing.Color.White
-        Me.lbTotal.Location = New System.Drawing.Point(705, 232)
+        Me.lbTotal.Location = New System.Drawing.Point(783, 241)
         Me.lbTotal.Name = "lbTotal"
         Me.lbTotal.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbTotal.Size = New System.Drawing.Size(41, 18)
@@ -764,11 +767,12 @@ Partial Class F1_Fic_ReciboCirugia
         '
         'JGDetalleReciboCir
         '
+        Me.JGDetalleReciboCir.Dock = System.Windows.Forms.DockStyle.Top
         Me.JGDetalleReciboCir.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.JGDetalleReciboCir.HeaderFormatStyle.FontBold = Janus.Windows.GridEX.TriState.[True]
-        Me.JGDetalleReciboCir.Location = New System.Drawing.Point(3, 3)
+        Me.JGDetalleReciboCir.Location = New System.Drawing.Point(0, 0)
         Me.JGDetalleReciboCir.Name = "JGDetalleReciboCir"
-        Me.JGDetalleReciboCir.Size = New System.Drawing.Size(884, 222)
+        Me.JGDetalleReciboCir.Size = New System.Drawing.Size(978, 222)
         Me.JGDetalleReciboCir.TabIndex = 257
         '
         'gpBusqRecibos
@@ -819,9 +823,10 @@ Partial Class F1_Fic_ReciboCirugia
         '
         Me.panelBusqRecibos.BackColor = System.Drawing.Color.White
         Me.panelBusqRecibos.Controls.Add(Me.JGBusqRecibosC)
-        Me.panelBusqRecibos.Location = New System.Drawing.Point(3, 0)
+        Me.panelBusqRecibos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.panelBusqRecibos.Location = New System.Drawing.Point(0, 0)
         Me.panelBusqRecibos.Name = "panelBusqRecibos"
-        Me.panelBusqRecibos.Size = New System.Drawing.Size(906, 630)
+        Me.panelBusqRecibos.Size = New System.Drawing.Size(924, 454)
         Me.panelBusqRecibos.TabIndex = 0
         '
         'JGBusqRecibosC
@@ -843,7 +848,7 @@ Partial Class F1_Fic_ReciboCirugia
         Me.JGBusqRecibosC.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.JGBusqRecibosC.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
         Me.JGBusqRecibosC.SelectOnExpand = False
-        Me.JGBusqRecibosC.Size = New System.Drawing.Size(906, 630)
+        Me.JGBusqRecibosC.Size = New System.Drawing.Size(924, 454)
         Me.JGBusqRecibosC.TabIndex = 0
         Me.JGBusqRecibosC.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -851,8 +856,7 @@ Partial Class F1_Fic_ReciboCirugia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(918, 681)
-        Me.MaximizeBox = False
+        Me.ClientSize = New System.Drawing.Size(984, 681)
         Me.Name = "F1_Fic_ReciboCirugia"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RECIBO CIRUGÍA"

@@ -76,17 +76,15 @@ Partial Class F1_Fic_ReciboInt
         'MpanelSuperior
         '
         Me.MpanelSuperior.BackColor = System.Drawing.Color.DodgerBlue
-        Me.MpanelSuperior.Controls.Add(Me.txtTotalR)
-        Me.MpanelSuperior.Controls.Add(Me.lbTotalR)
         Me.MpanelSuperior.Controls.Add(Me.gpReciboInt)
         Me.MpanelSuperior.Controls.Add(Me.gpDatosGral)
         Me.MpanelSuperior.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MpanelSuperior.Location = New System.Drawing.Point(0, 72)
-        Me.MpanelSuperior.Size = New System.Drawing.Size(899, 437)
+        Me.MpanelSuperior.Size = New System.Drawing.Size(984, 437)
         '
         'PanelSuperior
         '
-        Me.PanelSuperior.Size = New System.Drawing.Size(899, 72)
+        Me.PanelSuperior.Size = New System.Drawing.Size(984, 72)
         Me.PanelSuperior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelSuperior.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PanelSuperior.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
@@ -103,7 +101,7 @@ Partial Class F1_Fic_ReciboInt
         'PanelInferior
         '
         Me.PanelInferior.Location = New System.Drawing.Point(0, 509)
-        Me.PanelInferior.Size = New System.Drawing.Size(899, 39)
+        Me.PanelInferior.Size = New System.Drawing.Size(984, 39)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Transparent
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Transparent
@@ -115,7 +113,7 @@ Partial Class F1_Fic_ReciboInt
         '
         'MPanelUserAct
         '
-        Me.MPanelUserAct.Location = New System.Drawing.Point(699, 0)
+        Me.MPanelUserAct.Location = New System.Drawing.Point(784, 0)
         '
         'btnUltimo
         '
@@ -132,6 +130,7 @@ Partial Class F1_Fic_ReciboInt
         'MpanelBuscador
         '
         Me.MpanelBuscador.Controls.Add(Me.gpBusqRecibos)
+        Me.MpanelBuscador.Size = New System.Drawing.Size(984, 548)
         '
         'TxtNombreUsu
         '
@@ -181,7 +180,7 @@ Partial Class F1_Fic_ReciboInt
         Me.superTabControl1.ControlBox.Name = ""
         Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
         Me.superTabControl1.SelectedTabIndex = 1
-        Me.superTabControl1.Size = New System.Drawing.Size(899, 573)
+        Me.superTabControl1.Size = New System.Drawing.Size(984, 573)
         '
         'gpDatosGral
         '
@@ -190,11 +189,12 @@ Partial Class F1_Fic_ReciboInt
         Me.gpDatosGral.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.gpDatosGral.Controls.Add(Me.Panel2)
         Me.gpDatosGral.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpDatosGral.Dock = System.Windows.Forms.DockStyle.Top
         Me.gpDatosGral.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpDatosGral.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.gpDatosGral.Location = New System.Drawing.Point(3, 6)
+        Me.gpDatosGral.Location = New System.Drawing.Point(0, 0)
         Me.gpDatosGral.Name = "gpDatosGral"
-        Me.gpDatosGral.Size = New System.Drawing.Size(893, 174)
+        Me.gpDatosGral.Size = New System.Drawing.Size(984, 174)
         '
         '
         '
@@ -250,7 +250,7 @@ Partial Class F1_Fic_ReciboInt
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(887, 151)
+        Me.Panel2.Size = New System.Drawing.Size(978, 151)
         Me.Panel2.TabIndex = 234
         '
         'txtObservacionI
@@ -550,7 +550,7 @@ Partial Class F1_Fic_ReciboInt
         Me.txtTotalR.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtTotalR.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotalR.Increment = 1.0R
-        Me.txtTotalR.Location = New System.Drawing.Point(773, 407)
+        Me.txtTotalR.Location = New System.Drawing.Point(840, 211)
         Me.txtTotalR.MinValue = 0R
         Me.txtTotalR.Name = "txtTotalR"
         Me.txtTotalR.Size = New System.Drawing.Size(119, 21)
@@ -566,7 +566,7 @@ Partial Class F1_Fic_ReciboInt
         Me.lbTotalR.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbTotalR.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbTotalR.ForeColor = System.Drawing.Color.White
-        Me.lbTotalR.Location = New System.Drawing.Point(726, 408)
+        Me.lbTotalR.Location = New System.Drawing.Point(781, 211)
         Me.lbTotalR.Name = "lbTotalR"
         Me.lbTotalR.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbTotalR.Size = New System.Drawing.Size(41, 18)
@@ -580,10 +580,11 @@ Partial Class F1_Fic_ReciboInt
         Me.gpReciboInt.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.gpReciboInt.Controls.Add(Me.panelServicios)
         Me.gpReciboInt.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpReciboInt.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpReciboInt.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gpReciboInt.Location = New System.Drawing.Point(3, 186)
+        Me.gpReciboInt.Location = New System.Drawing.Point(0, 174)
         Me.gpReciboInt.Name = "gpReciboInt"
-        Me.gpReciboInt.Size = New System.Drawing.Size(893, 217)
+        Me.gpReciboInt.Size = New System.Drawing.Size(984, 263)
         '
         '
         '
@@ -617,18 +618,20 @@ Partial Class F1_Fic_ReciboInt
         '
         'panelServicios
         '
-        Me.panelServicios.BackColor = System.Drawing.Color.White
+        Me.panelServicios.BackColor = System.Drawing.Color.Transparent
+        Me.panelServicios.Controls.Add(Me.lbTotalR)
+        Me.panelServicios.Controls.Add(Me.txtTotalR)
         Me.panelServicios.Controls.Add(Me.JGDetalleReciboInt)
         Me.panelServicios.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelServicios.Location = New System.Drawing.Point(0, 0)
         Me.panelServicios.Name = "panelServicios"
-        Me.panelServicios.Size = New System.Drawing.Size(887, 194)
+        Me.panelServicios.Size = New System.Drawing.Size(978, 240)
         Me.panelServicios.TabIndex = 0
         '
         'JGDetalleReciboInt
         '
         Me.JGDetalleReciboInt.BackColor = System.Drawing.Color.GhostWhite
-        Me.JGDetalleReciboInt.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.JGDetalleReciboInt.Dock = System.Windows.Forms.DockStyle.Top
         Me.JGDetalleReciboInt.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.JGDetalleReciboInt.HeaderFormatStyle.Font = New System.Drawing.Font("Georgia", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.JGDetalleReciboInt.HeaderFormatStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(49, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
@@ -636,7 +639,7 @@ Partial Class F1_Fic_ReciboInt
         Me.JGDetalleReciboInt.Name = "JGDetalleReciboInt"
         Me.JGDetalleReciboInt.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.JGDetalleReciboInt.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.JGDetalleReciboInt.Size = New System.Drawing.Size(887, 194)
+        Me.JGDetalleReciboInt.Size = New System.Drawing.Size(978, 194)
         Me.JGDetalleReciboInt.TabIndex = 0
         Me.JGDetalleReciboInt.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -651,7 +654,7 @@ Partial Class F1_Fic_ReciboInt
         Me.gpBusqRecibos.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpBusqRecibos.Location = New System.Drawing.Point(0, 0)
         Me.gpBusqRecibos.Name = "gpBusqRecibos"
-        Me.gpBusqRecibos.Size = New System.Drawing.Size(930, 477)
+        Me.gpBusqRecibos.Size = New System.Drawing.Size(984, 548)
         '
         '
         '
@@ -691,7 +694,7 @@ Partial Class F1_Fic_ReciboInt
         Me.panelBusqRecibos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelBusqRecibos.Location = New System.Drawing.Point(0, 0)
         Me.panelBusqRecibos.Name = "panelBusqRecibos"
-        Me.panelBusqRecibos.Size = New System.Drawing.Size(924, 454)
+        Me.panelBusqRecibos.Size = New System.Drawing.Size(978, 525)
         Me.panelBusqRecibos.TabIndex = 0
         '
         'JGBusqRecibosI
@@ -713,7 +716,7 @@ Partial Class F1_Fic_ReciboInt
         Me.JGBusqRecibosI.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.JGBusqRecibosI.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
         Me.JGBusqRecibosI.SelectOnExpand = False
-        Me.JGBusqRecibosI.Size = New System.Drawing.Size(924, 454)
+        Me.JGBusqRecibosI.Size = New System.Drawing.Size(978, 525)
         Me.JGBusqRecibosI.TabIndex = 0
         Me.JGBusqRecibosI.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -721,7 +724,7 @@ Partial Class F1_Fic_ReciboInt
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(899, 573)
+        Me.ClientSize = New System.Drawing.Size(984, 573)
         Me.Name = "F1_Fic_ReciboInt"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RECIBO INTERNACIÓN"

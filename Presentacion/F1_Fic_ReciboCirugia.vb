@@ -254,7 +254,7 @@ Public Class F1_Fic_ReciboCirugia
             If (_fnAccesible()) Then
                 If e.KeyData = Keys.Control + Keys.Enter Then
                     Dim dt As DataTable
-                    dt = L_fnMostrarCirugiaRecibo()
+                    dt = L_fnMostrarFichaClinicaCirugiaRecibo()
                     Dim listEstCeldas As New List(Of Modelo.Celda)
                     listEstCeldas.Add(New Modelo.Celda("cfId", True, "ID CIRUGIA", 100))
                     listEstCeldas.Add(New Modelo.Celda("fbId", True, "ID F. CLINICA", 100))
@@ -295,13 +295,12 @@ Public Class F1_Fic_ReciboCirugia
 
 #Region "METODOS PRIVADOS"
     Private Sub _prIniciarTodo()
-        _MNuevo = True
+        '_MNuevo = True
         _prCargarRecibo()
-        _prHabilitar()
-        _prLimpiar()
-        _prHabilitarMenu(1)
-        'txtCirugia.Focus()
-        'txtCirugia.Select()
+        '_prHabilitar()
+        '_prLimpiar()
+        '_prHabilitarMenu(1)
+        _prInhabilitar()
     End Sub
 
     Private Sub _prAddDetalleRecibo(Estado2 As Integer)
@@ -395,7 +394,7 @@ Public Class F1_Fic_ReciboCirugia
             .Visible = True
         End With
         With JGBusqRecibosC.RootTable.Columns("Cliente")
-            .Width = 240
+            .Width = 270
             .Caption = "Cliente"
             .Visible = True
         End With
@@ -405,7 +404,7 @@ Public Class F1_Fic_ReciboCirugia
             .Visible = False
         End With
         With JGBusqRecibosC.RootTable.Columns("pbnomb")
-            .Width = 190
+            .Width = 200
             .Caption = "Paciente"
             .Visible = True
         End With
@@ -427,7 +426,7 @@ Public Class F1_Fic_ReciboCirugia
             .Visible = False
         End With
         With JGBusqRecibosC.RootTable.Columns("roUsuario")
-            .Width = 120
+            .Width = 150
             .Caption = "Usuario"
             .Visible = False
         End With

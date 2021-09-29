@@ -26,6 +26,87 @@ Partial Class F1_Fic_FichaClinica
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F1_Fic_FichaClinica))
         Me.gpFichaClinica = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.stcFichaClinica = New DevComponents.DotNetBar.SuperTabControl()
+        Me.stcpDatos1 = New DevComponents.DotNetBar.SuperTabControlPanel()
+        Me.panelDatos1 = New System.Windows.Forms.Panel()
+        Me.cbConsultorio = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
+        Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
+        Me.txtTRPliegue = New DevComponents.Editors.IntegerInput()
+        Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
+        Me.txtMascota = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.txtIdVeterinario = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.txtNombVeterinario = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.lbVeterinario = New DevComponents.DotNetBar.LabelX()
+        Me.Panel16 = New System.Windows.Forms.Panel()
+        Me.chbMasaOral = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.lbMasaOral = New DevComponents.DotNetBar.LabelX()
+        Me.txtScoreCorporal = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.lbScoreCorporal = New DevComponents.DotNetBar.LabelX()
+        Me.lnNombreM = New DevComponents.DotNetBar.LabelX()
+        Me.txtIdMascota = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.txtIdFicha = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.lbIdFichaC = New DevComponents.DotNetBar.LabelX()
+        Me.Panel9 = New System.Windows.Forms.Panel()
+        Me.chbModeradoS = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbLeveS = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbSeveroS = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.lbSarro = New DevComponents.DotNetBar.LabelX()
+        Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.chbModeradaG = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbLeveG = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbSeveraG = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.lbGengivitis = New DevComponents.DotNetBar.LabelX()
+        Me.Panel7 = New System.Windows.Forms.Panel()
+        Me.chbAnormalE = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbNormalE = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.lbEncias = New DevComponents.DotNetBar.LabelX()
+        Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.chbtresDP = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbunoDP = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbdosDP = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.lbDañoPeriontal = New DevComponents.DotNetBar.LabelX()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.chbNormalD = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbAnormalD = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.lbDentadura = New DevComponents.DotNetBar.LabelX()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.chbPorDeshi1 = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbPorDeshi5 = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbPorDeshi2 = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbPorDeshi4 = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbPorDeshi3 = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
+        Me.txtTLCapilar = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
+        Me.txtFCardiaca = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.txtExaminacion = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.chbPalidasM = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbNormalesM = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbHiperemicasM = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.lbMucosas = New DevComponents.DotNetBar.LabelX()
+        Me.PanelCondicionCorporal = New System.Windows.Forms.Panel()
+        Me.chbExcDelgCC = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbSobExtremoCC = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbBajoPesoCC = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbSobrepesoCC = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbPesoIdealCC = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.lbCondCorporal = New DevComponents.DotNetBar.LabelX()
+        Me.txtFRespiratoria = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.lbFResp = New DevComponents.DotNetBar.LabelX()
+        Me.txtPeso = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.lbPeso = New DevComponents.DotNetBar.LabelX()
+        Me.lbFcardiaca = New DevComponents.DotNetBar.LabelX()
+        Me.txtTemperatura = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.lbTemperatura = New DevComponents.DotNetBar.LabelX()
+        Me.lbExaminacion = New DevComponents.DotNetBar.LabelX()
+        Me.txtHistoria = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.lbHistoria = New DevComponents.DotNetBar.LabelX()
+        Me.chbEmergenciaH = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.chbNormalH = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.lbHonorarios = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
+        Me.dtpFechaFC = New System.Windows.Forms.DateTimePicker()
+        Me.SuperTabItem3 = New DevComponents.DotNetBar.SuperTabItem()
         Me.stcpDatos2 = New DevComponents.DotNetBar.SuperTabControlPanel()
         Me.panelDatos2 = New System.Windows.Forms.Panel()
         Me.chbmpostizq = New DevComponents.DotNetBar.Controls.CheckBoxX()
@@ -109,87 +190,6 @@ Partial Class F1_Fic_FichaClinica
         Me.chbPancreas = New DevComponents.DotNetBar.Controls.CheckBoxX()
         Me.lbLocalizado = New DevComponents.DotNetBar.LabelX()
         Me.SuperTabItem5 = New DevComponents.DotNetBar.SuperTabItem()
-        Me.stcpDatos1 = New DevComponents.DotNetBar.SuperTabControlPanel()
-        Me.panelDatos1 = New System.Windows.Forms.Panel()
-        Me.cbConsultorio = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
-        Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
-        Me.txtTRPliegue = New DevComponents.Editors.IntegerInput()
-        Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
-        Me.txtMascota = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.txtIdVeterinario = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.txtNombVeterinario = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.lbVeterinario = New DevComponents.DotNetBar.LabelX()
-        Me.Panel16 = New System.Windows.Forms.Panel()
-        Me.chbMasaOral = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.lbMasaOral = New DevComponents.DotNetBar.LabelX()
-        Me.txtScoreCorporal = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.lbScoreCorporal = New DevComponents.DotNetBar.LabelX()
-        Me.lnNombreM = New DevComponents.DotNetBar.LabelX()
-        Me.txtIdMascota = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.txtIdFicha = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.lbIdFichaC = New DevComponents.DotNetBar.LabelX()
-        Me.Panel9 = New System.Windows.Forms.Panel()
-        Me.chbModeradoS = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbLeveS = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbSeveroS = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.lbSarro = New DevComponents.DotNetBar.LabelX()
-        Me.Panel8 = New System.Windows.Forms.Panel()
-        Me.chbModeradaG = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbLeveG = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbSeveraG = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.lbGengivitis = New DevComponents.DotNetBar.LabelX()
-        Me.Panel7 = New System.Windows.Forms.Panel()
-        Me.chbAnormalE = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbNormalE = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.lbEncias = New DevComponents.DotNetBar.LabelX()
-        Me.Panel6 = New System.Windows.Forms.Panel()
-        Me.chbtresDP = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbunoDP = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbdosDP = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.lbDañoPeriontal = New DevComponents.DotNetBar.LabelX()
-        Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.chbNormalD = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbAnormalD = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.lbDentadura = New DevComponents.DotNetBar.LabelX()
-        Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.chbPorDeshi1 = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbPorDeshi5 = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbPorDeshi2 = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbPorDeshi4 = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbPorDeshi3 = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
-        Me.txtTLCapilar = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
-        Me.txtFCardiaca = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.txtExaminacion = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.chbPalidasM = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbNormalesM = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbHiperemicasM = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.lbMucosas = New DevComponents.DotNetBar.LabelX()
-        Me.PanelCondicionCorporal = New System.Windows.Forms.Panel()
-        Me.chbExcDelgCC = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbSobExtremoCC = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbBajoPesoCC = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbSobrepesoCC = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbPesoIdealCC = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.lbCondCorporal = New DevComponents.DotNetBar.LabelX()
-        Me.txtFRespiratoria = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.lbFResp = New DevComponents.DotNetBar.LabelX()
-        Me.txtPeso = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.lbPeso = New DevComponents.DotNetBar.LabelX()
-        Me.lbFcardiaca = New DevComponents.DotNetBar.LabelX()
-        Me.txtTemperatura = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.lbTemperatura = New DevComponents.DotNetBar.LabelX()
-        Me.lbExaminacion = New DevComponents.DotNetBar.LabelX()
-        Me.txtHistoria = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.lbHistoria = New DevComponents.DotNetBar.LabelX()
-        Me.chbEmergenciaH = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.chbNormalH = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.lbHonorarios = New DevComponents.DotNetBar.LabelX()
-        Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
-        Me.dtpFechaFC = New System.Windows.Forms.DateTimePicker()
-        Me.SuperTabItem3 = New DevComponents.DotNetBar.SuperTabItem()
         Me.stcpInternacion = New DevComponents.DotNetBar.SuperTabControlPanel()
         Me.panelInternacion = New System.Windows.Forms.Panel()
         Me.gpInternacion = New DevComponents.DotNetBar.Controls.GroupPanel()
@@ -303,6 +303,19 @@ Partial Class F1_Fic_FichaClinica
         Me.gpFichaClinica.SuspendLayout()
         CType(Me.stcFichaClinica, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.stcFichaClinica.SuspendLayout()
+        Me.stcpDatos1.SuspendLayout()
+        Me.panelDatos1.SuspendLayout()
+        CType(Me.cbConsultorio, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTRPliegue, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel16.SuspendLayout()
+        Me.Panel9.SuspendLayout()
+        Me.Panel8.SuspendLayout()
+        Me.Panel7.SuspendLayout()
+        Me.Panel6.SuspendLayout()
+        Me.Panel5.SuspendLayout()
+        Me.Panel4.SuspendLayout()
+        Me.Panel3.SuspendLayout()
+        Me.PanelCondicionCorporal.SuspendLayout()
         Me.stcpDatos2.SuspendLayout()
         Me.panelDatos2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -319,19 +332,6 @@ Partial Class F1_Fic_FichaClinica
         Me.Panel18.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel17.SuspendLayout()
-        Me.stcpDatos1.SuspendLayout()
-        Me.panelDatos1.SuspendLayout()
-        CType(Me.cbConsultorio, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtTRPliegue, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel16.SuspendLayout()
-        Me.Panel9.SuspendLayout()
-        Me.Panel8.SuspendLayout()
-        Me.Panel7.SuspendLayout()
-        Me.Panel6.SuspendLayout()
-        Me.Panel5.SuspendLayout()
-        Me.Panel4.SuspendLayout()
-        Me.Panel3.SuspendLayout()
-        Me.PanelCondicionCorporal.SuspendLayout()
         Me.stcpInternacion.SuspendLayout()
         Me.panelInternacion.SuspendLayout()
         Me.gpInternacion.SuspendLayout()
@@ -550,1208 +550,6 @@ Partial Class F1_Fic_FichaClinica
         Me.stcFichaClinica.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem3, Me.SuperTabItem5, Me.SuperTabItem4, Me.SuperTabItem6, Me.SuperTabItem7, Me.SuperTabItem8})
         Me.stcFichaClinica.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.Office2010BackstageBlue
         Me.stcFichaClinica.Text = "stcFichaClinica"
-        '
-        'stcpDatos2
-        '
-        Me.stcpDatos2.Controls.Add(Me.panelDatos2)
-        Me.stcpDatos2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.stcpDatos2.Location = New System.Drawing.Point(0, 25)
-        Me.stcpDatos2.Name = "stcpDatos2"
-        Me.stcpDatos2.Size = New System.Drawing.Size(929, 509)
-        Me.stcpDatos2.TabIndex = 2
-        Me.stcpDatos2.TabItem = Me.SuperTabItem5
-        '
-        'panelDatos2
-        '
-        Me.panelDatos2.BackColor = System.Drawing.Color.LightSkyBlue
-        Me.panelDatos2.Controls.Add(Me.chbmpostizq)
-        Me.panelDatos2.Controls.Add(Me.chbmpostder)
-        Me.panelDatos2.Controls.Add(Me.chbmantizq)
-        Me.panelDatos2.Controls.Add(Me.chbmantder)
-        Me.panelDatos2.Controls.Add(Me.chbPelvis)
-        Me.panelDatos2.Controls.Add(Me.chbAbdomen)
-        Me.panelDatos2.Controls.Add(Me.chbCabeza)
-        Me.panelDatos2.Controls.Add(Me.chbTorax)
-        Me.panelDatos2.Controls.Add(Me.PictureBox1)
-        Me.panelDatos2.Controls.Add(Me.Panel23)
-        Me.panelDatos2.Controls.Add(Me.lbOtras)
-        Me.panelDatos2.Controls.Add(Me.Panel14)
-        Me.panelDatos2.Controls.Add(Me.lbSistenaGeni)
-        Me.panelDatos2.Controls.Add(Me.Panel11)
-        Me.panelDatos2.Controls.Add(Me.Panel13)
-        Me.panelDatos2.Controls.Add(Me.lbSistemaNer)
-        Me.panelDatos2.Controls.Add(Me.Panel12)
-        Me.panelDatos2.Controls.Add(Me.lbLinfonódulos)
-        Me.panelDatos2.Controls.Add(Me.lbSMuscEsq)
-        Me.panelDatos2.Controls.Add(Me.Panel10)
-        Me.panelDatos2.Controls.Add(Me.lbPielPelo)
-        Me.panelDatos2.Controls.Add(Me.txtNotas)
-        Me.panelDatos2.Controls.Add(Me.lbNotas)
-        Me.panelDatos2.Controls.Add(Me.Panel22)
-        Me.panelDatos2.Controls.Add(Me.lbDolor)
-        Me.panelDatos2.Controls.Add(Me.Panel21)
-        Me.panelDatos2.Controls.Add(Me.lbAbdomen)
-        Me.panelDatos2.Controls.Add(Me.Panel20)
-        Me.panelDatos2.Controls.Add(Me.lbPulmones)
-        Me.panelDatos2.Controls.Add(Me.Panel19)
-        Me.panelDatos2.Controls.Add(Me.lbCorazon)
-        Me.panelDatos2.Controls.Add(Me.Panel18)
-        Me.panelDatos2.Controls.Add(Me.lbOrejas)
-        Me.panelDatos2.Controls.Add(Me.Panel2)
-        Me.panelDatos2.Controls.Add(Me.lbOjos)
-        Me.panelDatos2.Controls.Add(Me.Panel17)
-        Me.panelDatos2.Controls.Add(Me.lbLocalizado)
-        Me.panelDatos2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panelDatos2.Location = New System.Drawing.Point(0, 0)
-        Me.panelDatos2.Name = "panelDatos2"
-        Me.panelDatos2.Size = New System.Drawing.Size(929, 509)
-        Me.panelDatos2.TabIndex = 1
-        '
-        'chbmpostizq
-        '
-        Me.chbmpostizq.BackColor = System.Drawing.Color.Black
-        '
-        '
-        '
-        Me.chbmpostizq.BackgroundStyle.BorderColor = System.Drawing.Color.Red
-        Me.chbmpostizq.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbmpostizq.BackgroundStyle.PaddingLeft = 2
-        Me.chbmpostizq.Location = New System.Drawing.Point(115, 458)
-        Me.chbmpostizq.Name = "chbmpostizq"
-        Me.chbmpostizq.Size = New System.Drawing.Size(17, 18)
-        Me.chbmpostizq.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbmpostizq.TabIndex = 373
-        '
-        'chbmpostder
-        '
-        Me.chbmpostder.BackColor = System.Drawing.Color.Black
-        '
-        '
-        '
-        Me.chbmpostder.BackgroundStyle.BorderColor = System.Drawing.Color.Red
-        Me.chbmpostder.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbmpostder.BackgroundStyle.PaddingLeft = 2
-        Me.chbmpostder.Location = New System.Drawing.Point(147, 445)
-        Me.chbmpostder.Name = "chbmpostder"
-        Me.chbmpostder.Size = New System.Drawing.Size(17, 18)
-        Me.chbmpostder.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbmpostder.TabIndex = 372
-        '
-        'chbmantizq
-        '
-        Me.chbmantizq.BackColor = System.Drawing.Color.Black
-        '
-        '
-        '
-        Me.chbmantizq.BackgroundStyle.BorderColor = System.Drawing.Color.Red
-        Me.chbmantizq.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbmantizq.BackgroundStyle.PaddingLeft = 2
-        Me.chbmantizq.Location = New System.Drawing.Point(226, 458)
-        Me.chbmantizq.Name = "chbmantizq"
-        Me.chbmantizq.Size = New System.Drawing.Size(17, 18)
-        Me.chbmantizq.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbmantizq.TabIndex = 371
-        '
-        'chbmantder
-        '
-        Me.chbmantder.BackColor = System.Drawing.Color.Black
-        '
-        '
-        '
-        Me.chbmantder.BackgroundStyle.BorderColor = System.Drawing.Color.Red
-        Me.chbmantder.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbmantder.BackgroundStyle.PaddingLeft = 2
-        Me.chbmantder.Location = New System.Drawing.Point(260, 431)
-        Me.chbmantder.Name = "chbmantder"
-        Me.chbmantder.Size = New System.Drawing.Size(17, 18)
-        Me.chbmantder.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbmantder.TabIndex = 370
-        '
-        'chbPelvis
-        '
-        Me.chbPelvis.BackColor = System.Drawing.Color.Black
-        '
-        '
-        '
-        Me.chbPelvis.BackgroundStyle.BorderColor = System.Drawing.Color.Red
-        Me.chbPelvis.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbPelvis.BackgroundStyle.PaddingLeft = 2
-        Me.chbPelvis.Location = New System.Drawing.Point(145, 406)
-        Me.chbPelvis.Name = "chbPelvis"
-        Me.chbPelvis.Size = New System.Drawing.Size(17, 18)
-        Me.chbPelvis.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbPelvis.TabIndex = 369
-        '
-        'chbAbdomen
-        '
-        Me.chbAbdomen.BackColor = System.Drawing.Color.Black
-        '
-        '
-        '
-        Me.chbAbdomen.BackgroundStyle.BorderColor = System.Drawing.Color.Red
-        Me.chbAbdomen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbAbdomen.BackgroundStyle.PaddingLeft = 2
-        Me.chbAbdomen.Location = New System.Drawing.Point(200, 393)
-        Me.chbAbdomen.Name = "chbAbdomen"
-        Me.chbAbdomen.Size = New System.Drawing.Size(17, 18)
-        Me.chbAbdomen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbAbdomen.TabIndex = 368
-        '
-        'chbCabeza
-        '
-        Me.chbCabeza.BackColor = System.Drawing.Color.Black
-        '
-        '
-        '
-        Me.chbCabeza.BackgroundStyle.BorderColor = System.Drawing.Color.Red
-        Me.chbCabeza.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbCabeza.BackgroundStyle.PaddingLeft = 2
-        Me.chbCabeza.Location = New System.Drawing.Point(297, 339)
-        Me.chbCabeza.Name = "chbCabeza"
-        Me.chbCabeza.Size = New System.Drawing.Size(17, 18)
-        Me.chbCabeza.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbCabeza.TabIndex = 367
-        '
-        'chbTorax
-        '
-        Me.chbTorax.BackColor = System.Drawing.Color.Black
-        '
-        '
-        '
-        Me.chbTorax.BackgroundStyle.BorderColor = System.Drawing.Color.Red
-        Me.chbTorax.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbTorax.BackgroundStyle.PaddingLeft = 2
-        Me.chbTorax.Location = New System.Drawing.Point(251, 388)
-        Me.chbTorax.Name = "chbTorax"
-        Me.chbTorax.Size = New System.Drawing.Size(17, 18)
-        Me.chbTorax.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbTorax.TabIndex = 366
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.Presentacion.My.Resources.Resources.perro
-        Me.PictureBox1.Location = New System.Drawing.Point(84, 336)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(258, 164)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 357
-        Me.PictureBox1.TabStop = False
-        '
-        'Panel23
-        '
-        Me.Panel23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel23.Controls.Add(Me.chbIntu)
-        Me.Panel23.Controls.Add(Me.chbAscitis)
-        Me.Panel23.Controls.Add(Me.chbExtraño)
-        Me.Panel23.Controls.Add(Me.chbMabdominal)
-        Me.Panel23.Controls.Add(Me.chblineal)
-        Me.Panel23.Location = New System.Drawing.Point(548, 228)
-        Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(326, 122)
-        Me.Panel23.TabIndex = 356
-        '
-        'chbIntu
-        '
-        '
-        '
-        '
-        Me.chbIntu.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbIntu.Location = New System.Drawing.Point(7, 69)
-        Me.chbIntu.Name = "chbIntu"
-        Me.chbIntu.Size = New System.Drawing.Size(151, 23)
-        Me.chbIntu.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbIntu.TabIndex = 289
-        Me.chbIntu.Text = "Intususcepción"
-        '
-        'chbAscitis
-        '
-        '
-        '
-        '
-        Me.chbAscitis.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbAscitis.Location = New System.Drawing.Point(7, 90)
-        Me.chbAscitis.Name = "chbAscitis"
-        Me.chbAscitis.Size = New System.Drawing.Size(152, 23)
-        Me.chbAscitis.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbAscitis.TabIndex = 288
-        Me.chbAscitis.Text = "Ascitis"
-        '
-        'chbExtraño
-        '
-        '
-        '
-        '
-        Me.chbExtraño.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbExtraño.Location = New System.Drawing.Point(7, 4)
-        Me.chbExtraño.Name = "chbExtraño"
-        Me.chbExtraño.Size = New System.Drawing.Size(284, 23)
-        Me.chbExtraño.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbExtraño.TabIndex = 285
-        Me.chbExtraño.Text = "Posible cuerpo extraño a la palpación"
-        '
-        'chbMabdominal
-        '
-        '
-        '
-        '
-        Me.chbMabdominal.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbMabdominal.Location = New System.Drawing.Point(7, 48)
-        Me.chbMabdominal.Name = "chbMabdominal"
-        Me.chbMabdominal.Size = New System.Drawing.Size(186, 23)
-        Me.chbMabdominal.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbMabdominal.TabIndex = 287
-        Me.chbMabdominal.Text = "Posible masa abdominal"
-        '
-        'chblineal
-        '
-        '
-        '
-        '
-        Me.chblineal.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chblineal.Location = New System.Drawing.Point(7, 26)
-        Me.chblineal.Name = "chblineal"
-        Me.chblineal.Size = New System.Drawing.Size(266, 23)
-        Me.chblineal.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chblineal.TabIndex = 286
-        Me.chblineal.Text = "Posible cuerpo lineal a la palpación"
-        '
-        'lbOtras
-        '
-        Me.lbOtras.AutoSize = True
-        Me.lbOtras.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbOtras.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbOtras.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbOtras.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbOtras.Location = New System.Drawing.Point(488, 207)
-        Me.lbOtras.Name = "lbOtras"
-        Me.lbOtras.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbOtras.Size = New System.Drawing.Size(122, 16)
-        Me.lbOtras.TabIndex = 355
-        Me.lbOtras.Text = "Otras Alteraciones:"
-        '
-        'Panel14
-        '
-        Me.Panel14.Controls.Add(Me.chbNormalG)
-        Me.Panel14.Controls.Add(Me.chbAnormalG)
-        Me.Panel14.Location = New System.Drawing.Point(219, 263)
-        Me.Panel14.Name = "Panel14"
-        Me.Panel14.Size = New System.Drawing.Size(169, 30)
-        Me.Panel14.TabIndex = 354
-        '
-        'chbNormalG
-        '
-        '
-        '
-        '
-        Me.chbNormalG.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbNormalG.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbNormalG.Checked = True
-        Me.chbNormalG.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbNormalG.CheckValue = "Y"
-        Me.chbNormalG.Location = New System.Drawing.Point(6, 3)
-        Me.chbNormalG.Name = "chbNormalG"
-        Me.chbNormalG.Size = New System.Drawing.Size(71, 23)
-        Me.chbNormalG.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbNormalG.TabIndex = 277
-        Me.chbNormalG.Text = "Normal"
-        '
-        'chbAnormalG
-        '
-        '
-        '
-        '
-        Me.chbAnormalG.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbAnormalG.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbAnormalG.Location = New System.Drawing.Point(83, 4)
-        Me.chbAnormalG.Name = "chbAnormalG"
-        Me.chbAnormalG.Size = New System.Drawing.Size(83, 23)
-        Me.chbAnormalG.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbAnormalG.TabIndex = 278
-        Me.chbAnormalG.Text = "Anormal"
-        '
-        'lbSistenaGeni
-        '
-        Me.lbSistenaGeni.AutoSize = True
-        Me.lbSistenaGeni.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbSistenaGeni.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbSistenaGeni.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbSistenaGeni.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbSistenaGeni.Location = New System.Drawing.Point(36, 272)
-        Me.lbSistenaGeni.Name = "lbSistenaGeni"
-        Me.lbSistenaGeni.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbSistenaGeni.Size = New System.Drawing.Size(153, 16)
-        Me.lbSistenaGeni.TabIndex = 353
-        Me.lbSistenaGeni.Text = "Sistema Genitourinario:"
-        '
-        'Panel11
-        '
-        Me.Panel11.Controls.Add(Me.chbNormalSME)
-        Me.Panel11.Controls.Add(Me.chbAnormalSME)
-        Me.Panel11.Location = New System.Drawing.Point(219, 299)
-        Me.Panel11.Name = "Panel11"
-        Me.Panel11.Size = New System.Drawing.Size(169, 30)
-        Me.Panel11.TabIndex = 348
-        '
-        'chbNormalSME
-        '
-        '
-        '
-        '
-        Me.chbNormalSME.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbNormalSME.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbNormalSME.Checked = True
-        Me.chbNormalSME.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbNormalSME.CheckValue = "Y"
-        Me.chbNormalSME.Location = New System.Drawing.Point(6, 3)
-        Me.chbNormalSME.Name = "chbNormalSME"
-        Me.chbNormalSME.Size = New System.Drawing.Size(71, 23)
-        Me.chbNormalSME.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbNormalSME.TabIndex = 277
-        Me.chbNormalSME.Text = "Normal"
-        '
-        'chbAnormalSME
-        '
-        '
-        '
-        '
-        Me.chbAnormalSME.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbAnormalSME.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbAnormalSME.Location = New System.Drawing.Point(83, 4)
-        Me.chbAnormalSME.Name = "chbAnormalSME"
-        Me.chbAnormalSME.Size = New System.Drawing.Size(83, 23)
-        Me.chbAnormalSME.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbAnormalSME.TabIndex = 278
-        Me.chbAnormalSME.Text = "Anormal"
-        '
-        'Panel13
-        '
-        Me.Panel13.Controls.Add(Me.chbNormalSN)
-        Me.Panel13.Controls.Add(Me.chbAnormalSN)
-        Me.Panel13.Location = New System.Drawing.Point(219, 227)
-        Me.Panel13.Name = "Panel13"
-        Me.Panel13.Size = New System.Drawing.Size(169, 30)
-        Me.Panel13.TabIndex = 352
-        '
-        'chbNormalSN
-        '
-        '
-        '
-        '
-        Me.chbNormalSN.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbNormalSN.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbNormalSN.Checked = True
-        Me.chbNormalSN.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbNormalSN.CheckValue = "Y"
-        Me.chbNormalSN.Location = New System.Drawing.Point(6, 3)
-        Me.chbNormalSN.Name = "chbNormalSN"
-        Me.chbNormalSN.Size = New System.Drawing.Size(71, 23)
-        Me.chbNormalSN.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbNormalSN.TabIndex = 277
-        Me.chbNormalSN.Text = "Normal"
-        '
-        'chbAnormalSN
-        '
-        '
-        '
-        '
-        Me.chbAnormalSN.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbAnormalSN.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbAnormalSN.Location = New System.Drawing.Point(83, 4)
-        Me.chbAnormalSN.Name = "chbAnormalSN"
-        Me.chbAnormalSN.Size = New System.Drawing.Size(83, 23)
-        Me.chbAnormalSN.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbAnormalSN.TabIndex = 278
-        Me.chbAnormalSN.Text = "Anormal"
-        '
-        'lbSistemaNer
-        '
-        Me.lbSistemaNer.AutoSize = True
-        Me.lbSistemaNer.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbSistemaNer.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbSistemaNer.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbSistemaNer.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbSistemaNer.Location = New System.Drawing.Point(36, 236)
-        Me.lbSistemaNer.Name = "lbSistemaNer"
-        Me.lbSistemaNer.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbSistemaNer.Size = New System.Drawing.Size(115, 16)
-        Me.lbSistemaNer.TabIndex = 351
-        Me.lbSistemaNer.Text = "Sistema Nervioso:"
-        '
-        'Panel12
-        '
-        Me.Panel12.Controls.Add(Me.chbNormalL)
-        Me.Panel12.Controls.Add(Me.chbAnormalL)
-        Me.Panel12.Location = New System.Drawing.Point(219, 191)
-        Me.Panel12.Name = "Panel12"
-        Me.Panel12.Size = New System.Drawing.Size(169, 30)
-        Me.Panel12.TabIndex = 350
-        '
-        'chbNormalL
-        '
-        '
-        '
-        '
-        Me.chbNormalL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbNormalL.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbNormalL.Checked = True
-        Me.chbNormalL.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbNormalL.CheckValue = "Y"
-        Me.chbNormalL.Location = New System.Drawing.Point(6, 3)
-        Me.chbNormalL.Name = "chbNormalL"
-        Me.chbNormalL.Size = New System.Drawing.Size(71, 23)
-        Me.chbNormalL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbNormalL.TabIndex = 277
-        Me.chbNormalL.Text = "Normal"
-        '
-        'chbAnormalL
-        '
-        '
-        '
-        '
-        Me.chbAnormalL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbAnormalL.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbAnormalL.Location = New System.Drawing.Point(83, 4)
-        Me.chbAnormalL.Name = "chbAnormalL"
-        Me.chbAnormalL.Size = New System.Drawing.Size(83, 23)
-        Me.chbAnormalL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbAnormalL.TabIndex = 278
-        Me.chbAnormalL.Text = "Anormal"
-        '
-        'lbLinfonódulos
-        '
-        Me.lbLinfonódulos.AutoSize = True
-        Me.lbLinfonódulos.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbLinfonódulos.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbLinfonódulos.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbLinfonódulos.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbLinfonódulos.Location = New System.Drawing.Point(36, 200)
-        Me.lbLinfonódulos.Name = "lbLinfonódulos"
-        Me.lbLinfonódulos.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbLinfonódulos.Size = New System.Drawing.Size(90, 16)
-        Me.lbLinfonódulos.TabIndex = 349
-        Me.lbLinfonódulos.Text = "Linfonodulos:"
-        '
-        'lbSMuscEsq
-        '
-        Me.lbSMuscEsq.AutoSize = True
-        Me.lbSMuscEsq.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbSMuscEsq.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbSMuscEsq.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbSMuscEsq.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbSMuscEsq.Location = New System.Drawing.Point(36, 305)
-        Me.lbSMuscEsq.Name = "lbSMuscEsq"
-        Me.lbSMuscEsq.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbSMuscEsq.Size = New System.Drawing.Size(177, 16)
-        Me.lbSMuscEsq.TabIndex = 347
-        Me.lbSMuscEsq.Text = "Sistema Músculo-Esqueleto:"
-        '
-        'Panel10
-        '
-        Me.Panel10.Controls.Add(Me.chbNormalPe)
-        Me.Panel10.Controls.Add(Me.chbAnormalPe)
-        Me.Panel10.Location = New System.Drawing.Point(111, 155)
-        Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(169, 30)
-        Me.Panel10.TabIndex = 346
-        '
-        'chbNormalPe
-        '
-        '
-        '
-        '
-        Me.chbNormalPe.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbNormalPe.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbNormalPe.Checked = True
-        Me.chbNormalPe.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbNormalPe.CheckValue = "Y"
-        Me.chbNormalPe.Location = New System.Drawing.Point(6, 3)
-        Me.chbNormalPe.Name = "chbNormalPe"
-        Me.chbNormalPe.Size = New System.Drawing.Size(71, 23)
-        Me.chbNormalPe.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbNormalPe.TabIndex = 277
-        Me.chbNormalPe.Text = "Normal"
-        '
-        'chbAnormalPe
-        '
-        '
-        '
-        '
-        Me.chbAnormalPe.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbAnormalPe.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbAnormalPe.Location = New System.Drawing.Point(83, 4)
-        Me.chbAnormalPe.Name = "chbAnormalPe"
-        Me.chbAnormalPe.Size = New System.Drawing.Size(83, 23)
-        Me.chbAnormalPe.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbAnormalPe.TabIndex = 278
-        Me.chbAnormalPe.Text = "Anormal"
-        '
-        'lbPielPelo
-        '
-        Me.lbPielPelo.AutoSize = True
-        Me.lbPielPelo.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbPielPelo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbPielPelo.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbPielPelo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbPielPelo.Location = New System.Drawing.Point(37, 164)
-        Me.lbPielPelo.Name = "lbPielPelo"
-        Me.lbPielPelo.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbPielPelo.Size = New System.Drawing.Size(70, 16)
-        Me.lbPielPelo.TabIndex = 345
-        Me.lbPielPelo.Text = "Piel y Pelo:"
-        '
-        'txtNotas
-        '
-        Me.txtNotas.BackColor = System.Drawing.Color.White
-        '
-        '
-        '
-        Me.txtNotas.Border.Class = "TextBoxBorder"
-        Me.txtNotas.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtNotas.DisabledBackColor = System.Drawing.Color.White
-        Me.txtNotas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNotas.ForeColor = System.Drawing.Color.Black
-        Me.txtNotas.Location = New System.Drawing.Point(487, 381)
-        Me.txtNotas.MaxLength = 400
-        Me.txtNotas.Multiline = True
-        Me.txtNotas.Name = "txtNotas"
-        Me.txtNotas.PreventEnterBeep = True
-        Me.txtNotas.Size = New System.Drawing.Size(387, 108)
-        Me.txtNotas.TabIndex = 11
-        '
-        'lbNotas
-        '
-        Me.lbNotas.AutoSize = True
-        Me.lbNotas.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbNotas.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbNotas.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbNotas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbNotas.Location = New System.Drawing.Point(488, 359)
-        Me.lbNotas.Name = "lbNotas"
-        Me.lbNotas.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbNotas.Size = New System.Drawing.Size(43, 16)
-        Me.lbNotas.TabIndex = 343
-        Me.lbNotas.Text = "Notas:"
-        '
-        'Panel22
-        '
-        Me.Panel22.Controls.Add(Me.chbSeveroD)
-        Me.Panel22.Controls.Add(Me.chbLeveD)
-        Me.Panel22.Controls.Add(Me.chbAgudoD)
-        Me.Panel22.Controls.Add(Me.chbModeradoD)
-        Me.Panel22.Location = New System.Drawing.Point(562, 47)
-        Me.Panel22.Name = "Panel22"
-        Me.Panel22.Size = New System.Drawing.Size(342, 30)
-        Me.Panel22.TabIndex = 342
-        '
-        'chbSeveroD
-        '
-        '
-        '
-        '
-        Me.chbSeveroD.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbSeveroD.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbSeveroD.Location = New System.Drawing.Point(239, 4)
-        Me.chbSeveroD.Name = "chbSeveroD"
-        Me.chbSeveroD.Size = New System.Drawing.Size(88, 23)
-        Me.chbSeveroD.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbSeveroD.TabIndex = 280
-        Me.chbSeveroD.Text = "Severo"
-        '
-        'chbLeveD
-        '
-        '
-        '
-        '
-        Me.chbLeveD.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbLeveD.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbLeveD.Location = New System.Drawing.Point(80, 4)
-        Me.chbLeveD.Name = "chbLeveD"
-        Me.chbLeveD.Size = New System.Drawing.Size(53, 23)
-        Me.chbLeveD.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbLeveD.TabIndex = 277
-        Me.chbLeveD.Text = "Leve"
-        '
-        'chbAgudoD
-        '
-        '
-        '
-        '
-        Me.chbAgudoD.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbAgudoD.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbAgudoD.Checked = True
-        Me.chbAgudoD.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbAgudoD.CheckValue = "Y"
-        Me.chbAgudoD.Location = New System.Drawing.Point(3, 4)
-        Me.chbAgudoD.Name = "chbAgudoD"
-        Me.chbAgudoD.Size = New System.Drawing.Size(71, 23)
-        Me.chbAgudoD.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbAgudoD.TabIndex = 278
-        Me.chbAgudoD.Text = "Agudo"
-        '
-        'chbModeradoD
-        '
-        '
-        '
-        '
-        Me.chbModeradoD.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbModeradoD.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbModeradoD.Location = New System.Drawing.Point(139, 4)
-        Me.chbModeradoD.Name = "chbModeradoD"
-        Me.chbModeradoD.Size = New System.Drawing.Size(99, 23)
-        Me.chbModeradoD.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbModeradoD.TabIndex = 279
-        Me.chbModeradoD.Text = "Moderado"
-        '
-        'lbDolor
-        '
-        Me.lbDolor.AutoSize = True
-        Me.lbDolor.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbDolor.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbDolor.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbDolor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbDolor.Location = New System.Drawing.Point(488, 54)
-        Me.lbDolor.Name = "lbDolor"
-        Me.lbDolor.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbDolor.Size = New System.Drawing.Size(43, 16)
-        Me.lbDolor.TabIndex = 341
-        Me.lbDolor.Text = "Dolor:"
-        '
-        'Panel21
-        '
-        Me.Panel21.Controls.Add(Me.chbNormalA)
-        Me.Panel21.Controls.Add(Me.chbAnormalA)
-        Me.Panel21.Location = New System.Drawing.Point(562, 11)
-        Me.Panel21.Name = "Panel21"
-        Me.Panel21.Size = New System.Drawing.Size(169, 30)
-        Me.Panel21.TabIndex = 340
-        '
-        'chbNormalA
-        '
-        '
-        '
-        '
-        Me.chbNormalA.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbNormalA.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbNormalA.Checked = True
-        Me.chbNormalA.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbNormalA.CheckValue = "Y"
-        Me.chbNormalA.Location = New System.Drawing.Point(6, 3)
-        Me.chbNormalA.Name = "chbNormalA"
-        Me.chbNormalA.Size = New System.Drawing.Size(71, 23)
-        Me.chbNormalA.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbNormalA.TabIndex = 277
-        Me.chbNormalA.Text = "Normal"
-        '
-        'chbAnormalA
-        '
-        '
-        '
-        '
-        Me.chbAnormalA.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbAnormalA.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbAnormalA.Location = New System.Drawing.Point(83, 4)
-        Me.chbAnormalA.Name = "chbAnormalA"
-        Me.chbAnormalA.Size = New System.Drawing.Size(83, 23)
-        Me.chbAnormalA.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbAnormalA.TabIndex = 278
-        Me.chbAnormalA.Text = "Anormal"
-        '
-        'lbAbdomen
-        '
-        Me.lbAbdomen.AutoSize = True
-        Me.lbAbdomen.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbAbdomen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbAbdomen.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbAbdomen.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbAbdomen.Location = New System.Drawing.Point(488, 19)
-        Me.lbAbdomen.Name = "lbAbdomen"
-        Me.lbAbdomen.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbAbdomen.Size = New System.Drawing.Size(67, 16)
-        Me.lbAbdomen.TabIndex = 339
-        Me.lbAbdomen.Text = "Abdomen:"
-        '
-        'Panel20
-        '
-        Me.Panel20.Controls.Add(Me.chbAnormalP)
-        Me.Panel20.Controls.Add(Me.chbNormalP)
-        Me.Panel20.Controls.Add(Me.chbRuidosRespP)
-        Me.Panel20.Location = New System.Drawing.Point(111, 119)
-        Me.Panel20.Name = "Panel20"
-        Me.Panel20.Size = New System.Drawing.Size(342, 30)
-        Me.Panel20.TabIndex = 338
-        '
-        'chbAnormalP
-        '
-        '
-        '
-        '
-        Me.chbAnormalP.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbAnormalP.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbAnormalP.Location = New System.Drawing.Point(80, 4)
-        Me.chbAnormalP.Name = "chbAnormalP"
-        Me.chbAnormalP.Size = New System.Drawing.Size(81, 23)
-        Me.chbAnormalP.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbAnormalP.TabIndex = 277
-        Me.chbAnormalP.Text = "Anormal"
-        '
-        'chbNormalP
-        '
-        '
-        '
-        '
-        Me.chbNormalP.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbNormalP.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbNormalP.Checked = True
-        Me.chbNormalP.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbNormalP.CheckValue = "Y"
-        Me.chbNormalP.Location = New System.Drawing.Point(3, 4)
-        Me.chbNormalP.Name = "chbNormalP"
-        Me.chbNormalP.Size = New System.Drawing.Size(71, 23)
-        Me.chbNormalP.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbNormalP.TabIndex = 278
-        Me.chbNormalP.Text = "Normal"
-        '
-        'chbRuidosRespP
-        '
-        '
-        '
-        '
-        Me.chbRuidosRespP.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbRuidosRespP.Location = New System.Drawing.Point(164, 4)
-        Me.chbRuidosRespP.Name = "chbRuidosRespP"
-        Me.chbRuidosRespP.Size = New System.Drawing.Size(168, 23)
-        Me.chbRuidosRespP.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbRuidosRespP.TabIndex = 279
-        Me.chbRuidosRespP.Text = "Ruidos Respiratorios"
-        '
-        'lbPulmones
-        '
-        Me.lbPulmones.AutoSize = True
-        Me.lbPulmones.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbPulmones.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbPulmones.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbPulmones.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbPulmones.Location = New System.Drawing.Point(37, 126)
-        Me.lbPulmones.Name = "lbPulmones"
-        Me.lbPulmones.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbPulmones.Size = New System.Drawing.Size(69, 16)
-        Me.lbPulmones.TabIndex = 337
-        Me.lbPulmones.Text = "Pulmones:"
-        '
-        'Panel19
-        '
-        Me.Panel19.Controls.Add(Me.chbAnormalC)
-        Me.Panel19.Controls.Add(Me.chbNormalC)
-        Me.Panel19.Controls.Add(Me.chbRuidosCardiacos)
-        Me.Panel19.Location = New System.Drawing.Point(111, 84)
-        Me.Panel19.Name = "Panel19"
-        Me.Panel19.Size = New System.Drawing.Size(342, 30)
-        Me.Panel19.TabIndex = 336
-        '
-        'chbAnormalC
-        '
-        '
-        '
-        '
-        Me.chbAnormalC.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbAnormalC.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbAnormalC.Location = New System.Drawing.Point(80, 4)
-        Me.chbAnormalC.Name = "chbAnormalC"
-        Me.chbAnormalC.Size = New System.Drawing.Size(81, 23)
-        Me.chbAnormalC.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbAnormalC.TabIndex = 277
-        Me.chbAnormalC.Text = "Anormal"
-        '
-        'chbNormalC
-        '
-        '
-        '
-        '
-        Me.chbNormalC.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbNormalC.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbNormalC.Checked = True
-        Me.chbNormalC.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbNormalC.CheckValue = "Y"
-        Me.chbNormalC.Location = New System.Drawing.Point(3, 4)
-        Me.chbNormalC.Name = "chbNormalC"
-        Me.chbNormalC.Size = New System.Drawing.Size(71, 23)
-        Me.chbNormalC.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbNormalC.TabIndex = 278
-        Me.chbNormalC.Text = "Normal"
-        '
-        'chbRuidosCardiacos
-        '
-        '
-        '
-        '
-        Me.chbRuidosCardiacos.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbRuidosCardiacos.Location = New System.Drawing.Point(164, 4)
-        Me.chbRuidosCardiacos.Name = "chbRuidosCardiacos"
-        Me.chbRuidosCardiacos.Size = New System.Drawing.Size(148, 23)
-        Me.chbRuidosCardiacos.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbRuidosCardiacos.TabIndex = 279
-        Me.chbRuidosCardiacos.Text = "Ruidos Cardiacos"
-        '
-        'lbCorazon
-        '
-        Me.lbCorazon.AutoSize = True
-        Me.lbCorazon.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbCorazon.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbCorazon.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbCorazon.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbCorazon.Location = New System.Drawing.Point(37, 91)
-        Me.lbCorazon.Name = "lbCorazon"
-        Me.lbCorazon.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbCorazon.Size = New System.Drawing.Size(59, 16)
-        Me.lbCorazon.TabIndex = 335
-        Me.lbCorazon.Text = "Corazón:"
-        '
-        'Panel18
-        '
-        Me.Panel18.Controls.Add(Me.chbIzquierdaOr)
-        Me.Panel18.Controls.Add(Me.chbAnormalOr)
-        Me.Panel18.Controls.Add(Me.chbNormalOr)
-        Me.Panel18.Controls.Add(Me.chbDerechaOr)
-        Me.Panel18.Location = New System.Drawing.Point(111, 48)
-        Me.Panel18.Name = "Panel18"
-        Me.Panel18.Size = New System.Drawing.Size(342, 30)
-        Me.Panel18.TabIndex = 334
-        '
-        'chbIzquierdaOr
-        '
-        '
-        '
-        '
-        Me.chbIzquierdaOr.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbIzquierdaOr.Location = New System.Drawing.Point(244, 4)
-        Me.chbIzquierdaOr.Name = "chbIzquierdaOr"
-        Me.chbIzquierdaOr.Size = New System.Drawing.Size(88, 23)
-        Me.chbIzquierdaOr.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbIzquierdaOr.TabIndex = 280
-        Me.chbIzquierdaOr.Text = "Izquierda"
-        '
-        'chbAnormalOr
-        '
-        '
-        '
-        '
-        Me.chbAnormalOr.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbAnormalOr.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbAnormalOr.Location = New System.Drawing.Point(80, 4)
-        Me.chbAnormalOr.Name = "chbAnormalOr"
-        Me.chbAnormalOr.Size = New System.Drawing.Size(81, 23)
-        Me.chbAnormalOr.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbAnormalOr.TabIndex = 277
-        Me.chbAnormalOr.Text = "Anormal"
-        '
-        'chbNormalOr
-        '
-        '
-        '
-        '
-        Me.chbNormalOr.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbNormalOr.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbNormalOr.Checked = True
-        Me.chbNormalOr.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbNormalOr.CheckValue = "Y"
-        Me.chbNormalOr.Location = New System.Drawing.Point(3, 4)
-        Me.chbNormalOr.Name = "chbNormalOr"
-        Me.chbNormalOr.Size = New System.Drawing.Size(71, 23)
-        Me.chbNormalOr.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbNormalOr.TabIndex = 278
-        Me.chbNormalOr.Text = "Normal"
-        '
-        'chbDerechaOr
-        '
-        '
-        '
-        '
-        Me.chbDerechaOr.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbDerechaOr.Location = New System.Drawing.Point(164, 4)
-        Me.chbDerechaOr.Name = "chbDerechaOr"
-        Me.chbDerechaOr.Size = New System.Drawing.Size(79, 23)
-        Me.chbDerechaOr.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbDerechaOr.TabIndex = 279
-        Me.chbDerechaOr.Text = "Derecha"
-        '
-        'lbOrejas
-        '
-        Me.lbOrejas.AutoSize = True
-        Me.lbOrejas.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbOrejas.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbOrejas.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbOrejas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbOrejas.Location = New System.Drawing.Point(37, 55)
-        Me.lbOrejas.Name = "lbOrejas"
-        Me.lbOrejas.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbOrejas.Size = New System.Drawing.Size(47, 16)
-        Me.lbOrejas.TabIndex = 333
-        Me.lbOrejas.Text = "Orejas:"
-        '
-        'Panel2
-        '
-        Me.Panel2.Controls.Add(Me.chbIzquierdoO)
-        Me.Panel2.Controls.Add(Me.chbAnormalO)
-        Me.Panel2.Controls.Add(Me.chbNormalO)
-        Me.Panel2.Controls.Add(Me.chbDerechoO)
-        Me.Panel2.Location = New System.Drawing.Point(111, 12)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(342, 30)
-        Me.Panel2.TabIndex = 332
-        '
-        'chbIzquierdoO
-        '
-        '
-        '
-        '
-        Me.chbIzquierdoO.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbIzquierdoO.Location = New System.Drawing.Point(244, 4)
-        Me.chbIzquierdoO.Name = "chbIzquierdoO"
-        Me.chbIzquierdoO.Size = New System.Drawing.Size(88, 23)
-        Me.chbIzquierdoO.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbIzquierdoO.TabIndex = 280
-        Me.chbIzquierdoO.Text = "Izquierdo"
-        '
-        'chbAnormalO
-        '
-        '
-        '
-        '
-        Me.chbAnormalO.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbAnormalO.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbAnormalO.Location = New System.Drawing.Point(80, 4)
-        Me.chbAnormalO.Name = "chbAnormalO"
-        Me.chbAnormalO.Size = New System.Drawing.Size(81, 23)
-        Me.chbAnormalO.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbAnormalO.TabIndex = 277
-        Me.chbAnormalO.Text = "Anormal"
-        '
-        'chbNormalO
-        '
-        '
-        '
-        '
-        Me.chbNormalO.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbNormalO.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbNormalO.Checked = True
-        Me.chbNormalO.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbNormalO.CheckValue = "Y"
-        Me.chbNormalO.Location = New System.Drawing.Point(3, 4)
-        Me.chbNormalO.Name = "chbNormalO"
-        Me.chbNormalO.Size = New System.Drawing.Size(71, 23)
-        Me.chbNormalO.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbNormalO.TabIndex = 278
-        Me.chbNormalO.Text = "Normal"
-        '
-        'chbDerechoO
-        '
-        '
-        '
-        '
-        Me.chbDerechoO.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbDerechoO.Location = New System.Drawing.Point(164, 4)
-        Me.chbDerechoO.Name = "chbDerechoO"
-        Me.chbDerechoO.Size = New System.Drawing.Size(79, 23)
-        Me.chbDerechoO.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbDerechoO.TabIndex = 279
-        Me.chbDerechoO.Text = "Derecho"
-        '
-        'lbOjos
-        '
-        Me.lbOjos.AutoSize = True
-        Me.lbOjos.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbOjos.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbOjos.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbOjos.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbOjos.Location = New System.Drawing.Point(37, 19)
-        Me.lbOjos.Name = "lbOjos"
-        Me.lbOjos.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbOjos.Size = New System.Drawing.Size(35, 16)
-        Me.lbOjos.TabIndex = 331
-        Me.lbOjos.Text = "Ojos:"
-        '
-        'Panel17
-        '
-        Me.Panel17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel17.Controls.Add(Me.chbProstata)
-        Me.Panel17.Controls.Add(Me.chbUtero)
-        Me.Panel17.Controls.Add(Me.chbIdelgado)
-        Me.Panel17.Controls.Add(Me.chbEstomago)
-        Me.Panel17.Controls.Add(Me.chbIGrueso)
-        Me.Panel17.Controls.Add(Me.chbHigado)
-        Me.Panel17.Controls.Add(Me.chbVejiga)
-        Me.Panel17.Controls.Add(Me.chbPancreas)
-        Me.Panel17.Location = New System.Drawing.Point(548, 103)
-        Me.Panel17.Name = "Panel17"
-        Me.Panel17.Size = New System.Drawing.Size(326, 98)
-        Me.Panel17.TabIndex = 310
-        '
-        'chbProstata
-        '
-        '
-        '
-        '
-        Me.chbProstata.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbProstata.Location = New System.Drawing.Point(6, 32)
-        Me.chbProstata.Name = "chbProstata"
-        Me.chbProstata.Size = New System.Drawing.Size(83, 23)
-        Me.chbProstata.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbProstata.TabIndex = 284
-        Me.chbProstata.Text = "Próstata"
-        '
-        'chbUtero
-        '
-        '
-        '
-        '
-        Me.chbUtero.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbUtero.Location = New System.Drawing.Point(103, 33)
-        Me.chbUtero.Name = "chbUtero"
-        Me.chbUtero.Size = New System.Drawing.Size(66, 23)
-        Me.chbUtero.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbUtero.TabIndex = 283
-        Me.chbUtero.Text = "Utero"
-        '
-        'chbIdelgado
-        '
-        '
-        '
-        '
-        Me.chbIdelgado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbIdelgado.Location = New System.Drawing.Point(6, 61)
-        Me.chbIdelgado.Name = "chbIdelgado"
-        Me.chbIdelgado.Size = New System.Drawing.Size(140, 23)
-        Me.chbIdelgado.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbIdelgado.TabIndex = 282
-        Me.chbIdelgado.Text = "Intestino Delgado"
-        '
-        'chbEstomago
-        '
-        '
-        '
-        '
-        Me.chbEstomago.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbEstomago.Location = New System.Drawing.Point(6, 4)
-        Me.chbEstomago.Name = "chbEstomago"
-        Me.chbEstomago.Size = New System.Drawing.Size(90, 23)
-        Me.chbEstomago.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbEstomago.TabIndex = 277
-        Me.chbEstomago.Text = "Estómago"
-        '
-        'chbIGrueso
-        '
-        '
-        '
-        '
-        Me.chbIGrueso.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbIGrueso.Location = New System.Drawing.Point(152, 61)
-        Me.chbIGrueso.Name = "chbIGrueso"
-        Me.chbIGrueso.Size = New System.Drawing.Size(152, 23)
-        Me.chbIGrueso.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbIGrueso.TabIndex = 281
-        Me.chbIGrueso.Text = "Intestino Grueso"
-        '
-        'chbHigado
-        '
-        '
-        '
-        '
-        Me.chbHigado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbHigado.Location = New System.Drawing.Point(102, 4)
-        Me.chbHigado.Name = "chbHigado"
-        Me.chbHigado.Size = New System.Drawing.Size(75, 23)
-        Me.chbHigado.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbHigado.TabIndex = 278
-        Me.chbHigado.Text = "Hígado"
-        '
-        'chbVejiga
-        '
-        '
-        '
-        '
-        Me.chbVejiga.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbVejiga.Location = New System.Drawing.Point(183, 33)
-        Me.chbVejiga.Name = "chbVejiga"
-        Me.chbVejiga.Size = New System.Drawing.Size(66, 23)
-        Me.chbVejiga.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbVejiga.TabIndex = 280
-        Me.chbVejiga.Text = "Vejiga"
-        '
-        'chbPancreas
-        '
-        '
-        '
-        '
-        Me.chbPancreas.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbPancreas.Location = New System.Drawing.Point(183, 4)
-        Me.chbPancreas.Name = "chbPancreas"
-        Me.chbPancreas.Size = New System.Drawing.Size(89, 23)
-        Me.chbPancreas.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.chbPancreas.TabIndex = 279
-        Me.chbPancreas.Text = "Pancreas"
-        '
-        'lbLocalizado
-        '
-        Me.lbLocalizado.AutoSize = True
-        Me.lbLocalizado.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbLocalizado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbLocalizado.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbLocalizado.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbLocalizado.Location = New System.Drawing.Point(487, 84)
-        Me.lbLocalizado.Name = "lbLocalizado"
-        Me.lbLocalizado.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbLocalizado.Size = New System.Drawing.Size(153, 16)
-        Me.lbLocalizado.TabIndex = 309
-        Me.lbLocalizado.Text = "Localizado en región de:"
-        '
-        'SuperTabItem5
-        '
-        Me.SuperTabItem5.AttachedControl = Me.stcpDatos2
-        Me.SuperTabItem5.GlobalItem = False
-        Me.SuperTabItem5.Name = "SuperTabItem5"
-        Me.SuperTabItem5.Text = "Datos 2"
         '
         'stcpDatos1
         '
@@ -3041,6 +1839,1208 @@ Partial Class F1_Fic_FichaClinica
         Me.SuperTabItem3.Name = "SuperTabItem3"
         Me.SuperTabItem3.TabFont = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SuperTabItem3.Text = "Datos 1"
+        '
+        'stcpDatos2
+        '
+        Me.stcpDatos2.Controls.Add(Me.panelDatos2)
+        Me.stcpDatos2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.stcpDatos2.Location = New System.Drawing.Point(0, 25)
+        Me.stcpDatos2.Name = "stcpDatos2"
+        Me.stcpDatos2.Size = New System.Drawing.Size(929, 509)
+        Me.stcpDatos2.TabIndex = 2
+        Me.stcpDatos2.TabItem = Me.SuperTabItem5
+        '
+        'panelDatos2
+        '
+        Me.panelDatos2.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.panelDatos2.Controls.Add(Me.chbmpostizq)
+        Me.panelDatos2.Controls.Add(Me.chbmpostder)
+        Me.panelDatos2.Controls.Add(Me.chbmantizq)
+        Me.panelDatos2.Controls.Add(Me.chbmantder)
+        Me.panelDatos2.Controls.Add(Me.chbPelvis)
+        Me.panelDatos2.Controls.Add(Me.chbAbdomen)
+        Me.panelDatos2.Controls.Add(Me.chbCabeza)
+        Me.panelDatos2.Controls.Add(Me.chbTorax)
+        Me.panelDatos2.Controls.Add(Me.PictureBox1)
+        Me.panelDatos2.Controls.Add(Me.Panel23)
+        Me.panelDatos2.Controls.Add(Me.lbOtras)
+        Me.panelDatos2.Controls.Add(Me.Panel14)
+        Me.panelDatos2.Controls.Add(Me.lbSistenaGeni)
+        Me.panelDatos2.Controls.Add(Me.Panel11)
+        Me.panelDatos2.Controls.Add(Me.Panel13)
+        Me.panelDatos2.Controls.Add(Me.lbSistemaNer)
+        Me.panelDatos2.Controls.Add(Me.Panel12)
+        Me.panelDatos2.Controls.Add(Me.lbLinfonódulos)
+        Me.panelDatos2.Controls.Add(Me.lbSMuscEsq)
+        Me.panelDatos2.Controls.Add(Me.Panel10)
+        Me.panelDatos2.Controls.Add(Me.lbPielPelo)
+        Me.panelDatos2.Controls.Add(Me.txtNotas)
+        Me.panelDatos2.Controls.Add(Me.lbNotas)
+        Me.panelDatos2.Controls.Add(Me.Panel22)
+        Me.panelDatos2.Controls.Add(Me.lbDolor)
+        Me.panelDatos2.Controls.Add(Me.Panel21)
+        Me.panelDatos2.Controls.Add(Me.lbAbdomen)
+        Me.panelDatos2.Controls.Add(Me.Panel20)
+        Me.panelDatos2.Controls.Add(Me.lbPulmones)
+        Me.panelDatos2.Controls.Add(Me.Panel19)
+        Me.panelDatos2.Controls.Add(Me.lbCorazon)
+        Me.panelDatos2.Controls.Add(Me.Panel18)
+        Me.panelDatos2.Controls.Add(Me.lbOrejas)
+        Me.panelDatos2.Controls.Add(Me.Panel2)
+        Me.panelDatos2.Controls.Add(Me.lbOjos)
+        Me.panelDatos2.Controls.Add(Me.Panel17)
+        Me.panelDatos2.Controls.Add(Me.lbLocalizado)
+        Me.panelDatos2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.panelDatos2.Location = New System.Drawing.Point(0, 0)
+        Me.panelDatos2.Name = "panelDatos2"
+        Me.panelDatos2.Size = New System.Drawing.Size(929, 509)
+        Me.panelDatos2.TabIndex = 1
+        '
+        'chbmpostizq
+        '
+        Me.chbmpostizq.BackColor = System.Drawing.Color.Black
+        '
+        '
+        '
+        Me.chbmpostizq.BackgroundStyle.BorderColor = System.Drawing.Color.Red
+        Me.chbmpostizq.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbmpostizq.BackgroundStyle.PaddingLeft = 2
+        Me.chbmpostizq.Location = New System.Drawing.Point(115, 458)
+        Me.chbmpostizq.Name = "chbmpostizq"
+        Me.chbmpostizq.Size = New System.Drawing.Size(17, 18)
+        Me.chbmpostizq.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbmpostizq.TabIndex = 373
+        '
+        'chbmpostder
+        '
+        Me.chbmpostder.BackColor = System.Drawing.Color.Black
+        '
+        '
+        '
+        Me.chbmpostder.BackgroundStyle.BorderColor = System.Drawing.Color.Red
+        Me.chbmpostder.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbmpostder.BackgroundStyle.PaddingLeft = 2
+        Me.chbmpostder.Location = New System.Drawing.Point(147, 445)
+        Me.chbmpostder.Name = "chbmpostder"
+        Me.chbmpostder.Size = New System.Drawing.Size(17, 18)
+        Me.chbmpostder.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbmpostder.TabIndex = 372
+        '
+        'chbmantizq
+        '
+        Me.chbmantizq.BackColor = System.Drawing.Color.Black
+        '
+        '
+        '
+        Me.chbmantizq.BackgroundStyle.BorderColor = System.Drawing.Color.Red
+        Me.chbmantizq.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbmantizq.BackgroundStyle.PaddingLeft = 2
+        Me.chbmantizq.Location = New System.Drawing.Point(226, 458)
+        Me.chbmantizq.Name = "chbmantizq"
+        Me.chbmantizq.Size = New System.Drawing.Size(17, 18)
+        Me.chbmantizq.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbmantizq.TabIndex = 371
+        '
+        'chbmantder
+        '
+        Me.chbmantder.BackColor = System.Drawing.Color.Black
+        '
+        '
+        '
+        Me.chbmantder.BackgroundStyle.BorderColor = System.Drawing.Color.Red
+        Me.chbmantder.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbmantder.BackgroundStyle.PaddingLeft = 2
+        Me.chbmantder.Location = New System.Drawing.Point(260, 431)
+        Me.chbmantder.Name = "chbmantder"
+        Me.chbmantder.Size = New System.Drawing.Size(17, 18)
+        Me.chbmantder.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbmantder.TabIndex = 370
+        '
+        'chbPelvis
+        '
+        Me.chbPelvis.BackColor = System.Drawing.Color.Black
+        '
+        '
+        '
+        Me.chbPelvis.BackgroundStyle.BorderColor = System.Drawing.Color.Red
+        Me.chbPelvis.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbPelvis.BackgroundStyle.PaddingLeft = 2
+        Me.chbPelvis.Location = New System.Drawing.Point(145, 406)
+        Me.chbPelvis.Name = "chbPelvis"
+        Me.chbPelvis.Size = New System.Drawing.Size(17, 18)
+        Me.chbPelvis.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbPelvis.TabIndex = 369
+        '
+        'chbAbdomen
+        '
+        Me.chbAbdomen.BackColor = System.Drawing.Color.Black
+        '
+        '
+        '
+        Me.chbAbdomen.BackgroundStyle.BorderColor = System.Drawing.Color.Red
+        Me.chbAbdomen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbAbdomen.BackgroundStyle.PaddingLeft = 2
+        Me.chbAbdomen.Location = New System.Drawing.Point(200, 393)
+        Me.chbAbdomen.Name = "chbAbdomen"
+        Me.chbAbdomen.Size = New System.Drawing.Size(17, 18)
+        Me.chbAbdomen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbAbdomen.TabIndex = 368
+        '
+        'chbCabeza
+        '
+        Me.chbCabeza.BackColor = System.Drawing.Color.Black
+        '
+        '
+        '
+        Me.chbCabeza.BackgroundStyle.BorderColor = System.Drawing.Color.Red
+        Me.chbCabeza.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbCabeza.BackgroundStyle.PaddingLeft = 2
+        Me.chbCabeza.Location = New System.Drawing.Point(297, 339)
+        Me.chbCabeza.Name = "chbCabeza"
+        Me.chbCabeza.Size = New System.Drawing.Size(17, 18)
+        Me.chbCabeza.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbCabeza.TabIndex = 367
+        '
+        'chbTorax
+        '
+        Me.chbTorax.BackColor = System.Drawing.Color.Black
+        '
+        '
+        '
+        Me.chbTorax.BackgroundStyle.BorderColor = System.Drawing.Color.Red
+        Me.chbTorax.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbTorax.BackgroundStyle.PaddingLeft = 2
+        Me.chbTorax.Location = New System.Drawing.Point(251, 388)
+        Me.chbTorax.Name = "chbTorax"
+        Me.chbTorax.Size = New System.Drawing.Size(17, 18)
+        Me.chbTorax.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbTorax.TabIndex = 366
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.Presentacion.My.Resources.Resources.perro
+        Me.PictureBox1.Location = New System.Drawing.Point(84, 336)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(258, 164)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 357
+        Me.PictureBox1.TabStop = False
+        '
+        'Panel23
+        '
+        Me.Panel23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel23.Controls.Add(Me.chbIntu)
+        Me.Panel23.Controls.Add(Me.chbAscitis)
+        Me.Panel23.Controls.Add(Me.chbExtraño)
+        Me.Panel23.Controls.Add(Me.chbMabdominal)
+        Me.Panel23.Controls.Add(Me.chblineal)
+        Me.Panel23.Location = New System.Drawing.Point(548, 228)
+        Me.Panel23.Name = "Panel23"
+        Me.Panel23.Size = New System.Drawing.Size(326, 122)
+        Me.Panel23.TabIndex = 356
+        '
+        'chbIntu
+        '
+        '
+        '
+        '
+        Me.chbIntu.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbIntu.Location = New System.Drawing.Point(7, 69)
+        Me.chbIntu.Name = "chbIntu"
+        Me.chbIntu.Size = New System.Drawing.Size(151, 23)
+        Me.chbIntu.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbIntu.TabIndex = 289
+        Me.chbIntu.Text = "Intususcepción"
+        '
+        'chbAscitis
+        '
+        '
+        '
+        '
+        Me.chbAscitis.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbAscitis.Location = New System.Drawing.Point(7, 90)
+        Me.chbAscitis.Name = "chbAscitis"
+        Me.chbAscitis.Size = New System.Drawing.Size(152, 23)
+        Me.chbAscitis.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbAscitis.TabIndex = 288
+        Me.chbAscitis.Text = "Ascitis"
+        '
+        'chbExtraño
+        '
+        '
+        '
+        '
+        Me.chbExtraño.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbExtraño.Location = New System.Drawing.Point(7, 4)
+        Me.chbExtraño.Name = "chbExtraño"
+        Me.chbExtraño.Size = New System.Drawing.Size(284, 23)
+        Me.chbExtraño.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbExtraño.TabIndex = 285
+        Me.chbExtraño.Text = "Posible cuerpo extraño a la palpación"
+        '
+        'chbMabdominal
+        '
+        '
+        '
+        '
+        Me.chbMabdominal.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbMabdominal.Location = New System.Drawing.Point(7, 48)
+        Me.chbMabdominal.Name = "chbMabdominal"
+        Me.chbMabdominal.Size = New System.Drawing.Size(186, 23)
+        Me.chbMabdominal.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbMabdominal.TabIndex = 287
+        Me.chbMabdominal.Text = "Posible masa abdominal"
+        '
+        'chblineal
+        '
+        '
+        '
+        '
+        Me.chblineal.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chblineal.Location = New System.Drawing.Point(7, 26)
+        Me.chblineal.Name = "chblineal"
+        Me.chblineal.Size = New System.Drawing.Size(266, 23)
+        Me.chblineal.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chblineal.TabIndex = 286
+        Me.chblineal.Text = "Posible cuerpo lineal a la palpación"
+        '
+        'lbOtras
+        '
+        Me.lbOtras.AutoSize = True
+        Me.lbOtras.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbOtras.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbOtras.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbOtras.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbOtras.Location = New System.Drawing.Point(488, 207)
+        Me.lbOtras.Name = "lbOtras"
+        Me.lbOtras.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbOtras.Size = New System.Drawing.Size(122, 16)
+        Me.lbOtras.TabIndex = 355
+        Me.lbOtras.Text = "Otras Alteraciones:"
+        '
+        'Panel14
+        '
+        Me.Panel14.Controls.Add(Me.chbNormalG)
+        Me.Panel14.Controls.Add(Me.chbAnormalG)
+        Me.Panel14.Location = New System.Drawing.Point(219, 263)
+        Me.Panel14.Name = "Panel14"
+        Me.Panel14.Size = New System.Drawing.Size(169, 30)
+        Me.Panel14.TabIndex = 354
+        '
+        'chbNormalG
+        '
+        '
+        '
+        '
+        Me.chbNormalG.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbNormalG.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbNormalG.Checked = True
+        Me.chbNormalG.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chbNormalG.CheckValue = "Y"
+        Me.chbNormalG.Location = New System.Drawing.Point(6, 3)
+        Me.chbNormalG.Name = "chbNormalG"
+        Me.chbNormalG.Size = New System.Drawing.Size(71, 23)
+        Me.chbNormalG.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbNormalG.TabIndex = 277
+        Me.chbNormalG.Text = "Normal"
+        '
+        'chbAnormalG
+        '
+        '
+        '
+        '
+        Me.chbAnormalG.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbAnormalG.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbAnormalG.Location = New System.Drawing.Point(83, 4)
+        Me.chbAnormalG.Name = "chbAnormalG"
+        Me.chbAnormalG.Size = New System.Drawing.Size(83, 23)
+        Me.chbAnormalG.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbAnormalG.TabIndex = 278
+        Me.chbAnormalG.Text = "Anormal"
+        '
+        'lbSistenaGeni
+        '
+        Me.lbSistenaGeni.AutoSize = True
+        Me.lbSistenaGeni.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbSistenaGeni.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbSistenaGeni.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbSistenaGeni.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbSistenaGeni.Location = New System.Drawing.Point(36, 272)
+        Me.lbSistenaGeni.Name = "lbSistenaGeni"
+        Me.lbSistenaGeni.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbSistenaGeni.Size = New System.Drawing.Size(153, 16)
+        Me.lbSistenaGeni.TabIndex = 353
+        Me.lbSistenaGeni.Text = "Sistema Genitourinario:"
+        '
+        'Panel11
+        '
+        Me.Panel11.Controls.Add(Me.chbNormalSME)
+        Me.Panel11.Controls.Add(Me.chbAnormalSME)
+        Me.Panel11.Location = New System.Drawing.Point(219, 299)
+        Me.Panel11.Name = "Panel11"
+        Me.Panel11.Size = New System.Drawing.Size(169, 30)
+        Me.Panel11.TabIndex = 348
+        '
+        'chbNormalSME
+        '
+        '
+        '
+        '
+        Me.chbNormalSME.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbNormalSME.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbNormalSME.Checked = True
+        Me.chbNormalSME.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chbNormalSME.CheckValue = "Y"
+        Me.chbNormalSME.Location = New System.Drawing.Point(6, 3)
+        Me.chbNormalSME.Name = "chbNormalSME"
+        Me.chbNormalSME.Size = New System.Drawing.Size(71, 23)
+        Me.chbNormalSME.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbNormalSME.TabIndex = 277
+        Me.chbNormalSME.Text = "Normal"
+        '
+        'chbAnormalSME
+        '
+        '
+        '
+        '
+        Me.chbAnormalSME.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbAnormalSME.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbAnormalSME.Location = New System.Drawing.Point(83, 4)
+        Me.chbAnormalSME.Name = "chbAnormalSME"
+        Me.chbAnormalSME.Size = New System.Drawing.Size(83, 23)
+        Me.chbAnormalSME.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbAnormalSME.TabIndex = 278
+        Me.chbAnormalSME.Text = "Anormal"
+        '
+        'Panel13
+        '
+        Me.Panel13.Controls.Add(Me.chbNormalSN)
+        Me.Panel13.Controls.Add(Me.chbAnormalSN)
+        Me.Panel13.Location = New System.Drawing.Point(219, 227)
+        Me.Panel13.Name = "Panel13"
+        Me.Panel13.Size = New System.Drawing.Size(169, 30)
+        Me.Panel13.TabIndex = 352
+        '
+        'chbNormalSN
+        '
+        '
+        '
+        '
+        Me.chbNormalSN.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbNormalSN.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbNormalSN.Checked = True
+        Me.chbNormalSN.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chbNormalSN.CheckValue = "Y"
+        Me.chbNormalSN.Location = New System.Drawing.Point(6, 3)
+        Me.chbNormalSN.Name = "chbNormalSN"
+        Me.chbNormalSN.Size = New System.Drawing.Size(71, 23)
+        Me.chbNormalSN.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbNormalSN.TabIndex = 277
+        Me.chbNormalSN.Text = "Normal"
+        '
+        'chbAnormalSN
+        '
+        '
+        '
+        '
+        Me.chbAnormalSN.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbAnormalSN.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbAnormalSN.Location = New System.Drawing.Point(83, 4)
+        Me.chbAnormalSN.Name = "chbAnormalSN"
+        Me.chbAnormalSN.Size = New System.Drawing.Size(83, 23)
+        Me.chbAnormalSN.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbAnormalSN.TabIndex = 278
+        Me.chbAnormalSN.Text = "Anormal"
+        '
+        'lbSistemaNer
+        '
+        Me.lbSistemaNer.AutoSize = True
+        Me.lbSistemaNer.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbSistemaNer.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbSistemaNer.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbSistemaNer.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbSistemaNer.Location = New System.Drawing.Point(36, 236)
+        Me.lbSistemaNer.Name = "lbSistemaNer"
+        Me.lbSistemaNer.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbSistemaNer.Size = New System.Drawing.Size(115, 16)
+        Me.lbSistemaNer.TabIndex = 351
+        Me.lbSistemaNer.Text = "Sistema Nervioso:"
+        '
+        'Panel12
+        '
+        Me.Panel12.Controls.Add(Me.chbNormalL)
+        Me.Panel12.Controls.Add(Me.chbAnormalL)
+        Me.Panel12.Location = New System.Drawing.Point(219, 191)
+        Me.Panel12.Name = "Panel12"
+        Me.Panel12.Size = New System.Drawing.Size(169, 30)
+        Me.Panel12.TabIndex = 350
+        '
+        'chbNormalL
+        '
+        '
+        '
+        '
+        Me.chbNormalL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbNormalL.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbNormalL.Checked = True
+        Me.chbNormalL.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chbNormalL.CheckValue = "Y"
+        Me.chbNormalL.Location = New System.Drawing.Point(6, 3)
+        Me.chbNormalL.Name = "chbNormalL"
+        Me.chbNormalL.Size = New System.Drawing.Size(71, 23)
+        Me.chbNormalL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbNormalL.TabIndex = 277
+        Me.chbNormalL.Text = "Normal"
+        '
+        'chbAnormalL
+        '
+        '
+        '
+        '
+        Me.chbAnormalL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbAnormalL.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbAnormalL.Location = New System.Drawing.Point(83, 4)
+        Me.chbAnormalL.Name = "chbAnormalL"
+        Me.chbAnormalL.Size = New System.Drawing.Size(83, 23)
+        Me.chbAnormalL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbAnormalL.TabIndex = 278
+        Me.chbAnormalL.Text = "Anormal"
+        '
+        'lbLinfonódulos
+        '
+        Me.lbLinfonódulos.AutoSize = True
+        Me.lbLinfonódulos.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbLinfonódulos.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbLinfonódulos.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbLinfonódulos.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbLinfonódulos.Location = New System.Drawing.Point(36, 200)
+        Me.lbLinfonódulos.Name = "lbLinfonódulos"
+        Me.lbLinfonódulos.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbLinfonódulos.Size = New System.Drawing.Size(90, 16)
+        Me.lbLinfonódulos.TabIndex = 349
+        Me.lbLinfonódulos.Text = "Linfonodulos:"
+        '
+        'lbSMuscEsq
+        '
+        Me.lbSMuscEsq.AutoSize = True
+        Me.lbSMuscEsq.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbSMuscEsq.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbSMuscEsq.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbSMuscEsq.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbSMuscEsq.Location = New System.Drawing.Point(36, 305)
+        Me.lbSMuscEsq.Name = "lbSMuscEsq"
+        Me.lbSMuscEsq.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbSMuscEsq.Size = New System.Drawing.Size(177, 16)
+        Me.lbSMuscEsq.TabIndex = 347
+        Me.lbSMuscEsq.Text = "Sistema Músculo-Esqueleto:"
+        '
+        'Panel10
+        '
+        Me.Panel10.Controls.Add(Me.chbNormalPe)
+        Me.Panel10.Controls.Add(Me.chbAnormalPe)
+        Me.Panel10.Location = New System.Drawing.Point(111, 155)
+        Me.Panel10.Name = "Panel10"
+        Me.Panel10.Size = New System.Drawing.Size(169, 30)
+        Me.Panel10.TabIndex = 346
+        '
+        'chbNormalPe
+        '
+        '
+        '
+        '
+        Me.chbNormalPe.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbNormalPe.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbNormalPe.Checked = True
+        Me.chbNormalPe.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chbNormalPe.CheckValue = "Y"
+        Me.chbNormalPe.Location = New System.Drawing.Point(6, 3)
+        Me.chbNormalPe.Name = "chbNormalPe"
+        Me.chbNormalPe.Size = New System.Drawing.Size(71, 23)
+        Me.chbNormalPe.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbNormalPe.TabIndex = 277
+        Me.chbNormalPe.Text = "Normal"
+        '
+        'chbAnormalPe
+        '
+        '
+        '
+        '
+        Me.chbAnormalPe.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbAnormalPe.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbAnormalPe.Location = New System.Drawing.Point(83, 4)
+        Me.chbAnormalPe.Name = "chbAnormalPe"
+        Me.chbAnormalPe.Size = New System.Drawing.Size(83, 23)
+        Me.chbAnormalPe.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbAnormalPe.TabIndex = 278
+        Me.chbAnormalPe.Text = "Anormal"
+        '
+        'lbPielPelo
+        '
+        Me.lbPielPelo.AutoSize = True
+        Me.lbPielPelo.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbPielPelo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbPielPelo.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbPielPelo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbPielPelo.Location = New System.Drawing.Point(37, 164)
+        Me.lbPielPelo.Name = "lbPielPelo"
+        Me.lbPielPelo.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbPielPelo.Size = New System.Drawing.Size(70, 16)
+        Me.lbPielPelo.TabIndex = 345
+        Me.lbPielPelo.Text = "Piel y Pelo:"
+        '
+        'txtNotas
+        '
+        Me.txtNotas.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.txtNotas.Border.Class = "TextBoxBorder"
+        Me.txtNotas.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtNotas.DisabledBackColor = System.Drawing.Color.White
+        Me.txtNotas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNotas.ForeColor = System.Drawing.Color.Black
+        Me.txtNotas.Location = New System.Drawing.Point(487, 381)
+        Me.txtNotas.MaxLength = 400
+        Me.txtNotas.Multiline = True
+        Me.txtNotas.Name = "txtNotas"
+        Me.txtNotas.PreventEnterBeep = True
+        Me.txtNotas.Size = New System.Drawing.Size(387, 108)
+        Me.txtNotas.TabIndex = 11
+        '
+        'lbNotas
+        '
+        Me.lbNotas.AutoSize = True
+        Me.lbNotas.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbNotas.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbNotas.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbNotas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbNotas.Location = New System.Drawing.Point(488, 359)
+        Me.lbNotas.Name = "lbNotas"
+        Me.lbNotas.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbNotas.Size = New System.Drawing.Size(43, 16)
+        Me.lbNotas.TabIndex = 343
+        Me.lbNotas.Text = "Notas:"
+        '
+        'Panel22
+        '
+        Me.Panel22.Controls.Add(Me.chbSeveroD)
+        Me.Panel22.Controls.Add(Me.chbLeveD)
+        Me.Panel22.Controls.Add(Me.chbAgudoD)
+        Me.Panel22.Controls.Add(Me.chbModeradoD)
+        Me.Panel22.Location = New System.Drawing.Point(562, 47)
+        Me.Panel22.Name = "Panel22"
+        Me.Panel22.Size = New System.Drawing.Size(342, 30)
+        Me.Panel22.TabIndex = 342
+        '
+        'chbSeveroD
+        '
+        '
+        '
+        '
+        Me.chbSeveroD.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbSeveroD.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbSeveroD.Location = New System.Drawing.Point(239, 4)
+        Me.chbSeveroD.Name = "chbSeveroD"
+        Me.chbSeveroD.Size = New System.Drawing.Size(88, 23)
+        Me.chbSeveroD.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbSeveroD.TabIndex = 280
+        Me.chbSeveroD.Text = "Severo"
+        '
+        'chbLeveD
+        '
+        '
+        '
+        '
+        Me.chbLeveD.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbLeveD.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbLeveD.Location = New System.Drawing.Point(80, 4)
+        Me.chbLeveD.Name = "chbLeveD"
+        Me.chbLeveD.Size = New System.Drawing.Size(53, 23)
+        Me.chbLeveD.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbLeveD.TabIndex = 277
+        Me.chbLeveD.Text = "Leve"
+        '
+        'chbAgudoD
+        '
+        '
+        '
+        '
+        Me.chbAgudoD.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbAgudoD.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbAgudoD.Checked = True
+        Me.chbAgudoD.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chbAgudoD.CheckValue = "Y"
+        Me.chbAgudoD.Location = New System.Drawing.Point(3, 4)
+        Me.chbAgudoD.Name = "chbAgudoD"
+        Me.chbAgudoD.Size = New System.Drawing.Size(71, 23)
+        Me.chbAgudoD.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbAgudoD.TabIndex = 278
+        Me.chbAgudoD.Text = "Agudo"
+        '
+        'chbModeradoD
+        '
+        '
+        '
+        '
+        Me.chbModeradoD.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbModeradoD.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbModeradoD.Location = New System.Drawing.Point(139, 4)
+        Me.chbModeradoD.Name = "chbModeradoD"
+        Me.chbModeradoD.Size = New System.Drawing.Size(99, 23)
+        Me.chbModeradoD.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbModeradoD.TabIndex = 279
+        Me.chbModeradoD.Text = "Moderado"
+        '
+        'lbDolor
+        '
+        Me.lbDolor.AutoSize = True
+        Me.lbDolor.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbDolor.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbDolor.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbDolor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbDolor.Location = New System.Drawing.Point(488, 54)
+        Me.lbDolor.Name = "lbDolor"
+        Me.lbDolor.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbDolor.Size = New System.Drawing.Size(43, 16)
+        Me.lbDolor.TabIndex = 341
+        Me.lbDolor.Text = "Dolor:"
+        '
+        'Panel21
+        '
+        Me.Panel21.Controls.Add(Me.chbNormalA)
+        Me.Panel21.Controls.Add(Me.chbAnormalA)
+        Me.Panel21.Location = New System.Drawing.Point(562, 11)
+        Me.Panel21.Name = "Panel21"
+        Me.Panel21.Size = New System.Drawing.Size(169, 30)
+        Me.Panel21.TabIndex = 340
+        '
+        'chbNormalA
+        '
+        '
+        '
+        '
+        Me.chbNormalA.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbNormalA.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbNormalA.Checked = True
+        Me.chbNormalA.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chbNormalA.CheckValue = "Y"
+        Me.chbNormalA.Location = New System.Drawing.Point(6, 3)
+        Me.chbNormalA.Name = "chbNormalA"
+        Me.chbNormalA.Size = New System.Drawing.Size(71, 23)
+        Me.chbNormalA.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbNormalA.TabIndex = 277
+        Me.chbNormalA.Text = "Normal"
+        '
+        'chbAnormalA
+        '
+        '
+        '
+        '
+        Me.chbAnormalA.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbAnormalA.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbAnormalA.Location = New System.Drawing.Point(83, 4)
+        Me.chbAnormalA.Name = "chbAnormalA"
+        Me.chbAnormalA.Size = New System.Drawing.Size(83, 23)
+        Me.chbAnormalA.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbAnormalA.TabIndex = 278
+        Me.chbAnormalA.Text = "Anormal"
+        '
+        'lbAbdomen
+        '
+        Me.lbAbdomen.AutoSize = True
+        Me.lbAbdomen.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbAbdomen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbAbdomen.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbAbdomen.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbAbdomen.Location = New System.Drawing.Point(488, 19)
+        Me.lbAbdomen.Name = "lbAbdomen"
+        Me.lbAbdomen.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbAbdomen.Size = New System.Drawing.Size(67, 16)
+        Me.lbAbdomen.TabIndex = 339
+        Me.lbAbdomen.Text = "Abdomen:"
+        '
+        'Panel20
+        '
+        Me.Panel20.Controls.Add(Me.chbAnormalP)
+        Me.Panel20.Controls.Add(Me.chbNormalP)
+        Me.Panel20.Controls.Add(Me.chbRuidosRespP)
+        Me.Panel20.Location = New System.Drawing.Point(111, 119)
+        Me.Panel20.Name = "Panel20"
+        Me.Panel20.Size = New System.Drawing.Size(342, 30)
+        Me.Panel20.TabIndex = 338
+        '
+        'chbAnormalP
+        '
+        '
+        '
+        '
+        Me.chbAnormalP.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbAnormalP.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbAnormalP.Location = New System.Drawing.Point(80, 4)
+        Me.chbAnormalP.Name = "chbAnormalP"
+        Me.chbAnormalP.Size = New System.Drawing.Size(81, 23)
+        Me.chbAnormalP.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbAnormalP.TabIndex = 277
+        Me.chbAnormalP.Text = "Anormal"
+        '
+        'chbNormalP
+        '
+        '
+        '
+        '
+        Me.chbNormalP.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbNormalP.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbNormalP.Checked = True
+        Me.chbNormalP.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chbNormalP.CheckValue = "Y"
+        Me.chbNormalP.Location = New System.Drawing.Point(3, 4)
+        Me.chbNormalP.Name = "chbNormalP"
+        Me.chbNormalP.Size = New System.Drawing.Size(71, 23)
+        Me.chbNormalP.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbNormalP.TabIndex = 278
+        Me.chbNormalP.Text = "Normal"
+        '
+        'chbRuidosRespP
+        '
+        '
+        '
+        '
+        Me.chbRuidosRespP.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbRuidosRespP.Location = New System.Drawing.Point(164, 4)
+        Me.chbRuidosRespP.Name = "chbRuidosRespP"
+        Me.chbRuidosRespP.Size = New System.Drawing.Size(168, 23)
+        Me.chbRuidosRespP.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbRuidosRespP.TabIndex = 279
+        Me.chbRuidosRespP.Text = "Ruidos Respiratorios"
+        '
+        'lbPulmones
+        '
+        Me.lbPulmones.AutoSize = True
+        Me.lbPulmones.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbPulmones.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbPulmones.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbPulmones.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbPulmones.Location = New System.Drawing.Point(37, 126)
+        Me.lbPulmones.Name = "lbPulmones"
+        Me.lbPulmones.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbPulmones.Size = New System.Drawing.Size(69, 16)
+        Me.lbPulmones.TabIndex = 337
+        Me.lbPulmones.Text = "Pulmones:"
+        '
+        'Panel19
+        '
+        Me.Panel19.Controls.Add(Me.chbAnormalC)
+        Me.Panel19.Controls.Add(Me.chbNormalC)
+        Me.Panel19.Controls.Add(Me.chbRuidosCardiacos)
+        Me.Panel19.Location = New System.Drawing.Point(111, 84)
+        Me.Panel19.Name = "Panel19"
+        Me.Panel19.Size = New System.Drawing.Size(342, 30)
+        Me.Panel19.TabIndex = 336
+        '
+        'chbAnormalC
+        '
+        '
+        '
+        '
+        Me.chbAnormalC.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbAnormalC.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbAnormalC.Location = New System.Drawing.Point(80, 4)
+        Me.chbAnormalC.Name = "chbAnormalC"
+        Me.chbAnormalC.Size = New System.Drawing.Size(81, 23)
+        Me.chbAnormalC.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbAnormalC.TabIndex = 277
+        Me.chbAnormalC.Text = "Anormal"
+        '
+        'chbNormalC
+        '
+        '
+        '
+        '
+        Me.chbNormalC.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbNormalC.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbNormalC.Checked = True
+        Me.chbNormalC.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chbNormalC.CheckValue = "Y"
+        Me.chbNormalC.Location = New System.Drawing.Point(3, 4)
+        Me.chbNormalC.Name = "chbNormalC"
+        Me.chbNormalC.Size = New System.Drawing.Size(71, 23)
+        Me.chbNormalC.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbNormalC.TabIndex = 278
+        Me.chbNormalC.Text = "Normal"
+        '
+        'chbRuidosCardiacos
+        '
+        '
+        '
+        '
+        Me.chbRuidosCardiacos.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbRuidosCardiacos.Location = New System.Drawing.Point(164, 4)
+        Me.chbRuidosCardiacos.Name = "chbRuidosCardiacos"
+        Me.chbRuidosCardiacos.Size = New System.Drawing.Size(148, 23)
+        Me.chbRuidosCardiacos.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbRuidosCardiacos.TabIndex = 279
+        Me.chbRuidosCardiacos.Text = "Ruidos Cardiacos"
+        '
+        'lbCorazon
+        '
+        Me.lbCorazon.AutoSize = True
+        Me.lbCorazon.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbCorazon.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbCorazon.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbCorazon.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbCorazon.Location = New System.Drawing.Point(37, 91)
+        Me.lbCorazon.Name = "lbCorazon"
+        Me.lbCorazon.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbCorazon.Size = New System.Drawing.Size(59, 16)
+        Me.lbCorazon.TabIndex = 335
+        Me.lbCorazon.Text = "Corazón:"
+        '
+        'Panel18
+        '
+        Me.Panel18.Controls.Add(Me.chbIzquierdaOr)
+        Me.Panel18.Controls.Add(Me.chbAnormalOr)
+        Me.Panel18.Controls.Add(Me.chbNormalOr)
+        Me.Panel18.Controls.Add(Me.chbDerechaOr)
+        Me.Panel18.Location = New System.Drawing.Point(111, 48)
+        Me.Panel18.Name = "Panel18"
+        Me.Panel18.Size = New System.Drawing.Size(342, 30)
+        Me.Panel18.TabIndex = 334
+        '
+        'chbIzquierdaOr
+        '
+        '
+        '
+        '
+        Me.chbIzquierdaOr.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbIzquierdaOr.Location = New System.Drawing.Point(244, 4)
+        Me.chbIzquierdaOr.Name = "chbIzquierdaOr"
+        Me.chbIzquierdaOr.Size = New System.Drawing.Size(88, 23)
+        Me.chbIzquierdaOr.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbIzquierdaOr.TabIndex = 280
+        Me.chbIzquierdaOr.Text = "Izquierda"
+        '
+        'chbAnormalOr
+        '
+        '
+        '
+        '
+        Me.chbAnormalOr.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbAnormalOr.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbAnormalOr.Location = New System.Drawing.Point(80, 4)
+        Me.chbAnormalOr.Name = "chbAnormalOr"
+        Me.chbAnormalOr.Size = New System.Drawing.Size(81, 23)
+        Me.chbAnormalOr.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbAnormalOr.TabIndex = 277
+        Me.chbAnormalOr.Text = "Anormal"
+        '
+        'chbNormalOr
+        '
+        '
+        '
+        '
+        Me.chbNormalOr.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbNormalOr.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbNormalOr.Checked = True
+        Me.chbNormalOr.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chbNormalOr.CheckValue = "Y"
+        Me.chbNormalOr.Location = New System.Drawing.Point(3, 4)
+        Me.chbNormalOr.Name = "chbNormalOr"
+        Me.chbNormalOr.Size = New System.Drawing.Size(71, 23)
+        Me.chbNormalOr.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbNormalOr.TabIndex = 278
+        Me.chbNormalOr.Text = "Normal"
+        '
+        'chbDerechaOr
+        '
+        '
+        '
+        '
+        Me.chbDerechaOr.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbDerechaOr.Location = New System.Drawing.Point(164, 4)
+        Me.chbDerechaOr.Name = "chbDerechaOr"
+        Me.chbDerechaOr.Size = New System.Drawing.Size(79, 23)
+        Me.chbDerechaOr.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbDerechaOr.TabIndex = 279
+        Me.chbDerechaOr.Text = "Derecha"
+        '
+        'lbOrejas
+        '
+        Me.lbOrejas.AutoSize = True
+        Me.lbOrejas.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbOrejas.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbOrejas.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbOrejas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbOrejas.Location = New System.Drawing.Point(37, 55)
+        Me.lbOrejas.Name = "lbOrejas"
+        Me.lbOrejas.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbOrejas.Size = New System.Drawing.Size(47, 16)
+        Me.lbOrejas.TabIndex = 333
+        Me.lbOrejas.Text = "Orejas:"
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.chbIzquierdoO)
+        Me.Panel2.Controls.Add(Me.chbAnormalO)
+        Me.Panel2.Controls.Add(Me.chbNormalO)
+        Me.Panel2.Controls.Add(Me.chbDerechoO)
+        Me.Panel2.Location = New System.Drawing.Point(111, 12)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(342, 30)
+        Me.Panel2.TabIndex = 332
+        '
+        'chbIzquierdoO
+        '
+        '
+        '
+        '
+        Me.chbIzquierdoO.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbIzquierdoO.Location = New System.Drawing.Point(244, 4)
+        Me.chbIzquierdoO.Name = "chbIzquierdoO"
+        Me.chbIzquierdoO.Size = New System.Drawing.Size(88, 23)
+        Me.chbIzquierdoO.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbIzquierdoO.TabIndex = 280
+        Me.chbIzquierdoO.Text = "Izquierdo"
+        '
+        'chbAnormalO
+        '
+        '
+        '
+        '
+        Me.chbAnormalO.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbAnormalO.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbAnormalO.Location = New System.Drawing.Point(80, 4)
+        Me.chbAnormalO.Name = "chbAnormalO"
+        Me.chbAnormalO.Size = New System.Drawing.Size(81, 23)
+        Me.chbAnormalO.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbAnormalO.TabIndex = 277
+        Me.chbAnormalO.Text = "Anormal"
+        '
+        'chbNormalO
+        '
+        '
+        '
+        '
+        Me.chbNormalO.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbNormalO.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.chbNormalO.Checked = True
+        Me.chbNormalO.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chbNormalO.CheckValue = "Y"
+        Me.chbNormalO.Location = New System.Drawing.Point(3, 4)
+        Me.chbNormalO.Name = "chbNormalO"
+        Me.chbNormalO.Size = New System.Drawing.Size(71, 23)
+        Me.chbNormalO.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbNormalO.TabIndex = 278
+        Me.chbNormalO.Text = "Normal"
+        '
+        'chbDerechoO
+        '
+        '
+        '
+        '
+        Me.chbDerechoO.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbDerechoO.Location = New System.Drawing.Point(164, 4)
+        Me.chbDerechoO.Name = "chbDerechoO"
+        Me.chbDerechoO.Size = New System.Drawing.Size(79, 23)
+        Me.chbDerechoO.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbDerechoO.TabIndex = 279
+        Me.chbDerechoO.Text = "Derecho"
+        '
+        'lbOjos
+        '
+        Me.lbOjos.AutoSize = True
+        Me.lbOjos.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbOjos.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbOjos.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbOjos.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbOjos.Location = New System.Drawing.Point(37, 19)
+        Me.lbOjos.Name = "lbOjos"
+        Me.lbOjos.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbOjos.Size = New System.Drawing.Size(35, 16)
+        Me.lbOjos.TabIndex = 331
+        Me.lbOjos.Text = "Ojos:"
+        '
+        'Panel17
+        '
+        Me.Panel17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel17.Controls.Add(Me.chbProstata)
+        Me.Panel17.Controls.Add(Me.chbUtero)
+        Me.Panel17.Controls.Add(Me.chbIdelgado)
+        Me.Panel17.Controls.Add(Me.chbEstomago)
+        Me.Panel17.Controls.Add(Me.chbIGrueso)
+        Me.Panel17.Controls.Add(Me.chbHigado)
+        Me.Panel17.Controls.Add(Me.chbVejiga)
+        Me.Panel17.Controls.Add(Me.chbPancreas)
+        Me.Panel17.Location = New System.Drawing.Point(548, 103)
+        Me.Panel17.Name = "Panel17"
+        Me.Panel17.Size = New System.Drawing.Size(326, 98)
+        Me.Panel17.TabIndex = 310
+        '
+        'chbProstata
+        '
+        '
+        '
+        '
+        Me.chbProstata.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbProstata.Location = New System.Drawing.Point(6, 32)
+        Me.chbProstata.Name = "chbProstata"
+        Me.chbProstata.Size = New System.Drawing.Size(83, 23)
+        Me.chbProstata.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbProstata.TabIndex = 284
+        Me.chbProstata.Text = "Próstata"
+        '
+        'chbUtero
+        '
+        '
+        '
+        '
+        Me.chbUtero.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbUtero.Location = New System.Drawing.Point(103, 33)
+        Me.chbUtero.Name = "chbUtero"
+        Me.chbUtero.Size = New System.Drawing.Size(66, 23)
+        Me.chbUtero.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbUtero.TabIndex = 283
+        Me.chbUtero.Text = "Utero"
+        '
+        'chbIdelgado
+        '
+        '
+        '
+        '
+        Me.chbIdelgado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbIdelgado.Location = New System.Drawing.Point(6, 61)
+        Me.chbIdelgado.Name = "chbIdelgado"
+        Me.chbIdelgado.Size = New System.Drawing.Size(140, 23)
+        Me.chbIdelgado.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbIdelgado.TabIndex = 282
+        Me.chbIdelgado.Text = "Intestino Delgado"
+        '
+        'chbEstomago
+        '
+        '
+        '
+        '
+        Me.chbEstomago.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbEstomago.Location = New System.Drawing.Point(6, 4)
+        Me.chbEstomago.Name = "chbEstomago"
+        Me.chbEstomago.Size = New System.Drawing.Size(90, 23)
+        Me.chbEstomago.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbEstomago.TabIndex = 277
+        Me.chbEstomago.Text = "Estómago"
+        '
+        'chbIGrueso
+        '
+        '
+        '
+        '
+        Me.chbIGrueso.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbIGrueso.Location = New System.Drawing.Point(152, 61)
+        Me.chbIGrueso.Name = "chbIGrueso"
+        Me.chbIGrueso.Size = New System.Drawing.Size(152, 23)
+        Me.chbIGrueso.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbIGrueso.TabIndex = 281
+        Me.chbIGrueso.Text = "Intestino Grueso"
+        '
+        'chbHigado
+        '
+        '
+        '
+        '
+        Me.chbHigado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbHigado.Location = New System.Drawing.Point(102, 4)
+        Me.chbHigado.Name = "chbHigado"
+        Me.chbHigado.Size = New System.Drawing.Size(75, 23)
+        Me.chbHigado.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbHigado.TabIndex = 278
+        Me.chbHigado.Text = "Hígado"
+        '
+        'chbVejiga
+        '
+        '
+        '
+        '
+        Me.chbVejiga.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbVejiga.Location = New System.Drawing.Point(183, 33)
+        Me.chbVejiga.Name = "chbVejiga"
+        Me.chbVejiga.Size = New System.Drawing.Size(66, 23)
+        Me.chbVejiga.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbVejiga.TabIndex = 280
+        Me.chbVejiga.Text = "Vejiga"
+        '
+        'chbPancreas
+        '
+        '
+        '
+        '
+        Me.chbPancreas.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.chbPancreas.Location = New System.Drawing.Point(183, 4)
+        Me.chbPancreas.Name = "chbPancreas"
+        Me.chbPancreas.Size = New System.Drawing.Size(89, 23)
+        Me.chbPancreas.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.chbPancreas.TabIndex = 279
+        Me.chbPancreas.Text = "Pancreas"
+        '
+        'lbLocalizado
+        '
+        Me.lbLocalizado.AutoSize = True
+        Me.lbLocalizado.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbLocalizado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbLocalizado.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbLocalizado.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbLocalizado.Location = New System.Drawing.Point(487, 84)
+        Me.lbLocalizado.Name = "lbLocalizado"
+        Me.lbLocalizado.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbLocalizado.Size = New System.Drawing.Size(153, 16)
+        Me.lbLocalizado.TabIndex = 309
+        Me.lbLocalizado.Text = "Localizado en región de:"
+        '
+        'SuperTabItem5
+        '
+        Me.SuperTabItem5.AttachedControl = Me.stcpDatos2
+        Me.SuperTabItem5.GlobalItem = False
+        Me.SuperTabItem5.Name = "SuperTabItem5"
+        Me.SuperTabItem5.Text = "Datos 2"
         '
         'stcpInternacion
         '
@@ -4771,6 +4771,20 @@ Partial Class F1_Fic_FichaClinica
         Me.gpFichaClinica.ResumeLayout(False)
         CType(Me.stcFichaClinica, System.ComponentModel.ISupportInitialize).EndInit()
         Me.stcFichaClinica.ResumeLayout(False)
+        Me.stcpDatos1.ResumeLayout(False)
+        Me.panelDatos1.ResumeLayout(False)
+        Me.panelDatos1.PerformLayout()
+        CType(Me.cbConsultorio, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTRPliegue, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel16.ResumeLayout(False)
+        Me.Panel9.ResumeLayout(False)
+        Me.Panel8.ResumeLayout(False)
+        Me.Panel7.ResumeLayout(False)
+        Me.Panel6.ResumeLayout(False)
+        Me.Panel5.ResumeLayout(False)
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
+        Me.PanelCondicionCorporal.ResumeLayout(False)
         Me.stcpDatos2.ResumeLayout(False)
         Me.panelDatos2.ResumeLayout(False)
         Me.panelDatos2.PerformLayout()
@@ -4788,20 +4802,6 @@ Partial Class F1_Fic_FichaClinica
         Me.Panel18.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel17.ResumeLayout(False)
-        Me.stcpDatos1.ResumeLayout(False)
-        Me.panelDatos1.ResumeLayout(False)
-        Me.panelDatos1.PerformLayout()
-        CType(Me.cbConsultorio, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtTRPliegue, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel16.ResumeLayout(False)
-        Me.Panel9.ResumeLayout(False)
-        Me.Panel8.ResumeLayout(False)
-        Me.Panel7.ResumeLayout(False)
-        Me.Panel6.ResumeLayout(False)
-        Me.Panel5.ResumeLayout(False)
-        Me.Panel4.ResumeLayout(False)
-        Me.Panel3.ResumeLayout(False)
-        Me.PanelCondicionCorporal.ResumeLayout(False)
         Me.stcpInternacion.ResumeLayout(False)
         Me.panelInternacion.ResumeLayout(False)
         Me.gpInternacion.ResumeLayout(False)

@@ -261,7 +261,8 @@ Public Class F1_Fic_SegInternacion
         End With
     End Sub
     Private Sub _prCargarInternacionSegDet(idInternacion As String)
-        Dim _tabla As DataTable = L_fnMostrarInternacionSegDet(idInternacion)
+        Dim _tabla As DataTable
+        '_tabla= L_fnMostrarInternacionSegDet(idInternacion)
         JGSeguimiento.DataSource = _tabla
         JGSeguimiento.RetrieveStructure()
         JGSeguimiento.AlternatingColors = True
