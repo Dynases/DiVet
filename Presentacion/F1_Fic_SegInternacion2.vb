@@ -8,7 +8,7 @@ Public Class F1_Fic_SegInternacion2
     Private _Limpiar As Boolean
     Dim Modificado As Boolean = False
     Dim NuevoSeg As Boolean = False
-    Dim ModificarEncabezado As Integer = 1
+
     Dim ModificarEF As Boolean = False
     Dim ModificarSV As Boolean = False
     Dim ModificarM As Boolean = False
@@ -139,6 +139,16 @@ Public Class F1_Fic_SegInternacion2
         'Deshabilito el Id Ficha Clinica
         txtIdFicClinica.ReadOnly = True
         txtIdFicClinica.Enabled = False
+
+        ''Poner el False todos los modificar de los detalles para que ponga la fecha y hora actual del sistema
+        ModificarEF = False
+        ModificarSV = False
+        ModificarM = False
+        ModificarA = False
+        ModificarF = False
+        ModificarEC = False
+        ModificarT = False
+
     End Sub
 #End Region
 #Region "METODOS PRIVADOS"
@@ -1121,6 +1131,7 @@ Public Class F1_Fic_SegInternacion2
         PanelGradoConciencia.Enabled = False
         btnAgregarEF.Enabled = False
 
+
         ''Detalle Signos Vitales
         txtVomitos.ReadOnly = True
         txtDiarreas.ReadOnly = True
@@ -1130,6 +1141,7 @@ Public Class F1_Fic_SegInternacion2
         txtDefecacion.ReadOnly = True
         txtOtrosSV.ReadOnly = True
         btnAgregarSV.Enabled = False
+        btnLimpiarSV.Enabled = False
 
         ''Detalle Monitoreo
         txtT.ReadOnly = True
@@ -1142,6 +1154,7 @@ Public Class F1_Fic_SegInternacion2
         txtMED.ReadOnly = True
         txtTRC.ReadOnly = True
         btnAgregarM.Enabled = False
+        btnLimpiarM.Enabled = False
 
         ''Detalle Alimentacion
         txtRequerimiento.IsInputReadOnly = True
@@ -1153,6 +1166,7 @@ Public Class F1_Fic_SegInternacion2
         txtAgua.ReadOnly = True
         txtObs.ReadOnly = True
         btnAgregarA.Enabled = False
+        btnLimpiarA.Enabled = False
 
         ''Detalle Fluidoterapia
         cbTurnoF.Enabled = False
@@ -1161,14 +1175,17 @@ Public Class F1_Fic_SegInternacion2
         txtHoraTermino.ReadOnly = True
         txtCantidad.ReadOnly = True
         btnAgregarF.Enabled = False
+        btnLimpiarF.Enabled = False
 
         ''Detalle Estudios Complementarios
         txtEstudiosComplem.ReadOnly = True
         btnAgregarEC.Enabled = False
+        btnLimpiarEC.Enabled = False
 
         ''Detalle Tratamiento
         txtTratamiento.ReadOnly = True
         btnAgregarT.Enabled = False
+        btnLimpiarT.Enabled = False
 
         _Limpiar = False
     End Sub
@@ -1197,6 +1214,7 @@ Public Class F1_Fic_SegInternacion2
         txtDefecacion.ReadOnly = False
         txtOtrosSV.ReadOnly = False
         btnAgregarSV.Enabled = True
+        btnLimpiarSV.Enabled = True
 
         ''Detalle Monitoreo
         txtT.ReadOnly = False
@@ -1209,6 +1227,7 @@ Public Class F1_Fic_SegInternacion2
         txtMED.ReadOnly = False
         txtTRC.ReadOnly = False
         btnAgregarM.Enabled = True
+        btnLimpiarM.Enabled = True
 
         ''Detalle Alimentacion
         txtRequerimiento.IsInputReadOnly = False
@@ -1220,6 +1239,7 @@ Public Class F1_Fic_SegInternacion2
         txtAgua.ReadOnly = False
         txtObs.ReadOnly = False
         btnAgregarA.Enabled = True
+        btnLimpiarA.Enabled = True
 
         ''Detalle Fluidoterapia
         cbTurnoF.Enabled = True
@@ -1228,18 +1248,31 @@ Public Class F1_Fic_SegInternacion2
         txtHoraTermino.ReadOnly = False
         txtCantidad.ReadOnly = False
         btnAgregarF.Enabled = True
+        btnLimpiarF.Enabled = True
 
         ''Detalle Estudios Complementarios
         txtEstudiosComplem.ReadOnly = False
         btnAgregarEC.Enabled = True
+        btnLimpiarEC.Enabled = True
 
         ''Detalle Tratamiento
         txtTratamiento.ReadOnly = False
         btnAgregarT.Enabled = True
+        btnLimpiarT.Enabled = True
     End Sub
 
     Private Sub _LimpiarDet()
+        _LimpiarExamenFísico()
+        _LimpiarSignosVitales()
+        _LimpiarMonitoreo()
+        _LimpiarAlimentacion()
+        _LimpiarFluidoterapia()
+        _LimpiarEstudiosComplementarios()
+        _LimpiarTratamiento()
+    End Sub
 
+
+    Private Sub _LimpiarExamenFísico()
         'Limpio Examen Físico
         cbTurno.Value = 1
         chbRosadas.Checked = True
@@ -1248,7 +1281,8 @@ Public Class F1_Fic_SegInternacion2
         chbEstable.Checked = True
         txtHoraEF.Clear()
         dtpFechaEF.Value = Date.Now
-
+    End Sub
+    Private Sub _LimpiarSignosVitales()
         'Limpio Signos Vitales
         txtVomitos.Clear()
         txtDiarreas.Clear()
@@ -1259,7 +1293,8 @@ Public Class F1_Fic_SegInternacion2
         txtOtrosSV.Clear()
         txtHoraSV.Clear()
         dtpFechaSV.Value = Date.Now
-
+    End Sub
+    Private Sub _LimpiarMonitoreo()
         ''Limpio Monitoreo
         txtT.Clear()
         txtFC.Clear()
@@ -1272,7 +1307,9 @@ Public Class F1_Fic_SegInternacion2
         txtTRC.Clear()
         txtHoraM.Clear()
         dtpFechaM.Value = Date.Now
+    End Sub
 
+    Private Sub _LimpiarAlimentacion()
         ''Limpio Alimentacion
         txtRequerimiento.ResetText()
         txtPVM.Clear()
@@ -1284,7 +1321,8 @@ Public Class F1_Fic_SegInternacion2
         txtObs.Clear()
         txtHoraA.Clear()
         dtpFechaA.Value = Date.Now
-
+    End Sub
+    Private Sub _LimpiarFluidoterapia()
         ''Detalle Fluidoterapia
         cbTurnoF.Value = 1
         txtFluidos.Clear()
@@ -1293,20 +1331,20 @@ Public Class F1_Fic_SegInternacion2
         txtCantidad.Clear()
         txtHoraF.Clear()
         dtpFechaF.Value = Date.Now
-
+    End Sub
+    Private Sub _LimpiarEstudiosComplementarios()
         ''Detalle Estudios Complementarios
         txtEstudiosComplem.Clear()
         txtHoraEC.Clear()
         dtpFechaEC.Value = Date.Now
-
+    End Sub
+    Private Sub _LimpiarTratamiento()
         ''Detalle Tratamiento
         txtTratamiento.Clear()
         txtHoraT.Clear()
         dtpFechaT.Value = Date.Now
-
-
-
     End Sub
+
     Private Sub _prLimpiar()
         JGMonitoreo.Enabled = True
         txtId.Clear()
@@ -1336,7 +1374,7 @@ Public Class F1_Fic_SegInternacion2
         _prDetalleEstudiosC(-1)
         _prDetalleTratamiento(-1)
 
-        ModificarEncabezado = 1
+        ''Poner el False todos los modificar de los detalles para que ponga la fecha y hora actual del sistema
         ModificarEF = False
         ModificarSV = False
         ModificarM = False
@@ -2225,6 +2263,30 @@ Public Class F1_Fic_SegInternacion2
         End If
     End Sub
 
+    Private Sub BtnLimpiarSV_Click(sender As Object, e As EventArgs) Handles btnLimpiarSV.Click
+        _LimpiarSignosVitales()
+    End Sub
+
+    Private Sub btnLimpiarM_Click(sender As Object, e As EventArgs) Handles btnLimpiarM.Click
+        _LimpiarMonitoreo()
+    End Sub
+
+    Private Sub btnLimpiarA_Click(sender As Object, e As EventArgs) Handles btnLimpiarA.Click
+        _LimpiarAlimentacion()
+    End Sub
+
+    Private Sub btnLimpiarF_Click(sender As Object, e As EventArgs) Handles btnLimpiarF.Click
+        _LimpiarFluidoterapia()
+    End Sub
+
+    Private Sub btnLimpiarEC_Click(sender As Object, e As EventArgs) Handles btnLimpiarEC.Click
+        _LimpiarEstudiosComplementarios()
+    End Sub
+
+    Private Sub btnLimpiarT_Click(sender As Object, e As EventArgs) Handles btnLimpiarT.Click
+        _LimpiarTratamiento()
+    End Sub
+
     Private Sub btnReciboI_Click(sender As Object, e As EventArgs) Handles btnReciboI.Click
         Dim frm As New F1_Fic_ReciboInt
         frm._IdPaciente = JGBusqSeguimiento.GetValue("pbId")
@@ -2241,7 +2303,7 @@ Public Class F1_Fic_SegInternacion2
         'JGBusqEmpleados.Enabled = False 'Deshabilita el buscador de la Grilla
         _prHabilitar()
 
-        ModificarEncabezado = 2
+        ''Poner en True los Modificar de los Detalles para que recupere Fecha y Hora del que se está modificando
         ModificarEF = True
         ModificarSV = True
         ModificarM = True
