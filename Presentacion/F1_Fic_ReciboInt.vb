@@ -704,7 +704,7 @@ Public Class F1_Fic_ReciboInt
                 _prFiltrar(1)
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, mensajeError, img, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, mensajeError, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
         End If
     End Sub
@@ -753,9 +753,39 @@ Public Class F1_Fic_ReciboInt
 
     Public Overrides Sub _PMOModificar()
         'JGBusqRecibosI.Enabled = False 'Deshabilita el buscador de la Grilla
-        _prHabilitar()
-    End Sub
+        Dim pos As Integer = JGBusqRecibosI.Row
+        '_prVerificar(pos)
+        If _prVerificar(pos) = True Then
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "No se puede modificar porque ya se tomó el recibo en Venta o ya esta en Recibo cirugia".ToUpper, img, 3500, eToastGlowColor.Red, eToastPosition.TopCenter)
+            btnNuevo.Enabled = True
+            btnModificar.Enabled = True
+            btnEliminar.Enabled = True
+            btnGrabar.Enabled = False
+            PanelNavegacion.Enabled = True
+            superTabItem2.Enabled = True
+        Else
+            _prHabilitar()
+        End If
 
+    End Sub
+    Private Function _prVerificar(_POS As Integer) As Boolean
+        Dim Result As Boolean
+        If JGBusqRecibosI.RowCount <> 0 Then
+            JGBusqRecibosI.Row = _POS
+            With JGBusqRecibosI
+                Dim VentaSiNo As Integer = .GetValue("rmEst")
+
+                If VentaSiNo = 2 Or VentaSiNo = 3 Then
+                    Result = True
+                Else
+                    Result = False
+                End If
+
+            End With
+        End If
+        Return Result
+    End Function
     Public Overrides Sub _PMOSalir()
         _prInhabilitar()
         _prFiltrar(1)

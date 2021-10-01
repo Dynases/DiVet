@@ -87,11 +87,13 @@ Partial Class F1_Reg_Pacientes
         'MpanelSuperior
         '
         Me.MpanelSuperior.Controls.Add(Me.gpDatosMascota)
-        Me.MpanelSuperior.Size = New System.Drawing.Size(800, 342)
+        Me.MpanelSuperior.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.MpanelSuperior.Location = New System.Drawing.Point(0, 72)
+        Me.MpanelSuperior.Size = New System.Drawing.Size(846, 344)
         '
         'PanelSuperior
         '
-        Me.PanelSuperior.Size = New System.Drawing.Size(805, 72)
+        Me.PanelSuperior.Size = New System.Drawing.Size(846, 72)
         Me.PanelSuperior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelSuperior.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PanelSuperior.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
@@ -108,7 +110,7 @@ Partial Class F1_Reg_Pacientes
         'PanelInferior
         '
         Me.PanelInferior.Location = New System.Drawing.Point(0, 416)
-        Me.PanelInferior.Size = New System.Drawing.Size(805, 39)
+        Me.PanelInferior.Size = New System.Drawing.Size(846, 39)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Transparent
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Transparent
@@ -120,7 +122,7 @@ Partial Class F1_Reg_Pacientes
         '
         'MPanelUserAct
         '
-        Me.MPanelUserAct.Location = New System.Drawing.Point(605, 0)
+        Me.MPanelUserAct.Location = New System.Drawing.Point(646, 0)
         '
         'btnUltimo
         '
@@ -140,6 +142,7 @@ Partial Class F1_Reg_Pacientes
         Me.MpanelBuscador.BackgroundImage = Global.Presentacion.My.Resources.Resources.Fondo2
         Me.MpanelBuscador.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.MpanelBuscador.Controls.Add(Me.gpBusqMascotas)
+        Me.MpanelBuscador.Size = New System.Drawing.Size(879, 455)
         '
         'TxtNombreUsu
         '
@@ -189,7 +192,7 @@ Partial Class F1_Reg_Pacientes
         Me.superTabControl1.ControlBox.Name = ""
         Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
         Me.superTabControl1.SelectedTabIndex = 1
-        Me.superTabControl1.Size = New System.Drawing.Size(805, 480)
+        Me.superTabControl1.Size = New System.Drawing.Size(846, 480)
         '
         'gpDatosMascota
         '
@@ -198,11 +201,12 @@ Partial Class F1_Reg_Pacientes
         Me.gpDatosMascota.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.gpDatosMascota.Controls.Add(Me.panelDatosMascota)
         Me.gpDatosMascota.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpDatosMascota.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpDatosMascota.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpDatosMascota.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.gpDatosMascota.Location = New System.Drawing.Point(20, 6)
+        Me.gpDatosMascota.Location = New System.Drawing.Point(0, 0)
         Me.gpDatosMascota.Name = "gpDatosMascota"
-        Me.gpDatosMascota.Size = New System.Drawing.Size(760, 311)
+        Me.gpDatosMascota.Size = New System.Drawing.Size(846, 344)
         '
         '
         '
@@ -264,7 +268,7 @@ Partial Class F1_Reg_Pacientes
         Me.panelDatosMascota.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelDatosMascota.Location = New System.Drawing.Point(0, 0)
         Me.panelDatosMascota.Name = "panelDatosMascota"
-        Me.panelDatosMascota.Size = New System.Drawing.Size(754, 288)
+        Me.panelDatosMascota.Size = New System.Drawing.Size(840, 321)
         Me.panelDatosMascota.TabIndex = 234
         '
         'dtpFnac
@@ -278,7 +282,7 @@ Partial Class F1_Reg_Pacientes
         Me.dtpFnac.ButtonDropDown.Visible = True
         Me.dtpFnac.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpFnac.IsPopupCalendarOpen = False
-        Me.dtpFnac.Location = New System.Drawing.Point(127, 171)
+        Me.dtpFnac.Location = New System.Drawing.Point(155, 176)
         '
         '
         '
@@ -320,7 +324,7 @@ Partial Class F1_Reg_Pacientes
         Me.btnRaza.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
         Me.btnRaza.Image = Global.Presentacion.My.Resources.Resources.nuevo
         Me.btnRaza.ImageFixedSize = New System.Drawing.Size(28, 28)
-        Me.btnRaza.Location = New System.Drawing.Point(247, 139)
+        Me.btnRaza.Location = New System.Drawing.Point(275, 144)
         Me.btnRaza.Name = "btnRaza"
         Me.btnRaza.Size = New System.Drawing.Size(28, 27)
         Me.btnRaza.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -333,7 +337,7 @@ Partial Class F1_Reg_Pacientes
         Me.btnEspecie.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
         Me.btnEspecie.Image = Global.Presentacion.My.Resources.Resources.nuevo
         Me.btnEspecie.ImageFixedSize = New System.Drawing.Size(28, 28)
-        Me.btnEspecie.Location = New System.Drawing.Point(247, 107)
+        Me.btnEspecie.Location = New System.Drawing.Point(275, 112)
         Me.btnEspecie.Name = "btnEspecie"
         Me.btnEspecie.Size = New System.Drawing.Size(28, 29)
         Me.btnEspecie.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -344,7 +348,7 @@ Partial Class F1_Reg_Pacientes
         '
         Me.PanelEsterilizado.Controls.Add(Me.chbSi)
         Me.PanelEsterilizado.Controls.Add(Me.chbNo)
-        Me.PanelEsterilizado.Location = New System.Drawing.Point(481, 167)
+        Me.PanelEsterilizado.Location = New System.Drawing.Point(509, 172)
         Me.PanelEsterilizado.Name = "PanelEsterilizado"
         Me.PanelEsterilizado.Size = New System.Drawing.Size(90, 30)
         Me.PanelEsterilizado.TabIndex = 324
@@ -384,7 +388,7 @@ Partial Class F1_Reg_Pacientes
         '
         Me.PanelSexo.Controls.Add(Me.chbMacho)
         Me.PanelSexo.Controls.Add(Me.chbHembra)
-        Me.PanelSexo.Location = New System.Drawing.Point(479, 75)
+        Me.PanelSexo.Location = New System.Drawing.Point(507, 80)
         Me.PanelSexo.Name = "PanelSexo"
         Me.PanelSexo.Size = New System.Drawing.Size(169, 30)
         Me.PanelSexo.TabIndex = 5
@@ -423,7 +427,7 @@ Partial Class F1_Reg_Pacientes
         'pictureBox1
         '
         Me.pictureBox1.Image = Global.Presentacion.My.Resources.Resources.VidaVet5
-        Me.pictureBox1.Location = New System.Drawing.Point(651, 6)
+        Me.pictureBox1.Location = New System.Drawing.Point(679, 11)
         Me.pictureBox1.Name = "pictureBox1"
         Me.pictureBox1.Size = New System.Drawing.Size(100, 100)
         Me.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -434,7 +438,7 @@ Partial Class F1_Reg_Pacientes
         '
         Me.dtpFIngresoM.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpFIngresoM.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFIngresoM.Location = New System.Drawing.Point(481, 201)
+        Me.dtpFIngresoM.Location = New System.Drawing.Point(509, 206)
         Me.dtpFIngresoM.Name = "dtpFIngresoM"
         Me.dtpFIngresoM.Size = New System.Drawing.Size(122, 22)
         Me.dtpFIngresoM.TabIndex = 12
@@ -449,7 +453,7 @@ Partial Class F1_Reg_Pacientes
         Me.lbFIngreso.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbFIngreso.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbFIngreso.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbFIngreso.Location = New System.Drawing.Point(393, 203)
+        Me.lbFIngreso.Location = New System.Drawing.Point(421, 208)
         Me.lbFIngreso.Name = "lbFIngreso"
         Me.lbFIngreso.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbFIngreso.Size = New System.Drawing.Size(75, 23)
@@ -465,7 +469,7 @@ Partial Class F1_Reg_Pacientes
         Me.lbEstado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbEstado.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbEstado.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbEstado.Location = New System.Drawing.Point(23, 203)
+        Me.lbEstado.Location = New System.Drawing.Point(51, 208)
         Me.lbEstado.Name = "lbEstado"
         Me.lbEstado.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbEstado.Size = New System.Drawing.Size(75, 23)
@@ -483,7 +487,7 @@ Partial Class F1_Reg_Pacientes
         Me.txtEstado.DisabledBackColor = System.Drawing.Color.White
         Me.txtEstado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEstado.ForeColor = System.Drawing.Color.Black
-        Me.txtEstado.Location = New System.Drawing.Point(127, 203)
+        Me.txtEstado.Location = New System.Drawing.Point(155, 208)
         Me.txtEstado.MaxLength = 70
         Me.txtEstado.Name = "txtEstado"
         Me.txtEstado.PreventEnterBeep = True
@@ -499,7 +503,7 @@ Partial Class F1_Reg_Pacientes
         Me.lbEsterilizado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbEsterilizado.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbEsterilizado.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbEsterilizado.Location = New System.Drawing.Point(393, 172)
+        Me.lbEsterilizado.Location = New System.Drawing.Point(421, 177)
         Me.lbEsterilizado.Name = "lbEsterilizado"
         Me.lbEsterilizado.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbEsterilizado.Size = New System.Drawing.Size(93, 23)
@@ -515,7 +519,7 @@ Partial Class F1_Reg_Pacientes
         Me.lbSexo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbSexo.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbSexo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbSexo.Location = New System.Drawing.Point(393, 79)
+        Me.lbSexo.Location = New System.Drawing.Point(421, 84)
         Me.lbSexo.Name = "lbSexo"
         Me.lbSexo.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbSexo.Size = New System.Drawing.Size(64, 23)
@@ -533,7 +537,7 @@ Partial Class F1_Reg_Pacientes
         Me.txtSeñas.DisabledBackColor = System.Drawing.Color.White
         Me.txtSeñas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSeñas.ForeColor = System.Drawing.Color.Black
-        Me.txtSeñas.Location = New System.Drawing.Point(480, 141)
+        Me.txtSeñas.Location = New System.Drawing.Point(508, 146)
         Me.txtSeñas.MaxLength = 50
         Me.txtSeñas.Name = "txtSeñas"
         Me.txtSeñas.PreventEnterBeep = True
@@ -549,7 +553,7 @@ Partial Class F1_Reg_Pacientes
         Me.lbSeñas.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbSeñas.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbSeñas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbSeñas.Location = New System.Drawing.Point(393, 141)
+        Me.lbSeñas.Location = New System.Drawing.Point(421, 146)
         Me.lbSeñas.Name = "lbSeñas"
         Me.lbSeñas.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbSeñas.Size = New System.Drawing.Size(64, 23)
@@ -561,7 +565,7 @@ Partial Class F1_Reg_Pacientes
         cbRaza_DesignTimeLayout.LayoutString = resources.GetString("cbRaza_DesignTimeLayout.LayoutString")
         Me.cbRaza.DesignTimeLayout = cbRaza_DesignTimeLayout
         Me.cbRaza.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbRaza.Location = New System.Drawing.Point(128, 142)
+        Me.cbRaza.Location = New System.Drawing.Point(156, 147)
         Me.cbRaza.Name = "cbRaza"
         Me.cbRaza.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.cbRaza.Office2007CustomColor = System.Drawing.Color.DodgerBlue
@@ -581,7 +585,7 @@ Partial Class F1_Reg_Pacientes
         Me.lbRaza.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbRaza.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbRaza.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbRaza.Location = New System.Drawing.Point(23, 146)
+        Me.lbRaza.Location = New System.Drawing.Point(51, 151)
         Me.lbRaza.Name = "lbRaza"
         Me.lbRaza.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbRaza.Size = New System.Drawing.Size(37, 16)
@@ -593,7 +597,7 @@ Partial Class F1_Reg_Pacientes
         cbEspecie_DesignTimeLayout.LayoutString = resources.GetString("cbEspecie_DesignTimeLayout.LayoutString")
         Me.cbEspecie.DesignTimeLayout = cbEspecie_DesignTimeLayout
         Me.cbEspecie.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbEspecie.Location = New System.Drawing.Point(128, 111)
+        Me.cbEspecie.Location = New System.Drawing.Point(156, 116)
         Me.cbEspecie.Name = "cbEspecie"
         Me.cbEspecie.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.cbEspecie.Office2007CustomColor = System.Drawing.Color.DodgerBlue
@@ -614,7 +618,7 @@ Partial Class F1_Reg_Pacientes
         Me.lbEspecie.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbEspecie.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbEspecie.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbEspecie.Location = New System.Drawing.Point(23, 115)
+        Me.lbEspecie.Location = New System.Drawing.Point(51, 120)
         Me.lbEspecie.Name = "lbEspecie"
         Me.lbEspecie.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbEspecie.Size = New System.Drawing.Size(54, 16)
@@ -631,7 +635,7 @@ Partial Class F1_Reg_Pacientes
         Me.lbIdMascota.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbIdMascota.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbIdMascota.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbIdMascota.Location = New System.Drawing.Point(25, 49)
+        Me.lbIdMascota.Location = New System.Drawing.Point(53, 54)
         Me.lbIdMascota.Name = "lbIdMascota"
         Me.lbIdMascota.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbIdMascota.Size = New System.Drawing.Size(75, 16)
@@ -647,7 +651,7 @@ Partial Class F1_Reg_Pacientes
         Me.lbNombMasc.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbNombMasc.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbNombMasc.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbNombMasc.Location = New System.Drawing.Point(24, 81)
+        Me.lbNombMasc.Location = New System.Drawing.Point(52, 86)
         Me.lbNombMasc.Name = "lbNombMasc"
         Me.lbNombMasc.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbNombMasc.Size = New System.Drawing.Size(75, 23)
@@ -663,7 +667,7 @@ Partial Class F1_Reg_Pacientes
         Me.lbFNac.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbFNac.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbFNac.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbFNac.Location = New System.Drawing.Point(25, 171)
+        Me.lbFNac.Location = New System.Drawing.Point(53, 176)
         Me.lbFNac.Name = "lbFNac"
         Me.lbFNac.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbFNac.Size = New System.Drawing.Size(102, 23)
@@ -681,7 +685,7 @@ Partial Class F1_Reg_Pacientes
         Me.txtNMascota.DisabledBackColor = System.Drawing.Color.White
         Me.txtNMascota.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNMascota.ForeColor = System.Drawing.Color.Black
-        Me.txtNMascota.Location = New System.Drawing.Point(128, 80)
+        Me.txtNMascota.Location = New System.Drawing.Point(156, 85)
         Me.txtNMascota.MaxLength = 25
         Me.txtNMascota.Name = "txtNMascota"
         Me.txtNMascota.PreventEnterBeep = True
@@ -700,7 +704,7 @@ Partial Class F1_Reg_Pacientes
         Me.txtColor.DisabledBackColor = System.Drawing.Color.White
         Me.txtColor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtColor.ForeColor = System.Drawing.Color.Black
-        Me.txtColor.Location = New System.Drawing.Point(480, 111)
+        Me.txtColor.Location = New System.Drawing.Point(508, 116)
         Me.txtColor.MaxLength = 20
         Me.txtColor.Name = "txtColor"
         Me.txtColor.PreventEnterBeep = True
@@ -716,7 +720,7 @@ Partial Class F1_Reg_Pacientes
         Me.lbColor.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbColor.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbColor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbColor.Location = New System.Drawing.Point(393, 109)
+        Me.lbColor.Location = New System.Drawing.Point(421, 114)
         Me.lbColor.Name = "lbColor"
         Me.lbColor.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbColor.Size = New System.Drawing.Size(64, 23)
@@ -735,7 +739,7 @@ Partial Class F1_Reg_Pacientes
         Me.txtIdMascota.Enabled = False
         Me.txtIdMascota.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtIdMascota.ForeColor = System.Drawing.Color.Black
-        Me.txtIdMascota.Location = New System.Drawing.Point(128, 49)
+        Me.txtIdMascota.Location = New System.Drawing.Point(156, 54)
         Me.txtIdMascota.Name = "txtIdMascota"
         Me.txtIdMascota.PreventEnterBeep = True
         Me.txtIdMascota.Size = New System.Drawing.Size(63, 22)
@@ -799,10 +803,11 @@ Partial Class F1_Reg_Pacientes
         Me.gpBusqMascotas.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.gpBusqMascotas.Controls.Add(Me.JGBusqMascotas)
         Me.gpBusqMascotas.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpBusqMascotas.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpBusqMascotas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gpBusqMascotas.Location = New System.Drawing.Point(12, 21)
+        Me.gpBusqMascotas.Location = New System.Drawing.Point(0, 0)
         Me.gpBusqMascotas.Name = "gpBusqMascotas"
-        Me.gpBusqMascotas.Size = New System.Drawing.Size(781, 408)
+        Me.gpBusqMascotas.Size = New System.Drawing.Size(879, 455)
         '
         '
         '
@@ -837,11 +842,12 @@ Partial Class F1_Reg_Pacientes
         '
         'JGBusqMascotas
         '
+        Me.JGBusqMascotas.Dock = System.Windows.Forms.DockStyle.Fill
         Me.JGBusqMascotas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.JGBusqMascotas.HeaderFormatStyle.FontBold = Janus.Windows.GridEX.TriState.[True]
-        Me.JGBusqMascotas.Location = New System.Drawing.Point(3, 3)
+        Me.JGBusqMascotas.Location = New System.Drawing.Point(0, 0)
         Me.JGBusqMascotas.Name = "JGBusqMascotas"
-        Me.JGBusqMascotas.Size = New System.Drawing.Size(769, 379)
+        Me.JGBusqMascotas.Size = New System.Drawing.Size(873, 432)
         Me.JGBusqMascotas.TabIndex = 256
         '
         'F1_Reg_Pacientes
@@ -849,7 +855,7 @@ Partial Class F1_Reg_Pacientes
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(805, 480)
+        Me.ClientSize = New System.Drawing.Size(846, 480)
         Me.MaximizeBox = False
         Me.Name = "F1_Reg_Pacientes"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

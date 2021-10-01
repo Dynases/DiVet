@@ -246,7 +246,7 @@ Public Class F1_Rol
             End If
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "No se puede eliminar el registro por que esta siendo usado en el programa de Usuarios, primero debe cambiar el rol por otro en Usuarios  o eliminar al usuario.", img, 8000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "No se puede eliminar el registro por que esta siendo usado en el programa de Usuarios.".ToUpper, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
     End Sub

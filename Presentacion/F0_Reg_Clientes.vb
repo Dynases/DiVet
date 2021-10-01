@@ -708,7 +708,7 @@ Partial Class F0_Reg_Clientes
             End If
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "No se puede eliminar debido a que tiene mascotas registradas, primero elimine las mascotas correspondientes", img, 4000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "No se puede eliminar debido a que tiene mascotas registradas, primero elimine las mascotas correspondientes".ToUpper, img, 4000, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
 
     End Sub

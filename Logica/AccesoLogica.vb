@@ -4422,9 +4422,9 @@ Public Class AccesoLogica
 
 #Region "TS002 Dosificacion"
 
-    Public Shared Function L_fnEliminarDosificacion(numi As String, ByRef mensaje As String) As Boolean
+    Public Shared Function L_fnEliminarDosificacion(numi As String, ByRef mensaje As String, autorizacion As String) As Boolean
         Dim _resultado As Boolean
-        If L_fnbValidarEliminacion(numi, "TS002", "sbnumi", mensaje) = True Then
+        If L_fnbValidarEliminacion(autorizacion, "TS002", "sbautoriz", mensaje) = True Then
             Dim _Tabla As DataTable
             Dim _listParam As New List(Of Datos.DParametro)
 

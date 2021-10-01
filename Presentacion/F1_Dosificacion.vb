@@ -254,7 +254,7 @@ Public Class F1_Dosificacion
         bandera = ef.band
         If (bandera = True) Then
             Dim mensajeError As String = ""
-            Dim res As Boolean = L_fnEliminarDosificacion(TbCodigo.Text, mensajeError)
+            Dim res As Boolean = L_fnEliminarDosificacion(TbCodigo.Text, mensajeError, TbNroAutoriz.Text)
             If res Then
                 Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
                 ToastNotification.Show(Me,
@@ -269,9 +269,9 @@ Public Class F1_Dosificacion
                 ToastNotification.Show(Me,
                                        mensajeError,
                                        img,
-                                       2000,
+                                       2500,
                                        eToastGlowColor.Red,
-                                       eToastPosition.BottomCenter)
+                                       eToastPosition.TopCenter)
             End If
         End If
     End Sub

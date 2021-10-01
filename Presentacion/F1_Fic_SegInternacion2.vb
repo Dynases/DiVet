@@ -27,44 +27,52 @@ Public Class F1_Fic_SegInternacion2
         If e.KeyData = Keys.Control + Keys.Enter Then
             Dim dt As DataTable
             dt = L_fnMostrarFichaClinicaConInternacion()
-            Dim listEstCeldas As New List(Of Modelo.Celda)
-            listEstCeldas.Add(New Modelo.Celda("igId,", False, "ID", 50))
-            listEstCeldas.Add(New Modelo.Celda("ig_fbId", True, "Id Ficha", 90))
-            listEstCeldas.Add(New Modelo.Celda("igEst", False, "Estado", 180))
-            listEstCeldas.Add(New Modelo.Celda("cacliente", True, "Propietario", 210))
-            listEstCeldas.Add(New Modelo.Celda("pbId", False, "IdPaciente", 150))
-            listEstCeldas.Add(New Modelo.Celda("pbnomb", True, "Paciente", 150))
-            listEstCeldas.Add(New Modelo.Celda("Especie", True, "Especie", 120))
-            listEstCeldas.Add(New Modelo.Celda("pbsex", True, "Sexo", 120))
-            listEstCeldas.Add(New Modelo.Celda("igFechaIng", True, "Fecha Int.", 90, ("dd/MM/yyyy")))
-            listEstCeldas.Add(New Modelo.Celda("igEdad", True, "Edad", 100))
-            listEstCeldas.Add(New Modelo.Celda("igTelf", False, "Telefono", 130))
-            listEstCeldas.Add(New Modelo.Celda("igMotInter", False, "igMotInter", 180))
-            listEstCeldas.Add(New Modelo.Celda("igRequer", False, "igRequer", 180))
-            listEstCeldas.Add(New Modelo.Celda("igHoraInter", True, "Hora Int.".ToUpper, 100))
-            Dim ef = New Efecto
-            ef.tipo = 3
-            ef.dt = dt
-            ef.SeleclCol = 2
-            ef.listEstCeldas = listEstCeldas
-            ef.alto = 80
-            ef.ancho = 190
-            ef.Context = "Seleccione una Internación".ToUpper
-            ef.ShowDialog()
-            Dim bandera As Boolean = False
-            bandera = ef.band
-            If (bandera = True) Then
-                Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
-                txtIdFicClinica.Text = Row.Cells("ig_fbId").Value
-                txtPropietarioI.Text = Row.Cells("cacliente").Value
-                txtTelefonoI.Text = Row.Cells("igTelf").Value
-                txtPacienteI.Text = Row.Cells("pbnomb").Value
-                _IdPaciente = Row.Cells("pbId").Value
-                txtEdadI.Text = Row.Cells("igEdad").Value
-                txtSexoI.Text = Row.Cells("pbsex").Value
-                txtEspecieI.Text = Row.Cells("Especie").Value
-                txtMotivoI.Text = Row.Cells("igMotInter").Value
+
+            If dt.Rows.Count > 0 Then
+                Dim listEstCeldas As New List(Of Modelo.Celda)
+                listEstCeldas.Add(New Modelo.Celda("igId,", False, "ID", 50))
+                listEstCeldas.Add(New Modelo.Celda("ig_fbId", True, "Id Ficha", 90))
+                listEstCeldas.Add(New Modelo.Celda("igEst", False, "Estado", 180))
+                listEstCeldas.Add(New Modelo.Celda("cacliente", True, "Propietario", 210))
+                listEstCeldas.Add(New Modelo.Celda("pbId", False, "IdPaciente", 150))
+                listEstCeldas.Add(New Modelo.Celda("pbnomb", True, "Paciente", 150))
+                listEstCeldas.Add(New Modelo.Celda("Especie", True, "Especie", 120))
+                listEstCeldas.Add(New Modelo.Celda("pbsex", True, "Sexo", 120))
+                listEstCeldas.Add(New Modelo.Celda("igFechaIng", True, "Fecha Int.", 90, ("dd/MM/yyyy")))
+                listEstCeldas.Add(New Modelo.Celda("igEdad", True, "Edad", 100))
+                listEstCeldas.Add(New Modelo.Celda("igTelf", False, "Telefono", 130))
+                listEstCeldas.Add(New Modelo.Celda("igMotInter", False, "igMotInter", 180))
+                listEstCeldas.Add(New Modelo.Celda("igRequer", False, "igRequer", 180))
+                listEstCeldas.Add(New Modelo.Celda("igHoraInter", True, "Hora Int.".ToUpper, 100))
+                Dim ef = New Efecto
+                ef.tipo = 3
+                ef.dt = dt
+                ef.SeleclCol = 2
+                ef.listEstCeldas = listEstCeldas
+                ef.alto = 80
+                ef.ancho = 190
+                ef.Context = "Seleccione una Internación".ToUpper
+                ef.ShowDialog()
+                Dim bandera As Boolean = False
+                bandera = ef.band
+                If (bandera = True) Then
+                    Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
+                    txtIdFicClinica.Text = Row.Cells("ig_fbId").Value
+                    txtPropietarioI.Text = Row.Cells("cacliente").Value
+                    txtTelefonoI.Text = Row.Cells("igTelf").Value
+                    txtPacienteI.Text = Row.Cells("pbnomb").Value
+                    _IdPaciente = Row.Cells("pbId").Value
+                    txtEdadI.Text = Row.Cells("igEdad").Value
+                    txtSexoI.Text = Row.Cells("pbsex").Value
+                    txtEspecieI.Text = Row.Cells("Especie").Value
+                    txtMotivoI.Text = Row.Cells("igMotInter").Value
+                End If
+            Else
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "No existe Fichas de Internación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+
             End If
+
         End If
     End Sub
     Private Sub JGBusqSeguimiento_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGBusqSeguimiento.EditingCell
@@ -75,22 +83,6 @@ Public Class F1_Fic_SegInternacion2
         e.Cancel = True
     End Sub
 
-    Private Sub cbTurno_ValueChanged(sender As Object, e As EventArgs)
-        If cbTurno.SelectedIndex < 0 And cbTurno.Text <> String.Empty Then
-            'btnTurno.Visible = True
-        Else
-            'btnTurno.Visible = False
-        End If
-    End Sub
-
-    Private Sub btnTurno_Click(sender As Object, e As EventArgs)
-        Dim _Id As String = ""
-        ''If L_fnExisteLibreria("2", "1", cbEspecie.Text) Then
-        If L_fnGrabarLibreria(_Id, "5", "1", cbTurno.Text) Then
-            _prCargarComboLibreria(cbTurno, "5", "1")
-            cbTurno.SelectedIndex = CType(cbTurno.DataSource, DataTable).Rows.Count - 1
-        End If
-    End Sub
 
     Private Sub btnPrimero_Click(sender As Object, e As EventArgs) Handles btnPrimero.Click
         If JGBusqSeguimiento.RowCount > 0 Then
