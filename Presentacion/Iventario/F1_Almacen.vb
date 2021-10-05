@@ -272,7 +272,7 @@ Public Class F1_Almacen
 
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El Almacen no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El Almacen no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
         Return res
@@ -308,7 +308,7 @@ Public Class F1_Almacen
 
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "EL Almacen no pudo ser modificado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "EL Almacen no pudo ser modificado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
 
@@ -359,7 +359,7 @@ Public Class F1_Almacen
                 _PMFiltrar()
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, mensajeError, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, mensajeError, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
         End If
 
@@ -374,7 +374,7 @@ Public Class F1_Almacen
             MEP.SetError(tbNombre, "ingrese el nombre del Almacen!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese el nombre del deposito para efectuar la grabacion".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese el nombre del deposito para efectuar la grabacion".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             tbNombre.BackColor = Color.White
             MEP.SetError(tbNombre, "")

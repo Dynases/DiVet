@@ -423,7 +423,7 @@ Public Class F1_Reg_Empleados
             _Limpiar = True
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El empleado no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El empleado no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
         Return res
@@ -452,7 +452,7 @@ Public Class F1_Reg_Empleados
             _Limpiar = True
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La mascota no pudo ser modificada".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La mascota no pudo ser modificada".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
         Return res
     End Function
@@ -493,7 +493,7 @@ Public Class F1_Reg_Empleados
             MEP.SetError(txtCIEmpleado, "ingrese el Ci!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese el CI del Empleado para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese el CI del Empleado para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtCIEmpleado.BackColor = Color.White
             MEP.SetError(txtCIEmpleado, "")
@@ -512,7 +512,7 @@ Public Class F1_Reg_Empleados
             MEP.SetError(txtNombApellE, "Ingrese un Nombre!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese el Nombre y Apellido del Empleado para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese el Nombre y Apellido del Empleado para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtNombApellE.BackColor = Color.White
             MEP.SetError(txtNombApellE, "")

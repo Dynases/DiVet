@@ -722,14 +722,14 @@ Public Class F0_Movimiento
     Public Function _ValidarCampos() As Boolean
         If (cbConcepto.SelectedIndex < 0) Then
             Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-            ToastNotification.Show(Me, "Por Favor Seleccione un Concepto".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Por Favor Seleccione un Concepto".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
             cbConcepto.Focus()
             Return False
 
         End If
         If (cbAlmacenOrigen.SelectedIndex < 0) Then
             Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-            ToastNotification.Show(Me, "Por Favor Seleccione un Deposito".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Por Favor Seleccione un Deposito".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
             cbAlmacenOrigen.Focus()
             Return False
         End If
@@ -737,7 +737,7 @@ Public Class F0_Movimiento
             If (cbConcepto.Value = 6) Then
                 If (cbDepositoDestino.SelectedIndex < 0) Then
                     Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-                    ToastNotification.Show(Me, "Por Favor Seleccione un Deposito Desitno".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    ToastNotification.Show(Me, "Por Favor Seleccione un Deposito Desitno".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                     cbDepositoDestino.Focus()
                     Return False
                 End If
@@ -745,7 +745,7 @@ Public Class F0_Movimiento
         End If
         If (grdetalle.RowCount <= 0) Then
             Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-            ToastNotification.Show(Me, "Por Favor Inserte un Detalle".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Por Favor Inserte un Detalle".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
             grdetalle.Focus()
 
             Return False
@@ -754,7 +754,7 @@ Public Class F0_Movimiento
         If (grdetalle.RowCount = 1) Then
             If (CType(grdetalle.DataSource, DataTable).Rows(0).Item("iccprod") = 0) Then
                 Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-                ToastNotification.Show(Me, "Por Favor Inserte un Detalle".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "Por Favor Inserte un Detalle".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                 grdetalle.Focus()
 
                 Return False
@@ -835,7 +835,7 @@ Public Class F0_Movimiento
 
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El Movimiento no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El Movimiento no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
     End Sub
     Public Sub _GuardarNuevo()
@@ -863,7 +863,7 @@ Public Class F0_Movimiento
                                       )
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.CANCEL, 50, 50)
-            ToastNotification.Show(Me, "El Movimiento no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El Movimiento no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
 
 
@@ -887,7 +887,7 @@ Public Class F0_Movimiento
 
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La Venta no pudo ser Modificada".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La Venta no pudo ser Modificada".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
     End Sub
@@ -957,7 +957,7 @@ Public Class F0_Movimiento
         Else
             If (existe) Then
                 Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-                ToastNotification.Show(Me, "El producto ya existe en el detalle".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "El producto ya existe en el detalle".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                 grproducto.RemoveFilters()
                 grproducto.Focus()
                 grproducto.MoveTo(grproducto.FilterRow)
@@ -984,7 +984,7 @@ Public Class F0_Movimiento
             _prCargarLotesDeProductos(grproducto.GetValue("yfnumi"), grproducto.GetValue("yfcdprod1"))
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-            ToastNotification.Show(Me, "El Producto: ".ToUpper + grproducto.GetValue("yfcdprod1") + " NO CUENTA CON STOCK DISPONIBLE", img, 5000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El Producto: ".ToUpper + grproducto.GetValue("yfcdprod1") + " NO CUENTA CON STOCK DISPONIBLE", img, 5000, eToastGlowColor.Red, eToastPosition.TopCenter)
             FilaSelectLote = Nothing
         End If
 
@@ -1169,7 +1169,7 @@ salirIf:
 
                     Else
                         Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-                        ToastNotification.Show(Me, "El producto con el lote ya existe modifique su cantidad".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                        ToastNotification.Show(Me, "El producto con el lote ya existe modifique su cantidad".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                     End If
 
 
@@ -1331,7 +1331,7 @@ salirIf:
 
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, mensajeError, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, mensajeError, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
         End If
     End Sub

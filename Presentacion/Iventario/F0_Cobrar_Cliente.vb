@@ -557,7 +557,7 @@ Public Class F0_Cobrar_Cliente
                 Else
                     If (gr_detalle.GetValue("PagoAc") > gr_detalle.GetValue("pendiente2")) Then
                         Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                        ToastNotification.Show(Me, "El monto a pagar es mayor al saldo: " + Str(gr_detalle.GetValue("pendiente2")), img, 5000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                        ToastNotification.Show(Me, "El monto a pagar es mayor al saldo: " + Str(gr_detalle.GetValue("pendiente2")), img, 5000, eToastGlowColor.Red, eToastPosition.TopCenter)
                         Dim lin As Integer = gr_detalle.GetValue("tcnumi")
                         Dim pos As Integer = -1
                         _fnObtenerFilaDetalle(pos, gr_detalle.GetValue("tcnumi"))
@@ -609,12 +609,12 @@ Public Class F0_Cobrar_Cliente
         Dim numi As String = ""
         Dim img2 As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
         If (tbCodigo.Text = String.Empty) Then
-            ToastNotification.Show(Me, "No existen datos validos".ToUpper, img2, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "No existen datos validos".ToUpper, img2, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
             Return
 
         End If
         If (CType(gr_detalle.DataSource, DataTable).Rows.Count <= 0) Then
-            ToastNotification.Show(Me, "No existen datos validos".ToUpper, img2, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "No existen datos validos".ToUpper, img2, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
             Return
 
         End If
@@ -627,7 +627,7 @@ Public Class F0_Cobrar_Cliente
         P_DeterminarTurno(Turno)
 
         If (bandera = False) Then
-            ToastNotification.Show(Me, "Seleccione un detalle de la lista de pendientes".ToUpper, img2, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Seleccione un detalle de la lista de pendientes".ToUpper, img2, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
             Return
         End If
         Dim res As Boolean = L_fnGrabarCobranza2(numi, tbFechaVenta.Value.ToString("yyyy/MM/dd"), 0, "", dtCobro, Turno)
@@ -647,7 +647,7 @@ Public Class F0_Cobrar_Cliente
 
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La Compra no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La Compra no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
     End Sub
@@ -702,7 +702,7 @@ Public Class F0_Cobrar_Cliente
                     _prCargarTablaPagos(dt.Rows(0).Item("ydnumi"))
                 Else
                     Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                    ToastNotification.Show(Me, "Los Datos Del Cliente No Existe en el sistema".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    ToastNotification.Show(Me, "Los Datos Del Cliente No Existe en el sistema".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                     tbCodigo.Clear()
                     tbnrocod.Clear()
                     tbNombre.Clear()
@@ -710,7 +710,7 @@ Public Class F0_Cobrar_Cliente
                 End If
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, "Los Datos Del Cliente No Existe en el sistema".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "Los Datos Del Cliente No Existe en el sistema".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                 tbCodigo.Clear()
                 tbnrocod.Clear()
                 tbNombre.Clear()
@@ -762,7 +762,7 @@ Public Class F0_Cobrar_Cliente
                 tbnrocod.Clear()
                 tbNombre.Clear()
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, "Los Datos Del Cliente No Existe en el sistema".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "Los Datos Del Cliente No Existe en el sistema".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
 
         End If

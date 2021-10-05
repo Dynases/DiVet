@@ -450,6 +450,8 @@ Partial Class F0_LibroVenta2
         '
         Background2.Color1 = System.Drawing.Color.Black
         Me.DgdLCV.PrimaryGrid.DefaultVisualStyles.RowStyles.Selected.Background = Background2
+        Me.DgdLCV.PrimaryGrid.MultiSelect = False
+        Me.DgdLCV.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.RowWithCellHighlight
         Me.DgdLCV.Size = New System.Drawing.Size(902, 382)
         Me.DgdLCV.TabIndex = 2
         Me.DgdLCV.Text = "SuperGridControl1"

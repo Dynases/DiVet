@@ -378,7 +378,7 @@ Public Class F0_Precios
 
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, "La categoria no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "La categoria no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
         End If
 
@@ -460,7 +460,7 @@ Public Class F0_Precios
     End Function
 
 #End Region
-   
+
 
 #Region "MEtodoso Formulario"
     Private Sub F0_Precios_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -553,7 +553,7 @@ Public Class F0_Precios
 
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La categoria no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La categoria no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
 
     End Sub
@@ -595,12 +595,12 @@ Public Class F0_Precios
 
                 Else
                     img = New Bitmap(My.Resources.cancel, 50, 50)
-                    ToastNotification.Show(Me, mensajeError, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    ToastNotification.Show(Me, mensajeError, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                 End If
-                
+
             Else
                 img = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, "CODIGO DE CATEGORIA DEL SISTEMA NO PUEDE SER ELIMINADA", img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "CODIGO DE CATEGORIA DEL SISTEMA NO PUEDE SER ELIMINADA", img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
         End If
     End Sub
@@ -714,7 +714,7 @@ Public Class F0_Precios
             ToastNotification.Show(Me, "EXPORTACIÓN DE LISTA DE PRECIOS EXITOSA..!!!",
                                        img, 2000,
                                        eToastGlowColor.Green,
-                                       eToastPosition.BottomCenter)
+                                       eToastPosition.TopCenter)
         Else
             ToastNotification.Show(Me, "FALLO AL EXPORTACIÓN DE LISTA DE PRECIOS..!!!",
                                        My.Resources.WARNING, 2000,

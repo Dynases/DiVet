@@ -589,7 +589,7 @@ Public Class F0_MCompras
             Else
                 If (existe) Then
                     Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                    ToastNotification.Show(Me, "El producto ya existe en el detalle".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    ToastNotification.Show(Me, "El producto ya existe en el detalle".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                 End If
             End If
         End If
@@ -713,7 +713,7 @@ Public Class F0_MCompras
     Public Function _ValidarCampos() As Boolean
         If (_CodProveedor <= 0) Then
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Por Favor Seleccione un Proveedor con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Por Favor Seleccione un Proveedor con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
             tbProveedor.Focus()
             Return False
 
@@ -723,12 +723,12 @@ Public Class F0_MCompras
             grdetalle.Row = grdetalle.RowCount - 1
             If (grdetalle.GetValue("cbty5prod") = 0) Then
                 Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                ToastNotification.Show(Me, "Por Favor Seleccione  un detalle de producto".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "Por Favor Seleccione  un detalle de producto".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                 Return False
             End If
             If (IsDBNull(grdetalle.GetValue("cbcmin"))) Then
                 Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                ToastNotification.Show(Me, "Por Favor inserte una cantidad al producto".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "Por Favor inserte una cantidad al producto".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                 grdetalle.Select()
                 grdetalle.Col = 5
                 grdetalle.Focus()
@@ -736,7 +736,7 @@ Public Class F0_MCompras
             End If
             If (grdetalle.GetValue("cbcmin") <= 0) Then
                 Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                ToastNotification.Show(Me, "Por Favor inserte una cantidad al producto".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "Por Favor inserte una cantidad al producto".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                 grdetalle.Select()
                 grdetalle.Col = 5
                 grdetalle.Focus()
@@ -747,7 +747,7 @@ Public Class F0_MCompras
 
 
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Por Favor Seleccione una Sucursal".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Por Favor Seleccione una Sucursal".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
             tbProveedor.Focus()
             Return False
 
@@ -780,7 +780,7 @@ Public Class F0_MCompras
 
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La Compra no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La Compra no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
 
@@ -802,7 +802,7 @@ Public Class F0_MCompras
 
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La Compra no pudo ser Modificada".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La Compra no pudo ser Modificada".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
     End Sub

@@ -147,7 +147,7 @@ Public Class F1_Fic_ReciboInt
                         CType(JGDetalleReciboInt.DataSource, DataTable).Rows(pos).Item("tbtotdesc") = 0
                         Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
                         ToastNotification.Show(Me, "La cantidad de la venta no debe ser mayor al del stock" & vbCrLf &
-                        "Stock=" + Str(stock).ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                        "Stock=" + Str(stock).ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                         JGDetalleReciboInt.SetValue("rnCant", 0)
                         JGDetalleReciboInt.SetValue("rnTotal", JGDetalleReciboInt.GetValue("rnPrec"))
                         JGDetalleReciboInt.SetValue("rnTotal2", JGDetalleReciboInt.GetValue("tbpcos") * 1)
@@ -651,7 +651,7 @@ Public Class F1_Fic_ReciboInt
             'End If
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El recibo no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El recibo no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
         Return res
     End Function
@@ -675,7 +675,7 @@ Public Class F1_Fic_ReciboInt
             'End If
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El recibo no pudo ser modificado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El recibo no pudo ser modificado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
         Return res
@@ -714,7 +714,7 @@ Public Class F1_Fic_ReciboInt
         If JGDetalleReciboInt.RowCount = 0 Then
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese un servicio para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese un servicio para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
 
         If txtPropietarioI.Text = String.Empty Then
@@ -722,7 +722,7 @@ Public Class F1_Fic_ReciboInt
             MEP.SetError(txtPropietarioI, "Ingrese un propietario!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese un propietario para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese un propietario para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtPropietarioI.BackColor = Color.White
             MEP.SetError(txtPropietarioI, "")
@@ -733,7 +733,7 @@ Public Class F1_Fic_ReciboInt
             MEP.SetError(txtPacienteI, "Ingrese un Paciente!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese paciente para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese paciente para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtPacienteI.BackColor = Color.White
             MEP.SetError(txtPacienteI, "")

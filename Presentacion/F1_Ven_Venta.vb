@@ -122,7 +122,7 @@ Public Class F1_Ven_Venta
             If e.KeyData = Keys.Control + Keys.Enter Then
                 If (_CodCliente <= 0) Then
                     Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                    ToastNotification.Show(Me, "Por Favor Seleccione un Cliente con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    ToastNotification.Show(Me, "Por Favor Seleccione un Cliente con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                     txtIdCliente.Focus()
                     Return
 
@@ -353,7 +353,7 @@ salirIf:
                             CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbPTot2") = JGdetalleVenta.GetValue("vbPCosto") * 1
                             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
                             ToastNotification.Show(Me, "La cantidad de la venta no debe ser mayor al del stock" & vbCrLf &
-                            "Stock=" + Str(stock).ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                            "Stock=" + Str(stock).ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                             JGdetalleVenta.SetValue("vbCant", 1)
                             JGdetalleVenta.SetValue("vbPTotal", JGdetalleVenta.GetValue("vbPrec"))
                             JGdetalleVenta.SetValue("vbPTot2", JGdetalleVenta.GetValue("vbPCosto") * 1)
@@ -595,7 +595,7 @@ salirIf:
                             FilaSelectLote = Nothing
                         Else
                             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                            ToastNotification.Show(Me, "El producto con el lote ya existe modifique su cantidad".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                            ToastNotification.Show(Me, "El producto con el lote ya existe modifique su cantidad".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                         End If
                     End If
 
@@ -645,7 +645,7 @@ salirIf:
                     ef.Context = "Seleccione Recibo".ToUpper
                     If ef.dt.Rows.Count = 0 Then
                         Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                        ToastNotification.Show(Me, "No existen Recibos de Internación Para la Cobranza".ToUpper, img, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                        ToastNotification.Show(Me, "No existen Recibos de Internación Para la Cobranza".ToUpper, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
                         Exit Sub
                     Else
 
@@ -2119,7 +2119,7 @@ salirIf:
         Else
             If (existe) Then
                 Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                ToastNotification.Show(Me, "El producto ya existe en el detalle".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "El producto ya existe en el detalle".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
         End If
     End Sub
@@ -2135,7 +2135,7 @@ salirIf:
             _prCargarLotesDeProductos(JGProductos.GetValue("yfnumi"), JGProductos.GetValue("yfcdprod1"))
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "El Producto: ".ToUpper + JGProductos.GetValue("yfcdprod1") + " NO CUENTA CON STOCK DISPONIBLE", img, 5000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El Producto: ".ToUpper + JGProductos.GetValue("yfcdprod1") + " NO CUENTA CON STOCK DISPONIBLE", img, 5000, eToastGlowColor.Red, eToastPosition.TopCenter)
             FilaSelectLote = Nothing
         End If
     End Sub
@@ -2434,7 +2434,7 @@ salirIf:
             _prLimpiar()
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La Venta no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La Venta no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
         Return res
     End Function
@@ -2745,12 +2745,12 @@ salirIf:
     Public Function _prValidar() As Boolean
         'If (txtAcuenta.Value = 0) Then
         '    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-        '    ToastNotification.Show(Me, "Por Favor debe especificar el campo A Cuenta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        '    ToastNotification.Show(Me, "Por Favor debe especificar el campo A Cuenta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         '    Return False
         'End If
         'If (txtAcuenta.Value < txtTotalNeto.Value) Then
         '    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-        '    ToastNotification.Show(Me, "Por Favor debe cambiar el Tipo Venta a 'CRÉDITO' ".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        '    ToastNotification.Show(Me, "Por Favor debe cambiar el Tipo Venta a 'CRÉDITO' ".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         '    Return False
         'End If
 
@@ -2765,7 +2765,7 @@ salirIf:
         If cbTipoVenta.Value = 0 Then 'Quiere decir si es al Crédito
             If L_fnVerificarCantidadPagoCredito(txtIdVenta.Text, txtAcuenta.Value, txtTotalNeto.Value) Then
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, "La Venta no puede ser Modificada, el A cuenta supera al Total Neto, modifíquelo".ToUpper, img, 4000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "La Venta no puede ser Modificada, el A cuenta supera al Total Neto, modifíquelo".ToUpper, img, 4000, eToastGlowColor.Red, eToastPosition.TopCenter)
 
                 Exit Function
             End If
@@ -2786,7 +2786,7 @@ salirIf:
             _prFiltrar(2)
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La Venta no pudo ser Modificada".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La Venta no pudo ser Modificada".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
 
     End Function
@@ -2848,14 +2848,14 @@ salirIf:
     'Public Function _ValidarCampos() As Boolean
     '    If (_CodCliente <= 0) Then
     '        Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-    '        ToastNotification.Show(Me, "Por Favor Seleccione un Cliente con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+    '        ToastNotification.Show(Me, "Por Favor Seleccione un Cliente con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
     '        txtIdCliente.Focus()
     '        Return False
 
     '    End If
     '    If (_CodEmpleado <= 0) Then
     '        Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-    '        ToastNotification.Show(Me, "Por Favor Seleccione un Vendedor con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+    '        ToastNotification.Show(Me, "Por Favor Seleccione un Vendedor con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
     '        txtIdVendedor.Focus()
     '        Return False
     '    End If
@@ -2863,7 +2863,7 @@ salirIf:
     '        JGdetalleVenta.Row = JGdetalleVenta.RowCount - 1
     '        If (JGdetalleVenta.GetValue("vb_tyfnumi") = 0) Then
     '            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-    '            ToastNotification.Show(Me, "Por Favor Seleccione  un detalle de producto".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+    '            ToastNotification.Show(Me, "Por Favor Seleccione  un detalle de producto".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
     '            Return False
     '        End If
     '    End If
@@ -2876,19 +2876,19 @@ salirIf:
 
             If (_CodCliente <= 0) Then
                 Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                ToastNotification.Show(Me, "Por Favor Seleccione un Cliente con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "Por Favor Seleccione un Cliente con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                 txtIdCliente.Focus()
                 Return False
             End If
             If (_CodPaciente <= 0) Then
                 Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                ToastNotification.Show(Me, "Por Favor Seleccione un Paciente con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "Por Favor Seleccione un Paciente con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                 txtIdPaciente.Focus()
                 Return False
             End If
             If (_CodEmpleado <= 0) Then
                 Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                ToastNotification.Show(Me, "Por Favor Seleccione un Vendedor con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "Por Favor Seleccione un Vendedor con Ctrl+Enter".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                 txtIdVendedor.Focus()
                 Return False
             End If
@@ -2897,7 +2897,7 @@ salirIf:
             If cbTipoVenta.Value = 0 Then
                 If (swServicio.Value = False And swInternacion.Value = False And swCirugia.Value = False) Then
                     Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                    ToastNotification.Show(Me, "Esta venta no puede ser grabada al Crédito, elija otro tipo de venta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    ToastNotification.Show(Me, "Esta venta no puede ser grabada al Crédito, elija otro tipo de venta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                     TbNit.Focus()
                     Return False
                 End If
@@ -2907,14 +2907,14 @@ salirIf:
             If cbEmision.SelectedIndex = 0 Then
                 If (TbNit.Text = String.Empty) Then
                     Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                    ToastNotification.Show(Me, "Por Favor ponga el nit del cliente.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    ToastNotification.Show(Me, "Por Favor ponga el nit del cliente.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                     TbNit.Focus()
                     Return False
                 End If
 
                 If (TbNombre1.Text = String.Empty) Then
                     Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                    ToastNotification.Show(Me, "Por Favor ponga la razón social del cliente.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    ToastNotification.Show(Me, "Por Favor ponga la razón social del cliente.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                     TbNombre1.Focus()
                     Return False
                 End If
@@ -2922,7 +2922,7 @@ salirIf:
                 If dtDosificacion.Tables(0).Rows.Count = 0 Then
                     'dtDosificacion.Tables.Cast(Of DataTable)().Any(Function(x) x.DefaultView.Count = 0)
                     Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                    ToastNotification.Show(Me, "La Dosificación para las facturas ya caducó, ingrese nueva dosificación".ToUpper, img, 3500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    ToastNotification.Show(Me, "La Dosificación para las facturas ya caducó, ingrese nueva dosificación".ToUpper, img, 3500, eToastGlowColor.Red, eToastPosition.TopCenter)
                     Return False
                 End If
             End If
@@ -2932,7 +2932,7 @@ salirIf:
                 JGdetalleVenta.Row = JGdetalleVenta.RowCount - 1
                 If (JGdetalleVenta.GetValue("vb_tyfnumi") = 0) Then
                     Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                    ToastNotification.Show(Me, "Por Favor Seleccione  un detalle para la Venta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    ToastNotification.Show(Me, "Por Favor Seleccione  un detalle para la Venta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                     Return False
                 End If
             End If

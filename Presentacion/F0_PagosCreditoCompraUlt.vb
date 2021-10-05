@@ -669,7 +669,7 @@ Public Class F0_PagosCreditoCompraUlt
 
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La Compra no pudo ser Modificada".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La Compra no pudo ser Modificada".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
     End Sub
@@ -756,7 +756,7 @@ Public Class F0_PagosCreditoCompraUlt
 
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La Compra no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La Compra no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
 
@@ -766,7 +766,7 @@ Public Class F0_PagosCreditoCompraUlt
             grfactura.Row = grfactura.RowCount - 1
             If (grfactura.GetValue("tcty4prov") = 0) Then
                 Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                ToastNotification.Show(Me, "Por Favor Seleccione  un detalle de Pagos".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "Por Favor Seleccione  un detalle de Pagos".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                 Return False
             End If
 
@@ -895,13 +895,13 @@ Public Class F0_PagosCreditoCompraUlt
 
 
     End Sub
-   
+
     Private Sub grpagos_MouseClick(sender As Object, e As MouseEventArgs) Handles grpagos.MouseClick
         'If (grpagos.CurrentColumn.Index = grpagos.RootTable.Columns("img").Index) Then
         '    _prELiminarFila()
         'End If
     End Sub
-  
+
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
         _Limpiar()
         _prhabilitar()
@@ -925,43 +925,43 @@ Public Class F0_PagosCreditoCompraUlt
             _prCargarIconELiminar()
         End If
     End Sub
-   
+
 
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
 
         Dim ef = New Efecto
-            ef.tipo = 2
-            ef.Context = "¿esta seguro de eliminar el registro?".ToUpper
-            ef.Header = "mensaje principal".ToUpper
-            ef.ShowDialog()
-            Dim bandera As Boolean = False
-            bandera = ef.band
-            If (bandera = True) Then
-                Dim mensajeError As String = ""
-                Dim res As Boolean = L_fnEliminarCobranzaCompras(tbnrodoc.Text, mensajeError)
-                If res Then
+        ef.tipo = 2
+        ef.Context = "¿esta seguro de eliminar el registro?".ToUpper
+        ef.Header = "mensaje principal".ToUpper
+        ef.ShowDialog()
+        Dim bandera As Boolean = False
+        bandera = ef.band
+        If (bandera = True) Then
+            Dim mensajeError As String = ""
+            Dim res As Boolean = L_fnEliminarCobranzaCompras(tbnrodoc.Text, mensajeError)
+            If res Then
 
                 Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
 
-                    ToastNotification.Show(Me, "Código de COBRANZA ".ToUpper + tbnrodoc.Text + " eliminado con Exito.".ToUpper,
+                ToastNotification.Show(Me, "Código de COBRANZA ".ToUpper + tbnrodoc.Text + " eliminado con Exito.".ToUpper,
                                           img, 2000,
                                           eToastGlowColor.Green,
                                           eToastPosition.TopCenter)
 
-                    _prFiltrar()
+                _prFiltrar()
 
-                Else
-                    Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                    ToastNotification.Show(Me, mensajeError, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
-                End If
+            Else
+                Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+                ToastNotification.Show(Me, mensajeError, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
+        End If
 
 
     End Sub
 
     Private Sub grfactura_Enter(sender As Object, e As EventArgs) Handles grfactura.Enter
         If (_fnAccesible()) Then
-          
+
             grfactura.Select()
             grfactura.Col = 1
             grfactura.Row = 0
@@ -994,7 +994,7 @@ Public Class F0_PagosCreditoCompraUlt
         End If
 
     End Sub
-   
+
     Private Sub grPendiente_KeyDown(sender As Object, e As KeyEventArgs) Handles grPendiente.KeyDown
         If (Not _fnAccesible()) Then
             Return
@@ -1035,8 +1035,8 @@ Public Class F0_PagosCreditoCompraUlt
                     '_DesHabilitarProductos()
                 Else
                     If (existe) Then
-                        Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-                        ToastNotification.Show(Me, "El PAGO DE ESTE COBRANZA ya existe en el detalle".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                        Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                        ToastNotification.Show(Me, "El PAGO DE ESTE COBRANZA ya existe en el detalle".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
                     End If
                 End If
             End If

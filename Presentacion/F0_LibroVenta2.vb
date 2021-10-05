@@ -218,6 +218,7 @@ Public Class F0_LibroVenta2
 
         DgdLCV.PrimaryGrid.SelectionGranularity = SelectionGranularity.RowWithCellHighlight
 
+
         Dim col As GridColumn
 
         ''Nro
@@ -498,6 +499,8 @@ Public Class F0_LibroVenta2
         DgdLCV.PrimaryGrid.DataSource = _DsLV
 
         DgdLCV.PrimaryGrid.SetActiveRow(CType(DgdLCV.PrimaryGrid.ActiveRow, GridRow))
+
+
     End Sub
 
     Private Sub P_GenerarReporte()

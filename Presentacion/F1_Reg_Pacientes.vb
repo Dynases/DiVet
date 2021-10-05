@@ -71,7 +71,7 @@ Public Class F1_Reg_Pacientes
         End If
         'Else
         '    Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-        '    ToastNotification.Show(Me, "La especie especificada ya existe", img, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        '    ToastNotification.Show(Me, "La especie especificada ya existe", img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
         'End If
     End Sub
 
@@ -84,7 +84,7 @@ Public Class F1_Reg_Pacientes
         End If
         'Else
         '    Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-        '    ToastNotification.Show(Me, "La raza especificada ya existe", img, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        '    ToastNotification.Show(Me, "La raza especificada ya existe", img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
         'End If
     End Sub
 
@@ -489,7 +489,7 @@ Public Class F1_Reg_Pacientes
             _prHabilitarMenu()
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La mascota no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La mascota no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
         Return res
@@ -514,7 +514,7 @@ Public Class F1_Reg_Pacientes
             btnNuevo.Enabled = IIf(_Iniciar = 3, False, True)
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La mascota no pudo ser modificada".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La mascota no pudo ser modificada".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
         Return res
     End Function
@@ -553,7 +553,7 @@ Public Class F1_Reg_Pacientes
             MEP.SetError(txtNMascota, "ingrese el nombre!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese el nombre de la Mascota para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese el nombre de la Mascota para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtNMascota.BackColor = Color.White
             MEP.SetError(txtNMascota, "")
@@ -564,7 +564,7 @@ Public Class F1_Reg_Pacientes
             MEP.SetError(txtColor, "Ingrese un color!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese el color de la Mascota para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese el color de la Mascota para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtColor.BackColor = Color.White
             MEP.SetError(txtColor, "")

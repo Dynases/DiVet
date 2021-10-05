@@ -452,7 +452,7 @@ Public Class F1_Fic_SegInternacion
 
         'Else
         '    Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-        '    ToastNotification.Show(Me, "El seguimiento no pudo ser Grabado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        '    ToastNotification.Show(Me, "El seguimiento no pudo ser Grabado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         'End If
     End Sub
@@ -479,7 +479,7 @@ Public Class F1_Fic_SegInternacion
         '    _prFiltrar(2)
         'Else
         '    Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-        '    ToastNotification.Show(Me, "El seguimiento no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        '    ToastNotification.Show(Me, "El seguimiento no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         'End If
         'Return res
@@ -510,7 +510,7 @@ Public Class F1_Fic_SegInternacion
         '        NuevoSeg = False
         '    Else
         '        Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-        '        ToastNotification.Show(Me, "El seguimiento no pudo ser Modificado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        '        ToastNotification.Show(Me, "El seguimiento no pudo ser Modificado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         '    End If
         'End If
@@ -538,7 +538,7 @@ Public Class F1_Fic_SegInternacion
                 _prFiltrar(1)
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, mensajeError, img, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, mensajeError, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
         End If
     End Sub
@@ -550,7 +550,7 @@ Public Class F1_Fic_SegInternacion
             MEP.SetError(txtIdFicClinica, "Seleccione una ficha!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Seleccione una ficha para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Seleccione una ficha para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtIdFicClinica.BackColor = Color.White
             MEP.SetError(txtIdFicClinica, "")
@@ -560,7 +560,7 @@ Public Class F1_Fic_SegInternacion
             MEP.SetError(txtFrecuencias, "Ingrese una frecuencia!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese una frecuencia para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese una frecuencia para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtFrecuencias.BackColor = Color.White
             MEP.SetError(txtFrecuencias, "")
@@ -570,7 +570,7 @@ Public Class F1_Fic_SegInternacion
             MEP.SetError(txtMedProtocolo, "Ingrese una medicación!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese una medicación para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese una medicación para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtMedProtocolo.BackColor = Color.White
             MEP.SetError(txtMedProtocolo, "")
@@ -613,7 +613,7 @@ Public Class F1_Fic_SegInternacion
             Me.Refresh()
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La ficha de seguimiento se encuentra vacía".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La ficha de seguimiento se encuentra vacía".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
 
 

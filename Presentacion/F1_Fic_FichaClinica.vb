@@ -94,7 +94,7 @@ Public Class F1_Fic_FichaClinica
             Process.Start(A)
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "Para vizualizar la imagen debe guardar la ficha clinica".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Para vizualizar la imagen debe guardar la ficha clinica".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
     End Sub
 
@@ -218,7 +218,7 @@ Public Class F1_Fic_FichaClinica
                 _prFiltrar(2)
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, "El alta de la ficha clinica no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "El alta de la ficha clinica no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
         End If
     End Sub
@@ -1495,7 +1495,7 @@ Public Class F1_Fic_FichaClinica
             End If
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "Debe agregar una descripcion".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Debe agregar una descripcion".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
         Return "default.jpg"
     End Function
@@ -1708,7 +1708,7 @@ Public Class F1_Fic_FichaClinica
             _prFiltrar(2)
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La ficha clinica no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La ficha clinica no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
         Return res
     End Function
@@ -1766,7 +1766,7 @@ Public Class F1_Fic_FichaClinica
             _prFiltrar(2)
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La ficha clinica no pudo ser modificada".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La ficha clinica no pudo ser modificada".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
         Return res
     End Function
@@ -1862,7 +1862,7 @@ Public Class F1_Fic_FichaClinica
             MEP.SetError(txtIdVeterinario, "ingrese un veterinario!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Seleccione un veterinario para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Seleccione un veterinario para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtIdVeterinario.BackColor = Color.White
             MEP.SetError(txtIdVeterinario, "")
@@ -1871,14 +1871,14 @@ Public Class F1_Fic_FichaClinica
             MEP.SetError(txtHistoria, "Ingrese una fecha de proxima consulta!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese una fecha de próxima consulta clinica para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese una fecha de próxima consulta clinica para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
         If txtHistoria.Text = String.Empty Then
             txtHistoria.BackColor = Color.Red
             MEP.SetError(txtHistoria, "Ingrese una historia!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese una historia clinica para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese una historia clinica para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtHistoria.BackColor = Color.White
             MEP.SetError(txtHistoria, "")
@@ -1888,7 +1888,7 @@ Public Class F1_Fic_FichaClinica
             MEP.SetError(txtExaminacion, "Ingrese una examinación!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese una examinación clinica para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese una examinación clinica para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtExaminacion.BackColor = Color.White
             MEP.SetError(txtExaminacion, "")
@@ -1899,7 +1899,7 @@ Public Class F1_Fic_FichaClinica
             MEP.SetError(txtPeso, "Ingrese un peso!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese un peso de la mascota para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese un peso de la mascota para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtPeso.BackColor = Color.White
             MEP.SetError(txtPeso, "")
@@ -1909,7 +1909,7 @@ Public Class F1_Fic_FichaClinica
             MEP.SetError(txtSeguimiento, "Ingrese un seguimiento!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese un seguimiento clinico para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese un seguimiento clinico para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtSeguimiento.BackColor = Color.White
             MEP.SetError(txtSeguimiento, "")

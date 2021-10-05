@@ -65,11 +65,11 @@ Partial Class F0_Reg_Clientes
 #End Region
         _prInterpretarDatosFichaAtencion(tFichaAtencion, bandera)
         If (bandera = False) Then
-            ToastNotification.Show(Me, "Seleccione consultorio y una sola opción en la lista de pacientes".ToUpper, img2, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Seleccione consultorio y una sola opción en la lista de pacientes".ToUpper, img2, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
             Return
         End If
         If tFichaAtencion.Rows.Count = 0 Then
-            ToastNotification.Show(Me, "Seleccione consultorio y el check de un paciente".ToUpper, img2, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Seleccione consultorio y el check de un paciente".ToUpper, img2, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
             Return
         Else
             If bandera Then
@@ -643,7 +643,7 @@ Partial Class F0_Reg_Clientes
             Limpiar = True
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El cliente no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El cliente no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
         Return res
     End Function
@@ -676,7 +676,7 @@ Partial Class F0_Reg_Clientes
             Limpiar = True
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El cliente no pudo ser modificado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El cliente no pudo ser modificado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
         Return res
     End Function
@@ -703,7 +703,7 @@ Partial Class F0_Reg_Clientes
                     _prFiltrar()
                 Else
                     Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                    ToastNotification.Show(Me, mensajeError, img, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    ToastNotification.Show(Me, mensajeError, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
                 End If
             End If
         Else
@@ -720,7 +720,7 @@ Partial Class F0_Reg_Clientes
             MEP.SetError(txtCI, "ingrese el carnet de identidad!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese el C.I. del Cliente para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese el C.I. del Cliente para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtCI.BackColor = Color.White
             MEP.SetError(txtCI, "")
@@ -731,7 +731,7 @@ Partial Class F0_Reg_Clientes
             MEP.SetError(txtNombreC, "Ingrese el nombre!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese el nombre del cliente para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese el nombre del cliente para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtNombreC.BackColor = Color.White
             MEP.SetError(txtNombreC, "")
@@ -741,7 +741,7 @@ Partial Class F0_Reg_Clientes
             MEP.SetError(txtApellidosC, "Ingrese el apellido!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese el apellido del cliente para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese el apellido del cliente para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtApellidosC.BackColor = Color.White
             MEP.SetError(txtApellidosC, "")
@@ -752,7 +752,7 @@ Partial Class F0_Reg_Clientes
             MEP.SetError(txtTelfC, "Ingrese un telefono!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese el telefono del cliente para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese el telefono del cliente para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtTelfC.BackColor = Color.White
             MEP.SetError(txtTelfC, "")

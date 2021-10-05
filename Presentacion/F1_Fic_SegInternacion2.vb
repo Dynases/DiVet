@@ -1445,7 +1445,7 @@ Public Class F1_Fic_SegInternacion2
 
         'Else
         '    Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-        '    ToastNotification.Show(Me, "El seguimiento no pudo ser Grabado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        '    ToastNotification.Show(Me, "El seguimiento no pudo ser Grabado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         'End If
     End Sub
@@ -1718,7 +1718,7 @@ Public Class F1_Fic_SegInternacion2
             _prFiltrar(2)
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El seguimiento no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El seguimiento no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
         Return res
@@ -1747,7 +1747,7 @@ Public Class F1_Fic_SegInternacion2
             NuevoSeg = False
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El seguimiento no pudo ser Modificado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El seguimiento no pudo ser Modificado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
 
@@ -1787,7 +1787,7 @@ Public Class F1_Fic_SegInternacion2
             MEP.SetError(txtIdFicClinica, "Seleccione una ficha!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Seleccione una ficha para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Seleccione una ficha para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtIdFicClinica.BackColor = Color.White
             MEP.SetError(txtIdFicClinica, "")
@@ -1797,7 +1797,7 @@ Public Class F1_Fic_SegInternacion2
         '    MEP.SetError(txtFrecuencias, "Ingrese una frecuencia!".ToUpper)
         '    _ok = False
         '    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-        '    ToastNotification.Show(Me, "Ingrese una frecuencia para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        '    ToastNotification.Show(Me, "Ingrese una frecuencia para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         'Else
         '    txtFrecuencias.BackColor = Color.White
         '    MEP.SetError(txtFrecuencias, "")
@@ -1807,7 +1807,7 @@ Public Class F1_Fic_SegInternacion2
         '    MEP.SetError(txtMedProtocolo, "Ingrese una medicación!".ToUpper)
         '    _ok = False
         '    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-        '    ToastNotification.Show(Me, "Ingrese una medicación para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        '    ToastNotification.Show(Me, "Ingrese una medicación para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         'Else
         '    txtMedProtocolo.BackColor = Color.White
         '    MEP.SetError(txtMedProtocolo, "")
@@ -1850,7 +1850,7 @@ Public Class F1_Fic_SegInternacion2
             Me.Refresh()
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La ficha de seguimiento se encuentra vacía".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La ficha de seguimiento se encuentra vacía".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
 
 
@@ -1859,7 +1859,7 @@ Public Class F1_Fic_SegInternacion2
     Private Sub btnAgregarEF_Click(sender As Object, e As EventArgs) Handles btnAgregarEF.Click
         If cbTurnoEF.SelectedIndex < 0 Then
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "Debe Seleccionar un turno!".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Debe Seleccionar un turno!".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
             Exit Sub
         End If
         _prAddDetalleExamenFisico()

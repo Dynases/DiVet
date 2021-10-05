@@ -178,7 +178,7 @@ Public Class F1_Con_Servicios
             _Limpiar = True
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El servicio no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El servicio no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
         Return res
@@ -199,7 +199,7 @@ Public Class F1_Con_Servicios
             _Limpiar = True
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El servicio no pudo ser modificado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El servicio no pudo ser modificado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
 
         End If
         Return res
@@ -224,7 +224,7 @@ Public Class F1_Con_Servicios
                                           img, 2000,
                                           eToastGlowColor.Green,
                                           eToastPosition.TopCenter)
-                _prInhabilitar()
+                _prInHabilitar()
                 _prFiltrar()
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
@@ -240,7 +240,7 @@ Public Class F1_Con_Servicios
             MEP.SetError(txtDescripcion, "ingrese una descripción!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese una  descripción del servicio para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese una  descripción del servicio para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             txtDescripcion.BackColor = Color.White
             MEP.SetError(txtDescripcion, "")
@@ -250,7 +250,7 @@ Public Class F1_Con_Servicios
             MEP.SetError(diPrecio, "Ingrese un precio!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-            ToastNotification.Show(Me, "Ingrese un precio del servicio para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Ingrese un precio del servicio para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             diPrecio.BackColor = Color.White
             MEP.SetError(diPrecio, "")

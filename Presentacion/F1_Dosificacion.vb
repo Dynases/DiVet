@@ -203,7 +203,7 @@ Public Class F1_Dosificacion
                                    img,
                                    2000,
                                    eToastGlowColor.Red,
-                                   eToastPosition.BottomCenter)
+                                   eToastPosition.TopCenter)
         End If
         Return res
 
@@ -238,7 +238,7 @@ Public Class F1_Dosificacion
                                    img,
                                    2000,
                                    eToastGlowColor.Red,
-                                   eToastPosition.BottomCenter)
+                                   eToastPosition.TopCenter)
         End If
         Return res
     End Function
@@ -283,8 +283,8 @@ Public Class F1_Dosificacion
             CbCompania.BackColor = Color.Red
             MEP.SetError(CbCompania, "Elija una compañia valida!".ToUpper)
             _ok = False
-            Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-            ToastNotification.Show(Me, "Elija una compañia valida para efectuar la grabacion".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "Elija una compañia valida para efectuar la grabacion".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             CbCompania.BackColor = Color.White
             MEP.SetError(CbCompania, "")
@@ -294,8 +294,8 @@ Public Class F1_Dosificacion
             CbAlmacen.BackColor = Color.Red
             MEP.SetError(CbAlmacen, "Elija un almacen valido!".ToUpper)
             _ok = False
-            Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-            ToastNotification.Show(Me, "Elija una almacen valido para efectuar la grabacion".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "Elija una almacen valido para efectuar la grabacion".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             CbAlmacen.BackColor = Color.White
             MEP.SetError(CbAlmacen, "")
@@ -305,8 +305,8 @@ Public Class F1_Dosificacion
             TbiSfc.BackColor = Color.Red
             MEP.SetError(TbiSfc, "el sfc debe ser mayor a cero!".ToUpper)
             _ok = False
-            Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-            ToastNotification.Show(Me, "el sfc debe ser mayor a cero.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "el sfc debe ser mayor a cero.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             TbiSfc.BackColor = Color.White
             MEP.SetError(TbiSfc, "")
@@ -316,8 +316,8 @@ Public Class F1_Dosificacion
             TbNroAutoriz.BackColor = Color.Red
             MEP.SetError(TbNroAutoriz, "el nro de autorización no puede quedar vacio!".ToUpper)
             _ok = False
-            Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-            ToastNotification.Show(Me, "el nro de autorización no puede quedar vacio.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "el nro de autorización no puede quedar vacio.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             TbNroAutoriz.BackColor = Color.White
             MEP.SetError(TbNroAutoriz, "")
@@ -327,8 +327,8 @@ Public Class F1_Dosificacion
             TbLlave.BackColor = Color.Red
             MEP.SetError(TbLlave, "la llave no puede quedar vacio!".ToUpper)
             _ok = False
-            Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-            ToastNotification.Show(Me, "la llave no puede quedar vacio.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "la llave no puede quedar vacio.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             TbLlave.BackColor = Color.White
             MEP.SetError(TbLlave, "")
@@ -338,8 +338,8 @@ Public Class F1_Dosificacion
             TbNota1.BackColor = Color.Red
             MEP.SetError(TbNota1, "la nota 1 no puede quedar vacio!".ToUpper)
             _ok = False
-            Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-            ToastNotification.Show(Me, "la nota 1 no puede quedar vacio.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "la nota 1 no puede quedar vacio.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             TbNota1.BackColor = Color.White
             MEP.SetError(TbNota1, "")
@@ -349,8 +349,8 @@ Public Class F1_Dosificacion
             TbNota2.BackColor = Color.Red
             MEP.SetError(TbNota2, "la nota 2 no puede quedar vacio!".ToUpper)
             _ok = False
-            Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-            ToastNotification.Show(Me, "la nota 2 no puede quedar vacio.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "la nota 2 no puede quedar vacio.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
             TbNota2.BackColor = Color.White
             MEP.SetError(TbNota2, "")

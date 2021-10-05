@@ -23,7 +23,7 @@ Public Class F_Reg_Emergencia
             _prOrdenarEmergencia()
         Else
             Dim img2 As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El usuario no tiene permisos de emergencia.".ToUpper, img2, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El usuario no tiene permisos de emergencia.".ToUpper, img2, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
 
     End Sub

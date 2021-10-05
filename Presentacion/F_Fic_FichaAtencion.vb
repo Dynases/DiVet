@@ -16,7 +16,7 @@ Public Class F_Fic_FichaAtencion
             NombVet = dtVeterinario.Rows(0).Item("ecNomb")
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "Su usuario no está enlazado a un Veterinario, no puede abrir ficha".ToUpper, img, 4500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "Su usuario no está enlazado a un Veterinario, no puede abrir ficha".ToUpper, img, 4500, eToastGlowColor.Red, eToastPosition.TopCenter)
             Exit Sub
         End If
 
@@ -62,7 +62,7 @@ Public Class F_Fic_FichaAtencion
             Me.Refresh()
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La ficha de atención se encuentra vacía".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "La ficha de atención se encuentra vacía".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
     End Sub
     Private Sub F_Fic_FichaAtencion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -91,7 +91,7 @@ Public Class F_Fic_FichaAtencion
                         _prCargarFichaAtencion()
                     Else
                         Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                        ToastNotification.Show(Me, "No es posible subir el registro".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                        ToastNotification.Show(Me, "No es posible subir el registro".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
                     End If
                 Else
                     L_fnModificarOrdenacionFichaAtencion(JGFichasAtencion.GetValue("faid"), JGFichasAtencion.GetValue("faPriori"), 1)
@@ -99,7 +99,7 @@ Public Class F_Fic_FichaAtencion
                 End If
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, "No es posible subir el registro".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "No es posible subir el registro".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
         End If
     End Sub
@@ -111,7 +111,7 @@ Public Class F_Fic_FichaAtencion
                 _prCargarFichaAtencion()
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, "No es posible bajar el registro".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "No es posible bajar el registro".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
         End If
     End Sub
