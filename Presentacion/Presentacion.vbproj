@@ -279,12 +279,6 @@
     <Compile Include="F1_Fic_SegInternacion.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="F1_Fic_SegInternacion3.Designer.vb">
-      <DependentUpon>F1_Fic_SegInternacion3.vb</DependentUpon>
-    </Compile>
-    <Compile Include="F1_Fic_SegInternacion3.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="F1_IngresosEgresos.designer.vb">
       <DependentUpon>F1_IngresosEgresos.vb</DependentUpon>
     </Compile>
@@ -764,9 +758,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="F1_Fic_SegInternacion.resx">
       <DependentUpon>F1_Fic_SegInternacion.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="F1_Fic_SegInternacion3.resx">
-      <DependentUpon>F1_Fic_SegInternacion3.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="F1_IngresosEgresos.resx">
       <DependentUpon>F1_IngresosEgresos.vb</DependentUpon>

@@ -1775,7 +1775,7 @@ Public Class F1_Fic_SegInternacion2
                 _prFiltrar(1)
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, mensajeError, img, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, mensajeError, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
         End If
     End Sub

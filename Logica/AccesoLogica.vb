@@ -72,6 +72,44 @@ Public Class AccesoLogica
             Return False
         End If
     End Function
+
+    Public Shared Function L_fnbValidarEliminacionProducto(_numi As String, _tablaOri As String, _campoOri As String, ByRef _respuesta As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim _Where, _campos As String
+        _Where = "bbtori='" + _tablaOri + "' and bbtran=1"
+        _campos = "bbnumi,bbtran,bbtori,bbcori,bbtdes,bbcdes,bbprog"
+        _Tabla = D_Datos_Tabla(_campos, "TB002", _Where)
+        _respuesta = "no se puede eliminar el registro: ".ToUpper + _numi + " por que esta siendo usado en los siguientes programas: ".ToUpper + vbCrLf
+
+        Dim result As Boolean = True
+        For Each fila As DataRow In _Tabla.Rows
+            If Trim(fila.Item("bbtdes")) = "VEN.VEN0011" Then
+                If L_fnbExisteRegEnTablaProducto(_numi, fila.Item("bbtdes").ToString, fila.Item("bbcdes").ToString, 0) = True Then
+                    _respuesta = _respuesta + fila.Item("bbprog").ToString + vbCrLf
+                    result = False
+                End If
+            Else
+                If L_fnbExisteRegEnTabla(_numi, fila.Item("bbtdes").ToString, fila.Item("bbcdes").ToString) = True Then
+                    _respuesta = _respuesta + fila.Item("bbprog").ToString + vbCrLf
+                    result = False
+                End If
+            End If
+
+        Next
+        Return result
+    End Function
+    Private Shared Function L_fnbExisteRegEnTablaProducto(_numiOri As String, _tablaDest As String, _campoDest As String, vbEst2 As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim _Where, _campos As String
+        _Where = _campoDest + "=" + _numiOri + " and vbEst2" + "=" + vbEst2
+        _campos = _campoDest
+        _Tabla = D_Datos_Tabla(_campos, _tablaDest, _Where)
+        If _Tabla.Rows.Count > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 #End Region
 
 #Region "SERVICIOS CON.SER002"
@@ -280,6 +318,7 @@ Public Class AccesoLogica
         End If
         Return _resultado
     End Function
+
     'Grabar Clientes
     Public Shared Function L_fnGrabarClientes(ByRef _caid As String, _caci As String, _canomb As String, _caapell As String,
                                               _cadir As String, _catelf As String, _camail As String, _cafecha As String) As Boolean
@@ -2153,7 +2192,7 @@ Public Class AccesoLogica
 
     Public Shared Function L_fnEliminarProducto(numi As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
-        If L_fnbValidarEliminacion(numi, "TY005", "yfnumi", mensaje) = True Then
+        If L_fnbValidarEliminacionProducto(numi, "TY005", "yfnumi", mensaje) = True Then
             Dim _Tabla As DataTable
             Dim _listParam As New List(Of Datos.DParametro)
             _listParam.Add(New Datos.DParametro("@tipo", -1))
@@ -3016,6 +3055,28 @@ Public Class AccesoLogica
 
         Return _resultado
     End Function
+    Public Shared Function L_fnEliminarProveedor(numi As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        If L_fnbValidarEliminacion(numi, "TY004", "ydnumi", mensaje) = True Then
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
+
+            _listParam.Add(New Datos.DParametro("@tipo", -1))
+            _listParam.Add(New Datos.DParametro("@ydnumi", numi))
+            _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+
+            _Tabla = D_ProcedimientoConParam("sp_Mam_TY004", _listParam)
+
+            If _Tabla.Rows.Count > 0 Then
+                _resultado = True
+            Else
+                _resultado = False
+            End If
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
 #End Region
 
 #Region "TC001 Compras"
@@ -3181,6 +3242,23 @@ Public Class AccesoLogica
             _resultado = False
         End If
 
+        Return _resultado
+    End Function
+    Public Shared Function L_fnVerificarPagosCompras(numi As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 9))
+        _listParam.Add(New Datos.DParametro("@canumi", numi))
+        _listParam.Add(New Datos.DParametro("@cauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TC001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
         Return _resultado
     End Function
 

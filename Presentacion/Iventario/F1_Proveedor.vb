@@ -441,7 +441,7 @@ Public Class F1_Proveedor
         bandera = ef.band
         If (bandera = True) Then
             Dim mensajeError As String = ""
-            Dim res As Boolean = L_fnEliminarClientes(tbCodigoOriginal.Text, mensajeError)
+            Dim res As Boolean = L_fnEliminarProveedor(tbCodigoOriginal.Text, mensajeError)
             If res Then
                 _PrEliminarImage()
 
@@ -455,7 +455,7 @@ Public Class F1_Proveedor
                 _PMFiltrar()
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, mensajeError, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, mensajeError, img, 25000, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
         End If
 

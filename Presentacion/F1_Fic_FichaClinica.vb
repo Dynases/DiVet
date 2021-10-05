@@ -1846,11 +1846,11 @@ Public Class F1_Fic_FichaClinica
                     _prFiltrar(1)
                 Else
                     Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                    ToastNotification.Show(Me, mensajeError, img, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    ToastNotification.Show(Me, mensajeError, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
                 End If
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, "No se puede eliminar el registro de Cirugia por que esta siendo usado por el siguiente programa: RECIBO DE CIRUGIA", img, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "No se puede eliminar el registro de Cirugia por que esta siendo usado por el siguiente programa: RECIBO DE CIRUGIA", img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
         End If
     End Sub
