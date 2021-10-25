@@ -1792,6 +1792,9 @@ Public Class F1_Fic_FichaClinica
         End If
     End Sub
 
+    Private Sub F1_Fic_FichaClinica_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnFichaClinica)
+    End Sub
 
     Private Sub txtPeso_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPeso.KeyPress
         g_prValidarTextBox(1, e)

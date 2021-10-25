@@ -436,6 +436,11 @@
     <Compile Include="Login.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="My Project\Resources1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Pr_DetalleAtencionesDiarias.Designer.vb">
       <DependentUpon>Pr_DetalleAtencionesDiarias.vb</DependentUpon>
     </Compile>
@@ -591,11 +596,6 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
-    </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -927,9 +927,9 @@
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources1.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>
@@ -1017,8 +1017,14 @@
     <None Include="Resources\HOMINIS.TTF" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\05.png" />
+    <None Include="Resources\01.png" />
+    <None Include="Resources\02.png" />
+    <None Include="Resources\03.png" />
+    <None Include="Resources\04.png" />
     <Content Include="Resources\051-prohibition.png" />
     <Content Include="Resources\051-warning.png" />
+    <None Include="Resources\06.png" />
     <Content Include="Resources\125px-Flag_of_Senegal.svg.png" />
     <Content Include="Resources\14.png" />
     <Content Include="Resources\80px-Coat_of_arms_of_Senegal.svg.png" />
@@ -1036,6 +1042,8 @@
     <None Include="Resources\BuscarFicha.png" />
     <None Include="Resources\BuscarFicha1.png" />
     <None Include="Resources\atras1.png" />
+    <None Include="Resources\CAN01.png" />
+    <Content Include="Resources\CAN02.png" />
     <Content Include="Resources\cancel.png" />
     <None Include="Resources\check-mark.png" />
     <Content Include="Resources\checked.png" />
@@ -1063,14 +1071,22 @@
     <Content Include="Resources\empleados.png" />
     <Content Include="Resources\esqueleto5.png" />
     <Content Include="Resources\estadistico.png" />
+    <None Include="Resources\F1.png" />
+    <None Include="Resources\F2.png" />
+    <None Include="Resources\F3.png" />
+    <None Include="Resources\F4.png" />
+    <None Include="Resources\F5.png" />
+    <None Include="Resources\F6.png" />
     <Content Include="Resources\facturacion.png" />
     <None Include="Resources\ficha.png" />
     <None Include="Resources\ficha2.png" />
     <None Include="Resources\fichaclinica.jpg" />
     <None Include="Resources\fichaclinica1.png" />
+    <None Include="Resources\FICHAS.png" />
     <Content Include="Resources\folder.png" />
     <Content Include="Resources\Fondo..png" />
     <Content Include="Resources\fondo.png" />
+    <None Include="Resources\FONDO01.png" />
     <Content Include="Resources\fondo1.png" />
     <Content Include="Resources\Fondo2.PNG" />
     <Content Include="Resources\fondo3.jpg" />
@@ -1107,6 +1123,8 @@
     <None Include="Resources\INFORMATION.png" />
     <None Include="Resources\internacion2.png" />
     <None Include="Resources\internacion3.png" />
+    <None Include="Resources\IN01.png" />
+    <Content Include="Resources\IN02.png" />
     <Content Include="Resources\libros.png" />
     <None Include="Resources\list.png" />
     <Content Include="Resources\Logo1.PNG" />
@@ -1152,7 +1170,16 @@
     <None Include="Resources\printee.png" />
     <Content Include="Resources\proveedor.png" />
     <None Include="Resources\recibo.png" />
+    <None Include="Resources\R01.png" />
+    <None Include="Resources\R02.png" />
+    <None Include="Resources\R1.png" />
+    <None Include="Resources\R2.png" />
+    <None Include="Resources\R3.png" />
+    <None Include="Resources\R4.png" />
+    <None Include="Resources\R5.png" />
     <Content Include="Resources\refresh-1.png" />
+    <None Include="Resources\REGISTRO.png" />
+    <None Include="Resources\REGISTROS.png" />
     <Content Include="Resources\reload-5.png" />
     <Content Include="Resources\ROLES.png" />
     <Content Include="Resources\rotacionproducto.png" />

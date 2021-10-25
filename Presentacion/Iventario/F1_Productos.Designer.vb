@@ -169,9 +169,6 @@ Partial Class F1_Productos
         'btnSalir
         '
         '
-        'btnEliminar
-        '
-        '
         'PanelToolBar2
         '
         Me.PanelToolBar2.Controls.Add(Me.ButtonX1)

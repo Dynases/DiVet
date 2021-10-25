@@ -138,6 +138,10 @@ Partial Class F1_Reg_Empleados
         'btnPrimero
         '
         '
+        'MpanelBuscador
+        '
+        Me.MpanelBuscador.Size = New System.Drawing.Size(967, 621)
+        '
         'TxtNombreUsu
         '
         Me.TxtNombreUsu.Enabled = False
@@ -862,7 +866,6 @@ Partial Class F1_Reg_Empleados
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(967, 646)
-        Me.MaximizeBox = False
         Me.Name = "F1_Reg_Empleados"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "REGISTRO DE EMPLEADOS"

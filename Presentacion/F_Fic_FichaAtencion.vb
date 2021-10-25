@@ -224,6 +224,10 @@ Public Class F_Fic_FichaAtencion
         JGFichasAtencion.RootTable.FormatConditions.Add(fc)
     End Sub
 
+    Private Sub F_Fic_FichaAtencion_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnFichaAtencion)
+    End Sub
+
 #End Region
 #Region "Metodos Overridable"
 

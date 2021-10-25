@@ -299,6 +299,14 @@ Public Class F1_Con_Consultorios
         e.Cancel = True
     End Sub
 
+    Private Sub F1_Con_Consultorios_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnConsultorios)
+    End Sub
+
+
+
+
+
 
 
 

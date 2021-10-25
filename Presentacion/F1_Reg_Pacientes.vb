@@ -598,6 +598,10 @@ Public Class F1_Reg_Pacientes
         superTabControl1.SelectedTabIndex = 0
     End Sub
 
+    Private Sub F1_Reg_Pacientes_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnPacientes)
+    End Sub
+
     Public Overrides Sub _PMOModificar()
         'JGBusqMascotas.Enabled = False 'Deshabilita el buscador de la Grilla
         _prHabilitar()

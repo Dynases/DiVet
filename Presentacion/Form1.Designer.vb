@@ -41,6 +41,7 @@ Partial Class Form1
         Me.lbEstado = New DevComponents.DotNetBar.LabelX()
         Me.GroupPanel2 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lbgrupo1 = New DevComponents.DotNetBar.LabelX()
         Me.btgrupo3 = New DevComponents.DotNetBar.ButtonX()
         Me.btgrupo4 = New DevComponents.DotNetBar.ButtonX()
@@ -55,22 +56,24 @@ Partial Class Form1
         Me.cbgrupo3 = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.btUMedida = New DevComponents.DotNetBar.ButtonX()
         Me.JGFichasAtencion = New Janus.Windows.GridEX.GridEX()
+        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MpanelSuperior.SuspendLayout()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelToolBar1.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
         Me.MPanelUserAct.SuspendLayout()
+        CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavegacion.SuspendLayout()
         Me.MpanelBuscador.SuspendLayout()
+        Me.PanelUsuario.SuspendLayout()
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GroupPanel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.intStockMinimo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanel2.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbgrupo1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbUMedida, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbgrupo2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,10 +81,30 @@ Partial Class Form1
         CType(Me.JGFichasAtencion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
+        'superTabControl1
+        '
+        '
+        '
+        '
+        '
+        '
+        '
+        Me.superTabControl1.ControlBox.CloseBox.Name = ""
+        '
+        '
+        '
+        Me.superTabControl1.ControlBox.MenuBox.Name = ""
+        Me.superTabControl1.ControlBox.Name = ""
+        Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
+        Me.superTabControl1.SelectedTabIndex = 1
+        Me.superTabControl1.Size = New System.Drawing.Size(927, 670)
+        '
         'MpanelSuperior
         '
         Me.MpanelSuperior.Controls.Add(Me.TableLayoutPanel1)
-        Me.MpanelSuperior.Size = New System.Drawing.Size(924, 223)
+        Me.MpanelSuperior.Size = New System.Drawing.Size(927, 534)
+        Me.MpanelSuperior.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
+        Me.MpanelSuperior.Controls.SetChildIndex(Me.PanelUsuario, 0)
         '
         'PanelSuperior
         '
@@ -116,34 +139,6 @@ Partial Class Form1
         '
         Me.MPanelUserAct.Location = New System.Drawing.Point(727, 0)
         '
-        'LblPaginacion
-        '
-        Me.LblPaginacion.Location = New System.Drawing.Point(172, 0)
-        Me.LblPaginacion.Size = New System.Drawing.Size(116, 39)
-        '
-        'MpanelBuscador
-        '
-        Me.MpanelBuscador.Controls.Add(Me.JGFichasAtencion)
-        Me.MpanelBuscador.Size = New System.Drawing.Size(927, 645)
-        '
-        'superTabControl1
-        '
-        '
-        '
-        '
-        '
-        '
-        '
-        Me.superTabControl1.ControlBox.CloseBox.Name = ""
-        '
-        '
-        '
-        Me.superTabControl1.ControlBox.MenuBox.Name = ""
-        Me.superTabControl1.ControlBox.Name = ""
-        Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
-        Me.superTabControl1.SelectedTabIndex = 1
-        Me.superTabControl1.Size = New System.Drawing.Size(927, 670)
-        '
         'BubbleBarUsuario
         '
         '
@@ -167,6 +162,14 @@ Partial Class Form1
         Me.BubbleBarUsuario.MouseOverTabColors.BorderColor = System.Drawing.SystemColors.Highlight
         Me.BubbleBarUsuario.SelectedTabColors.BorderColor = System.Drawing.Color.Black
         '
+        'TxtNombreUsu
+        '
+        Me.TxtNombreUsu.Text = "DEFAULT"
+        '
+        'MpanelBuscador
+        '
+        Me.MpanelBuscador.Controls.Add(Me.JGFichasAtencion)
+        '
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.ColumnCount = 2
@@ -179,8 +182,8 @@ Partial Class Form1
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 223.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(924, 223)
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 366.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(927, 534)
         Me.TableLayoutPanel1.TabIndex = 229
         '
         'GroupPanel1
@@ -195,7 +198,7 @@ Partial Class Form1
         Me.GroupPanel1.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.GroupPanel1.Location = New System.Drawing.Point(3, 3)
         Me.GroupPanel1.Name = "GroupPanel1"
-        Me.GroupPanel1.Size = New System.Drawing.Size(455, 217)
+        Me.GroupPanel1.Size = New System.Drawing.Size(457, 528)
         '
         '
         '
@@ -241,7 +244,7 @@ Partial Class Form1
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(449, 194)
+        Me.Panel3.Size = New System.Drawing.Size(451, 505)
         Me.Panel3.TabIndex = 227
         '
         'intStockMinimo
@@ -391,9 +394,9 @@ Partial Class Form1
         Me.GroupPanel2.DisabledBackColor = System.Drawing.Color.Empty
         Me.GroupPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupPanel2.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupPanel2.Location = New System.Drawing.Point(464, 3)
+        Me.GroupPanel2.Location = New System.Drawing.Point(466, 3)
         Me.GroupPanel2.Name = "GroupPanel2"
-        Me.GroupPanel2.Size = New System.Drawing.Size(457, 217)
+        Me.GroupPanel2.Size = New System.Drawing.Size(458, 528)
         '
         '
         '
@@ -429,6 +432,7 @@ Partial Class Form1
         '
         Me.Panel2.AutoScroll = True
         Me.Panel2.BackColor = System.Drawing.Color.Transparent
+        Me.Panel2.Controls.Add(Me.PictureBox1)
         Me.Panel2.Controls.Add(Me.lbgrupo1)
         Me.Panel2.Controls.Add(Me.btgrupo3)
         Me.Panel2.Controls.Add(Me.btgrupo4)
@@ -445,8 +449,17 @@ Partial Class Form1
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(451, 194)
+        Me.Panel2.Size = New System.Drawing.Size(452, 505)
         Me.Panel2.TabIndex = 216
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.Presentacion.My.Resources.Resources.R01
+        Me.PictureBox1.Location = New System.Drawing.Point(54, 194)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(100, 50)
+        Me.PictureBox1.TabIndex = 216
+        Me.PictureBox1.TabStop = False
         '
         'lbgrupo1
         '
@@ -656,17 +669,19 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(927, 670)
         Me.Name = "Form1"
+        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MpanelSuperior.ResumeLayout(False)
         Me.PanelSuperior.ResumeLayout(False)
         Me.PanelToolBar1.ResumeLayout(False)
         Me.PanelInferior.ResumeLayout(False)
         Me.MPanelUserAct.ResumeLayout(False)
         Me.MPanelUserAct.PerformLayout()
+        CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavegacion.ResumeLayout(False)
         Me.MpanelBuscador.ResumeLayout(False)
+        Me.PanelUsuario.ResumeLayout(False)
+        Me.PanelUsuario.PerformLayout()
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.GroupPanel1.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
@@ -674,6 +689,7 @@ Partial Class Form1
         Me.GroupPanel2.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbgrupo1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbUMedida, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbgrupo2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -710,4 +726,5 @@ Partial Class Form1
     Friend WithEvents cbgrupo3 As Janus.Windows.GridEX.EditControls.MultiColumnCombo
     Friend WithEvents btUMedida As DevComponents.DotNetBar.ButtonX
     Friend WithEvents JGFichasAtencion As Janus.Windows.GridEX.GridEX
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

@@ -722,4 +722,8 @@ Public Class F0_Precios
                                        eToastPosition.BottomLeft)
         End If
     End Sub
+
+    Private Sub F0_Precios_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnPrecios)
+    End Sub
 End Class

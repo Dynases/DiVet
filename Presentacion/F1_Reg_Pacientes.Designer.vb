@@ -89,11 +89,11 @@ Partial Class F1_Reg_Pacientes
         Me.MpanelSuperior.Controls.Add(Me.gpDatosMascota)
         Me.MpanelSuperior.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MpanelSuperior.Location = New System.Drawing.Point(0, 72)
-        Me.MpanelSuperior.Size = New System.Drawing.Size(846, 344)
+        Me.MpanelSuperior.Size = New System.Drawing.Size(849, 344)
         '
         'PanelSuperior
         '
-        Me.PanelSuperior.Size = New System.Drawing.Size(846, 72)
+        Me.PanelSuperior.Size = New System.Drawing.Size(849, 72)
         Me.PanelSuperior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelSuperior.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PanelSuperior.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
@@ -110,7 +110,7 @@ Partial Class F1_Reg_Pacientes
         'PanelInferior
         '
         Me.PanelInferior.Location = New System.Drawing.Point(0, 416)
-        Me.PanelInferior.Size = New System.Drawing.Size(846, 39)
+        Me.PanelInferior.Size = New System.Drawing.Size(849, 39)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Transparent
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Transparent
@@ -122,7 +122,7 @@ Partial Class F1_Reg_Pacientes
         '
         'MPanelUserAct
         '
-        Me.MPanelUserAct.Location = New System.Drawing.Point(646, 0)
+        Me.MPanelUserAct.Location = New System.Drawing.Point(649, 0)
         '
         'btnUltimo
         '
@@ -142,7 +142,7 @@ Partial Class F1_Reg_Pacientes
         Me.MpanelBuscador.BackgroundImage = Global.Presentacion.My.Resources.Resources.Fondo2
         Me.MpanelBuscador.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.MpanelBuscador.Controls.Add(Me.gpBusqMascotas)
-        Me.MpanelBuscador.Size = New System.Drawing.Size(879, 455)
+        Me.MpanelBuscador.Size = New System.Drawing.Size(923, 455)
         '
         'TxtNombreUsu
         '
@@ -192,7 +192,7 @@ Partial Class F1_Reg_Pacientes
         Me.superTabControl1.ControlBox.Name = ""
         Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
         Me.superTabControl1.SelectedTabIndex = 1
-        Me.superTabControl1.Size = New System.Drawing.Size(846, 480)
+        Me.superTabControl1.Size = New System.Drawing.Size(849, 480)
         '
         'gpDatosMascota
         '
@@ -206,7 +206,7 @@ Partial Class F1_Reg_Pacientes
         Me.gpDatosMascota.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.gpDatosMascota.Location = New System.Drawing.Point(0, 0)
         Me.gpDatosMascota.Name = "gpDatosMascota"
-        Me.gpDatosMascota.Size = New System.Drawing.Size(846, 344)
+        Me.gpDatosMascota.Size = New System.Drawing.Size(849, 344)
         '
         '
         '
@@ -268,7 +268,7 @@ Partial Class F1_Reg_Pacientes
         Me.panelDatosMascota.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelDatosMascota.Location = New System.Drawing.Point(0, 0)
         Me.panelDatosMascota.Name = "panelDatosMascota"
-        Me.panelDatosMascota.Size = New System.Drawing.Size(840, 321)
+        Me.panelDatosMascota.Size = New System.Drawing.Size(843, 321)
         Me.panelDatosMascota.TabIndex = 234
         '
         'dtpFnac
@@ -807,7 +807,7 @@ Partial Class F1_Reg_Pacientes
         Me.gpBusqMascotas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpBusqMascotas.Location = New System.Drawing.Point(0, 0)
         Me.gpBusqMascotas.Name = "gpBusqMascotas"
-        Me.gpBusqMascotas.Size = New System.Drawing.Size(879, 455)
+        Me.gpBusqMascotas.Size = New System.Drawing.Size(923, 455)
         '
         '
         '
@@ -847,7 +847,7 @@ Partial Class F1_Reg_Pacientes
         Me.JGBusqMascotas.HeaderFormatStyle.FontBold = Janus.Windows.GridEX.TriState.[True]
         Me.JGBusqMascotas.Location = New System.Drawing.Point(0, 0)
         Me.JGBusqMascotas.Name = "JGBusqMascotas"
-        Me.JGBusqMascotas.Size = New System.Drawing.Size(873, 432)
+        Me.JGBusqMascotas.Size = New System.Drawing.Size(917, 432)
         Me.JGBusqMascotas.TabIndex = 256
         '
         'F1_Reg_Pacientes
@@ -855,8 +855,7 @@ Partial Class F1_Reg_Pacientes
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(846, 480)
-        Me.MaximizeBox = False
+        Me.ClientSize = New System.Drawing.Size(849, 480)
         Me.Name = "F1_Reg_Pacientes"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "REGISTRO DE PACIENTES"

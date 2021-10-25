@@ -121,4 +121,7 @@ Public Class Pr_MascotasAtendidas
 
     End Sub
 
+    Private Sub Pr_MascotasAtendidas_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnRepVetMascAten)
+    End Sub
 End Class

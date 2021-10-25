@@ -372,6 +372,11 @@ Public Class F1_Con_Usuarios
         e.Cancel = True
     End Sub
 
+    Private Sub F1_Con_Usuarios_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnUsuarios)
+    End Sub
+
+
 #End Region
 
 

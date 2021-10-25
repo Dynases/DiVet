@@ -948,6 +948,10 @@ Public Class F1_Productos
         P_Global.Visualizador.BringToFront() 'Comentar
     End Sub
 
+    Private Sub F1_Productos_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnProductos)
+    End Sub
+
 
 
 #End Region

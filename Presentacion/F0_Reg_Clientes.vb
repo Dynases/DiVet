@@ -858,6 +858,10 @@ Partial Class F0_Reg_Clientes
         JDGClientes.Enabled = True
     End Sub
 
+    Private Sub F0_Reg_Clientes_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnClientes)
+    End Sub
+
 
 #End Region
 End Class

@@ -2279,6 +2279,10 @@ Public Class F1_Fic_SegInternacion2
         _LimpiarTratamiento()
     End Sub
 
+    Private Sub F1_Fic_SegInternacion2_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnSegInternacion)
+    End Sub
+
     Private Sub btnReciboI_Click(sender As Object, e As EventArgs) Handles btnReciboI.Click
         Dim frm As New F1_Fic_ReciboInt
         frm._IdPaciente = JGBusqSeguimiento.GetValue("pbId")

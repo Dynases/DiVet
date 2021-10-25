@@ -1,5 +1,7 @@
 ﻿Imports Logica.AccesoLogica
 Imports Janus.Windows.GridEX.EditControls
+Imports DevComponents.DotNetBar
+Imports DevComponents.DotNetBar.Controls
 
 
 Module P_Global
@@ -132,6 +134,13 @@ Module P_Global
         Return panel
 
     End Function
+
+    Public Sub _prCambiarColorPlomoOscuro(boton As Metro.MetroTileItem)
+        Dim myColor As New Color
+        myColor = ColorTranslator.FromHtml("#424142")
+        boton.TileStyle.BackColor = myColor
+        boton.TileStyle.BackColor2 = myColor
+    End Sub
 #End Region
 
 #Region "Factura"

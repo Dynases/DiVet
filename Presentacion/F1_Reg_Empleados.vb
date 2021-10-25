@@ -528,6 +528,10 @@ Public Class F1_Reg_Empleados
         txtCIEmpleado.Focus()
     End Sub
 
+    Private Sub F1_Reg_Empleados_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnEmpleados)
+    End Sub
+
     Public Overrides Sub _PMOModificar()
         'JGBusqEmpleados.Enabled = False 'Deshabilita el buscador de la Grilla
         _prHabilitar()

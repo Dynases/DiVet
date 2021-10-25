@@ -268,6 +268,11 @@ Public Class F1_Con_Servicios
 
     End Sub
 
+    Private Sub F1_Con_Servicios_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnServicios)
+    End Sub
+
+
     Public Overrides Sub _PMOModificar()
         _prHabilitar()
     End Sub

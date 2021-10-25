@@ -16,16 +16,22 @@ Public Class Principal
     End Sub
     Private Sub _prCambiarStyle()
         'tratar de cambiar estilo
-        'RibbonPredefinedColorSchemes.ChangeOffice2007ColorTable(Me, DevComponents.DotNetBar.Rendering.eOffice2007ColorScheme.VistaGlass)
+        RibbonPredefinedColorSchemes.ChangeOffice2007ColorTable(Me, DevComponents.DotNetBar.Rendering.eOffice2007ColorScheme.VistaGlass)
 
         Dim table As Office2007ColorTable = CType(GlobalManager.Renderer, Office2007Renderer).ColorTable
         Dim ct As SideNavColorTable = table.SideNav
         'ct.TitleBackColor = Color.LightSeaGreen;
         'ct.SideNavItem.Default.BackColors = New Color[] { Color.LightSeaGreen};
         'ct.ItemsBackColor=  Color.LightSeaGreen ;
-        ct.SideNavItem.Selected.BackColors = New Color() {Color.SkyBlue}
-
-
+        Dim myColor As New Color
+        myColor = ColorTranslator.FromHtml("#17754E")
+        ct.SideNavItem.Selected.BackColors = New Color() {myColor}
+    End Sub
+    Public Sub _prCambiarColorVerde(boton As Metro.MetroTileItem)
+        Dim myColor As New Color
+        myColor = ColorTranslator.FromHtml("#17754E")
+        boton.TileStyle.BackColor = myColor
+        boton.TileStyle.BackColor2 = myColor
     End Sub
     Private Sub _prIniciarTodo()
         'Leer Archivo de Configuración
@@ -40,6 +46,7 @@ Public Class Principal
 
         P_prCargarParametros()
         _prValidarMayusculas()
+        _prCambiarNombreBotones()
     End Sub
     Private Sub P_prCargarParametros()
         Dim dtConfSistema As DataTable = L_fnConfSistemaGeneral()
@@ -57,6 +64,14 @@ Public Class Principal
         If (dt.Rows.Count > 0) Then
             Modelo.MGlobal.gs_mayusculas = dt.Rows(0).Item("mayusculas")
         End If
+    End Sub
+    Public Sub _prCambiarNombreBotones()
+        btnFichaAtencion.TitleText = "FICHA" + vbCrLf + "ATENCIÓN"
+        btnFichaClinica.TitleText = "FICHA" + vbCrLf + "CLÍNICA"
+        btnSegInternacion.TitleText = "SEGUIMIENTO" + vbCrLf + "INTERNACIÓN"
+        btnReciboCirugia.TitleText = "RECIBO" + vbCrLf + "CIRUGÍA"
+        btnRepVetMascAten.TitleText = "REP. HORAS" + vbCrLf + "ATENDIDAS" + vbCrLf + "VETERINARIO"
+        btnPacientesAten.TitleText = "REP." + vbCrLf + "PACIENTES" + vbCrLf + "ATENDIDOS"
     End Sub
     Private Sub _prLeerArchivoConfig()
         Try
@@ -113,6 +128,7 @@ Public Class Principal
 
 
     Private Sub btnClientes_Click(sender As Object, e As EventArgs) Handles btnClientes.Click
+        _prCambiarColorVerde(btnClientes)
         Dim frm As New F0_Reg_Clientes
         'frm._modulo = FP_Configuracion
         Modelo.MGlobal._nameButton = btnClientes.Name
@@ -141,6 +157,7 @@ Public Class Principal
     End Sub
 
     Private Sub btnPacientes_Click(sender As Object, e As EventArgs) Handles btnPacientes.Click
+        _prCambiarColorVerde(btnPacientes)
         Dim frm As New F1_Reg_Pacientes
         frm._Iniciar = 3
         Modelo.MGlobal._nameButton = btnPacientes.Name
@@ -151,6 +168,7 @@ Public Class Principal
 
 
     Private Sub btnFichaAtencion_Click_1(sender As Object, e As EventArgs) Handles btnFichaAtencion.Click
+        _prCambiarColorVerde(btnFichaAtencion)
         Dim frm As New F_Fic_FichaAtencion
         'frm._nameButton = btnFichaAtencion.Name
         frm.Show()
@@ -163,6 +181,7 @@ Public Class Principal
     End Sub
 
     Private Sub btnProductos_Click(sender As Object, e As EventArgs) Handles btnProductos.Click
+        _prCambiarColorVerde(btnProductos)
         Dim frm As New F1_Productos
         Modelo.MGlobal._nameButton = btnProductos.Name
         frm.Show()
@@ -174,12 +193,14 @@ Public Class Principal
     End Sub
 
     Private Sub btnRoles_Click(sender As Object, e As EventArgs) Handles btnRoles.Click
+        _prCambiarColorVerde(btnRoles)
         Dim frm As New F1_Rol
         Modelo.MGlobal._nameButton = btnRoles.Name
         frm.Show()
     End Sub
 
     Private Sub btnUsuarios_Click(sender As Object, e As EventArgs) Handles btnUsuarios.Click
+        _prCambiarColorVerde(btnUsuarios)
         Dim frm As New F1_Con_Usuarios
         Modelo.MGlobal._nameButton = btnUsuarios.Name
         frm.Show()
@@ -192,6 +213,7 @@ Public Class Principal
     End Sub
 
     Private Sub btnLibrerias_Click(sender As Object, e As EventArgs) Handles btnLibrerias.Click
+        _prCambiarColorVerde(btnLibrerias)
         Dim frm As New F1_Con_Librerias
         Modelo.MGlobal._nameButton = btnLibrerias.Name
         frm.Show()
@@ -204,6 +226,7 @@ Public Class Principal
     End Sub
 
     Private Sub btnEmpleados_Click(sender As Object, e As EventArgs) Handles btnEmpleados.Click
+        _prCambiarColorVerde(btnEmpleados)
         Dim frm As New F1_Reg_Empleados
         Modelo.MGlobal._nameButton = btnEmpleados.Name
         frm.Show()
@@ -212,6 +235,7 @@ Public Class Principal
 
 
     Private Sub btnFichaClinica_Click(sender As Object, e As EventArgs) Handles btnFichaClinica.Click
+        _prCambiarColorVerde(btnFichaClinica)
         Dim frm As New F1_Fic_FichaClinica
         Modelo.MGlobal._nameButton = btnFichaClinica.Name
         frm._Iniciar = 3
@@ -231,17 +255,20 @@ Public Class Principal
     End Sub
 
     Private Sub btnRepVetMascAten_Click(sender As Object, e As EventArgs) Handles btnRepVetMascAten.Click
+        _prCambiarColorVerde(btnRepVetMascAten)
         Dim frm As New Pr_MascotasAtendidas
         frm.Show()
     End Sub
 
     Private Sub btnSegInternacion_Click(sender As Object, e As EventArgs) Handles btnSegInternacion.Click
+        _prCambiarColorVerde(btnSegInternacion)
         Dim frm As New F1_Fic_SegInternacion2
         Modelo.MGlobal._nameButton = btnSegInternacion.Name
         frm.Show()
     End Sub
 
     Private Sub btnServicios_Click(sender As Object, e As EventArgs) Handles btnServicios.Click
+        _prCambiarColorVerde(btnServicios)
         Dim frm As New F1_Con_Servicios
         Modelo.MGlobal._nameButton = btnServicios.Name
         frm.Show()
@@ -284,12 +311,14 @@ Public Class Principal
     End Sub
 
     Private Sub btnPrecios_Click(sender As Object, e As EventArgs) Handles btnPrecios.Click
+        _prCambiarColorVerde(btnPrecios)
         Dim frm As New F0_Precios
         Modelo.MGlobal._nameButton = btnPrecios.Name
         frm.Show()
     End Sub
 
     Private Sub btnPacientesAten_Click(sender As Object, e As EventArgs) Handles btnPacientesAten.Click
+        _prCambiarColorVerde(btnPacientesAten)
         Dim frm As New Pr_PacientesPorDia
         frm.Show()
     End Sub
@@ -323,6 +352,7 @@ Public Class Principal
 
 
     Private Sub btnReciboCirugia_Click(sender As Object, e As EventArgs) Handles btnReciboCirugia.Click
+        _prCambiarColorVerde(btnReciboCirugia)
         Dim frm As New F1_Fic_ReciboCirugia
         Modelo.MGlobal._nameButton = btnReciboCirugia.Name
         frm.Show()
@@ -382,12 +412,14 @@ Public Class Principal
     End Sub
 
     Private Sub btnConsultorios_Click(sender As Object, e As EventArgs) Handles btnConsultorios.Click
+        _prCambiarColorVerde(btnConsultorios)
         Dim frm As New F1_Con_Consultorios
         Modelo.MGlobal._nameButton = btnConsultorios.Name
         frm.Show()
     End Sub
 
     Private Sub btnDosificacion_Click(sender As Object, e As EventArgs) Handles btnDosificacion.Click
+        _prCambiarColorVerde(btnDosificacion)
         Dim frm As New F1_Dosificacion
         Modelo.MGlobal._nameButton = btnDosificacion.Name
         frm.Show()
@@ -421,5 +453,73 @@ Public Class Principal
         Dim frm As New Pr_DetalleAtencionesDiarias
         Modelo.MGlobal._nameButton = btnArqueoDiario.Name
         frm.Show()
+    End Sub
+
+    Private Sub btnRoles_MouseHover(sender As Object, e As EventArgs) Handles btnRoles.MouseHover
+        _prCambiarColorVerde(btnRoles)
+    End Sub
+
+    Private Sub btnUsuarios_MouseHover(sender As Object, e As EventArgs) Handles btnUsuarios.MouseHover
+        _prCambiarColorVerde(btnUsuarios)
+    End Sub
+
+    Private Sub btnLibrerias_MouseHover(sender As Object, e As EventArgs) Handles btnLibrerias.MouseHover
+        _prCambiarColorVerde(btnLibrerias)
+    End Sub
+
+    Private Sub btnServicios_MouseHover(sender As Object, e As EventArgs) Handles btnServicios.MouseHover
+        _prCambiarColorVerde(btnServicios)
+    End Sub
+
+    Private Sub btnConsultorios_MouseHover(sender As Object, e As EventArgs) Handles btnConsultorios.MouseHover
+        _prCambiarColorVerde(btnConsultorios)
+    End Sub
+
+    Private Sub btnDosificacion_MouseHover(sender As Object, e As EventArgs) Handles btnDosificacion.MouseHover
+        _prCambiarColorVerde(btnDosificacion)
+    End Sub
+
+    Private Sub btnClientes_MouseHover(sender As Object, e As EventArgs) Handles btnClientes.MouseHover
+        _prCambiarColorVerde(btnClientes)
+    End Sub
+
+    Private Sub btnPacientes_MouseHover(sender As Object, e As EventArgs) Handles btnPacientes.MouseHover
+        _prCambiarColorVerde(btnPacientes)
+    End Sub
+
+    Private Sub btnEmpleados_MouseHover(sender As Object, e As EventArgs) Handles btnEmpleados.MouseHover
+        _prCambiarColorVerde(btnEmpleados)
+    End Sub
+
+    Private Sub btnProductos_MouseHover(sender As Object, e As EventArgs) Handles btnProductos.MouseHover
+        _prCambiarColorVerde(btnProductos)
+    End Sub
+
+    Private Sub btnPrecios_MouseHover(sender As Object, e As EventArgs) Handles btnPrecios.MouseHover
+        _prCambiarColorVerde(btnPrecios)
+    End Sub
+
+    Private Sub btnFichaAtencion_MouseHover(sender As Object, e As EventArgs) Handles btnFichaAtencion.MouseHover
+        _prCambiarColorVerde(btnFichaAtencion)
+    End Sub
+
+    Private Sub btnFichaClinica_MouseHover(sender As Object, e As EventArgs) Handles btnFichaClinica.MouseHover
+        _prCambiarColorVerde(btnFichaClinica)
+    End Sub
+
+    Private Sub btnSegInternacion_MouseHover(sender As Object, e As EventArgs) Handles btnSegInternacion.MouseHover
+        _prCambiarColorVerde(btnSegInternacion)
+    End Sub
+
+    Private Sub btnReciboCirugia_MouseHover(sender As Object, e As EventArgs) Handles btnReciboCirugia.MouseHover
+        _prCambiarColorVerde(btnReciboCirugia)
+    End Sub
+
+    Private Sub btnRepVetMascAten_MouseHover(sender As Object, e As EventArgs) Handles btnRepVetMascAten.MouseHover
+        _prCambiarColorVerde(btnRepVetMascAten)
+    End Sub
+
+    Private Sub btnPacientesAten_MouseHover(sender As Object, e As EventArgs) Handles btnPacientesAten.MouseHover
+        _prCambiarColorVerde(btnPacientesAten)
     End Sub
 End Class

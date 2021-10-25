@@ -172,5 +172,7 @@ Public Class Pr_PacientesPorDia
         End If
     End Sub
 
-
+    Private Sub Pr_PacientesPorDia_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnPacientesAten)
+    End Sub
 End Class

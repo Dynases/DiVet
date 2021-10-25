@@ -277,5 +277,9 @@ Public Class F1_Con_Librerias
         _prhabilitar()
     End Sub
 
+    Private Sub F1_Con_Librerias_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnLibrerias)
+    End Sub
+
 #End Region
 End Class

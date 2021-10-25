@@ -932,6 +932,9 @@ Public Class F1_Fic_ReciboCirugia
         End If
     End Sub
 
+    Private Sub F1_Fic_ReciboCirugia_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnReciboCirugia)
+    End Sub
 
     Public Overrides Sub _PMOModificar()
         _prHabilitar()

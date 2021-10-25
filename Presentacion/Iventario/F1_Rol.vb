@@ -315,8 +315,11 @@ Public Class F1_Rol
             '  Public _modulo As SideNavItem
             '_modulo.Select()
             Me.Close()
+            _prCambiarColorPlomoOscuro(Presentacion.Principal.btnRoles)
+
         End If
     End Sub
+
 #End Region
 
     Private Sub grModulos_SelectionChanged(sender As Object, e As EventArgs)
@@ -370,5 +373,9 @@ Public Class F1_Rol
 
     Private Sub SELECCIONARTODOSDELToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SELECCIONARTODOSDELToolStripMenuItem.Click
         _prSeleccionarTodos("ycdel")
+    End Sub
+
+    Private Sub F1_Rol_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnRoles)
     End Sub
 End Class

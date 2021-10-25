@@ -75,8 +75,6 @@ Partial Class F1_Con_Servicios
         '
         Me.MpanelSuperior.Controls.Add(Me.gpServicios)
         Me.MpanelSuperior.Controls.Add(Me.Panel3)
-        Me.MpanelSuperior.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.MpanelSuperior.Location = New System.Drawing.Point(0, 72)
         Me.MpanelSuperior.Size = New System.Drawing.Size(846, 490)
         Me.MpanelSuperior.Controls.SetChildIndex(Me.PanelUsuario, 0)
         Me.MpanelSuperior.Controls.SetChildIndex(Me.Panel3, 0)

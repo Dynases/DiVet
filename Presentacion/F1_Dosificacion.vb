@@ -445,4 +445,8 @@ Public Class F1_Dosificacion
             Me.Close()
         End If
     End Sub
+
+    Private Sub F1_Dosificacion_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnDosificacion)
+    End Sub
 End Class

@@ -463,14 +463,14 @@ Partial Class F1_Rol
         Me.msModulos.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.msModulos.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SELECCIONARTODOSSHOWToolStripMenuItem, Me.SELECCIONARTODOSADDToolStripMenuItem, Me.SELECCIONARTODOSEDITToolStripMenuItem, Me.SELECCIONARTODOSDELToolStripMenuItem})
         Me.msModulos.Name = "msModulos"
-        Me.msModulos.Size = New System.Drawing.Size(248, 148)
+        Me.msModulos.Size = New System.Drawing.Size(246, 148)
         '
         'SELECCIONARTODOSSHOWToolStripMenuItem
         '
         Me.SELECCIONARTODOSSHOWToolStripMenuItem.Image = Global.Presentacion.My.Resources.Resources.ver
         Me.SELECCIONARTODOSSHOWToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.SELECCIONARTODOSSHOWToolStripMenuItem.Name = "SELECCIONARTODOSSHOWToolStripMenuItem"
-        Me.SELECCIONARTODOSSHOWToolStripMenuItem.Size = New System.Drawing.Size(247, 36)
+        Me.SELECCIONARTODOSSHOWToolStripMenuItem.Size = New System.Drawing.Size(245, 36)
         Me.SELECCIONARTODOSSHOWToolStripMenuItem.Text = "SELECCIONAR TODOS SHOW"
         '
         'SELECCIONARTODOSADDToolStripMenuItem
@@ -478,7 +478,7 @@ Partial Class F1_Rol
         Me.SELECCIONARTODOSADDToolStripMenuItem.Image = Global.Presentacion.My.Resources.Resources.add2
         Me.SELECCIONARTODOSADDToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.SELECCIONARTODOSADDToolStripMenuItem.Name = "SELECCIONARTODOSADDToolStripMenuItem"
-        Me.SELECCIONARTODOSADDToolStripMenuItem.Size = New System.Drawing.Size(247, 36)
+        Me.SELECCIONARTODOSADDToolStripMenuItem.Size = New System.Drawing.Size(245, 36)
         Me.SELECCIONARTODOSADDToolStripMenuItem.Text = "SELECCIONAR TODOS ADD"
         '
         'SELECCIONARTODOSEDITToolStripMenuItem
@@ -486,7 +486,7 @@ Partial Class F1_Rol
         Me.SELECCIONARTODOSEDITToolStripMenuItem.Image = Global.Presentacion.My.Resources.Resources.edit2
         Me.SELECCIONARTODOSEDITToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.SELECCIONARTODOSEDITToolStripMenuItem.Name = "SELECCIONARTODOSEDITToolStripMenuItem"
-        Me.SELECCIONARTODOSEDITToolStripMenuItem.Size = New System.Drawing.Size(247, 36)
+        Me.SELECCIONARTODOSEDITToolStripMenuItem.Size = New System.Drawing.Size(245, 36)
         Me.SELECCIONARTODOSEDITToolStripMenuItem.Text = "SELECCIONAR TODOS EDIT"
         '
         'SELECCIONARTODOSDELToolStripMenuItem
@@ -494,7 +494,7 @@ Partial Class F1_Rol
         Me.SELECCIONARTODOSDELToolStripMenuItem.Image = Global.Presentacion.My.Resources.Resources.trash2
         Me.SELECCIONARTODOSDELToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.SELECCIONARTODOSDELToolStripMenuItem.Name = "SELECCIONARTODOSDELToolStripMenuItem"
-        Me.SELECCIONARTODOSDELToolStripMenuItem.Size = New System.Drawing.Size(247, 36)
+        Me.SELECCIONARTODOSDELToolStripMenuItem.Size = New System.Drawing.Size(245, 36)
         Me.SELECCIONARTODOSDELToolStripMenuItem.Text = "SELECCIONAR TODOS DELETE"
         '
         'F1_Rol

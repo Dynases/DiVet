@@ -187,7 +187,6 @@ Partial Class F1_Dosificacion
         '
         Me.JGrM_Buscador.CardBorders = False
         Me.JGrM_Buscador.FlatBorderColor = System.Drawing.Color.DodgerBlue
-        Me.JGrM_Buscador.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.JGrM_Buscador.GridLineColor = System.Drawing.Color.DodgerBlue
         Me.JGrM_Buscador.HeaderFormatStyle.Font = New System.Drawing.Font("Georgia", 8.25!, System.Drawing.FontStyle.Bold)
         Me.JGrM_Buscador.HeaderFormatStyle.FontUnderline = Janus.Windows.GridEX.TriState.[False]

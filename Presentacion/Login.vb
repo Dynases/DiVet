@@ -231,6 +231,14 @@ Public Class Login
 
     End Sub
 
+    Private Sub btnIngresar_MouseHover(sender As Object, e As EventArgs) Handles btnIngresar.MouseHover
+        btnIngresar.Image = Global.Presentacion.My.Resources.Resources.IN02
+    End Sub
+
+    Private Sub btnCancelar_MouseHover(sender As Object, e As EventArgs) Handles btnCancelar.MouseHover
+        btnCancelar.Image = Global.Presentacion.My.Resources.Resources.CAN02
+    End Sub
+
 
 #End Region
 
