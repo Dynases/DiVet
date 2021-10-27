@@ -336,7 +336,8 @@ Public Class Pr_KardexCredito
         End If
     End Sub
 
-    Private Sub MGPFiltros_Click(sender As Object, e As EventArgs) Handles MGPFiltros.Click
 
+    Private Sub Pr_KardexCredito_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnReporteKArdex)
     End Sub
 End Class

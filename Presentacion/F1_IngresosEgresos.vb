@@ -353,6 +353,10 @@ Public Class F1_IngresosEgresos
 
     End Sub
 
+    Private Sub F1_IngresosEgresos_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnIngresoEgreso)
+    End Sub
+
 
 
 #End Region

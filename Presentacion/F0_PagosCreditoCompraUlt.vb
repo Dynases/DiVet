@@ -1143,5 +1143,9 @@ Public Class F0_PagosCreditoCompraUlt
         grfactura.Select()
     End Sub
 
+    Private Sub F0_PagosCreditoCompraUlt_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btComPagosCredito)
+    End Sub
+
 #End Region
 End Class

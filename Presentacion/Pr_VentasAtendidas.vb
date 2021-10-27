@@ -186,4 +186,8 @@ Public Class Pr_VentasAtendidas
             End If
         End If
     End Sub
+
+    Private Sub Pr_VentasAtendidas_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnVentasAtendidas)
+    End Sub
 End Class

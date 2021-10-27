@@ -831,6 +831,10 @@ Public Class F0_Cobrar_Cliente
             MessageBox.Show(ex.Message, ("Consulte con el administrador del sistema"))
         End Try
     End Sub
+
+    Private Sub F0_Cobrar_Cliente_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnPagosCliente)
+    End Sub
 #End Region
 
 

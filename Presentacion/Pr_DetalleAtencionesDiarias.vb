@@ -81,4 +81,7 @@ Public Class Pr_DetalleAtencionesDiarias
         Me.Close()
     End Sub
 
+    Private Sub Pr_DetalleAtencionesDiarias_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnDetalleAtenciones)
+    End Sub
 End Class

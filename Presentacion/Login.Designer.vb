@@ -72,10 +72,12 @@ Partial Class Login
         Me.btnCancelar.BackColor = System.Drawing.Color.Transparent
         Me.btnCancelar.ColorTable = DevComponents.DotNetBar.eButtonColor.Blue
         Me.btnCancelar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCancelar.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None
+        Me.btnCancelar.HoverImage = Global.Presentacion.My.Resources.Resources.CAN02
         Me.btnCancelar.Image = Global.Presentacion.My.Resources.Resources.CAN01
-        Me.btnCancelar.ImageFixedSize = New System.Drawing.Size(90, 40)
+        Me.btnCancelar.ImageFixedSize = New System.Drawing.Size(85, 35)
         Me.btnCancelar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnCancelar.Location = New System.Drawing.Point(173, 365)
+        Me.btnCancelar.Location = New System.Drawing.Point(178, 368)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(95, 42)
         Me.btnCancelar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -87,14 +89,18 @@ Partial Class Login
         Me.btnIngresar.BackColor = System.Drawing.Color.Transparent
         Me.btnIngresar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnIngresar.ColorTable = DevComponents.DotNetBar.eButtonColor.Blue
+        Me.btnIngresar.FadeEffect = False
         Me.btnIngresar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnIngresar.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None
+        Me.btnIngresar.HoverImage = Global.Presentacion.My.Resources.Resources.IN02
         Me.btnIngresar.Image = Global.Presentacion.My.Resources.Resources.IN01
-        Me.btnIngresar.ImageFixedSize = New System.Drawing.Size(90, 40)
+        Me.btnIngresar.ImageFixedSize = New System.Drawing.Size(85, 35)
         Me.btnIngresar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnIngresar.Location = New System.Drawing.Point(72, 365)
+        Me.btnIngresar.Location = New System.Drawing.Point(77, 368)
         Me.btnIngresar.Name = "btnIngresar"
         Me.btnIngresar.Size = New System.Drawing.Size(95, 42)
-        Me.btnIngresar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btnIngresar.StopPulseOnMouseOver = False
+        Me.btnIngresar.Style = DevComponents.DotNetBar.eDotNetBarStyle.Windows7
         Me.btnIngresar.TabIndex = 326
         '
         'Panel4
@@ -102,7 +108,7 @@ Partial Class Login
         Me.Panel4.BackColor = System.Drawing.Color.Black
         Me.Panel4.BackgroundImage = Global.Presentacion.My.Resources.Resources.R02
         Me.Panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Panel4.Location = New System.Drawing.Point(38, 309)
+        Me.Panel4.Location = New System.Drawing.Point(41, 315)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(40, 40)
         Me.Panel4.TabIndex = 37
@@ -112,7 +118,7 @@ Partial Class Login
         Me.Panel5.BackColor = System.Drawing.Color.Black
         Me.Panel5.BackgroundImage = Global.Presentacion.My.Resources.Resources.R01
         Me.Panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Panel5.Location = New System.Drawing.Point(37, 236)
+        Me.Panel5.Location = New System.Drawing.Point(40, 242)
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Size = New System.Drawing.Size(40, 40)
         Me.Panel5.TabIndex = 36
@@ -123,7 +129,7 @@ Partial Class Login
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(84, 288)
+        Me.Label4.Location = New System.Drawing.Point(87, 294)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(90, 18)
         Me.Label4.TabIndex = 35
@@ -135,7 +141,7 @@ Partial Class Login
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(84, 213)
+        Me.Label5.Location = New System.Drawing.Point(87, 219)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(63, 18)
         Me.Label5.TabIndex = 34
@@ -143,7 +149,7 @@ Partial Class Login
         '
         'txtUsuario
         '
-        Me.txtUsuario.BackColor = System.Drawing.Color.White
+        Me.txtUsuario.BackColor = System.Drawing.Color.Black
         '
         '
         '
@@ -157,10 +163,10 @@ Partial Class Login
         Me.txtUsuario.Border.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
         Me.txtUsuario.Border.Class = "TextBoxBorder"
         Me.txtUsuario.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtUsuario.DisabledBackColor = System.Drawing.Color.White
+        Me.txtUsuario.DisabledBackColor = System.Drawing.Color.Black
         Me.txtUsuario.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtUsuario.ForeColor = System.Drawing.Color.Black
-        Me.txtUsuario.Location = New System.Drawing.Point(83, 236)
+        Me.txtUsuario.ForeColor = System.Drawing.Color.White
+        Me.txtUsuario.Location = New System.Drawing.Point(86, 242)
         Me.txtUsuario.Multiline = True
         Me.txtUsuario.Name = "txtUsuario"
         Me.txtUsuario.PreventEnterBeep = True
@@ -169,7 +175,7 @@ Partial Class Login
         '
         'txtPassword
         '
-        Me.txtPassword.BackColor = System.Drawing.Color.White
+        Me.txtPassword.BackColor = System.Drawing.Color.Black
         '
         '
         '
@@ -177,10 +183,10 @@ Partial Class Login
         Me.txtPassword.Border.BorderColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(78, Byte), Integer))
         Me.txtPassword.Border.Class = "TextBoxBorder"
         Me.txtPassword.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtPassword.DisabledBackColor = System.Drawing.Color.White
+        Me.txtPassword.DisabledBackColor = System.Drawing.Color.Black
         Me.txtPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPassword.ForeColor = System.Drawing.Color.Black
-        Me.txtPassword.Location = New System.Drawing.Point(83, 309)
+        Me.txtPassword.ForeColor = System.Drawing.Color.White
+        Me.txtPassword.Location = New System.Drawing.Point(86, 315)
         Me.txtPassword.Multiline = True
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
@@ -192,8 +198,10 @@ Partial Class Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.Black
         Me.ClientSize = New System.Drawing.Size(346, 470)
         Me.Controls.Add(Me.Panel2)
+        Me.ForeColor = System.Drawing.Color.White
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Login"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

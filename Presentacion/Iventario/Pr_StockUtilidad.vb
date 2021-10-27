@@ -151,4 +151,8 @@ Public Class Pr_StockUtilidad
         End If
        
     End Sub
+
+    Private Sub Pr_StockUtilidad_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnSaldosValorados)
+    End Sub
 End Class

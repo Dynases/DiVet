@@ -562,4 +562,7 @@ Public Class F1_Almacen
         End If
     End Sub
 
+    Private Sub F1_Almacen_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnAlmacen)
+    End Sub
 End Class

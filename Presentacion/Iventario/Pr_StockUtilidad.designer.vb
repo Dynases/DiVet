@@ -71,18 +71,19 @@ Partial Class Pr_StockUtilidad
         Me.SuperTabPrincipal.ControlBox.MenuBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabPrincipal.ControlBox.MenuBox, Me.SuperTabPrincipal.ControlBox.CloseBox})
+        Me.SuperTabPrincipal.Size = New System.Drawing.Size(1063, 561)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelBuscador, 0)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelRegistro, 0)
         '
         'SuperTabControlPanelBuscador
         '
-        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(5)
-        Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(1144, 690)
+        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(858, 561)
         '
         'SuperTabControlPanelRegistro
         '
-        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(5)
-        Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(1144, 690)
+        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(1031, 561)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelIzq, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelPrincipal, 0)
@@ -100,8 +101,8 @@ Partial Class Pr_StockUtilidad
         '
         'PanelInferior
         '
-        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(5)
-        Me.PanelInferior.Size = New System.Drawing.Size(1144, 44)
+        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelInferior.Size = New System.Drawing.Size(1031, 36)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Gold
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Gold
@@ -142,19 +143,18 @@ Partial Class Pr_StockUtilidad
         '
         'PanelPrincipal
         '
-        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(5)
-        Me.PanelPrincipal.Size = New System.Drawing.Size(660, 646)
+        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelPrincipal.Size = New System.Drawing.Size(668, 525)
         '
         'MPanelUserAct
         '
-        Me.MPanelUserAct.Location = New System.Drawing.Point(877, 0)
-        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(5)
+        Me.MPanelUserAct.Location = New System.Drawing.Point(831, 0)
+        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         '
         'MReportViewer
         '
-        Me.MReportViewer.Margin = New System.Windows.Forms.Padding(5)
-        Me.MReportViewer.Size = New System.Drawing.Size(660, 646)
-        Me.MReportViewer.ToolPanelWidth = 267
+        Me.MReportViewer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MReportViewer.Size = New System.Drawing.Size(668, 525)
         '
         'MGPFiltros
         '
@@ -198,10 +198,8 @@ Partial Class Pr_StockUtilidad
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox1.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox1.Size = New System.Drawing.Size(478, 84)
+        Me.GroupBox1.Size = New System.Drawing.Size(357, 68)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Agrupados"
@@ -213,15 +211,14 @@ Partial Class Pr_StockUtilidad
         '
         Me.swTipoVenta.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.swTipoVenta.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.swTipoVenta.Location = New System.Drawing.Point(128, 25)
-        Me.swTipoVenta.Margin = New System.Windows.Forms.Padding(4)
+        Me.swTipoVenta.Location = New System.Drawing.Point(96, 20)
         Me.swTipoVenta.Name = "swTipoVenta"
         Me.swTipoVenta.OffBackColor = System.Drawing.Color.DarkSlateGray
         Me.swTipoVenta.OffText = "PRECIO - COSTO"
         Me.swTipoVenta.OffTextColor = System.Drawing.Color.White
         Me.swTipoVenta.OnBackColor = System.Drawing.Color.Green
         Me.swTipoVenta.OnText = "PRECIO - VENTA"
-        Me.swTipoVenta.Size = New System.Drawing.Size(216, 27)
+        Me.swTipoVenta.Size = New System.Drawing.Size(162, 22)
         Me.swTipoVenta.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.swTipoVenta.TabIndex = 6
         Me.swTipoVenta.Value = True
@@ -238,11 +235,9 @@ Partial Class Pr_StockUtilidad
         Me.GroupBox2.Controls.Add(Me.LabelX3)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(0, 84)
-        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4)
+        Me.GroupBox2.Location = New System.Drawing.Point(0, 68)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox2.Size = New System.Drawing.Size(478, 446)
+        Me.GroupBox2.Size = New System.Drawing.Size(357, 362)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "s"
@@ -251,10 +246,9 @@ Partial Class Pr_StockUtilidad
         '
         Me.Panel1.Controls.Add(Me.checkMayorCero)
         Me.Panel1.Controls.Add(Me.Checktodos)
-        Me.Panel1.Location = New System.Drawing.Point(96, 170)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
+        Me.Panel1.Location = New System.Drawing.Point(72, 138)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(240, 74)
+        Me.Panel1.Size = New System.Drawing.Size(180, 60)
         Me.Panel1.TabIndex = 255
         '
         'checkMayorCero
@@ -264,10 +258,9 @@ Partial Class Pr_StockUtilidad
         '
         Me.checkMayorCero.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.checkMayorCero.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.checkMayorCero.Location = New System.Drawing.Point(16, 21)
-        Me.checkMayorCero.Margin = New System.Windows.Forms.Padding(4)
+        Me.checkMayorCero.Location = New System.Drawing.Point(12, 17)
         Me.checkMayorCero.Name = "checkMayorCero"
-        Me.checkMayorCero.Size = New System.Drawing.Size(112, 28)
+        Me.checkMayorCero.Size = New System.Drawing.Size(84, 23)
         Me.checkMayorCero.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.checkMayorCero.TabIndex = 252
         Me.checkMayorCero.Text = "Mayor a 0"
@@ -282,10 +275,9 @@ Partial Class Pr_StockUtilidad
         Me.Checktodos.Checked = True
         Me.Checktodos.CheckState = System.Windows.Forms.CheckState.Checked
         Me.Checktodos.CheckValue = "Y"
-        Me.Checktodos.Location = New System.Drawing.Point(143, 21)
-        Me.Checktodos.Margin = New System.Windows.Forms.Padding(4)
+        Me.Checktodos.Location = New System.Drawing.Point(107, 17)
         Me.Checktodos.Name = "Checktodos"
-        Me.Checktodos.Size = New System.Drawing.Size(72, 28)
+        Me.Checktodos.Size = New System.Drawing.Size(54, 23)
         Me.Checktodos.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.Checktodos.TabIndex = 252
         Me.Checktodos.Text = "Todos"
@@ -299,11 +291,10 @@ Partial Class Pr_StockUtilidad
         Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX2.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX2.Location = New System.Drawing.Point(9, 188)
-        Me.LabelX2.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX2.Location = New System.Drawing.Point(7, 153)
         Me.LabelX2.Name = "LabelX2"
         Me.LabelX2.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX2.Size = New System.Drawing.Size(99, 28)
+        Me.LabelX2.Size = New System.Drawing.Size(74, 23)
         Me.LabelX2.TabIndex = 250
         Me.LabelX2.Text = "Stock:"
         '
@@ -316,11 +307,10 @@ Partial Class Pr_StockUtilidad
         Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX1.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX1.Location = New System.Drawing.Point(9, 89)
-        Me.LabelX1.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX1.Location = New System.Drawing.Point(7, 72)
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX1.Size = New System.Drawing.Size(99, 28)
+        Me.LabelX1.Size = New System.Drawing.Size(74, 23)
         Me.LabelX1.TabIndex = 250
         Me.LabelX1.Text = "Categoria"
         '
@@ -331,14 +321,13 @@ Partial Class Pr_StockUtilidad
         Me.tbcatprecio.DesignTimeLayout = tbcatprecio_DesignTimeLayout
         Me.tbcatprecio.DisabledBackColor = System.Drawing.Color.White
         Me.tbcatprecio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbcatprecio.Location = New System.Drawing.Point(96, 117)
-        Me.tbcatprecio.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbcatprecio.Location = New System.Drawing.Point(72, 95)
         Me.tbcatprecio.Name = "tbcatprecio"
         Me.tbcatprecio.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.tbcatprecio.Office2007CustomColor = System.Drawing.Color.DodgerBlue
         Me.tbcatprecio.SelectedIndex = -1
         Me.tbcatprecio.SelectedItem = Nothing
-        Me.tbcatprecio.Size = New System.Drawing.Size(219, 26)
+        Me.tbcatprecio.Size = New System.Drawing.Size(164, 22)
         Me.tbcatprecio.TabIndex = 249
         Me.tbcatprecio.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -349,14 +338,13 @@ Partial Class Pr_StockUtilidad
         Me.tbAlmacen.DesignTimeLayout = tbAlmacen_DesignTimeLayout
         Me.tbAlmacen.DisabledBackColor = System.Drawing.Color.White
         Me.tbAlmacen.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAlmacen.Location = New System.Drawing.Point(96, 50)
-        Me.tbAlmacen.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbAlmacen.Location = New System.Drawing.Point(72, 41)
         Me.tbAlmacen.Name = "tbAlmacen"
         Me.tbAlmacen.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.tbAlmacen.Office2007CustomColor = System.Drawing.Color.DodgerBlue
         Me.tbAlmacen.SelectedIndex = -1
         Me.tbAlmacen.SelectedItem = Nothing
-        Me.tbAlmacen.Size = New System.Drawing.Size(219, 26)
+        Me.tbAlmacen.Size = New System.Drawing.Size(164, 22)
         Me.tbAlmacen.TabIndex = 247
         Me.tbAlmacen.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -369,21 +357,20 @@ Partial Class Pr_StockUtilidad
         Me.LabelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX3.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX3.Location = New System.Drawing.Point(9, 21)
-        Me.LabelX3.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX3.Location = New System.Drawing.Point(7, 17)
         Me.LabelX3.Name = "LabelX3"
         Me.LabelX3.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX3.Size = New System.Drawing.Size(99, 28)
+        Me.LabelX3.Size = New System.Drawing.Size(74, 23)
         Me.LabelX3.TabIndex = 241
         Me.LabelX3.Text = "Almacen:"
         '
         'Pr_StockUtilidad
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1179, 690)
+        Me.ClientSize = New System.Drawing.Size(1063, 561)
         Me.Location = New System.Drawing.Point(0, 0)
-        Me.Margin = New System.Windows.Forms.Padding(5)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "Pr_StockUtilidad"
         Me.Text = "PRODUCTOS VS VENTAS"
         Me.Controls.SetChildIndex(Me.SuperTabPrincipal, 0)

@@ -288,5 +288,7 @@ Public Class Pr_SAldosPorAlmacenLinea
         _prCargarReporte()
     End Sub
 
-
+    Private Sub Pr_SAldosPorAlmacenLinea_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnSaldoProducto)
+    End Sub
 End Class

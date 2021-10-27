@@ -109,5 +109,9 @@ Public Class PR_StockActualProductosLotes
     Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
         Close()
     End Sub
+
+    Private Sub PR_StockActualProductosLotes_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnInvSaldoLote)
+    End Sub
 #End Region
 End Class

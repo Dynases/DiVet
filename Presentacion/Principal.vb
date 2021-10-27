@@ -72,6 +72,23 @@ Public Class Principal
         btnReciboCirugia.TitleText = "RECIBO" + vbCrLf + "CIRUGÍA"
         btnRepVetMascAten.TitleText = "REP. HORAS" + vbCrLf + "ATENDIDAS" + vbCrLf + "VETERINARIO"
         btnPacientesAten.TitleText = "REP." + vbCrLf + "PACIENTES" + vbCrLf + "ATENDIDOS"
+        btComPagosCredito.TitleText = "PAGOS" + vbCrLf + "COMPRA" + vbCrLf + "CRÉDITOS"
+        btnKardex.TitleText = "KARDEX" + vbCrLf + "PRODUCTO"
+        btnSaldoProducto.TitleText = "SALDO" + vbCrLf + "PRODUCTOS"
+        btnKardexProducto.TitleText = "REPORTE" + vbCrLf + "KARDEX" + vbCrLf + "PRODUCTOS"
+        btnSaldosValorados.TitleText = "SALDOS" + vbCrLf + "VALORADOS"
+        btnInvSaldoLote.TitleText = "STOCK" + vbCrLf + "ACTUAL" + vbCrLf + "POR LOTES"
+        btnVentasAtendidas.TitleText = "VENTAS" + vbCrLf + "ATENDIDAS"
+        btnAnularFactura.TitleText = "ANULAR" + vbCrLf + "FACTURA"
+        btnLibroVenta.TitleText = "LIBRO DE" + vbCrLf + "VENTAS"
+        btnIngresoEgreso.TitleText = "INGRESO" + vbCrLf + "EGRESO"
+        btnArqueoDiario.TitleText = "ARQUEO" + vbCrLf + "DIARIO"
+        btnDetalleAtenciones.TitleText = "DETALLE DE" + vbCrLf + "ATENCIONES" + vbCrLf + "DIARIAS"
+        btnPagosCliente.TitleText = "PAGOS POR" + vbCrLf + "CLIENTE"
+        btnReporteNotasPorCobrar.TitleText = "NOTAS" + vbCrLf + "POR" + vbCrLf + "COBRAR"
+        btnReportePagos.TitleText = "REPORTE" + vbCrLf + "PAGOS"
+        btnRealizarPAgos.TitleText = "REALIZAR" + vbCrLf + "PAGOS"
+        btnReporteKArdex.TitleText = "ESTADO DE" + vbCrLf + "CUENTAS"
     End Sub
     Private Sub _prLeerArchivoConfig()
         Try
@@ -175,6 +192,7 @@ Public Class Principal
     End Sub
 
     Private Sub btnVenta_Click(sender As Object, e As EventArgs) Handles btnVenta.Click
+        _prCambiarColorVerde(btnVenta)
         Dim frm As New F1_Ven_Venta
         Modelo.MGlobal._nameButton = btnVenta.Name
         frm.Show()
@@ -207,6 +225,7 @@ Public Class Principal
     End Sub
 
     Private Sub btnMovimientos_Click(sender As Object, e As EventArgs) Handles btnMovimientos.Click
+        _prCambiarColorVerde(btnMovimientos)
         Dim frm As New F0_Movimiento
         Modelo.MGlobal._nameButton = btnMovimientos.Name
         frm.Show()
@@ -220,6 +239,7 @@ Public Class Principal
     End Sub
 
     Private Sub btnAlmacen_Click(sender As Object, e As EventArgs) Handles btnAlmacen.Click
+        _prCambiarColorVerde(btnAlmacen)
         Dim frm As New F1_Almacen
         Modelo.MGlobal._nameButton = btnAlmacen.Name
         frm.Show()
@@ -243,12 +263,14 @@ Public Class Principal
     End Sub
 
     Private Sub btnProveedor_Click(sender As Object, e As EventArgs) Handles btnProveedor.Click
+        _prCambiarColorVerde(btnProveedor)
         Dim frm As New F1_Proveedor
         Modelo.MGlobal._nameButton = btnProveedor.Name
         frm.Show()
     End Sub
 
     Private Sub btnCompras_Click(sender As Object, e As EventArgs) Handles btnCompras.Click
+        _prCambiarColorVerde(btnCompras)
         Dim frm As New F0_MCompras
         Modelo.MGlobal._nameButton = btnCompras.Name
         frm.Show()
@@ -280,23 +302,27 @@ Public Class Principal
     End Sub
 
     Private Sub btnKardex_Click(sender As Object, e As EventArgs) Handles btnKardex.Click
+        _prCambiarColorVerde(btnKardex)
         Dim frm As New F0_KardexMovimiento
         Modelo.MGlobal._nameButton = btnKardex.Name
         frm.Show()
     End Sub
 
     Private Sub btnSaldoProducto_Click(sender As Object, e As EventArgs) Handles btnSaldoProducto.Click
+        _prCambiarColorVerde(btnSaldoProducto)
         Dim frm As New Pr_SAldosPorAlmacenLinea
         Modelo.MGlobal._nameButton = btnSaldoProducto.Name
         frm.Show()
     End Sub
 
     Private Sub btnKardexProducto_Click(sender As Object, e As EventArgs) Handles btnKardexProducto.Click
+        _prCambiarColorVerde(btnKardexProducto)
         Dim frm As New Pr_KardexProductos
         frm.Show()
     End Sub
 
     Private Sub btnSaldosValorados_Click(sender As Object, e As EventArgs) Handles btnSaldosValorados.Click
+        _prCambiarColorVerde(btnSaldosValorados)
         Dim frm As New Pr_StockUtilidad
         frm.Show()
     End Sub
@@ -341,6 +367,10 @@ Public Class Principal
                     'Login.Visible = True
                     M_Configuracion.Select()
                     Login.Show()
+                    Login.txtUsuario.BackColor = Color.Black
+                    Login.txtUsuario.ForeColor = Color.White
+                    Login.txtPassword.BackColor = Color.Black
+                    Login.txtPassword.ForeColor = Color.White
                 Case "btnSalir"
                     _Salir()
                 Case "btnAbout"
@@ -359,30 +389,35 @@ Public Class Principal
     End Sub
 
     Private Sub btnPagosCliente_Click(sender As Object, e As EventArgs) Handles btnPagosCliente.Click
+        _prCambiarColorVerde(btnPagosCliente)
         Dim frm As New F0_Cobrar_Cliente
         Modelo.MGlobal._nameButton = btnPagosCliente.Name
         frm.Show()
     End Sub
 
     Private Sub btnReporteNotasPorCobrar_Click(sender As Object, e As EventArgs) Handles btnReporteNotasPorCobrar.Click
+        _prCambiarColorVerde(btnReporteNotasPorCobrar)
         Dim frm As New Pr_ReporteMorosidadGeneral
         Modelo.MGlobal._nameButton = btnReporteNotasPorCobrar.Name
         frm.Show()
     End Sub
 
     Private Sub btnReportePagos_Click(sender As Object, e As EventArgs) Handles btnReportePagos.Click
+        _prCambiarColorVerde(btnReportePagos)
         Dim frm As New PR_ResumenCaja
         Modelo.MGlobal._nameButton = btnReportePagos.Name
         frm.Show()
     End Sub
 
     Private Sub btVentVenta_Click(sender As Object, e As EventArgs) Handles btnVentasAtendidas.Click
+        _prCambiarColorVerde(btnVentasAtendidas)
         Dim frm As New Pr_VentasAtendidas
         Modelo.MGlobal._nameButton = btnVentasAtendidas.Name
         frm.Show()
     End Sub
 
     Private Sub btInvSaldoLote_Click(sender As Object, e As EventArgs) Handles btnInvSaldoLote.Click
+        _prCambiarColorVerde(btnInvSaldoLote)
         Dim frm As New PR_StockActualProductosLotes
         Modelo.MGlobal._nameButton = btnInvSaldoLote.Name
         frm.Show()
@@ -393,19 +428,21 @@ Public Class Principal
     End Sub
 
     Private Sub btnRealizarPAgos_Click(sender As Object, e As EventArgs) Handles btnRealizarPAgos.Click
+        _prCambiarColorVerde(btnRealizarPAgos)
         Dim frm As New F0_PagosCredito
         Modelo.MGlobal._nameButton = btnRealizarPAgos.Name
         frm.Show()
     End Sub
 
     Private Sub btnReporteKArdex_Click(sender As Object, e As EventArgs) Handles btnReporteKArdex.Click
+        _prCambiarColorVerde(btnReporteKArdex)
         Dim frm As New Pr_KardexCredito
-
         Modelo.MGlobal._nameButton = btnReporteKArdex.Name
         frm.Show()
     End Sub
 
     Private Sub btComPagosCredito_Click(sender As Object, e As EventArgs) Handles btComPagosCredito.Click
+        _prCambiarColorVerde(btComPagosCredito)
         Dim frm As New F0_PagosCreditoCompraUlt
         Modelo.MGlobal._nameButton = btComPagosCredito.Name
         frm.Show()
@@ -426,32 +463,37 @@ Public Class Principal
     End Sub
 
     Private Sub btnAnularFactura_Click(sender As Object, e As EventArgs) Handles btnAnularFactura.Click
+        _prCambiarColorVerde(btnAnularFactura)
         Dim frm As New F0_AnularFactura
         Modelo.MGlobal._nameButton = btnAnularFactura.Name
         frm.Show()
     End Sub
 
     Private Sub btnLibroVenta_Click(sender As Object, e As EventArgs) Handles btnLibroVenta.Click
+        _prCambiarColorVerde(btnLibroVenta)
         Dim frm As New F0_LibroVenta2
         Modelo.MGlobal._nameButton = btnLibroVenta.Name
         frm.Show()
     End Sub
 
     Private Sub btnIngresoEgreso_Click(sender As Object, e As EventArgs) Handles btnIngresoEgreso.Click
+        _prCambiarColorVerde(btnIngresoEgreso)
         Dim frm As New F1_IngresosEgresos
         Modelo.MGlobal._nameButton = btnIngresoEgreso.Name
         frm.Show()
     End Sub
 
     Private Sub btnArqueoDiario_Click(sender As Object, e As EventArgs) Handles btnArqueoDiario.Click
+        _prCambiarColorVerde(btnArqueoDiario)
         Dim frm As New Pr_ArqueoDiario
         Modelo.MGlobal._nameButton = btnArqueoDiario.Name
         frm.Show()
     End Sub
 
     Private Sub btnDetalleAtenciones_Click(sender As Object, e As EventArgs) Handles btnDetalleAtenciones.Click
+        _prCambiarColorVerde(btnDetalleAtenciones)
         Dim frm As New Pr_DetalleAtencionesDiarias
-        Modelo.MGlobal._nameButton = btnArqueoDiario.Name
+        Modelo.MGlobal._nameButton = btnDetalleAtenciones.Name
         frm.Show()
     End Sub
 
@@ -521,5 +563,93 @@ Public Class Principal
 
     Private Sub btnPacientesAten_MouseHover(sender As Object, e As EventArgs) Handles btnPacientesAten.MouseHover
         _prCambiarColorVerde(btnPacientesAten)
+    End Sub
+
+    Private Sub btnProveedor_MouseHover(sender As Object, e As EventArgs) Handles btnProveedor.MouseHover
+        _prCambiarColorVerde(btnProveedor)
+    End Sub
+
+    Private Sub btnCompras_MouseHover(sender As Object, e As EventArgs) Handles btnCompras.MouseHover
+        _prCambiarColorVerde(btnCompras)
+    End Sub
+
+    Private Sub btComPagosCredito_MouseHover(sender As Object, e As EventArgs) Handles btComPagosCredito.MouseHover
+        _prCambiarColorVerde(btComPagosCredito)
+    End Sub
+
+    Private Sub btnAlmacen_MouseHover(sender As Object, e As EventArgs) Handles btnAlmacen.MouseHover
+        _prCambiarColorVerde(btnAlmacen)
+    End Sub
+
+    Private Sub btnMovimientos_MouseHover(sender As Object, e As EventArgs) Handles btnMovimientos.MouseHover
+        _prCambiarColorVerde(btnMovimientos)
+    End Sub
+
+    Private Sub btnKardex_MouseHover(sender As Object, e As EventArgs) Handles btnKardex.MouseHover
+        _prCambiarColorVerde(btnKardex)
+    End Sub
+
+    Private Sub btnSaldoProducto_MouseHover(sender As Object, e As EventArgs) Handles btnSaldoProducto.MouseHover
+        _prCambiarColorVerde(btnSaldoProducto)
+    End Sub
+
+    Private Sub btnKardexProducto_MouseHover(sender As Object, e As EventArgs) Handles btnKardexProducto.MouseHover
+        _prCambiarColorVerde(btnKardexProducto)
+    End Sub
+
+    Private Sub btnSaldosValorados_MouseHover(sender As Object, e As EventArgs) Handles btnSaldosValorados.MouseHover
+        _prCambiarColorVerde(btnSaldosValorados)
+    End Sub
+
+    Private Sub btnInvSaldoLote_MouseHover(sender As Object, e As EventArgs) Handles btnInvSaldoLote.MouseHover
+        _prCambiarColorVerde(btnInvSaldoLote)
+    End Sub
+
+    Private Sub btnVenta_MouseHover(sender As Object, e As EventArgs) Handles btnVenta.MouseHover
+        _prCambiarColorVerde(btnVenta)
+    End Sub
+
+    Private Sub btnVentasAtendidas_MouseHover(sender As Object, e As EventArgs) Handles btnVentasAtendidas.MouseHover
+        _prCambiarColorVerde(btnVentasAtendidas)
+    End Sub
+
+    Private Sub btnAnularFactura_MouseHover(sender As Object, e As EventArgs) Handles btnAnularFactura.MouseHover
+        _prCambiarColorVerde(btnAnularFactura)
+    End Sub
+
+    Private Sub btnLibroVenta_MouseHover(sender As Object, e As EventArgs) Handles btnLibroVenta.MouseHover
+        _prCambiarColorVerde(btnLibroVenta)
+    End Sub
+
+    Private Sub btnIngresoEgreso_MouseHover(sender As Object, e As EventArgs) Handles btnIngresoEgreso.MouseHover
+        _prCambiarColorVerde(btnIngresoEgreso)
+    End Sub
+
+    Private Sub btnArqueoDiario_MouseHover(sender As Object, e As EventArgs) Handles btnArqueoDiario.MouseHover
+        _prCambiarColorVerde(btnArqueoDiario)
+    End Sub
+
+    Private Sub btnDetalleAtenciones_MouseHover(sender As Object, e As EventArgs) Handles btnDetalleAtenciones.MouseHover
+        _prCambiarColorVerde(btnDetalleAtenciones)
+    End Sub
+
+    Private Sub btnPagosCliente_MouseHover(sender As Object, e As EventArgs) Handles btnPagosCliente.MouseHover
+        _prCambiarColorVerde(btnPagosCliente)
+    End Sub
+
+    Private Sub btnReporteNotasPorCobrar_MouseHover(sender As Object, e As EventArgs) Handles btnReporteNotasPorCobrar.MouseHover
+        _prCambiarColorVerde(btnReporteNotasPorCobrar)
+    End Sub
+
+    Private Sub btnReportePagos_MouseHover(sender As Object, e As EventArgs) Handles btnReportePagos.MouseHover
+        _prCambiarColorVerde(btnReportePagos)
+    End Sub
+
+    Private Sub btnRealizarPAgos_MouseHover(sender As Object, e As EventArgs) Handles btnRealizarPAgos.MouseHover
+        _prCambiarColorVerde(btnRealizarPAgos)
+    End Sub
+
+    Private Sub btnReporteKArdex_MouseHover(sender As Object, e As EventArgs) Handles btnReporteKArdex.MouseHover
+        _prCambiarColorVerde(btnReporteKArdex)
     End Sub
 End Class

@@ -140,6 +140,7 @@ Public Class Login
         _prLeerArchivoConfig()
         L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
         txtUsuario.CharacterCasing = CharacterCasing.Upper
+
     End Sub
 
     Private Sub btnIngresar_Click(sender As Object, e As EventArgs) Handles btnIngresar.Click
@@ -228,15 +229,6 @@ Public Class Login
         txtUsuario.Text = ""
         txtPassword.Text = ""
         txtUsuario.Focus()
-
-    End Sub
-
-    Private Sub btnIngresar_MouseHover(sender As Object, e As EventArgs) Handles btnIngresar.MouseHover
-        btnIngresar.Image = Global.Presentacion.My.Resources.Resources.IN02
-    End Sub
-
-    Private Sub btnCancelar_MouseHover(sender As Object, e As EventArgs) Handles btnCancelar.MouseHover
-        btnCancelar.Image = Global.Presentacion.My.Resources.Resources.CAN02
     End Sub
 
 

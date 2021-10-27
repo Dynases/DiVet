@@ -749,5 +749,7 @@ Public Class F1_Proveedor
 
     End Function
 
-   
+    Private Sub F1_Proveedor_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnProveedor)
+    End Sub
 End Class

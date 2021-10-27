@@ -70,18 +70,19 @@ Partial Class Pr_KardexProductos
         Me.SuperTabPrincipal.ControlBox.MenuBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabPrincipal.ControlBox.MenuBox, Me.SuperTabPrincipal.ControlBox.CloseBox})
+        Me.SuperTabPrincipal.Size = New System.Drawing.Size(1050, 561)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelBuscador, 0)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelRegistro, 0)
         '
         'SuperTabControlPanelBuscador
         '
-        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(5)
-        Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(1144, 690)
+        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(858, 561)
         '
         'SuperTabControlPanelRegistro
         '
-        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(5)
-        Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(1143, 690)
+        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(1018, 561)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelIzq, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelPrincipal, 0)
@@ -99,8 +100,8 @@ Partial Class Pr_KardexProductos
         '
         'PanelInferior
         '
-        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(5)
-        Me.PanelInferior.Size = New System.Drawing.Size(1143, 44)
+        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelInferior.Size = New System.Drawing.Size(1018, 36)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Gold
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Gold
@@ -130,7 +131,6 @@ Partial Class Pr_KardexProductos
         Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingLeft = 3
         Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingRight = 3
         Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingTop = 3
-
         Me.BubbleBarUsuario.MouseOverTabColors.BorderColor = System.Drawing.SystemColors.Highlight
         Me.BubbleBarUsuario.SelectedTabColors.BorderColor = System.Drawing.Color.Black
         '
@@ -142,22 +142,18 @@ Partial Class Pr_KardexProductos
         '
         'PanelPrincipal
         '
-        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(5)
-        Me.PanelPrincipal.Size = New System.Drawing.Size(659, 646)
+        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelPrincipal.Size = New System.Drawing.Size(655, 525)
         '
         'MPanelUserAct
         '
-        Me.MPanelUserAct.Location = New System.Drawing.Point(876, 0)
-        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(5)
-        '
-        'MHighlighterFocus
-
+        Me.MPanelUserAct.Location = New System.Drawing.Point(818, 0)
+        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         '
         'MReportViewer
         '
-        Me.MReportViewer.Margin = New System.Windows.Forms.Padding(5)
-        Me.MReportViewer.Size = New System.Drawing.Size(659, 646)
-        Me.MReportViewer.ToolPanelWidth = 267
+        Me.MReportViewer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MReportViewer.Size = New System.Drawing.Size(655, 525)
         '
         'MGPFiltros
         '
@@ -204,8 +200,7 @@ Partial Class Pr_KardexProductos
         Me.tbFechaI.ButtonDropDown.Visible = True
         Me.tbFechaI.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbFechaI.IsPopupCalendarOpen = False
-        Me.tbFechaI.Location = New System.Drawing.Point(193, 66)
-        Me.tbFechaI.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbFechaI.Location = New System.Drawing.Point(145, 54)
         '
         '
         '
@@ -236,7 +231,7 @@ Partial Class Pr_KardexProductos
         Me.tbFechaI.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbFechaI.MonthCalendar.TodayButtonVisible = True
         Me.tbFechaI.Name = "tbFechaI"
-        Me.tbFechaI.Size = New System.Drawing.Size(160, 26)
+        Me.tbFechaI.Size = New System.Drawing.Size(120, 22)
         Me.tbFechaI.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.tbFechaI.TabIndex = 232
         '
@@ -249,11 +244,10 @@ Partial Class Pr_KardexProductos
         Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX4.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX4.Location = New System.Drawing.Point(88, 65)
-        Me.LabelX4.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX4.Location = New System.Drawing.Point(66, 53)
         Me.LabelX4.Name = "LabelX4"
         Me.LabelX4.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX4.Size = New System.Drawing.Size(99, 28)
+        Me.LabelX4.Size = New System.Drawing.Size(74, 23)
         Me.LabelX4.TabIndex = 233
         Me.LabelX4.Text = "Fecha Del:"
         '
@@ -268,8 +262,7 @@ Partial Class Pr_KardexProductos
         Me.tbFechaF.ButtonDropDown.Visible = True
         Me.tbFechaF.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbFechaF.IsPopupCalendarOpen = False
-        Me.tbFechaF.Location = New System.Drawing.Point(193, 105)
-        Me.tbFechaF.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbFechaF.Location = New System.Drawing.Point(145, 85)
         '
         '
         '
@@ -300,7 +293,7 @@ Partial Class Pr_KardexProductos
         Me.tbFechaF.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbFechaF.MonthCalendar.TodayButtonVisible = True
         Me.tbFechaF.Name = "tbFechaF"
-        Me.tbFechaF.Size = New System.Drawing.Size(160, 26)
+        Me.tbFechaF.Size = New System.Drawing.Size(120, 22)
         Me.tbFechaF.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.tbFechaF.TabIndex = 234
         '
@@ -313,11 +306,10 @@ Partial Class Pr_KardexProductos
         Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX1.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX1.Location = New System.Drawing.Point(92, 105)
-        Me.LabelX1.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX1.Location = New System.Drawing.Point(69, 85)
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX1.Size = New System.Drawing.Size(69, 28)
+        Me.LabelX1.Size = New System.Drawing.Size(52, 23)
         Me.LabelX1.TabIndex = 235
         Me.LabelX1.Text = "Al:"
         '
@@ -331,10 +323,9 @@ Partial Class Pr_KardexProductos
         Me.checkGeneral.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
         Me.checkGeneral.CheckSignSize = New System.Drawing.Size(20, 20)
         Me.checkGeneral.EnableMarkup = False
-        Me.checkGeneral.Location = New System.Drawing.Point(20, 7)
-        Me.checkGeneral.Margin = New System.Windows.Forms.Padding(4)
+        Me.checkGeneral.Location = New System.Drawing.Point(15, 6)
         Me.checkGeneral.Name = "checkGeneral"
-        Me.checkGeneral.Size = New System.Drawing.Size(245, 22)
+        Me.checkGeneral.Size = New System.Drawing.Size(202, 22)
         Me.checkGeneral.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.checkGeneral.TabIndex = 1
         Me.checkGeneral.Text = "GENERAL POR PRODUCTO"
@@ -349,10 +340,9 @@ Partial Class Pr_KardexProductos
         Me.checkDetallado.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
         Me.checkDetallado.CheckSignSize = New System.Drawing.Size(20, 20)
         Me.checkDetallado.EnableMarkup = False
-        Me.checkDetallado.Location = New System.Drawing.Point(20, 45)
-        Me.checkDetallado.Margin = New System.Windows.Forms.Padding(4)
+        Me.checkDetallado.Location = New System.Drawing.Point(15, 37)
         Me.checkDetallado.Name = "checkDetallado"
-        Me.checkDetallado.Size = New System.Drawing.Size(131, 22)
+        Me.checkDetallado.Size = New System.Drawing.Size(111, 22)
         Me.checkDetallado.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.checkDetallado.TabIndex = 239
         Me.checkDetallado.Text = "DETALLADO"
@@ -370,10 +360,8 @@ Partial Class Pr_KardexProductos
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(0, 0)
-        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox2.Size = New System.Drawing.Size(478, 530)
+        Me.GroupBox2.Size = New System.Drawing.Size(357, 430)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Datos"
@@ -383,9 +371,10 @@ Partial Class Pr_KardexProductos
         Me.Panel1.Controls.Add(Me.checkDetallado)
         Me.Panel1.Controls.Add(Me.CheckGeneralLote)
         Me.Panel1.Controls.Add(Me.checkGeneral)
-        Me.Panel1.Location = New System.Drawing.Point(39, 147)
+        Me.Panel1.Location = New System.Drawing.Point(29, 119)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(366, 114)
+        Me.Panel1.Size = New System.Drawing.Size(274, 93)
         Me.Panel1.TabIndex = 243
         '
         'CheckGeneralLote
@@ -398,10 +387,9 @@ Partial Class Pr_KardexProductos
         Me.CheckGeneralLote.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
         Me.CheckGeneralLote.CheckSignSize = New System.Drawing.Size(20, 20)
         Me.CheckGeneralLote.EnableMarkup = False
-        Me.CheckGeneralLote.Location = New System.Drawing.Point(20, 78)
-        Me.CheckGeneralLote.Margin = New System.Windows.Forms.Padding(4)
+        Me.CheckGeneralLote.Location = New System.Drawing.Point(15, 63)
         Me.CheckGeneralLote.Name = "CheckGeneralLote"
-        Me.CheckGeneralLote.Size = New System.Drawing.Size(196, 22)
+        Me.CheckGeneralLote.Size = New System.Drawing.Size(162, 22)
         Me.CheckGeneralLote.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.CheckGeneralLote.TabIndex = 242
         Me.CheckGeneralLote.Text = "GENERAL POR LOTE"
@@ -416,11 +404,10 @@ Partial Class Pr_KardexProductos
         Me.LabelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX5.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX5.Location = New System.Drawing.Point(55, 25)
-        Me.LabelX5.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX5.Location = New System.Drawing.Point(41, 20)
         Me.LabelX5.Name = "LabelX5"
         Me.LabelX5.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX5.Size = New System.Drawing.Size(77, 20)
+        Me.LabelX5.Size = New System.Drawing.Size(62, 16)
         Me.LabelX5.TabIndex = 241
         Me.LabelX5.Text = "Deposito:"
         '
@@ -429,24 +416,23 @@ Partial Class Pr_KardexProductos
         cbAlmacen_DesignTimeLayout.LayoutString = resources.GetString("cbAlmacen_DesignTimeLayout.LayoutString")
         Me.cbAlmacen.DesignTimeLayout = cbAlmacen_DesignTimeLayout
         Me.cbAlmacen.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbAlmacen.Location = New System.Drawing.Point(159, 25)
-        Me.cbAlmacen.Margin = New System.Windows.Forms.Padding(4)
+        Me.cbAlmacen.Location = New System.Drawing.Point(119, 20)
         Me.cbAlmacen.Name = "cbAlmacen"
         Me.cbAlmacen.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.cbAlmacen.Office2007CustomColor = System.Drawing.Color.DodgerBlue
         Me.cbAlmacen.SelectedIndex = -1
         Me.cbAlmacen.SelectedItem = Nothing
-        Me.cbAlmacen.Size = New System.Drawing.Size(296, 26)
+        Me.cbAlmacen.Size = New System.Drawing.Size(222, 22)
         Me.cbAlmacen.TabIndex = 240
         Me.cbAlmacen.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'Pr_KardexProductos
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1179, 690)
+        Me.ClientSize = New System.Drawing.Size(1050, 561)
         Me.Location = New System.Drawing.Point(0, 0)
-        Me.Margin = New System.Windows.Forms.Padding(5)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "Pr_KardexProductos"
         Me.Text = "KARDEX PRODUCTO"
         Me.Controls.SetChildIndex(Me.SuperTabPrincipal, 0)

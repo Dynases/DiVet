@@ -406,6 +406,10 @@ Public Class Pr_KardexProductos
         Me.Close()
     End Sub
 
+    Private Sub Pr_KardexProductos_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnKardexProducto)
+    End Sub
+
     'Private Sub CheckTodosVendedor_CheckedChanged(sender As Object, e As EventArgs) Handles checkDetallado.CheckedChanged
     '    If (checkDetallado.Checked) Then
     '        checkGeneral.CheckValue = False

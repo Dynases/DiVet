@@ -27,6 +27,7 @@ Partial Class F0_KardexMovimiento
         Dim cbAlmacen_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.GroupPanelDatos = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.LabelX6 = New DevComponents.DotNetBar.LabelX()
         Me.btnSalir1 = New DevComponents.DotNetBar.ButtonX()
         Me.tbFechaVenc = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.tblote = New DevComponents.DotNetBar.Controls.TextBoxX()
@@ -49,7 +50,6 @@ Partial Class F0_KardexMovimiento
         Me.Dgj1Datos = New Janus.Windows.GridEX.GridEX()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.LabelX6 = New DevComponents.DotNetBar.LabelX()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
         Me.PanelToolBar1.SuspendLayout()
@@ -232,6 +232,7 @@ Partial Class F0_KardexMovimiento
         '
         'GroupPanelDatos
         '
+        Me.GroupPanelDatos.BackColor = System.Drawing.Color.White
         Me.GroupPanelDatos.CanvasColor = System.Drawing.SystemColors.Control
         Me.GroupPanelDatos.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.GroupPanelDatos.Controls.Add(Me.Panel2)
@@ -299,6 +300,20 @@ Partial Class F0_KardexMovimiento
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1245, 194)
         Me.Panel2.TabIndex = 0
+        '
+        'LabelX6
+        '
+        '
+        '
+        '
+        Me.LabelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX6.Font = New System.Drawing.Font("Georgia", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX6.Location = New System.Drawing.Point(110, 3)
+        Me.LabelX6.Name = "LabelX6"
+        Me.LabelX6.Size = New System.Drawing.Size(79, 12)
+        Me.LabelX6.TabIndex = 245
+        Me.LabelX6.Text = "Ctrl+Enter"
         '
         'btnSalir1
         '
@@ -667,6 +682,7 @@ Partial Class F0_KardexMovimiento
         '
         'GroupPanelKardex
         '
+        Me.GroupPanelKardex.BackColor = System.Drawing.Color.White
         Me.GroupPanelKardex.CanvasColor = System.Drawing.SystemColors.Control
         Me.GroupPanelKardex.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.GroupPanelKardex.Controls.Add(Me.Dgj1Datos)
@@ -747,20 +763,6 @@ Partial Class F0_KardexMovimiento
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox2.TabIndex = 0
         Me.PictureBox2.TabStop = False
-        '
-        'LabelX6
-        '
-        '
-        '
-        '
-        Me.LabelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX6.Font = New System.Drawing.Font("Georgia", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX6.Location = New System.Drawing.Point(110, 3)
-        Me.LabelX6.Name = "LabelX6"
-        Me.LabelX6.Size = New System.Drawing.Size(79, 12)
-        Me.LabelX6.TabIndex = 245
-        Me.LabelX6.Text = "Ctrl+Enter"
         '
         'F0_KardexMovimiento
         '

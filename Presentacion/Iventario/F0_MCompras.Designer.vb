@@ -38,6 +38,7 @@ Partial Class F0_MCompras
         Me.PanelContentSup = New System.Windows.Forms.Panel()
         Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.lbCtrlEnter = New DevComponents.DotNetBar.LabelX()
         Me.tbCodigo = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.cbSucursal = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.LabelX7 = New DevComponents.DotNetBar.LabelX()
@@ -60,7 +61,6 @@ Partial Class F0_MCompras
         Me.GroupPanel2 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.grCompra = New Janus.Windows.GridEX.GridEX()
-        Me.lbCtrlEnter = New DevComponents.DotNetBar.LabelX()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
         Me.PanelToolBar1.SuspendLayout()
@@ -539,6 +539,22 @@ Partial Class F0_MCompras
         Me.Panel2.Size = New System.Drawing.Size(1245, 167)
         Me.Panel2.TabIndex = 234
         '
+        'lbCtrlEnter
+        '
+        Me.lbCtrlEnter.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbCtrlEnter.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbCtrlEnter.Font = New System.Drawing.Font("Georgia", 7.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbCtrlEnter.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbCtrlEnter.Location = New System.Drawing.Point(363, 26)
+        Me.lbCtrlEnter.Name = "lbCtrlEnter"
+        Me.lbCtrlEnter.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbCtrlEnter.Size = New System.Drawing.Size(60, 12)
+        Me.lbCtrlEnter.TabIndex = 353
+        Me.lbCtrlEnter.Text = "Ctrl+Enter"
+        '
         'tbCodigo
         '
         Me.tbCodigo.BackColor = System.Drawing.Color.White
@@ -975,22 +991,6 @@ Partial Class F0_MCompras
         Me.grCompra.Size = New System.Drawing.Size(1239, 501)
         Me.grCompra.TabIndex = 0
         Me.grCompra.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
-        '
-        'lbCtrlEnter
-        '
-        Me.lbCtrlEnter.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbCtrlEnter.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbCtrlEnter.Font = New System.Drawing.Font("Georgia", 7.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbCtrlEnter.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbCtrlEnter.Location = New System.Drawing.Point(363, 26)
-        Me.lbCtrlEnter.Name = "lbCtrlEnter"
-        Me.lbCtrlEnter.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbCtrlEnter.Size = New System.Drawing.Size(60, 12)
-        Me.lbCtrlEnter.TabIndex = 353
-        Me.lbCtrlEnter.Text = "Ctrl+Enter"
         '
         'F0_MCompras
         '

@@ -266,4 +266,8 @@ Public Class PR_ResumenCaja
             End If
         End If
     End Sub
+
+    Private Sub PR_ResumenCaja_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnReportePagos)
+    End Sub
 End Class

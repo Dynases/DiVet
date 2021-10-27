@@ -344,4 +344,8 @@ Public Class F0_AnularFactura
     Private Sub btSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
         Me.Close()
     End Sub
+
+    Private Sub F0_AnularFactura_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnAnularFactura)
+    End Sub
 End Class

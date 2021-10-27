@@ -77,6 +77,7 @@ Partial Class Pr_SAldosPorAlmacenLinea
         Me.SuperTabPrincipal.ControlBox.MenuBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabPrincipal.ControlBox.MenuBox, Me.SuperTabPrincipal.ControlBox.CloseBox})
+        Me.SuperTabPrincipal.Size = New System.Drawing.Size(1047, 561)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelBuscador, 0)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelRegistro, 0)
         '
@@ -88,7 +89,7 @@ Partial Class Pr_SAldosPorAlmacenLinea
         'SuperTabControlPanelRegistro
         '
         Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(4)
-        Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(852, 561)
+        Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(1015, 561)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelIzq, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelPrincipal, 0)
@@ -107,7 +108,7 @@ Partial Class Pr_SAldosPorAlmacenLinea
         'PanelInferior
         '
         Me.PanelInferior.Margin = New System.Windows.Forms.Padding(4)
-        Me.PanelInferior.Size = New System.Drawing.Size(852, 36)
+        Me.PanelInferior.Size = New System.Drawing.Size(1015, 36)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Gold
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Gold
@@ -150,16 +151,17 @@ Partial Class Pr_SAldosPorAlmacenLinea
         'PanelPrincipal
         '
         Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(4)
-        Me.PanelPrincipal.Size = New System.Drawing.Size(489, 525)
+        Me.PanelPrincipal.Size = New System.Drawing.Size(652, 525)
         '
         'MPanelUserAct
         '
+        Me.MPanelUserAct.Location = New System.Drawing.Point(815, 0)
         Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(4)
         '
         'MReportViewer
         '
         Me.MReportViewer.Margin = New System.Windows.Forms.Padding(4)
-        Me.MReportViewer.Size = New System.Drawing.Size(489, 525)
+        Me.MReportViewer.Size = New System.Drawing.Size(652, 525)
         '
         'MGPFiltros
         '
@@ -432,7 +434,7 @@ Partial Class Pr_SAldosPorAlmacenLinea
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(884, 561)
+        Me.ClientSize = New System.Drawing.Size(1047, 561)
         Me.Location = New System.Drawing.Point(0, 0)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Pr_SAldosPorAlmacenLinea"

@@ -226,6 +226,7 @@ Partial Class PR_ResumenCaja
         '
         Me.tbClientes.Border.Class = "TextBoxBorder"
         Me.tbClientes.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbClientes.DisabledBackColor = System.Drawing.Color.White
         Me.tbClientes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbClientes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.tbClientes.Location = New System.Drawing.Point(73, 164)
@@ -259,6 +260,7 @@ Partial Class PR_ResumenCaja
         '
         Me.tbVendedor.Border.Class = "TextBoxBorder"
         Me.tbVendedor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbVendedor.DisabledBackColor = System.Drawing.Color.White
         Me.tbVendedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbVendedor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.tbVendedor.Location = New System.Drawing.Point(72, 115)
@@ -295,11 +297,13 @@ Partial Class PR_ResumenCaja
         '
         'tbCodCliente
         '
+        Me.tbCodCliente.BackColor = System.Drawing.Color.White
         '
         '
         '
         Me.tbCodCliente.Border.Class = "TextBoxBorder"
         Me.tbCodCliente.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbCodCliente.DisabledBackColor = System.Drawing.Color.White
         Me.tbCodCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbCodCliente.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.tbCodCliente.Location = New System.Drawing.Point(42, 164)
@@ -354,11 +358,13 @@ Partial Class PR_ResumenCaja
         '
         'tbCodigoVendedor
         '
+        Me.tbCodigoVendedor.BackColor = System.Drawing.Color.White
         '
         '
         '
         Me.tbCodigoVendedor.Border.Class = "TextBoxBorder"
         Me.tbCodigoVendedor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbCodigoVendedor.DisabledBackColor = System.Drawing.Color.White
         Me.tbCodigoVendedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbCodigoVendedor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.tbCodigoVendedor.Location = New System.Drawing.Point(44, 112)

@@ -1449,6 +1449,10 @@ salirIf:
 
     End Sub
 
+    Private Sub F0_Movimiento_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnMovimientos)
+    End Sub
+
 
 #End Region
 End Class

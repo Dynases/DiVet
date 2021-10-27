@@ -701,4 +701,8 @@ Public Class F0_KardexMovimiento
 
         Me.Close()
     End Sub
+
+    Private Sub F0_KardexMovimiento_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnKardex)
+    End Sub
 End Class

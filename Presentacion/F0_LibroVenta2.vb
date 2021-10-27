@@ -726,4 +726,8 @@ Public Class F0_LibroVenta2
             Timer1.Enabled = False
         End If
     End Sub
+
+    Private Sub F0_LibroVenta2_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnLibroVenta)
+    End Sub
 End Class

@@ -88,4 +88,7 @@ Public Class Pr_ArqueoDiario
         Me.Close()
     End Sub
 
+    Private Sub Pr_ArqueoDiario_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnArqueoDiario)
+    End Sub
 End Class

@@ -277,4 +277,7 @@ Public Class Pr_ReporteMorosidadGeneral
         End If
     End Sub
 
+    Private Sub Pr_ReporteMorosidadGeneral_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnReporteNotasPorCobrar)
+    End Sub
 End Class

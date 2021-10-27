@@ -1375,8 +1375,9 @@ salirIf:
         End If
     End Sub
 
-    Private Sub LabelX9_Click(sender As Object, e As EventArgs) Handles LabelX9.Click
 
+    Private Sub F0_MCompras_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnCompras)
     End Sub
 
 

@@ -3036,6 +3036,10 @@ salirIf:
         superTabControl1.SelectedTabIndex = 0
     End Sub
 
+    Private Sub F1_Ven_Venta_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnVenta)
+    End Sub
+
 
 
 #End Region

@@ -23,9 +23,9 @@ Partial Class F0_AnularFactura
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F0_AnularFactura))
-        Dim Background4 As DevComponents.DotNetBar.SuperGrid.Style.Background = New DevComponents.DotNetBar.SuperGrid.Style.Background()
-        Dim Background5 As DevComponents.DotNetBar.SuperGrid.Style.Background = New DevComponents.DotNetBar.SuperGrid.Style.Background()
-        Dim Background6 As DevComponents.DotNetBar.SuperGrid.Style.Background = New DevComponents.DotNetBar.SuperGrid.Style.Background()
+        Dim Background1 As DevComponents.DotNetBar.SuperGrid.Style.Background = New DevComponents.DotNetBar.SuperGrid.Style.Background()
+        Dim Background2 As DevComponents.DotNetBar.SuperGrid.Style.Background = New DevComponents.DotNetBar.SuperGrid.Style.Background()
+        Dim Background3 As DevComponents.DotNetBar.SuperGrid.Style.Background = New DevComponents.DotNetBar.SuperGrid.Style.Background()
         Me.TableLayoutPanelPrincipal = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupPanelListaFactura = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.DgdFactura = New DevComponents.DotNetBar.SuperGrid.SuperGridControl()
@@ -278,14 +278,14 @@ Partial Class F0_AnularFactura
         Me.DgdFactura.BackColor = System.Drawing.Color.WhiteSmoke
         Me.DgdFactura.DefaultVisualStyles.ColumnHeaderStyles.Default.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DgdFactura.DefaultVisualStyles.ColumnHeaderStyles.Default.TextColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
-        Background4.Color1 = System.Drawing.Color.Black
-        Me.DgdFactura.DefaultVisualStyles.RowStyles.Default.Background = Background4
-        Background5.Color1 = System.Drawing.Color.DodgerBlue
-        Me.DgdFactura.DefaultVisualStyles.RowStyles.Selected.Background = Background5
+        Background1.Color1 = System.Drawing.Color.Black
+        Me.DgdFactura.DefaultVisualStyles.RowStyles.Default.Background = Background1
+        Background2.Color1 = System.Drawing.Color.DodgerBlue
+        Me.DgdFactura.DefaultVisualStyles.RowStyles.Selected.Background = Background2
         Me.DgdFactura.DefaultVisualStyles.RowStyles.Selected.RowHeaderStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DgdFactura.DefaultVisualStyles.RowStyles.Selected.RowHeaderStyle.TextColor = System.Drawing.Color.White
-        Background6.Color1 = System.Drawing.Color.DodgerBlue
-        Me.DgdFactura.DefaultVisualStyles.RowStyles.SelectedMouseOver.Background = Background6
+        Background3.Color1 = System.Drawing.Color.DodgerBlue
+        Me.DgdFactura.DefaultVisualStyles.RowStyles.SelectedMouseOver.Background = Background3
         Me.DgdFactura.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgdFactura.FilterExprColors.Dim = System.Drawing.Color.CornflowerBlue
         Me.DgdFactura.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed

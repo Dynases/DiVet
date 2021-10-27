@@ -22,7 +22,7 @@ Partial Class PR_StockActualProductosLotes
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Pr_StockActualProductosLotes))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PR_StockActualProductosLotes))
         Dim cbGrupos_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
         Me.txtValor = New DevComponents.DotNetBar.Controls.TextBoxX()
@@ -68,12 +68,13 @@ Partial Class PR_StockActualProductosLotes
         Me.SuperTabPrincipal.ControlBox.MenuBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabPrincipal.ControlBox.MenuBox, Me.SuperTabPrincipal.ControlBox.CloseBox})
+        Me.SuperTabPrincipal.Size = New System.Drawing.Size(1052, 561)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelBuscador, 0)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelRegistro, 0)
         '
         'SuperTabControlPanelRegistro
         '
-        Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(852, 561)
+        Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(1020, 561)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelIzq, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelPrincipal, 0)
@@ -91,7 +92,7 @@ Partial Class PR_StockActualProductosLotes
         '
         'PanelInferior
         '
-        Me.PanelInferior.Size = New System.Drawing.Size(852, 36)
+        Me.PanelInferior.Size = New System.Drawing.Size(1020, 36)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Transparent
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
@@ -124,13 +125,23 @@ Partial Class PR_StockActualProductosLotes
         Me.BubbleBarUsuario.MouseOverTabColors.BorderColor = System.Drawing.SystemColors.Highlight
         Me.BubbleBarUsuario.SelectedTabColors.BorderColor = System.Drawing.Color.Black
         '
+        'btnSalir
+        '
+        '
+        'btnGenerar
+        '
+        '
         'PanelPrincipal
         '
-        Me.PanelPrincipal.Size = New System.Drawing.Size(489, 525)
+        Me.PanelPrincipal.Size = New System.Drawing.Size(657, 525)
+        '
+        'MPanelUserAct
+        '
+        Me.MPanelUserAct.Location = New System.Drawing.Point(820, 0)
         '
         'MReportViewer
         '
-        Me.MReportViewer.Size = New System.Drawing.Size(489, 525)
+        Me.MReportViewer.Size = New System.Drawing.Size(657, 525)
         '
         'MGPFiltros
         '
@@ -191,12 +202,15 @@ Partial Class PR_StockActualProductosLotes
         '
         'txtValor
         '
+        Me.txtValor.BackColor = System.Drawing.Color.White
         '
         '
         '
         Me.txtValor.Border.Class = "TextBoxBorder"
         Me.txtValor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtValor.DisabledBackColor = System.Drawing.Color.White
         Me.txtValor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtValor.ForeColor = System.Drawing.Color.Black
         Me.txtValor.Location = New System.Drawing.Point(213, 150)
         Me.txtValor.Name = "txtValor"
         Me.txtValor.PreventEnterBeep = True
@@ -337,13 +351,13 @@ Partial Class PR_StockActualProductosLotes
         Me.cbGrupos.TabIndex = 265
         Me.cbGrupos.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
-        'Pr_StockActualProductosLotes
+        'PR_StockActualProductosLotes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(884, 561)
+        Me.ClientSize = New System.Drawing.Size(1052, 561)
         Me.Location = New System.Drawing.Point(0, 0)
-        Me.Name = "Pr_StockActualProductosLotes"
+        Me.Name = "PR_StockActualProductosLotes"
         Me.Text = "Pr_StockActualProductosLotes"
         Me.Controls.SetChildIndex(Me.SuperTabPrincipal, 0)
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).EndInit()
