@@ -1240,7 +1240,6 @@ Public Class F0_PagosCredito
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
         If (Not _fnAccesible()) Then
             P_GenerarReporte()
-
         End If
     End Sub
     Private Sub P_GenerarReporte()
@@ -1274,7 +1273,6 @@ Public Class F0_PagosCredito
     Private Sub tbObservacion_Leave(sender As Object, e As EventArgs) Handles tbObservacion.Leave
         grfactura.Select()
     End Sub
-
 
     Private Sub F0_PagosCredito_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         _prCambiarColorPlomoOscuro(Presentacion.Principal.btnRealizarPAgos)

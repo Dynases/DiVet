@@ -176,6 +176,9 @@ Partial Class F1_Ven_Venta
         Me.PanelSuperior.Controls.SetChildIndex(Me.PanelToolBar1, 0)
         Me.PanelSuperior.Controls.SetChildIndex(Me.PanelToolBar2, 0)
         '
+        'btnNuevo
+        '
+        '
         'PanelInferior
         '
         Me.PanelInferior.Location = New System.Drawing.Point(0, 606)
@@ -208,6 +211,7 @@ Partial Class F1_Ven_Venta
         'MpanelBuscador
         '
         Me.MpanelBuscador.Controls.Add(Me.GroupPanel2)
+        Me.MpanelBuscador.Size = New System.Drawing.Size(1334, 645)
         '
         'TxtNombreUsu
         '
@@ -1728,7 +1732,7 @@ Partial Class F1_Ven_Venta
         Me.GroupPanel2.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupPanel2.Location = New System.Drawing.Point(0, 0)
         Me.GroupPanel2.Name = "GroupPanel2"
-        Me.GroupPanel2.Size = New System.Drawing.Size(930, 477)
+        Me.GroupPanel2.Size = New System.Drawing.Size(1334, 645)
         '
         '
         '
@@ -1768,7 +1772,7 @@ Partial Class F1_Ven_Venta
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel6.Location = New System.Drawing.Point(0, 0)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(924, 454)
+        Me.Panel6.Size = New System.Drawing.Size(1328, 622)
         Me.Panel6.TabIndex = 0
         '
         'grVentas
@@ -1790,7 +1794,7 @@ Partial Class F1_Ven_Venta
         Me.grVentas.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.grVentas.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
         Me.grVentas.SelectOnExpand = False
-        Me.grVentas.Size = New System.Drawing.Size(924, 454)
+        Me.grVentas.Size = New System.Drawing.Size(1328, 622)
         Me.grVentas.TabIndex = 0
         Me.grVentas.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '

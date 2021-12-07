@@ -26,6 +26,11 @@ Partial Class F1_Fic_Recibo
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F1_Fic_Recibo))
         Me.gpRecibo = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.PanelDatosR = New System.Windows.Forms.Panel()
+        Me.btnAgregarC = New DevComponents.DotNetBar.ButtonX()
+        Me.diPrecio = New DevComponents.Editors.DoubleInput()
+        Me.txtDescripcion = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.lbDescripcion = New DevComponents.DotNetBar.LabelX()
+        Me.lbPrecio = New DevComponents.DotNetBar.LabelX()
         Me.lbObservacion = New DevComponents.DotNetBar.LabelX()
         Me.txtObservacionR = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.dtpFrecibo = New System.Windows.Forms.DateTimePicker()
@@ -39,16 +44,20 @@ Partial Class F1_Fic_Recibo
         Me.PanelDatosRecibo = New System.Windows.Forms.Panel()
         Me.PanelDetalleRecibo = New System.Windows.Forms.Panel()
         Me.gpDetalleRecibo = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.GpPanelServicio = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.JGServicio = New Janus.Windows.GridEX.GridEX()
+        Me.JGDetalleRecibo = New Janus.Windows.GridEX.GridEX()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.txtTotalR = New DevComponents.Editors.DoubleInput()
         Me.lbTotalR = New DevComponents.DotNetBar.LabelX()
-        Me.JGDetalleRecibo = New Janus.Windows.GridEX.GridEX()
         Me.gpBusqRecibos = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.panelBusqRecibos = New System.Windows.Forms.Panel()
         Me.JGBusqRecibos = New Janus.Windows.GridEX.GridEX()
         Me.PanelToolBar2 = New System.Windows.Forms.Panel()
         Me.btnImprimir = New DevComponents.DotNetBar.ButtonX()
+        Me.txtEstadoVenta = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.MpanelSuperior.SuspendLayout()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelToolBar1.SuspendLayout()
@@ -62,13 +71,17 @@ Partial Class F1_Fic_Recibo
         CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpRecibo.SuspendLayout()
         Me.PanelDatosR.SuspendLayout()
+        CType(Me.diPrecio, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelDatosRecibo.SuspendLayout()
         Me.PanelDetalleRecibo.SuspendLayout()
         Me.gpDetalleRecibo.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         Me.GpPanelServicio.SuspendLayout()
         CType(Me.JGServicio, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtTotalR, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.JGDetalleRecibo, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
+        Me.Panel4.SuspendLayout()
+        CType(Me.txtTotalR, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpBusqRecibos.SuspendLayout()
         Me.panelBusqRecibos.SuspendLayout()
         CType(Me.JGBusqRecibos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,7 +92,9 @@ Partial Class F1_Fic_Recibo
         '
         Me.MpanelSuperior.Controls.Add(Me.PanelDetalleRecibo)
         Me.MpanelSuperior.Controls.Add(Me.PanelDatosRecibo)
-        Me.MpanelSuperior.Size = New System.Drawing.Size(907, 481)
+        Me.MpanelSuperior.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.MpanelSuperior.Location = New System.Drawing.Point(0, 72)
+        Me.MpanelSuperior.Size = New System.Drawing.Size(913, 534)
         '
         'PanelSuperior
         '
@@ -102,7 +117,7 @@ Partial Class F1_Fic_Recibo
         '
         'PanelInferior
         '
-        Me.PanelInferior.Location = New System.Drawing.Point(0, 556)
+        Me.PanelInferior.Location = New System.Drawing.Point(0, 606)
         Me.PanelInferior.Size = New System.Drawing.Size(913, 39)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Transparent
@@ -132,6 +147,7 @@ Partial Class F1_Fic_Recibo
         'MpanelBuscador
         '
         Me.MpanelBuscador.Controls.Add(Me.gpBusqRecibos)
+        Me.MpanelBuscador.Size = New System.Drawing.Size(913, 645)
         '
         'TxtNombreUsu
         '
@@ -163,7 +179,7 @@ Partial Class F1_Fic_Recibo
         '
         'PanelUsuario
         '
-        Me.PanelUsuario.Location = New System.Drawing.Point(424, 138)
+        Me.PanelUsuario.Location = New System.Drawing.Point(675, 174)
         '
         'superTabControl1
         '
@@ -181,7 +197,7 @@ Partial Class F1_Fic_Recibo
         Me.superTabControl1.ControlBox.Name = ""
         Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
         Me.superTabControl1.SelectedTabIndex = 1
-        Me.superTabControl1.Size = New System.Drawing.Size(913, 620)
+        Me.superTabControl1.Size = New System.Drawing.Size(913, 670)
         '
         'gpRecibo
         '
@@ -190,11 +206,12 @@ Partial Class F1_Fic_Recibo
         Me.gpRecibo.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.gpRecibo.Controls.Add(Me.PanelDatosR)
         Me.gpRecibo.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpRecibo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpRecibo.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpRecibo.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.gpRecibo.Location = New System.Drawing.Point(9, 4)
+        Me.gpRecibo.Location = New System.Drawing.Point(0, 0)
         Me.gpRecibo.Name = "gpRecibo"
-        Me.gpRecibo.Size = New System.Drawing.Size(881, 128)
+        Me.gpRecibo.Size = New System.Drawing.Size(913, 190)
         '
         '
         '
@@ -229,6 +246,12 @@ Partial Class F1_Fic_Recibo
         'PanelDatosR
         '
         Me.PanelDatosR.AutoScroll = True
+        Me.PanelDatosR.Controls.Add(Me.txtEstadoVenta)
+        Me.PanelDatosR.Controls.Add(Me.btnAgregarC)
+        Me.PanelDatosR.Controls.Add(Me.diPrecio)
+        Me.PanelDatosR.Controls.Add(Me.txtDescripcion)
+        Me.PanelDatosR.Controls.Add(Me.lbDescripcion)
+        Me.PanelDatosR.Controls.Add(Me.lbPrecio)
         Me.PanelDatosR.Controls.Add(Me.lbObservacion)
         Me.PanelDatosR.Controls.Add(Me.txtObservacionR)
         Me.PanelDatosR.Controls.Add(Me.dtpFrecibo)
@@ -242,8 +265,97 @@ Partial Class F1_Fic_Recibo
         Me.PanelDatosR.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelDatosR.Location = New System.Drawing.Point(0, 0)
         Me.PanelDatosR.Name = "PanelDatosR"
-        Me.PanelDatosR.Size = New System.Drawing.Size(875, 105)
+        Me.PanelDatosR.Size = New System.Drawing.Size(907, 167)
         Me.PanelDatosR.TabIndex = 234
+        '
+        'btnAgregarC
+        '
+        Me.btnAgregarC.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnAgregarC.BackColor = System.Drawing.Color.White
+        Me.btnAgregarC.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
+        Me.btnAgregarC.FadeEffect = False
+        Me.btnAgregarC.FocusCuesEnabled = False
+        Me.btnAgregarC.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAgregarC.Image = Global.Presentacion.My.Resources.Resources.checked
+        Me.btnAgregarC.ImageFixedSize = New System.Drawing.Size(20, 20)
+        Me.btnAgregarC.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btnAgregarC.Location = New System.Drawing.Point(547, 93)
+        Me.btnAgregarC.Name = "btnAgregarC"
+        Me.btnAgregarC.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.btnAgregarC.Size = New System.Drawing.Size(110, 39)
+        Me.btnAgregarC.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
+        Me.btnAgregarC.SymbolSize = 5.0!
+        Me.btnAgregarC.TabIndex = 267
+        Me.btnAgregarC.Text = "Agregar"
+        '
+        'diPrecio
+        '
+        '
+        '
+        '
+        Me.diPrecio.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.diPrecio.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.diPrecio.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.diPrecio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.diPrecio.Increment = 1.0R
+        Me.diPrecio.Location = New System.Drawing.Point(547, 58)
+        Me.diPrecio.LockUpdateChecked = False
+        Me.diPrecio.MinValue = 0R
+        Me.diPrecio.Name = "diPrecio"
+        Me.diPrecio.Size = New System.Drawing.Size(110, 21)
+        Me.diPrecio.TabIndex = 264
+        Me.diPrecio.WatermarkAlignment = DevComponents.Editors.eTextAlignment.Right
+        '
+        'txtDescripcion
+        '
+        Me.txtDescripcion.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.txtDescripcion.Border.Class = "TextBoxBorder"
+        Me.txtDescripcion.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtDescripcion.DisabledBackColor = System.Drawing.Color.White
+        Me.txtDescripcion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtDescripcion.ForeColor = System.Drawing.Color.Black
+        Me.txtDescripcion.Location = New System.Drawing.Point(547, 13)
+        Me.txtDescripcion.MaxLength = 200
+        Me.txtDescripcion.Multiline = True
+        Me.txtDescripcion.Name = "txtDescripcion"
+        Me.txtDescripcion.PreventEnterBeep = True
+        Me.txtDescripcion.Size = New System.Drawing.Size(300, 35)
+        Me.txtDescripcion.TabIndex = 263
+        '
+        'lbDescripcion
+        '
+        Me.lbDescripcion.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbDescripcion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbDescripcion.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbDescripcion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbDescripcion.Location = New System.Drawing.Point(451, 14)
+        Me.lbDescripcion.Name = "lbDescripcion"
+        Me.lbDescripcion.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbDescripcion.Size = New System.Drawing.Size(86, 22)
+        Me.lbDescripcion.TabIndex = 266
+        Me.lbDescripcion.Text = "Descripción:"
+        '
+        'lbPrecio
+        '
+        Me.lbPrecio.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbPrecio.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbPrecio.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbPrecio.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbPrecio.Location = New System.Drawing.Point(451, 59)
+        Me.lbPrecio.Name = "lbPrecio"
+        Me.lbPrecio.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbPrecio.Size = New System.Drawing.Size(77, 19)
+        Me.lbPrecio.TabIndex = 265
+        Me.lbPrecio.Text = "Precio Bs.:"
         '
         'lbObservacion
         '
@@ -254,7 +366,7 @@ Partial Class F1_Fic_Recibo
         Me.lbObservacion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbObservacion.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbObservacion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbObservacion.Location = New System.Drawing.Point(471, 42)
+        Me.lbObservacion.Location = New System.Drawing.Point(37, 122)
         Me.lbObservacion.Name = "lbObservacion"
         Me.lbObservacion.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbObservacion.Size = New System.Drawing.Size(87, 23)
@@ -272,11 +384,11 @@ Partial Class F1_Fic_Recibo
         Me.txtObservacionR.DisabledBackColor = System.Drawing.Color.White
         Me.txtObservacionR.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtObservacionR.ForeColor = System.Drawing.Color.Black
-        Me.txtObservacionR.Location = New System.Drawing.Point(572, 42)
+        Me.txtObservacionR.Location = New System.Drawing.Point(139, 121)
         Me.txtObservacionR.Multiline = True
         Me.txtObservacionR.Name = "txtObservacionR"
         Me.txtObservacionR.PreventEnterBeep = True
-        Me.txtObservacionR.Size = New System.Drawing.Size(242, 49)
+        Me.txtObservacionR.Size = New System.Drawing.Size(280, 40)
         Me.txtObservacionR.TabIndex = 261
         '
         'dtpFrecibo
@@ -340,7 +452,7 @@ Partial Class F1_Fic_Recibo
         '
         'txtNPropietarioR
         '
-        Me.txtNPropietarioR.BackColor = System.Drawing.Color.LightGray
+        Me.txtNPropietarioR.BackColor = System.Drawing.Color.White
         '
         '
         '
@@ -358,7 +470,7 @@ Partial Class F1_Fic_Recibo
         '
         'txtPacienteR
         '
-        Me.txtPacienteR.BackColor = System.Drawing.Color.LightGray
+        Me.txtPacienteR.BackColor = System.Drawing.Color.White
         '
         '
         '
@@ -368,10 +480,10 @@ Partial Class F1_Fic_Recibo
         Me.txtPacienteR.Enabled = False
         Me.txtPacienteR.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPacienteR.ForeColor = System.Drawing.Color.Black
-        Me.txtPacienteR.Location = New System.Drawing.Point(572, 13)
+        Me.txtPacienteR.Location = New System.Drawing.Point(139, 94)
         Me.txtPacienteR.Name = "txtPacienteR"
         Me.txtPacienteR.PreventEnterBeep = True
-        Me.txtPacienteR.Size = New System.Drawing.Size(242, 22)
+        Me.txtPacienteR.Size = New System.Drawing.Size(280, 22)
         Me.txtPacienteR.TabIndex = 2
         '
         'lbPacienteR
@@ -383,7 +495,7 @@ Partial Class F1_Fic_Recibo
         Me.lbPacienteR.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbPacienteR.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbPacienteR.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbPacienteR.Location = New System.Drawing.Point(471, 10)
+        Me.lbPacienteR.Location = New System.Drawing.Point(37, 93)
         Me.lbPacienteR.Name = "lbPacienteR"
         Me.lbPacienteR.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbPacienteR.Size = New System.Drawing.Size(64, 23)
@@ -392,7 +504,7 @@ Partial Class F1_Fic_Recibo
         '
         'txtIdRecibo
         '
-        Me.txtIdRecibo.BackColor = System.Drawing.Color.LightGray
+        Me.txtIdRecibo.BackColor = System.Drawing.Color.White
         '
         '
         '
@@ -411,17 +523,19 @@ Partial Class F1_Fic_Recibo
         'PanelDatosRecibo
         '
         Me.PanelDatosRecibo.Controls.Add(Me.gpRecibo)
-        Me.PanelDatosRecibo.Location = New System.Drawing.Point(7, 4)
+        Me.PanelDatosRecibo.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelDatosRecibo.Location = New System.Drawing.Point(0, 0)
         Me.PanelDatosRecibo.Name = "PanelDatosRecibo"
-        Me.PanelDatosRecibo.Size = New System.Drawing.Size(895, 146)
+        Me.PanelDatosRecibo.Size = New System.Drawing.Size(913, 190)
         Me.PanelDatosRecibo.TabIndex = 301
         '
         'PanelDetalleRecibo
         '
         Me.PanelDetalleRecibo.Controls.Add(Me.gpDetalleRecibo)
-        Me.PanelDetalleRecibo.Location = New System.Drawing.Point(7, 156)
+        Me.PanelDetalleRecibo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelDetalleRecibo.Location = New System.Drawing.Point(0, 190)
         Me.PanelDetalleRecibo.Name = "PanelDetalleRecibo"
-        Me.PanelDetalleRecibo.Size = New System.Drawing.Size(895, 325)
+        Me.PanelDetalleRecibo.Size = New System.Drawing.Size(913, 344)
         Me.PanelDetalleRecibo.TabIndex = 302
         '
         'gpDetalleRecibo
@@ -429,15 +543,14 @@ Partial Class F1_Fic_Recibo
         Me.gpDetalleRecibo.BackColor = System.Drawing.Color.White
         Me.gpDetalleRecibo.CanvasColor = System.Drawing.SystemColors.Control
         Me.gpDetalleRecibo.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
-        Me.gpDetalleRecibo.Controls.Add(Me.GpPanelServicio)
-        Me.gpDetalleRecibo.Controls.Add(Me.txtTotalR)
-        Me.gpDetalleRecibo.Controls.Add(Me.lbTotalR)
-        Me.gpDetalleRecibo.Controls.Add(Me.JGDetalleRecibo)
+        Me.gpDetalleRecibo.Controls.Add(Me.Panel2)
+        Me.gpDetalleRecibo.Controls.Add(Me.Panel3)
         Me.gpDetalleRecibo.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpDetalleRecibo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpDetalleRecibo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gpDetalleRecibo.Location = New System.Drawing.Point(3, 3)
+        Me.gpDetalleRecibo.Location = New System.Drawing.Point(0, 0)
         Me.gpDetalleRecibo.Name = "gpDetalleRecibo"
-        Me.gpDetalleRecibo.Size = New System.Drawing.Size(888, 319)
+        Me.gpDetalleRecibo.Size = New System.Drawing.Size(913, 344)
         '
         '
         '
@@ -470,6 +583,16 @@ Partial Class F1_Fic_Recibo
         Me.gpDetalleRecibo.TabIndex = 110
         Me.gpDetalleRecibo.Text = "DETALLE  RECIBO"
         '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.GpPanelServicio)
+        Me.Panel2.Controls.Add(Me.JGDetalleRecibo)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(907, 281)
+        Me.Panel2.TabIndex = 261
+        '
         'GpPanelServicio
         '
         Me.GpPanelServicio.BackColor = System.Drawing.Color.White
@@ -478,10 +601,10 @@ Partial Class F1_Fic_Recibo
         Me.GpPanelServicio.Controls.Add(Me.JGServicio)
         Me.GpPanelServicio.DisabledBackColor = System.Drawing.Color.Empty
         Me.GpPanelServicio.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GpPanelServicio.Location = New System.Drawing.Point(-3, 34)
+        Me.GpPanelServicio.Location = New System.Drawing.Point(15, 79)
         Me.GpPanelServicio.Name = "GpPanelServicio"
         Me.GpPanelServicio.Padding = New System.Windows.Forms.Padding(5)
-        Me.GpPanelServicio.Size = New System.Drawing.Size(882, 219)
+        Me.GpPanelServicio.Size = New System.Drawing.Size(882, 114)
         '
         '
         '
@@ -521,9 +644,39 @@ Partial Class F1_Fic_Recibo
         Me.JGServicio.Name = "JGServicio"
         Me.JGServicio.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.JGServicio.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.JGServicio.Size = New System.Drawing.Size(872, 193)
+        Me.JGServicio.Size = New System.Drawing.Size(872, 88)
         Me.JGServicio.TabIndex = 0
         Me.JGServicio.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'JGDetalleRecibo
+        '
+        Me.JGDetalleRecibo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.JGDetalleRecibo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.JGDetalleRecibo.HeaderFormatStyle.FontBold = Janus.Windows.GridEX.TriState.[True]
+        Me.JGDetalleRecibo.Location = New System.Drawing.Point(0, 0)
+        Me.JGDetalleRecibo.Name = "JGDetalleRecibo"
+        Me.JGDetalleRecibo.Size = New System.Drawing.Size(907, 281)
+        Me.JGDetalleRecibo.TabIndex = 257
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
+        Me.Panel3.Controls.Add(Me.Panel4)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel3.Location = New System.Drawing.Point(0, 281)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(907, 40)
+        Me.Panel3.TabIndex = 261
+        '
+        'Panel4
+        '
+        Me.Panel4.Controls.Add(Me.txtTotalR)
+        Me.Panel4.Controls.Add(Me.lbTotalR)
+        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel4.Location = New System.Drawing.Point(707, 0)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(200, 40)
+        Me.Panel4.TabIndex = 260
         '
         'txtTotalR
         '
@@ -535,7 +688,7 @@ Partial Class F1_Fic_Recibo
         Me.txtTotalR.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtTotalR.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotalR.Increment = 1.0R
-        Me.txtTotalR.Location = New System.Drawing.Point(756, 261)
+        Me.txtTotalR.Location = New System.Drawing.Point(76, 11)
         Me.txtTotalR.MinValue = 0R
         Me.txtTotalR.Name = "txtTotalR"
         Me.txtTotalR.Size = New System.Drawing.Size(119, 21)
@@ -551,21 +704,12 @@ Partial Class F1_Fic_Recibo
         Me.lbTotalR.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbTotalR.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbTotalR.ForeColor = System.Drawing.Color.White
-        Me.lbTotalR.Location = New System.Drawing.Point(705, 263)
+        Me.lbTotalR.Location = New System.Drawing.Point(25, 11)
         Me.lbTotalR.Name = "lbTotalR"
         Me.lbTotalR.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbTotalR.Size = New System.Drawing.Size(41, 18)
         Me.lbTotalR.TabIndex = 259
         Me.lbTotalR.Text = "Total:"
-        '
-        'JGDetalleRecibo
-        '
-        Me.JGDetalleRecibo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.JGDetalleRecibo.HeaderFormatStyle.FontBold = Janus.Windows.GridEX.TriState.[True]
-        Me.JGDetalleRecibo.Location = New System.Drawing.Point(3, 3)
-        Me.JGDetalleRecibo.Name = "JGDetalleRecibo"
-        Me.JGDetalleRecibo.Size = New System.Drawing.Size(876, 246)
-        Me.JGDetalleRecibo.TabIndex = 257
         '
         'gpBusqRecibos
         '
@@ -574,10 +718,11 @@ Partial Class F1_Fic_Recibo
         Me.gpBusqRecibos.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.gpBusqRecibos.Controls.Add(Me.panelBusqRecibos)
         Me.gpBusqRecibos.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpBusqRecibos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpBusqRecibos.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gpBusqRecibos.Location = New System.Drawing.Point(7, 3)
+        Me.gpBusqRecibos.Location = New System.Drawing.Point(0, 0)
         Me.gpBusqRecibos.Name = "gpBusqRecibos"
-        Me.gpBusqRecibos.Size = New System.Drawing.Size(899, 589)
+        Me.gpBusqRecibos.Size = New System.Drawing.Size(913, 645)
         '
         '
         '
@@ -617,7 +762,7 @@ Partial Class F1_Fic_Recibo
         Me.panelBusqRecibos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelBusqRecibos.Location = New System.Drawing.Point(0, 0)
         Me.panelBusqRecibos.Name = "panelBusqRecibos"
-        Me.panelBusqRecibos.Size = New System.Drawing.Size(893, 566)
+        Me.panelBusqRecibos.Size = New System.Drawing.Size(907, 622)
         Me.panelBusqRecibos.TabIndex = 0
         '
         'JGBusqRecibos
@@ -639,7 +784,7 @@ Partial Class F1_Fic_Recibo
         Me.JGBusqRecibos.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.JGBusqRecibos.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
         Me.JGBusqRecibos.SelectOnExpand = False
-        Me.JGBusqRecibos.Size = New System.Drawing.Size(893, 566)
+        Me.JGBusqRecibos.Size = New System.Drawing.Size(907, 622)
         Me.JGBusqRecibos.TabIndex = 0
         Me.JGBusqRecibos.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -670,12 +815,31 @@ Partial Class F1_Fic_Recibo
         Me.btnImprimir.TextColor = System.Drawing.Color.White
         Me.btnImprimir.Visible = False
         '
+        'txtEstadoVenta
+        '
+        Me.txtEstadoVenta.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.txtEstadoVenta.Border.Class = "TextBoxBorder"
+        Me.txtEstadoVenta.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtEstadoVenta.DisabledBackColor = System.Drawing.Color.White
+        Me.txtEstadoVenta.Enabled = False
+        Me.txtEstadoVenta.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtEstadoVenta.ForeColor = System.Drawing.Color.Black
+        Me.txtEstadoVenta.Location = New System.Drawing.Point(453, 93)
+        Me.txtEstadoVenta.Name = "txtEstadoVenta"
+        Me.txtEstadoVenta.PreventEnterBeep = True
+        Me.txtEstadoVenta.Size = New System.Drawing.Size(60, 22)
+        Me.txtEstadoVenta.TabIndex = 268
+        Me.txtEstadoVenta.Visible = False
+        '
         'F1_Fic_Recibo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(913, 620)
+        Me.ClientSize = New System.Drawing.Size(913, 670)
         Me.Name = "F1_Fic_Recibo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RECIBOS"
@@ -695,13 +859,17 @@ Partial Class F1_Fic_Recibo
         Me.gpRecibo.ResumeLayout(False)
         Me.PanelDatosR.ResumeLayout(False)
         Me.PanelDatosR.PerformLayout()
+        CType(Me.diPrecio, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelDatosRecibo.ResumeLayout(False)
         Me.PanelDetalleRecibo.ResumeLayout(False)
         Me.gpDetalleRecibo.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
         Me.GpPanelServicio.ResumeLayout(False)
         CType(Me.JGServicio, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtTotalR, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.JGDetalleRecibo, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel4.ResumeLayout(False)
+        CType(Me.txtTotalR, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gpBusqRecibos.ResumeLayout(False)
         Me.panelBusqRecibos.ResumeLayout(False)
         CType(Me.JGBusqRecibos, System.ComponentModel.ISupportInitialize).EndInit()
@@ -722,17 +890,26 @@ Partial Class F1_Fic_Recibo
     Friend WithEvents PanelDetalleRecibo As Panel
     Friend WithEvents PanelDatosRecibo As Panel
     Friend WithEvents JGDetalleRecibo As Janus.Windows.GridEX.GridEX
-    Friend WithEvents txtTotalR As DevComponents.Editors.DoubleInput
-    Friend WithEvents lbTotalR As DevComponents.DotNetBar.LabelX
     Friend WithEvents dtpFrecibo As DateTimePicker
     Friend WithEvents gpBusqRecibos As DevComponents.DotNetBar.Controls.GroupPanel
     Friend WithEvents panelBusqRecibos As Panel
     Friend WithEvents JGBusqRecibos As Janus.Windows.GridEX.GridEX
     Friend WithEvents lbObservacion As DevComponents.DotNetBar.LabelX
     Friend WithEvents txtObservacionR As DevComponents.DotNetBar.Controls.TextBoxX
-    Friend WithEvents GpPanelServicio As DevComponents.DotNetBar.Controls.GroupPanel
-    Friend WithEvents JGServicio As Janus.Windows.GridEX.GridEX
     Protected WithEvents PanelToolBar2 As Panel
     Protected WithEvents btnImprimir As DevComponents.DotNetBar.ButtonX
     Friend WithEvents gpDetalleRecibo As DevComponents.DotNetBar.Controls.GroupPanel
+    Friend WithEvents btnAgregarC As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents diPrecio As DevComponents.Editors.DoubleInput
+    Friend WithEvents txtDescripcion As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents lbDescripcion As DevComponents.DotNetBar.LabelX
+    Friend WithEvents lbPrecio As DevComponents.DotNetBar.LabelX
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents GpPanelServicio As DevComponents.DotNetBar.Controls.GroupPanel
+    Friend WithEvents JGServicio As Janus.Windows.GridEX.GridEX
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents txtTotalR As DevComponents.Editors.DoubleInput
+    Friend WithEvents lbTotalR As DevComponents.DotNetBar.LabelX
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents txtEstadoVenta As DevComponents.DotNetBar.Controls.TextBoxX
 End Class

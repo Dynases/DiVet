@@ -644,6 +644,7 @@ Public Class F1_Fic_ReciboInt
             _prInhabilitar()
             _prFiltrar(2)
             _Limpiar = True
+            btnGrabar.Enabled = False
             'Dim info As New TaskDialogInfo("RECIBO".ToUpper, eTaskDialogIcon.Delete, "RECIBO".ToUpper, "¿Desea imprimir el recibo?".ToUpper, eTaskDialogButton.Yes Or eTaskDialogButton.Cancel, eTaskDialogBackgroundColor.Blue)
             'Dim result As eTaskDialogResult = TaskDialog.Show(info)
             'If result = eTaskDialogResult.Yes Then
@@ -769,6 +770,11 @@ Public Class F1_Fic_ReciboInt
         End If
 
     End Sub
+
+    Private Sub JGBusqRecibosI_DoubleClick(sender As Object, e As EventArgs) Handles JGBusqRecibosI.DoubleClick
+        superTabControl1.SelectedTabIndex = 0
+    End Sub
+
     Private Function _prVerificar(_POS As Integer) As Boolean
         Dim Result As Boolean
         If JGBusqRecibosI.RowCount <> 0 Then

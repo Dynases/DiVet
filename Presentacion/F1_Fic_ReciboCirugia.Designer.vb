@@ -137,6 +137,7 @@ Partial Class F1_Fic_ReciboCirugia
         'MpanelBuscador
         '
         Me.MpanelBuscador.Controls.Add(Me.gpBusqRecibos)
+        Me.MpanelBuscador.Size = New System.Drawing.Size(984, 656)
         '
         'TxtNombreUsu
         '
@@ -661,7 +662,7 @@ Partial Class F1_Fic_ReciboCirugia
         '
         'txtIdReciboC
         '
-        Me.txtIdReciboC.BackColor = System.Drawing.Color.LightGray
+        Me.txtIdReciboC.BackColor = System.Drawing.Color.White
         '
         '
         '
@@ -786,7 +787,7 @@ Partial Class F1_Fic_ReciboCirugia
         Me.gpBusqRecibos.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpBusqRecibos.Location = New System.Drawing.Point(0, 0)
         Me.gpBusqRecibos.Name = "gpBusqRecibos"
-        Me.gpBusqRecibos.Size = New System.Drawing.Size(930, 477)
+        Me.gpBusqRecibos.Size = New System.Drawing.Size(984, 656)
         '
         '
         '
@@ -826,7 +827,7 @@ Partial Class F1_Fic_ReciboCirugia
         Me.panelBusqRecibos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelBusqRecibos.Location = New System.Drawing.Point(0, 0)
         Me.panelBusqRecibos.Name = "panelBusqRecibos"
-        Me.panelBusqRecibos.Size = New System.Drawing.Size(924, 454)
+        Me.panelBusqRecibos.Size = New System.Drawing.Size(978, 633)
         Me.panelBusqRecibos.TabIndex = 0
         '
         'JGBusqRecibosC
@@ -848,7 +849,7 @@ Partial Class F1_Fic_ReciboCirugia
         Me.JGBusqRecibosC.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.JGBusqRecibosC.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
         Me.JGBusqRecibosC.SelectOnExpand = False
-        Me.JGBusqRecibosC.Size = New System.Drawing.Size(924, 454)
+        Me.JGBusqRecibosC.Size = New System.Drawing.Size(978, 633)
         Me.JGBusqRecibosC.TabIndex = 0
         Me.JGBusqRecibosC.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '

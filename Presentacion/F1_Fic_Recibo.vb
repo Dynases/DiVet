@@ -20,8 +20,8 @@ Public Class F1_Fic_Recibo
     Private Sub JGDetalleRecibo_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGDetalleRecibo.EditingCell
         If (_fnAccesible()) Then
             'Habilitar solo las columnas de cantidad, detalle
-            If (e.Column.Index = JGDetalleRecibo.RootTable.Columns("Servicio").Index Or
-                e.Column.Index = JGDetalleRecibo.RootTable.Columns("rlCant").Index) Then
+            If e.Column.Index = JGDetalleRecibo.RootTable.Columns("rlCant").Index Then
+                '(Or e.Column.Index = JGDetalleRecibo.RootTable.Columns("Servicio").Index 
                 e.Cancel = False
             Else
                 e.Cancel = True
@@ -254,6 +254,7 @@ salirIf:
         End If
     End Sub
     Private Sub _prMostrarRecibo(_POS As Integer)
+
         If JGBusqRecibos.RowCount <> 0 Then
             JGBusqRecibos.Row = _POS
             With JGBusqRecibos
@@ -263,6 +264,7 @@ salirIf:
                 txtPacienteR.Text = .GetValue("pbnomb")
                 txtObservacionR.Text = .GetValue("rkObser")
                 txtTotalR.Text = .GetValue("rkTotal")
+                txtEstadoVenta.Text = .GetValue("Venta")
                 'Cargar el detalle
                 _prCargarReciboDetalle(IIf(txtIdRecibo.Text = String.Empty, 0, txtIdRecibo.Text))
                 LblPaginacion.Text = Str(_POS + 1) + "/" + JGBusqRecibos.RowCount.ToString
@@ -379,7 +381,7 @@ salirIf:
         End With
         With JGDetalleRecibo.RootTable.Columns("Servicio")
             .Width = 270
-            .Caption = "Servicio"
+            .Caption = "Descripción"
             .Visible = True
         End With
         With JGDetalleRecibo.RootTable.Columns("rlCant")
@@ -411,7 +413,7 @@ salirIf:
             .Width = 90
             .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
             .Caption = "Eliminar"
-            .Visible = True
+            .Visible = False
         End With
         With JGDetalleRecibo.RootTable.Columns("rlFecha")
             .Width = 150
@@ -447,6 +449,9 @@ salirIf:
         txtTotalR.IsInputReadOnly = True
         dtpFrecibo.Enabled = False
         _Limpiar = False
+        txtDescripcion.ReadOnly = True
+        diPrecio.IsInputReadOnly = True
+        btnAgregarC.Enabled = False
     End Sub
     Private Sub _prHabilitar()
         txtIdRecibo.ReadOnly = False
@@ -455,6 +460,9 @@ salirIf:
         txtPacienteR.ReadOnly = False
         txtTotalR.IsInputReadOnly = False
         dtpFrecibo.Enabled = True
+        txtDescripcion.ReadOnly = False
+        diPrecio.IsInputReadOnly = False
+        btnAgregarC.Enabled = True
     End Sub
     Private Sub _prLimpiar()
         txtIdRecibo.Clear()
@@ -463,6 +471,9 @@ salirIf:
         txtPacienteR.Clear()
         txtTotalR.ResetText()
         dtpFrecibo.Value = DateTime.Today()
+        txtEstadoVenta.Clear()
+        txtDescripcion.Clear()
+        diPrecio.ResetText()
         _prCargarReciboDetalle(-1)
         _prAddDetalleRecibo()
     End Sub
@@ -472,6 +483,16 @@ salirIf:
         img.Save(Bin, Imaging.ImageFormat.Png)
         'seg.fjId,seg.fj_FbId,seg.fjEstado,seg.fjSeguimientomiento,seg.fjFecha,seg.fjHora,seg.fjUsuario
         CType(JGDetalleRecibo.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, 0, "", 0, 0, 0, DateTime.Now, DateTime.Now.ToShortTimeString(), L_Usuario, 0, Bin.GetBuffer)
+    End Sub
+
+    Private Sub _prAddDetalleReciboDescripcionPrecio()
+        Dim Bin As New MemoryStream
+        Dim img As New Bitmap(My.Resources.delete, 28, 28)
+        img.Save(Bin, Imaging.ImageFormat.Png)
+        CType(JGDetalleRecibo.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, 0, txtDescripcion.Text, 1, IIf(diPrecio.Value = 0 Or diPrecio.Text = "", 0, diPrecio.Text),
+                                                              IIf(diPrecio.Value = 0 Or diPrecio.Text = "", 0, diPrecio.Text), DateTime.Now, DateTime.Now.ToShortTimeString(), L_Usuario, 0, Bin.GetBuffer)
+
+
     End Sub
     Public Function _fnSiguienteNumi()
         Dim dt As DataTable = CType(JGDetalleRecibo.DataSource, DataTable)
@@ -547,7 +568,7 @@ salirIf:
         With JGServicio.RootTable.Columns("scDesc")
             .Width = 350
             .Visible = True
-            .Caption = "SERVICIOS"
+            .Caption = "DESCRIPCIÓN"
         End With
 
         With JGServicio.RootTable.Columns("scPrecio")
@@ -606,7 +627,7 @@ salirIf:
             Dim Row As Janus.Windows.GridEX.GridEXRow
             Row = frmAyuda.filaSelect
             Dim pos As Integer = -1
-            'JGDetalleRecibo.Row = JGDetalleRecibo.RowCount - 1
+            JGDetalleRecibo.Row = JGDetalleRecibo.RowCount - 1
             '_fnObtenerFilaDetalle(pos, JGDetalleRecibo.GetValue("rlId"))
             _fnObtenerFilaDetalle(pos, JGDetalleRecibo.GetValue("rlId")) ' COd Det
             Dim numiProd = Row.Cells("scId").Value 'Cod Profucto
@@ -690,6 +711,7 @@ salirIf:
             _prInhabilitar()
             _prFiltrar(2)
             _Limpiar = True
+            btnGrabar.Enabled = False
             'Dim info As New TaskDialogInfo("RECIBO".ToUpper, eTaskDialogIcon.Delete, "RECIBO".ToUpper, "¿Desea imprimir el recibo?".ToUpper, eTaskDialogButton.Yes Or eTaskDialogButton.Cancel, eTaskDialogBackgroundColor.Blue)
             'Dim result As eTaskDialogResult = TaskDialog.Show(info)
             'If result = eTaskDialogResult.Yes Then
@@ -715,11 +737,11 @@ salirIf:
                                       )
             _prInhabilitar()
             _prFiltrar(2)
-            Dim info As New TaskDialogInfo("RECIBO".ToUpper, eTaskDialogIcon.Delete, "RECIBO".ToUpper, "¿Desea imprimir el recibo?".ToUpper, eTaskDialogButton.Yes Or eTaskDialogButton.Cancel, eTaskDialogBackgroundColor.Blue)
-            Dim result As eTaskDialogResult = TaskDialog.Show(info)
-            If result = eTaskDialogResult.Yes Then
-                _prImprimir()
-            End If
+            'Dim info As New TaskDialogInfo("RECIBO".ToUpper, eTaskDialogIcon.Delete, "RECIBO".ToUpper, "¿Desea imprimir el recibo?".ToUpper, eTaskDialogButton.Yes Or eTaskDialogButton.Cancel, eTaskDialogBackgroundColor.Blue)
+            'Dim result As eTaskDialogResult = TaskDialog.Show(info)
+            'If result = eTaskDialogResult.Yes Then
+            '    _prImprimir()
+            'End If
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
             ToastNotification.Show(Me, "El recibo no pudo ser modificado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
@@ -795,9 +817,43 @@ salirIf:
     End Sub
     Public Overrides Sub _PMOModificar()
         'JGBusqRecibos.Enabled = False 'Deshabilita el buscador de la Grilla
-        _prHabilitar()
+        If txtEstadoVenta.Text = "NO" Then
+            _prHabilitar()
+            _prCargarIconELiminar()
+        Else
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "No se puede modificar porque ya está enlazada a una Venta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            btnGrabar.Enabled = False
+            Exit Sub
+        End If
+
+    End Sub
+    Public Sub _prCargarIconELiminar()
+        For i As Integer = 0 To CType(JGDetalleRecibo.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim Bin As New MemoryStream
+            Dim img As New Bitmap(My.Resources.delete, 20, 20)
+            img.Save(Bin, Imaging.ImageFormat.Png)
+            CType(JGDetalleRecibo.DataSource, DataTable).Rows(i).Item("img") = Bin.GetBuffer
+            JGDetalleRecibo.RootTable.Columns("img").Visible = True
+        Next
+
+    End Sub
+    Private Sub btnAgregarC_Click(sender As Object, e As EventArgs) Handles btnAgregarC.Click
+        If txtDescripcion.Text = String.Empty Or diPrecio.Text = String.Empty Or diPrecio.Value = 0 Then
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "Debe llenar Descripción y Precio mayor a 0 para agregar".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+        Else
+            _prAddDetalleReciboDescripcionPrecio()
+            _prCalcularPrecioTotal()
+            txtDescripcion.Clear()
+            diPrecio.ResetText()
+        End If
+
     End Sub
 
+    Private Sub JGBusqRecibos_DoubleClick(sender As Object, e As EventArgs) Handles JGBusqRecibos.DoubleClick
+        superTabControl1.SelectedTabIndex = 0
+    End Sub
 
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
         _prImprimir()

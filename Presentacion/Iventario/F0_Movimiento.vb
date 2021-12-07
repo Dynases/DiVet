@@ -1093,6 +1093,7 @@ salirIf:
             _HabilitarProductos()
 
         End If
+
         If (e.KeyData = Keys.Escape And grdetalle.Row >= 0) Then
 
             _prEliminarFila()
@@ -1452,6 +1453,8 @@ salirIf:
     Private Sub F0_Movimiento_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         _prCambiarColorPlomoOscuro(Presentacion.Principal.btnMovimientos)
     End Sub
+
+
 
 
 #End Region

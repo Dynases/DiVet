@@ -19,9 +19,9 @@ Public Class F1_Fic_ReciboCirugia
         Try
             If (_fnAccesible()) Then
                 'Habilitar solo las columnas de cantidad, detalle
-                If (e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpDesc").Index Or
-                    e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpPrec").Index Or
+                If (e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpPrec").Index Or
                     e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpCant").Index) Then
+                    'Or e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpDesc").Index 
                     If JGDetalleReciboCir.GetValue("rpEst2").ToString = 0 Then
                         e.Cancel = False
                     Else
@@ -255,35 +255,42 @@ Public Class F1_Fic_ReciboCirugia
                 If e.KeyData = Keys.Control + Keys.Enter Then
                     Dim dt As DataTable
                     dt = L_fnMostrarFichaClinicaCirugiaRecibo()
-                    Dim listEstCeldas As New List(Of Modelo.Celda)
-                    listEstCeldas.Add(New Modelo.Celda("cfId", True, "ID CIRUGIA", 100))
-                    listEstCeldas.Add(New Modelo.Celda("fbId", True, "ID F. CLINICA", 100))
-                    listEstCeldas.Add(New Modelo.Celda("cfFechaAten", True, "FECHA", 100, "dd/MM/yyyy"))
-                    listEstCeldas.Add(New Modelo.Celda("Cliente", True, "CLIENTE".ToUpper, 190))
-                    listEstCeldas.Add(New Modelo.Celda("pbId", False, "IDPACIENTE".ToUpper, 140))
-                    listEstCeldas.Add(New Modelo.Celda("pbnomb", True, "PACIENTE".ToUpper, 140))
-                    listEstCeldas.Add(New Modelo.Celda("cfProc", True, "PROCEDIMIENTO".ToUpper, 170, "0.00"))
-                    listEstCeldas.Add(New Modelo.Celda("cfObser", True, "OBSERVACION".ToUpper, 170, "0.00"))
-                    Dim ef = New Efecto
-                    ef.tipo = 3
-                    ef.dt = dt
-                    ef.SeleclCol = 2
-                    ef.listEstCeldas = listEstCeldas
-                    ef.alto = 80
-                    ef.ancho = 240
-                    ef.Context = "Seleccione una Cirugía".ToUpper
-                    ef.ShowDialog()
-                    Dim bandera As Boolean = False
-                    bandera = ef.band
-                    If (bandera = True) Then
-                        Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
-                        txtCirugia.Text = Row.Cells("cfId").Value
-                        _IdPaciente = Row.Cells("pbId").Value
-                        txtPacienteC.Text = Row.Cells("pbnomb").Value
-                        txtPropietarioC.Text = Row.Cells("Cliente").Value
-                        txtDescripcion.Select()
-                        swInternacion.Enabled = True
+                    If dt.Rows.Count > 0 Then
+                        Dim listEstCeldas As New List(Of Modelo.Celda)
+                        listEstCeldas.Add(New Modelo.Celda("cfId", True, "ID CIRUGIA", 100))
+                        listEstCeldas.Add(New Modelo.Celda("fbId", True, "ID F. CLINICA", 100))
+                        listEstCeldas.Add(New Modelo.Celda("cfFechaAten", True, "FECHA", 100, "dd/MM/yyyy"))
+                        listEstCeldas.Add(New Modelo.Celda("Cliente", True, "CLIENTE".ToUpper, 190))
+                        listEstCeldas.Add(New Modelo.Celda("pbId", False, "IDPACIENTE".ToUpper, 140))
+                        listEstCeldas.Add(New Modelo.Celda("pbnomb", True, "PACIENTE".ToUpper, 140))
+                        listEstCeldas.Add(New Modelo.Celda("cfProc", True, "PROCEDIMIENTO".ToUpper, 170, "0.00"))
+                        listEstCeldas.Add(New Modelo.Celda("cfObser", True, "OBSERVACION".ToUpper, 170, "0.00"))
+                        Dim ef = New Efecto
+                        ef.tipo = 3
+                        ef.dt = dt
+                        ef.SeleclCol = 2
+                        ef.listEstCeldas = listEstCeldas
+                        ef.alto = 80
+                        ef.ancho = 240
+                        ef.Context = "Seleccione una Cirugía".ToUpper
+                        ef.ShowDialog()
+                        Dim bandera As Boolean = False
+                        bandera = ef.band
+                        If (bandera = True) Then
+                            Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
+                            txtCirugia.Text = Row.Cells("cfId").Value
+                            _IdPaciente = Row.Cells("pbId").Value
+                            txtPacienteC.Text = Row.Cells("pbnomb").Value
+                            txtPropietarioC.Text = Row.Cells("Cliente").Value
+                            txtDescripcion.Select()
+                            swInternacion.Enabled = True
+                        End If
                     End If
+                Else
+                    ToastNotification.Show(Me, "NO EXISTE FICHAS DE CIRUGIAS PARA ENLAZAR A UN RECIBO..!!!",
+                                           My.Resources.WARNING, 2000,
+                                           eToastGlowColor.Blue,
+                                           eToastPosition.TopCenter)
 
                 End If
             End If
@@ -729,6 +736,7 @@ Public Class F1_Fic_ReciboCirugia
             _prFiltrar(2)
             _prLimpiar()
             _Limpiar = True
+            btnGrabar.Enabled = False
             'Dim info As New TaskDialogInfo("RECIBO".ToUpper, eTaskDialogIcon.Delete, "RECIBO".ToUpper, "¿Desea imprimir el recibo?".ToUpper, eTaskDialogButton.Yes Or eTaskDialogButton.Cancel, eTaskDialogBackgroundColor.Blue)
             'Dim result As eTaskDialogResult = TaskDialog.Show(info)
             'If result = eTaskDialogResult.Yes Then
@@ -934,6 +942,10 @@ Public Class F1_Fic_ReciboCirugia
 
     Private Sub F1_Fic_ReciboCirugia_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         _prCambiarColorPlomoOscuro(Presentacion.Principal.btnReciboCirugia)
+    End Sub
+
+    Private Sub JGBusqRecibosC_DoubleClick(sender As Object, e As EventArgs) Handles JGBusqRecibosC.DoubleClick
+        superTabControl1.SelectedTabIndex = 0
     End Sub
 
     Public Overrides Sub _PMOModificar()

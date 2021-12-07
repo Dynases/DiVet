@@ -453,7 +453,22 @@ Public Class F1_Productos
             cbUMed.BackColor = Color.White
             MEP.SetError(cbUMed, "")
         End If
-
+        If cbUniVenta.SelectedIndex < 0 Then
+            cbUniVenta.BackColor = Color.Red
+            MEP.SetError(cbUniVenta, "Selecciones Unidad De Medida Del Producto!".ToUpper)
+            _ok = False
+        Else
+            cbUniVenta.BackColor = Color.White
+            MEP.SetError(cbUniVenta, "")
+        End If
+        If cbUnidMaxima.SelectedIndex < 0 Then
+            cbUnidMaxima.BackColor = Color.Red
+            MEP.SetError(cbUnidMaxima, "Selecciones Unidad De Medida Del Producto!".ToUpper)
+            _ok = False
+        Else
+            cbUnidMaxima.BackColor = Color.White
+            MEP.SetError(cbUnidMaxima, "")
+        End If
 
         MHighlighterFocus.UpdateHighlights()
         Return _ok
