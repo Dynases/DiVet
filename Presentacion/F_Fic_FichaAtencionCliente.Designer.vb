@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class F_Fic_FichaAtencion
+Partial Class F_Fic_FichaAtencionCliente
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -22,6 +22,8 @@ Partial Class F_Fic_FichaAtencion
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Me.TmActualizar = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.gpFichasAtencion = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -35,6 +37,11 @@ Partial Class F_Fic_FichaAtencion
         Me.Panel2.SuspendLayout()
         CType(Me.JGFichasAtencion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'TmActualizar
+        '
+        Me.TmActualizar.Enabled = True
+        Me.TmActualizar.Interval = 9000
         '
         'Panel1
         '
@@ -212,6 +219,7 @@ Partial Class F_Fic_FichaAtencion
     Friend WithEvents JGFichasAtencion As Janus.Windows.GridEX.GridEX
     Friend WithEvents btnAbrirFicha As DevComponents.DotNetBar.ButtonX
     Friend WithEvents btnActualizar As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents TmActualizar As Timer
     Friend WithEvents btnAbajo As DevComponents.DotNetBar.ButtonX
     Friend WithEvents btnArriba As DevComponents.DotNetBar.ButtonX
     Friend WithEvents Panel2 As Panel

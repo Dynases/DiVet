@@ -14,7 +14,7 @@ Public Class F1_Fic_Recibo
     Private Sub F1_Fic_Recibo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _prIniciarTodo()
         superTabControl1.SelectedTabIndex = 0
-        JGDetalleRecibo.Select()
+        'JGDetalleRecibo.Select()
     End Sub
     'DESHABILITA LA GRILLA
     Private Sub JGDetalleRecibo_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGDetalleRecibo.EditingCell
@@ -475,7 +475,8 @@ salirIf:
         txtDescripcion.Clear()
         diPrecio.ResetText()
         _prCargarReciboDetalle(-1)
-        _prAddDetalleRecibo()
+        '_prAddDetalleRecibo()
+
     End Sub
     Private Sub _prAddDetalleRecibo()
         Dim Bin As New MemoryStream

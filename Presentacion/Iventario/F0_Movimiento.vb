@@ -293,7 +293,7 @@ Public Class F0_Movimiento
                 .Width = 120
                 .Caption = "FECHA VENC.".ToUpper
                 .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
-                .FormatString = "yyyy/MM/dd"
+                .FormatString = "dd/MM/yyyy"
                 .Visible = True
             End With
         Else
@@ -636,7 +636,7 @@ Public Class F0_Movimiento
         Dim Bin As New MemoryStream
         Dim img As New Bitmap(My.Resources.delete, 28, 28)
         img.Save(Bin, Imaging.ImageFormat.Png)
-        CType(grdetalle.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, "", "", "", "", DBNull.Value, "20170101", CDate("2017/01/01"), Bin.GetBuffer, 0, 0)
+        CType(grdetalle.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, "", "", "", "", DBNull.Value, "01010101", Now.Date.ToShortDateString, Bin.GetBuffer, 0, 0)
     End Sub
     Public Function _fnSiguienteNumi()
         Dim dt As DataTable = CType(grdetalle.DataSource, DataTable)
@@ -676,6 +676,16 @@ Public Class F0_Movimiento
     Public Sub _fnObtenerFilaDetalle(ByRef pos As Integer, numi As Integer)
         For i As Integer = 0 To CType(grdetalle.DataSource, DataTable).Rows.Count - 1 Step 1
             Dim _numi As Integer = CType(grdetalle.DataSource, DataTable).Rows(i).Item("icid")
+            If (_numi = numi) Then
+                pos = i
+                Return
+            End If
+        Next
+
+    End Sub
+    Public Sub _fnObtenerFilaDetalleProducto(ByRef pos As Integer, numi As Integer)
+        For i As Integer = 0 To CType(grproducto.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _numi As Integer = CType(grproducto.DataSource, DataTable).Rows(i).Item("yfnumi")
             If (_numi = numi) Then
                 pos = i
                 Return
@@ -975,9 +985,9 @@ Public Class F0_Movimiento
         'a.yfnumi  ,a.yfcdprod1  ,a.yfcdprod2,Sum(b.iccven ) as stock 
         Dim pos As Integer = -1
         grdetalle.Row = grdetalle.RowCount - 1
-        _fnObtenerFilaDetalle(pos, grdetalle.GetValue("icid"))
+        _fnObtenerFilaDetalleProducto(pos, grproducto.GetValue("yfnumi"))
         Dim posProducto As Integer = grproducto.Row
-        FilaSelectLote = CType(grproducto.DataSource, DataTable).Rows(posProducto)
+        FilaSelectLote = CType(grproducto.DataSource, DataTable).Rows(pos)
 
 
         If (grproducto.GetValue("stock") > 0) Then

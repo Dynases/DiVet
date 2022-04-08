@@ -767,10 +767,20 @@ Public Class F1_Fic_ReciboInt
             superTabItem2.Enabled = True
         Else
             _prHabilitar()
+            _prCargarIconELiminar()
         End If
 
     End Sub
+    Public Sub _prCargarIconELiminar()
+        For i As Integer = 0 To CType(JGDetalleReciboInt.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim Bin As New MemoryStream
+            Dim img As New Bitmap(My.Resources.delete, 20, 20)
+            img.Save(Bin, Imaging.ImageFormat.Png)
+            CType(JGDetalleReciboInt.DataSource, DataTable).Rows(i).Item("img") = Bin.GetBuffer
+            JGDetalleReciboInt.RootTable.Columns("img").Visible = True
+        Next
 
+    End Sub
     Private Sub JGBusqRecibosI_DoubleClick(sender As Object, e As EventArgs) Handles JGBusqRecibosI.DoubleClick
         superTabControl1.SelectedTabIndex = 0
     End Sub

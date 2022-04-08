@@ -743,15 +743,15 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("FIC.sp_ATEN001", _listParam)
         Return _Tabla
     End Function
-    Public Shared Function L_fnActualizarEstadoFicha(_pbid As String) As Boolean
+    Public Shared Function L_fnActualizarEstadoFicha(_faid As String) As Boolean
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
         _listParam.Add(New Datos.DParametro("@tipo", 6))
-        _listParam.Add(New Datos.DParametro("@fa_pbId ", _pbid))
+        _listParam.Add(New Datos.DParametro("@faId ", _faid))
         _Tabla = D_ProcedimientoConParam("FIC.sp_ATEN001", _listParam)
         If _Tabla.Rows.Count > 0 Then
-            _pbid = _Tabla.Rows(0).Item(0)
+            _faid = _Tabla.Rows(0).Item(0)
             _resultado = True
         Else
             _resultado = False
@@ -5216,10 +5216,56 @@ Public Class AccesoLogica
         Return _Tabla
     End Function
 #End Region
+#Region "REPORTE STOCK MINIMO"
+    Public Shared Function L_fnTodosAlmacenTodosLineasMenoresStock() As DataTable
+        Dim _Tabla As DataTable
 
+        Dim _listParam As New List(Of Datos.DParametro)
 
+        _listParam.Add(New Datos.DParametro("@tipo", 22))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_SaldosProducto", _listParam)
 
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnUnaAlmacenTodosLineasMenoresStock(numialmacen As Integer) As DataTable
+        Dim _Tabla As DataTable
 
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 33))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@almacen", numialmacen))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_SaldosProducto", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnTodosAlmacenUnaLineasMenoresStock(numiLinea As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 44))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@linea", numiLinea))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_SaldosProducto", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnUnaAlmacenUnaLineasMenoresStock(numiLinea As Integer, CodAlmacen As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 55))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@linea", numiLinea))
+        _listParam.Add(New Datos.DParametro("@almacen", CodAlmacen))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_SaldosProducto", _listParam)
+
+        Return _Tabla
+    End Function
+#End Region
 
 
 

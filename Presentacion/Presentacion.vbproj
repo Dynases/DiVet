@@ -321,6 +321,12 @@
     <Compile Include="Form3.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="F_Fic_FichaAtencionCliente.Designer.vb">
+      <DependentUpon>F_Fic_FichaAtencionCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Fic_FichaAtencionCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F_Fic_FichaAtencion.Designer.vb">
       <DependentUpon>F_Fic_FichaAtencion.vb</DependentUpon>
     </Compile>
@@ -463,6 +469,12 @@
       <DependentUpon>Pr_Arqueo Diario.vb</DependentUpon>
     </Compile>
     <Compile Include="Pr_Arqueo Diario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pr_StockMinimo.designer.vb">
+      <DependentUpon>Pr_StockMinimo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pr_StockMinimo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pr_VentasAtendidas.Designer.vb">
@@ -669,6 +681,12 @@
       <DependentUpon>R_SaldosPorLinea.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reporte\R_StockMinimo.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_StockMinimo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reporte\R_Venta.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -777,6 +795,9 @@
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="F_Fic_FichaAtencionCliente.resx">
+      <DependentUpon>F_Fic_FichaAtencionCliente.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F_Fic_FichaAtencion.resx">
       <DependentUpon>F_Fic_FichaAtencion.vb</DependentUpon>
     </EmbeddedResource>
@@ -845,6 +866,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pr_Arqueo Diario.resx">
       <DependentUpon>Pr_Arqueo Diario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pr_StockMinimo.resx">
+      <DependentUpon>Pr_StockMinimo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pr_VentasAtendidas.resx">
       <DependentUpon>Pr_VentasAtendidas.vb</DependentUpon>
@@ -975,6 +999,10 @@
     <EmbeddedResource Include="Reporte\R_SaldosPorLinea.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_SaldosPorLinea.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\R_StockMinimo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_StockMinimo.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\R_Venta.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

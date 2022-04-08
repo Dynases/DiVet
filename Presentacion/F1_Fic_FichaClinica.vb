@@ -413,15 +413,15 @@ Public Class F1_Fic_FichaClinica
                                           IIf(chbModeradoD.Checked, 3, 0),
                                           IIf(chbSeveroD.Checked, 4, 0), 0)
         tabla.Rows.Add("FIC.CLIN0022.LocalizadoRegion", 24,
-                                        IIf(chbmpostizq.Checked, 1, 0),
-                                        IIf(chbmpostder.Checked, 2, 0),
-                                        IIf(chbPelvis.Checked, 3, 0),
-                                        IIf(chbAbdomen.Checked, 4, 0),
-                                        IIf(chbTorax.Checked, 5, 0))
+                                        IIf(chbEstomago.Checked, 1, 0),
+                                        IIf(chbHigado.Checked, 2, 0),
+                                        IIf(chbPancreas.Checked, 3, 0),
+                                        IIf(chbProstata.Checked, 4, 0),
+                                        IIf(chbUtero.Checked, 5, 0))
         tabla.Rows.Add("FIC.CLIN0022.LocalizadoRegion", 25,
-                                        IIf(chbmpostizq.Checked, 6, 0),
-                                        IIf(chbmpostder.Checked, 7, 0),
-                                        IIf(chbPelvis.Checked, 8, 0), 0, 0)
+                                        IIf(chbVejiga.Checked, 6, 0),
+                                        IIf(chbIdelgado.Checked, 7, 0),
+                                        IIf(chbIGrueso.Checked, 8, 0), 0, 0)
         tabla.Rows.Add("FIC.CLIN0022.Alteraciones", 26,
                                          IIf(chbExtraño.Checked, 1, 0),
                                          IIf(chblineal.Checked, 2, 0),
@@ -1016,7 +1016,7 @@ Public Class F1_Fic_FichaClinica
         _prAddDetalleSeguimiento()
         btnAlta.Enabled = False
         btnRecibo.Enabled = False
-        '        _prCargarImagen(-1)
+        '  _prCargarImagen(-1)
         btnGuardarArchivo.Enabled = True
         btnExaminar.Enabled = True
         dtpFechaAnexo.Enabled = True
@@ -1334,9 +1334,13 @@ Public Class F1_Fic_FichaClinica
     '*******Filtrar
     Public Sub _prFiltrar(tipo As Integer)
         _prCargarFichaClinica()
+        'Dim dt As DataTable = CType(JGBusqFichaClinica.DataSource, DataTable)
+        'dt.Select("fbid=" + id)
+
         If JGBusqFichaClinica.RowCount > 0 Then
             _MPos = 0
             _prMostrarRegistro(IIf(tipo = 1, _MPos, JGBusqFichaClinica.RowCount - 1))
+            JGBusqFichaClinica.Enabled = True
         Else
             _prLimpiar()
             LblPaginacion.Text = "0/0"
@@ -1800,6 +1804,48 @@ Public Class F1_Fic_FichaClinica
         g_prValidarTextBox(1, e)
     End Sub
 
+    Private Sub JGListaArchivos_MouseClick(sender As Object, e As MouseEventArgs) Handles JGListaArchivos.MouseClick
+        If (Not _fnAccesible()) Then
+            Return
+        End If
+        If (JGListaArchivos.RowCount >= 1) Then
+            If (JGListaArchivos.CurrentColumn.Index = JGListaArchivos.RootTable.Columns("img").Index) Then
+                _prEliminarFila()
+            End If
+        End If
+    End Sub
+    Public Function _fnAccesible()
+        Return btnGrabar.Enabled = True
+    End Function
+    Public Sub _prEliminarFila()
+        If (JGListaArchivos.Row >= 0) Then
+            If (JGListaArchivos.RowCount >= 1) Then
+                Dim estado As Integer = JGListaArchivos.GetValue("estado")
+                Dim pos As Integer = -1
+                Dim lin As Integer = JGListaArchivos.GetValue("feId")
+                _fnObtenerFilaDetalle(pos, lin)
+                If (estado = 0) Then
+                    CType(JGListaArchivos.DataSource, DataTable).Rows(pos).Item("estado") = -2
+
+                End If
+                If (estado = 1) Then
+                    CType(JGListaArchivos.DataSource, DataTable).Rows(pos).Item("estado") = -1
+                End If
+                JGListaArchivos.RootTable.ApplyFilter(New Janus.Windows.GridEX.GridEXFilterCondition(JGListaArchivos.RootTable.Columns("estado"), Janus.Windows.GridEX.ConditionOperator.GreaterThanOrEqualTo, 0))
+
+            End If
+        End If
+    End Sub
+    Public Sub _fnObtenerFilaDetalle(ByRef pos As Integer, id As Integer)
+        For i As Integer = 0 To CType(JGListaArchivos.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _Id As Integer = CType(JGListaArchivos.DataSource, DataTable).Rows(i).Item("feId")
+            If (_Id = id) Then
+                pos = i
+                Return
+            End If
+        Next
+    End Sub
+
     Private Sub txtTLCapilar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtTLCapilar.KeyPress
         g_prValidarTextBox(1, e)
     End Sub
@@ -1821,6 +1867,17 @@ Public Class F1_Fic_FichaClinica
         cbConsultorio.ReadOnly = True
         txtIdVeterinario.Enabled = False
         dtpFechaFC.Enabled = False
+        _prCargarIconELiminar()
+    End Sub
+    Public Sub _prCargarIconELiminar()
+        For i As Integer = 0 To CType(JGListaArchivos.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim Bin As New MemoryStream
+            Dim img As New Bitmap(My.Resources.delete, 20, 20)
+            img.Save(Bin, Imaging.ImageFormat.Png)
+            CType(JGListaArchivos.DataSource, DataTable).Rows(i).Item("img") = Bin.GetBuffer
+            JGListaArchivos.RootTable.Columns("img").Visible = True
+        Next
+
     End Sub
     ''*****POM Eliminar
     Public Overrides Sub _PMOEliminarRegistro()

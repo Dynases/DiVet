@@ -496,6 +496,12 @@ Public Class Principal
         Modelo.MGlobal._nameButton = btnDetalleAtenciones.Name
         frm.Show()
     End Sub
+    Private Sub btnInvStockMin_Click(sender As Object, e As EventArgs) Handles btnInvStockMin.Click
+        _prCambiarColorVerde(btnInvStockMin)
+        Dim frm As New Pr_StockMinimo
+        Modelo.MGlobal._nameButton = btnInvStockMin.Name
+        frm.Show()
+    End Sub
 
     Private Sub btnRoles_MouseHover(sender As Object, e As EventArgs) Handles btnRoles.MouseHover
         _prCambiarColorVerde(btnRoles)
@@ -651,5 +657,9 @@ Public Class Principal
 
     Private Sub btnReporteKArdex_MouseHover(sender As Object, e As EventArgs) Handles btnReporteKArdex.MouseHover
         _prCambiarColorVerde(btnReporteKArdex)
+    End Sub
+
+    Private Sub btnInvStockMin_MouseHover(sender As Object, e As EventArgs) Handles btnInvStockMin.MouseHover
+        _prCambiarColorVerde(btnInvStockMin)
     End Sub
 End Class

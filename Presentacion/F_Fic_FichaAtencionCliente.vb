@@ -1,7 +1,7 @@
 ﻿Imports DevComponents.DotNetBar
 Imports Janus.Windows.GridEX
 Imports Logica.AccesoLogica
-Public Class F_Fic_FichaAtencion
+Public Class F_Fic_FichaAtencionCliente
 #Region "Variables"
     Public _nameButton As String
     Public idVet As String
@@ -68,7 +68,9 @@ Public Class F_Fic_FichaAtencion
     Private Sub F_Fic_FichaAtencion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _prCargarFichaAtencion()
     End Sub
-
+    Private Sub TmActualizar_Tick(sender As Object, e As EventArgs) Handles TmActualizar.Tick
+        _prCargarFichaAtencion()
+    End Sub
     Private Sub btnActualizar_Click(sender As Object, e As EventArgs) Handles btnActualizar.Click
         _prCargarFichaAtencion()
     End Sub
