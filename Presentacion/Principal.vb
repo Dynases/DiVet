@@ -89,6 +89,7 @@ Public Class Principal
         btnReportePagos.TitleText = "REPORTE" + vbCrLf + "PAGOS"
         btnRealizarPAgos.TitleText = "REALIZAR" + vbCrLf + "PAGOS"
         btnReporteKArdex.TitleText = "ESTADO DE" + vbCrLf + "CUENTAS"
+        btnFichaAtencionC.TitleText = "FICHA" + vbCrLf + "ATENCIÓN" + vbCrLf + "CLIENTE"
     End Sub
     Private Sub _prLeerArchivoConfig()
         Try
@@ -661,5 +662,16 @@ Public Class Principal
 
     Private Sub btnInvStockMin_MouseHover(sender As Object, e As EventArgs) Handles btnInvStockMin.MouseHover
         _prCambiarColorVerde(btnInvStockMin)
+    End Sub
+
+    Private Sub btnFichaAtencionC_Click(sender As Object, e As EventArgs) Handles btnFichaAtencionC.Click
+        _prCambiarColorVerde(btnFichaAtencion)
+        Dim frm As New F_Fic_FichaAtencionCliente
+        'frm._nameButton = btnFichaAtencion.Name
+        frm.Show()
+    End Sub
+
+    Private Sub btnFichaAtencionC_MouseHover(sender As Object, e As EventArgs) Handles btnFichaAtencionC.MouseHover
+        _prCambiarColorVerde(btnFichaAtencionC)
     End Sub
 End Class

@@ -23,14 +23,14 @@ Public Class F1_Fic_SegInternacion2
         _prIniciarTodo()
         superTabControl1.SelectedTabIndex = 0
     End Sub
-    Private Sub txtIdFicClinica_KeyDown(sender As Object, e As KeyEventArgs) Handles txtIdFicClinica.KeyDown
+    Private Sub txtIdFicInter_KeyDown(sender As Object, e As KeyEventArgs) Handles txtIdFicInter.KeyDown
         If e.KeyData = Keys.Control + Keys.Enter Then
             Dim dt As DataTable
             dt = L_fnMostrarFichaClinicaConInternacion()
 
             If dt.Rows.Count > 0 Then
                 Dim listEstCeldas As New List(Of Modelo.Celda)
-                listEstCeldas.Add(New Modelo.Celda("igId,", False, "ID", 50))
+                listEstCeldas.Add(New Modelo.Celda("igId,", True, "Id Internación", 100))
                 listEstCeldas.Add(New Modelo.Celda("ig_fbId", True, "Id Ficha", 90))
                 listEstCeldas.Add(New Modelo.Celda("igEst", False, "Estado", 180))
                 listEstCeldas.Add(New Modelo.Celda("cacliente", True, "Propietario", 210))
@@ -57,7 +57,7 @@ Public Class F1_Fic_SegInternacion2
                 bandera = ef.band
                 If (bandera = True) Then
                     Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
-                    txtIdFicClinica.Text = Row.Cells("ig_fbId").Value
+                    txtIdFicInter.Text = Row.Cells("igId").Value
                     txtPropietarioI.Text = Row.Cells("cacliente").Value
                     txtTelefonoI.Text = Row.Cells("igTelf").Value
                     txtPacienteI.Text = Row.Cells("pbnomb").Value
@@ -129,8 +129,8 @@ Public Class F1_Fic_SegInternacion2
         _MNuevo = False 'Manda a Formulario 1, Modificar
 
         'Deshabilito el Id Ficha Clinica
-        txtIdFicClinica.ReadOnly = True
-        txtIdFicClinica.Enabled = False
+        txtIdFicInter.ReadOnly = True
+        txtIdFicInter.Enabled = False
 
         ''Poner el False todos los modificar de los detalles para que ponga la fecha y hora actual del sistema
         ModificarEF = False
@@ -177,7 +177,7 @@ Public Class F1_Fic_SegInternacion2
             JGBusqSeguimiento.Row = _POS
             With JGBusqSeguimiento
                 txtId.Text = .GetValue("ihId")
-                txtIdFicClinica.Text = .GetValue("ih_fbId")
+                txtIdFicInter.Text = .GetValue("ih_fbId")
                 txtPropietarioI.Text = .GetValue("cliente")
                 txtTelefonoI.Text = .GetValue("igTelf")
                 txtPacienteI.Text = .GetValue("pbnomb")
@@ -372,13 +372,18 @@ Public Class F1_Fic_SegInternacion2
         JGBusqSeguimiento.AlternatingColors = True
         'ihId, ih_fbId, ihFechaIng,pac.pbnomb, ihTurno, ihDiag, ihResp, ihPasoTur
         With JGBusqSeguimiento.RootTable.Columns("ihId")
-            .Width = 65
+            .Width = 80
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .Caption = "Id"
+            .Caption = "Id Seg."
             .Visible = True
         End With
         With JGBusqSeguimiento.RootTable.Columns("ih_fbId")
-            .Width = 140
+            .Width = 100
+            .Caption = "Id Internación"
+            .Visible = True
+        End With
+        With JGBusqSeguimiento.RootTable.Columns("ig_fbId")
+            .Width = 120
             .Caption = "IdFichaClínica"
             .Visible = True
         End With
@@ -1109,8 +1114,8 @@ Public Class F1_Fic_SegInternacion2
     End Sub
     Private Sub _prInhabilitar()
         JGMonitoreo.Enabled = True
-        txtIdFicClinica.ReadOnly = True
-        txtIdFicClinica.Enabled = False
+        txtIdFicInter.ReadOnly = True
+        txtIdFicInter.Enabled = False
         'txtPacienteI.ReadOnly = True
         dtpFechaSeg.Enabled = False
         cbTurno.Enabled = False
@@ -1184,8 +1189,8 @@ Public Class F1_Fic_SegInternacion2
     Private Sub _prHabilitar()
         JGMonitoreo.Enabled = True
         'txtPacienteI.ReadOnly = False
-        txtIdFicClinica.ReadOnly = False
-        txtIdFicClinica.Enabled = True
+        txtIdFicInter.ReadOnly = False
+        txtIdFicInter.Enabled = True
         dtpFechaSeg.Enabled = True
         cbTurno.Enabled = True
 
@@ -1340,7 +1345,7 @@ Public Class F1_Fic_SegInternacion2
     Private Sub _prLimpiar()
         JGMonitoreo.Enabled = True
         txtId.Clear()
-        txtIdFicClinica.Clear()
+        txtIdFicInter.Clear()
         'txtIdFicClinica.Focus()
         txtPropietarioI.Clear()
         txtTelefonoI.Clear()
@@ -1375,7 +1380,7 @@ Public Class F1_Fic_SegInternacion2
         ModificarEC = False
         ModificarT = False
 
-        txtIdFicClinica.Focus()
+        txtIdFicInter.Focus()
     End Sub
     Public Sub _prFiltrar(tipo As Integer)
         'cargo el buscador
@@ -1699,7 +1704,7 @@ Public Class F1_Fic_SegInternacion2
     Public Overrides Function _PMOGrabarRegistro() As Boolean
         Dim ihId As Integer
 
-        Dim res As Boolean = L_fnGrabarInternacionSeg(ihId, txtIdFicClinica.Text, _IdPaciente, dtpFechaSeg.Value.ToString("yyyy/MM/dd"),
+        Dim res As Boolean = L_fnGrabarInternacionSeg(ihId, txtIdFicInter.Text, _IdPaciente, dtpFechaSeg.Value.ToString("yyyy/MM/dd"),
                                                       cbTurno.Value, 1, CType(JGExamenFisico.DataSource, DataTable),
                                                       CType(JGSignosVitales.DataSource, DataTable), CType(JGMonitoreo.DataSource, DataTable),
                                                       CType(JGAlimentacion.DataSource, DataTable), CType(JGFluidoterapia.DataSource, DataTable),
@@ -1729,7 +1734,7 @@ Public Class F1_Fic_SegInternacion2
         Dim ihId As Integer
         Dim res As Boolean
 
-        res = L_fnModificarInternacionSeg(txtId.Text, txtIdFicClinica.Text, _IdPaciente, dtpFechaSeg.Value.ToString("yyyy/MM/dd"),
+        res = L_fnModificarInternacionSeg(txtId.Text, txtIdFicInter.Text, _IdPaciente, dtpFechaSeg.Value.ToString("yyyy/MM/dd"),
                                                       cbTurno.Value, 2, CType(JGExamenFisico.DataSource, DataTable),
                                                       CType(JGSignosVitales.DataSource, DataTable), CType(JGMonitoreo.DataSource, DataTable),
                                                       CType(JGAlimentacion.DataSource, DataTable), CType(JGFluidoterapia.DataSource, DataTable),
@@ -1782,15 +1787,15 @@ Public Class F1_Fic_SegInternacion2
     Public Overrides Function _PMOValidarCampos() As Boolean
         Dim _ok As Boolean = True
         MEP.Clear()
-        If txtIdFicClinica.Text = String.Empty Then
-            txtIdFicClinica.BackColor = Color.Red
-            MEP.SetError(txtIdFicClinica, "Seleccione una ficha!".ToUpper)
+        If txtIdFicInter.Text = String.Empty Then
+            txtIdFicInter.BackColor = Color.Red
+            MEP.SetError(txtIdFicInter, "Seleccione una ficha!".ToUpper)
             _ok = False
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
             ToastNotification.Show(Me, "Seleccione una ficha para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
         Else
-            txtIdFicClinica.BackColor = Color.White
-            MEP.SetError(txtIdFicClinica, "")
+            txtIdFicInter.BackColor = Color.White
+            MEP.SetError(txtIdFicInter, "")
         End If
         'If txtFrecuencias.Text = String.Empty Then
         '    txtFrecuencias.BackColor = Color.Red
@@ -1825,7 +1830,7 @@ Public Class F1_Fic_SegInternacion2
     End Function
     Public Overrides Sub _PMOLimpiarErrores()
         MEP.Clear()
-        txtIdFicClinica.BackColor = Color.White
+        txtIdFicInter.BackColor = Color.White
         cbTurno.BackColor = Color.White
         ' txtFrecuencias.BackColor = Color.White
         'txtMedProtocolo.BackColor = Color.White

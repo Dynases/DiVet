@@ -121,6 +121,7 @@ Partial Class F_Reg_Emergencia
         '
         Me.txtUsuario.Border.Class = "TextBoxBorder"
         Me.txtUsuario.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtUsuario.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtUsuario.DisabledBackColor = System.Drawing.Color.White
         Me.txtUsuario.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtUsuario.ForeColor = System.Drawing.Color.Black

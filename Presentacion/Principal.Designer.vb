@@ -97,6 +97,7 @@ Partial Class Principal
         Me.btnCerrarSesion = New DevComponents.DotNetBar.RadialMenuItem()
         Me.btnSalir = New DevComponents.DotNetBar.RadialMenuItem()
         Me.btnAbout = New DevComponents.DotNetBar.RadialMenuItem()
+        Me.btnFichaAtencionC = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.sideNav1.SuspendLayout()
         Me.sideNavPanel2.SuspendLayout()
         Me.SideNavPanel8.SuspendLayout()
@@ -111,13 +112,13 @@ Partial Class Principal
         'sideNav1
         '
         Me.sideNav1.BackColor = System.Drawing.Color.White
+        Me.sideNav1.Controls.Add(Me.SideNavPanel7)
         Me.sideNav1.Controls.Add(Me.sideNavPanel2)
         Me.sideNav1.Controls.Add(Me.SideNavPanel8)
         Me.sideNav1.Controls.Add(Me.sideNavPanel1)
         Me.sideNav1.Controls.Add(Me.SideNavPanel6)
         Me.sideNav1.Controls.Add(Me.sideNavPanel4)
         Me.sideNav1.Controls.Add(Me.sideNavPanel3)
-        Me.sideNav1.Controls.Add(Me.SideNavPanel7)
         Me.sideNav1.Controls.Add(Me.sideNavPanel5)
         Me.sideNav1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.sideNav1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.sideNavItem1, Me.separator1, Me.M_Configuracion, Me.M_Registros, Me.M_Fichas, Me.M_Compras, Me.M_Inventario, Me.M_Ventas, Me.M_Creditos, Me.M_Informes, Me.Separator2, Me.CerrarSesion})
@@ -139,6 +140,7 @@ Partial Class Principal
         Me.sideNavPanel2.Name = "sideNavPanel2"
         Me.sideNavPanel2.Size = New System.Drawing.Size(881, 524)
         Me.sideNavPanel2.TabIndex = 36
+        Me.sideNavPanel2.Visible = False
         '
         'mtpInventario
         '
@@ -339,9 +341,9 @@ Partial Class Principal
         '
         Me.SideNavPanel8.Controls.Add(Me.mtpCompras)
         Me.SideNavPanel8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SideNavPanel8.Location = New System.Drawing.Point(1, 1)
+        Me.SideNavPanel8.Location = New System.Drawing.Point(142, 36)
         Me.SideNavPanel8.Name = "SideNavPanel8"
-        Me.SideNavPanel8.Size = New System.Drawing.Size(1026, 559)
+        Me.SideNavPanel8.Size = New System.Drawing.Size(881, 524)
         Me.SideNavPanel8.TabIndex = 84
         Me.SideNavPanel8.Visible = False
         '
@@ -367,7 +369,7 @@ Partial Class Principal
         Me.mtpCompras.Margin = New System.Windows.Forms.Padding(4)
         Me.mtpCompras.MultiLine = True
         Me.mtpCompras.Name = "mtpCompras"
-        Me.mtpCompras.Size = New System.Drawing.Size(1026, 559)
+        Me.mtpCompras.Size = New System.Drawing.Size(881, 524)
         Me.mtpCompras.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
         Me.mtpCompras.TabIndex = 1
         Me.mtpCompras.Text = "MetroTilePanel3"
@@ -1127,11 +1129,10 @@ Partial Class Principal
         '
         Me.SideNavPanel7.Controls.Add(Me.mtpFichas)
         Me.SideNavPanel7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SideNavPanel7.Location = New System.Drawing.Point(1, 1)
+        Me.SideNavPanel7.Location = New System.Drawing.Point(142, 36)
         Me.SideNavPanel7.Name = "SideNavPanel7"
-        Me.SideNavPanel7.Size = New System.Drawing.Size(1026, 559)
+        Me.SideNavPanel7.Size = New System.Drawing.Size(881, 524)
         Me.SideNavPanel7.TabIndex = 68
-        Me.SideNavPanel7.Visible = False
         '
         'mtpFichas
         '
@@ -1149,13 +1150,13 @@ Partial Class Principal
         Me.mtpFichas.DragDropSupport = True
         Me.mtpFichas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.mtpFichas.ForeColor = System.Drawing.Color.White
-        Me.mtpFichas.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btnFichaAtencion, Me.btnFichaClinica, Me.btnSegInternacion, Me.btnReciboCirugia, Me.btnRepVetMascAten, Me.btnPacientesAten})
+        Me.mtpFichas.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btnFichaAtencion, Me.btnFichaClinica, Me.btnSegInternacion, Me.btnReciboCirugia, Me.btnRepVetMascAten, Me.btnPacientesAten, Me.btnFichaAtencionC})
         Me.mtpFichas.ItemSpacing = 10
         Me.mtpFichas.Location = New System.Drawing.Point(0, 0)
         Me.mtpFichas.Margin = New System.Windows.Forms.Padding(4)
         Me.mtpFichas.MultiLine = True
         Me.mtpFichas.Name = "mtpFichas"
-        Me.mtpFichas.Size = New System.Drawing.Size(1026, 559)
+        Me.mtpFichas.Size = New System.Drawing.Size(881, 524)
         Me.mtpFichas.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
         Me.mtpFichas.TabIndex = 2
         Me.mtpFichas.Text = "MetroTilePanel3"
@@ -1341,6 +1342,7 @@ Partial Class Principal
         '
         'M_Fichas
         '
+        Me.M_Fichas.Checked = True
         Me.M_Fichas.Name = "M_Fichas"
         Me.M_Fichas.Panel = Me.SideNavPanel7
         Me.M_Fichas.Symbol = ""
@@ -1356,7 +1358,6 @@ Partial Class Principal
         '
         'M_Inventario
         '
-        Me.M_Inventario.Checked = True
         Me.M_Inventario.Name = "M_Inventario"
         Me.M_Inventario.Panel = Me.sideNavPanel2
         Me.M_Inventario.Symbol = ""
@@ -1458,6 +1459,33 @@ Partial Class Principal
         Me.btnAbout.Symbol = ""
         Me.btnAbout.Text = "ABOUT DIVET"
         '
+        'btnFichaAtencionC
+        '
+        Me.btnFichaAtencionC.Image = Global.Presentacion.My.Resources.Resources.F1
+        Me.btnFichaAtencionC.ImageIndent = New System.Drawing.Point(30, 2)
+        Me.btnFichaAtencionC.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnFichaAtencionC.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center
+        Me.btnFichaAtencionC.Name = "btnFichaAtencionC"
+        Me.btnFichaAtencionC.SymbolColor = System.Drawing.Color.Black
+        Me.btnFichaAtencionC.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.DarkGreen
+        Me.btnFichaAtencionC.TileSize = New System.Drawing.Size(250, 135)
+        '
+        '
+        '
+        Me.btnFichaAtencionC.TileStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.btnFichaAtencionC.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.btnFichaAtencionC.TileStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Dot
+        Me.btnFichaAtencionC.TileStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Dot
+        Me.btnFichaAtencionC.TileStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Dot
+        Me.btnFichaAtencionC.TileStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Dot
+        Me.btnFichaAtencionC.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.btnFichaAtencionC.TileStyle.Font = New System.Drawing.Font("Arial Black", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnFichaAtencionC.TileStyle.PaddingRight = 30
+        Me.btnFichaAtencionC.TileStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
+        Me.btnFichaAtencionC.TitleText = "FICHA" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "ATENCIÓN " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "CLIENTE"
+        Me.btnFichaAtencionC.TitleTextAlignment = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnFichaAtencionC.TitleTextColor = System.Drawing.Color.White
+        '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1467,6 +1495,7 @@ Partial Class Principal
         Me.Controls.Add(Me.lbUsuario)
         Me.Controls.Add(Me.sideNav1)
         Me.DoubleBuffered = True
+        Me.ForeColor = System.Drawing.Color.Black
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Principal"
         Me.Tag = "0"
@@ -1559,4 +1588,5 @@ Partial Class Principal
     Friend WithEvents btnLibroVenta As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btnArqueoDiario As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btnInvStockMin As DevComponents.DotNetBar.Metro.MetroTileItem
+    Friend WithEvents btnFichaAtencionC As DevComponents.DotNetBar.Metro.MetroTileItem
 End Class

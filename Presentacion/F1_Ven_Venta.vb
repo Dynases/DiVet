@@ -645,7 +645,7 @@ salirIf:
                     ef.Context = "Seleccione Recibo".ToUpper
                     If ef.dt.Rows.Count = 0 Then
                         Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                        ToastNotification.Show(Me, "No existen Recibos de Internación Para la Cobranza".ToUpper, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
+                        ToastNotification.Show(Me, "No existen Recibos Pendientes para la Cobranza".ToUpper, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
                         Exit Sub
                     Else
 

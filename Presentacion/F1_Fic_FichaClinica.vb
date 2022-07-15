@@ -153,6 +153,16 @@ Public Class F1_Fic_FichaClinica
             txtClasificacion.ReadOnly = False
             txtProcedimiento.ReadOnly = False
             txtObservacionC.ReadOnly = False
+
+            dtpFCirugía.Value = Now.Date
+            txtPesoC.Text = ""
+            txtEdadC.Text = ""
+            txtResponsable.Text = ""
+            txtTelefonoC.Text = ""
+            txtImportadora.Text = ""
+            txtClasificacion.Text = ""
+            txtProcedimiento.Text = ""
+            txtObservacionC.Text = ""
         Else
             'Cirugia
             dtpFCirugía.Enabled = False
@@ -199,6 +209,8 @@ Public Class F1_Fic_FichaClinica
     Private Sub JGFechasSeg_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGFechasSeg.EditingCell
         e.Cancel = True
         txtSeguimiento.Text = JGFechasSeg.GetValue("fjSeguimiento")
+        txtValoracion.Text = JGFechasSeg.GetValue("fjValoracion")
+        txtProManejo.Text = JGFechasSeg.GetValue("fjProtocoloM")
     End Sub
     Private Sub JGBusqFichaClinica_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGBusqFichaClinica.EditingCell
         e.Cancel = True
@@ -244,6 +256,8 @@ Public Class F1_Fic_FichaClinica
             txtNombVeterinario.Text = _NombreVeterinario
             _prMostrarPaciente()
             _prCargarFichaClinicaSeguimiento(-1)
+            _prCargarCirugia(-1)
+            _prCargarInternacion(-1)
             _prHabilitar()
         Else
             '**Modificar Ficha, reconsulta o emergencia
@@ -603,6 +617,16 @@ Public Class F1_Fic_FichaClinica
             .Caption = "Seguimiento"
             .Visible = False
         End With
+        With JGFechasSeg.RootTable.Columns("fjValoracion")
+            .Width = 180
+            .Caption = "Valoración"
+            .Visible = False
+        End With
+        With JGFechasSeg.RootTable.Columns("fjProtocoloM")
+            .Width = 180
+            .Caption = "ProtocoloM"
+            .Visible = False
+        End With
         With JGFechasSeg.RootTable.Columns("fjFecha")
             .Width = 130
             .Caption = "Fecha"
@@ -619,6 +643,144 @@ Public Class F1_Fic_FichaClinica
             .Visible = True
         End With
         With JGFechasSeg
+            .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
+            .FilterMode = FilterMode.Automatic
+            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+            .GroupByBoxVisible = False
+            .VisualStyle = VisualStyle.Office2007
+        End With
+    End Sub
+    Private Sub _prCargarCirugia(_fbId As String)
+        Dim dt As New DataTable
+        dt = L_prMostrarFechaCirugia(_fbId)
+        JGCirugia.DataSource = dt
+        JGCirugia.RetrieveStructure()
+        JGCirugia.AlternatingColors = True
+
+        With JGCirugia.RootTable.Columns("cfId")
+            .Width = 100
+            .Caption = "IdCirugía"
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Visible = True
+        End With
+        With JGCirugia.RootTable.Columns("cf_FbId")
+            .Width = 100
+            .Caption = "IdFicha"
+            .Visible = False
+        End With
+        With JGCirugia.RootTable.Columns("cfEst")
+            .Width = 90
+            .Visible = False
+            .Caption = "Estado"
+        End With
+        With JGCirugia.RootTable.Columns("cfFechaAten")
+            .Width = 90
+            .Caption = "Fecha Cir."
+            .Visible = True
+        End With
+        With JGCirugia.RootTable.Columns("cfPeso")
+            .Visible = False
+        End With
+        With JGCirugia.RootTable.Columns("cfEdad")
+            .Visible = False
+        End With
+        With JGCirugia.RootTable.Columns("cfRespon")
+            .Width = 180
+            .Visible = False
+        End With
+        With JGCirugia.RootTable.Columns("cfTelef")
+            .Width = 130
+            .Visible = False
+        End With
+        With JGCirugia.RootTable.Columns("cfImport")
+            .Width = 130
+            .Visible = False
+        End With
+        With JGCirugia.RootTable.Columns("cfClasASA")
+            .Width = 130
+            .Visible = False
+        End With
+        With JGCirugia.RootTable.Columns("cfProc")
+            .Width = 130
+            .Visible = False
+        End With
+        With JGCirugia.RootTable.Columns("cfObser")
+            .Width = 130
+            .Visible = False
+        End With
+        With JGCirugia.RootTable.Columns("cfUsuario")
+            .Width = 150
+            .Caption = "Usuario"
+            .Visible = True
+        End With
+        With JGCirugia
+            .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
+            .FilterMode = FilterMode.Automatic
+            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+            .GroupByBoxVisible = False
+            .VisualStyle = VisualStyle.Office2007
+        End With
+    End Sub
+    Private Sub _prCargarInternacion(_fbId As String)
+        Dim dt As New DataTable
+        dt = L_prMostrarInternación(_fbId)
+        JGInternacion.DataSource = dt
+        JGInternacion.RetrieveStructure()
+        JGInternacion.AlternatingColors = True
+
+        With JGInternacion.RootTable.Columns("igId")
+            .Width = 100
+            .Caption = "IdInternación"
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Visible = True
+        End With
+        With JGInternacion.RootTable.Columns("ig_fbId")
+            .Width = 100
+            .Caption = "IdFicha"
+            .Visible = False
+        End With
+        With JGInternacion.RootTable.Columns("igEst")
+            .Width = 90
+            .Visible = False
+            .Caption = "Estado"
+        End With
+        With JGInternacion.RootTable.Columns("igFechaIng")
+            .Width = 90
+            .Caption = "Fecha Int."
+            .Visible = True
+        End With
+        With JGInternacion.RootTable.Columns("igEdad")
+            .Width = 180
+            .Visible = False
+        End With
+        With JGInternacion.RootTable.Columns("igTelf")
+            .Width = 180
+            .Visible = False
+        End With
+        With JGInternacion.RootTable.Columns("igMotInter")
+            .Width = 130
+
+            .Visible = False
+        End With
+        With JGInternacion.RootTable.Columns("igRequer")
+            .Width = 130
+            .Visible = False
+        End With
+        With JGInternacion.RootTable.Columns("igHoraInter")
+            .Width = 70
+            .Caption = "Hora"
+            .Visible = True
+        End With
+        With JGInternacion.RootTable.Columns("igHora")
+            .Width = 70
+            .Visible = False
+        End With
+        With JGInternacion.RootTable.Columns("igUsuario")
+            .Width = 150
+            .Caption = "Usuario"
+            .Visible = True
+        End With
+        With JGInternacion
             .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
             .FilterMode = FilterMode.Automatic
             .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
@@ -647,14 +809,19 @@ Public Class F1_Fic_FichaClinica
             txtTLCapilar.Text = .GetValue("fbTiemCapi")
             txtTRPliegue.Text = .GetValue("fbTiemRPlie")
             txtNotas.Text = .GetValue("fbNotas")
-            txtValoracion.Text = .GetValue("fbValora")
-            txtProManejo.Text = .GetValue("fbProtMane")
+            'txtValoracion.Text = .GetValue("fbValora")
+            'txtProManejo.Text = .GetValue("fbProtMane")
             'txtSeguimiento.Text = .GetValue("fbSegui")
             _prCargarFichaClinicaDetalle(Convert.ToInt32(txtIdFicha.Text))
             _prCargarImagen(Convert.ToInt32(txtIdFicha.Text))
             _prCargarFichaClinicaSeguimiento(Convert.ToInt32(txtIdFicha.Text))
             'JGFechasSeg.Row = JGFechasSeg.RowCount
             txtSeguimiento.Text = JGFechasSeg.GetValue("fjSeguimiento")
+            txtValoracion.Text = JGFechasSeg.GetValue("fjValoracion")
+            txtProManejo.Text = JGFechasSeg.GetValue("fjProtocoloM")
+
+            _prCargarInternacion(Convert.ToInt32(txtIdFicha.Text))
+            _prCargarCirugia(Convert.ToInt32(txtIdFicha.Text))
             'Obtiene el paciente
             _prLimpiarCirugia()
             _prLimpiarInternacion()
@@ -673,7 +840,8 @@ Public Class F1_Fic_FichaClinica
                     _fila = _tabla.Select("cf_FbId=" + txtIdFicha.Text)
                     _tabla = _fila.CopyToDataTable
                     'Cirugia
-                    chbCirugia.Checked = True
+                    'chbCirugia.Checked = True
+                    txtIdCir.Text = _tabla.Rows(0).Item("cfId")
                     dtpFCirugía.Value = _tabla.Rows(0).Item("cfFechaAten")
                     txtPesoC.Text = _tabla.Rows(0).Item("cfPeso")
                     txtEdadC.Text = _tabla.Rows(0).Item("cfEdad")
@@ -692,7 +860,8 @@ Public Class F1_Fic_FichaClinica
                     Dim _Fila As DataRow()
                     _Fila = _tabla.Select("ig_FbId=" + txtIdFicha.Text)
                     _tabla = _Fila.CopyToDataTable
-                    chbInternacion.Checked = True
+                    'chbInternacion.Checked = True
+                    txtIdInt.Text = _tabla.Rows(0).Item("igId")
                     dtpFInternacion.Value = _tabla.Rows(0).Item("igFechaIng")
                     txtEdadI.Text = _tabla.Rows(0).Item("igEdad")
                     txtTelefonoI.Text = _tabla.Rows(0).Item("igTelf")
@@ -1526,7 +1695,7 @@ Public Class F1_Fic_FichaClinica
         With JGListaArchivos.RootTable.Columns("feDesc")
             .Width = 300
             .Visible = True
-            .Caption = "Descripcion"
+            .Caption = "Descripción"
         End With
         With JGListaArchivos.RootTable.Columns("feImg")
             .Width = 500
@@ -1660,7 +1829,8 @@ Public Class F1_Fic_FichaClinica
     End Sub
     Private Sub _prAddDetalleSeguimiento()
         'seg.fjId,seg.fj_FbId,seg.fjEstado,seg.fjSeguimientomiento,seg.fjFecha,seg.fjHora,seg.fjUsuario
-        CType(JGFechasSeg.DataSource, DataTable).Rows.Add(0, 0, 2, "", DateTime.Now, DateTime.Now.ToShortTimeString(), TxtNombreUsu.Text)
+        CType(JGFechasSeg.DataSource, DataTable).Rows.Add(0, 0, 2, "", "", "", DateTime.Now, DateTime.Now.ToShortTimeString(), TxtNombreUsu.Text)
+
     End Sub
     Private Sub _prEditDetalleSeguimiento()
         'seg.fjId,seg.fj_FbId,seg.fjEstado,seg.fjSeguimientomiento,seg.fjFecha,seg.fjHora,seg.fjUsuario
@@ -1668,6 +1838,10 @@ Public Class F1_Fic_FichaClinica
         If JGFechasSeg.GetValue("Estado") = 2 Then
             CType(JGFechasSeg.DataSource, DataTable).Rows(JGFechasSeg.RowCount - 1).Item("fjSeguimiento") = txtSeguimiento.Text
             JGFechasSeg.SetValue("fjSeguimiento", txtSeguimiento.Text)
+            CType(JGFechasSeg.DataSource, DataTable).Rows(JGFechasSeg.RowCount - 1).Item("fjValoracion") = txtValoracion.Text
+            JGFechasSeg.SetValue("fjValoracion", txtValoracion.Text)
+            CType(JGFechasSeg.DataSource, DataTable).Rows(JGFechasSeg.RowCount - 1).Item("fjProtocoloM") = txtProManejo.Text
+            JGFechasSeg.SetValue("fjProtocoloM", txtProManejo.Text)
         End If
     End Sub
 
@@ -1733,29 +1907,45 @@ Public Class F1_Fic_FichaClinica
             _prGuardarImagenes(RutaGlobal + "\Imagenes\Imagenes FichaClinicaDino\" + "FichaClinica_" + txtIdFicha.Text.Trim + "\")
             'Cirugia
             If chbCirugia.Checked Then
+                'Dim idCirugia As Integer
+                'If L_fnExisteCirugia(txtIdFicha.Text) Then
+                '    'Guarda Cirugia
+                '    Dim res2 As Boolean = L_fnGrabarCirugia(idCirugia, txtIdFicha.Text, dtpFCirugía.Value.ToString("yyyy/MM/dd"), txtPesoC.Text, txtEdadC.Text, txtResponsable.Text,
+                '                                            txtTelefonoC.Text, txtImportadora.Text, txtClasificacion.Text, txtProcedimiento.Text, txtObservacionC.Text)
+                'Else
+                '    'Modifica Cirugia
+                '    Dim res2 As Boolean = L_fnMoficicarCirugia(txtIdCir.Text, txtIdFicha.Text, dtpFCirugía.Value.ToString("yyyy/MM/dd"), txtPesoC.Text, txtEdadC.Text, txtResponsable.Text,
+                '                                            txtTelefonoC.Text, txtImportadora.Text, txtClasificacion.Text, txtProcedimiento.Text, txtObservacionC.Text)
+                'End If
+
+                'Guarda Cirugia
                 Dim idCirugia As Integer
-                If L_fnExisteCirugia(txtIdFicha.Text) Then
-                    'Guarda Cirugia
-                    Dim res2 As Boolean = L_fnGrabarCirugia(idCirugia, txtIdFicha.Text, dtpFCirugía.Value.ToString("yyyy/MM/dd"), txtPesoC.Text, txtEdadC.Text, txtResponsable.Text,
+                Dim res2 As Boolean = L_fnGrabarCirugia(idCirugia, txtIdFicha.Text, dtpFCirugía.Value.ToString("yyyy/MM/dd"), txtPesoC.Text, txtEdadC.Text, txtResponsable.Text,
                                                             txtTelefonoC.Text, txtImportadora.Text, txtClasificacion.Text, txtProcedimiento.Text, txtObservacionC.Text)
-                Else
-                    'Modifica Cirugia
-                    Dim res2 As Boolean = L_fnMoficicarCirugia(idCirugia, txtIdFicha.Text, dtpFCirugía.Value.ToString("yyyy/MM/dd"), txtPesoC.Text, txtEdadC.Text, txtResponsable.Text,
+            Else
+
+                'Modifica Cirugia
+                Dim res2 As Boolean = L_fnMoficicarCirugia(txtIdCir.Text, txtIdFicha.Text, dtpFCirugía.Value.ToString("yyyy/MM/dd"), txtPesoC.Text, txtEdadC.Text, txtResponsable.Text,
                                                             txtTelefonoC.Text, txtImportadora.Text, txtClasificacion.Text, txtProcedimiento.Text, txtObservacionC.Text)
 
-                End If
             End If
             'Internacion
             If chbInternacion.Checked Then
                 Dim idInternacion As Integer
-                If L_fnExisteInternacion(txtIdFicha.Text) Then
-                    Dim res2 As Boolean = L_fnGrabarInternacion(idInternacion, txtIdFicha.Text, dtpFInternacion.Value.ToString("yyyy/MM/dd"),
-                                        txtEdadI.Text, txtTelefonoI.Text, txtObservacionesI.Text, txtRequiere.Text, txtHoraInt.Text)
-                Else
-                    'Modifica Cirugia
-                    Dim res2 As Boolean = L_fnModificarInternacion(idInternacion, txtIdFicha.Text, dtpFInternacion.Value.ToString("yyyy/MM/dd"),
+                'If L_fnExisteInternacion(txtIdFicha.Text) Then
+                '    Dim res2 As Boolean = L_fnGrabarInternacion(idInternacion, txtIdFicha.Text, dtpFInternacion.Value.ToString("yyyy/MM/dd"),
+                '                        txtEdadI.Text, txtTelefonoI.Text, txtObservacionesI.Text, txtRequiere.Text, txtHoraInt.Text)
+                'Else
+                '    'Modifica Internación
+                '    Dim res2 As Boolean = L_fnModificarInternacion(idInternacion, txtIdFicha.Text, dtpFInternacion.Value.ToString("yyyy/MM/dd"),
+                '                                            txtEdadI.Text, txtTelefonoI.Text, txtObservacionesI.Text, txtRequiere.Text, txtHoraInt.Text)
+                'End If
+
+                Dim res2 As Boolean = L_fnGrabarInternacion(idInternacion, txtIdFicha.Text, dtpFInternacion.Value.ToString("yyyy/MM/dd"),
+                                       txtEdadI.Text, txtTelefonoI.Text, txtObservacionesI.Text, txtRequiere.Text, txtHoraInt.Text)
+            Else
+                Dim res2 As Boolean = L_fnModificarInternacion(txtIdInt.Text, txtIdFicha.Text, dtpFInternacion.Value.ToString("yyyy/MM/dd"),
                                                             txtEdadI.Text, txtTelefonoI.Text, txtObservacionesI.Text, txtRequiere.Text, txtHoraInt.Text)
-                End If
             End If
 
 
@@ -1844,6 +2034,43 @@ Public Class F1_Fic_FichaClinica
                 Return
             End If
         Next
+    End Sub
+
+    Private Sub chbInternacion_CheckedChanged(sender As Object, e As EventArgs) Handles chbInternacion.CheckedChanged
+        If chbInternacion.Checked Then
+            txtIdInt.Text = ""
+            dtpFInternacion.Value = Now.Date
+            txtEdadI.Text = ""
+            txtTelefonoI.Text = ""
+            txtObservacionesI.Text = ""
+            txtRequiere.Text = ""
+            txtHoraInt.Text = ""
+        End If
+    End Sub
+
+    Private Sub JGInternacion_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGInternacion.EditingCell
+        e.Cancel = True
+        txtIdInt.Text = JGInternacion.GetValue("igId")
+        dtpFInternacion.Value = JGInternacion.GetValue("igFechaIng")
+        txtEdadI.Text = JGInternacion.GetValue("igEdad")
+        txtTelefonoI.Text = JGInternacion.GetValue("igTelf")
+        txtObservacionesI.Text = JGInternacion.GetValue("igMotInter")
+        txtRequiere.Text = JGInternacion.GetValue("igRequer")
+        txtHoraInt.Text = JGInternacion.GetValue("igHora")
+    End Sub
+
+    Private Sub JGCirugia_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGCirugia.EditingCell
+        e.Cancel = True
+        txtIdCir.Text = JGCirugia.GetValue("cfId")
+        dtpFCirugía.Value = JGCirugia.GetValue("cfFechaAten")
+        txtPesoC.Text = JGCirugia.GetValue("cfPeso")
+        txtEdadC.Text = JGCirugia.GetValue("cfEdad")
+        txtResponsable.Text = JGCirugia.GetValue("cfRespon")
+        txtTelefonoC.Text = JGCirugia.GetValue("cfTelef")
+        txtImportadora.Text = JGCirugia.GetValue("cfImport")
+        txtClasificacion.Text = JGCirugia.GetValue("cfClasASA")
+        txtProcedimiento.Text = JGCirugia.GetValue("cfProc")
+        txtObservacionC.Text = JGCirugia.GetValue("cfObser")
     End Sub
 
     Private Sub txtTLCapilar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtTLCapilar.KeyPress

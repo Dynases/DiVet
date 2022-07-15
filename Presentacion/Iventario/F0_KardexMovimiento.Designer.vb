@@ -323,7 +323,7 @@ Partial Class F0_KardexMovimiento
         Me.btnSalir1.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSalir1.Image = Global.Presentacion.My.Resources.Resources.atras1
         Me.btnSalir1.ImageFixedSize = New System.Drawing.Size(40, 40)
-        Me.btnSalir1.Location = New System.Drawing.Point(556, 121)
+        Me.btnSalir1.Location = New System.Drawing.Point(385, 121)
         Me.btnSalir1.Name = "btnSalir1"
         Me.btnSalir1.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(4)
         Me.btnSalir1.Size = New System.Drawing.Size(132, 49)
@@ -426,7 +426,7 @@ Partial Class F0_KardexMovimiento
         Me.btActualizar.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btActualizar.Image = Global.Presentacion.My.Resources.Resources.reload_5
         Me.btActualizar.ImageFixedSize = New System.Drawing.Size(40, 40)
-        Me.btActualizar.Location = New System.Drawing.Point(390, 121)
+        Me.btActualizar.Location = New System.Drawing.Point(531, 121)
         Me.btActualizar.Name = "btActualizar"
         Me.btActualizar.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(4)
         Me.btActualizar.Size = New System.Drawing.Size(150, 49)
@@ -434,6 +434,7 @@ Partial Class F0_KardexMovimiento
         Me.btActualizar.TabIndex = 238
         Me.btActualizar.Text = "ACTUALIZAR SALDO"
         Me.btActualizar.TextColor = System.Drawing.Color.White
+        Me.btActualizar.Visible = False
         '
         'btImprimir
         '

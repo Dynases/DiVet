@@ -51,7 +51,7 @@ Partial Class F1_Fic_SegInternacion2
         Me.LabelX10 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
         Me.lbIdFicha = New DevComponents.DotNetBar.LabelX()
-        Me.txtIdFicClinica = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.txtIdFicInter = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.lbFechaI = New DevComponents.DotNetBar.LabelX()
         Me.dtpFechaSeg = New System.Windows.Forms.DateTimePicker()
         Me.SuperTabItem3 = New DevComponents.DotNetBar.SuperTabItem()
@@ -535,7 +535,7 @@ Partial Class F1_Fic_SegInternacion2
         Me.panelDatos.Controls.Add(Me.LabelX10)
         Me.panelDatos.Controls.Add(Me.LabelX4)
         Me.panelDatos.Controls.Add(Me.lbIdFicha)
-        Me.panelDatos.Controls.Add(Me.txtIdFicClinica)
+        Me.panelDatos.Controls.Add(Me.txtIdFicInter)
         Me.panelDatos.Controls.Add(Me.lbFechaI)
         Me.panelDatos.Controls.Add(Me.dtpFechaSeg)
         Me.panelDatos.Dock = System.Windows.Forms.DockStyle.Fill
@@ -555,9 +555,9 @@ Partial Class F1_Fic_SegInternacion2
         Me.LabelX2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
         Me.LabelX2.Location = New System.Drawing.Point(21, 21)
         Me.LabelX2.Name = "LabelX2"
-        Me.LabelX2.Size = New System.Drawing.Size(56, 23)
+        Me.LabelX2.Size = New System.Drawing.Size(96, 23)
         Me.LabelX2.TabIndex = 445
-        Me.LabelX2.Text = "Id:"
+        Me.LabelX2.Text = "Id Seguimiento:"
         '
         'txtId
         '
@@ -868,25 +868,25 @@ Partial Class F1_Fic_SegInternacion2
         Me.lbIdFicha.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
         Me.lbIdFicha.Location = New System.Drawing.Point(21, 60)
         Me.lbIdFicha.Name = "lbIdFicha"
-        Me.lbIdFicha.Size = New System.Drawing.Size(56, 23)
+        Me.lbIdFicha.Size = New System.Drawing.Size(90, 23)
         Me.lbIdFicha.TabIndex = 343
-        Me.lbIdFicha.Text = "Id Ficha:"
+        Me.lbIdFicha.Text = "Id Internación:"
         '
-        'txtIdFicClinica
+        'txtIdFicInter
         '
-        Me.txtIdFicClinica.BackColor = System.Drawing.Color.White
+        Me.txtIdFicInter.BackColor = System.Drawing.Color.White
         '
         '
         '
-        Me.txtIdFicClinica.Border.Class = "TextBoxBorder"
-        Me.txtIdFicClinica.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtIdFicClinica.DisabledBackColor = System.Drawing.Color.White
-        Me.txtIdFicClinica.ForeColor = System.Drawing.Color.Black
-        Me.txtIdFicClinica.Location = New System.Drawing.Point(122, 60)
-        Me.txtIdFicClinica.Name = "txtIdFicClinica"
-        Me.txtIdFicClinica.PreventEnterBeep = True
-        Me.txtIdFicClinica.Size = New System.Drawing.Size(115, 22)
-        Me.txtIdFicClinica.TabIndex = 1
+        Me.txtIdFicInter.Border.Class = "TextBoxBorder"
+        Me.txtIdFicInter.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtIdFicInter.DisabledBackColor = System.Drawing.Color.White
+        Me.txtIdFicInter.ForeColor = System.Drawing.Color.Black
+        Me.txtIdFicInter.Location = New System.Drawing.Point(122, 60)
+        Me.txtIdFicInter.Name = "txtIdFicInter"
+        Me.txtIdFicInter.PreventEnterBeep = True
+        Me.txtIdFicInter.Size = New System.Drawing.Size(115, 22)
+        Me.txtIdFicInter.TabIndex = 1
         '
         'lbFechaI
         '
@@ -3965,7 +3965,7 @@ Partial Class F1_Fic_SegInternacion2
     Friend WithEvents LabelX10 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX4 As DevComponents.DotNetBar.LabelX
     Friend WithEvents lbIdFicha As DevComponents.DotNetBar.LabelX
-    Friend WithEvents txtIdFicClinica As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents txtIdFicInter As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents lbFechaI As DevComponents.DotNetBar.LabelX
     Friend WithEvents dtpFechaSeg As DateTimePicker
     Friend WithEvents gpEstudiosComplem As DevComponents.DotNetBar.Controls.GroupPanel

@@ -251,8 +251,9 @@ Public Class F1_Fic_ReciboCirugia
     End Sub
     Private Sub txtCirugia_KeyDown(sender As Object, e As KeyEventArgs) Handles txtCirugia.KeyDown
         Try
-            If (_fnAccesible()) Then
-                If e.KeyData = Keys.Control + Keys.Enter Then
+
+            If e.KeyData = Keys.Control + Keys.Enter Then
+                If (_fnAccesible()) Then
                     Dim dt As DataTable
                     dt = L_fnMostrarFichaClinicaCirugiaRecibo()
                     If dt.Rows.Count > 0 Then
@@ -285,12 +286,13 @@ Public Class F1_Fic_ReciboCirugia
                             txtDescripcion.Select()
                             swInternacion.Enabled = True
                         End If
+                    Else
+                        ToastNotification.Show(Me, "NO EXISTE FICHAS DE CIRUGIAS PARA ENLAZAR A UN RECIBO..!!!",
+                                               My.Resources.WARNING, 2000,
+                                               eToastGlowColor.Blue,
+                                               eToastPosition.TopCenter)
                     End If
-                Else
-                    ToastNotification.Show(Me, "NO EXISTE FICHAS DE CIRUGIAS PARA ENLAZAR A UN RECIBO..!!!",
-                                           My.Resources.WARNING, 2000,
-                                           eToastGlowColor.Blue,
-                                           eToastPosition.TopCenter)
+
 
                 End If
             End If
@@ -370,14 +372,14 @@ Public Class F1_Fic_ReciboCirugia
         JGBusqRecibosC.AlternatingColors = True
         '--roId, ro_cfId, ro_PbId, roEst, roFechaIng,Cliente,pbnomb, rmTratam, roTotal, roFecha, roHora, rmusuario
         With JGBusqRecibosC.RootTable.Columns("roId")
-            .Width = 90
+            .Width = 100
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .Caption = "Id"
+            .Caption = "IdRecibo"
             .Visible = True
         End With
         With JGBusqRecibosC.RootTable.Columns("ro_cfId")
             .Width = 70
-            .Caption = "IdCirgugia"
+            .Caption = "IdCirugia"
             .Visible = False
         End With
         With JGBusqRecibosC.RootTable.Columns("ro_PbId")

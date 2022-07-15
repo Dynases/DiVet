@@ -42,9 +42,9 @@ Partial Class F0_Reg_Clientes
         Dim _prioridad As Integer = dt.Rows(0).Item("fapriori")
         If _prioridad > 0 Then
             _prioridad = _prioridad
-            tFichaAtencion.Rows.Add(Convert.ToInt32(JGMascotasAtencion.GetValue("pbid")), 3, 0, _prioridad, JGMascotasAtencion.GetValue("Consultorio"))
+            tFichaAtencion.Rows.Add(Convert.ToInt32(JGMascotasAtencion.GetValue("pbid")), 3, 0, _prioridad, _fnObtenerNumiConsultorio(JGMascotasAtencion.GetValue("Consultorio")))
         Else
-            tFichaAtencion.Rows.Add(Convert.ToInt32(JGMascotasAtencion.GetValue("pbid")), 3, 0, -1, JGMascotasAtencion.GetValue("Consultorio"))
+            tFichaAtencion.Rows.Add(Convert.ToInt32(JGMascotasAtencion.GetValue("pbid")), 3, 0, -1, _fnObtenerNumiConsultorio(JGMascotasAtencion.GetValue("Consultorio")))
         End If
         frm._Tabla = tFichaAtencion
         frm.ShowDialog()

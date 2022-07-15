@@ -1151,6 +1151,14 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("FIC.sp_CIR0024", _listParam)
         Return _Tabla
     End Function
+    Public Shared Function L_prMostrarFechaCirugia(_fbId As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@cf_FbId", _fbId))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CIR0024", _listParam)
+        Return _Tabla
+    End Function
 #End Region
 #Region "Verificaciones"
     Public Shared Function L_fnExisteCirugia(_fbId As String) As Boolean
@@ -1252,6 +1260,14 @@ Public Class AccesoLogica
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
         _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT0025", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_prMostrarInternación(_fbId As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@ig_fbId", _fbId))
         _Tabla = D_ProcedimientoConParam("FIC.sp_INT0025", _listParam)
         Return _Tabla
     End Function
