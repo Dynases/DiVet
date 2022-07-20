@@ -23,9 +23,9 @@ Partial Class F1_Fic_SegInternacion2
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim cbTurno_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F1_Fic_SegInternacion2))
         Dim cbTurnoF_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim cbTurnoEF_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F1_Fic_SegInternacion2))
         Me.gpFichaInternacion = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.stcFichaInternacion = New DevComponents.DotNetBar.SuperTabControl()
         Me.stcpDatosGenerales = New DevComponents.DotNetBar.SuperTabControlPanel()
@@ -469,14 +469,14 @@ Partial Class F1_Fic_SegInternacion2
         Me.stcFichaInternacion.ControlBox.MenuBox.Name = ""
         Me.stcFichaInternacion.ControlBox.Name = ""
         Me.stcFichaInternacion.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.stcFichaInternacion.ControlBox.MenuBox, Me.stcFichaInternacion.ControlBox.CloseBox})
-        Me.stcFichaInternacion.Controls.Add(Me.stcpDatosGenerales)
-        Me.stcFichaInternacion.Controls.Add(Me.stcpSignosVitales)
+        Me.stcFichaInternacion.Controls.Add(Me.stcpExamenFisico)
         Me.stcFichaInternacion.Controls.Add(Me.stcpTratamiento)
         Me.stcFichaInternacion.Controls.Add(Me.stcpEstudiosComplem)
         Me.stcFichaInternacion.Controls.Add(Me.stcpFluidoterapia)
         Me.stcFichaInternacion.Controls.Add(Me.stcpAlimentacion)
         Me.stcFichaInternacion.Controls.Add(Me.stcpMonitoreo)
-        Me.stcFichaInternacion.Controls.Add(Me.stcpExamenFisico)
+        Me.stcFichaInternacion.Controls.Add(Me.stcpSignosVitales)
+        Me.stcFichaInternacion.Controls.Add(Me.stcpDatosGenerales)
         Me.stcFichaInternacion.Dock = System.Windows.Forms.DockStyle.Fill
         Me.stcFichaInternacion.ForeColor = System.Drawing.Color.Black
         Me.stcFichaInternacion.Location = New System.Drawing.Point(0, 0)
@@ -3339,7 +3339,6 @@ Partial Class F1_Fic_SegInternacion2
         '
         '
         Me.chbSevero.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbSevero.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
         Me.chbSevero.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold)
         Me.chbSevero.Location = New System.Drawing.Point(212, 3)
         Me.chbSevero.Name = "chbSevero"
@@ -3354,10 +3353,6 @@ Partial Class F1_Fic_SegInternacion2
         '
         '
         Me.chbLeve.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbLeve.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.chbLeve.Checked = True
-        Me.chbLeve.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbLeve.CheckValue = "Y"
         Me.chbLeve.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold)
         Me.chbLeve.Location = New System.Drawing.Point(5, 4)
         Me.chbLeve.Name = "chbLeve"
@@ -3372,7 +3367,6 @@ Partial Class F1_Fic_SegInternacion2
         '
         '
         Me.chbModerado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.chbModerado.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
         Me.chbModerado.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold)
         Me.chbModerado.Location = New System.Drawing.Point(87, 4)
         Me.chbModerado.Name = "chbModerado"

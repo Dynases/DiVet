@@ -184,7 +184,7 @@ Public Class Login
 
 
                     Principal.Show()
-
+                    _prCambiarNombreBotones()
                     'txtUsuario.Clear()
                     'txtPassword.Clear()
 
@@ -213,7 +213,32 @@ Public Class Login
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
         '_ok = False
         Me.Close()
-
+    End Sub
+    Public Sub _prCambiarNombreBotones()
+        Principal.btnFichaAtencion.TitleText = "FICHA" + vbCrLf + "ATENCIÓN"
+        Principal.btnFichaClinica.TitleText = "FICHA" + vbCrLf + "CLÍNICA"
+        Principal.btnSegInternacion.TitleText = "SEGUIMIENTO" + vbCrLf + "INTERNACIÓN"
+        Principal.btnReciboCirugia.TitleText = "RECIBO" + vbCrLf + "CIRUGÍA"
+        Principal.btnRepVetMascAten.TitleText = "REP. HORAS" + vbCrLf + "ATENDIDAS" + vbCrLf + "VETERINARIO"
+        Principal.btnPacientesAten.TitleText = "REP." + vbCrLf + "PACIENTES" + vbCrLf + "ATENDIDOS"
+        Principal.btComPagosCredito.TitleText = "PAGOS" + vbCrLf + "COMPRA" + vbCrLf + "CRÉDITOS"
+        Principal.btnKardex.TitleText = "KARDEX" + vbCrLf + "PRODUCTO"
+        Principal.btnSaldoProducto.TitleText = "SALDO" + vbCrLf + "PRODUCTOS"
+        Principal.btnKardexProducto.TitleText = "REPORTE" + vbCrLf + "KARDEX" + vbCrLf + "PRODUCTOS"
+        Principal.btnSaldosValorados.TitleText = "SALDOS" + vbCrLf + "VALORADOS"
+        Principal.btnInvSaldoLote.TitleText = "STOCK" + vbCrLf + "ACTUAL" + vbCrLf + "POR LOTES"
+        Principal.btnVentasAtendidas.TitleText = "VENTAS" + vbCrLf + "ATENDIDAS"
+        Principal.btnAnularFactura.TitleText = "ANULAR" + vbCrLf + "FACTURA"
+        Principal.btnLibroVenta.TitleText = "LIBRO DE" + vbCrLf + "VENTAS"
+        Principal.btnIngresoEgreso.TitleText = "INGRESO" + vbCrLf + "EGRESO"
+        Principal.btnArqueoDiario.TitleText = "ARQUEO" + vbCrLf + "DIARIO"
+        Principal.btnDetalleAtenciones.TitleText = "DETALLE DE" + vbCrLf + "ATENCIONES" + vbCrLf + "DIARIAS"
+        Principal.btnPagosCliente.TitleText = "PAGOS POR" + vbCrLf + "CLIENTE"
+        Principal.btnReporteNotasPorCobrar.TitleText = "NOTAS" + vbCrLf + "POR" + vbCrLf + "COBRAR"
+        Principal.btnReportePagos.TitleText = "REPORTE" + vbCrLf + "PAGOS"
+        Principal.btnRealizarPAgos.TitleText = "REALIZAR" + vbCrLf + "PAGOS"
+        Principal.btnReporteKArdex.TitleText = "ESTADO DE" + vbCrLf + "CUENTAS"
+        Principal.btnFichaAtencionC.TitleText = "FICHA" + vbCrLf + "ATENCIÓN" + vbCrLf + "CLIENTE"
     End Sub
     Private Sub ModeloHor_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress, txtPassword.KeyPress, txtUsuario.KeyPress
         'e.KeyChar = e.KeyChar.ToString.ToUpper

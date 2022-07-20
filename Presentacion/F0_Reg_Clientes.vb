@@ -639,6 +639,7 @@ Partial Class F0_Reg_Clientes
             _prCargarClientes()
             _prMostrarRegistro(0)
             _PMOLimpiar()
+            _prCargarPropietarios()
             txtCI.Focus()
             Limpiar = True
         Else
@@ -861,6 +862,7 @@ Partial Class F0_Reg_Clientes
     Private Sub F0_Reg_Clientes_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         _prCambiarColorPlomoOscuro(Presentacion.Principal.btnClientes)
     End Sub
+
 
 
 #End Region

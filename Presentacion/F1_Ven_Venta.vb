@@ -1807,6 +1807,17 @@ salirIf:
 
     End Sub
 
+    Public Sub _fnObtenerFilaDetalleProducto(ByRef pos As Integer, numi As Integer)
+        For i As Integer = 0 To CType(JGProductos.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _numi As Integer = CType(JGProductos.DataSource, DataTable).Rows(i).Item("yfnumi")
+            If (_numi = numi) Then
+                pos = i
+                Return
+            End If
+        Next
+
+    End Sub
+
     Public Function _fnExisteProducto(idprod As Integer) As Boolean
         For i As Integer = 0 To CType(JGdetalleVenta.DataSource, DataTable).Rows.Count - 1 Step 1
             Dim _idprod As Integer = CType(JGdetalleVenta.DataSource, DataTable).Rows(i).Item("vb_tyfnumi")
@@ -2126,9 +2137,9 @@ salirIf:
     Public Sub InsertarProductosConLote()
         Dim pos As Integer = -1
         JGdetalleVenta.Row = JGdetalleVenta.RowCount - 1
-        _fnObtenerFilaDetalle(pos, JGdetalleVenta.GetValue("vbId"))
+        _fnObtenerFilaDetalleProducto(pos, JGProductos.GetValue("yfnumi"))
         Dim posProducto As Integer = JGProductos.Row
-        FilaSelectLote = CType(JGProductos.DataSource, DataTable).Rows(posProducto)
+        FilaSelectLote = CType(JGProductos.DataSource, DataTable).Rows(pos)
 
 
         If (JGProductos.GetValue("stock") > 0) Then

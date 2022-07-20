@@ -88,14 +88,21 @@ Public Class F1_Fic_FichaClinica
     End Sub
     '********Muestra la imagen en visualizador
     Private Sub JGListaArchivos_DoubleClick(sender As Object, e As EventArgs) Handles JGListaArchivos.DoubleClick
-        If JGListaArchivos.GetValue("Estado") <> 0 Then
-            Dim A = RutaGlobal + "\Imagenes\Imagenes FichaClinicaDino\" + "FichaClinica_" + txtIdFicha.Text.Trim + JGListaArchivos.GetValue("feImg")
-            'Shell("rundll32.exe C:\WINDOWS\system32\shimgvw.dll,ImageView_Fullscreen " + RutaGlobal + "\Imagenes\Imagenes FichaClinicaDino\" + "FichaClinica_" + txtIdFicha.Text.Trim + JGListaArchivos.GetValue("feImg"))
-            Process.Start(A)
-        Else
+        Try
+            If JGListaArchivos.GetValue("Estado") <> 0 Then
+                Dim A = RutaGlobal + "\Imagenes\Imagenes FichaClinicaDino\" + "FichaClinica_" + txtIdFicha.Text.Trim + JGListaArchivos.GetValue("feImg")
+                'Shell("rundll32.exe C:\WINDOWS\system32\shimgvw.dll,ImageView_Fullscreen " + RutaGlobal + "\Imagenes\Imagenes FichaClinicaDino\" + "FichaClinica_" + txtIdFicha.Text.Trim + JGListaArchivos.GetValue("feImg"))
+                Process.Start(A)
+            Else
+                Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+                ToastNotification.Show(Me, "Para vizualizar la imagen debe guardar la ficha clinica".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
+            End If
+        Catch ex As Exception
+            ''Throw New Exception(ex.Message, ex)
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "Para vizualizar la imagen debe guardar la ficha clinica".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
-        End If
+            ToastNotification.Show(Me, "No se encuentra la imagen, no se puede visualizar".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
+
+        End Try
     End Sub
 
     Private Sub txtIdVeterinario_KeyDown(sender As Object, e As KeyEventArgs) Handles txtIdVeterinario.KeyDown
@@ -1069,18 +1076,18 @@ Public Class F1_Fic_FichaClinica
         chbHiperemicasM.Checked = False
         chbNormalD.Checked = True
         chbAnormalD.Checked = False
-        chbunoDP.Checked = True
+        chbunoDP.Checked = False
         chbdosDP.Checked = False
         chbtresDP.Checked = False
         chbNormalE.Checked = True
         chbAnormalE.Checked = False
-        chbLeveG.Checked = True
+        chbLeveG.Checked = False
         chbModeradaG.Checked = False
         chbSeveraG.Checked = False
-        chbLeveS.Checked = True
+        chbLeveS.Checked = False
         chbModeradoS.Checked = False
         chbSeveroS.Checked = False
-        chbMasaOral.Checked = True
+        chbMasaOral.Checked = False
         chbPorDeshi1.Checked = True
         chbPorDeshi2.Checked = False
         chbPorDeshi3.Checked = False
@@ -1133,7 +1140,7 @@ Public Class F1_Fic_FichaClinica
         chbNormalA.Checked = True
         chbAnormalA.Checked = False
         'Dolor
-        chbAgudoD.Checked = True
+        chbAgudoD.Checked = False
         chbLeveD.Checked = False
         chbModeradoD.Checked = False
         chbSeveroD.Checked = False
@@ -1154,7 +1161,7 @@ Public Class F1_Fic_FichaClinica
         chbIntu.Checked = False
         chbAscitis.Checked = False
         'Examenes complementarios
-        chbLaboratorio.Checked = True
+        chbLaboratorio.Checked = False
         chbEcografia.Checked = False
         chbRadiografia.Checked = False
         'Limpiar la las imagenes agregadas
@@ -1658,13 +1665,17 @@ Public Class F1_Fic_FichaClinica
     Private Function _prPasarIamgenTabla() As String
         'copio la imagen en la carpeta del sistema
         If txtDecripcionA.Text <> String.Empty Then
+            Dim Bin As New MemoryStream
+            Dim img As New Bitmap(My.Resources.delete, 20, 20)
+            img.Save(Bin, Imaging.ImageFormat.Png)
             If (_fnActionNuevo()) Then
-                TablaImagenes.Rows.Add(0, 0, txtDecripcionA.Text, _Nombre, mstream1.ToArray(), 0, dtpFechaAnexo.Value.ToString("yyyy/MM/dd"))
+                TablaImagenes.Rows.Add(0, 0, txtDecripcionA.Text, _Nombre, mstream1.ToArray(), Bin.GetBuffer, 0, dtpFechaAnexo.Value.ToString("yyyy/MM/dd"))
                 mstream1.Dispose()
+                JGListaArchivos.RootTable.Columns("imgelim").Visible = True
             Else
-                'a.ienumi , a.ienumiti4, a.ieimg, Cast(null As image) As img, 1 as estado
-                TablaImagenes.Rows.Add(0, Convert.ToInt32(txtIdFicha.Text), txtDecripcionA.Text, _Nombre, mstream1.ToArray(), 0, dtpFechaAnexo.Value.ToString("yyyy/MM/dd"))
+                TablaImagenes.Rows.Add(0, Convert.ToInt32(txtIdFicha.Text), txtDecripcionA.Text, _Nombre, mstream1.ToArray(), Bin.GetBuffer, 0, dtpFechaAnexo.Value.ToString("yyyy/MM/dd"))
                 mstream1.Dispose()
+                JGListaArchivos.RootTable.Columns("imgelim").Visible = True
             End If
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
@@ -1706,6 +1717,11 @@ Public Class F1_Fic_FichaClinica
             .Width = 130
             .Visible = False
             .Caption = "Img"
+        End With
+        With JGListaArchivos.RootTable.Columns("imgelim")
+            .Width = 90
+            .Visible = False
+            .Caption = "Eliminar"
         End With
         With JGListaArchivos.RootTable.Columns("estado")
             .Width = 150
@@ -1830,7 +1846,12 @@ Public Class F1_Fic_FichaClinica
     Private Sub _prAddDetalleSeguimiento()
         'seg.fjId,seg.fj_FbId,seg.fjEstado,seg.fjSeguimientomiento,seg.fjFecha,seg.fjHora,seg.fjUsuario
         CType(JGFechasSeg.DataSource, DataTable).Rows.Add(0, 0, 2, "", "", "", DateTime.Now, DateTime.Now.ToShortTimeString(), TxtNombreUsu.Text)
-
+        'Dim aux = JGFechasSeg.RowCount - 1
+        JGFechasSeg.Row = IIf(JGFechasSeg.RowCount = 0, 0, JGFechasSeg.RowCount - 1)
+        JGFechasSeg.Select()
+        txtSeguimiento.Text = JGFechasSeg.GetValue("fjSeguimiento")
+        txtValoracion.Text = JGFechasSeg.GetValue("fjValoracion")
+        txtProManejo.Text = JGFechasSeg.GetValue("fjProtocoloM")
     End Sub
     Private Sub _prEditDetalleSeguimiento()
         'seg.fjId,seg.fj_FbId,seg.fjEstado,seg.fjSeguimientomiento,seg.fjFecha,seg.fjHora,seg.fjUsuario
@@ -1923,10 +1944,11 @@ Public Class F1_Fic_FichaClinica
                 Dim res2 As Boolean = L_fnGrabarCirugia(idCirugia, txtIdFicha.Text, dtpFCirugía.Value.ToString("yyyy/MM/dd"), txtPesoC.Text, txtEdadC.Text, txtResponsable.Text,
                                                             txtTelefonoC.Text, txtImportadora.Text, txtClasificacion.Text, txtProcedimiento.Text, txtObservacionC.Text)
             Else
-
                 'Modifica Cirugia
-                Dim res2 As Boolean = L_fnMoficicarCirugia(txtIdCir.Text, txtIdFicha.Text, dtpFCirugía.Value.ToString("yyyy/MM/dd"), txtPesoC.Text, txtEdadC.Text, txtResponsable.Text,
+                If txtIdCir.Text <> String.Empty Then
+                    Dim res2 As Boolean = L_fnMoficicarCirugia(txtIdCir.Text, txtIdFicha.Text, dtpFCirugía.Value.ToString("yyyy/MM/dd"), txtPesoC.Text, txtEdadC.Text, txtResponsable.Text,
                                                             txtTelefonoC.Text, txtImportadora.Text, txtClasificacion.Text, txtProcedimiento.Text, txtObservacionC.Text)
+                End If
 
             End If
             'Internacion
@@ -1944,8 +1966,11 @@ Public Class F1_Fic_FichaClinica
                 Dim res2 As Boolean = L_fnGrabarInternacion(idInternacion, txtIdFicha.Text, dtpFInternacion.Value.ToString("yyyy/MM/dd"),
                                        txtEdadI.Text, txtTelefonoI.Text, txtObservacionesI.Text, txtRequiere.Text, txtHoraInt.Text)
             Else
-                Dim res2 As Boolean = L_fnModificarInternacion(txtIdInt.Text, txtIdFicha.Text, dtpFInternacion.Value.ToString("yyyy/MM/dd"),
+                'Modifica Cirugia
+                If txtIdInt.Text <> String.Empty Then
+                    Dim res2 As Boolean = L_fnModificarInternacion(txtIdInt.Text, txtIdFicha.Text, dtpFInternacion.Value.ToString("yyyy/MM/dd"),
                                                             txtEdadI.Text, txtTelefonoI.Text, txtObservacionesI.Text, txtRequiere.Text, txtHoraInt.Text)
+                End If
             End If
 
 
@@ -1999,7 +2024,7 @@ Public Class F1_Fic_FichaClinica
             Return
         End If
         If (JGListaArchivos.RowCount >= 1) Then
-            If (JGListaArchivos.CurrentColumn.Index = JGListaArchivos.RootTable.Columns("img").Index) Then
+            If (JGListaArchivos.CurrentColumn.Index = JGListaArchivos.RootTable.Columns("imgelim").Index) Then
                 _prEliminarFila()
             End If
         End If
@@ -2101,8 +2126,8 @@ Public Class F1_Fic_FichaClinica
             Dim Bin As New MemoryStream
             Dim img As New Bitmap(My.Resources.delete, 20, 20)
             img.Save(Bin, Imaging.ImageFormat.Png)
-            CType(JGListaArchivos.DataSource, DataTable).Rows(i).Item("img") = Bin.GetBuffer
-            JGListaArchivos.RootTable.Columns("img").Visible = True
+            CType(JGListaArchivos.DataSource, DataTable).Rows(i).Item("imgelim") = Bin.GetBuffer
+            JGListaArchivos.RootTable.Columns("imgelim").Visible = True
         Next
 
     End Sub
@@ -2191,7 +2216,7 @@ Public Class F1_Fic_FichaClinica
             txtPeso.BackColor = Color.White
             MEP.SetError(txtPeso, "")
         End If
-        If txtSeguimiento.Text = String.Empty Then
+        If txtSeguimiento.Text = String.Empty And txtIdFicha.Text = String.Empty Then
             txtSeguimiento.BackColor = Color.Red
             MEP.SetError(txtSeguimiento, "Ingrese un seguimiento!".ToUpper)
             _ok = False

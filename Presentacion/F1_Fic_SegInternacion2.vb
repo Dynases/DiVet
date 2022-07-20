@@ -253,10 +253,20 @@ Public Class F1_Fic_SegInternacion2
     Private Sub _prMostrarDolor(ByRef dolor As String)
         If dolor = chbLeve.Text Then
             chbLeve.Checked = True
+            chbModerado.Checked = False
+            chbSevero.Checked = False
         ElseIf dolor = chbModerado.Text Then
             chbModerado.Checked = True
+            chbLeve.Checked = False
+            chbSevero.Checked = False
         ElseIf dolor = chbSevero.Text Then
             chbSevero.Checked = True
+            chbLeve.Checked = False
+            chbModerado.Checked = False
+        ElseIf dolor = "" Then
+            chbLeve.Checked = False
+            chbModerado.Checked = False
+            chbSevero.Checked = False
         End If
     End Sub
     Private Sub _prMostrarGradoConciencia(ByRef gradoconc As String)
@@ -1274,7 +1284,9 @@ Public Class F1_Fic_SegInternacion2
         cbTurno.Value = 1
         chbRosadas.Checked = True
         chb0_5.Checked = True
-        chbLeve.Checked = True
+        chbLeve.Checked = False
+        chbModerado.Checked = False
+        chbSevero.Checked = False
         chbEstable.Checked = True
         txtHoraEF.Clear()
         dtpFechaEF.Value = Date.Now
