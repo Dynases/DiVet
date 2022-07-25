@@ -195,7 +195,6 @@ Partial Class F1_IngresosEgresos
         '
         'btnImprimir
         '
-        Me.btnImprimir.Visible = False
         '
         'MPanelUserAct
         '
@@ -328,12 +327,13 @@ Partial Class F1_IngresosEgresos
         Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX4.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX4.Location = New System.Drawing.Point(43, 46)
+        Me.LabelX4.Location = New System.Drawing.Point(549, 153)
         Me.LabelX4.Name = "LabelX4"
         Me.LabelX4.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX4.Size = New System.Drawing.Size(50, 16)
         Me.LabelX4.TabIndex = 255
         Me.LabelX4.Text = "Id Caja:"
+        Me.LabelX4.Visible = False
         '
         'tbIdCaja
         '
@@ -346,12 +346,13 @@ Partial Class F1_IngresosEgresos
         Me.tbIdCaja.DisabledBackColor = System.Drawing.Color.White
         Me.tbIdCaja.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbIdCaja.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbIdCaja.Location = New System.Drawing.Point(202, 45)
+        Me.tbIdCaja.Location = New System.Drawing.Point(708, 152)
         Me.tbIdCaja.Name = "tbIdCaja"
         Me.tbIdCaja.PreventEnterBeep = True
         Me.tbIdCaja.Size = New System.Drawing.Size(83, 21)
         Me.tbIdCaja.TabIndex = 254
         Me.tbIdCaja.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.tbIdCaja.Visible = False
         '
         'btConcepto
         '
@@ -424,10 +425,10 @@ Partial Class F1_IngresosEgresos
         Me.LabelX16.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX16.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX16.Location = New System.Drawing.Point(44, 71)
+        Me.LabelX16.Location = New System.Drawing.Point(44, 51)
         Me.LabelX16.Name = "LabelX16"
         Me.LabelX16.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX16.Size = New System.Drawing.Size(93, 23)
+        Me.LabelX16.Size = New System.Drawing.Size(59, 23)
         Me.LabelX16.TabIndex = 249
         Me.LabelX16.Text = "Fecha:"
         '
@@ -435,7 +436,7 @@ Partial Class F1_IngresosEgresos
         '
         Me.dpFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dpFecha.Location = New System.Drawing.Point(202, 73)
+        Me.dpFecha.Location = New System.Drawing.Point(162, 53)
         Me.dpFecha.Name = "dpFecha"
         Me.dpFecha.Size = New System.Drawing.Size(97, 22)
         Me.dpFecha.TabIndex = 248
@@ -503,7 +504,7 @@ Partial Class F1_IngresosEgresos
         Me.tbcodigo.DisabledBackColor = System.Drawing.Color.White
         Me.tbcodigo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbcodigo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbcodigo.Location = New System.Drawing.Point(202, 19)
+        Me.tbcodigo.Location = New System.Drawing.Point(162, 19)
         Me.tbcodigo.Name = "tbcodigo"
         Me.tbcodigo.PreventEnterBeep = True
         Me.tbcodigo.Size = New System.Drawing.Size(83, 21)
@@ -522,7 +523,7 @@ Partial Class F1_IngresosEgresos
         Me.LabelX2.Location = New System.Drawing.Point(44, 129)
         Me.LabelX2.Name = "LabelX2"
         Me.LabelX2.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX2.Size = New System.Drawing.Size(113, 23)
+        Me.LabelX2.Size = New System.Drawing.Size(94, 23)
         Me.LabelX2.TabIndex = 23
         Me.LabelX2.Text = "Descripción:"
         '
@@ -537,10 +538,11 @@ Partial Class F1_IngresosEgresos
         Me.tbDescripcion.DisabledBackColor = System.Drawing.Color.White
         Me.tbDescripcion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbDescripcion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbDescripcion.Location = New System.Drawing.Point(202, 129)
+        Me.tbDescripcion.Location = New System.Drawing.Point(162, 129)
+        Me.tbDescripcion.Multiline = True
         Me.tbDescripcion.Name = "tbDescripcion"
         Me.tbDescripcion.PreventEnterBeep = True
-        Me.tbDescripcion.Size = New System.Drawing.Size(204, 21)
+        Me.tbDescripcion.Size = New System.Drawing.Size(381, 39)
         Me.tbDescripcion.TabIndex = 1
         '
         'LabelX3
@@ -566,7 +568,7 @@ Partial Class F1_IngresosEgresos
         '
         Me.swTipo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.swTipo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.swTipo.Location = New System.Drawing.Point(202, 101)
+        Me.swTipo.Location = New System.Drawing.Point(162, 92)
         Me.swTipo.Name = "swTipo"
         Me.swTipo.OffBackColor = System.Drawing.Color.DodgerBlue
         Me.swTipo.OffText = "EGRESO"
@@ -589,10 +591,10 @@ Partial Class F1_IngresosEgresos
         Me.LabelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX9.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX9.Location = New System.Drawing.Point(44, 100)
+        Me.LabelX9.Location = New System.Drawing.Point(44, 91)
         Me.LabelX9.Name = "LabelX9"
         Me.LabelX9.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX9.Size = New System.Drawing.Size(79, 23)
+        Me.LabelX9.Size = New System.Drawing.Size(59, 23)
         Me.LabelX9.TabIndex = 216
         Me.LabelX9.Text = "Tipo:"
         '

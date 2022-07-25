@@ -99,6 +99,38 @@ Public Class F1_IngresosEgresos
                                eToastGlowColor.Red,
                                eToastPosition.TopCenter)
     End Sub
+    Private Sub _prImprimir()
+        Try
+            Dim dt As DataTable = L_prIngresoEgresoPorId(tbcodigo.Text)
+            If (dt.Rows.Count > 0) Then
+                If Not IsNothing(P_Global.Visualizador) Then
+                    P_Global.Visualizador.Close()
+                End If
+                P_Global.Visualizador = New Visualizador
+                Dim objrep As New R_IngresoEgreso
+                objrep.SetDataSource(dt)
+                objrep.SetParameterValue("usuario", gs_user)
+                If swTipo.Value = True Then
+                    objrep.SetParameterValue("Titulo", "REPORTE  INGRESO  " + tbcodigo.Text)
+                Else
+                    objrep.SetParameterValue("Titulo", "REPORTE  EGRESO  " + tbcodigo.Text)
+                End If
+                objrep.SetParameterValue("Concepto", cbConcepto.Text)
+                objrep.SetParameterValue("Turno", dt.Rows(0).Item("Turno"))
+                P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
+                P_Global.Visualizador.WindowState = FormWindowState.Maximized
+                P_Global.Visualizador.Show()
+                P_Global.Visualizador.BringToFront()
+            Else
+                ToastNotification.Show(Me, "NO HAY DATOS PARA LOS PARAMETROS SELECCIONADOS..!!!",
+                                           My.Resources.WARNING, 2000,
+                                           eToastGlowColor.Blue,
+                                           eToastPosition.BottomLeft)
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
 #End Region
 #Region "METODOS SOBREESCRITOS"
 
@@ -182,7 +214,6 @@ Public Class F1_IngresosEgresos
 
     Public Overrides Function _PMOGetListEstructuraBuscador() As List(Of Modelo.Celda)
         Dim listEstCeldas As New List(Of Modelo.Celda)
-
 
         listEstCeldas.Add(New Modelo.Celda("ienumi", True, "Codigo", 120))
         listEstCeldas.Add(New Modelo.Celda("ieFecha", True, "Fecha", 100))
@@ -355,6 +386,10 @@ Public Class F1_IngresosEgresos
 
     Private Sub F1_IngresosEgresos_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         _prCambiarColorPlomoOscuro(Presentacion.Principal.btnIngresoEgreso)
+    End Sub
+
+    Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
+        _prImprimir()
     End Sub
 
 
