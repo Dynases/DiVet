@@ -30,17 +30,20 @@ Partial Class F_Fic_FichaAtencion
         Me.btnAbajo = New DevComponents.DotNetBar.ButtonX()
         Me.btnActualizar = New DevComponents.DotNetBar.ButtonX()
         Me.JGFichasAtencion = New Janus.Windows.GridEX.GridEX()
+        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         Me.gpFichasAtencion.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.JGFichasAtencion, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
         '
         Me.Panel1.BackgroundImage = Global.Presentacion.My.Resources.Resources.Fondo2
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Panel1.Controls.Add(Me.gpFichasAtencion)
+        Me.Panel1.Controls.Add(Me.Panel3)
+        Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
@@ -52,14 +55,13 @@ Partial Class F_Fic_FichaAtencion
         Me.gpFichasAtencion.BackColor = System.Drawing.Color.Transparent
         Me.gpFichasAtencion.CanvasColor = System.Drawing.SystemColors.Control
         Me.gpFichasAtencion.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
-        Me.gpFichasAtencion.Controls.Add(Me.Panel2)
         Me.gpFichasAtencion.Controls.Add(Me.JGFichasAtencion)
         Me.gpFichasAtencion.DisabledBackColor = System.Drawing.Color.Empty
         Me.gpFichasAtencion.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpFichasAtencion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpFichasAtencion.Location = New System.Drawing.Point(0, 0)
         Me.gpFichasAtencion.Name = "gpFichasAtencion"
-        Me.gpFichasAtencion.Size = New System.Drawing.Size(1234, 651)
+        Me.gpFichasAtencion.Size = New System.Drawing.Size(1234, 582)
         '
         '
         '
@@ -94,14 +96,15 @@ Partial Class F_Fic_FichaAtencion
         '
         'Panel2
         '
+        Me.Panel2.BackColor = System.Drawing.Color.SteelBlue
         Me.Panel2.Controls.Add(Me.btnArriba)
         Me.Panel2.Controls.Add(Me.btnAbrirFicha)
         Me.Panel2.Controls.Add(Me.btnAbajo)
         Me.Panel2.Controls.Add(Me.btnActualizar)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(0, 559)
+        Me.Panel2.Location = New System.Drawing.Point(0, 582)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1228, 69)
+        Me.Panel2.Size = New System.Drawing.Size(1234, 69)
         Me.Panel2.TabIndex = 331
         '
         'btnArriba
@@ -186,8 +189,17 @@ Partial Class F_Fic_FichaAtencion
         Me.JGFichasAtencion.Location = New System.Drawing.Point(0, 0)
         Me.JGFichasAtencion.Name = "JGFichasAtencion"
         Me.JGFichasAtencion.SelectedFormatStyle.BackColor = System.Drawing.Color.Empty
-        Me.JGFichasAtencion.Size = New System.Drawing.Size(1228, 628)
+        Me.JGFichasAtencion.Size = New System.Drawing.Size(1228, 559)
         Me.JGFichasAtencion.TabIndex = 256
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.gpFichasAtencion)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel3.Location = New System.Drawing.Point(0, 0)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(1234, 582)
+        Me.Panel3.TabIndex = 332
         '
         'F_Fic_FichaAtencion
         '
@@ -203,6 +215,7 @@ Partial Class F_Fic_FichaAtencion
         Me.gpFichasAtencion.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         CType(Me.JGFichasAtencion, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -215,4 +228,5 @@ Partial Class F_Fic_FichaAtencion
     Friend WithEvents btnAbajo As DevComponents.DotNetBar.ButtonX
     Friend WithEvents btnArriba As DevComponents.DotNetBar.ButtonX
     Friend WithEvents Panel2 As Panel
+    Friend WithEvents Panel3 As Panel
 End Class

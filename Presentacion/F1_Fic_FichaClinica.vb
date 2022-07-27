@@ -2007,7 +2007,6 @@ Public Class F1_Fic_FichaClinica
             chbPorDeshi3.Checked = False
             chbPorDeshi4.Checked = False
             chbPorDeshi5.Checked = False
-
         End If
     End Sub
 

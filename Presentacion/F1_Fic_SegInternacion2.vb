@@ -1648,7 +1648,11 @@ Public Class F1_Fic_SegInternacion2
         Dim Bin As New MemoryStream
         Dim img As New Bitmap(My.Resources.delete, 28, 28)
         img.Save(Bin, Imaging.ImageFormat.Png)
-
+        If txtRequerimiento.Text = String.Empty Then
+            Dim img2 As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+            ToastNotification.Show(Me, "Es necesario que llene el campo Requerimiento(kcal)".ToUpper, img2, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
+            Exit Sub
+        End If
         Dim Hora = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
 
         If ModificarA = False Then

@@ -199,6 +199,7 @@ Public Class F_Fic_FichaAtencionCliente
             .VisualStyle = VisualStyle.Office2007
         End With
         _prAplicarCondiccionJanusSinLote()
+        JGFichasAtencion.Row = JGFichasAtencion.RowCount - 1
     End Sub
     Public Sub _prAplicarCondiccionJanusSinLote()
         Dim fc As GridEXFormatCondition

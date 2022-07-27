@@ -982,7 +982,7 @@ Public Class AccesoLogica
     Public Shared Function L_fnMostrarIdFichaClinica(ByRef _fbId As Integer, _fb_pbId As String) As Boolean
         Dim _Tabla As DataTable
         Dim _res As Boolean = False
-        Dim _where = String.Format(" clin.fbFecha = (SELECT MAX(clin2.fbFecha) FROM FIC.CLIN002 clin2 WHERE clin2.fb_pbid = {0}) 
+        Dim _where = String.Format(" clin.fb_pbid= {0} AND  clin.fbFecha = (SELECT MAX(clin2.fbFecha) FROM FIC.CLIN002 clin2 WHERE clin2.fb_pbid = {0}) 
 				                                    AND clin.fbHora = (SELECT MAX(clin2.fbHora) FROM FIC.CLIN002 clin2 WHERE clin2.fb_pbid = {0} 
 									                AND clin2.fbFecha = (SELECT MAX(clin3.fbFecha) FROM FIC.CLIN002 clin3 WHERE clin3.fb_pbid = {0}))", _fb_pbId)
         _Tabla = D_Datos_Tabla(" fbid ", " FIC.CLIN002 clin ", _where)
