@@ -1885,7 +1885,7 @@ Public Class F1_Fic_FichaClinica
             'Guarda la Cirugia
             If chbCirugia.Checked Then
                 Dim idCirugia As Integer
-                Dim res2 As Boolean = L_fnGrabarCirugia(idCirugia, txtIdFicha.Text, dtpFCirugía.Value.ToString("yyyy/MM/dd"), txtPesoC.Text, txtEdadC.Text, txtResponsable.Text,
+                Dim res2 As Boolean = L_fnGrabarCirugia(idCirugia, txtIdFicha.Text, dtpFCirugía.Value.ToString("yyyy/MM/dd"), IIf(txtPesoC.Text = String.Empty, 0, txtPesoC.Text), txtEdadC.Text, txtResponsable.Text,
                                                         txtTelefonoC.Text, txtImportadora.Text, txtClasificacion.Text, txtProcedimiento.Text, txtObservacionC.Text)
             End If
             'Guarda la internacion
@@ -1941,12 +1941,12 @@ Public Class F1_Fic_FichaClinica
 
                 'Guarda Cirugia
                 Dim idCirugia As Integer
-                Dim res2 As Boolean = L_fnGrabarCirugia(idCirugia, txtIdFicha.Text, dtpFCirugía.Value.ToString("yyyy/MM/dd"), txtPesoC.Text, txtEdadC.Text, txtResponsable.Text,
+                Dim res2 As Boolean = L_fnGrabarCirugia(idCirugia, txtIdFicha.Text, dtpFCirugía.Value.ToString("yyyy/MM/dd"), IIf(txtPesoC.Text = String.Empty, 0, txtPesoC.Text), txtEdadC.Text, txtResponsable.Text,
                                                             txtTelefonoC.Text, txtImportadora.Text, txtClasificacion.Text, txtProcedimiento.Text, txtObservacionC.Text)
             Else
                 'Modifica Cirugia
                 If txtIdCir.Text <> String.Empty Then
-                    Dim res2 As Boolean = L_fnMoficicarCirugia(txtIdCir.Text, txtIdFicha.Text, dtpFCirugía.Value.ToString("yyyy/MM/dd"), txtPesoC.Text, txtEdadC.Text, txtResponsable.Text,
+                    Dim res2 As Boolean = L_fnMoficicarCirugia(txtIdCir.Text, txtIdFicha.Text, dtpFCirugía.Value.ToString("yyyy/MM/dd"), IIf(txtPesoC.Text = String.Empty, 0, txtPesoC.Text), txtEdadC.Text, txtResponsable.Text,
                                                             txtTelefonoC.Text, txtImportadora.Text, txtClasificacion.Text, txtProcedimiento.Text, txtObservacionC.Text)
                 End If
 
@@ -2097,6 +2097,7 @@ Public Class F1_Fic_FichaClinica
         txtObservacionC.Text = JGCirugia.GetValue("cfObser")
     End Sub
 
+
     Private Sub txtTLCapilar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtTLCapilar.KeyPress
         g_prValidarTextBox(1, e)
     End Sub
@@ -2225,6 +2226,124 @@ Public Class F1_Fic_FichaClinica
             txtSeguimiento.BackColor = Color.White
             MEP.SetError(txtSeguimiento, "")
         End If
+        If chbCirugia.Checked = True Then
+            If txtPesoC.Text = String.Empty Then
+                txtPesoC.BackColor = Color.Red
+                MEP.SetError(txtPesoC, "Ingrese un peso!".ToUpper)
+                _ok = False
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Ingrese un peso de la mascota para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            Else
+                txtPesoC.BackColor = Color.White
+                MEP.SetError(txtPesoC, "")
+            End If
+            If txtEdadC.Text = String.Empty Then
+                txtEdadC.BackColor = Color.Red
+                MEP.SetError(txtEdadC, "Ingrese edad!".ToUpper)
+                _ok = False
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Ingrese edad de la mascota para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            Else
+                txtEdadC.BackColor = Color.White
+                MEP.SetError(txtEdadC, "")
+            End If
+            If txtResponsable.Text = String.Empty Then
+                txtResponsable.BackColor = Color.Red
+                MEP.SetError(txtResponsable, "Ingrese responsable!".ToUpper)
+                _ok = False
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Ingrese responsable de la mascota para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            Else
+                txtResponsable.BackColor = Color.White
+                MEP.SetError(txtResponsable, "")
+            End If
+            If txtTelefonoC.Text = String.Empty Then
+                txtTelefonoC.BackColor = Color.Red
+                MEP.SetError(txtTelefonoC, "Ingrese teléfono!".ToUpper)
+                _ok = False
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Ingrese teléfono para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            Else
+                txtTelefonoC.BackColor = Color.White
+                MEP.SetError(txtTelefonoC, "")
+            End If
+            If txtClasificacion.Text = String.Empty Then
+                txtClasificacion.BackColor = Color.Red
+                MEP.SetError(txtClasificacion, "Ingrese clasificación ASA!".ToUpper)
+                _ok = False
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Ingrese clasificación ASA para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            Else
+                txtClasificacion.BackColor = Color.White
+                MEP.SetError(txtClasificacion, "")
+            End If
+            If txtProcedimiento.Text = String.Empty Then
+                txtProcedimiento.BackColor = Color.Red
+                MEP.SetError(txtProcedimiento, "Ingrese procedimiento!".ToUpper)
+                _ok = False
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Ingrese procedimiento para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            Else
+                txtProcedimiento.BackColor = Color.White
+                MEP.SetError(txtProcedimiento, "")
+            End If
+        End If
+        If chbInternacion.Checked = True Then
+            If txtEdadI.Text = String.Empty Then
+                txtEdadI.BackColor = Color.Red
+                MEP.SetError(txtEdadI, "Ingrese edad!".ToUpper)
+                _ok = False
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Ingrese edad para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            Else
+                txtEdadI.BackColor = Color.White
+                MEP.SetError(txtEdadI, "")
+            End If
+
+            If txtTelefonoI.Text = String.Empty Then
+                txtTelefonoI.BackColor = Color.Red
+                MEP.SetError(txtTelefonoI, "Ingrese teléfono!".ToUpper)
+                _ok = False
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Ingrese teléfono para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            Else
+                txtTelefonoI.BackColor = Color.White
+                MEP.SetError(txtTelefonoI, "")
+            End If
+            If txtObservacionesI.Text = String.Empty Then
+                txtObservacionesI.BackColor = Color.Red
+                MEP.SetError(txtObservacionesI, "Ingrese motivo de internación!".ToUpper)
+                _ok = False
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Ingrese motivo de internación para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            Else
+                txtObservacionesI.BackColor = Color.White
+                MEP.SetError(txtObservacionesI, "")
+            End If
+            If txtRequiere.Text = String.Empty Then
+                txtRequiere.BackColor = Color.Red
+                MEP.SetError(txtRequiere, "Ingrese se requiere!".ToUpper)
+                _ok = False
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Ingrese se requiere para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            Else
+                txtRequiere.BackColor = Color.White
+                MEP.SetError(txtRequiere, "")
+            End If
+            If txtHoraInt.Text = String.Empty Then
+                txtHoraInt.BackColor = Color.Red
+                MEP.SetError(txtHoraInt, "Ingrese hora de internación!".ToUpper)
+                _ok = False
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Ingrese hora de internación para efectuar la grabación".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            Else
+                txtHoraInt.BackColor = Color.White
+                MEP.SetError(txtHoraInt, "")
+            End If
+
+        End If
+
+
         MHighlighterFocus.UpdateHighlights()
         Return _ok
     End Function

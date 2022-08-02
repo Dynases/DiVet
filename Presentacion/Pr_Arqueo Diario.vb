@@ -25,7 +25,8 @@ Public Class Pr_ArqueoDiario
         Dim _dt As New DataTable
         _dt = L_ArqueoDiarioTurno(tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"), cbTurno.Value)
 
-        If (_dt.Rows.Count > 0 And _dt.Rows(0).Item("Importe") > 0) Then
+        'If (_dt.Rows.Count > 0 And _dt.Rows(0).Item("Importe") > 0) Then
+        If (_dt.Rows.Count > 0) Then
             Dim TotalIngresos As Decimal = _dt.Compute("SUM(Importe)", "Glosa='10 TOTAL INGRESOS'")
             Dim TotalEgresos As Decimal = _dt.Compute("SUM(Importe)", "Glosa='11 TOTAL EGRESOS'")
             Dim Total As Decimal = TotalIngresos - TotalEgresos
