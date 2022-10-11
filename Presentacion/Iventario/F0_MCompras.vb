@@ -85,8 +85,8 @@ Public Class F0_MCompras
             .DropDownList.Columns.Clear()
             .DropDownList.Columns.Add("aanumi").Width = 60
             .DropDownList.Columns("aanumi").Caption = "COD"
-            .DropDownList.Columns.Add("aabdes").Width = 500
-            .DropDownList.Columns("aabdes").Caption = "SUCURSAL"
+            .DropDownList.Columns.Add("aabdes").Width = 300
+            .DropDownList.Columns("aabdes").Caption = "ALMACEN-SUC"
             .ValueMember = "aanumi"
             .DisplayMember = "aabdes"
             .DataSource = dt

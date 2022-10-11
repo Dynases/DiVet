@@ -1147,5 +1147,9 @@ Public Class F0_PagosCreditoCompraUlt
         _prCambiarColorPlomoOscuro(Presentacion.Principal.btComPagosCredito)
     End Sub
 
+    Private Sub grPendiente_EditingCell(sender As Object, e As EditingCellEventArgs) Handles grPendiente.EditingCell
+        e.Cancel = True
+    End Sub
+
 #End Region
 End Class

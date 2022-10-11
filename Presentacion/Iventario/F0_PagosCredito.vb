@@ -35,6 +35,7 @@ Public Class F0_PagosCredito
 
         'L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
         _prCargarComboLibreria(cbbanco, 6, 1)
+        _prCargarComboLibreriaSucursal(cbSucursal)
 
         'Me.WindowState = FormWindowState.Maximized
         _prAsignarPermisos()
@@ -60,6 +61,7 @@ Public Class F0_PagosCredito
             .Refresh()
         End With
     End Sub
+
     Private Function _fnBytesArchivo(img As Bitmap, ancho As Integer, alto As Integer) As Object
         Bin = New MemoryStream()
         Dim img2 As New Bitmap(img, ancho, alto)
@@ -69,6 +71,7 @@ Public Class F0_PagosCredito
     Private Sub _prInhabiliitar()
         tbnrodoc.ReadOnly = True
         tbfecha.IsInputReadOnly = True
+        cbSucursal.ReadOnly = True
         tbObservacion.ReadOnly = True
         tbcobrador.ReadOnly = True
         ''''''''''
@@ -156,7 +159,10 @@ Public Class F0_PagosCredito
             .Width = 100
             .Visible = False
         End With
-
+        With grcobranza.RootTable.Columns("teSucursal")
+            .Width = 100
+            .Visible = False
+        End With
 
         With grcobranza
             .GroupByBoxVisible = False
@@ -193,6 +199,16 @@ Public Class F0_PagosCredito
         _prDetalleCobranzas(-1)
         _prAddDetalle()
         tbcobrador.Focus()
+
+
+        If (gi_userSuc > 0) Then
+            Dim dt As DataTable = CType(cbSucursal.DataSource, DataTable)
+            For i As Integer = 0 To dt.Rows.Count - 1 Step 1
+                If (dt.Rows(i).Item("aanumi") = gi_userSuc) Then
+                    cbSucursal.SelectedIndex = i
+                End If
+            Next
+        End If
 
     End Sub
     Sub _prAddDetalle()
@@ -358,7 +374,7 @@ Public Class F0_PagosCredito
             lbFecha.Text = CType(.GetValue("tefact"), Date).ToString("dd/MM/yyyy")
             lbHora.Text = .GetValue("tehact").ToString
             lbUsuario.Text = .GetValue("teuact").ToString
-
+            cbSucursal.Value = .GetValue("teSucursal")
         End With
 
         _prDetalleCobranzas(tbnrodoc.Text)
@@ -401,7 +417,7 @@ Public Class F0_PagosCredito
     Private Sub _prCargarTablaCreditos()
         'a.tcnumi,sucursal,NroDoc,as factura,a.tctv1numi ,a.tcty4clie ,cliente,a.tcty4vend,vendedor,a.tcfdoc ,totalfactura, pendiente, PagoAc, NumeroRecibo
         Dim dt As New DataTable
-        dt = L_fnCobranzasObtenerLasVentasACredito()
+        dt = L_fnCobranzasObtenerLasVentasACredito(cbSucursal.Value)
         _prEliminarExistente(dt)
 
         grPendiente.DataSource = dt
@@ -1108,7 +1124,7 @@ Public Class F0_PagosCredito
         Dim numi As String = ""
         Dim dtCobro As DataTable = L_fnCobranzasObtenerLosPagos(-1)
         _prInterpretarDatosCobranza(dtCobro)
-        Dim res As Boolean = L_fnGrabarCobranza(numi, tbfecha.Value.ToString("yyyy/MM/dd"), tbcodVendedor.Text, tbObservacion.Text, dtCobro, Turno)
+        Dim res As Boolean = L_fnGrabarCobranza(numi, tbfecha.Value.ToString("yyyy/MM/dd"), tbcodVendedor.Text, tbObservacion.Text, dtCobro, Turno, cbSucursal.Value)
 
 
         If res Then
@@ -1276,5 +1292,9 @@ Public Class F0_PagosCredito
 
     Private Sub F0_PagosCredito_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         _prCambiarColorPlomoOscuro(Presentacion.Principal.btnRealizarPAgos)
+    End Sub
+
+    Private Sub grPendiente_EditingCell(sender As Object, e As EditingCellEventArgs) Handles grPendiente.EditingCell
+        e.Cancel = True
     End Sub
 End Class

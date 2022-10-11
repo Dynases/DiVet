@@ -22,9 +22,12 @@ Partial Class F1_Con_Usuarios
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim cbRol_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
+        Dim cbSuc_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F1_Con_Usuarios))
+        Dim cbRol_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
+        Me.cbSuc = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.lbCtrlEnter = New DevComponents.DotNetBar.LabelX()
         Me.lbEmpleado = New DevComponents.DotNetBar.LabelX()
         Me.txtIdEmpleadoU = New DevComponents.DotNetBar.Controls.TextBoxX()
@@ -56,6 +59,7 @@ Partial Class F1_Con_Usuarios
         Me.PanelUsuario.SuspendLayout()
         CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
+        CType(Me.cbSuc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbRol, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpBusquedaUsuarios.SuspendLayout()
         CType(Me.JGBusqUsuarios, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,11 +71,11 @@ Partial Class F1_Con_Usuarios
         Me.MpanelSuperior.Controls.Add(Me.Panel2)
         Me.MpanelSuperior.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MpanelSuperior.Location = New System.Drawing.Point(0, 72)
-        Me.MpanelSuperior.Size = New System.Drawing.Size(882, 435)
+        Me.MpanelSuperior.Size = New System.Drawing.Size(988, 435)
         '
         'PanelSuperior
         '
-        Me.PanelSuperior.Size = New System.Drawing.Size(882, 72)
+        Me.PanelSuperior.Size = New System.Drawing.Size(988, 72)
         Me.PanelSuperior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelSuperior.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PanelSuperior.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
@@ -88,7 +92,7 @@ Partial Class F1_Con_Usuarios
         'PanelInferior
         '
         Me.PanelInferior.Location = New System.Drawing.Point(0, 507)
-        Me.PanelInferior.Size = New System.Drawing.Size(882, 39)
+        Me.PanelInferior.Size = New System.Drawing.Size(988, 39)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Transparent
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Transparent
@@ -100,7 +104,7 @@ Partial Class F1_Con_Usuarios
         '
         'MPanelUserAct
         '
-        Me.MPanelUserAct.Location = New System.Drawing.Point(682, 0)
+        Me.MPanelUserAct.Location = New System.Drawing.Point(788, 0)
         '
         'btnUltimo
         '
@@ -165,10 +169,12 @@ Partial Class F1_Con_Usuarios
         Me.superTabControl1.ControlBox.MenuBox.Name = ""
         Me.superTabControl1.ControlBox.Name = ""
         Me.superTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.superTabControl1.ControlBox.MenuBox, Me.superTabControl1.ControlBox.CloseBox})
-        Me.superTabControl1.Size = New System.Drawing.Size(882, 571)
+        Me.superTabControl1.Size = New System.Drawing.Size(988, 571)
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.LabelX2)
+        Me.Panel2.Controls.Add(Me.cbSuc)
         Me.Panel2.Controls.Add(Me.lbCtrlEnter)
         Me.Panel2.Controls.Add(Me.lbEmpleado)
         Me.Panel2.Controls.Add(Me.txtIdEmpleadoU)
@@ -190,8 +196,39 @@ Partial Class F1_Con_Usuarios
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(882, 153)
+        Me.Panel2.Size = New System.Drawing.Size(988, 153)
         Me.Panel2.TabIndex = 46
+        '
+        'LabelX2
+        '
+        Me.LabelX2.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX2.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX2.Location = New System.Drawing.Point(24, 123)
+        Me.LabelX2.Name = "LabelX2"
+        Me.LabelX2.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX2.Size = New System.Drawing.Size(91, 23)
+        Me.LabelX2.TabIndex = 345
+        Me.LabelX2.Text = "Almacen-Suc:"
+        '
+        'cbSuc
+        '
+        cbSuc_DesignTimeLayout.LayoutString = resources.GetString("cbSuc_DesignTimeLayout.LayoutString")
+        Me.cbSuc.DesignTimeLayout = cbSuc_DesignTimeLayout
+        Me.cbSuc.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbSuc.Location = New System.Drawing.Point(140, 125)
+        Me.cbSuc.Name = "cbSuc"
+        Me.cbSuc.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.cbSuc.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.cbSuc.SelectedIndex = -1
+        Me.cbSuc.SelectedItem = Nothing
+        Me.cbSuc.Size = New System.Drawing.Size(203, 21)
+        Me.cbSuc.TabIndex = 344
+        Me.cbSuc.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'lbCtrlEnter
         '
@@ -374,7 +411,7 @@ Partial Class F1_Con_Usuarios
         Me.lbRol.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbRol.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbRol.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbRol.Location = New System.Drawing.Point(24, 106)
+        Me.lbRol.Location = New System.Drawing.Point(24, 95)
         Me.lbRol.Name = "lbRol"
         Me.lbRol.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbRol.Size = New System.Drawing.Size(40, 23)
@@ -390,7 +427,7 @@ Partial Class F1_Con_Usuarios
         Me.lbContraseña.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbContraseña.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbContraseña.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbContraseña.Location = New System.Drawing.Point(24, 78)
+        Me.lbContraseña.Location = New System.Drawing.Point(24, 67)
         Me.lbContraseña.Name = "lbContraseña"
         Me.lbContraseña.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbContraseña.Size = New System.Drawing.Size(102, 23)
@@ -406,7 +443,7 @@ Partial Class F1_Con_Usuarios
         Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX1.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX1.Location = New System.Drawing.Point(24, 51)
+        Me.LabelX1.Location = New System.Drawing.Point(24, 40)
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX1.Size = New System.Drawing.Size(71, 23)
@@ -422,7 +459,7 @@ Partial Class F1_Con_Usuarios
         Me.lbIdUsuario.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbIdUsuario.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbIdUsuario.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbIdUsuario.Location = New System.Drawing.Point(24, 25)
+        Me.lbIdUsuario.Location = New System.Drawing.Point(24, 14)
         Me.lbIdUsuario.Name = "lbIdUsuario"
         Me.lbIdUsuario.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbIdUsuario.Size = New System.Drawing.Size(71, 23)
@@ -441,7 +478,7 @@ Partial Class F1_Con_Usuarios
         Me.txtIdUsuario.Enabled = False
         Me.txtIdUsuario.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtIdUsuario.ForeColor = System.Drawing.Color.Black
-        Me.txtIdUsuario.Location = New System.Drawing.Point(140, 23)
+        Me.txtIdUsuario.Location = New System.Drawing.Point(140, 12)
         Me.txtIdUsuario.Name = "txtIdUsuario"
         Me.txtIdUsuario.PreventEnterBeep = True
         Me.txtIdUsuario.Size = New System.Drawing.Size(100, 21)
@@ -458,7 +495,7 @@ Partial Class F1_Con_Usuarios
         Me.txtUsuario.DisabledBackColor = System.Drawing.Color.White
         Me.txtUsuario.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtUsuario.ForeColor = System.Drawing.Color.Black
-        Me.txtUsuario.Location = New System.Drawing.Point(140, 51)
+        Me.txtUsuario.Location = New System.Drawing.Point(140, 40)
         Me.txtUsuario.MaxLength = 20
         Me.txtUsuario.Name = "txtUsuario"
         Me.txtUsuario.PreventEnterBeep = True
@@ -476,7 +513,7 @@ Partial Class F1_Con_Usuarios
         Me.txtContraseña.DisabledBackColor = System.Drawing.Color.White
         Me.txtContraseña.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtContraseña.ForeColor = System.Drawing.Color.Black
-        Me.txtContraseña.Location = New System.Drawing.Point(140, 79)
+        Me.txtContraseña.Location = New System.Drawing.Point(140, 68)
         Me.txtContraseña.MaxLength = 20
         Me.txtContraseña.Name = "txtContraseña"
         Me.txtContraseña.PreventEnterBeep = True
@@ -489,7 +526,7 @@ Partial Class F1_Con_Usuarios
         cbRol_DesignTimeLayout.LayoutString = resources.GetString("cbRol_DesignTimeLayout.LayoutString")
         Me.cbRol.DesignTimeLayout = cbRol_DesignTimeLayout
         Me.cbRol.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbRol.Location = New System.Drawing.Point(140, 107)
+        Me.cbRol.Location = New System.Drawing.Point(140, 96)
         Me.cbRol.Name = "cbRol"
         Me.cbRol.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.cbRol.Office2007CustomColor = System.Drawing.Color.DodgerBlue
@@ -510,7 +547,7 @@ Partial Class F1_Con_Usuarios
         Me.gpBusquedaUsuarios.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpBusquedaUsuarios.Location = New System.Drawing.Point(0, 153)
         Me.gpBusquedaUsuarios.Name = "gpBusquedaUsuarios"
-        Me.gpBusquedaUsuarios.Size = New System.Drawing.Size(882, 282)
+        Me.gpBusquedaUsuarios.Size = New System.Drawing.Size(988, 282)
         '
         '
         '
@@ -561,7 +598,7 @@ Partial Class F1_Con_Usuarios
         Me.JGBusqUsuarios.SelectedFormatStyle.BackColor = System.Drawing.Color.DodgerBlue
         Me.JGBusqUsuarios.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.JGBusqUsuarios.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
-        Me.JGBusqUsuarios.Size = New System.Drawing.Size(876, 259)
+        Me.JGBusqUsuarios.Size = New System.Drawing.Size(982, 259)
         Me.JGBusqUsuarios.TabIndex = 0
         Me.JGBusqUsuarios.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -569,7 +606,7 @@ Partial Class F1_Con_Usuarios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(882, 571)
+        Me.ClientSize = New System.Drawing.Size(988, 571)
         Me.Name = "F1_Con_Usuarios"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "REGISTRO DE USUARIOS"
@@ -587,6 +624,7 @@ Partial Class F1_Con_Usuarios
         CType(Me.superTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        CType(Me.cbSuc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbRol, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gpBusquedaUsuarios.ResumeLayout(False)
         CType(Me.JGBusqUsuarios, System.ComponentModel.ISupportInitialize).EndInit()
@@ -615,4 +653,6 @@ Partial Class F1_Con_Usuarios
     Friend WithEvents txtContraseña As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents cbRol As Janus.Windows.GridEX.EditControls.MultiColumnCombo
     Friend WithEvents lbCtrlEnter As DevComponents.DotNetBar.LabelX
+    Friend WithEvents LabelX2 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents cbSuc As Janus.Windows.GridEX.EditControls.MultiColumnCombo
 End Class

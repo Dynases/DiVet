@@ -176,7 +176,7 @@ Partial Class F1_Ven_Venta
         Me.PanelSuperior.Controls.SetChildIndex(Me.PanelToolBar1, 0)
         Me.PanelSuperior.Controls.SetChildIndex(Me.PanelToolBar2, 0)
         '
-        'btnGrabar
+        'btnNuevo
         '
         '
         'PanelInferior
@@ -629,20 +629,19 @@ Partial Class F1_Ven_Venta
         Me.LabelX17.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX17.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX17.Location = New System.Drawing.Point(791, 6)
+        Me.LabelX17.Location = New System.Drawing.Point(791, 10)
         Me.LabelX17.Name = "LabelX17"
         Me.LabelX17.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX17.Size = New System.Drawing.Size(85, 23)
+        Me.LabelX17.Size = New System.Drawing.Size(138, 23)
         Me.LabelX17.TabIndex = 268
-        Me.LabelX17.Text = "Sucursal:"
-        Me.LabelX17.Visible = False
+        Me.LabelX17.Text = "Almacen-Sucursal:"
         '
         'cbSucursal
         '
         cbSucursal_DesignTimeLayout.LayoutString = resources.GetString("cbSucursal_DesignTimeLayout.LayoutString")
         Me.cbSucursal.DesignTimeLayout = cbSucursal_DesignTimeLayout
         Me.cbSucursal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbSucursal.Location = New System.Drawing.Point(791, 35)
+        Me.cbSucursal.Location = New System.Drawing.Point(791, 40)
         Me.cbSucursal.Name = "cbSucursal"
         Me.cbSucursal.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.cbSucursal.Office2007CustomColor = System.Drawing.Color.DodgerBlue
@@ -650,7 +649,6 @@ Partial Class F1_Ven_Venta
         Me.cbSucursal.SelectedItem = Nothing
         Me.cbSucursal.Size = New System.Drawing.Size(164, 22)
         Me.cbSucursal.TabIndex = 267
-        Me.cbSucursal.Visible = False
         Me.cbSucursal.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'swServicio

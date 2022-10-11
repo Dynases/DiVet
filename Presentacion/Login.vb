@@ -166,6 +166,7 @@ Public Class Login
                 gs_user = txtUsuario.Text
                 gi_userNumi = dtUsuario.Rows(0).Item("uaId")
                 gi_userRol = dtUsuario.Rows(0).Item("uaRol")
+                gi_userSuc = dtUsuario.Rows(0).Item("uaSucursal")
 
                 'Asignando el nombre de usuario y rol  a las variables 
                 L_Usuario = gs_user

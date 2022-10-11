@@ -26,6 +26,7 @@ Public Class F1_IngresosEgresos
 
         Me.Text = "I N G R E S O S / E G R E S O S"
         _prCargarComboLibreria(cbConcepto, 9, 1)
+        _prCargarComboLibreriaSucursal(cbSucursal)
         _PMIniciarTodo()
         _prAsignarPermisos()
         _prCargarLengthTextBox()
@@ -47,7 +48,6 @@ Public Class F1_IngresosEgresos
         cbConcepto.MaxLength = 40
         tbObservacion.MaxLength = 300
     End Sub
-
 
 
     Private Function _fnActionNuevo() As Boolean
@@ -91,6 +91,8 @@ Public Class F1_IngresosEgresos
             .Refresh()
         End With
     End Sub
+
+
     Private Sub MostrarMensajeError(mensaje As String)
         ToastNotification.Show(Me,
                                mensaje.ToUpper,
@@ -148,6 +150,7 @@ Public Class F1_IngresosEgresos
         tbIdCaja.ReadOnly = True
         swTipo.IsReadOnly = True
         dpFecha.Enabled = False
+        cbSucursal.ReadOnly = True
         tbDescripcion.ReadOnly = True
         cbConcepto.ReadOnly = True
         tbMonto.IsInputReadOnly = True
@@ -176,6 +179,15 @@ Public Class F1_IngresosEgresos
         tbObservacion.Text = ""
 
         tbDescripcion.Focus()
+
+        If (gi_userSuc > 0) Then
+            Dim dt As DataTable = CType(cbSucursal.DataSource, DataTable)
+            For i As Integer = 0 To dt.Rows.Count - 1 Step 1
+                If (dt.Rows(i).Item("aanumi") = gi_userSuc) Then
+                    cbSucursal.SelectedIndex = i
+                End If
+            Next
+        End If
     End Sub
     Public Overrides Sub _PMOLimpiarErrores()
         MEP.Clear()
@@ -229,6 +241,8 @@ Public Class F1_IngresosEgresos
         listEstCeldas.Add(New Modelo.Celda("iefact", False))
         listEstCeldas.Add(New Modelo.Celda("iehact", False))
         listEstCeldas.Add(New Modelo.Celda("ieuact", False))
+        listEstCeldas.Add(New Modelo.Celda("ieSucursal", False))
+
 
         Return listEstCeldas
 
@@ -248,6 +262,7 @@ Public Class F1_IngresosEgresos
             tbIdCaja.Text = .GetValue("ieIdCaja").ToString
             dpFecha.Value = .GetValue("ieFecha")
             swTipo.Value = .GetValue("ieTipo")
+            cbSucursal.Value = .GetValue("ieSucursal")
             tbDescripcion.Text = .GetValue("ieDescripcion").ToString
             cbConcepto.Value = .GetValue("ieConcepto")
             tbMonto.Value = .GetValue("ieMonto")
@@ -274,7 +289,8 @@ Public Class F1_IngresosEgresos
         Dim Turno As Integer = 0
         P_DeterminarTurno(Turno)
         Dim tipo As Integer = IIf(swTipo.Value = True, 1, 0)
-        Dim res As Boolean = L_prIngresoEgresoGrabar(tbcodigo.Text, dpFecha.Value, tipo, tbDescripcion.Text, cbConcepto.Value, tbMonto.Value, tbObservacion.Text, Turno)
+        Dim res As Boolean = L_prIngresoEgresoGrabar(tbcodigo.Text, dpFecha.Value, tipo, tbDescripcion.Text, cbConcepto.Value, tbMonto.Value, tbObservacion.Text,
+                                                     Turno, cbSucursal.Value)
         If res Then
             Modificado = False
             _PMOLimpiar()
@@ -391,6 +407,8 @@ Public Class F1_IngresosEgresos
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
         _prImprimir()
     End Sub
+
+
 
 
 

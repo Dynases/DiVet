@@ -9,6 +9,7 @@ Public Class Pr_DetalleAtencionesDiarias
     Public Sub _prIniciarTodo()
         tbFechaI.Value = Now.Date
         tbFechaF.Value = Now.Date
+
         _PMIniciarTodo()
 
         Me.Text = "DETALLE DE ATENCIONES DIARIAS"
@@ -16,13 +17,13 @@ Public Class Pr_DetalleAtencionesDiarias
         _IniciarComponentes()
     End Sub
     Public Sub _IniciarComponentes()
-        _prCargarComboLibreriaSucursal(cbTurno)
-
+        _prCargarComboLibreriaTurno(cbTurno)
+        _prCargarComboLibreriaSucursal(cbSucursal)
     End Sub
 
     Private Sub _prCargarReporte()
         Dim _dt As New DataTable
-        _dt = L_DetalleAtencionDiarioTurno(tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"), cbTurno.Value)
+        _dt = L_DetalleAtencionDiarioTurno(tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"), cbTurno.Value, cbSucursal.Value)
 
         If (_dt.Rows.Count > 0) Then
 
@@ -34,6 +35,7 @@ Public Class Pr_DetalleAtencionesDiarias
             objrep.SetParameterValue("fechaI", fechaI)
             objrep.SetParameterValue("fechaF", fechaF)
             objrep.SetParameterValue("Turno", cbTurno.Text)
+            objrep.SetParameterValue("Almacen", cbSucursal.Text)
             MReportViewer.ReportSource = objrep
             MReportViewer.Show()
             MReportViewer.BringToFront()
@@ -52,6 +54,11 @@ Public Class Pr_DetalleAtencionesDiarias
                                        My.Resources.INFORMATION, 2000,
                                        eToastGlowColor.Blue,
                                        eToastPosition.TopCenter)
+        ElseIf cbSucursal.Text = String.Empty Then
+            ToastNotification.Show(Me, "Debe Seleccionar un Almacen-Sucursal..!!!".ToUpper,
+                                       My.Resources.INFORMATION, 2000,
+                                       eToastGlowColor.Blue,
+                                       eToastPosition.TopCenter)
         Else
             _prCargarReporte()
         End If
@@ -62,7 +69,7 @@ Public Class Pr_DetalleAtencionesDiarias
     End Sub
 
 
-    Private Sub _prCargarComboLibreriaSucursal(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
+    Private Sub _prCargarComboLibreriaTurno(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
         Dim dt As New DataTable
         dt = L_DeterminarTurno()
         With mCombo

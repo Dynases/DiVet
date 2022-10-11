@@ -1928,11 +1928,12 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
         Return _Tabla
     End Function
-    Public Shared Function L_fnMostrarVentaProductoLote(IdPro As String) As DataTable
+    Public Shared Function L_fnMostrarVentaProductoLote(IdPro As String, Suc As Integer) As DataTable
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
         _listParam.Add(New Datos.DParametro("@tipo", 7))
         _listParam.Add(New Datos.DParametro("@IdProducto", IdPro))
+        _listParam.Add(New Datos.DParametro("@vaAlm", Suc))
         _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
         _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
         Return _Tabla
@@ -3312,7 +3313,8 @@ Public Class AccesoLogica
         '_Tabla = D_Procedimiento("sp_Mostrar")
         Return _Tabla
     End Function
-    Public Shared Function L_fnGrabarCobranza2(_tenumi As String, _tefdoc As String, _tety4vend As Integer, _teobs As String, detalle As DataTable, teturno As Integer) As Boolean
+    Public Shared Function L_fnGrabarCobranza2(_tenumi As String, _tefdoc As String, _tety4vend As Integer, _teobs As String, detalle As DataTable, teturno As Integer,
+                                               _Sucursal As Integer) As Boolean
         Dim _Tabla As DataTable
         Dim _resultado As Boolean
         Dim _listParam As New List(Of Datos.DParametro)
@@ -3324,6 +3326,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@tety4vend", _tety4vend))
         _listParam.Add(New Datos.DParametro("@teobs", _teobs))
         _listParam.Add(New Datos.DParametro("@teTurno", teturno))
+        _listParam.Add(New Datos.DParametro("@teSucursal", _Sucursal))
         _listParam.Add(New Datos.DParametro("@teuact", L_Usuario))
         _listParam.Add(New Datos.DParametro("@TV00121", "", detalle))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TV00121Cheque", _listParam)
@@ -3420,13 +3423,15 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
-    Public Shared Function L_fnCobranzasObtenerLasVentasACredito() As DataTable
+    Public Shared Function L_fnCobranzasObtenerLasVentasACredito(_Sucursal As Integer) As DataTable
         Dim _Tabla As DataTable
 
         Dim _listParam As New List(Of Datos.DParametro)
 
         _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@teSucursal", _Sucursal))
         _listParam.Add(New Datos.DParametro("@teuact", L_Usuario))
+
         _Tabla = D_ProcedimientoConParam("sp_Mam_TV00121Cheque", _listParam)
 
         Return _Tabla
@@ -3658,7 +3663,8 @@ Public Class AccesoLogica
         Return _Tabla
     End Function
 
-    Public Shared Function L_fnGrabarCobranza(_tenumi As String, _tefdoc As String, _tety4vend As Integer, _teobs As String, detalle As DataTable, _teturno As Integer) As Boolean
+    Public Shared Function L_fnGrabarCobranza(_tenumi As String, _tefdoc As String, _tety4vend As Integer, _teobs As String, detalle As DataTable,
+                                              _teturno As Integer, _Sucursal As Integer) As Boolean
         Dim _Tabla As DataTable
         Dim _resultado As Boolean
         Dim _listParam As New List(Of Datos.DParametro)
@@ -3670,6 +3676,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@tety4vend", _tety4vend))
         _listParam.Add(New Datos.DParametro("@teobs", _teobs))
         _listParam.Add(New Datos.DParametro("@teTurno", _teturno))
+        _listParam.Add(New Datos.DParametro("@teSucursal", _Sucursal))
         _listParam.Add(New Datos.DParametro("@teuact", L_Usuario))
         _listParam.Add(New Datos.DParametro("@TV00121", "", detalle))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TV00121Cheque", _listParam)
@@ -4283,7 +4290,8 @@ Public Class AccesoLogica
         Return _Tabla
     End Function
     Public Shared Function L_fnGrabarUsuario(ByRef _uaId As String, _ua_ecId As String, _uaUser As String, _uaPass As String,
-                                             _uaRol As String, _uaFIngreso As String, _uaEst As String, _uaEmer As String) As Boolean
+                                             _uaRol As String, _uaFIngreso As String, _uaEst As String, _uaEmer As String,
+                                             _uaSuc As Integer) As Boolean
 
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
@@ -4298,6 +4306,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@uaFIngreso", _uaFIngreso))
         _listParam.Add(New Datos.DParametro("@uaEst", _uaEst))
         _listParam.Add(New Datos.DParametro("@uaEmer", _uaEmer))
+        _listParam.Add(New Datos.DParametro("@uaSucursal", _uaSuc))
         _listParam.Add(New Datos.DParametro("@uaUsuario", L_Usuario))
         _Tabla = D_ProcedimientoConParam("CON.sp_USU002", _listParam)
         If _Tabla.Rows.Count > 0 Then
@@ -4310,7 +4319,8 @@ Public Class AccesoLogica
         Return _resultado
     End Function
     Public Shared Function L_fnModificarUsuario(ByRef _uaId As String, _ua_ecId As String, _uaUser As String, _uaPass As String,
-                                             _uaRol As String, _uaFIngreso As String, _uaEst As String, _uaEmer As String) As Boolean
+                                             _uaRol As String, _uaFIngreso As String, _uaEst As String, _uaEmer As String,
+                                             _uaSuc As Integer) As Boolean
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
@@ -4323,6 +4333,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@uaFIngreso", _uaFIngreso))
         _listParam.Add(New Datos.DParametro("@uaEst", _uaEst))
         _listParam.Add(New Datos.DParametro("@uaEmer", _uaEmer))
+        _listParam.Add(New Datos.DParametro("@uaSucursal", _uaSuc))
         _listParam.Add(New Datos.DParametro("@uaUsuario", L_Usuario))
         _Tabla = D_ProcedimientoConParam("CON.sp_USU002", _listParam)
         If _Tabla.Rows.Count > 0 Then
@@ -5093,7 +5104,7 @@ Public Class AccesoLogica
     End Function
     Public Shared Function L_prIngresoEgresoGrabar(ByRef _ienumi As String, _ieFecha As String, _ieTipo As String,
                                            _ieDescripcion As String, _ieConcepto As String, _ieMonto As Decimal,
-                                           _ieObs As String, _ieTurno As Integer) As Boolean
+                                           _ieObs As String, _ieTurno As Integer, _ieSucursal As Integer) As Boolean
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
@@ -5108,6 +5119,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@ieObs", _ieObs))
         _listParam.Add(New Datos.DParametro("@ieEstado", 1))
         _listParam.Add(New Datos.DParametro("@ieTurno", _ieTurno))
+        _listParam.Add(New Datos.DParametro("@ieSucursal", _ieSucursal))
         _listParam.Add(New Datos.DParametro("@ieuact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TIE001", _listParam)
 
@@ -5203,7 +5215,7 @@ Public Class AccesoLogica
 #End Region
 
 #Region "ARQUEO DIARIO"
-    Public Shared Function L_ArqueoDiarioTurno(fechaI As String, fechaF As String, turno As String) As DataTable
+    Public Shared Function L_ArqueoDiarioTurno(fechaI As String, fechaF As String, turno As String, Sucursal As Integer) As DataTable
         Dim _Tabla As DataTable
 
         Dim _listParam As New List(Of Datos.DParametro)
@@ -5212,6 +5224,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
         _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
         _listParam.Add(New Datos.DParametro("@turno", turno))
+        _listParam.Add(New Datos.DParametro("@sucursal", Sucursal))
         _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_ArqueoDiario", _listParam)
 
@@ -5229,7 +5242,7 @@ Public Class AccesoLogica
         Return _Tabla
     End Function
 
-    Public Shared Function L_DetalleAtencionDiarioTurno(fechaI As String, fechaF As String, turno As String) As DataTable
+    Public Shared Function L_DetalleAtencionDiarioTurno(fechaI As String, fechaF As String, turno As String, sucursal As Integer) As DataTable
         Dim _Tabla As DataTable
 
         Dim _listParam As New List(Of Datos.DParametro)
@@ -5238,6 +5251,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
         _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
         _listParam.Add(New Datos.DParametro("@turno", turno))
+        _listParam.Add(New Datos.DParametro("@sucursal", sucursal))
         _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_ArqueoDiario", _listParam)
 

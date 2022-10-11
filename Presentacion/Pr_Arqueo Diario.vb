@@ -9,6 +9,7 @@ Public Class Pr_ArqueoDiario
     Public Sub _prIniciarTodo()
         tbFechaI.Value = Now.Date
         tbFechaF.Value = Now.Date
+
         _PMIniciarTodo()
         'L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
         Me.Text = "ARQUEO DIARIO"
@@ -16,14 +17,15 @@ Public Class Pr_ArqueoDiario
         _IniciarComponentes()
     End Sub
     Public Sub _IniciarComponentes()
-        _prCargarComboLibreriaSucursal(cbTurno)
+        _prCargarComboLibreriaTurno(cbTurno)
+        _prCargarComboLibreriaSucursal(cbSucursal)
         'cbTurno.ReadOnly = True
         'cbTurno.Enabled = False
     End Sub
 
     Private Sub _prCargarReporte()
         Dim _dt As New DataTable
-        _dt = L_ArqueoDiarioTurno(tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"), cbTurno.Value)
+        _dt = L_ArqueoDiarioTurno(tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"), cbTurno.Value, cbSucursal.Value)
 
         'If (_dt.Rows.Count > 0 And _dt.Rows(0).Item("Importe") > 0) Then
         If (_dt.Rows.Count > 0) Then
@@ -39,6 +41,7 @@ Public Class Pr_ArqueoDiario
             objrep.SetParameterValue("fechaI", fechaI)
             objrep.SetParameterValue("fechaF", fechaF)
             objrep.SetParameterValue("Turno", cbTurno.Text)
+            objrep.SetParameterValue("Almacen", cbSucursal.Text)
             objrep.SetParameterValue("TotalIngresos", TotalIngresos)
             objrep.SetParameterValue("TotalEgresos", TotalEgresos)
             objrep.SetParameterValue("Total", Total)
@@ -60,6 +63,12 @@ Public Class Pr_ArqueoDiario
                                        My.Resources.INFORMATION, 2000,
                                        eToastGlowColor.Blue,
                                        eToastPosition.TopCenter)
+        ElseIf cbSucursal.Text = String.Empty Then
+            ToastNotification.Show(Me, "Debe Seleccionar un Almacen-Sucursal..!!!".ToUpper,
+                                       My.Resources.INFORMATION, 2000,
+                                       eToastGlowColor.Blue,
+                                       eToastPosition.TopCenter)
+
         Else
             _prCargarReporte()
         End If
@@ -70,7 +79,7 @@ Public Class Pr_ArqueoDiario
     End Sub
 
 
-    Private Sub _prCargarComboLibreriaSucursal(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
+    Private Sub _prCargarComboLibreriaTurno(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
         Dim dt As New DataTable
         dt = L_DeterminarTurno()
         With mCombo

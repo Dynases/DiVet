@@ -24,6 +24,7 @@ Partial Class Pr_DetalleAtencionesDiarias
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Pr_DetalleAtencionesDiarias))
         Dim cbTurno_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
+        Dim cbSucursal_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.cbTurno = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
@@ -31,6 +32,8 @@ Partial Class Pr_DetalleAtencionesDiarias
         Me.tbFechaF = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
         Me.tbFechaI = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
+        Me.cbSucursal = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
+        Me.LabelX7 = New DevComponents.DotNetBar.LabelX()
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabPrincipal.SuspendLayout()
         Me.SuperTabControlPanelRegistro.SuspendLayout()
@@ -48,6 +51,7 @@ Partial Class Pr_DetalleAtencionesDiarias
         CType(Me.cbTurno, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFechaF, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFechaI, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cbSucursal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SuperTabPrincipal
@@ -172,6 +176,8 @@ Partial Class Pr_DetalleAtencionesDiarias
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox2.Controls.Add(Me.cbSucursal)
+        Me.GroupBox2.Controls.Add(Me.LabelX7)
         Me.GroupBox2.Controls.Add(Me.cbTurno)
         Me.GroupBox2.Controls.Add(Me.LabelX3)
         Me.GroupBox2.Controls.Add(Me.LabelX1)
@@ -193,7 +199,7 @@ Partial Class Pr_DetalleAtencionesDiarias
         cbTurno_DesignTimeLayout.LayoutString = resources.GetString("cbTurno_DesignTimeLayout.LayoutString")
         Me.cbTurno.DesignTimeLayout = cbTurno_DesignTimeLayout
         Me.cbTurno.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbTurno.Location = New System.Drawing.Point(90, 87)
+        Me.cbTurno.Location = New System.Drawing.Point(108, 85)
         Me.cbTurno.Name = "cbTurno"
         Me.cbTurno.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.cbTurno.Office2007CustomColor = System.Drawing.Color.DodgerBlue
@@ -212,7 +218,7 @@ Partial Class Pr_DetalleAtencionesDiarias
         Me.LabelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX3.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX3.Location = New System.Drawing.Point(10, 87)
+        Me.LabelX3.Location = New System.Drawing.Point(13, 85)
         Me.LabelX3.Name = "LabelX3"
         Me.LabelX3.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX3.Size = New System.Drawing.Size(50, 23)
@@ -228,7 +234,7 @@ Partial Class Pr_DetalleAtencionesDiarias
         Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX1.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX1.Location = New System.Drawing.Point(58, 49)
+        Me.LabelX1.Location = New System.Drawing.Point(61, 48)
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX1.Size = New System.Drawing.Size(22, 23)
@@ -246,7 +252,7 @@ Partial Class Pr_DetalleAtencionesDiarias
         Me.tbFechaF.ButtonDropDown.Visible = True
         Me.tbFechaF.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbFechaF.IsPopupCalendarOpen = False
-        Me.tbFechaF.Location = New System.Drawing.Point(90, 49)
+        Me.tbFechaF.Location = New System.Drawing.Point(108, 48)
         '
         '
         '
@@ -290,7 +296,7 @@ Partial Class Pr_DetalleAtencionesDiarias
         Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX4.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX4.Location = New System.Drawing.Point(10, 20)
+        Me.LabelX4.Location = New System.Drawing.Point(13, 19)
         Me.LabelX4.Name = "LabelX4"
         Me.LabelX4.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX4.Size = New System.Drawing.Size(74, 23)
@@ -308,7 +314,7 @@ Partial Class Pr_DetalleAtencionesDiarias
         Me.tbFechaI.ButtonDropDown.Visible = True
         Me.tbFechaI.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbFechaI.IsPopupCalendarOpen = False
-        Me.tbFechaI.Location = New System.Drawing.Point(90, 21)
+        Me.tbFechaI.Location = New System.Drawing.Point(108, 20)
         '
         '
         '
@@ -343,6 +349,37 @@ Partial Class Pr_DetalleAtencionesDiarias
         Me.tbFechaI.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.tbFechaI.TabIndex = 232
         '
+        'cbSucursal
+        '
+        cbSucursal_DesignTimeLayout.LayoutString = resources.GetString("cbSucursal_DesignTimeLayout.LayoutString")
+        Me.cbSucursal.DesignTimeLayout = cbSucursal_DesignTimeLayout
+        Me.cbSucursal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbSucursal.Location = New System.Drawing.Point(108, 115)
+        Me.cbSucursal.Name = "cbSucursal"
+        Me.cbSucursal.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.cbSucursal.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.cbSucursal.SelectedIndex = -1
+        Me.cbSucursal.SelectedItem = Nothing
+        Me.cbSucursal.Size = New System.Drawing.Size(229, 22)
+        Me.cbSucursal.TabIndex = 260
+        Me.cbSucursal.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'LabelX7
+        '
+        Me.LabelX7.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX7.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX7.Location = New System.Drawing.Point(13, 114)
+        Me.LabelX7.Name = "LabelX7"
+        Me.LabelX7.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX7.Size = New System.Drawing.Size(89, 23)
+        Me.LabelX7.TabIndex = 261
+        Me.LabelX7.Text = "Almacen-Suc:"
+        '
         'Pr_DetalleAtencionesDiarias
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -371,6 +408,7 @@ Partial Class Pr_DetalleAtencionesDiarias
         CType(Me.cbTurno, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbFechaF, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbFechaI, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cbSucursal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -382,4 +420,6 @@ Partial Class Pr_DetalleAtencionesDiarias
     Friend WithEvents tbFechaI As DevComponents.Editors.DateTimeAdv.DateTimeInput
     Friend WithEvents LabelX1 As DevComponents.DotNetBar.LabelX
     Friend WithEvents tbFechaF As DevComponents.Editors.DateTimeAdv.DateTimeInput
+    Friend WithEvents cbSucursal As Janus.Windows.GridEX.EditControls.MultiColumnCombo
+    Friend WithEvents LabelX7 As DevComponents.DotNetBar.LabelX
 End Class

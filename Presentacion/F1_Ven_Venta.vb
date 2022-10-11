@@ -1312,6 +1312,7 @@ salirIf:
 
         cbEmision.ReadOnly = True
         cbTipoVenta.ReadOnly = True
+        cbSucursal.ReadOnly = True
 
         txtIdVenta.ReadOnly = True
         txtCliente.ReadOnly = True
@@ -1439,6 +1440,17 @@ salirIf:
         swServicio.Value = False
         txtIdCliente.Focus()
         Table_Producto = Nothing
+
+
+        If (gi_userSuc > 0) Then
+            Dim dt As DataTable = CType(cbSucursal.DataSource, DataTable)
+            For i As Integer = 0 To dt.Rows.Count - 1 Step 1
+
+                If (dt.Rows(i).Item("aanumi") = gi_userSuc) Then
+                    cbSucursal.SelectedIndex = i
+                End If
+            Next
+        End If
 
 
         ''Datos Facturacion
@@ -1688,7 +1700,7 @@ salirIf:
         End If
         Dim dt As New DataTable
         GPanelProductos.Text = nameProducto
-        dt = L_fnMostrarVentaProductoLote(CodProducto)  ''1=Almacen
+        dt = L_fnMostrarVentaProductoLote(CodProducto, cbSucursal.Value)  ''1=Almacen
         actualizarSaldo(dt, CodProducto)
         JGProductos.DataSource = dt
         JGProductos.RetrieveStructure()
@@ -2022,8 +2034,8 @@ salirIf:
             .DropDownList.Columns.Clear()
             .DropDownList.Columns.Add("aanumi").Width = 60
             .DropDownList.Columns("aanumi").Caption = "COD"
-            .DropDownList.Columns.Add("aabdes").Width = 500
-            .DropDownList.Columns("aabdes").Caption = "SUCURSAL"
+            .DropDownList.Columns.Add("aabdes").Width = 300
+            .DropDownList.Columns("aabdes").Caption = "ALMACEN-SUC"
             .ValueMember = "aanumi"
             .DisplayMember = "aabdes"
             .DataSource = dt
@@ -2276,7 +2288,7 @@ salirIf:
     End Sub
     Public Sub _prPedirLotesProducto(ByRef lote As String, ByRef FechaVenc As Date, ByRef iccven As Double, CodProducto As Integer, nameProducto As String, cant As Integer)
         Dim dt As New DataTable
-        dt = L_fnMostrarVentaProductoLote(CodProducto)  ''1=Almacen
+        dt = L_fnMostrarVentaProductoLote(CodProducto, cbSucursal.Value)  ''1=Almacen
         'b.yfcdprod1 ,a.iclot ,a.icfven  ,a.iccven 
         Dim listEstCeldas As New List(Of Modelo.Celda)
         listEstCeldas.Add(New Modelo.Celda("yfcdprod1,", False, "", 150))

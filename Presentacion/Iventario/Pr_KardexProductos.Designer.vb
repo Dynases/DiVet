@@ -76,12 +76,12 @@ Partial Class Pr_KardexProductos
         '
         'SuperTabControlPanelBuscador
         '
-        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(4)
         Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(858, 561)
         '
         'SuperTabControlPanelRegistro
         '
-        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(4)
         Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(1018, 561)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelIzq, 0)
@@ -100,7 +100,7 @@ Partial Class Pr_KardexProductos
         '
         'PanelInferior
         '
-        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(4)
         Me.PanelInferior.Size = New System.Drawing.Size(1018, 36)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Gold
@@ -142,17 +142,17 @@ Partial Class Pr_KardexProductos
         '
         'PanelPrincipal
         '
-        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(4)
         Me.PanelPrincipal.Size = New System.Drawing.Size(655, 525)
         '
         'MPanelUserAct
         '
         Me.MPanelUserAct.Location = New System.Drawing.Point(818, 0)
-        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(4)
         '
         'MReportViewer
         '
-        Me.MReportViewer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MReportViewer.Margin = New System.Windows.Forms.Padding(4)
         Me.MReportViewer.Size = New System.Drawing.Size(655, 525)
         '
         'MGPFiltros
@@ -372,7 +372,7 @@ Partial Class Pr_KardexProductos
         Me.Panel1.Controls.Add(Me.CheckGeneralLote)
         Me.Panel1.Controls.Add(Me.checkGeneral)
         Me.Panel1.Location = New System.Drawing.Point(29, 119)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(274, 93)
         Me.Panel1.TabIndex = 243
@@ -407,9 +407,9 @@ Partial Class Pr_KardexProductos
         Me.LabelX5.Location = New System.Drawing.Point(41, 20)
         Me.LabelX5.Name = "LabelX5"
         Me.LabelX5.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX5.Size = New System.Drawing.Size(62, 16)
+        Me.LabelX5.Size = New System.Drawing.Size(61, 16)
         Me.LabelX5.TabIndex = 241
-        Me.LabelX5.Text = "Deposito:"
+        Me.LabelX5.Text = "Almacen:"
         '
         'cbAlmacen
         '
@@ -432,7 +432,7 @@ Partial Class Pr_KardexProductos
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1050, 561)
         Me.Location = New System.Drawing.Point(0, 0)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Pr_KardexProductos"
         Me.Text = "KARDEX PRODUCTO"
         Me.Controls.SetChildIndex(Me.SuperTabPrincipal, 0)

@@ -598,12 +598,12 @@ Partial Class F0_MCompras
         Me.LabelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX7.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX7.Location = New System.Drawing.Point(482, 106)
+        Me.LabelX7.Location = New System.Drawing.Point(482, 105)
         Me.LabelX7.Name = "LabelX7"
         Me.LabelX7.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX7.Size = New System.Drawing.Size(129, 23)
         Me.LabelX7.TabIndex = 235
-        Me.LabelX7.Text = "Sucursal:"
+        Me.LabelX7.Text = "Almacen-Suc:"
         '
         'lbCredito
         '

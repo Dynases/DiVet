@@ -122,6 +122,9 @@ Public Class F_Fic_FichaAtencionCliente
         JGFichasAtencion.DataSource = tFichaClinica
         JGFichasAtencion.RetrieveStructure()
         JGFichasAtencion.AlternatingColors = True
+
+
+
         With JGFichasAtencion.RootTable.Columns("faPriori")
             .Width = 70
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
@@ -139,35 +142,35 @@ Public Class F_Fic_FichaAtencionCliente
             .Visible = False
         End With
         With JGFichasAtencion.RootTable.Columns("Propietario")
-            .Width = 250
+            .Width = 350
             .Caption = "Propietario"
-            .Visible = True
-        End With
-        With JGFichasAtencion.RootTable.Columns("pbid")
-            .Width = 70
-            .Caption = "Id Mascota"
-            .Visible = False
-        End With
-        With JGFichasAtencion.RootTable.Columns("pbnomb")
-            .Width = 190
-            .Caption = "Paciente"
-            .Visible = True
-        End With
-        With JGFichasAtencion.RootTable.Columns("Estado")
-            .Width = 140
-            .Caption = "Estado"
-            .Visible = True
-        End With
-        With JGFichasAtencion.RootTable.Columns("EstadoPaciente")
-            .Width = 170
-            .Caption = "Estado de Paciente"
-            .Visible = True
-        End With
-        With JGFichasAtencion.RootTable.Columns("fa_fbId")
-            .Width = 140
-            .Caption = "IdFicha"
-            .Visible = False
-        End With
+                .Visible = True
+            End With
+            With JGFichasAtencion.RootTable.Columns("pbid")
+                .Width = 70
+                .Caption = "Id Mascota"
+                .Visible = False
+            End With
+            With JGFichasAtencion.RootTable.Columns("pbnomb")
+                .Width = 220
+                .Caption = "Paciente"
+                .Visible = True
+            End With
+            With JGFichasAtencion.RootTable.Columns("Estado")
+                .Width = 140
+                .Caption = "Estado"
+                .Visible = True
+            End With
+            With JGFichasAtencion.RootTable.Columns("EstadoPaciente")
+                .Width = 170
+                .Caption = "Estado de Paciente"
+                .Visible = True
+            End With
+            With JGFichasAtencion.RootTable.Columns("fa_fbId")
+                .Width = 140
+                .Caption = "IdFicha"
+                .Visible = False
+            End With
         With JGFichasAtencion.RootTable.Columns("faFechaAten")
             .Width = 135
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
@@ -175,31 +178,33 @@ Public Class F_Fic_FichaAtencionCliente
             .Visible = True
         End With
         With JGFichasAtencion.RootTable.Columns("fbFechaProx")
-            .Width = 130
+            .Width = 145
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .Caption = "Fecha Reconsulta"
-            .Visible = True
-        End With
-        With JGFichasAtencion.RootTable.Columns("faConsultorio")
-            .Caption = "IdConsul"
-            .Visible = False
-        End With
-        With JGFichasAtencion.RootTable.Columns("ccNro")
-            .Width = 130
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .Caption = "Consultorio Nro."
-            .Visible = True
-        End With
-        With JGFichasAtencion
-            .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
-            .FilterMode = FilterMode.Automatic
-            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
-            .GroupByBoxVisible = False
-            'diseño de la grilla
-            .VisualStyle = VisualStyle.Office2007
-        End With
+                .Caption = "Fecha Reconsulta"
+                .Visible = True
+            End With
+            With JGFichasAtencion.RootTable.Columns("faConsultorio")
+                .Caption = "IdConsul"
+                .Visible = False
+            End With
+            With JGFichasAtencion.RootTable.Columns("ccNro")
+                .Width = 130
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+                .Caption = "Consultorio Nro."
+                .Visible = True
+            End With
+            With JGFichasAtencion
+                .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
+                .FilterMode = FilterMode.Automatic
+                .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+                .GroupByBoxVisible = False
+                'diseño de la grilla
+                .VisualStyle = VisualStyle.Office2007
+            End With
         _prAplicarCondiccionJanusSinLote()
-        JGFichasAtencion.Row = JGFichasAtencion.RowCount - 1
+        If tFichaClinica.Rows.Count > 0 Then
+            JGFichasAtencion.Row = JGFichasAtencion.RowCount - 1
+        End If
     End Sub
     Public Sub _prAplicarCondiccionJanusSinLote()
         Dim fc As GridEXFormatCondition

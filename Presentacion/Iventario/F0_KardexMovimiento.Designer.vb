@@ -414,9 +414,9 @@ Partial Class F0_KardexMovimiento
         Me.LabelX5.Location = New System.Drawing.Point(220, 78)
         Me.LabelX5.Name = "LabelX5"
         Me.LabelX5.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX5.Size = New System.Drawing.Size(62, 16)
+        Me.LabelX5.Size = New System.Drawing.Size(61, 16)
         Me.LabelX5.TabIndex = 240
-        Me.LabelX5.Text = "Deposito:"
+        Me.LabelX5.Text = "Almacen:"
         '
         'btActualizar
         '

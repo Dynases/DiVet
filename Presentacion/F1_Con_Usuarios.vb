@@ -14,6 +14,7 @@ Public Class F1_Con_Usuarios
 #Region "METODOS PRIVADOS"
     Private Sub _prIniciarTodo()
         _PCargarComboRol(cbRol)
+        _prCargarComboLibreriaSucursal(cbSuc)
         _prInhabilitar()
         _PMAsignarPermisos()
         _prCargarUsuario()
@@ -42,6 +43,7 @@ Public Class F1_Con_Usuarios
         txtUsuario.ReadOnly = True
         txtContraseña.ReadOnly = True
         cbRol.Enabled = False
+        cbSuc.Enabled = False
         txtIdEmpleadoU.ReadOnly = True
         txtNombEmpleadoU.ReadOnly = True
         dtpFIngresoU.Enabled = False
@@ -57,6 +59,7 @@ Public Class F1_Con_Usuarios
         txtUsuario.Clear()
         txtContraseña.Clear()
         cbRol.Value = Nothing
+        cbRol.SelectedIndex = 0
         txtIdEmpleadoU.Clear()
         txtNombEmpleadoU.Clear()
         dtpFIngresoU.Value = Now.Date
@@ -69,6 +72,7 @@ Public Class F1_Con_Usuarios
         txtUsuario.ReadOnly = False
         txtContraseña.ReadOnly = False
         cbRol.Enabled = True
+        cbSuc.Enabled = True
         txtIdEmpleadoU.ReadOnly = False
         txtNombEmpleadoU.ReadOnly = False
         dtpFIngresoU.Enabled = True
@@ -151,6 +155,9 @@ Public Class F1_Con_Usuarios
         With JGBusqUsuarios.RootTable.Columns("uaUsuario")
             .Visible = False
         End With
+        With JGBusqUsuarios.RootTable.Columns("uaSucursal")
+            .Visible = False
+        End With
 
         With JGBusqUsuarios
             .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
@@ -169,6 +176,7 @@ Public Class F1_Con_Usuarios
                 txtUsuario.Text = .GetValue("uaUser")
                 txtContraseña.Text = .GetValue("uaPass")
                 cbRol.Value = .GetValue("uaRol")
+                cbSuc.Value = .GetValue("uaSucursal")
                 txtIdEmpleadoU.Text = .GetValue("ua_ecId")
                 txtNombEmpleadoU.Text = .GetValue("ecNomb")
                 dtpFIngresoU.Value = .GetValue("uaFIngreso")
@@ -209,7 +217,9 @@ Public Class F1_Con_Usuarios
     ''*****GRABA EL REGISTRO*****''
     Public Overrides Function _PMOGrabarRegistro() As Boolean
 
-        Dim res As Boolean = L_fnGrabarUsuario(txtIdUsuario.Text, txtIdEmpleadoU.Text, txtUsuario.Text, txtContraseña.Text, cbRol.Value, dtpFIngresoU.Value.ToString("yyyy/MM/dd"), IIf(swEstadoU.Value, 1, 0), IIf(swEmergencia.Value, 1, 0))
+        Dim res As Boolean = L_fnGrabarUsuario(txtIdUsuario.Text, txtIdEmpleadoU.Text, txtUsuario.Text, txtContraseña.Text, cbRol.Value,
+                                               dtpFIngresoU.Value.ToString("yyyy/MM/dd"), IIf(swEstadoU.Value, 1, 0), IIf(swEmergencia.Value, 1, 0),
+                                                cbSuc.Value)
         If res Then
             Modificado = False
 
@@ -236,7 +246,9 @@ Public Class F1_Con_Usuarios
 
     ''*****MODDIFICA EL REGISTRO*****''
     Public Overrides Function _PMOModificarRegistro() As Boolean
-        Dim res As Boolean = L_fnModificarUsuario(txtIdUsuario.Text, txtIdEmpleadoU.Text, txtUsuario.Text, txtContraseña.Text, cbRol.Value, dtpFIngresoU.Value.ToString("yyyy/MM/dd"), IIf(swEstadoU.Value, 1, 0), IIf(swEmergencia.Value, 1, 0))
+        Dim res As Boolean = L_fnModificarUsuario(txtIdUsuario.Text, txtIdEmpleadoU.Text, txtUsuario.Text, txtContraseña.Text, cbRol.Value,
+                                                  dtpFIngresoU.Value.ToString("yyyy/MM/dd"), IIf(swEstadoU.Value, 1, 0), IIf(swEmergencia.Value, 1, 0),
+                                                  cbSuc.Value)
         If res Then
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
             ToastNotification.Show(Me, "Id del Usuario ".ToUpper + txtIdUsuario.Text + " Modificado con Exito.".ToUpper,
@@ -368,6 +380,21 @@ Public Class F1_Con_Usuarios
         End If
     End Sub
 
+    Private Sub _prCargarComboLibreriaSucursal(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
+        Dim dt As New DataTable
+        dt = L_fnListarSucursales()
+        With mCombo
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("aanumi").Width = 60
+            .DropDownList.Columns("aanumi").Caption = "COD"
+            .DropDownList.Columns.Add("aabdes").Width = 300
+            .DropDownList.Columns("aabdes").Caption = "ALMACEN-SUC"
+            .ValueMember = "aanumi"
+            .DisplayMember = "aabdes"
+            .DataSource = dt
+            .Refresh()
+        End With
+    End Sub
     Private Sub JGBusqUsuarios_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGBusqUsuarios.EditingCell
         e.Cancel = True
     End Sub
@@ -375,6 +402,8 @@ Public Class F1_Con_Usuarios
     Private Sub F1_Con_Usuarios_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         _prCambiarColorPlomoOscuro(Presentacion.Principal.btnUsuarios)
     End Sub
+
+
 
 
 #End Region

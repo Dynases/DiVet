@@ -94,6 +94,21 @@ Module P_Global
         End With
     End Sub
 
+    Public Sub _prCargarComboLibreriaSucursal(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
+        Dim dt As New DataTable
+        dt = L_fnListarSucursales()
+        With mCombo
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("aanumi").Width = 60
+            .DropDownList.Columns("aanumi").Caption = "COD"
+            .DropDownList.Columns.Add("aabdes").Width = 300
+            .DropDownList.Columns("aabdes").Caption = "ALMACEN-SUC"
+            .ValueMember = "aanumi"
+            .DisplayMember = "aabdes"
+            .DataSource = dt
+            .Refresh()
+        End With
+    End Sub
 
 #End Region
 
