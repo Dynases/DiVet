@@ -770,6 +770,19 @@ Public Class F0_Movimiento
                 Return False
             End If
         End If
+
+        For i As Integer = 0 To CType(grdetalle.DataSource, DataTable).Rows.Count - 1
+            If (IsDBNull(CType(grdetalle.DataSource, DataTable).Rows(i).Item("iccant"))) And (CType(grdetalle.DataSource, DataTable).Rows(i).Item("iccprod") > 0) Then
+
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Debe insertar cantidad a los productos!!!".ToUpper, img, 4000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+
+                Return False
+            End If
+        Next
+
+
+
         Return True
     End Function
     Public Sub _prGardarDetalleAbm(numi As String)
