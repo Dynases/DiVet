@@ -1895,6 +1895,8 @@ Public Class F1_Fic_SegInternacion2
         If JGExamenFisico.Row >= 0 And JGExamenFisico.RowCount > 0 Then
             _MPos2 = JGExamenFisico.Row 'Count - 1
             _prMostrarExamenFisico(_MPos2)
+        Else
+            _LimpiarExamenFísico()
         End If
     End Sub
 
@@ -2166,6 +2168,8 @@ Public Class F1_Fic_SegInternacion2
         If JGSignosVitales.Row >= 0 And JGSignosVitales.RowCount > 0 Then
             _MPos2 = JGSignosVitales.Row
             _prMostrarSignosVitales(_MPos2)
+        Else
+            _LimpiarSignosVitales()
         End If
     End Sub
 
@@ -2173,6 +2177,8 @@ Public Class F1_Fic_SegInternacion2
         If JGMonitoreo.Row >= 0 And JGMonitoreo.RowCount > 0 Then
             _MPos2 = JGMonitoreo.Row
             _prMostrarMonitoreo(_MPos2)
+        Else
+            _LimpiarMonitoreo()
         End If
     End Sub
 
@@ -2180,6 +2186,8 @@ Public Class F1_Fic_SegInternacion2
         If JGAlimentacion.Row >= 0 And JGAlimentacion.RowCount > 0 Then
             _MPos2 = JGAlimentacion.Row
             _prMostrarAlimentacion(_MPos2)
+        Else
+            _LimpiarAlimentacion()
         End If
     End Sub
 
@@ -2187,6 +2195,8 @@ Public Class F1_Fic_SegInternacion2
         If JGFluidoterapia.Row >= 0 And JGFluidoterapia.RowCount > 0 Then
             _MPos2 = JGFluidoterapia.Row
             _prMostrarFluidoterapia(_MPos2)
+        Else
+            _LimpiarFluidoterapia()
         End If
     End Sub
 
@@ -2194,13 +2204,18 @@ Public Class F1_Fic_SegInternacion2
         If JGEstudiosC.Row >= 0 And JGEstudiosC.RowCount > 0 Then
             _MPos2 = JGEstudiosC.Row
             _prMostrarEstudiosC(_MPos2)
+        Else
+            _LimpiarEstudiosComplementarios()
         End If
+
     End Sub
 
     Private Sub JGTratamiento_SelectionChanged(sender As Object, e As EventArgs) Handles JGTratamiento.SelectionChanged
         If JGTratamiento.Row >= 0 And JGTratamiento.RowCount > 0 Then
             _MPos2 = JGTratamiento.Row
             _prMostrarTratamiento(_MPos2)
+        Else
+            _LimpiarTratamiento()
         End If
     End Sub
 
