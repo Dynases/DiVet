@@ -26,6 +26,7 @@ Partial Class F1_Fic_Recibo
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F1_Fic_Recibo))
         Me.gpRecibo = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.PanelDatosR = New System.Windows.Forms.Panel()
+        Me.txtEstadoVenta = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.btnAgregarC = New DevComponents.DotNetBar.ButtonX()
         Me.diPrecio = New DevComponents.Editors.DoubleInput()
         Me.txtDescripcion = New DevComponents.DotNetBar.Controls.TextBoxX()
@@ -57,7 +58,6 @@ Partial Class F1_Fic_Recibo
         Me.JGBusqRecibos = New Janus.Windows.GridEX.GridEX()
         Me.PanelToolBar2 = New System.Windows.Forms.Panel()
         Me.btnImprimir = New DevComponents.DotNetBar.ButtonX()
-        Me.txtEstadoVenta = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.MpanelSuperior.SuspendLayout()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelToolBar1.SuspendLayout()
@@ -115,6 +115,9 @@ Partial Class F1_Fic_Recibo
         Me.PanelSuperior.Controls.SetChildIndex(Me.PanelToolBar1, 0)
         Me.PanelSuperior.Controls.SetChildIndex(Me.PanelToolBar2, 0)
         '
+        'btnGrabar
+        '
+        '
         'PanelInferior
         '
         Me.PanelInferior.Location = New System.Drawing.Point(0, 606)
@@ -147,7 +150,6 @@ Partial Class F1_Fic_Recibo
         'MpanelBuscador
         '
         Me.MpanelBuscador.Controls.Add(Me.gpBusqRecibos)
-        Me.MpanelBuscador.Size = New System.Drawing.Size(913, 645)
         '
         'TxtNombreUsu
         '
@@ -267,6 +269,25 @@ Partial Class F1_Fic_Recibo
         Me.PanelDatosR.Name = "PanelDatosR"
         Me.PanelDatosR.Size = New System.Drawing.Size(907, 167)
         Me.PanelDatosR.TabIndex = 234
+        '
+        'txtEstadoVenta
+        '
+        Me.txtEstadoVenta.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.txtEstadoVenta.Border.Class = "TextBoxBorder"
+        Me.txtEstadoVenta.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtEstadoVenta.DisabledBackColor = System.Drawing.Color.White
+        Me.txtEstadoVenta.Enabled = False
+        Me.txtEstadoVenta.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtEstadoVenta.ForeColor = System.Drawing.Color.Black
+        Me.txtEstadoVenta.Location = New System.Drawing.Point(453, 93)
+        Me.txtEstadoVenta.Name = "txtEstadoVenta"
+        Me.txtEstadoVenta.PreventEnterBeep = True
+        Me.txtEstadoVenta.Size = New System.Drawing.Size(60, 22)
+        Me.txtEstadoVenta.TabIndex = 268
+        Me.txtEstadoVenta.Visible = False
         '
         'btnAgregarC
         '
@@ -722,7 +743,7 @@ Partial Class F1_Fic_Recibo
         Me.gpBusqRecibos.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpBusqRecibos.Location = New System.Drawing.Point(0, 0)
         Me.gpBusqRecibos.Name = "gpBusqRecibos"
-        Me.gpBusqRecibos.Size = New System.Drawing.Size(913, 645)
+        Me.gpBusqRecibos.Size = New System.Drawing.Size(930, 477)
         '
         '
         '
@@ -762,7 +783,7 @@ Partial Class F1_Fic_Recibo
         Me.panelBusqRecibos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelBusqRecibos.Location = New System.Drawing.Point(0, 0)
         Me.panelBusqRecibos.Name = "panelBusqRecibos"
-        Me.panelBusqRecibos.Size = New System.Drawing.Size(907, 622)
+        Me.panelBusqRecibos.Size = New System.Drawing.Size(924, 454)
         Me.panelBusqRecibos.TabIndex = 0
         '
         'JGBusqRecibos
@@ -784,7 +805,7 @@ Partial Class F1_Fic_Recibo
         Me.JGBusqRecibos.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.JGBusqRecibos.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
         Me.JGBusqRecibos.SelectOnExpand = False
-        Me.JGBusqRecibos.Size = New System.Drawing.Size(907, 622)
+        Me.JGBusqRecibos.Size = New System.Drawing.Size(924, 454)
         Me.JGBusqRecibos.TabIndex = 0
         Me.JGBusqRecibos.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -814,25 +835,6 @@ Partial Class F1_Fic_Recibo
         Me.btnImprimir.Text = "IMPRIMIR"
         Me.btnImprimir.TextColor = System.Drawing.Color.White
         Me.btnImprimir.Visible = False
-        '
-        'txtEstadoVenta
-        '
-        Me.txtEstadoVenta.BackColor = System.Drawing.Color.White
-        '
-        '
-        '
-        Me.txtEstadoVenta.Border.Class = "TextBoxBorder"
-        Me.txtEstadoVenta.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtEstadoVenta.DisabledBackColor = System.Drawing.Color.White
-        Me.txtEstadoVenta.Enabled = False
-        Me.txtEstadoVenta.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtEstadoVenta.ForeColor = System.Drawing.Color.Black
-        Me.txtEstadoVenta.Location = New System.Drawing.Point(453, 93)
-        Me.txtEstadoVenta.Name = "txtEstadoVenta"
-        Me.txtEstadoVenta.PreventEnterBeep = True
-        Me.txtEstadoVenta.Size = New System.Drawing.Size(60, 22)
-        Me.txtEstadoVenta.TabIndex = 268
-        Me.txtEstadoVenta.Visible = False
         '
         'F1_Fic_Recibo
         '

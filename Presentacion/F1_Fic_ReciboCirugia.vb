@@ -135,7 +135,7 @@ Public Class F1_Fic_ReciboCirugia
         Try
             If (e.Column.Index = JGDetalleReciboCir.RootTable.Columns("rpCant").Index) Then
                 If (Not IsNumeric(JGDetalleReciboCir.GetValue("rpCant")) Or JGDetalleReciboCir.GetValue("rpCant").ToString = String.Empty Or IsDBNull(JGDetalleReciboCir.GetValue("rpCant"))) Then
-                    JGDetalleReciboCir.SetValue("rpCant", 0)
+                    JGDetalleReciboCir.SetValue("rpCant", 1)
                     JGDetalleReciboCir.SetValue("rpTotal", JGDetalleReciboCir.GetValue("rpPrec"))
                 Else
                     If (JGDetalleReciboCir.GetValue("rpCant") > 0) Then
@@ -171,7 +171,7 @@ Public Class F1_Fic_ReciboCirugia
 
                     Else
 
-                        JGDetalleReciboCir.SetValue("rpCant", 0)
+                        JGDetalleReciboCir.SetValue("rpCant", 1)
                         JGDetalleReciboCir.SetValue("rpTotal", JGDetalleReciboCir.GetValue("rpPrec"))
                     End If
                 End If

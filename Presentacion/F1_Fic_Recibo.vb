@@ -132,7 +132,7 @@ salirIf:
         Try
             If (e.Column.Index = JGDetalleRecibo.RootTable.Columns("rlCant").Index) Then
                 If (Not IsNumeric(JGDetalleRecibo.GetValue("rlCant")) Or JGDetalleRecibo.GetValue("rlCant").ToString = String.Empty Or IsDBNull(JGDetalleRecibo.GetValue("rlCant"))) Then
-                    JGDetalleRecibo.SetValue("rlCant", 0)
+                    JGDetalleRecibo.SetValue("rlCant", 1)
                     JGDetalleRecibo.SetValue("rlTotal", JGDetalleRecibo.GetValue("rlPrec"))
                 Else
                     If (JGDetalleRecibo.GetValue("rlCant") > 0) Then
@@ -168,7 +168,7 @@ salirIf:
 
                     Else
 
-                        JGDetalleRecibo.SetValue("rlCant", 0)
+                        JGDetalleRecibo.SetValue("rlCant", 1)
                         JGDetalleRecibo.SetValue("rlTotal", JGDetalleRecibo.GetValue("rlPrec"))
                     End If
                 End If
@@ -855,6 +855,7 @@ salirIf:
     Private Sub JGBusqRecibos_DoubleClick(sender As Object, e As EventArgs) Handles JGBusqRecibos.DoubleClick
         superTabControl1.SelectedTabIndex = 0
     End Sub
+
 
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
         _prImprimir()

@@ -130,7 +130,7 @@ Public Class F1_Fic_ReciboInt
     Private Sub JGDetalleReciboInt_CellEdited(sender As Object, e As ColumnActionEventArgs) Handles JGDetalleReciboInt.CellEdited
         If (e.Column.Index = JGDetalleReciboInt.RootTable.Columns("rnCant").Index) Then
             If (Not IsNumeric(JGDetalleReciboInt.GetValue("rnCant")) Or JGDetalleReciboInt.GetValue("rnCant").ToString = String.Empty Or IsDBNull(JGDetalleReciboInt.GetValue("rnCant"))) Then
-                JGDetalleReciboInt.SetValue("rnCant", 0)
+                JGDetalleReciboInt.SetValue("rnCant", 1)
                 JGDetalleReciboInt.SetValue("rnTotal", JGDetalleReciboInt.GetValue("rnPrec"))
             Else
                 If (JGDetalleReciboInt.GetValue("rnCant") > 0) Then
@@ -166,7 +166,7 @@ Public Class F1_Fic_ReciboInt
 
                 Else
 
-                    JGDetalleReciboInt.SetValue("rnCant", 0)
+                    JGDetalleReciboInt.SetValue("rnCant", 1)
                     JGDetalleReciboInt.SetValue("rnTotal", JGDetalleReciboInt.GetValue("rnPrec"))
                 End If
             End If

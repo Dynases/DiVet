@@ -351,12 +351,14 @@ salirIf:
                             CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbCant") = 1
                             CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbPTotal") = CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbPrec")
                             CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbPTot2") = JGdetalleVenta.GetValue("vbPCosto") * 1
+                            CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbTotDesc") = CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbPrec") * 1
                             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                            ToastNotification.Show(Me, "La cantidad de la venta no debe ser mayor al del stock" & vbCrLf &
-                            "Stock=" + Str(stock).ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+                            ToastNotification.Show(Me, "La cantidad de la venta no debe ser mayor al del stock".ToUpper & vbCrLf &
+                            "Stock=".ToUpper + Str(stock) + " . Primero debe hacer regularizar el inventario".ToUpper, img, 6000, eToastGlowColor.Red, eToastPosition.TopCenter)
                             JGdetalleVenta.SetValue("vbCant", 1)
                             JGdetalleVenta.SetValue("vbPTotal", JGdetalleVenta.GetValue("vbPrec"))
                             JGdetalleVenta.SetValue("vbPTot2", JGdetalleVenta.GetValue("vbPCosto") * 1)
+                            JGdetalleVenta.SetValue("vbTotDesc", JGdetalleVenta.GetValue("vbPrec") * 1)
 
                             _prCalcularPrecioTotal()
                         Else
@@ -389,6 +391,7 @@ salirIf:
     Private Sub JGdetalleVenta_CellValueChanged(sender As Object, e As ColumnActionEventArgs) Handles JGdetalleVenta.CellValueChanged
         Try
             If (e.Column.Index = JGdetalleVenta.RootTable.Columns("vbCant").Index) Or (e.Column.Index = JGdetalleVenta.RootTable.Columns("vbPrec").Index) Then
+
                 If (Not IsNumeric(JGdetalleVenta.GetValue("vbCant")) Or JGdetalleVenta.GetValue("vbCant").ToString = String.Empty) Then
 
                     'grDetalle.GetRow(rowIndex).Cells("cant").Value = 1
@@ -401,7 +404,7 @@ salirIf:
 
                     CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbPorc") = 0
                     CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbDesc") = 0
-                    CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbTotDesc") = CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbPrec")
+                    CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbTotDesc") = CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbPrec") * 1
                     'JGdetalleVenta.SetValue("vbCant", 1)
                     'JGdetalleVenta.SetValue("vbPTotal", JGdetalleVenta.GetValue("vbPrec"))
                 Else
@@ -422,6 +425,7 @@ salirIf:
                         _fnObtenerFilaDetalle(pos, lin)
                         CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbCant") = 1
                         CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbPTotal") = CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbPrec")
+                        CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbTotDesc") = CType(JGdetalleVenta.DataSource, DataTable).Rows(pos).Item("vbPrec") * 1
                         _prCalcularPrecioTotal()
                         'JGdetalleVenta.SetValue("vbCant", 1)
                         'JGdetalleVenta.SetValue("vbPTotal", JGdetalleVenta.GetValue("vbPrec"))
