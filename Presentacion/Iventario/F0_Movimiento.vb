@@ -772,7 +772,7 @@ Public Class F0_Movimiento
         End If
 
         For i As Integer = 0 To CType(grdetalle.DataSource, DataTable).Rows.Count - 1
-            If (IsDBNull(CType(grdetalle.DataSource, DataTable).Rows(i).Item("iccant"))) And (CType(grdetalle.DataSource, DataTable).Rows(i).Item("iccprod") > 0) Then
+            If (IsDBNull(CType(grdetalle.DataSource, DataTable).Rows(i).Item("iccant"))) And (CType(grdetalle.DataSource, DataTable).Rows(i).Item("iccprod") > 0) And (CType(grdetalle.DataSource, DataTable).Rows(i).Item("estado") > 0) Then
 
                 Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
                 ToastNotification.Show(Me, "Debe insertar cantidad a los productos!!!".ToUpper, img, 4000, eToastGlowColor.Red, eToastPosition.BottomCenter)

@@ -1901,10 +1901,11 @@ Public Class AccesoLogica
     End Function
 #End Region
 #Region "Consultas"
-    Public Shared Function L_fnMostrarVenta() As DataTable
+    Public Shared Function L_fnMostrarVenta(mostrar As Integer) As DataTable
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
         _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@mostrar", mostrar))
         _listParam.Add(New Datos.DParametro("@vausuario", L_Usuario))
         _Tabla = D_ProcedimientoConParam("VEN.sp_VEN001", _listParam)
         Return _Tabla

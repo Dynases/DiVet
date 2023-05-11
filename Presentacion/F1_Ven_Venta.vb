@@ -845,7 +845,7 @@ salirIf:
     End Sub
     Private Sub _prCargarVenta()
         Dim dt As New DataTable
-        dt = L_fnMostrarVenta()
+        dt = L_fnMostrarVenta(IIf(swMostrar.Value = True, 1, 0))
         grVentas.DataSource = dt
         grVentas.RetrieveStructure()
         grVentas.AlternatingColors = True
@@ -3065,6 +3065,10 @@ salirIf:
 
     Private Sub F1_Ven_Venta_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         _prCambiarColorPlomoOscuro(Presentacion.Principal.btnVenta)
+    End Sub
+
+    Private Sub swMostrar_ValueChanged(sender As Object, e As EventArgs) Handles swMostrar.ValueChanged
+        _prCargarVenta()
     End Sub
 
 

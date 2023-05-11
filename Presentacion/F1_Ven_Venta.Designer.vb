@@ -107,6 +107,7 @@ Partial Class F1_Ven_Venta
         Me.grVentas = New Janus.Windows.GridEX.GridEX()
         Me.PanelToolBar2 = New System.Windows.Forms.Panel()
         Me.btnImprimir = New DevComponents.DotNetBar.ButtonX()
+        Me.swMostrar = New DevComponents.DotNetBar.Controls.SwitchButton()
         Me.MpanelSuperior.SuspendLayout()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelToolBar1.SuspendLayout()
@@ -159,6 +160,7 @@ Partial Class F1_Ven_Venta
         '
         'PanelSuperior
         '
+        Me.PanelSuperior.Controls.Add(Me.swMostrar)
         Me.PanelSuperior.Controls.Add(Me.PanelToolBar2)
         Me.PanelSuperior.Size = New System.Drawing.Size(1334, 72)
         Me.PanelSuperior.Style.Alignment = System.Drawing.StringAlignment.Center
@@ -175,9 +177,7 @@ Partial Class F1_Ven_Venta
         Me.PanelSuperior.StyleMouseOver.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PanelSuperior.Controls.SetChildIndex(Me.PanelToolBar1, 0)
         Me.PanelSuperior.Controls.SetChildIndex(Me.PanelToolBar2, 0)
-        '
-        'btnNuevo
-        '
+        Me.PanelSuperior.Controls.SetChildIndex(Me.swMostrar, 0)
         '
         'PanelInferior
         '
@@ -1821,6 +1821,22 @@ Partial Class F1_Ven_Venta
         Me.btnImprimir.Text = "IMPRIMIR"
         Me.btnImprimir.TextColor = System.Drawing.Color.White
         '
+        'swMostrar
+        '
+        '
+        '
+        '
+        Me.swMostrar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.swMostrar.Location = New System.Drawing.Point(476, 25)
+        Me.swMostrar.Name = "swMostrar"
+        Me.swMostrar.OffBackColor = System.Drawing.Color.Gold
+        Me.swMostrar.OffText = "MOSTRAR ÚLT. 300"
+        Me.swMostrar.OnBackColor = System.Drawing.Color.ForestGreen
+        Me.swMostrar.OnText = "MOSTRAR TODOS"
+        Me.swMostrar.Size = New System.Drawing.Size(190, 22)
+        Me.swMostrar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.swMostrar.TabIndex = 424
+        '
         'F1_Ven_Venta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1958,4 +1974,5 @@ Partial Class F1_Ven_Venta
     Friend WithEvents LabelX10 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX9 As DevComponents.DotNetBar.LabelX
     Friend WithEvents QrFactura As Gma.QrCodeNet.Encoding.Windows.Forms.QrCodeImgControl
+    Friend WithEvents swMostrar As DevComponents.DotNetBar.Controls.SwitchButton
 End Class
