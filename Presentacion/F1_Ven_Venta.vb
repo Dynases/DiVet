@@ -1718,7 +1718,7 @@ salirIf:
         With JGProductos.RootTable.Columns("iclot")
             .Width = 150
             .Caption = "LOTE"
-            .Visible = True
+            .Visible = False
 
         End With
         With JGProductos.RootTable.Columns("icfven")

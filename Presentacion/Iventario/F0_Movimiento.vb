@@ -287,7 +287,7 @@ Public Class F0_Movimiento
                 .Caption = "lote".ToUpper
                 .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
                 .MaxLength = 50
-                .Visible = True
+                .Visible = False
             End With
             With grdetalle.RootTable.Columns("icfvenc")
                 .Width = 120

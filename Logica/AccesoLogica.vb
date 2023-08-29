@@ -970,6 +970,15 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
         Return _Tabla
     End Function
+
+    Public Shared Function L_fnMostrarFichaClinicaUno(_fbId As Integer) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 8))
+        _listParam.Add(New Datos.DParametro("@fbId", _fbId))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
+        Return _Tabla
+    End Function
     Public Shared Function L_fnMostrarFichaClinicaDetalle(_fbId As Integer) As DataTable
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)

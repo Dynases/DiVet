@@ -241,7 +241,7 @@ Public Class F0_MCompras
             With grdetalle.RootTable.Columns("cblote")
                 .Width = 100
                 .Caption = "LOTE"
-                .Visible = True
+                .Visible = False
                 .MaxLength = 50
             End With
             With grdetalle.RootTable.Columns("cbfechavenc")
@@ -603,7 +603,7 @@ Public Class F0_MCompras
         Dim img As New Bitmap(My.Resources.delete, 20, 20)
         img.Save(Bin, Imaging.ImageFormat.Png)
         CType(grdetalle.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, "", 0, 0, 0, "",
-                                                        0, "01010101", Now.Date.ToShortDateString, 0, 0, 0, "", Now.Date, "", "", 0, Bin.GetBuffer, 0, 0)
+                                                        0, Now.Date.ToString("dd/MM/yyyy"), Now.Date.ToShortDateString, 0, 0, 0, "", Now.Date, "", "", 0, Bin.GetBuffer, 0, 0)
     End Sub
 
     Public Function _fnSiguienteNumi()
@@ -1151,6 +1151,10 @@ salirIf:
                     CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbutven") = pordesc
                 End If
             End If
+        End If
+        If (e.Column.Index = grdetalle.RootTable.Columns("cbfechavenc").Index) Then
+            Dim fec As String = grdetalle.GetValue("cbfechavenc")
+            grdetalle.SetValue("cblote", fec)
         End If
         Dim estado As Integer = CType(grdetalle.DataSource, DataTable).Rows(pos).Item("estado")
         If (estado = 1) Then

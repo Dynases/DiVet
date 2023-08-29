@@ -245,13 +245,7 @@ Public Class F1_Fic_FichaClinica
 #Region "Metodos Privados"
     Private Sub _prIniciarTodo()
         _HoraInicial = DateTime.Now.ToShortTimeString()
-        _PMAsignarPermisos()
-        _prCargarComboConsultorios(cbConsultorio)
-        _prCargarIcono()
-        _prCargarFichaClinica()
-        _prCrearCarpetaImagenes()
-        _prCrearCarpetaTemporal()
-        _prHabilitarMenu(1)
+
         '**Nueva Ficha, consulta o emergencia
         If _Iniciar = 1 Then
             _MNuevo = True
@@ -269,18 +263,30 @@ Public Class F1_Fic_FichaClinica
         Else
             '**Modificar Ficha, reconsulta o emergencia
             If _Iniciar = 2 Then
-                _MPos = -1
                 _MNuevo = False
-                For Each fila As GridEXRow In JGBusqFichaClinica.GetRows
-                    _MPos = _MPos + 1
-                    If fila.Cells("fbid").Value = _fbId Then
-                        _prMostrarRegistro(_MPos)
-                        _prHabilitar()
-                    End If
-                Next
+                _prCargarFichaClinica2(_fbId)
+                _MPos = 0
+                _prMostrarRegistro(_MPos)
+                _prHabilitar()
+                '_MPos = -1
+                '_MNuevo = False
+                'For Each fila As GridEXRow In JGBusqFichaClinica.GetRows
+                '    _MPos = _MPos + 1
+                '    If fila.Cells("fbid").Value = _fbId Then
+                '        _prMostrarRegistro(_MPos)
+                '        _prHabilitar()
+                '    End If
+                'Next
             End If
         End If
         If _Iniciar = 3 Then
+            _PMAsignarPermisos()
+            _prCargarComboConsultorios(cbConsultorio)
+            _prCargarIcono()
+            _prCargarFichaClinica()
+            _prCrearCarpetaImagenes()
+            _prCrearCarpetaTemporal()
+            _prHabilitarMenu(1)
             _prInhabilitar()
             btnNuevo.Enabled = False
         End If
@@ -457,6 +463,148 @@ Public Class F1_Fic_FichaClinica
     Private Sub _prCargarFichaClinica()
         Dim dt As New DataTable
         dt = L_fnMostrarFichaClinica()
+        JGBusqFichaClinica.DataSource = dt
+        JGBusqFichaClinica.RetrieveStructure()
+        JGBusqFichaClinica.AlternatingColors = True
+        With JGBusqFichaClinica.RootTable.Columns("fbid")
+            .Width = 65
+            .Caption = "Id"
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Visible = True
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fb_ecId")
+            .Width = 100
+            .Caption = "IdEmpleado"
+            .Visible = False
+
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fb_pbid")
+            .Width = 90
+            .Visible = False
+            .Caption = "Id Paciente"
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("ecNomb")
+            .Width = 170
+            .Caption = "Veterinario"
+            .Visible = True
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("cliente")
+            .Width = 185
+            .Caption = "Cliente"
+            .Visible = True
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("pbnomb")
+            .Width = 160
+            .Caption = "Paciente"
+            .Visible = True
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbPeso")
+            .Width = 90
+            .Visible = True
+            .Caption = "Peso Kg."
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbFechaAten")
+            .Width = 100
+            .Caption = "F. Atención"
+            .Visible = True
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbFechaProx")
+            .Width = 120
+            .Caption = "F. Reconsulta"
+            .Visible = True
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbHist")
+            .Width = 90
+            .Visible = False
+            .Caption = "Historia"
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbExam")
+            .Width = 90
+            .Visible = False
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Caption = "Examinacion"
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbTempe")
+            .Width = 90
+            .Caption = "Temperatura"
+            .Visible = False
+        End With
+
+        '    clin.fbFreCar, clin.fbFreRes, clin.fbSCorp,
+        '    clin.fbTiemCapi, clin.fbNotas, clin.fbValora,
+        '    clin.fbProtMane, clin.fbSegui
+        With JGBusqFichaClinica.RootTable.Columns("fbFreCar")
+            .Width = 90
+            .Visible = False
+            .Caption = "fbFreCar"
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbFreRes")
+            .Width = 90
+            .Visible = False
+            .Caption = "fbFreRes"
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbSCorp")
+            .Width = 90
+            .Visible = False
+            .Caption = "fbSCorp"
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbTiemCapi")
+            .Width = 90
+            .Visible = False
+            .Caption = "fbTiemCapi"
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbTiemRPlie")
+            .Width = 90
+            .Visible = False
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbNotas")
+            .Width = 90
+            .Visible = False
+            .Caption = "fbNotas"
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbValora")
+            .Width = 90
+            .Visible = False
+            .Caption = "fbValora"
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbProtMane")
+            .Width = 90
+            .Visible = False
+            .Caption = "fbProtMane"
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbAlta")
+            .Width = 90
+            .Visible = False
+            .Caption = "fbAlta"
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbFecha")
+            .Visible = False
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbHora")
+            .Visible = False
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbUsuario")
+            .Visible = False
+        End With
+        With JGBusqFichaClinica.RootTable.Columns("fbConsultorio")
+            .Visible = False
+        End With
+        With JGBusqFichaClinica
+            .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
+            .FilterMode = FilterMode.Automatic
+            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+            .GroupByBoxVisible = False
+            'diseño de la grilla
+            .VisualStyle = VisualStyle.Office2007
+        End With
+        'If (dt.Rows.Count <= 0) Then
+        '    _prCargarDetalleVenta(-1)
+        'End If
+    End Sub
+
+    Private Sub _prCargarFichaClinica2(FbId As Integer)
+        Dim dt As New DataTable
+        dt = L_fnMostrarFichaClinicaUno(FbId)
         JGBusqFichaClinica.DataSource = dt
         JGBusqFichaClinica.RetrieveStructure()
         JGBusqFichaClinica.AlternatingColors = True
