@@ -1,7 +1,6 @@
 ﻿Imports Logica.AccesoLogica
 Imports DevComponents.DotNetBar
 Imports Janus.Windows.GridEX
-Imports System.Data.SqlClient
 Imports System.IO
 
 Public Class F1_Fic_FichaClinica
@@ -10,83 +9,88 @@ Public Class F1_Fic_FichaClinica
     Public _Paciente, _NombreVeterinario As String
     Private _Limpiar As Boolean
     Private _HoraInicial As String
-    Public TablaImagenes As DataTable
-    Dim RutaTemporal As String = "C:\Tempora"
-    Dim RutaGlobal As String = gs_CarpetaRaiz
-    Dim _Nombre As String = ""
-    Dim mstream1 = New MemoryStream()
-    Dim _swCirugia As Boolean = False
-    Dim L_Usuario As String = "DEFAULT"
-    'faId Es el codigo de atencion
+    Private TablaImagenes As DataTable
+    Private RutaTemporal As String = "C:\Tempora"
+    Private RutaGlobal As String = gs_CarpetaRaiz
+    Private _Nombre As String = ""
+    Private mstream1 = New MemoryStream()
+    Private _swCirugia As Boolean = False
+    Private L_Usuario As String = "DEFAULT"
+    Private totalRegistro As Integer
+    Private estaCargando As Boolean = False
+    Private Event RenderizarDgvListado()
+    Private dtItem, dtItemDetalle As DataTable
+    Private estaVizualizando As Boolean = True
+    Private banderaP2 As Boolean = False, banderaP3 As Boolean = False, banderaP4 As Boolean = False, banderaP5 As Boolean = False, banderaP6 As Boolean = False
 #End Region
+
 #Region "Eventos"
     Private Sub F1_Fic_FichaClinica_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         superTabControl1.SelectedTabIndex = 0
         _prIniciarTodo()
     End Sub
+
     Private Sub JGListaArchivos_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGListaArchivos.EditingCell
         e.Cancel = True
     End Sub
+
     Private Sub btnRecibo_Click(sender As Object, e As EventArgs) Handles btnRecibo.Click
         Dim frm As New F1_Fic_Recibo
         frm._IdFicha = txtIdFicha.Text
         frm._IdPaciente = txtIdMascota.Text
         frm.Show()
     End Sub
+
     Private Sub btnExaminar_Click(sender As Object, e As EventArgs) Handles btnExaminar.Click
         Try
-            'Dim archivo As New OpenFileDialog
-            'archivo.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.ToString
-            'archivo.Filter = "Todos los archivos (*.*)|*.*"
-            'archivo.Multiselect = True
-            'If (archivo.ShowDialog = DialogResult.OK) Then
-
-            'End If
             btnGuardarArchivo.Enabled = True
             _fnCopiarImagenRutaDefinida()
         Catch ex As Exception
             Console.WriteLine(ex.Message)
         End Try
     End Sub
-    Private Sub JGBusqFichaClinica_SelectionChanged(sender As Object, e As EventArgs) Handles JGBusqFichaClinica.SelectionChanged
-        If (JGBusqFichaClinica.RowCount >= 0 And JGBusqFichaClinica.Row >= 0) Then
-            _prMostrarRegistro(JGBusqFichaClinica.Row)
+
+    Private Sub dgvListado_SelectionChanged(sender As Object, e As EventArgs) Handles dgvListado.SelectionChanged
+        If estaCargando Then Return
+        If (dgvListado.RowCount >= 0) Then
+            _prMostrarRegistro()
         End If
     End Sub
-    '********Primero
+
     Private Sub btnPrimero_Click(sender As Object, e As EventArgs) Handles btnPrimero.Click
-        If JGBusqFichaClinica.RowCount > 0 Then
+        If dgvListado.RowCount > 0 Then
             _MPos = 0
-            _prMostrarRegistro(_MPos)
+            _dgvListado.Rows(_MPos).Selected = True
         End If
     End Sub
-    '********Anterior
+
     Private Sub btnAnterior_Click(sender As Object, e As EventArgs) Handles btnAnterior.Click
-        If _MPos > 0 And JGBusqFichaClinica.RowCount > 0 Then
+        If _MPos > 0 And dgvListado.RowCount > 0 Then
             _MPos = _MPos - 1
-            _prMostrarRegistro(_MPos)
+            _dgvListado.Rows(_MPos).Selected = True
         End If
     End Sub
-    '********Siguiente
+
     Private Sub btnSiguiente_Click(sender As Object, e As EventArgs) Handles btnSiguiente.Click
-        If _MPos < JGBusqFichaClinica.RowCount - 1 Then
+        If _MPos < dgvListado.RowCount - 1 Then
             _MPos = _MPos + 1
-            _prMostrarRegistro(_MPos)
+            _dgvListado.Rows(_MPos).Selected = True
         End If
     End Sub
-    '********Ultimo
+
     Private Sub btnUltimo_Click(sender As Object, e As EventArgs) Handles btnUltimo.Click
-        If JGBusqFichaClinica.RowCount > 0 Then
-            _MPos = JGBusqFichaClinica.RowCount - 1
-            _prMostrarRegistro(_MPos)
+        If dgvListado.RowCount > 0 Then
+            _MPos = dgvListado.RowCount - 1
+            _dgvListado.Rows(_MPos).Selected = True
         End If
     End Sub
+
     Private Sub btnGuardarArchivo_Click(sender As Object, e As EventArgs) Handles btnGuardarArchivo.Click
-        _prPasarIamgenTabla()
+        _prPasarImagenTabla()
         btnGuardarArchivo.Enabled = False
         txtDecripcionA.Clear()
     End Sub
-    '********Muestra la imagen en visualizador
+
     Private Sub JGListaArchivos_DoubleClick(sender As Object, e As EventArgs) Handles JGListaArchivos.DoubleClick
         Try
             If JGListaArchivos.GetValue("Estado") <> 0 Then
@@ -101,7 +105,6 @@ Public Class F1_Fic_FichaClinica
             ''Throw New Exception(ex.Message, ex)
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
             ToastNotification.Show(Me, "No se encuentra la imagen, no se puede visualizar".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
-
         End Try
     End Sub
 
@@ -213,92 +216,214 @@ Public Class F1_Fic_FichaClinica
             txtScoreCorporal.Text = "5"
         End If
     End Sub
+
     Private Sub JGFechasSeg_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGFechasSeg.EditingCell
         e.Cancel = True
         txtSeguimiento.Text = JGFechasSeg.GetValue("fjSeguimiento")
         txtValoracion.Text = JGFechasSeg.GetValue("fjValoracion")
         txtProManejo.Text = JGFechasSeg.GetValue("fjProtocoloM")
     End Sub
-    Private Sub JGBusqFichaClinica_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGBusqFichaClinica.EditingCell
+
+    Private Sub JGBusqFichaClinica_EditingCell(sender As Object, e As EditingCellEventArgs)
         e.Cancel = True
     End Sub
-    'Alta de ficha clinica
+
     Private Sub btnAlta_Click(sender As Object, e As EventArgs) Handles btnAlta.Click
         If txtIdFicha.Text <> String.Empty Then
             Dim res As Boolean = L_fnModificarFichaClinicaAlta(txtIdFicha.Text)
             If res Then
                 Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
                 ToastNotification.Show(Me, "Id de la ficha clinica ".ToUpper + txtIdFicha.Text + " dado de Alta con Exito.".ToUpper,
-                                          img, 3000,
-                                          eToastGlowColor.Green,
-                                          eToastPosition.TopCenter
-                                          )
+                                       img, 3000,
+                                       eToastGlowColor.Green,
+                                       eToastPosition.TopCenter)
                 _prInhabilitar()
-                _prFiltrar(2)
+                _prFiltrar()
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
                 ToastNotification.Show(Me, "El alta de la ficha clinica no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
         End If
     End Sub
-#End Region
-#Region "Metodos Privados"
-    Private Sub _prIniciarTodo()
-        _HoraInicial = DateTime.Now.ToShortTimeString()
 
-        '**Nueva Ficha, consulta o emergencia
-        If _Iniciar = 1 Then
-            _MNuevo = True
+    Private Sub EventoRenderizarDgvListado() Handles Me.RenderizarDgvListado
+        _MPos = 0
+        If dgvListado.Rows.Count = 0 Then
             _prLimpiar()
-            txtIdMascota.Text = _IdPaciente
-            txtMascota.Text = _Paciente
-            cbConsultorio.Value = _Consultorio
-            txtIdVeterinario.Text = _IdVeterinario
-            txtNombVeterinario.Text = _NombreVeterinario
-            _prMostrarPaciente()
-            _prCargarFichaClinicaSeguimiento(-1)
-            _prCargarCirugia(-1)
-            _prCargarInternacion(-1)
-            _prHabilitar()
         Else
-            '**Modificar Ficha, reconsulta o emergencia
-            If _Iniciar = 2 Then
-                _MNuevo = False
-                _prCargarFichaClinica2(_fbId)
-                _MPos = 0
-                _prMostrarRegistro(_MPos)
-                _prHabilitar()
-                '_MPos = -1
-                '_MNuevo = False
-                'For Each fila As GridEXRow In JGBusqFichaClinica.GetRows
-                '    _MPos = _MPos + 1
-                '    If fila.Cells("fbid").Value = _fbId Then
-                '        _prMostrarRegistro(_MPos)
-                '        _prHabilitar()
-                '    End If
-                'Next
-            End If
-        End If
-        If _Iniciar = 3 Then
-            _PMAsignarPermisos()
-            _prCargarComboConsultorios(cbConsultorio)
-            _prCargarIcono()
-            _prCargarFichaClinica()
-            _prCrearCarpetaImagenes()
-            _prCrearCarpetaTemporal()
-            _prHabilitarMenu(1)
-            _prInhabilitar()
-            btnNuevo.Enabled = False
+            dgvListado.Rows(_MPos).Selected = True
         End If
     End Sub
+
+    Private Sub txtTRPliegue_ValueChanged(sender As Object, e As EventArgs) Handles txtTRPliegue.ValueChanged
+        If (txtTLCapilar.Text <= 2 And txtTRPliegue.Value <= 2) Then
+            chbPorDeshi1.Checked = True
+        ElseIf (txtTLCapilar.Text <= 2 And (txtTRPliegue.Value >= 3 And txtTRPliegue.Value <= 5)) Then
+            chbPorDeshi2.Checked = True
+        ElseIf ((txtTLCapilar.Text >= 3 And txtTLCapilar.Text <= 4) And (txtTRPliegue.Value >= 3 And txtTRPliegue.Value <= 10)) Then
+            chbPorDeshi3.Checked = True
+        ElseIf (txtTLCapilar.Text > 5 And txtTRPliegue.Value > 5) Then
+            chbPorDeshi4.Checked = True
+        ElseIf (txtTLCapilar.Text > 5 And txtTRPliegue.Value = 0) Then
+            chbPorDeshi5.Checked = True
+        Else
+            chbPorDeshi1.Checked = False
+            chbPorDeshi2.Checked = False
+            chbPorDeshi3.Checked = False
+            chbPorDeshi4.Checked = False
+            chbPorDeshi5.Checked = False
+        End If
+    End Sub
+
+    Private Sub F1_Fic_FichaClinica_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnFichaClinica)
+    End Sub
+
+    Private Sub txtPeso_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPeso.KeyPress
+        g_prValidarTextBox(1, e)
+    End Sub
+
+    Private Sub JGListaArchivos_MouseClick(sender As Object, e As MouseEventArgs) Handles JGListaArchivos.MouseClick
+        If (Not _fnAccesible()) Then
+            Return
+        End If
+        If (JGListaArchivos.RowCount >= 1) Then
+            If (JGListaArchivos.CurrentColumn.Index = JGListaArchivos.RootTable.Columns("imgelim").Index) Then
+                _prEliminarFila()
+            End If
+        End If
+    End Sub
+
+    Private Sub chbInternacion_CheckedChanged(sender As Object, e As EventArgs) Handles chbInternacion.CheckedChanged
+        If chbInternacion.Checked Then
+            txtIdInt.Text = ""
+            dtpFInternacion.Value = Now.Date
+            txtEdadI.Text = ""
+            txtTelefonoI.Text = ""
+            txtObservacionesI.Text = ""
+            txtRequiere.Text = ""
+            txtHoraInt.Text = ""
+        End If
+    End Sub
+
+    Private Sub JGInternacion_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGInternacion.EditingCell
+        e.Cancel = True
+        txtIdInt.Text = JGInternacion.GetValue("igId")
+        dtpFInternacion.Value = JGInternacion.GetValue("igFechaIng")
+        txtEdadI.Text = JGInternacion.GetValue("igEdad")
+        txtTelefonoI.Text = JGInternacion.GetValue("igTelf")
+        txtObservacionesI.Text = JGInternacion.GetValue("igMotInter")
+        txtRequiere.Text = JGInternacion.GetValue("igRequer")
+        txtHoraInt.Text = JGInternacion.GetValue("igHora")
+    End Sub
+
+    Private Sub JGCirugia_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGCirugia.EditingCell
+        e.Cancel = True
+        txtIdCir.Text = JGCirugia.GetValue("cfId")
+        dtpFCirugía.Value = JGCirugia.GetValue("cfFechaAten")
+        txtPesoC.Text = JGCirugia.GetValue("cfPeso")
+        txtEdadC.Text = JGCirugia.GetValue("cfEdad")
+        txtResponsable.Text = JGCirugia.GetValue("cfRespon")
+        txtTelefonoC.Text = JGCirugia.GetValue("cfTelef")
+        txtImportadora.Text = JGCirugia.GetValue("cfImport")
+        txtClasificacion.Text = JGCirugia.GetValue("cfClasASA")
+        txtProcedimiento.Text = JGCirugia.GetValue("cfProc")
+        txtObservacionC.Text = JGCirugia.GetValue("cfObser")
+    End Sub
+
+    Private Sub btnBusqueda_Click(sender As Object, e As EventArgs) Handles btnBusqueda.Click
+        _prListarFichaClinica(txtBusqueda.Text.Trim)
+    End Sub
+
+    Private Sub dgvListado_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles dgvListado.CellFormatting
+        If e.ColumnIndex = dgvListado.Columns("peso_kg").Index AndAlso e.Value IsNot Nothing Then
+            Dim valor As Decimal
+            If Decimal.TryParse(e.Value.ToString(), valor) Then
+                e.Value = String.Format("{0:0.00} kg", valor)
+                e.FormattingApplied = True
+            End If
+        End If
+    End Sub
+
+    Private Sub stcFichaClinica_SelectedTabChanging(sender As Object, e As SuperTabStripSelectedTabChangingEventArgs) Handles stcFichaClinica.SelectedTabChanging
+        Dim indice As Integer = stcFichaClinica.Tabs.IndexOf(e.NewValue)
+        Dim valor As Integer = _fnObtnerNumero(txtIdFicha.Text)
+        Select Case indice
+            Case 1
+                If Not banderaP2 Then _prCargarP2()
+                banderaP2 = True
+            Case 2
+                If Not banderaP3 Then _prCargarP3(valor)
+                banderaP3 = True
+            Case 3
+                If Not banderaP4 Then _prCargarP4(valor)
+                banderaP4 = True
+            Case 4
+                If Not banderaP5 Then _prCargarP5(valor)
+                banderaP5 = True
+            Case 5
+                If Not banderaP6 Then _prCargarP6(valor)
+                banderaP6 = True
+        End Select
+    End Sub
+
+    Private Sub txtTLCapilar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtTLCapilar.KeyPress
+        g_prValidarTextBox(1, e)
+    End Sub
+
+    Private Sub JGBusqFichaClinica_DoubleClick(sender As Object, e As EventArgs)
+        superTabControl1.SelectedTabIndex = 0
+    End Sub
+#End Region
+
+#Region "Metodos Privados"
+    Private Sub _prIniciarTodo()
+        totalRegistro = L_fnListarIDFichasClinicas()
+        _HoraInicial = DateTime.Now.ToShortTimeString()
+
+        Select Case _Iniciar
+            Case 1
+                _MNuevo = True
+                btnNuevo.PerformClick()
+                txtIdMascota.Text = _IdPaciente
+                txtMascota.Text = _Paciente
+                cbConsultorio.Value = _Consultorio
+                txtIdVeterinario.Text = _IdVeterinario
+                txtNombVeterinario.Text = _NombreVeterinario
+                _prMostrarPaciente()
+                _prRenderizarGrillaFichaClinicaSeguimiento(-1)
+                _prAddDetalleSeguimiento()
+                _prRenderizarGrillaCirugia(-1)
+                _prRenderizarGrillaInternacion(-1)
+                pnlBusqueda.Visible = False
+            Case 2
+                _MNuevo = False
+                btnModificar.PerformClick()
+                _prObtenerPorIdFichaClinica(_fbId)
+                _prMostrarRegistroTodo()
+                btnNuevo.Enabled = False
+                btnModificar.Enabled = False
+                btnEliminar.Enabled = False
+                pnlBusqueda.Visible = False
+            Case 3
+                _PMAsignarPermisos()
+                _prCargarComboConsultorios(cbConsultorio)
+                _prCargarIcono()
+                _prListarFichaClinica()
+                _prCrearCarpetaImagenes()
+                _prCrearCarpetaTemporal()
+                _prHabilitarMenu(1)
+                _prInhabilitar()
+                btnNuevo.Enabled = False
+        End Select
+    End Sub
+
     Private Sub _prCargarComboConsultorios(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
         Dim dt As New DataTable
         dt = L_fnMostrarConsultorio()
 
         With mCombo
             .DropDownList.Columns.Clear()
-            '.DropDownList.Columns.Add("ccId").Width = 60
-            '.DropDownList.Columns("ccId").Caption = "ID"
             .DropDownList.Columns.Add("ccNro").Width = 120
             .DropDownList.Columns("ccNro").Caption = "Consultorio Nro."
             .ValueMember = "ccId"
@@ -307,27 +432,34 @@ Public Class F1_Fic_FichaClinica
             .Refresh()
         End With
     End Sub
+
     Private Sub _prCargarIcono()
         Dim blah As New Bitmap(New Bitmap(My.Resources.fichaclinica1), 20, 20)
         Dim ico As Icon = Icon.FromHandle(blah.GetHicon())
         Me.Icon = ico
     End Sub
+
     Private Sub _prMostrarPaciente()
-        Dim _dtPaciente As DataTable = L_MostrarPacientes()
-        Dim _FilaPaciente As DataRow()
-        _FilaPaciente = _dtPaciente.Select("pbid=" + txtIdMascota.Text)
-        _dtPaciente = _FilaPaciente.CopyToDataTable
+        Dim valor As Integer
+        If String.IsNullOrEmpty(txtIdMascota.Text.Trim()) Then
+            valor = -1
+        Else
+            valor = Convert.ToInt32(txtIdMascota.Text)
+        End If
+
+        Dim dtPadiente As DataTable = L_MostrarPacientePorId(valor)
         'Cirugia
-        txtPropietarioC.Text = _dtPaciente.Rows(0).Item("cacliente")
-        txtPacienteC.Text = _dtPaciente.Rows(0).Item("pbnomb")
-        txtEspecieC.Text = _dtPaciente.Rows(0).Item("Especie")
-        txtSexoC.Text = _dtPaciente.Rows(0).Item("pbsex")
+        txtPropietarioC.Text = dtPadiente.Rows(0).Item("cacliente")
+        txtPacienteC.Text = dtPadiente.Rows(0).Item("pbnomb")
+        txtEspecieC.Text = dtPadiente.Rows(0).Item("Especie")
+        txtSexoC.Text = dtPadiente.Rows(0).Item("pbsex")
         'Internacion
-        txtPropietarioI.Text = _dtPaciente.Rows(0).Item("cacliente")
-        txtPacienteI.Text = _dtPaciente.Rows(0).Item("pbnomb")
-        txtEspecieI.Text = _dtPaciente.Rows(0).Item("Especie")
-        txtSexoI.Text = _dtPaciente.Rows(0).Item("pbsex")
+        txtPropietarioI.Text = dtPadiente.Rows(0).Item("cacliente")
+        txtPacienteI.Text = dtPadiente.Rows(0).Item("pbnomb")
+        txtEspecieI.Text = dtPadiente.Rows(0).Item("Especie")
+        txtSexoI.Text = dtPadiente.Rows(0).Item("pbsex")
     End Sub
+
     Private Sub _prHabilitarMenu(tipo As Integer)
         If tipo = 1 Then
             If _Iniciar = 1 Or _Iniciar = 2 Then
@@ -349,6 +481,7 @@ Public Class F1_Fic_FichaClinica
             superTabItem2.Enabled = True
         End If
     End Sub
+
     Private Sub _prObtenerDetalle(ByRef tabla As DataTable)
         'GRUPO - LINEA - VALOR1 - VALOR 2, VALOR 3, VALOR 4, VALOR 5
         tabla.Rows.Add("FIC.CLIN0022.Horarios", 1, IIf(chbNormalH.Checked, 1, 0),
@@ -460,296 +593,61 @@ Public Class F1_Fic_FichaClinica
                                       IIf(chbEcografia.Checked, 2, 0),
                                       IIf(chbRadiografia.Checked, 3, 0), 0, 0)
     End Sub
-    Private Sub _prCargarFichaClinica()
+
+    Private Sub _prListarFichaClinica(Optional _filtro As String = "")
         Dim dt As New DataTable
-        dt = L_fnMostrarFichaClinica()
-        JGBusqFichaClinica.DataSource = dt
-        JGBusqFichaClinica.RetrieveStructure()
-        JGBusqFichaClinica.AlternatingColors = True
-        With JGBusqFichaClinica.RootTable.Columns("fbid")
-            .Width = 65
-            .Caption = "Id"
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .Visible = True
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fb_ecId")
-            .Width = 100
-            .Caption = "IdEmpleado"
-            .Visible = False
-
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fb_pbid")
-            .Width = 90
-            .Visible = False
-            .Caption = "Id Paciente"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("ecNomb")
-            .Width = 170
-            .Caption = "Veterinario"
-            .Visible = True
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("cliente")
-            .Width = 185
-            .Caption = "Cliente"
-            .Visible = True
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("pbnomb")
-            .Width = 160
-            .Caption = "Paciente"
-            .Visible = True
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbPeso")
-            .Width = 90
-            .Visible = True
-            .Caption = "Peso Kg."
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbFechaAten")
-            .Width = 100
-            .Caption = "F. Atención"
-            .Visible = True
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbFechaProx")
-            .Width = 120
-            .Caption = "F. Reconsulta"
-            .Visible = True
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbHist")
-            .Width = 90
-            .Visible = False
-            .Caption = "Historia"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbExam")
-            .Width = 90
-            .Visible = False
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .Caption = "Examinacion"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbTempe")
-            .Width = 90
-            .Caption = "Temperatura"
-            .Visible = False
-        End With
-
-        '    clin.fbFreCar, clin.fbFreRes, clin.fbSCorp,
-        '    clin.fbTiemCapi, clin.fbNotas, clin.fbValora,
-        '    clin.fbProtMane, clin.fbSegui
-        With JGBusqFichaClinica.RootTable.Columns("fbFreCar")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbFreCar"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbFreRes")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbFreRes"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbSCorp")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbSCorp"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbTiemCapi")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbTiemCapi"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbTiemRPlie")
-            .Width = 90
-            .Visible = False
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbNotas")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbNotas"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbValora")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbValora"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbProtMane")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbProtMane"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbAlta")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbAlta"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbFecha")
-            .Visible = False
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbHora")
-            .Visible = False
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbUsuario")
-            .Visible = False
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbConsultorio")
-            .Visible = False
-        End With
-        With JGBusqFichaClinica
-            .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
-            .FilterMode = FilterMode.Automatic
-            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
-            .GroupByBoxVisible = False
-            'diseño de la grilla
-            .VisualStyle = VisualStyle.Office2007
-        End With
-        'If (dt.Rows.Count <= 0) Then
-        '    _prCargarDetalleVenta(-1)
-        'End If
+        dt = L_fnListarFichasClinicas(50, _filtro)
+        _prRenderizarGrillaListado(dt)
     End Sub
 
-    Private Sub _prCargarFichaClinica2(FbId As Integer)
+    Private Sub _prObtenerPorIdFichaClinica(_id As Integer)
         Dim dt As New DataTable
-        dt = L_fnMostrarFichaClinicaUno(FbId)
-        JGBusqFichaClinica.DataSource = dt
-        JGBusqFichaClinica.RetrieveStructure()
-        JGBusqFichaClinica.AlternatingColors = True
-        With JGBusqFichaClinica.RootTable.Columns("fbid")
-            .Width = 65
-            .Caption = "Id"
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .Visible = True
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fb_ecId")
-            .Width = 100
-            .Caption = "IdEmpleado"
-            .Visible = False
-
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fb_pbid")
-            .Width = 90
-            .Visible = False
-            .Caption = "Id Paciente"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("ecNomb")
-            .Width = 170
-            .Caption = "Veterinario"
-            .Visible = True
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("cliente")
-            .Width = 185
-            .Caption = "Cliente"
-            .Visible = True
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("pbnomb")
-            .Width = 160
-            .Caption = "Paciente"
-            .Visible = True
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbPeso")
-            .Width = 90
-            .Visible = True
-            .Caption = "Peso Kg."
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbFechaAten")
-            .Width = 100
-            .Caption = "F. Atención"
-            .Visible = True
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbFechaProx")
-            .Width = 120
-            .Caption = "F. Reconsulta"
-            .Visible = True
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbHist")
-            .Width = 90
-            .Visible = False
-            .Caption = "Historia"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbExam")
-            .Width = 90
-            .Visible = False
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .Caption = "Examinacion"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbTempe")
-            .Width = 90
-            .Caption = "Temperatura"
-            .Visible = False
-        End With
-
-        '    clin.fbFreCar, clin.fbFreRes, clin.fbSCorp,
-        '    clin.fbTiemCapi, clin.fbNotas, clin.fbValora,
-        '    clin.fbProtMane, clin.fbSegui
-        With JGBusqFichaClinica.RootTable.Columns("fbFreCar")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbFreCar"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbFreRes")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbFreRes"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbSCorp")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbSCorp"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbTiemCapi")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbTiemCapi"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbTiemRPlie")
-            .Width = 90
-            .Visible = False
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbNotas")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbNotas"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbValora")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbValora"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbProtMane")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbProtMane"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbAlta")
-            .Width = 90
-            .Visible = False
-            .Caption = "fbAlta"
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbFecha")
-            .Visible = False
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbHora")
-            .Visible = False
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbUsuario")
-            .Visible = False
-        End With
-        With JGBusqFichaClinica.RootTable.Columns("fbConsultorio")
-            .Visible = False
-        End With
-        With JGBusqFichaClinica
-            .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
-            .FilterMode = FilterMode.Automatic
-            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
-            .GroupByBoxVisible = False
-            'diseño de la grilla
-            .VisualStyle = VisualStyle.Office2007
-        End With
-        'If (dt.Rows.Count <= 0) Then
-        '    _prCargarDetalleVenta(-1)
-        'End If
+        dt = L_fnMostrarFichaClinicaUno(_id)
+        _prRenderizarGrillaListado(dt)
     End Sub
-    Private Sub _prCargarFichaClinicaSeguimiento(_fbId As String)
+
+    Private Sub _prRenderizarGrillaListado(_dt As DataTable)
+        estaCargando = True
+        dgvListado.DataSource = _dt
+        With dgvListado
+            .SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            .MultiSelect = False
+            .RowHeadersVisible = False
+            .ReadOnly = True
+            .AllowUserToAddRows = False
+            .RowsDefaultCellStyle.BackColor = Color.White
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray
+
+            .Columns("id").Width = 50
+            .Columns("id").HeaderText = "ID"
+            .Columns("veterinario").Width = 200
+            .Columns("veterinario").HeaderText = "Veterinario"
+            .Columns("cliente").Width = 200
+            .Columns("cliente").HeaderText = "Cliente"
+            .Columns("paciente").Width = 100
+            .Columns("paciente").HeaderText = "Paciente"
+            .Columns("peso_kg").HeaderText = "Peso KG."
+            .Columns("fecha_atencion").DefaultCellStyle.Format = "dd/MM/yyyy"
+            .Columns("fecha_atencion").HeaderText = "Fecha de atención"
+            .Columns("reconsulta").DefaultCellStyle.Format = "dd/MM/yyyy"
+            .Columns("reconsulta").HeaderText = "Fecha de reconsulta"
+        End With
+
+        For Each columna As DataGridViewColumn In dgvListado.Columns
+            columna.SortMode = DataGridViewColumnSortMode.NotSortable
+        Next
+        If dgvListado.Rows.Count > 0 Then dgvListado.Rows(0).Selected = False
+        estaCargando = False
+        RaiseEvent RenderizarDgvListado()
+    End Sub
+
+    Private Sub _prRenderizarGrillaFichaClinicaSeguimiento(_fbId As String)
         Dim dt As New DataTable
         dt = L_prMostrarFichaClinicaSeguimiento(_fbId)
         JGFechasSeg.DataSource = dt
         JGFechasSeg.RetrieveStructure()
         JGFechasSeg.AlternatingColors = True
-        ''	seg.fjId,seg.fj_FbId,seg.fjEstado,seg.fjSeguimientomiento,seg.fjFecha,seg.fjHora,seg.fjUsuario
+
         With JGFechasSeg.RootTable.Columns("fjId")
             .Width = 100
             .Caption = "Id"
@@ -805,7 +703,8 @@ Public Class F1_Fic_FichaClinica
             .VisualStyle = VisualStyle.Office2007
         End With
     End Sub
-    Private Sub _prCargarCirugia(_fbId As String)
+
+    Private Sub _prRenderizarGrillaCirugia(_fbId As String)
         Dim dt As New DataTable
         dt = L_prMostrarFechaCirugia(_fbId)
         JGCirugia.DataSource = dt
@@ -876,7 +775,8 @@ Public Class F1_Fic_FichaClinica
             .VisualStyle = VisualStyle.Office2007
         End With
     End Sub
-    Private Sub _prCargarInternacion(_fbId As String)
+
+    Private Sub _prRenderizarGrillaInternacion(_fbId As String)
         Dim dt As New DataTable
         dt = L_prMostrarInternación(_fbId)
         JGInternacion.DataSource = dt
@@ -943,216 +843,302 @@ Public Class F1_Fic_FichaClinica
             .VisualStyle = VisualStyle.Office2007
         End With
     End Sub
-    Public Sub _prMostrarRegistro(_N As Integer)
-        JGBusqFichaClinica.Row = _N
-        With JGBusqFichaClinica
-            txtIdFicha.Text = .GetValue("fbid")
-            cbConsultorio.Value = IIf(IsDBNull(.GetValue("fbConsultorio")), Nothing, .GetValue("fbConsultorio"))
-            txtIdVeterinario.Text = .GetValue("fb_ecId")
-            txtNombVeterinario.Text = .GetValue("ecNomb")
-            txtIdMascota.Text = .GetValue("fb_pbid")
-            txtMascota.Text = .GetValue("pbnomb")
-            dtpFechaFC.Value = .GetValue("fbFechaAten")
-            dtpFProxVisita.Value = .GetValue("fbFechaProx")
-            txtHistoria.Text = .GetValue("fbHist")
-            txtExaminacion.Text = .GetValue("fbExam")
-            txtTemperatura.Text = .GetValue("fbTempe")
-            txtPeso.Text = .GetValue("fbPeso")
-            txtFCardiaca.Text = .GetValue("fbFreCar")
-            txtFRespiratoria.Text = .GetValue("fbFreRes")
-            txtScoreCorporal.Text = .GetValue("fbSCorp")
-            txtTLCapilar.Text = .GetValue("fbTiemCapi")
-            txtTRPliegue.Text = .GetValue("fbTiemRPlie")
-            txtNotas.Text = .GetValue("fbNotas")
-            'txtValoracion.Text = .GetValue("fbValora")
-            'txtProManejo.Text = .GetValue("fbProtMane")
-            'txtSeguimiento.Text = .GetValue("fbSegui")
-            _prCargarFichaClinicaDetalle(Convert.ToInt32(txtIdFicha.Text))
-            _prCargarImagen(Convert.ToInt32(txtIdFicha.Text))
-            _prCargarFichaClinicaSeguimiento(Convert.ToInt32(txtIdFicha.Text))
-            'JGFechasSeg.Row = JGFechasSeg.RowCount
-            txtSeguimiento.Text = JGFechasSeg.GetValue("fjSeguimiento")
-            txtValoracion.Text = JGFechasSeg.GetValue("fjValoracion")
-            txtProManejo.Text = JGFechasSeg.GetValue("fjProtocoloM")
 
-            _prCargarInternacion(Convert.ToInt32(txtIdFicha.Text))
-            _prCargarCirugia(Convert.ToInt32(txtIdFicha.Text))
-            'Obtiene el paciente
-            _prLimpiarCirugia()
-            _prLimpiarInternacion()
-            _prMostrarPaciente()
-            'Habilitar ALTA 
-
-            btnModificar.Enabled = IIf(L_fnExisteFichaClinicaAlta(txtIdFicha.Text), True, False)
-            btnEliminar.Enabled = IIf(L_fnExisteFichaClinicaAlta(txtIdFicha.Text), True, False)
-            btnRecibo.Enabled = IIf(L_fnExisteFichaClinicaAlta(txtIdFicha.Text), True, False)
-            btnAlta.Enabled = IIf(L_fnExisteFichaClinicaAlta(txtIdFicha.Text), True, False)
-            'Cirugia
-            If Not L_fnExisteCirugia(txtIdFicha.Text) Then
-                Dim _tabla As DataTable = L_fnMostrarCirugia()
-                If _tabla.Rows.Count <> 0 Then
-                    Dim _fila As DataRow()
-                    _fila = _tabla.Select("cf_FbId=" + txtIdFicha.Text)
-                    _tabla = _fila.CopyToDataTable
-                    'Cirugia
-                    'chbCirugia.Checked = True
-                    txtIdCir.Text = _tabla.Rows(0).Item("cfId")
-                    dtpFCirugía.Value = _tabla.Rows(0).Item("cfFechaAten")
-                    txtPesoC.Text = _tabla.Rows(0).Item("cfPeso")
-                    txtEdadC.Text = _tabla.Rows(0).Item("cfEdad")
-                    txtResponsable.Text = _tabla.Rows(0).Item("cfRespon")
-                    txtTelefonoC.Text = _tabla.Rows(0).Item("cfTelef")
-                    txtImportadora.Text = _tabla.Rows(0).Item("cfImport")
-                    txtClasificacion.Text = _tabla.Rows(0).Item("cfClasASA")
-                    txtProcedimiento.Text = _tabla.Rows(0).Item("cfProc")
-                    txtObservacionC.Text = _tabla.Rows(0).Item("cfObser")
-                End If
-            End If
-            'Internacion
-            If Not L_fnExisteInternacion(txtIdFicha.Text) Then
-                Dim _tabla As DataTable = L_fnMostrarInternacion()
-                If _tabla.Rows.Count <> 0 Then
-                    Dim _Fila As DataRow()
-                    _Fila = _tabla.Select("ig_FbId=" + txtIdFicha.Text)
-                    _tabla = _Fila.CopyToDataTable
-                    'chbInternacion.Checked = True
-                    txtIdInt.Text = _tabla.Rows(0).Item("igId")
-                    dtpFInternacion.Value = _tabla.Rows(0).Item("igFechaIng")
-                    txtEdadI.Text = _tabla.Rows(0).Item("igEdad")
-                    txtTelefonoI.Text = _tabla.Rows(0).Item("igTelf")
-                    txtObservacionesI.Text = _tabla.Rows(0).Item("igMotInter")
-                    txtRequiere.Text = _tabla.Rows(0).Item("igRequer")
-                    txtHoraInt.Text = _tabla.Rows(0).Item("igHoraInter")
-                End If
-            End If
-            'Muestra la cantidad de registros
-            LblPaginacion.Text = Str(JGBusqFichaClinica.Row + 1) + "/" + JGBusqFichaClinica.RowCount.ToString
-
-            'Muestra el bubblebar(que usuario registró la Ficha Clínica)
-            lbFecha.Text = CType(.GetValue("fbFecha"), Date).ToString("dd/MM/yyyy")
-            lbHora.Text = .GetValue("fbHora").ToString
-            lbUsuario.Text = .GetValue("fbUsuario").ToString
-        End With
+    Public Sub _prMostrarRegistroTodo()
+        Dim id As Integer = _fnObtnerNumero(txtIdFicha.Text)
+        dtItem = L_fnObtenerFichaClinicaPorID(id)
+        dtItemDetalle = L_fnMostrarFichaClinicaDetalle(id)
+        stcFichaClinica.SelectedTabIndex = 0
+        _prCargarP1()
+        _prCargarP2()
+        _prCargarP3(id)
+        _prCargarP4(id)
+        _prCargarP5(id)
+        _prCargarP6(id)
+        _prLimpiarBanderas(True)
     End Sub
-    Private Sub _prCargarFichaClinicaDetalle(_id As Integer)
-        Dim dt As New DataTable
-        dt = L_fnMostrarFichaClinicaDetalle(_id)
-        For Each fila As DataRow In dt.Rows
+
+    Public Sub _prMostrarRegistro()
+        dtItem = L_fnObtenerFichaClinicaPorID(dgvListado.SelectedRows(0).Cells("id").Value)
+        dtItemDetalle = L_fnMostrarFichaClinicaDetalle(dgvListado.SelectedRows(0).Cells("id").Value)
+        stcFichaClinica.SelectedTabIndex = 0
+        _prCargarP1()
+
+        Dim existeFichaClinicaAlta As Boolean = L_fnExisteFichaClinicaAlta(txtIdFicha.Text)
+        btnModificar.Enabled = existeFichaClinicaAlta
+        btnEliminar.Enabled = existeFichaClinicaAlta
+        btnRecibo.Enabled = existeFichaClinicaAlta
+        btnAlta.Enabled = existeFichaClinicaAlta
+
+        _prLimpiarBanderas(False)
+    End Sub
+
+    Private Sub _prCargarP1()
+        txtIdFicha.Text = dtItem.Rows(0)("fbid")
+        txtMascota.Text = dtItem.Rows(0)("pbnomb")
+        txtIdMascota.Text = dtItem.Rows(0)("fb_pbid")
+        dtpFechaFC.Value = dtItem.Rows(0)("fbFechaAten")
+        cbConsultorio.Value = IIf(IsDBNull(dtItem.Rows(0)("fbConsultorio")), Nothing, dtItem.Rows(0)("fbConsultorio"))
+        txtIdVeterinario.Text = dtItem.Rows(0)("fb_ecId")
+        txtNombVeterinario.Text = dtItem.Rows(0)("ecNomb")
+        txtHistoria.Text = dtItem.Rows(0)("fbHist")
+        txtExaminacion.Text = dtItem.Rows(0)("fbExam")
+        txtTemperatura.Text = dtItem.Rows(0)("fbTempe")
+        txtPeso.Text = dtItem.Rows(0)("fbPeso")
+        txtFCardiaca.Text = dtItem.Rows(0)("fbFreCar")
+        txtFRespiratoria.Text = dtItem.Rows(0)("fbFreRes")
+        txtScoreCorporal.Text = dtItem.Rows(0)("fbSCorp")
+        txtTLCapilar.Text = dtItem.Rows(0)("fbTiemCapi")
+        txtTRPliegue.Text = dtItem.Rows(0)("fbTiemRPlie")
+
+        For Each fila As DataRow In dtItemDetalle.Rows
             Select Case fila.Item("fc_fdLinea")
                 Case 1
-                    chbNormalH.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbEmergenciaH.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
+                    chbNormalH.Checked = fila.Item("fcVal1") <> 0
+                    chbEmergenciaH.Checked = fila.Item("fcVal2") <> 0
                 Case 2
-                    chbExcDelgCC.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbBajoPesoCC.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbPesoIdealCC.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
-                    chbSobrepesoCC.Checked = IIf(fila.Item("fcVal4") <> 0, True, False)
-                    chbSobExtremoCC.Checked = IIf(fila.Item("fcVal5") <> 0, True, False)
+                    chbExcDelgCC.Checked = fila.Item("fcVal1") <> 0
+                    chbBajoPesoCC.Checked = fila.Item("fcVal2") <> 0
+                    chbPesoIdealCC.Checked = fila.Item("fcVal3") <> 0
+                    chbSobrepesoCC.Checked = fila.Item("fcVal4") <> 0
+                    chbSobExtremoCC.Checked = fila.Item("fcVal5") <> 0
                 Case 3
-                    chbPalidasM.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbNormalesM.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbHiperemicasM.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
+                    chbPalidasM.Checked = fila.Item("fcVal1") <> 0
+                    chbNormalesM.Checked = fila.Item("fcVal2") <> 0
+                    chbHiperemicasM.Checked = fila.Item("fcVal3") <> 0
                 Case 4
-                    chbNormalD.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbAnormalD.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
+                    chbNormalD.Checked = fila.Item("fcVal1") <> 0
+                    chbAnormalD.Checked = fila.Item("fcVal2") <> 0
                 Case 5
-                    chbunoDP.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbdosDP.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbtresDP.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
+                    chbunoDP.Checked = fila.Item("fcVal1") <> 0
+                    chbdosDP.Checked = fila.Item("fcVal2") <> 0
+                    chbtresDP.Checked = fila.Item("fcVal3") <> 0
                 Case 6
-                    chbNormalE.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbAnormalE.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
+                    chbNormalE.Checked = fila.Item("fcVal1") <> 0
+                    chbAnormalE.Checked = fila.Item("fcVal2") <> 0
                 Case 7
-                    chbLeveG.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbModeradaG.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbSeveraG.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
+                    chbLeveG.Checked = fila.Item("fcVal1") <> 0
+                    chbModeradaG.Checked = fila.Item("fcVal2") <> 0
+                    chbSeveraG.Checked = fila.Item("fcVal3") <> 0
                 Case 8
-                    chbLeveS.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbModeradoS.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbSeveroS.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
+                    chbLeveS.Checked = fila.Item("fcVal1") <> 0
+                    chbModeradoS.Checked = fila.Item("fcVal2") <> 0
+                    chbSeveroS.Checked = fila.Item("fcVal3") <> 0
                 Case 9
-                    chbMasaOral.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
+                    chbMasaOral.Checked = fila.Item("fcVal1") <> 0
                 Case 10
-                    chbPorDeshi1.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbPorDeshi2.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbPorDeshi3.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
-                    chbPorDeshi4.Checked = IIf(fila.Item("fcVal4") <> 0, True, False)
-                    chbPorDeshi5.Checked = IIf(fila.Item("fcVal5") <> 0, True, False)
-                Case 11 'Ojos
-                    chbNormalO.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbAnormalO.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbDerechoO.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
-                    chbIzquierdoO.Checked = IIf(fila.Item("fcVal4") <> 0, True, False)
-                Case 12 'Orejas
-                    chbNormalOr.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbAnormalOr.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbDerechaOr.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
-                    chbIzquierdaOr.Checked = IIf(fila.Item("fcVal4") <> 0, True, False)
-                Case 13 'Corazon
-                    chbNormalC.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbAnormalC.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbRuidosCardiacos.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
-                Case 14 'Pulmones
-                    chbNormalP.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbAnormalP.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbRuidosCardiacos.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
-                Case 15 'Piel y pelo
-                    chbNormalPe.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbAnormalPe.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                Case 16 'Linfonodulos
-                    chbNormalL.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbAnormalL.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                Case 17 'Sitema nervioso
-                    chbNormalSN.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbAnormalSN.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                Case 18 'Sistema Genitourinario
-                    chbNormalG.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbAnormalG.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                Case 19 'Sistema musculo esqueletico Linea 1
-                    chbNormalSME.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbAnormalSME.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                Case 20 'Sistema musculo esqueletico Linea 2
-                    chbmpostizq.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbmpostder.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbPelvis.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
-                    chbAbdomen.Checked = IIf(fila.Item("fcVal4") <> 0, True, False)
-                    chbTorax.Checked = IIf(fila.Item("fcVal5") <> 0, True, False)
-                Case 21 'Sistema musculo esqueletico Linea 3
-                    chbmantizq.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbmantder.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbCabeza.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
-                Case 22 'Abdomen
-                    chbNormalA.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbAnormalA.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                Case 23 'Dolor
-                    chbAgudoD.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbLeveD.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbModeradoD.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
-                    chbSeveroD.Checked = IIf(fila.Item("fcVal4") <> 0, True, False)
-                Case 24 'Localizado en region linea 1
-                    chbEstomago.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbHigado.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbPancreas.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
-                    chbProstata.Checked = IIf(fila.Item("fcVal4") <> 0, True, False)
-                    chbUtero.Checked = IIf(fila.Item("fcVal5") <> 0, True, False)
-                Case 25 'Localizado en region linea 2
-                    chbVejiga.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbIdelgado.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbIGrueso.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
-                Case 26 'Alteraciones
-                    chbExtraño.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chblineal.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbMabdominal.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
-                    chbIntu.Checked = IIf(fila.Item("fcVal4") <> 0, True, False)
-                    chbAscitis.Checked = IIf(fila.Item("fcVal5") <> 0, True, False)
-                Case 26 'Examenes complementarios
-                    chbLaboratorio.Checked = IIf(fila.Item("fcVal1") <> 0, True, False)
-                    chbEcografia.Checked = IIf(fila.Item("fcVal2") <> 0, True, False)
-                    chbRadiografia.Checked = IIf(fila.Item("fcVal3") <> 0, True, False)
+                    chbPorDeshi1.Checked = fila.Item("fcVal1") <> 0
+                    chbPorDeshi2.Checked = fila.Item("fcVal2") <> 0
+                    chbPorDeshi3.Checked = fila.Item("fcVal3") <> 0
+                    chbPorDeshi4.Checked = fila.Item("fcVal4") <> 0
+                    chbPorDeshi5.Checked = fila.Item("fcVal5") <> 0
             End Select
-
         Next
+
+        'Muestra la cantidad de registros
+        LblPaginacion.Text = Str(dgvListado.SelectedRows(0).Index + 1) + " de " + dgvListado.RowCount.ToString + "    Total: " + totalRegistro.ToString
+
+        'Muestra el bubblebar(que usuario registró la Ficha Clínica)
+        lbFecha.Text = CType(dtItem.Rows(0)("fbFecha"), Date).ToString("dd/MM/yyyy")
+        lbHora.Text = dtItem.Rows(0)("fbHora").ToString
+        lbUsuario.Text = dtItem.Rows(0)("fbUsuario").ToString
     End Sub
+
+    Private Sub _prCargarP2()
+        For Each fila As DataRow In dtItemDetalle.Rows
+            Select Case fila.Item("fc_fdLinea")
+                Case 11 'Ojos
+                    chbNormalO.Checked = fila.Item("fcVal1") <> 0
+                    chbAnormalO.Checked = fila.Item("fcVal2") <> 0
+                    chbDerechoO.Checked = fila.Item("fcVal3") <> 0
+                    chbIzquierdoO.Checked = fila.Item("fcVal4") <> 0
+                Case 12 'Orejas
+                    chbNormalOr.Checked = fila.Item("fcVal1") <> 0
+                    chbAnormalOr.Checked = fila.Item("fcVal2") <> 0
+                    chbDerechaOr.Checked = fila.Item("fcVal3") <> 0
+                    chbIzquierdaOr.Checked = fila.Item("fcVal4") <> 0
+                Case 13 'Corazon
+                    chbNormalC.Checked = fila.Item("fcVal1") <> 0
+                    chbAnormalC.Checked = fila.Item("fcVal2") <> 0
+                    chbRuidosCardiacos.Checked = fila.Item("fcVal3") <> 0
+                Case 14 'Pulmones
+                    chbNormalP.Checked = fila.Item("fcVal1") <> 0
+                    chbAnormalP.Checked = fila.Item("fcVal2") <> 0
+                    chbRuidosCardiacos.Checked = fila.Item("fcVal3") <> 0
+                Case 15 'Piel y pelo
+                    chbNormalPe.Checked = fila.Item("fcVal1") <> 0
+                    chbAnormalPe.Checked = fila.Item("fcVal2") <> 0
+                Case 16 'Linfonodulos
+                    chbNormalL.Checked = fila.Item("fcVal1") <> 0
+                    chbAnormalL.Checked = fila.Item("fcVal2") <> 0
+                Case 17 'Sitema nervioso
+                    chbNormalSN.Checked = fila.Item("fcVal1") <> 0
+                    chbAnormalSN.Checked = fila.Item("fcVal2") <> 0
+                Case 18 'Sistema Genitourinario
+                    chbNormalG.Checked = fila.Item("fcVal1") <> 0
+                    chbAnormalG.Checked = fila.Item("fcVal2") <> 0
+                Case 19 'Sistema musculo esqueletico Linea 1
+                    chbNormalSME.Checked = fila.Item("fcVal1") <> 0
+                    chbAnormalSME.Checked = fila.Item("fcVal2") <> 0
+                Case 20 'Sistema musculo esqueletico Linea 2
+                    chbmpostizq.Checked = fila.Item("fcVal1") <> 0
+                    chbmpostder.Checked = fila.Item("fcVal2") <> 0
+                    chbPelvis.Checked = fila.Item("fcVal3") <> 0
+                    chbAbdomen.Checked = fila.Item("fcVal4") <> 0
+                    chbTorax.Checked = fila.Item("fcVal5") <> 0
+                Case 21 'Sistema musculo esqueletico Linea 3
+                    chbmantizq.Checked = fila.Item("fcVal1") <> 0
+                    chbmantder.Checked = fila.Item("fcVal2") <> 0
+                    chbCabeza.Checked = fila.Item("fcVal3") <> 0
+                Case 22 'Abdomen
+                    chbNormalA.Checked = fila.Item("fcVal1") <> 0
+                    chbAnormalA.Checked = fila.Item("fcVal2") <> 0
+                Case 23 'Dolor
+                    chbAgudoD.Checked = fila.Item("fcVal1") <> 0
+                    chbLeveD.Checked = fila.Item("fcVal2") <> 0
+                    chbModeradoD.Checked = fila.Item("fcVal3") <> 0
+                    chbSeveroD.Checked = fila.Item("fcVal4") <> 0
+                Case 24 'Localizado en region linea 1
+                    chbEstomago.Checked = fila.Item("fcVal1") <> 0
+                    chbHigado.Checked = fila.Item("fcVal2") <> 0
+                    chbPancreas.Checked = fila.Item("fcVal3") <> 0
+                    chbProstata.Checked = fila.Item("fcVal4") <> 0
+                    chbUtero.Checked = fila.Item("fcVal5") <> 0
+                Case 25 'Localizado en region linea 2
+                    chbVejiga.Checked = fila.Item("fcVal1") <> 0
+                    chbIdelgado.Checked = fila.Item("fcVal2") <> 0
+                    chbIGrueso.Checked = fila.Item("fcVal3") <> 0
+                Case 26 'Alteraciones
+                    chbExtraño.Checked = fila.Item("fcVal1") <> 0
+                    chblineal.Checked = fila.Item("fcVal2") <> 0
+                    chbMabdominal.Checked = fila.Item("fcVal3") <> 0
+                    chbIntu.Checked = fila.Item("fcVal4") <> 0
+                    chbAscitis.Checked = fila.Item("fcVal5") <> 0
+            End Select
+        Next
+        txtNotas.Text = dtItem.Rows(0)("fbNotas")
+    End Sub
+
+    Private Sub _prCargarP3(id As Integer)
+        For Each fila As DataRow In dtItemDetalle.Rows
+            Select Case fila.Item("fc_fdLinea")
+                Case 26 'Examenes complementarios
+                    chbLaboratorio.Checked = fila.Item("fcVal1") <> 0
+                    chbEcografia.Checked = fila.Item("fcVal2") <> 0
+                    chbRadiografia.Checked = fila.Item("fcVal3") <> 0
+            End Select
+        Next
+        _prRenderizarGrillaFichaClinicaSeguimiento(id)
+        txtValoracion.Text = JGFechasSeg.GetValue("fjValoracion")
+        txtProManejo.Text = JGFechasSeg.GetValue("fjProtocoloM")
+        txtSeguimiento.Text = JGFechasSeg.GetValue("fjSeguimiento")
+        dtpFProxVisita.Value = dtItem.Rows(0)("fbFechaProx")
+        If Not estaVizualizando Then _prAddDetalleSeguimiento()
+    End Sub
+
+    Public Sub _prCargarP4(id As Integer)
+        _prRenderizarGrillaImagenes(id)
+
+        If Not estaVizualizando Then _prCargarIconELiminar()
+    End Sub
+
+    Public Sub _prCargarP5(id As Integer)
+        _prRenderizarGrillaCirugia(id)
+        _prLimpiarCirugia()
+        _prMostrarPaciente()
+
+        If Not L_fnExisteCirugia(txtIdFicha.Text) Then
+            Dim _tabla As DataTable = L_fnMostrarCirugiaPorID(id)
+            If _tabla.Rows.Count <> 0 Then
+                txtIdCir.Text = _tabla.Rows(0).Item("cfId")
+                dtpFCirugía.Value = _tabla.Rows(0).Item("cfFechaAten")
+                txtPesoC.Text = _tabla.Rows(0).Item("cfPeso")
+                txtEdadC.Text = _tabla.Rows(0).Item("cfEdad")
+                txtResponsable.Text = _tabla.Rows(0).Item("cfRespon")
+                txtTelefonoC.Text = _tabla.Rows(0).Item("cfTelef")
+                txtImportadora.Text = _tabla.Rows(0).Item("cfImport")
+                txtClasificacion.Text = _tabla.Rows(0).Item("cfClasASA")
+                txtProcedimiento.Text = _tabla.Rows(0).Item("cfProc")
+                txtObservacionC.Text = _tabla.Rows(0).Item("cfObser")
+            End If
+        End If
+    End Sub
+
+    Public Sub _prCargarP6(id As Integer)
+        _prRenderizarGrillaInternacion(id)
+        _prLimpiarInternacion()
+        _prMostrarPaciente()
+
+        If Not L_fnExisteInternacion(txtIdFicha.Text) Then
+            Dim _tabla As DataTable = L_fnMostrarInternacionPorID(id)
+            If _tabla.Rows.Count <> 0 Then
+                txtIdInt.Text = _tabla.Rows(0).Item("igId")
+                dtpFInternacion.Value = _tabla.Rows(0).Item("igFechaIng")
+                txtEdadI.Text = _tabla.Rows(0).Item("igEdad")
+                txtTelefonoI.Text = _tabla.Rows(0).Item("igTelf")
+                txtObservacionesI.Text = _tabla.Rows(0).Item("igMotInter")
+                txtRequiere.Text = _tabla.Rows(0).Item("igRequer")
+                txtHoraInt.Text = _tabla.Rows(0).Item("igHoraInter")
+            End If
+        End If
+    End Sub
+
+    Public Sub _prRenderizarGrillaImagenes(id As Integer)
+        TablaImagenes = L_prMostrarImagenesFichaClinica(id)
+        JGListaArchivos.DataSource = TablaImagenes
+        JGListaArchivos.RetrieveStructure()
+        JGListaArchivos.AlternatingColors = True
+        With JGListaArchivos.RootTable.Columns("feId")
+            .Width = 150
+            .Caption = "Id"
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Visible = False
+        End With
+        With JGListaArchivos.RootTable.Columns("fe_FbId")
+            .Width = 100
+            .Caption = "IdFicha"
+            .Visible = False
+        End With
+        With JGListaArchivos.RootTable.Columns("feDesc")
+            .Width = 300
+            .Visible = True
+            .Caption = "Descripción"
+        End With
+        With JGListaArchivos.RootTable.Columns("feImg")
+            .Width = 500
+            .Caption = "Imagen"
+            .Visible = True
+        End With
+        With JGListaArchivos.RootTable.Columns("img")
+            .Width = 130
+            .Visible = False
+            .Caption = "Img"
+        End With
+        With JGListaArchivos.RootTable.Columns("imgelim")
+            .Width = 90
+            .Visible = False
+            .Caption = "Eliminar"
+        End With
+        With JGListaArchivos.RootTable.Columns("estado")
+            .Width = 150
+            .Caption = "Estado"
+            .Visible = False
+        End With
+        With JGListaArchivos.RootTable.Columns("feFechaReg")
+            .Width = 150
+            .Caption = "Fecha"
+            .Visible = True
+        End With
+
+        With JGListaArchivos
+            .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
+            .FilterMode = FilterMode.Automatic
+            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+            .GroupByBoxVisible = False
+            .VisualStyle = VisualStyle.Office2007
+        End With
+    End Sub
+
     Private Sub _prLimpiarCirugia()
         'Cirugia
         chbCirugia.Checked = False
@@ -1166,6 +1152,7 @@ Public Class F1_Fic_FichaClinica
         txtProcedimiento.Clear()
         txtObservacionC.Clear()
     End Sub
+
     Private Sub _prLimpiarInternacion()
         'Internacion
         chbInternacion.Checked = False
@@ -1176,12 +1163,11 @@ Public Class F1_Fic_FichaClinica
         txtRequiere.Clear()
         txtHoraInt.Clear()
     End Sub
-    '********Limpiar
+
     Private Sub _prLimpiar()
         'Imagenes
-        TablaImagenes = L_prMostrarImagenesFichaClinica(-1)
-        _prCargarImagen(-1)
-        _prCargarFichaClinicaSeguimiento(-1)
+        _prRenderizarGrillaImagenes(-1)
+        _prRenderizarGrillaFichaClinicaSeguimiento(-1)
         txtDecripcionA.Clear()
         dtpFechaAnexo.Value = DateTime.Today
         'Texbox
@@ -1333,8 +1319,10 @@ Public Class F1_Fic_FichaClinica
         txtRequiere.Clear()
         txtHoraInt.Clear()
         'Grilla
+
+        LblPaginacion.Text = "0 de 0    Total: " + totalRegistro.ToString
     End Sub
-    '********Habilitar
+
     Private Sub _prHabilitar()
         'Imagen
         _prAddDetalleSeguimiento()
@@ -1495,7 +1483,7 @@ Public Class F1_Fic_FichaClinica
         txtRequiere.ReadOnly = False
         txtHoraInt.ReadOnly = False
     End Sub
-    '********InHabilitar
+
     Private Sub _prInhabilitar()
         btnAlta.Enabled = True
         btnRecibo.Enabled = True
@@ -1653,23 +1641,18 @@ Public Class F1_Fic_FichaClinica
         txtObservacionesI.ReadOnly = True
         txtRequiere.ReadOnly = True
         txtHoraInt.ReadOnly = True
-
     End Sub
-    '*******Filtrar
-    Public Sub _prFiltrar(tipo As Integer)
-        _prCargarFichaClinica()
-        'Dim dt As DataTable = CType(JGBusqFichaClinica.DataSource, DataTable)
-        'dt.Select("fbid=" + id)
 
-        If JGBusqFichaClinica.RowCount > 0 Then
-            _MPos = 0
-            _prMostrarRegistro(IIf(tipo = 1, _MPos, JGBusqFichaClinica.RowCount - 1))
-            JGBusqFichaClinica.Enabled = True
+    Public Sub _prFiltrar()
+        If _Iniciar = 2 Then _prObtenerPorIdFichaClinica(_fbId)
+        If dgvListado.RowCount > 0 Then
+            _dgvListado.Rows(IIf(_MPos <= dgvListado.RowCount - 1, _MPos, 0)).Selected = True
         Else
             _prLimpiar()
-            LblPaginacion.Text = "0/0"
         End If
+        estaVizualizando = True
     End Sub
+
     Private Function _fnCopiarImagenRutaDefinida() As String
         'copio la imagen en la carpeta del sistema
         'Dim archivo As New OpenFileDialog
@@ -1716,7 +1699,7 @@ Public Class F1_Fic_FichaClinica
         End If
         Return "default.jpg"
     End Function
-    '1er
+
     Private Function ArchivoABytes(ByVal pth As String) As Byte()
         Try
             Dim fs As New FileStream(pth, FileMode.Open)
@@ -1730,45 +1713,7 @@ Public Class F1_Fic_FichaClinica
             Throw New Exception(ex.Message, ex)
         End Try
     End Function
-    '2do
-    Private Sub BytesAArchivo(ByVal bytes() As Byte, ByVal Path As String)
-        Dim K As Long
-        If bytes Is Nothing Then Exit Sub
-        Try
-            K = UBound(bytes)
-            Dim fs As New FileStream(Path, FileMode.OpenOrCreate, FileAccess.Write)
-            fs.Write(bytes, 0, K)
-            fs.Close()
-        Catch ex As Exception
-            Throw New Exception(ex.Message, ex)
-        End Try
-    End Sub
 
-    '3er
-    Sub GuardaImagenDocumento(ByVal prmparametro As SqlParameter)
-        ''Dim strFecha As String = ""
-        ''strFecha = "'" & String.Format("{0:yyyyMMdd}", Convert.ToDateTime(Me.DateTimePicker4.Value)) & "'"
-        'Try
-        '    Dim sqlCommand As New SqlCommand
-        '    Dim strConsulta As String = ""
-        '    With sqlCommand
-        '        .Connection = gfConectar()
-        '        .Connection.Open()
-        '        .CommandType = CommandType.Text
-        '        .CommandText = "INSERT INTO Ipo.DocumentosInv (InvestigacionID,NombreDoc,FechaDoc,CTDocumentoID,Documento" &
-        '                     ",TipoArchivo,FAlta,UsrAlta,FModif,UsrModif,SitReg)VALUES("
-        '        .CommandText += Me.txtFolioCE.Text & ",'" & Me.txtNomDoc.Text & "',GETDATE()," & Me.cmbTipoDoc.SelectedValue & ","
-        '        .CommandText += prmparametro.ParameterName & ",'" & sExtension & "',GETDATE(),'" & frmLogin.objUsuario.pcveUsr & "',GETDATE(),'" & frmLogin.objUsuario.pcveUsr & "','A')"
-        '        .Parameters.Add(prmparametro.ParameterName, prmparametro.SqlDbType)
-        '        .Parameters(prmparametro.ParameterName).Value = prmparametro.Value
-        '        .ExecuteNonQuery()
-        '        .Connection.Close()
-        '    End With
-        'Catch ex As Exception
-        '    MsgBox(ex.Message)
-        'End Try
-    End Sub
-    '4to
     Public Function ObtenCampoPorNombre(ByVal aNombreCampo As String, sqlDataRow As DataRow) As Object
         Try
             ObtenCampoPorNombre = Nothing
@@ -1783,34 +1728,8 @@ Public Class F1_Fic_FichaClinica
             MsgBox(ex.Message)
         End Try
     End Function
-    '5to
-    Private Sub abrir()
-        Dim bytes() As Byte
-        'Dim fila As DataRow = JGListaArchivos.RootTable.Columns
-        bytes = ObtenCampoPorNombre("Documento", JGListaArchivos.GetValue("image"))
-        ' bytes = ObtenCampoPorNombre("Documento", fila)
-        BytesAArchivo(bytes, "C:\temp.doc")
-        AbrirDocumento("C:\temp.doc")
-    End Sub
-    '6to
-    Private Sub AbrirDocumento(ByVal vFilename As String)
-        Dim pr As System.Diagnostics.Process
-        pr = New System.Diagnostics.Process
-        Try
-            pr.StartInfo.FileName = vFilename
-            pr.StartInfo.WindowStyle = ProcessWindowStyle.Normal
-            pr.Start()
-            'Espera el proceso para que lo termine y continuar
-            pr.WaitForExit()
-            'Liberar
-            pr.Close()
-            My.Computer.FileSystem.DeleteFile(vFilename)
-        Catch ex As Exception
-            MessageBox.Show(ex.Message + " No se puede abrir el documento " & vFilename, "Error")
-        End Try
-    End Sub
 
-    Private Function _prPasarIamgenTabla() As String
+    Private Function _prPasarImagenTabla() As String
         'copio la imagen en la carpeta del sistema
         If txtDecripcionA.Text <> String.Empty Then
             Dim Bin As New MemoryStream
@@ -1821,7 +1740,7 @@ Public Class F1_Fic_FichaClinica
                 mstream1.Dispose()
                 JGListaArchivos.RootTable.Columns("imgelim").Visible = True
             Else
-                TablaImagenes.Rows.Add(0, Convert.ToInt32(txtIdFicha.Text), txtDecripcionA.Text, _Nombre, mstream1.ToArray(), Bin.GetBuffer, 0, dtpFechaAnexo.Value.ToString("yyyy/MM/dd"))
+                TablaImagenes.Rows.Add(0, _fnObtnerNumero(txtIdFicha.Text), txtDecripcionA.Text, _Nombre, mstream1.ToArray(), Bin.GetBuffer, 0, dtpFechaAnexo.Value.ToString("yyyy/MM/dd"))
                 mstream1.Dispose()
                 JGListaArchivos.RootTable.Columns("imgelim").Visible = True
             End If
@@ -1831,98 +1750,23 @@ Public Class F1_Fic_FichaClinica
         End If
         Return "default.jpg"
     End Function
+
     Public Function _fnActionNuevo() As Boolean
         Return txtIdFicha.Text = String.Empty
     End Function
-    Public Sub _prCargarImagen(IdFicha As Integer)
-        TablaImagenes = L_prMostrarImagenesFichaClinica(IdFicha)
-        JGListaArchivos.DataSource = TablaImagenes
-        JGListaArchivos.RetrieveStructure()
-        JGListaArchivos.AlternatingColors = True
-        With JGListaArchivos.RootTable.Columns("feId")
-            .Width = 150
-            .Caption = "Id"
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .Visible = False
-        End With
-        With JGListaArchivos.RootTable.Columns("fe_FbId")
-            .Width = 100
-            .Caption = "IdFicha"
-            .Visible = False
 
-        End With
-        With JGListaArchivos.RootTable.Columns("feDesc")
-            .Width = 300
-            .Visible = True
-            .Caption = "Descripción"
-        End With
-        With JGListaArchivos.RootTable.Columns("feImg")
-            .Width = 500
-            .Caption = "Imagen"
-            .Visible = True
-        End With
-        With JGListaArchivos.RootTable.Columns("img")
-            .Width = 130
-            .Visible = False
-            .Caption = "Img"
-        End With
-        With JGListaArchivos.RootTable.Columns("imgelim")
-            .Width = 90
-            .Visible = False
-            .Caption = "Eliminar"
-        End With
-        With JGListaArchivos.RootTable.Columns("estado")
-            .Width = 150
-            .Caption = "Estado"
-            .Visible = False
-        End With
-        With JGListaArchivos.RootTable.Columns("feFechaReg")
-            .Width = 150
-            .Caption = "Fecha"
-            .Visible = True
-        End With
-
-        With JGListaArchivos
-            .DefaultFilterRowComparison = FilterConditionOperator.BeginsWith
-            .FilterMode = FilterMode.Automatic
-            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
-            .GroupByBoxVisible = False
-            'diseño de la grilla
-            .VisualStyle = VisualStyle.Office2007
-        End With
-        'If (dt.Rows.Count <= 0) Then
-        '    _prCargarDetalleVenta(-1)
-        'End If
-    End Sub
     Private Sub _prCrearCarpetaTemporal()
-
         If System.IO.Directory.Exists(RutaTemporal) = False Then
             System.IO.Directory.CreateDirectory(RutaTemporal)
         Else
             Try
                 My.Computer.FileSystem.DeleteDirectory(RutaTemporal, FileIO.DeleteDirectoryOption.DeleteAllContents)
                 My.Computer.FileSystem.CreateDirectory(RutaTemporal)
-                'My.Computer.FileSystem.DeleteDirectory(RutaTemporal, FileIO.UIOption.AllDialogs, FileIO.RecycleOption.SendToRecycleBin)
-                'System.IO.Directory.CreateDirectory(RutaTemporal)
-
-            Catch ex As Exception
-
+            Catch
             End Try
-
-        End If
-
-    End Sub
-    Private Sub _prEliminarCarpeta(Ruta As String)
-
-        If System.IO.Directory.Exists(Ruta) = True Then
-            Try
-                My.Computer.FileSystem.DeleteDirectory(Ruta, FileIO.DeleteDirectoryOption.DeleteAllContents)
-            Catch ex As Exception
-
-            End Try
-
         End If
     End Sub
+
     Private Sub _prCrearCarpetaImagenes()
         Dim rutaDestino As String = RutaGlobal + "\Imagenes\Imagenes FichaClinicaDino\"
 
@@ -1940,6 +1784,7 @@ Public Class F1_Fic_FichaClinica
             End If
         End If
     End Sub
+
     Private Sub _prCrearCarpetaImagenes(carpetaFinal As String)
         Dim rutaDestino As String = RutaGlobal + "\Imagenes\Imagenes FichaClinicaDino\" + carpetaFinal + "\"
 
@@ -1963,19 +1808,18 @@ Public Class F1_Fic_FichaClinica
             End If
         End If
     End Sub
+
     Public Sub _prGuardarImagenes(_ruta As String)
         For i As Integer = 0 To TablaImagenes.Rows.Count - 1 Step 1
             Dim estado As Integer = TablaImagenes.Rows(i).Item("estado")
             If (estado = 0) Then
-
                 Dim bm As Bitmap = Nothing
                 Dim by As Byte() = TablaImagenes.Rows(i).Item("img")
                 Dim ms As New MemoryStream(by)
                 bm = New Bitmap(ms)
                 Try
                     bm.Save(_ruta + TablaImagenes.Rows(i).Item("feImg"), System.Drawing.Imaging.ImageFormat.Jpeg)
-                Catch ex As Exception
-
+                Catch
                 End Try
             End If
             If (estado = -1) Then
@@ -1985,24 +1829,25 @@ Public Class F1_Fic_FichaClinica
                     If (File.Exists(_ruta + TablaImagenes.Rows(i).Item("feImg"))) Then
                         My.Computer.FileSystem.DeleteFile(_ruta + TablaImagenes.Rows(i).Item("feImg"))
                     End If
-                Catch ex As Exception
-
+                Catch
                 End Try
             End If
         Next
     End Sub
+
     Private Sub _prAddDetalleSeguimiento()
-        'seg.fjId,seg.fj_FbId,seg.fjEstado,seg.fjSeguimientomiento,seg.fjFecha,seg.fjHora,seg.fjUsuario
-        CType(JGFechasSeg.DataSource, DataTable).Rows.Add(0, 0, 2, "", "", "", DateTime.Now, DateTime.Now.ToShortTimeString(), TxtNombreUsu.Text)
-        'Dim aux = JGFechasSeg.RowCount - 1
-        JGFechasSeg.Row = IIf(JGFechasSeg.RowCount = 0, 0, JGFechasSeg.RowCount - 1)
-        JGFechasSeg.Select()
-        txtSeguimiento.Text = JGFechasSeg.GetValue("fjSeguimiento")
-        txtValoracion.Text = JGFechasSeg.GetValue("fjValoracion")
-        txtProManejo.Text = JGFechasSeg.GetValue("fjProtocoloM")
+        Try
+            CType(JGFechasSeg.DataSource, DataTable).Rows.Add(0, 0, 2, "", "", "", DateTime.Now, DateTime.Now.ToShortTimeString(), TxtNombreUsu.Text)
+            JGFechasSeg.Row = IIf(JGFechasSeg.RowCount = 0, 0, JGFechasSeg.RowCount - 1)
+            JGFechasSeg.Select()
+            txtSeguimiento.Text = JGFechasSeg.GetValue("fjSeguimiento")
+            txtValoracion.Text = JGFechasSeg.GetValue("fjValoracion")
+            txtProManejo.Text = JGFechasSeg.GetValue("fjProtocoloM")
+        Catch
+        End Try
     End Sub
+
     Private Sub _prEditDetalleSeguimiento()
-        'seg.fjId,seg.fj_FbId,seg.fjEstado,seg.fjSeguimientomiento,seg.fjFecha,seg.fjHora,seg.fjUsuario
         JGFechasSeg.Row = IIf(JGFechasSeg.RowCount = 0, 0, JGFechasSeg.RowCount - 1)
         If JGFechasSeg.GetValue("Estado") = 2 Then
             CType(JGFechasSeg.DataSource, DataTable).Rows(JGFechasSeg.RowCount - 1).Item("fjSeguimiento") = txtSeguimiento.Text
@@ -2014,9 +1859,73 @@ Public Class F1_Fic_FichaClinica
         End If
     End Sub
 
+    Public Sub _prLimpiarBanderas(bandera As Boolean)
+        banderaP2 = bandera
+        banderaP3 = bandera
+        banderaP4 = bandera
+        banderaP5 = bandera
+        banderaP6 = bandera
+    End Sub
+
+    Public Function _fnAccesible()
+        Return btnGrabar.Enabled = True
+    End Function
+
+    Public Sub _prEliminarFila()
+        If (JGListaArchivos.Row >= 0) Then
+            If (JGListaArchivos.RowCount >= 1) Then
+                Dim estado As Integer = JGListaArchivos.GetValue("estado")
+                Dim pos As Integer = -1
+                Dim lin As Integer = JGListaArchivos.GetValue("feId")
+                _fnObtenerFilaDetalle(pos, lin)
+                If (estado = 0) Then
+                    CType(JGListaArchivos.DataSource, DataTable).Rows(pos).Item("estado") = -2
+
+                End If
+                If (estado = 1) Then
+                    CType(JGListaArchivos.DataSource, DataTable).Rows(pos).Item("estado") = -1
+                End If
+                JGListaArchivos.RootTable.ApplyFilter(New Janus.Windows.GridEX.GridEXFilterCondition(JGListaArchivos.RootTable.Columns("estado"), Janus.Windows.GridEX.ConditionOperator.GreaterThanOrEqualTo, 0))
+
+            End If
+        End If
+    End Sub
+
+    Public Sub _fnObtenerFilaDetalle(ByRef pos As Integer, id As Integer)
+        For i As Integer = 0 To CType(JGListaArchivos.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _Id As Integer = CType(JGListaArchivos.DataSource, DataTable).Rows(i).Item("feId")
+            If (_Id = id) Then
+                pos = i
+                Return
+            End If
+        Next
+    End Sub
+
+    Public Sub _prCargarIconELiminar()
+        Try
+            For i As Integer = 0 To CType(JGListaArchivos.DataSource, DataTable).Rows.Count - 1 Step 1
+                Dim Bin As New MemoryStream
+                Dim img As New Bitmap(My.Resources.delete, 20, 20)
+                img.Save(Bin, Imaging.ImageFormat.Png)
+                CType(JGListaArchivos.DataSource, DataTable).Rows(i).Item("imgelim") = Bin.GetBuffer
+                JGListaArchivos.RootTable.Columns("imgelim").Visible = True
+            Next
+        Catch
+        End Try
+    End Sub
+
+    Public Function _fnObtnerNumero(text As String) As Integer
+        Dim valor As Integer
+        If String.IsNullOrEmpty(text.Trim()) Then
+            valor = -1
+        Else
+            valor = Convert.ToInt32(text)
+        End If
+        Return valor
+    End Function
 #End Region
+
 #Region "Metodos privados overridable"
-    '*******Nuevo registro
     Public Overrides Function _PMOGrabarRegistro() As Boolean
         Dim tFichaClinicaDetalle As DataTable = L_fnMostrarFichaClinicaVacia()
         Dim bandera As Boolean = False
@@ -2052,16 +1961,15 @@ Public Class F1_Fic_FichaClinica
                                       )
             _prHabilitarMenu(2)
             _prInhabilitar()
-            _prFiltrar(2)
+            _prFiltrar()
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
             ToastNotification.Show(Me, "La ficha clinica no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
         Return res
     End Function
-    '*******Modificar registro
-    Public Overrides Function _PMOModificarRegistro() As Boolean
 
+    Public Overrides Function _PMOModificarRegistro() As Boolean
         Dim tFichaClinicaDetalle As DataTable = L_fnMostrarFichaClinicaVacia()
         Dim bandera As Boolean = False
         _prObtenerDetalle(tFichaClinicaDetalle)
@@ -2128,9 +2036,8 @@ Public Class F1_Fic_FichaClinica
                                       eToastGlowColor.Green,
                                       eToastPosition.TopCenter
                                       )
-            'prLimpiar
             _prInhabilitar()
-            _prFiltrar(2)
+            _prFiltrar()
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
             ToastNotification.Show(Me, "La ficha clinica no pudo ser modificada".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
@@ -2138,148 +2045,29 @@ Public Class F1_Fic_FichaClinica
         Return res
     End Function
 
-    Private Sub txtTRPliegue_ValueChanged(sender As Object, e As EventArgs) Handles txtTRPliegue.ValueChanged
-        If (txtTLCapilar.Text <= 2 And txtTRPliegue.Value <= 2) Then
-            chbPorDeshi1.Checked = True
-        ElseIf (txtTLCapilar.Text <= 2 And (txtTRPliegue.Value >= 3 And txtTRPliegue.Value <= 5)) Then
-            chbPorDeshi2.Checked = True
-        ElseIf ((txtTLCapilar.Text >= 3 And txtTLCapilar.Text <= 4) And (txtTRPliegue.Value >= 3 And txtTRPliegue.Value <= 10)) Then
-            chbPorDeshi3.Checked = True
-        ElseIf (txtTLCapilar.Text > 5 And txtTRPliegue.Value > 5) Then
-            chbPorDeshi4.Checked = True
-        ElseIf (txtTLCapilar.Text > 5 And txtTRPliegue.Value = 0) Then
-            chbPorDeshi5.Checked = True
-        Else
-            chbPorDeshi1.Checked = False
-            chbPorDeshi2.Checked = False
-            chbPorDeshi3.Checked = False
-            chbPorDeshi4.Checked = False
-            chbPorDeshi5.Checked = False
-        End If
-    End Sub
-
-    Private Sub F1_Fic_FichaClinica_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        _prCambiarColorPlomoOscuro(Presentacion.Principal.btnFichaClinica)
-    End Sub
-
-    Private Sub txtPeso_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPeso.KeyPress
-        g_prValidarTextBox(1, e)
-    End Sub
-
-    Private Sub JGListaArchivos_MouseClick(sender As Object, e As MouseEventArgs) Handles JGListaArchivos.MouseClick
-        If (Not _fnAccesible()) Then
-            Return
-        End If
-        If (JGListaArchivos.RowCount >= 1) Then
-            If (JGListaArchivos.CurrentColumn.Index = JGListaArchivos.RootTable.Columns("imgelim").Index) Then
-                _prEliminarFila()
-            End If
-        End If
-    End Sub
-    Public Function _fnAccesible()
-        Return btnGrabar.Enabled = True
-    End Function
-    Public Sub _prEliminarFila()
-        If (JGListaArchivos.Row >= 0) Then
-            If (JGListaArchivos.RowCount >= 1) Then
-                Dim estado As Integer = JGListaArchivos.GetValue("estado")
-                Dim pos As Integer = -1
-                Dim lin As Integer = JGListaArchivos.GetValue("feId")
-                _fnObtenerFilaDetalle(pos, lin)
-                If (estado = 0) Then
-                    CType(JGListaArchivos.DataSource, DataTable).Rows(pos).Item("estado") = -2
-
-                End If
-                If (estado = 1) Then
-                    CType(JGListaArchivos.DataSource, DataTable).Rows(pos).Item("estado") = -1
-                End If
-                JGListaArchivos.RootTable.ApplyFilter(New Janus.Windows.GridEX.GridEXFilterCondition(JGListaArchivos.RootTable.Columns("estado"), Janus.Windows.GridEX.ConditionOperator.GreaterThanOrEqualTo, 0))
-
-            End If
-        End If
-    End Sub
-    Public Sub _fnObtenerFilaDetalle(ByRef pos As Integer, id As Integer)
-        For i As Integer = 0 To CType(JGListaArchivos.DataSource, DataTable).Rows.Count - 1 Step 1
-            Dim _Id As Integer = CType(JGListaArchivos.DataSource, DataTable).Rows(i).Item("feId")
-            If (_Id = id) Then
-                pos = i
-                Return
-            End If
-        Next
-    End Sub
-
-    Private Sub chbInternacion_CheckedChanged(sender As Object, e As EventArgs) Handles chbInternacion.CheckedChanged
-        If chbInternacion.Checked Then
-            txtIdInt.Text = ""
-            dtpFInternacion.Value = Now.Date
-            txtEdadI.Text = ""
-            txtTelefonoI.Text = ""
-            txtObservacionesI.Text = ""
-            txtRequiere.Text = ""
-            txtHoraInt.Text = ""
-        End If
-    End Sub
-
-    Private Sub JGInternacion_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGInternacion.EditingCell
-        e.Cancel = True
-        txtIdInt.Text = JGInternacion.GetValue("igId")
-        dtpFInternacion.Value = JGInternacion.GetValue("igFechaIng")
-        txtEdadI.Text = JGInternacion.GetValue("igEdad")
-        txtTelefonoI.Text = JGInternacion.GetValue("igTelf")
-        txtObservacionesI.Text = JGInternacion.GetValue("igMotInter")
-        txtRequiere.Text = JGInternacion.GetValue("igRequer")
-        txtHoraInt.Text = JGInternacion.GetValue("igHora")
-    End Sub
-
-    Private Sub JGCirugia_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGCirugia.EditingCell
-        e.Cancel = True
-        txtIdCir.Text = JGCirugia.GetValue("cfId")
-        dtpFCirugía.Value = JGCirugia.GetValue("cfFechaAten")
-        txtPesoC.Text = JGCirugia.GetValue("cfPeso")
-        txtEdadC.Text = JGCirugia.GetValue("cfEdad")
-        txtResponsable.Text = JGCirugia.GetValue("cfRespon")
-        txtTelefonoC.Text = JGCirugia.GetValue("cfTelef")
-        txtImportadora.Text = JGCirugia.GetValue("cfImport")
-        txtClasificacion.Text = JGCirugia.GetValue("cfClasASA")
-        txtProcedimiento.Text = JGCirugia.GetValue("cfProc")
-        txtObservacionC.Text = JGCirugia.GetValue("cfObser")
-    End Sub
-
-
-    Private Sub txtTLCapilar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtTLCapilar.KeyPress
-        g_prValidarTextBox(1, e)
-    End Sub
-
-    Private Sub JGBusqFichaClinica_DoubleClick(sender As Object, e As EventArgs) Handles JGBusqFichaClinica.DoubleClick
-        superTabControl1.SelectedTabIndex = 0
-    End Sub
-    '*******PMO NUevo
     Public Overrides Sub _PMONuevo()
-        JGBusqFichaClinica.Enabled = False 'Deshabilita el buscador de la Grilla
+        stcFichaClinica.SelectedTabIndex = 0
+        estaVizualizando = False
+        _prLimpiarBanderas(True)
         _prLimpiar()
         _prHabilitar()
     End Sub
-    '*******POM Modificar
+
     Public Overrides Sub _PMOModificar()
-        JGBusqFichaClinica.Enabled = False 'Deshabilita el buscador de la Grilla
+        stcFichaClinica.SelectedTabIndex = 0
+        estaVizualizando = False
+        _prLimpiarBanderas(False)
         _prHabilitar()
-        ''Deshabilitar campos que no deberian poder modificarse
+
+        If _Iniciar = 3 Then _prMostrarRegistroTodo()
+
+        'Deshabilitar campos que no deberian poder modificarse
         cbConsultorio.ReadOnly = True
         txtIdVeterinario.Enabled = False
         dtpFechaFC.Enabled = False
         _prCargarIconELiminar()
     End Sub
-    Public Sub _prCargarIconELiminar()
-        For i As Integer = 0 To CType(JGListaArchivos.DataSource, DataTable).Rows.Count - 1 Step 1
-            Dim Bin As New MemoryStream
-            Dim img As New Bitmap(My.Resources.delete, 20, 20)
-            img.Save(Bin, Imaging.ImageFormat.Png)
-            CType(JGListaArchivos.DataSource, DataTable).Rows(i).Item("imgelim") = Bin.GetBuffer
-            JGListaArchivos.RootTable.Columns("imgelim").Visible = True
-        Next
 
-    End Sub
-    ''*****POM Eliminar
     Public Overrides Sub _PMOEliminarRegistro()
         Dim ef = New Efecto
         ef.tipo = 2
@@ -2303,7 +2091,8 @@ Public Class F1_Fic_FichaClinica
                                               img, 2000,
                                               eToastGlowColor.Green,
                                               eToastPosition.TopCenter)
-                    _prFiltrar(1)
+                    _MPos = 0
+                    _prFiltrar()
                 Else
                     Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
                     ToastNotification.Show(Me, mensajeError, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
@@ -2314,6 +2103,7 @@ Public Class F1_Fic_FichaClinica
             End If
         End If
     End Sub
+
     Public Overrides Function _PMOValidarCampos() As Boolean
         Dim _ok As Boolean = True
         MEP.Clear()
@@ -2495,10 +2285,14 @@ Public Class F1_Fic_FichaClinica
         MHighlighterFocus.UpdateHighlights()
         Return _ok
     End Function
-    '*******PMO Salir
+
     Public Overrides Sub _PMOSalir()
-        _prInhabilitar()
-        _prFiltrar(1)
+        If _Iniciar = 3 Then
+            _prInhabilitar()
+            _prFiltrar()
+        Else
+            Me.Close()
+        End If
     End Sub
 #End Region
 End Class

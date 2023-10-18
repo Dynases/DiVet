@@ -585,6 +585,18 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("REG.sp_PAC0011", _listParam)
         Return _Tabla
     End Function
+
+    Public Shared Function L_MostrarPacientePorId(id As Integer) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 31))
+        _listParam.Add(New Datos.DParametro("@pbusuario", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@pbid", id))
+        _Tabla = D_ProcedimientoConParam("REG.sp_PAC0011", _listParam)
+        Return _Tabla
+    End Function
+
     'MUESTRA LOS PASCIENTES SEGUN UN CODIGO DE CLIENTE
     Public Shared Function L_fnMostrarPaciente(_caid As String) As DataTable
         Dim _Tabla As DataTable
@@ -963,10 +975,38 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
         Return _Tabla
     End Function
+
     Public Shared Function L_fnMostrarFichaClinica() As DataTable
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
         _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnListarIDFichasClinicas() As Integer
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 40))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
+        Return _Tabla.Rows(0).Item("total")
+    End Function
+
+    Public Shared Function L_fnListarFichasClinicas(Optional _limit As Integer = 50, Optional _filtro As String = "") As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 41))
+        _listParam.Add(New Datos.DParametro("@limite", _limit))
+        _listParam.Add(New Datos.DParametro("@filtro", _filtro))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnObtenerFichaClinicaPorID(_id As Integer) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 42))
+        _listParam.Add(New Datos.DParametro("@fbid", _id))
         _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
         Return _Tabla
     End Function
@@ -979,6 +1019,7 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
         Return _Tabla
     End Function
+
     Public Shared Function L_fnMostrarFichaClinicaDetalle(_fbId As Integer) As DataTable
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
@@ -1146,6 +1187,16 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("FIC.sp_CIR0024", _listParam)
         Return _Tabla
     End Function
+
+    Public Shared Function L_fnMostrarCirugiaPorID(id As Integer) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 41))
+        _listParam.Add(New Datos.DParametro("@cf_FbId", id))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_CIR0024", _listParam)
+        Return _Tabla
+    End Function
+
     Public Shared Function L_fnMostrarCirugiaRecibo() As DataTable
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
@@ -1265,6 +1316,16 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("FIC.sp_INT0025", _listParam)
         Return _Tabla
     End Function
+
+    Public Shared Function L_fnMostrarInternacionPorID(id As Integer) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 41))
+        _listParam.Add(New Datos.DParametro("@ig_fbId", id))
+        _Tabla = D_ProcedimientoConParam("FIC.sp_INT0025", _listParam)
+        Return _Tabla
+    End Function
+
     Public Shared Function L_fnMostrarFichaClinicaConInternacion() As DataTable
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
