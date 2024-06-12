@@ -1,4 +1,4 @@
-﻿Imports Logica.AccesoLogica
+Imports Logica.AccesoLogica
 Imports DevComponents.DotNetBar
 Imports Janus.Windows.GridEX
 Imports System.IO
@@ -332,7 +332,20 @@ Public Class F1_Fic_FichaClinica
     End Sub
 
     Private Sub btnBusqueda_Click(sender As Object, e As EventArgs) Handles btnBusqueda.Click
-        _prListarFichaClinica(txtBusqueda.Text.Trim)
+        Dim filtro() As String
+        Dim busqueda As String = txtBusqueda.Text
+        filtro = Split(busqueda)
+        If filtro.Length = 1 Then
+            _prListarFichaClinica(filtro.Length, filtro(0))
+        ElseIf filtro.Length = 2 Then
+            _prListarFichaClinica(filtro.Length, filtro(0), filtro(1))
+        ElseIf filtro.Length = 3 Then
+            _prListarFichaClinica(filtro.Length, filtro(0), filtro(1), filtro(2))
+        ElseIf filtro.Length = 4 Then
+            _prListarFichaClinica(filtro.Length, filtro(0), filtro(1), filtro(2), filtro(3))
+        ElseIf filtro.Length = 5 Then
+            _prListarFichaClinica(filtro.Length, filtro(0), filtro(1), filtro(2), filtro(3), filtro(4))
+        End If
     End Sub
 
     Private Sub dgvListado_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles dgvListado.CellFormatting
@@ -367,7 +380,7 @@ Public Class F1_Fic_FichaClinica
         End Select
     End Sub
 
-    Private Sub txtTLCapilar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtTLCapilar.KeyPress
+    Private Sub txtTLCapilar_KeyPress(sender As Object, e As KeyPressEventArgs)
         g_prValidarTextBox(1, e)
     End Sub
 
@@ -380,7 +393,10 @@ Public Class F1_Fic_FichaClinica
     Private Sub _prIniciarTodo()
         totalRegistro = L_fnListarIDFichasClinicas()
         _HoraInicial = DateTime.Now.ToShortTimeString()
-
+        _prRenderizarGrillaFichaClinicaSeguimiento(-1)
+        _prRenderizarGrillaImagenes(-1)
+        _prRenderizarGrillaCirugia(-1)
+        _prRenderizarGrillaInternacion(-1)
         Select Case _Iniciar
             Case 1
                 _MNuevo = True
@@ -391,13 +407,14 @@ Public Class F1_Fic_FichaClinica
                 txtIdVeterinario.Text = _IdVeterinario
                 txtNombVeterinario.Text = _NombreVeterinario
                 _prMostrarPaciente()
-                _prRenderizarGrillaFichaClinicaSeguimiento(-1)
+
                 _prAddDetalleSeguimiento()
                 _prRenderizarGrillaCirugia(-1)
                 _prRenderizarGrillaInternacion(-1)
                 pnlBusqueda.Visible = False
             Case 2
                 _MNuevo = False
+                _prRenderizarGrillaFichaClinicaSeguimiento(-1)
                 btnModificar.PerformClick()
                 _prObtenerPorIdFichaClinica(_fbId)
                 _prMostrarRegistroTodo()
@@ -594,9 +611,9 @@ Public Class F1_Fic_FichaClinica
                                       IIf(chbRadiografia.Checked, 3, 0), 0, 0)
     End Sub
 
-    Private Sub _prListarFichaClinica(Optional _filtro As String = "")
+    Private Sub _prListarFichaClinica(Optional cant As Integer = 1, Optional _filtro As String = "", Optional _filtro1 As String = "", Optional _filtro2 As String = "", Optional _filtro3 As String = "", Optional _filtro4 As String = "")
         Dim dt As New DataTable
-        dt = L_fnListarFichasClinicas(50, _filtro)
+        dt = L_fnListarFichasClinicas(cant, 50000, _filtro, _filtro1, _filtro2, _filtro3, _filtro4)
         _prRenderizarGrillaListado(dt)
     End Sub
 
@@ -644,6 +661,10 @@ Public Class F1_Fic_FichaClinica
     Private Sub _prRenderizarGrillaFichaClinicaSeguimiento(_fbId As String)
         Dim dt As New DataTable
         dt = L_prMostrarFichaClinicaSeguimiento(_fbId)
+        If CType(JGFechasSeg.DataSource, DataTable) IsNot Nothing Then
+            CType(JGFechasSeg.DataSource, DataTable).Clear()
+        End If
+
         JGFechasSeg.DataSource = dt
         JGFechasSeg.RetrieveStructure()
         JGFechasSeg.AlternatingColors = True
@@ -1166,7 +1187,7 @@ Public Class F1_Fic_FichaClinica
 
     Private Sub _prLimpiar()
         'Imagenes
-        _prRenderizarGrillaImagenes(-1)
+
         _prRenderizarGrillaFichaClinicaSeguimiento(-1)
         txtDecripcionA.Clear()
         dtpFechaAnexo.Value = DateTime.Today
@@ -1325,6 +1346,7 @@ Public Class F1_Fic_FichaClinica
 
     Private Sub _prHabilitar()
         'Imagen
+        _prRenderizarGrillaFichaClinicaSeguimiento(-1)
         _prAddDetalleSeguimiento()
         btnAlta.Enabled = False
         btnRecibo.Enabled = False
@@ -1353,7 +1375,7 @@ Public Class F1_Fic_FichaClinica
         txtScoreCorporal.ReadOnly = False
         txtSeguimiento.ReadOnly = False
         txtTemperatura.ReadOnly = False
-        txtTLCapilar.ReadOnly = False
+        txtTLCapilar.IsInputReadOnly = False
         txtTRPliegue.IsInputReadOnly = False
         txtValoracion.ReadOnly = False
         'DateTime
@@ -1513,7 +1535,7 @@ Public Class F1_Fic_FichaClinica
         txtScoreCorporal.ReadOnly = True
         txtSeguimiento.ReadOnly = True
         txtTemperatura.ReadOnly = True
-        txtTLCapilar.ReadOnly = True
+        txtTLCapilar.IsInputReadOnly = True
         txtTRPliegue.IsInputReadOnly = True
         txtValoracion.ReadOnly = True
         'DateTime
@@ -1648,7 +1670,7 @@ Public Class F1_Fic_FichaClinica
         If dgvListado.RowCount > 0 Then
             _dgvListado.Rows(IIf(_MPos <= dgvListado.RowCount - 1, _MPos, 0)).Selected = True
         Else
-            _prLimpiar()
+            '_prLimpiar()
         End If
         estaVizualizando = True
     End Sub
@@ -1859,6 +1881,10 @@ Public Class F1_Fic_FichaClinica
         End If
     End Sub
 
+    Private Sub btnGrabar_Click(sender As Object, e As EventArgs) Handles btnGrabar.Click
+
+    End Sub
+
     Public Sub _prLimpiarBanderas(bandera As Boolean)
         banderaP2 = bandera
         banderaP3 = bandera
@@ -2059,8 +2085,9 @@ Public Class F1_Fic_FichaClinica
         _prLimpiarBanderas(False)
         _prHabilitar()
 
-        If _Iniciar = 3 Then _prMostrarRegistroTodo()
-
+        If _Iniciar = 3 Then
+            _prMostrarRegistroTodo()
+        End If
         'Deshabilitar campos que no deberian poder modificarse
         cbConsultorio.ReadOnly = True
         txtIdVeterinario.Enabled = False

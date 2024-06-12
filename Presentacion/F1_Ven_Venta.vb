@@ -2445,7 +2445,7 @@ salirIf:
 
             If (gb_FacturaEmite) Then
                 'And TbNit.Text <> String.Empty And TbNit.Text <> String.Empty
-                If cbEmision.SelectedIndex = 0 Then
+                If cbEmision.Value = 1 Then
                     P_fnGenerarFactura(txtIdVenta.Text)
                 End If
             End If
@@ -2931,7 +2931,7 @@ salirIf:
             End If
 
             'Validar datos de factura
-            If cbEmision.SelectedIndex = 0 Then
+            If cbEmision.Value = 1 Then
                 If (TbNit.Text = String.Empty) Then
                     Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
                     ToastNotification.Show(Me, "Por Favor ponga el nit del cliente.".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)

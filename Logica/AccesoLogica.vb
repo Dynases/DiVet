@@ -992,12 +992,19 @@ Public Class AccesoLogica
         Return _Tabla.Rows(0).Item("total")
     End Function
 
-    Public Shared Function L_fnListarFichasClinicas(Optional _limit As Integer = 50, Optional _filtro As String = "") As DataTable
+    Public Shared Function L_fnListarFichasClinicas(cant As Integer, Optional _limit As Integer = 50000, Optional _filtro As String = "",
+                                                     Optional _filtro1 As String = "", Optional _filtro2 As String = "",
+                                                     Optional _filtro3 As String = "", Optional _filtro4 As String = "") As DataTable
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
         _listParam.Add(New Datos.DParametro("@tipo", 41))
         _listParam.Add(New Datos.DParametro("@limite", _limit))
+        _listParam.Add(New Datos.DParametro("@faId", cant))
         _listParam.Add(New Datos.DParametro("@filtro", _filtro))
+        '_listParam.Add(New Datos.DParametro("@filtro1", _filtro1))
+        '_listParam.Add(New Datos.DParametro("@filtro2", _filtro2))
+        '_listParam.Add(New Datos.DParametro("@filtro3", _filtro3))
+        '_listParam.Add(New Datos.DParametro("@filtro4", _filtro4))
         _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
         Return _Tabla
     End Function
