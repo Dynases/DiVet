@@ -278,7 +278,8 @@ Public Class F0_MCompras
         End With
         With grdetalle.RootTable.Columns("cbty5prod")
             .Width = 90
-            .Visible = False
+            .Caption = "CODIGO"
+            .Visible = True
         End With
 
         With grdetalle.RootTable.Columns("producto")
@@ -402,6 +403,9 @@ Public Class F0_MCompras
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
+
+            .RecordNavigator = True
+            .RecordNavigatorText = "Productos"
         End With
     End Sub
 
@@ -919,7 +923,7 @@ Public Class F0_MCompras
                         _CodProveedor = Row.Cells("ydnumi").Value
                         tbProveedor.Text = Row.Cells("yddesc").Value
                         grdetalle.Select()
-                        grdetalle.Col = 2
+                        grdetalle.Col = 3
                         grdetalle.Focus()
                     Catch ex As Exception
 
@@ -984,9 +988,9 @@ Public Class F0_MCompras
             End If
 
 
-            'grdetalle.Select()
-            'grdetalle.Col = 2
-            'grdetalle.Row = 0
+            grdetalle.Select()
+            grdetalle.Col = 3
+            grdetalle.Row = 0
         End If
 
 

@@ -442,7 +442,13 @@ Public Class F0_KardexMovimiento
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
             '.CellStyle.BackColor = Color.AliceBlue
-            .FormatString = "0.00"
+            If IsDBNull(Dgj1Datos.RootTable.Columns(14)) Then
+                .FormatString = "''"
+            Else
+                .FormatString = "0.00"
+            End If
+
+            .AggregateFunction = AggregateFunction.Sum
         End With
         With Dgj1Datos.RootTable.Columns(15)
             .Caption = "SALIDA"
@@ -453,7 +459,13 @@ Public Class F0_KardexMovimiento
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
             '.CellStyle.BackColor = Color.AliceBlue
-            .FormatString = "0.00"
+            If IsDBNull(Dgj1Datos.RootTable.Columns(15)) Then
+                .FormatString = "''"
+            Else
+                .FormatString = "0.00"
+            End If
+
+            .AggregateFunction = AggregateFunction.Sum
         End With
         With Dgj1Datos.RootTable.Columns(16)
             .Caption = "Saldo"
@@ -490,9 +502,8 @@ Public Class F0_KardexMovimiento
         'Habilitar Filtradores
         With Dgj1Datos
             .GroupByBoxVisible = False
-            '.FilterRowFormatStyle.BackColor = Color.Blue
-            '.DefaultFilterRowComparison = FilterConditionOperator.Contains
-            '.FilterMode = FilterMode.Automatic
+            .DefaultFilterRowComparison = FilterConditionOperator.Contains
+            .FilterMode = FilterMode.Automatic
             .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
             'Diseño de la tabla
             .VisualStyle = VisualStyle.Office2007
@@ -500,6 +511,11 @@ Public Class F0_KardexMovimiento
             .RecordNavigator = True
             .RecordNavigatorText = "Movimiento"
             .RowHeaders = InheritableBoolean.True
+
+            .TotalRow = InheritableBoolean.True
+            .TotalRowFormatStyle.BackColor = Color.Gold
+            .TotalRowPosition = TotalRowPosition.BottomFixed
+
         End With
         _prAplicarCondiccionJanus()
     End Sub

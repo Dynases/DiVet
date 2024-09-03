@@ -325,6 +325,9 @@ Public Class F0_Movimiento
             .VisualStyle = VisualStyle.Office2007
             .BoundMode = Janus.Data.BoundMode.Bound
             .RowHeaders = InheritableBoolean.True
+
+            .RecordNavigator = True
+            .RecordNavigatorText = "Productos"
         End With
     End Sub
 
@@ -636,7 +639,7 @@ Public Class F0_Movimiento
         Dim Bin As New MemoryStream
         Dim img As New Bitmap(My.Resources.delete, 28, 28)
         img.Save(Bin, Imaging.ImageFormat.Png)
-        CType(grdetalle.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, "", "", "", "", DBNull.Value, "01010101", Now.Date.ToShortDateString, Bin.GetBuffer, 0, 0)
+        CType(grdetalle.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, "", "", "", "", DBNull.Value, Now.Date.ToString("dd/MM/yyyy"), Now.Date.ToShortDateString, Bin.GetBuffer, 0, 0)
     End Sub
     Public Function _fnSiguienteNumi()
         Dim dt As DataTable = CType(grdetalle.DataSource, DataTable)
@@ -759,8 +762,15 @@ Public Class F0_Movimiento
             grdetalle.Focus()
 
             Return False
-
         End If
+        'If (IsDBNull(grdetalle.GetValue("iccant"))) Then
+        '    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+        '    ToastNotification.Show(Me, "Por Favor inserte una cantidad al producto".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.TopCenter)
+        '    grdetalle.Select()
+        '    grdetalle.Col = 7
+        '    grdetalle.Focus()
+        '    Return False
+        'End If
         If (grdetalle.RowCount = 1) Then
             If (CType(grdetalle.DataSource, DataTable).Rows(0).Item("iccprod") = 0) Then
                 Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
@@ -772,7 +782,7 @@ Public Class F0_Movimiento
         End If
 
         For i As Integer = 0 To CType(grdetalle.DataSource, DataTable).Rows.Count - 1
-            If (IsDBNull(CType(grdetalle.DataSource, DataTable).Rows(i).Item("iccant"))) And (CType(grdetalle.DataSource, DataTable).Rows(i).Item("iccprod") > 0) And (CType(grdetalle.DataSource, DataTable).Rows(i).Item("estado") > 0) Then
+            If (IsDBNull(CType(grdetalle.DataSource, DataTable).Rows(i).Item("iccant"))) And (CType(grdetalle.DataSource, DataTable).Rows(i).Item("iccprod") > 0) And (CType(grdetalle.DataSource, DataTable).Rows(i).Item("estado") >= 0) Then
 
                 Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
                 ToastNotification.Show(Me, "Debe insertar cantidad a los productos!!!".ToUpper, img, 4000, eToastGlowColor.Red, eToastPosition.BottomCenter)
@@ -1252,6 +1262,10 @@ salirIf:
 
                 End If
             End If
+        End If
+        If (e.Column.Index = grdetalle.RootTable.Columns("icfvenc").Index) Then
+            Dim fec As String = grdetalle.GetValue("icfvenc")
+            grdetalle.SetValue("iclot", fec)
         End If
     End Sub
 

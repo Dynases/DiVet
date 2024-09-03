@@ -3256,7 +3256,7 @@ Public Class AccesoLogica
         Dim _Tabla As DataTable
         Dim _resultado As Boolean
         Dim _listParam As New List(Of Datos.DParametro)
-        '   @canumi ,@caalm,@cafdoc ,@caty4prov  ,@catven,
+        '@canumi ,@caalm,@cafdoc ,@caty4prov  ,@catven,
         '@cafvcr,@camon ,@caest  ,@caobs ,@cadesc ,@newFecha,@newHora,@cauact
         _listParam.Add(New Datos.DParametro("@tipo", 1))
         _listParam.Add(New Datos.DParametro("@canumi", _canumi))
@@ -3273,7 +3273,6 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@cauact", L_Usuario))
         _listParam.Add(New Datos.DParametro("@TC0011", "", detalle))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TC001", _listParam)
-
 
         If _Tabla.Rows.Count > 0 Then
             _canumi = _Tabla.Rows(0).Item(0)
