@@ -115,13 +115,13 @@ Public Class F0_PagosCreditoCompraUlt
             .Width = 120
             .Visible = True
             .Caption = "Nro. Compra"
-            .FormatString = "dd/MM/yyyy"
+            .FormatString = "yyyy/MM/dd"
         End With
         With grcobranza.RootTable.Columns("tefdoc")
             .Width = 120
             .Visible = True
             .Caption = "Fecha"
-            .FormatString = "dd/MM/yyyy"
+            .FormatString = "yyyy/MM/dd"
         End With
         With grcobranza.RootTable.Columns("tety4vend")
 
@@ -346,7 +346,7 @@ Public Class F0_PagosCreditoCompraUlt
             tbnrodoc.Text = .GetValue("tenumi")
             tbfecha.Value = .GetValue("tefdoc")
             tbObservacion.Text = .GetValue("teobs")
-            lbFecha.Text = CType(.GetValue("tefact"), Date).ToString("dd/MM/yyyy")
+            lbFecha.Text = CType(.GetValue("tefact"), Date).ToString("yyyy/MM/dd")
             lbHora.Text = .GetValue("tehact").ToString
             lbUsuario.Text = .GetValue("teuact").ToString
 
@@ -436,7 +436,7 @@ Public Class F0_PagosCreditoCompraUlt
         With grPendiente.RootTable.Columns("tcfdoc")
             .Caption = "Fecha"
             .Width = 110
-            .FormatString = "dd/MM/yyyy"
+            .FormatString = "yyyy/MM/dd"
             .Visible = True
         End With
         With grPendiente.RootTable.Columns("totalfactura")

@@ -31,7 +31,7 @@ Public Class Pr_KardexProductos
             Dim lot As Integer = dt.Rows(0).Item("VerLote")
             If (lot = 1) Then
                 Lote = True
-                CheckGeneralLote.Visible = True
+                CheckGeneralLote.Visible = False
             Else
                 Lote = False
                 CheckGeneralLote.Visible = False
@@ -292,8 +292,8 @@ Public Class Pr_KardexProductos
 
                 Dim objrep As New R_KardexInventarioGeneralResumen
                 objrep.SetDataSource(_dt)
-                Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-                Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
+                Dim fechaI As String = tbFechaI.Value.ToString("yyyy/MM/dd")
+                Dim fechaF As String = tbFechaF.Value.ToString("yyyy/MM/dd")
                 objrep.SetParameterValue("deposito", cbAlmacen.Text)
                 objrep.SetParameterValue("FechaIni", fechaI)
                 objrep.SetParameterValue("FechaFin", fechaF)
@@ -304,8 +304,8 @@ Public Class Pr_KardexProductos
                 If (CheckGeneralLote.Checked) Then
                     Dim objrep As New R_KardexInventarioGeneralResumenPorLotes
                     objrep.SetDataSource(_dt)
-                    Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-                    Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
+                    Dim fechaI As String = tbFechaI.Value.ToString("yyyy/MM/dd")
+                    Dim fechaF As String = tbFechaF.Value.ToString("yyyy/MM/dd")
                     objrep.SetParameterValue("deposito", cbAlmacen.Text)
                     objrep.SetParameterValue("FechaIni", fechaI)
                     objrep.SetParameterValue("FechaFin", fechaF)
@@ -316,8 +316,8 @@ Public Class Pr_KardexProductos
                     If (Lote = True) Then
                         Dim objrep As New R_KardexInventarioProductoAgrupado
                         objrep.SetDataSource(_dt)
-                        Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-                        Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
+                        Dim fechaI As String = tbFechaI.Value.ToString("yyyy/MM/dd")
+                        Dim fechaF As String = tbFechaF.Value.ToString("yyyy/MM/dd")
                         objrep.SetParameterValue("deposito", cbAlmacen.Text)
                         objrep.SetParameterValue("FechaIni", fechaI)
                         objrep.SetParameterValue("FechaFin", fechaF)
@@ -327,8 +327,8 @@ Public Class Pr_KardexProductos
                     Else
                         Dim objrep As New R_KardexInventarioProductoAgrupadoSinLote
                         objrep.SetDataSource(_dt)
-                        Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-                        Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
+                        Dim fechaI As String = tbFechaI.Value.ToString("yyyy/MM/dd")
+                        Dim fechaF As String = tbFechaF.Value.ToString("yyyy/MM/dd")
                         objrep.SetParameterValue("deposito", cbAlmacen.Text)
                         objrep.SetParameterValue("FechaIni", fechaI)
                         objrep.SetParameterValue("FechaFin", fechaF)

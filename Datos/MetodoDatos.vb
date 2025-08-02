@@ -12,19 +12,19 @@ Public Class MetodoDatos
         _comando = _conexion.CreateCommand()
         _comando.CommandType = CommandType.Text
         'abrir
-        Try
-            'Abrimos la conexión
-            'Si se estableció conexión correctamente abrirá conexión
-            _comando.Connection.Open()
+        'Try
+        'Abrimos la conexión
+        'Si se estableció conexión correctamente abrirá conexión
+        _comando.Connection.Open()
 
 
-        Catch ex As Exception
-            'Si no se conecta nos mostrara el siguiente mensaje
-            MessageBox.Show("No se pudo conectar a la Base de Datos")
-            _comando.Connection.Close()
+        ''''Catch ex As Exception
+        ''''    'Si no se conecta nos mostrara el siguiente mensaje
+        ''''    MessageBox.Show("No se pudo conectar a la Base de Datos")
+        ''''    _comando.Connection.Close()
 
 
-        End Try
+        ''''End Try
 
         Return _comando
 
@@ -39,15 +39,15 @@ Public Class MetodoDatos
         _comando = _conexion.CreateCommand()
         _comando.CommandType = CommandType.StoredProcedure
         'abrir
-        Try
-            'Abrimos la conexión
-            _comando.Connection.Open()
-            'Si se estableció conexión correctamente abrirá conexión
-        Catch ex As Exception
-            'Si no se conecta nos mostrara el siguiente mensaje
-            'MsgBox("No se pudo conectar a la Base de Datos ")
-            _comando.Connection.Close()
-        End Try
+        'Try
+        'Abrimos la conexión
+        _comando.Connection.Open()
+        'Si se estableció conexión correctamente abrirá conexión
+        '''Catch ex As Exception
+        '''    'Si no se conecta nos mostrara el siguiente mensaje
+        '''    'MsgBox("No se pudo conectar a la Base de Datos ")
+        '''    _comando.Connection.Close()
+        '''End Try
 
         Return _comando
     End Function

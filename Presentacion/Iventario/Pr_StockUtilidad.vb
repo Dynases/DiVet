@@ -21,18 +21,88 @@ Public Class Pr_StockUtilidad
         bandera = True
     End Sub
     Public Sub _IniciarComponentes()
-
+        tbFechaI.Value = Date.Now
+        tbFechaF.Value = Date.Now
     End Sub
     Public Sub _prInterpretarDatos(ByRef _dt As DataTable)
-        If (tbAlmacen.SelectedIndex >= 0 And tbcatprecio.SelectedIndex >= 0 And Checktodos.Checked) Then
-            _dt = L_prReporteUtilidad(tbAlmacen.Value, tbcatprecio.Value)
+        'If (tbAlmacen.SelectedIndex >= 0 And tbcatprecio.SelectedIndex >= 0 And Checktodos.Checked) Then
+        ''_dt = L_prReporteUtilidad(tbAlmacen.Value, tbcatprecio.Value)
+        _dt = L_fnObtenerHistorialGeneral(tbcatprecio.Value, tbFechaF.Value.ToString("yyyy/MM/dd"), tbAlmacen.Value, IIf(checkMayorCero.Checked, 1, 0))
+        'nd If
+
+        'If (tbAlmacen.SelectedIndex >= 0 And tbcatprecio.SelectedIndex >= 0 And checkMayorCero.Checked) Then
+        '_dt = L_prReporteUtilidadStockMayorCero(tbAlmacen.Value, tbcatprecio.Value)
+
+        'End If
+    End Sub
+
+    Public Sub _prObtenerKardexGeneral(ByRef _dt As DataTable)
+        Dim dtaux As DataTable = L_fnObtenerKardexGeneralProductos(tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"), tbAlmacen.Value) ''Aqui obtengo todos los productos con movimientos
+
+
+        '' as SaldoAnterior,
+        '' as Entradas,'' as Salidas,'' as SaldoFinal
+        For i As Integer = 0 To dtaux.Rows.Count - 1 Step 1
+            Dim numipro As Integer = dtaux.Rows(i).Item("yfnumi")
+            Dim descprod As String = dtaux.Rows(i).Item("yfcdprod1")
+            Dim UnidProd As String = dtaux.Rows(i).Item("Unidad")
+            Dim saldoAnt As String = ""
+            Dim Entrada As String = ""
+            Dim Salida As String = ""
+            Dim SaldoFinal As String = ""
+            Dim dtkardex As DataTable = P_ArmarGrillaDatosGeneral(numipro, tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"), tbAlmacen.Value, descprod, UnidProd,
+                                                                  saldoAnt, Entrada, Salida, SaldoFinal)
+            dtaux.Rows(i).Item("SaldoAnterior") = saldoAnt
+            dtaux.Rows(i).Item("Entradas") = Entrada
+            dtaux.Rows(i).Item("Salidas") = Salida
+            dtaux.Rows(i).Item("SaldoFinal") = SaldoFinal
+        Next
+        _dt = dtaux
+    End Sub
+
+    Private Function P_ArmarGrillaDatosGeneral(codprod As Integer, fechaI As String, fechaF As String, almacen As Integer, DescProd As String, UnidPro As String, ByRef SaldoAnt As String,
+                                              ByRef Entradas As String, ByRef Salidas As String,
+                                              ByRef SaldoFinal As String) As DataTable
+        Dim Dt1Kardex = New DataTable
+        Dim Dt2KardexTotal = New DataTable
+
+        Dt2KardexTotal = L_fnObtenerHistorialProductoGeneral(codprod, fechaI, almacen)
+        Dt1Kardex = L_fnObtenerKardexPorProducto(codprod, fechaI, fechaF, almacen)
+        If (Dt1Kardex.Rows.Count > 0) Then
+            P_ArmarKardexGeneral(Dt1Kardex, Dt2KardexTotal, codprod, DescProd, UnidPro,
+                          SaldoAnt, Entradas, Salidas, SaldoFinal)
 
         End If
+        Return Dt1Kardex
+    End Function
 
-        If (tbAlmacen.SelectedIndex >= 0 And tbcatprecio.SelectedIndex >= 0 And checkMayorCero.Checked) Then
-            _dt = L_prReporteUtilidadStockMayorCero(tbAlmacen.Value, tbcatprecio.Value)
+    Private Sub P_ArmarKardexGeneral(ByRef Dt1Kardex As DataTable, ByRef Dt2KardexTotal As DataTable,
+                                  codprod As Integer, Descprod As String, Unidad As String, ByRef SaldoAnt As String,
+                                 ByRef Entradas As String, ByRef Salidas As String, ByRef SaldoFinal As String)
 
+        Dim saldo As Double = 0
+        Dim ingT As Double = 0
+        Dim salT As Double = 0
+
+        If (Not IsDBNull(Dt2KardexTotal.Compute("Sum(entrada)+Sum(salida)", "cprod = " + Str(codprod) + " and concep = 1 or concep=3"))) Then
+            ingT = Dt2KardexTotal.Compute("Sum(entrada)+Sum(salida)", "cprod = " + Str(codprod) + " and concep = 1 or concep=3")
         End If
+        If (Not IsDBNull(Dt2KardexTotal.Compute("Sum(entrada)+Sum(salida)", "cprod = " + Str(codprod) + " and concep = 2 or concep=4"))) Then
+            salT = Dt2KardexTotal.Compute("Sum(entrada)+Sum(salida)", "cprod = " + Str(codprod) + " and concep = 2 or concep=4")
+        End If
+        saldo = ingT + salT
+        Dim ing As Double = 0
+        Dim sal As Double = 0
+        Dim saldoInicial As Double = 0
+        'Sumar ingreso de inventario
+        ing = IIf(IsDBNull(Dt1Kardex.Compute("Sum(entrada)", " concep = 1 or concep=3")), 0, Dt1Kardex.Compute("Sum(entrada)", "concep = 1 or concep=3"))
+        'Sumar salida de inventario
+        sal = IIf(IsDBNull(Dt1Kardex.Compute("Sum(salida)", " concep = 2 or concep=4")), 0, Dt1Kardex.Compute("Sum(salida)", "concep = 2 or concep=4"))
+        SaldoAnt = Str(saldo).Trim
+        Entradas = Str(ing).Trim
+        Salidas = Str(Math.Abs(sal)).Trim
+        SaldoFinal = Str(Math.Abs((ing + saldo) + sal)).Trim
+
     End Sub
     Private Sub _prCargarReporte()
         Dim _dt As New DataTable
@@ -44,6 +114,10 @@ Public Class Pr_StockUtilidad
 
             objrep.SetParameterValue("usuario", L_Usuario)
             objrep.SetParameterValue("categoria", tbAlmacen.Text + " - " + tbcatprecio.Text)
+            objrep.SetParameterValue("cat", tbcatprecio.Text)
+            objrep.SetParameterValue("fechaI", tbFechaI.Value.ToString("yyyy/MM/dd"))
+            objrep.SetParameterValue("fechaF", tbFechaF.Value.ToString("yyyy/MM/dd"))
+            objrep.SetParameterValue("alm", tbAlmacen.Text)
             MReportViewer.ReportSource = objrep
             MReportViewer.Show()
             MReportViewer.BringToFront()

@@ -617,7 +617,7 @@ Partial Class F0_Reg_Clientes
     ''*****GRABAR EL REGISTRO DEL CLIENTE*****''
     Public Overrides Function _PMOGrabarRegistro() As Boolean
 
-        Dim res As Boolean = L_fnGrabarClientes(txtId.Text, txtCI.Text, txtNombreC.Text.Trim(), txtApellidosC.Text, txtDireccionC.Text, txtTelfC.Text, txtMail.Text, dtpFIngresoC.Value.ToString("yyyy/MM/dd"))
+        Dim res As Boolean = L_fnGrabarClientes(txtId.Text, txtCI.Text, txtNombreC.Text.Trim(), txtApellidosC.Text, txtDireccionC.Text, txtTelfC.Text, txtMail.Text, dtpFIngresoC.Value.ToString("dd/MM/yyyy"))
 
         If res Then
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
@@ -650,7 +650,7 @@ Partial Class F0_Reg_Clientes
     End Function
     Public Overrides Function _PMOModificarRegistro() As Boolean
 
-        Dim res As Boolean = L_fnModificarClientes(txtId.Text, txtCI.Text, txtNombreC.Text.Trim(), txtApellidosC.Text, txtDireccionC.Text, txtTelfC.Text, txtMail.Text, dtpFIngresoC.Value.ToString("yyyy/MM/dd"))
+        Dim res As Boolean = L_fnModificarClientes(txtId.Text, txtCI.Text, txtNombreC.Text.Trim(), txtApellidosC.Text, txtDireccionC.Text, txtTelfC.Text, txtMail.Text, dtpFIngresoC.Value.ToString("dd/MM/yyyy"))
 
         If res Then
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)

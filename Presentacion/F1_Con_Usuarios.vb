@@ -185,7 +185,7 @@ Public Class F1_Con_Usuarios
                 LblPaginacion.Text = Str(_POS + 1) + "/" + JGBusqUsuarios.RowCount.ToString
 
                 'Muestra el bubblebar(quien registró el usuario)
-                lbFecha.Text = CType(.GetValue("uaFecha"), Date).ToString("dd/MM/yyyy")
+                lbFecha.Text = CType(.GetValue("uaFecha"), Date).ToString("yyyy/MM/dd")
                 lbHora.Text = .GetValue("uaHora").ToString
                 lbUsuario.Text = .GetValue("uaUsuario").ToString
             End With

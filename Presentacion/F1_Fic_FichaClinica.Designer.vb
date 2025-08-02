@@ -447,7 +447,6 @@ Partial Class F1_Fic_FichaClinica
         Me.MpanelBuscador.BackgroundImage = Global.Presentacion.My.Resources.Resources.Fondo2
         Me.MpanelBuscador.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.MpanelBuscador.Controls.Add(Me.gpBusqFichaClinica)
-        Me.MpanelBuscador.Size = New System.Drawing.Size(935, 668)
         '
         'TxtNombreUsu
         '
@@ -4919,7 +4918,7 @@ Partial Class F1_Fic_FichaClinica
         Me.gpBusqFichaClinica.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpBusqFichaClinica.Location = New System.Drawing.Point(0, 0)
         Me.gpBusqFichaClinica.Name = "gpBusqFichaClinica"
-        Me.gpBusqFichaClinica.Size = New System.Drawing.Size(935, 668)
+        Me.gpBusqFichaClinica.Size = New System.Drawing.Size(930, 477)
         '
         '
         '
@@ -4958,7 +4957,7 @@ Partial Class F1_Fic_FichaClinica
         Me.pnlGrilla.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlGrilla.Location = New System.Drawing.Point(0, 39)
         Me.pnlGrilla.Name = "pnlGrilla"
-        Me.pnlGrilla.Size = New System.Drawing.Size(929, 606)
+        Me.pnlGrilla.Size = New System.Drawing.Size(924, 415)
         Me.pnlGrilla.TabIndex = 258
         '
         'dgvListado
@@ -4967,7 +4966,7 @@ Partial Class F1_Fic_FichaClinica
         Me.dgvListado.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvListado.Location = New System.Drawing.Point(0, 0)
         Me.dgvListado.Name = "dgvListado"
-        Me.dgvListado.Size = New System.Drawing.Size(929, 606)
+        Me.dgvListado.Size = New System.Drawing.Size(924, 415)
         Me.dgvListado.TabIndex = 257
         '
         'pnlBusqueda
@@ -4978,7 +4977,7 @@ Partial Class F1_Fic_FichaClinica
         Me.pnlBusqueda.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlBusqueda.Location = New System.Drawing.Point(0, 0)
         Me.pnlBusqueda.Name = "pnlBusqueda"
-        Me.pnlBusqueda.Size = New System.Drawing.Size(929, 39)
+        Me.pnlBusqueda.Size = New System.Drawing.Size(924, 39)
         Me.pnlBusqueda.TabIndex = 257
         '
         'btnBusqueda

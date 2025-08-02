@@ -138,6 +138,8 @@ Public Class AccesoLogica
 
         Return _resultado
     End Function
+
+
     'Modificar 
     Public Shared Function L_fnModificarServicio(ByRef _scId As String, _scDesc As String, _scPrecio As String, _scEst As String) As Boolean
 
@@ -820,7 +822,7 @@ Public Class AccesoLogica
         Dim a As String = DateTime.Now.ToString("yyyy/MM/dd")
         Dim b As String = DateTime.Now
         Dim c As String = Date.Now
-        Dim _where = String.Format(" faFechaAten = '{0}'", DateTime.Now.ToString("dd/MM/yyyy"))
+        Dim _where = String.Format(" faFechaAten = '{0}'", DateTime.Now.ToString("yyyy/MM/dd"))
         _Tabla = D_Datos_Tabla("ISNULL(MAX(faPriori),0) AS faPriori", "FIC.ATEN001", _where)
         Return _Tabla
     End Function
@@ -829,7 +831,7 @@ Public Class AccesoLogica
         Dim a As String = DateTime.Now.ToString("yyyy/MM/dd")
         Dim b As String = DateTime.Now
         Dim c As String = Date.Now
-        Dim _where = String.Format(" faFechaAten = '{0}' AND faEstPac = 3", DateTime.Now.ToString("dd/MM/yyyy"))
+        Dim _where = String.Format(" faFechaAten = '{0}' AND faEstPac = 3", DateTime.Now.ToString("yyyy/MM/dd"))
         _Tabla = D_Datos_Tabla("ISNULL(MAX(faPriori),0) AS faPriori", "FIC.ATEN001", _where)
         Return _Tabla
     End Function
@@ -1001,10 +1003,10 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@limite", _limit))
         _listParam.Add(New Datos.DParametro("@faId", cant))
         _listParam.Add(New Datos.DParametro("@filtro", _filtro))
-        '_listParam.Add(New Datos.DParametro("@filtro1", _filtro1))
-        '_listParam.Add(New Datos.DParametro("@filtro2", _filtro2))
-        '_listParam.Add(New Datos.DParametro("@filtro3", _filtro3))
-        '_listParam.Add(New Datos.DParametro("@filtro4", _filtro4))
+        _listParam.Add(New Datos.DParametro("@filtro1", _filtro1))
+        _listParam.Add(New Datos.DParametro("@filtro2", _filtro2))
+        _listParam.Add(New Datos.DParametro("@filtro3", _filtro3))
+        _listParam.Add(New Datos.DParametro("@filtro4", _filtro4))
         _Tabla = D_ProcedimientoConParam("FIC.sp_CLIN002", _listParam)
         Return _Tabla
     End Function
@@ -2758,6 +2760,20 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@producto", _codProducto))
         _listParam.Add(New Datos.DParametro("@fechaI", FechaI))
         _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnObtenerHistorialGeneral(_codPrecio As Integer, FechaI As String, _almacen As Integer, Mayor As Integer) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 35))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@ibalm", _almacen))
+        _listParam.Add(New Datos.DParametro("@ibfdoc", FechaI))
+        _listParam.Add(New Datos.DParametro("@ibconcep", _codPrecio))
+        _listParam.Add(New Datos.DParametro("@producto", Mayor))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TI002", _listParam)
 
         Return _Tabla
@@ -5072,7 +5088,7 @@ Public Class AccesoLogica
 
         End If
 
-        Dim _select As String = "fvanumi, FORMAT(fvafec,'dd/MM/yyyy') as fvafec, fvanfac, fvaautoriz,fvaest, fvanitcli, fvadescli, fvastot, fvaimpsi, fvaimpeo, fvaimptc, fvasubtotal, fvadesc, fvatotal, fvadebfis, fvaccont,fvaflim,fvaalm,scneg, factura"
+        Dim _select As String = "fvanumi, FORMAT(fvafec,'yyyy/MM/dd') as fvafec, fvanfac, fvaautoriz,fvaest, fvanitcli, fvadescli, fvastot, fvaimpsi, fvaimpeo, fvaimptc, fvasubtotal, fvadesc, fvatotal, fvadebfis, fvaccont,fvaflim,fvaalm,scneg, factura"
 
         _Tabla = D_Datos_Tabla(_select,
                                "VR_GO_LibroVenta2", _Where)
@@ -5141,7 +5157,7 @@ Public Class AccesoLogica
 
 
         End If
-        Dim _select As String = "fvanumi, FORMAT(fvafec,'dd/MM/yyyy') as fvafec, fvanfac, fvaautoriz,fvaest, fvanitcli, fvadescli, fvastot, fvaimpsi, fvaimpeo, fvaimptc, fvasubtotal, fvadesc, fvatotal, fvadebfis, fvaccont,fvaflim,fvaalm,scneg, factura"
+        Dim _select As String = "fvanumi, FORMAT(fvafec,'yyyy/MM/dd') as fvafec, fvanfac, fvaautoriz,fvaest, fvanitcli, fvadescli, fvastot, fvaimpsi, fvaimpeo, fvaimptc, fvasubtotal, fvadesc, fvatotal, fvadebfis, fvaccont,fvaflim,fvaalm,scneg, factura"
 
         _Tabla = D_Datos_Tabla(_select,
                                "VR_GO_LibroVenta2", _Where)
@@ -5497,7 +5513,21 @@ Public Class AccesoLogica
 
 
 
+    Public Shared Function TraerDatosConexion(basedatos As String, equipo As String, usuario As String, ip As String, serie As String) As DataTable
+        Dim _Tabla As DataTable
 
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@basedatos", basedatos))
+        _listParam.Add(New Datos.DParametro("@equipo", equipo))
+        _listParam.Add(New Datos.DParametro("@usuario", usuario))
+        _listParam.Add(New Datos.DParametro("@ip", ip))
+        _listParam.Add(New Datos.DParametro("@serie", serie))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_go_configuracion", _listParam)
+
+        Return _Tabla
+    End Function
 
 
 

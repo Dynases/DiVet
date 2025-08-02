@@ -32,8 +32,8 @@ Public Class Pr_ReporteMorosidadGeneral
 
     End Sub
     Public Sub _prInterpretarDatos(ByRef _dt As DataTable)
-        Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-        Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
+        Dim fechaI As String = tbFechaI.Value.ToString("yyyy/MM/dd")
+        Dim fechaF As String = tbFechaF.Value.ToString("yyyy/MM/dd")
         If (CheckTodosVendedor.Checked And CheckTodosCliente.Checked) Then
 
             _dt = L_fnReporteMorosidadTodosAlmacenVendedor(fechaI, fechaF)
@@ -58,8 +58,8 @@ Public Class Pr_ReporteMorosidadGeneral
     End Sub
     Private Sub _prCargarReporte()
         Dim _dt As New DataTable
-        Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-        Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
+        Dim fechaI As String = tbFechaI.Value.ToString("yyyy/MM/dd")
+        Dim fechaF As String = tbFechaF.Value.ToString("yyyy/MM/dd")
         _prInterpretarDatos(_dt)
         If (_dt.Rows.Count > 0) Then
             If (checkUnaVendedor.Checked And CheckUnaCliente.Checked And tbCodigoVendedor.Text.Length > 0 And tbCodCliente.Text.Length > 0) Then

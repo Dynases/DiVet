@@ -29,8 +29,8 @@ Public Class Pr_PacientesPorDia
         _prInterpretarDatos(_dt)
         If (_dt.Rows.Count > 0) Then
             Dim objrep As New R_PacientesPorDia
-            Dim FechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-            Dim FechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
+            Dim FechaI As String = tbFechaI.Value.ToString("yyyy/MM/dd")
+            Dim FechaF As String = tbFechaF.Value.ToString("yyyy/MM/dd")
             objrep.SetDataSource(_dt)
             objrep.SetParameterValue("fechaI", FechaI)
             objrep.SetParameterValue("fechaF", FechaF)
@@ -82,8 +82,8 @@ Public Class Pr_PacientesPorDia
     End Sub
 
     Public Sub _prInterpretarDatos(ByRef _dt As DataTable)
-        Dim FechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-        Dim FechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
+        Dim FechaI As String = tbFechaI.Value.ToString("yyyy/MM/dd")
+        Dim FechaF As String = tbFechaF.Value.ToString("yyyy/MM/dd")
 
         If (CheckTodosVeterinario.Checked And checkTodosGenero.Checked) Then
             Veterinario = "TODOS LOS VETERINARIOS"

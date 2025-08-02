@@ -29,8 +29,8 @@ Public Class Pr_DetalleAtencionesDiarias
 
             Dim objrep As New R_DetalleAtencionDiaria
             objrep.SetDataSource(_dt)
-            Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-            Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
+            Dim fechaI As String = tbFechaI.Value.ToString("yyyy/MM/dd")
+            Dim fechaF As String = tbFechaF.Value.ToString("yyyy/MM/dd")
             objrep.SetParameterValue("usuario", L_Usuario)
             objrep.SetParameterValue("fechaI", fechaI)
             objrep.SetParameterValue("fechaF", fechaF)

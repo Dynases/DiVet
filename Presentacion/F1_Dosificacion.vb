@@ -410,7 +410,7 @@ Public Class F1_Dosificacion
             TbNota2.Text = .GetValue("nota2").ToString
             SbEstado.Value = .GetValue("est")
 
-            lbFecha.Text = CType(.GetValue("fact"), Date).ToString("dd/MM/yyyy")
+            lbFecha.Text = CType(.GetValue("fact"), Date).ToString("yyyy/MM/dd")
             lbHora.Text = .GetValue("hact").ToString
             lbUsuario.Text = .GetValue("uact").ToString
 

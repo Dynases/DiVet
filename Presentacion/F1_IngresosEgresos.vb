@@ -268,7 +268,7 @@ Public Class F1_IngresosEgresos
             tbMonto.Value = .GetValue("ieMonto")
             tbObservacion.Text = .GetValue("ieObs").ToString
 
-            lbFecha.Text = CType(.GetValue("iefact"), Date).ToString("dd/MM/yyyy")
+            lbFecha.Text = CType(.GetValue("iefact"), Date).ToString("yyyy/MM/dd")
             lbHora.Text = .GetValue("iehact").ToString
             lbUsuario.Text = .GetValue("ieuact").ToString
 

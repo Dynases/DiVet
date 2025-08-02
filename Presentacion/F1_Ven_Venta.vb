@@ -631,7 +631,7 @@ salirIf:
                     End If
                     Dim listEstCeldas As New List(Of Modelo.Celda)
                     listEstCeldas.Add(New Modelo.Celda("Id", True, "ID", 120))
-                    listEstCeldas.Add(New Modelo.Celda("Fecha", True, "FECHA", 120, "dd/MM/yyyy"))
+                    listEstCeldas.Add(New Modelo.Celda("Fecha", True, "FECHA", 120, "yyyy/MM/dd"))
                     listEstCeldas.Add(New Modelo.Celda("IdCliente", False, "", 50))
                     listEstCeldas.Add(New Modelo.Celda("Cliente", True, "CLIENTE".ToUpper, 150))
                     listEstCeldas.Add(New Modelo.Celda("IdPaciente", False, "IDPACIENTE".ToUpper, 150))
@@ -1217,7 +1217,7 @@ salirIf:
             _CodPaciente = .GetValue("va_pbId")
             txtIdPaciente.Text = .GetValue("va_pbId")
             txtPaciente.Text = .GetValue("pbnomb")
-            lbFecha.Text = CType(.GetValue("vaFecha"), Date).ToString("dd/MM/yyyy")
+            lbFecha.Text = CType(.GetValue("vaFecha"), Date).ToString("yyyy/MM/dd")
             lbHora.Text = .GetValue("vaHora").ToString
             lbUsuario.Text = .GetValue("vausuario").ToString
         End With
@@ -2297,7 +2297,7 @@ salirIf:
         Dim listEstCeldas As New List(Of Modelo.Celda)
         listEstCeldas.Add(New Modelo.Celda("yfcdprod1,", False, "", 150))
         listEstCeldas.Add(New Modelo.Celda("iclot", True, "LOTE", 150))
-        listEstCeldas.Add(New Modelo.Celda("icfven", True, "FECHA VENCIMIENTO", 180, "dd/MM/yyyy"))
+        listEstCeldas.Add(New Modelo.Celda("icfven", True, "FECHA VENCIMIENTO", 180, "yyyy/MM/dd"))
         listEstCeldas.Add(New Modelo.Celda("iccven", True, "Stock".ToUpper, 150, "0.00"))
         Dim ef = New Efecto
         ef.tipo = 3

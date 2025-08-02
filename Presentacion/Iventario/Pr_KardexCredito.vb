@@ -76,8 +76,8 @@ Public Class Pr_KardexCredito
                 ParEmp3 = dt2.Rows(0).Item("Empresa3").ToString
                 ParEmp4 = dt2.Rows(0).Item("Empresa4").ToString
             End If
-            Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-            Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
+            Dim fechaI As String = tbFechaI.Value.ToString("yyyy/MM/dd")
+            Dim fechaF As String = tbFechaF.Value.ToString("yyyy/MM/dd")
             objrep.SetParameterValue("usuario", L_Usuario)
             objrep.SetParameterValue("fechaI", fechaI)
             objrep.SetParameterValue("fechaF", fechaF)
@@ -114,8 +114,8 @@ Public Class Pr_KardexCredito
 
         '    Dim objrep As New KardexClienteRes
         '    objrep.SetDataSource(_dt)
-        '    Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-        '    Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
+        '    Dim fechaI As String = tbFechaI.Value.ToString("yyyy/MM/dd")
+        '    Dim fechaF As String = tbFechaF.Value.ToString("yyyy/MM/dd")
         '    'objrep.SetParameterValue("usuario", L_Usuario)
         '    objrep.SetParameterValue("FechaDel", fechaI)
         '    objrep.SetParameterValue("FechaAl", fechaF)

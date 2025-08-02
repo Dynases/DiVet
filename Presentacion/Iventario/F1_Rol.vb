@@ -291,7 +291,7 @@ Public Class F1_Rol
             tbRol.Text = .GetValue("ybrol").ToString
 
 
-            lbFecha.Text = CType(.GetValue("ybfact"), Date).ToString("dd/MM/yyyy")
+            lbFecha.Text = CType(.GetValue("ybfact"), Date).ToString("yyyy/MM/dd")
             lbHora.Text = .GetValue("ybhact").ToString
             lbUsuario.Text = .GetValue("ybuact").ToString
 

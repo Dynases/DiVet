@@ -38,7 +38,7 @@ Public Class F1_Fic_SegInternacion2
                 listEstCeldas.Add(New Modelo.Celda("pbnomb", True, "Paciente", 150))
                 listEstCeldas.Add(New Modelo.Celda("Especie", True, "Especie", 120))
                 listEstCeldas.Add(New Modelo.Celda("pbsex", True, "Sexo", 120))
-                listEstCeldas.Add(New Modelo.Celda("igFechaIng", True, "Fecha Int.", 90, ("dd/MM/yyyy")))
+                listEstCeldas.Add(New Modelo.Celda("igFechaIng", True, "Fecha Int.", 90, ("yyyy/MM/dd")))
                 listEstCeldas.Add(New Modelo.Celda("igEdad", True, "Edad", 100))
                 listEstCeldas.Add(New Modelo.Celda("igTelf", False, "Telefono", 130))
                 listEstCeldas.Add(New Modelo.Celda("igMotInter", False, "igMotInter", 180))
@@ -202,7 +202,7 @@ Public Class F1_Fic_SegInternacion2
                 LblPaginacion.Text = Str(JGBusqSeguimiento.Row + 1) + "/" + JGBusqSeguimiento.RowCount.ToString
 
                 'Muestra el bubblebar(que usuario registró el Seguimiento de la internación)
-                lbFecha.Text = CType(.GetValue("ihFecha"), Date).ToString("dd/MM/yyyy")
+                lbFecha.Text = CType(.GetValue("ihFecha"), Date).ToString("yyyy/MM/dd")
                 lbHora.Text = .GetValue("ihHora").ToString
                 lbUsuario.Text = .GetValue("ihUsuario").ToString
             End With
@@ -1288,7 +1288,7 @@ Public Class F1_Fic_SegInternacion2
         chbModerado.Checked = False
         chbSevero.Checked = False
         chbEstable.Checked = True
-        txtHoraEF.Clear()
+        txtHoraEF.Text = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
         dtpFechaEF.Value = Date.Now
     End Sub
     Private Sub _LimpiarSignosVitales()
@@ -1300,7 +1300,7 @@ Public Class F1_Fic_SegInternacion2
         txtMiccion.Clear()
         txtDefecacion.Clear()
         txtOtrosSV.Clear()
-        txtHoraSV.Clear()
+        txtHoraSV.Text = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
         dtpFechaSV.Value = Date.Now
     End Sub
     Private Sub _LimpiarMonitoreo()
@@ -1314,7 +1314,7 @@ Public Class F1_Fic_SegInternacion2
         txtPDys.Clear()
         txtMED.Clear()
         txtTRC.Clear()
-        txtHoraM.Clear()
+        txtHoraM.Text = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
         dtpFechaM.Value = Date.Now
     End Sub
 
@@ -1328,7 +1328,7 @@ Public Class F1_Fic_SegInternacion2
         txtNPO.Clear()
         txtAgua.Clear()
         txtObs.Clear()
-        txtHoraA.Clear()
+        txtHoraA.Text = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
         dtpFechaA.Value = Date.Now
     End Sub
     Private Sub _LimpiarFluidoterapia()
@@ -1338,19 +1338,19 @@ Public Class F1_Fic_SegInternacion2
         txtHoraInicio.Clear()
         txtHoraTermino.Clear()
         txtCantidad.Clear()
-        txtHoraF.Clear()
+        txtHoraF.Text = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
         dtpFechaF.Value = Date.Now
     End Sub
     Private Sub _LimpiarEstudiosComplementarios()
         ''Detalle Estudios Complementarios
         txtEstudiosComplem.Clear()
-        txtHoraEC.Clear()
+        txtHoraEC.Text = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
         dtpFechaEC.Value = Date.Now
     End Sub
     Private Sub _LimpiarTratamiento()
         ''Detalle Tratamiento
         txtTratamiento.Clear()
-        txtHoraT.Clear()
+        txtHoraT.Text = Now.Hour.ToString("D2") + ":" + Now.Minute.ToString("D2")
         dtpFechaT.Value = Date.Now
     End Sub
 
@@ -1547,7 +1547,7 @@ Public Class F1_Fic_SegInternacion2
         If ModificarEF = False Then
             CType(JGExamenFisico.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, cbTurnoEF.Value, cbTurnoEF.Text, Mucosas, Deshidratacion, Dolor, GradoConciencia, Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
         Else
-            CType(JGExamenFisico.DataSource, DataTable).Rows.Add(1, 0, 1, dtpFechaEF.Value, txtHoraEF.Text, cbTurnoEF.Value, cbTurnoEF.Text, Mucosas, Deshidratacion, Dolor, GradoConciencia, Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
+            CType(JGExamenFisico.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, cbTurnoEF.Value, cbTurnoEF.Text, Mucosas, Deshidratacion, Dolor, GradoConciencia, Now.Date, Hora, gs_user, 0, Bin.GetBuffer) ', dtpFechaEF.Value, txtHoraEF.Text
         End If
     End Sub
     Private Sub _prObtenerMucosas(ByRef mucosas As String)
@@ -1610,7 +1610,7 @@ Public Class F1_Fic_SegInternacion2
                                                                   txtMiccion.Text, txtDefecacion.Text, txtOtrosSV.Text, Now.Date,
                                                                   Hora, gs_user, 0, Bin.GetBuffer)
         Else
-            CType(JGSignosVitales.DataSource, DataTable).Rows.Add(1, 0, 1, dtpFechaSV.Value, txtHoraSV.Text, txtVomitos.Text,
+            CType(JGSignosVitales.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, txtVomitos.Text,  ', dtpFechaSV.Value, txtHoraSV.Text
                                                                   txtDiarreas.Text, txtConvulsiones.Text, txtInfartos.Text,
                                                                   txtMiccion.Text, txtDefecacion.Text, txtOtrosSV.Text, Now.Date,
                                                                   Hora, gs_user, 0, Bin.GetBuffer)
@@ -1638,7 +1638,7 @@ Public Class F1_Fic_SegInternacion2
                                                                   txtPSys.Text, txtPDys.Text, txtMED.Text, txtTRC.Text, Now.Date,
                                                                   Hora, gs_user, 0, Bin.GetBuffer)
         Else
-            CType(JGMonitoreo.DataSource, DataTable).Rows.Add(1, 0, 1, dtpFechaM.Value, txtHoraM.Text, txtT.Text,
+            CType(JGMonitoreo.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, txtT.Text, 'txtHoraM.Text
                                                                   txtFC.Text, txtFR.Text, txtPeso.Text, txtSPO2.Text,
                                                                   txtPSys.Text, txtPDys.Text, txtMED.Text, txtTRC.Text, Now.Date,
                                                                   Hora, gs_user, 0, Bin.GetBuffer)
@@ -1661,7 +1661,7 @@ Public Class F1_Fic_SegInternacion2
                                                                   txtPolloDesm.Text, txtNPO.Text, txtAgua.Text, txtObs.Text,
                                                                   Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
         Else
-            CType(JGAlimentacion.DataSource, DataTable).Rows.Add(1, 0, 1, dtpFechaA.Value, txtHoraA.Text, txtRequerimiento.Text,
+            CType(JGAlimentacion.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, txtRequerimiento.Text,  ', dtpFechaA.Value, txtHoraA.Text
                                                                   txtPVM.Text, txtRecovery.Text, txtPolloLic.Text,
                                                                   txtPolloDesm.Text, txtNPO.Text, txtAgua.Text, txtObs.Text,
                                                                   Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
@@ -1679,7 +1679,7 @@ Public Class F1_Fic_SegInternacion2
                                                                   txtFluidos.Text, txtHoraInicio.Text, txtHoraTermino.Text,
                                                                   txtCantidad.Text, Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
         Else
-            CType(JGFluidoterapia.DataSource, DataTable).Rows.Add(1, 0, 1, dtpFechaF.Value, txtHoraT.Text, cbTurnoF.Value, cbTurnoF.Text,
+            CType(JGFluidoterapia.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, cbTurnoF.Value, cbTurnoF.Text,  ', dtpFechaF.Value, txtHoraT.Text
                                                                   txtFluidos.Text, txtHoraInicio.Text, txtHoraTermino.Text,
                                                                   txtCantidad.Text, Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
         End If
@@ -1695,7 +1695,7 @@ Public Class F1_Fic_SegInternacion2
             CType(JGEstudiosC.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, txtEstudiosComplem.Text,
                                                                Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
         Else
-            CType(JGEstudiosC.DataSource, DataTable).Rows.Add(1, 0, 1, dtpFechaEC.Value, txtHoraEC.Text, txtEstudiosComplem.Text,
+            CType(JGEstudiosC.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, txtEstudiosComplem.Text,  'dtpFechaEC.Value, txtHoraEC.Text,
                                                                Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
         End If
     End Sub
@@ -1711,7 +1711,7 @@ Public Class F1_Fic_SegInternacion2
             CType(JGTratamiento.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, txtTratamiento.Text,
                                                                Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
         Else
-            CType(JGTratamiento.DataSource, DataTable).Rows.Add(1, 0, 1, dtpFechaT.Value, txtHoraT.Text, txtTratamiento.Text,
+            CType(JGTratamiento.DataSource, DataTable).Rows.Add(1, 0, 1, Date.Now, Hora, txtTratamiento.Text,  ' dtpFechaT.Value, txtHoraT.Text,
                                                                Now.Date, Hora, gs_user, 0, Bin.GetBuffer)
         End If
     End Sub

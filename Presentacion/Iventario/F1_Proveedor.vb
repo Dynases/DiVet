@@ -569,7 +569,7 @@ Public Class F1_Proveedor
             tbFnac.Value = .GetValue("ydfnac")
            tbFIngr.Value = .GetValue("ydfecing")
             tbUltVenta.Value = .GetValue("ydultvent")
-            lbFecha.Text = CType(.GetValue("ydfact"), Date).ToString("dd/MM/yyyy")
+            lbFecha.Text = CType(.GetValue("ydfact"), Date).ToString("yyyy/MM/dd")
             lbHora.Text = .GetValue("ydhact").ToString
             lbUsuario.Text = .GetValue("yduact").ToString
             NumiVendedor = IIf(IsDBNull(.GetValue("ydnumivend")), 0, .GetValue("ydnumivend"))

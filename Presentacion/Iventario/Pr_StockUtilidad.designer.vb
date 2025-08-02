@@ -28,6 +28,10 @@ Partial Class Pr_StockUtilidad
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.swTipoVenta = New DevComponents.DotNetBar.Controls.SwitchButton()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
+        Me.tbFechaF = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
+        Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
+        Me.tbFechaI = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.checkMayorCero = New DevComponents.DotNetBar.Controls.CheckBoxX()
         Me.Checktodos = New DevComponents.DotNetBar.Controls.CheckBoxX()
@@ -51,6 +55,8 @@ Partial Class Pr_StockUtilidad
         Me.PanelIzq.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.tbFechaF, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbFechaI, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.tbcatprecio, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbAlmacen, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,12 +83,12 @@ Partial Class Pr_StockUtilidad
         '
         'SuperTabControlPanelBuscador
         '
-        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(4)
         Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(858, 561)
         '
         'SuperTabControlPanelRegistro
         '
-        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(4)
         Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(1031, 561)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelIzq, 0)
@@ -101,7 +107,7 @@ Partial Class Pr_StockUtilidad
         '
         'PanelInferior
         '
-        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(4)
         Me.PanelInferior.Size = New System.Drawing.Size(1031, 36)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Gold
@@ -143,17 +149,17 @@ Partial Class Pr_StockUtilidad
         '
         'PanelPrincipal
         '
-        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(4)
         Me.PanelPrincipal.Size = New System.Drawing.Size(668, 525)
         '
         'MPanelUserAct
         '
         Me.MPanelUserAct.Location = New System.Drawing.Point(831, 0)
-        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(4)
         '
         'MReportViewer
         '
-        Me.MReportViewer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MReportViewer.Margin = New System.Windows.Forms.Padding(4)
         Me.MReportViewer.Size = New System.Drawing.Size(668, 525)
         '
         'MGPFiltros
@@ -227,6 +233,10 @@ Partial Class Pr_StockUtilidad
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox2.Controls.Add(Me.LabelX4)
+        Me.GroupBox2.Controls.Add(Me.tbFechaF)
+        Me.GroupBox2.Controls.Add(Me.LabelX5)
+        Me.GroupBox2.Controls.Add(Me.tbFechaI)
         Me.GroupBox2.Controls.Add(Me.Panel1)
         Me.GroupBox2.Controls.Add(Me.LabelX2)
         Me.GroupBox2.Controls.Add(Me.LabelX1)
@@ -240,13 +250,137 @@ Partial Class Pr_StockUtilidad
         Me.GroupBox2.Size = New System.Drawing.Size(357, 362)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "s"
+        Me.GroupBox2.Text = "Datos"
+        '
+        'LabelX4
+        '
+        Me.LabelX4.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX4.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX4.Location = New System.Drawing.Point(12, 182)
+        Me.LabelX4.Name = "LabelX4"
+        Me.LabelX4.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX4.Size = New System.Drawing.Size(52, 23)
+        Me.LabelX4.TabIndex = 259
+        Me.LabelX4.Text = "Al:"
+        '
+        'tbFechaF
+        '
+        '
+        '
+        '
+        Me.tbFechaF.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.tbFechaF.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbFechaF.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown
+        Me.tbFechaF.ButtonDropDown.Visible = True
+        Me.tbFechaF.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbFechaF.IsPopupCalendarOpen = False
+        Me.tbFechaF.Location = New System.Drawing.Point(88, 182)
+        '
+        '
+        '
+        '
+        '
+        '
+        Me.tbFechaF.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbFechaF.MonthCalendar.CalendarDimensions = New System.Drawing.Size(1, 1)
+        Me.tbFechaF.MonthCalendar.ClearButtonVisible = True
+        '
+        '
+        '
+        Me.tbFechaF.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2
+        Me.tbFechaF.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90
+        Me.tbFechaF.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground
+        Me.tbFechaF.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.tbFechaF.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder
+        Me.tbFechaF.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1
+        Me.tbFechaF.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbFechaF.MonthCalendar.DisplayMonth = New Date(2017, 2, 1, 0, 0, 0, 0)
+        Me.tbFechaF.MonthCalendar.FirstDayOfWeek = System.DayOfWeek.Monday
+        '
+        '
+        '
+        Me.tbFechaF.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.tbFechaF.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90
+        Me.tbFechaF.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.tbFechaF.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbFechaF.MonthCalendar.TodayButtonVisible = True
+        Me.tbFechaF.Name = "tbFechaF"
+        Me.tbFechaF.Size = New System.Drawing.Size(120, 22)
+        Me.tbFechaF.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.tbFechaF.TabIndex = 258
+        '
+        'LabelX5
+        '
+        Me.LabelX5.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX5.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX5.Location = New System.Drawing.Point(9, 150)
+        Me.LabelX5.Name = "LabelX5"
+        Me.LabelX5.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX5.Size = New System.Drawing.Size(74, 23)
+        Me.LabelX5.TabIndex = 257
+        Me.LabelX5.Text = "Fecha Del:"
+        '
+        'tbFechaI
+        '
+        '
+        '
+        '
+        Me.tbFechaI.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.tbFechaI.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbFechaI.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown
+        Me.tbFechaI.ButtonDropDown.Visible = True
+        Me.tbFechaI.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbFechaI.IsPopupCalendarOpen = False
+        Me.tbFechaI.Location = New System.Drawing.Point(88, 151)
+        '
+        '
+        '
+        '
+        '
+        '
+        Me.tbFechaI.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbFechaI.MonthCalendar.CalendarDimensions = New System.Drawing.Size(1, 1)
+        Me.tbFechaI.MonthCalendar.ClearButtonVisible = True
+        '
+        '
+        '
+        Me.tbFechaI.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2
+        Me.tbFechaI.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90
+        Me.tbFechaI.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground
+        Me.tbFechaI.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.tbFechaI.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder
+        Me.tbFechaI.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1
+        Me.tbFechaI.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbFechaI.MonthCalendar.DisplayMonth = New Date(2017, 2, 1, 0, 0, 0, 0)
+        Me.tbFechaI.MonthCalendar.FirstDayOfWeek = System.DayOfWeek.Monday
+        '
+        '
+        '
+        Me.tbFechaI.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.tbFechaI.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90
+        Me.tbFechaI.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.tbFechaI.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbFechaI.MonthCalendar.TodayButtonVisible = True
+        Me.tbFechaI.Name = "tbFechaI"
+        Me.tbFechaI.Size = New System.Drawing.Size(120, 22)
+        Me.tbFechaI.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.tbFechaI.TabIndex = 256
         '
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.checkMayorCero)
         Me.Panel1.Controls.Add(Me.Checktodos)
-        Me.Panel1.Location = New System.Drawing.Point(72, 138)
+        Me.Panel1.Location = New System.Drawing.Point(72, 235)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(180, 60)
         Me.Panel1.TabIndex = 255
@@ -291,7 +425,7 @@ Partial Class Pr_StockUtilidad
         Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX2.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX2.Location = New System.Drawing.Point(7, 153)
+        Me.LabelX2.Location = New System.Drawing.Point(7, 250)
         Me.LabelX2.Name = "LabelX2"
         Me.LabelX2.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX2.Size = New System.Drawing.Size(74, 23)
@@ -370,7 +504,7 @@ Partial Class Pr_StockUtilidad
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1063, 561)
         Me.Location = New System.Drawing.Point(0, 0)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Pr_StockUtilidad"
         Me.Text = "PRODUCTOS VS VENTAS"
         Me.Controls.SetChildIndex(Me.SuperTabPrincipal, 0)
@@ -391,6 +525,8 @@ Partial Class Pr_StockUtilidad
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.tbFechaF, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbFechaI, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         CType(Me.tbcatprecio, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbAlmacen, System.ComponentModel.ISupportInitialize).EndInit()
@@ -408,4 +544,8 @@ Partial Class Pr_StockUtilidad
     Friend WithEvents Checktodos As DevComponents.DotNetBar.Controls.CheckBoxX
     Friend WithEvents checkMayorCero As DevComponents.DotNetBar.Controls.CheckBoxX
     Friend WithEvents LabelX2 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents LabelX4 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents tbFechaF As DevComponents.Editors.DateTimeAdv.DateTimeInput
+    Friend WithEvents LabelX5 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents tbFechaI As DevComponents.Editors.DateTimeAdv.DateTimeInput
 End Class

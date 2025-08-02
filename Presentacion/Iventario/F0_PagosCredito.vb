@@ -123,7 +123,7 @@ Public Class F0_PagosCredito
             .Width = 120
             .Visible = True
             .Caption = "Fecha Pago"
-            .FormatString = "dd/MM/yyyy"
+            .FormatString = "yyyy/MM/dd"
         End With
         With grcobranza.RootTable.Columns("tety4vend")
 
@@ -371,7 +371,7 @@ Public Class F0_PagosCredito
             tbObservacion.Text = .GetValue("teobs")
             tbcobrador.Text = .GetValue("vendedor")
             tbcodVendedor.Text = .GetValue("tety4vend")
-            lbFecha.Text = CType(.GetValue("tefact"), Date).ToString("dd/MM/yyyy")
+            lbFecha.Text = CType(.GetValue("tefact"), Date).ToString("yyyy/MM/dd")
             lbHora.Text = .GetValue("tehact").ToString
             lbUsuario.Text = .GetValue("teuact").ToString
             cbSucursal.Value = .GetValue("teSucursal")
@@ -475,7 +475,7 @@ Public Class F0_PagosCredito
         With grPendiente.RootTable.Columns("tcfdoc")
             .Caption = "Fecha"
             .Width = 110
-            .FormatString = "dd/MM/yyyy"
+            .FormatString = "yyyy/MM/dd"
             .Visible = True
         End With
         With grPendiente.RootTable.Columns("totalfactura")

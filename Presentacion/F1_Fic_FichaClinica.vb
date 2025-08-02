@@ -229,21 +229,34 @@ Public Class F1_Fic_FichaClinica
     End Sub
 
     Private Sub btnAlta_Click(sender As Object, e As EventArgs) Handles btnAlta.Click
-        If txtIdFicha.Text <> String.Empty Then
-            Dim res As Boolean = L_fnModificarFichaClinicaAlta(txtIdFicha.Text)
-            If res Then
-                Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
-                ToastNotification.Show(Me, "Id de la ficha clinica ".ToUpper + txtIdFicha.Text + " dado de Alta con Exito.".ToUpper,
-                                       img, 3000,
-                                       eToastGlowColor.Green,
-                                       eToastPosition.TopCenter)
-                _prInhabilitar()
-                _prFiltrar()
-            Else
-                Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-                ToastNotification.Show(Me, "El alta de la ficha clinica no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
+        Dim ef = New Efecto
+        ef.tipo = 2
+        ef.Context = "¿esta seguro dar de alta la ficha clinica?".ToUpper
+        ef.Header = "mensaje principal".ToUpper
+        ef.ShowDialog()
+        Dim bandera As Boolean = False
+        bandera = ef.band
+        If (bandera = True) Then
+            If txtIdFicha.Text <> String.Empty Then
+                Dim res As Boolean = L_fnModificarFichaClinicaAlta(txtIdFicha.Text)
+                If res Then
+                    Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
+                    ToastNotification.Show(Me, "Id de la ficha clinica ".ToUpper + txtIdFicha.Text + " dado de Alta con Exito.".ToUpper,
+                                           img, 3000,
+                                           eToastGlowColor.Green,
+                                           eToastPosition.TopCenter)
+                    _prInhabilitar()
+                    _prFiltrar()
+                Else
+                    Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+                    ToastNotification.Show(Me, "El alta de la ficha clinica no pudo ser insertado".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.TopCenter)
+                End If
             End If
+        Else
+            Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+            ToastNotification.Show(Me, "OPERACION CANCELADA", img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
+
     End Sub
 
     Private Sub EventoRenderizarDgvListado() Handles Me.RenderizarDgvListado
@@ -256,6 +269,8 @@ Public Class F1_Fic_FichaClinica
     End Sub
 
     Private Sub txtTRPliegue_ValueChanged(sender As Object, e As EventArgs) Handles txtTRPliegue.ValueChanged
+
+        'Dim idfic As Integer = txtIdFicha.Text
         If (txtTLCapilar.Text <= 2 And txtTRPliegue.Value <= 2) Then
             chbPorDeshi1.Checked = True
         ElseIf (txtTLCapilar.Text <= 2 And (txtTRPliegue.Value >= 3 And txtTRPliegue.Value <= 5)) Then
@@ -429,7 +444,7 @@ Public Class F1_Fic_FichaClinica
                 _prListarFichaClinica()
                 _prCrearCarpetaImagenes()
                 _prCrearCarpetaTemporal()
-                _prHabilitarMenu(1)
+                _prHabilitarMenu(3)
                 _prInhabilitar()
                 btnNuevo.Enabled = False
         End Select
@@ -644,9 +659,9 @@ Public Class F1_Fic_FichaClinica
             .Columns("paciente").Width = 100
             .Columns("paciente").HeaderText = "Paciente"
             .Columns("peso_kg").HeaderText = "Peso KG."
-            .Columns("fecha_atencion").DefaultCellStyle.Format = "dd/MM/yyyy"
+            .Columns("fecha_atencion").DefaultCellStyle.Format = "yyyy/MM/dd"
             .Columns("fecha_atencion").HeaderText = "Fecha de atención"
-            .Columns("reconsulta").DefaultCellStyle.Format = "dd/MM/yyyy"
+            .Columns("reconsulta").DefaultCellStyle.Format = "yyyy/MM/dd"
             .Columns("reconsulta").HeaderText = "Fecha de reconsulta"
         End With
 
@@ -960,7 +975,7 @@ Public Class F1_Fic_FichaClinica
         LblPaginacion.Text = Str(dgvListado.SelectedRows(0).Index + 1) + " de " + dgvListado.RowCount.ToString + "    Total: " + totalRegistro.ToString
 
         'Muestra el bubblebar(que usuario registró la Ficha Clínica)
-        lbFecha.Text = CType(dtItem.Rows(0)("fbFecha"), Date).ToString("dd/MM/yyyy")
+        lbFecha.Text = CType(dtItem.Rows(0)("fbFecha"), Date).ToString("yyyy/MM/dd")
         lbHora.Text = dtItem.Rows(0)("fbHora").ToString
         lbUsuario.Text = dtItem.Rows(0)("fbUsuario").ToString
     End Sub

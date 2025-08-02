@@ -271,13 +271,13 @@ Public Class F0_KardexMovimiento
                     Dt1Kardex = L_fnObtenerHistorialProductoporLote("-1", tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"), cbAlmacen.Value, tblote.Text, tbFechaVenc.Text)
                 End If
             End If
-            End If
+        End If
     End Sub
 
     Private Sub P_ArmarGrillaDatos()
         Dt1Kardex = New DataTable
         Dt2KardexTotal = New DataTable
-       
+
         _prInterpretarDatosLotes()
         Dgj1Datos.BoundMode = Janus.Data.BoundMode.Bound
         Dgj1Datos.DataSource = Dt1Kardex
@@ -307,7 +307,7 @@ Public Class F0_KardexMovimiento
         With Dgj1Datos.RootTable.Columns(2)
             .Caption = "Fecha".ToUpper
             .Key = "fdoc"
-            .FormatString = "dd/MM/yyyy"
+            .FormatString = "yyyy/MM/dd"
             .Width = 120
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = 9
@@ -349,7 +349,7 @@ Public Class F0_KardexMovimiento
         End With
 
         ''''''''''''''
-     
+
         With Dgj1Datos.RootTable.Columns(6)
             .Caption = "LOTE"
             .Width = 100
@@ -529,7 +529,7 @@ Public Class F0_KardexMovimiento
 
 
 
-        
+
         Dgj1Datos.RootTable.FormatConditions.Add(fc)
 
     End Sub
@@ -590,7 +590,7 @@ Public Class F0_KardexMovimiento
             P_Global.Visualizador.Show() 'Comentar
             P_Global.Visualizador.BringToFront() 'Comentar
         End If
-       
+
     End Sub
 
     Private Sub btActualizar_Click(sender As Object, e As EventArgs) Handles btActualizar.Click
@@ -605,7 +605,7 @@ Public Class F0_KardexMovimiento
             If (saldoAct = SaldoTabla) Then
                 Return
             End If
-            If (Now.Date.ToString("yyyy/MM/dd").Equals(tbFechaF.Value.ToString("yyyy/MM/dd"))and tblote.Text=String.empty) Then
+            If (Now.Date.ToString("yyyy/MM/dd").Equals(tbFechaF.Value.ToString("yyyy/MM/dd")) And tblote.Text = String.Empty) Then
                 L_fnActualizarSaldo(cbAlmacen.Value, tbCodigo.Text, Dt1Kardex.Rows(Dt1Kardex.Rows.Count - 1).Item("saldo").ToString)
 
                 tbsaldo.Text = Dt1Kardex.Rows(Dt1Kardex.Rows.Count - 1).Item("saldo").ToString

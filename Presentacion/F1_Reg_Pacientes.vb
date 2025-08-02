@@ -149,7 +149,7 @@ Public Class F1_Reg_Pacientes
                 'Muestra la cantidad DE FILAS en la Grilla
                 LblPaginacion.Text = Str(_POS + 1) + "/" + JGBusqMascotas.RowCount.ToString
                 'Muestra el bubblebar(que usuario registró el paciente)
-                lbFecha.Text = CType(.GetValue("pbfingr"), Date).ToString("dd/MM/yyyy")
+                lbFecha.Text = CType(.GetValue("pbfingr"), Date).ToString("yyyy/MM/dd")
                 lbHora.Text = .GetValue("pbhora").ToString
                 lbUsuario.Text = .GetValue("pbusuario").ToString
             End With

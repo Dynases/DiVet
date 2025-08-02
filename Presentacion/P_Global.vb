@@ -31,7 +31,11 @@ Module P_Global
     Public gs_UsuarioSql As String = "sa"
     Public gs_ClaveSql As String = "123"
     Public gs_NombreBD As String = "BD_VET"
+    Public gs_NombreBDS As String = "BD_VET"
     Public gs_CarpetaRaiz As String = "C:\BD"
+    Public gs_Ip2 As String = "127.0.0.1"
+    Public gs_UsuarioSql2 As String = "sa"
+    Public gs_ClaveSql2 As String = "123"
 
 #End Region
 

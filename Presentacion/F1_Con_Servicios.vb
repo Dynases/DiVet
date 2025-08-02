@@ -73,7 +73,7 @@ Public Class F1_Con_Servicios
                 swEstadoS.Value = .GetValue("scEst")
                 LblPaginacion.Text = Str(_POS + 1) + "/" + JGServicios.RowCount.ToString
                 'Muestra el bubblebar(que usuario registró el servicio)
-                lbFecha.Text = CType(.GetValue("scFecha"), Date).ToString("dd/MM/yyyy")
+                lbFecha.Text = CType(.GetValue("scFecha"), Date).ToString("yyyy/MM/dd")
                 lbHora.Text = .GetValue("scHora").ToString
                 lbUsuario.Text = .GetValue("scUsuario").ToString
             End With

@@ -101,7 +101,7 @@ Public Class F1_Reg_Empleados
                 'Muestra la cantidad DE FILAS en la Grilla
                 LblPaginacion.Text = Str(_POS + 1) + "/" + JGBusqEmpleados.RowCount.ToString
                 'Muestra el bubblebar(que usuario registró el empleado)
-                lbFecha.Text = CType(.GetValue("ecFecha"), Date).ToString("dd/MM/yyyy")
+                lbFecha.Text = CType(.GetValue("ecFecha"), Date).ToString("yyyy/MM/dd")
                 lbHora.Text = .GetValue("ecHora").ToString
                 lbUsuario.Text = .GetValue("ecUsuario").ToString
             End With

@@ -517,8 +517,8 @@ Public Class F0_LibroVenta2
         'Dim dtTitulos As DataTable = L_prTitulosAll(codReporte)
         'Dim objrep As New LibroVenta3
         'objrep.SetDataSource(_DsLV)
-        'objrep.SetParameterValue("Anho", tbFechaI.Value.ToString("dd/MM/yyyy"))
-        'objrep.SetParameterValue("Mes", tbFechaF.Value.ToString("dd/MM/yyyy"))
+        'objrep.SetParameterValue("Anho", tbFechaI.Value.ToString("yyyy/MM/dd"))
+        'objrep.SetParameterValue("Mes", tbFechaF.Value.ToString("yyyy/MM/dd"))
         'objrep.SetParameterValue("RazonSocial", Cb3RazonSocial.Text)
         'objrep.SetParameterValue("Nit", Tb2NitRazonSocial.Text)
 

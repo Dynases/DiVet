@@ -541,7 +541,7 @@ Public Class F1_Productos
             tbConversion.Value = .GetValue("yfvsup")
             tbStockMinimo.Text = .GetValue("yfsmin")
             swEstado.Value = .GetValue("yfap")
-            lbFecha.Text = CType(.GetValue("yffact"), Date).ToString("dd/MM/yyyy")
+            lbFecha.Text = CType(.GetValue("yffact"), Date).ToString("yyyy/MM/dd")
             lbHora.Text = .GetValue("yfhact").ToString
             lbUsuario.Text = .GetValue("yfuact").ToString
 

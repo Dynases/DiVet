@@ -195,7 +195,7 @@ Public Class F0_Movimiento
             tbFecha.Value = .GetValue("ibfdoc")
             cbConcepto.Value = .GetValue("ibconcep")
             tbObservacion.Text = .GetValue("ibobs")
-            lbFecha.Text = CType(.GetValue("ibfact"), Date).ToString("dd/MM/yyyy")
+            lbFecha.Text = CType(.GetValue("ibfact"), Date).ToString("yyyy/MM/dd")
             lbHora.Text = .GetValue("ibhact").ToString
             lbUsuario.Text = .GetValue("ibuact").ToString
             cbAlmacenOrigen.Value = .GetValue("ibalm")
@@ -293,7 +293,7 @@ Public Class F0_Movimiento
                 .Width = 120
                 .Caption = "FECHA VENC.".ToUpper
                 .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
-                .FormatString = "dd/MM/yyyy"
+                .FormatString = "yyyy/MM/dd"
                 .Visible = True
             End With
         Else
@@ -639,7 +639,7 @@ Public Class F0_Movimiento
         Dim Bin As New MemoryStream
         Dim img As New Bitmap(My.Resources.delete, 28, 28)
         img.Save(Bin, Imaging.ImageFormat.Png)
-        CType(grdetalle.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, "", "", "", "", DBNull.Value, Now.Date.ToString("dd/MM/yyyy"), Now.Date.ToShortDateString, Bin.GetBuffer, 0, 0)
+        CType(grdetalle.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, "", "", "", "", DBNull.Value, Now.Date.ToString("yyyy/MM/dd"), Now.Date.ToShortDateString, Bin.GetBuffer, 0, 0)
     End Sub
     Public Function _fnSiguienteNumi()
         Dim dt As DataTable = CType(grdetalle.DataSource, DataTable)

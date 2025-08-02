@@ -12,7 +12,8 @@ Imports System.Windows.Forms
 Imports Logica.AccesoLogica
 Imports Janus.Windows.GridEX
 Imports DevComponents.DotNetBar.Metro
-
+Imports System.Management
+Imports System.Net
 
 Public Class Login
     ' Dim main As New Principal
@@ -20,12 +21,25 @@ Public Class Login
 #Region "METODOS PRIVADOS"
     Private Sub _prLeerArchivoConfig()
         Try
+
+            'Dim Archivo() As String = IO.File.ReadAllLines(Application.StartupPath + "\CONFIG.TXT")
+            'Dim ip As String = Archivo(0).Split("=")(1).Trim
+            'Dim usuario As String = Archivo(1).Split("=")(1).Trim
+            'Dim clave As String = Archivo(2).Split("=")(1).Trim
+            'Dim bd As String = Archivo(4).Split("=")(1).Trim
+
+
+
             Dim Archivo() As String = IO.File.ReadAllLines(Application.StartupPath + "\CONFIG.TXT")
             gs_Ip = Archivo(0).Split("=")(1).Trim
             gs_UsuarioSql = Archivo(1).Split("=")(1).Trim
             gs_ClaveSql = Archivo(2).Split("=")(1).Trim
             gs_NombreBD = Archivo(3).Split("=")(1).Trim
-            gs_CarpetaRaiz = Archivo(4).Split("=")(1).Trim
+            gs_NombreBDS = Archivo(4).Split("=")(1).Trim
+            gs_CarpetaRaiz = Archivo(5).Split("=")(1).Trim
+            gs_Ip2 = Archivo(7).Split("=")(1).Trim
+            gs_UsuarioSql2 = Archivo(8).Split("=")(1).Trim
+            gs_ClaveSql2 = Archivo(9).Split("=")(1).Trim
 
         Catch ex As Exception
             MessageBox.Show("No se encontró el archivo 'CONFIG.TXT' para la conexión a la base de datos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -33,6 +47,23 @@ Public Class Login
 
         End Try
     End Sub
+
+    Function CifradoCesar(texto As String, desplazamiento As Integer) As String
+        Dim resultado As String = ""
+
+        For Each caracter As Char In texto
+            If Char.IsLetter(caracter) Then
+                Dim base As Integer = AscW(If(Char.IsUpper(caracter), "A"c, "a"c))
+                Dim letraCifrada As Char = ChrW(((AscW(caracter) - base + desplazamiento) Mod 26) + base)
+                resultado &= letraCifrada
+            Else
+                resultado &= caracter ' Mantener espacios, números, signos, etc.
+            End If
+        Next
+
+        Return resultado
+    End Function
+
 
     Private Sub _PCargarPrivilegios()
         Dim listaTabs As New List(Of DevComponents.DotNetBar.Metro.MetroTilePanel)
@@ -138,11 +169,36 @@ Public Class Login
 #Region "EVENTOS"
     Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _prLeerArchivoConfig()
-        L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
+        Try
+            L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBDS)
+        Catch
+            L_prAbrirConexion(gs_Ip2, gs_UsuarioSql2, gs_ClaveSql2, gs_NombreBDS)
+        End Try
         txtUsuario.CharacterCasing = CharacterCasing.Upper
-
+        actualizarConexion()
     End Sub
 
+    Private Sub actualizarConexion()
+        Dim Equipo As String = Environment.MachineName
+        Dim Usuario As String = Environment.UserName
+        Dim hostname As String = Dns.GetHostName()
+        Dim ipLocal As String = Dns.GetHostByName(hostname).AddressList(0).ToString()
+        Dim searcher As New ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMedia")
+        Dim serial As String = ""
+        For Each obj In searcher.Get()
+            serial = obj("SerialNumber")?.ToString().Trim()
+            Exit For ' Solo uno
+        Next
+        Dim dt As DataTable = TraerDatosConexion(gs_NombreBD, Equipo, Usuario, ipLocal, serial)
+
+        gs_Ip = dt.Rows(0).Item("serv")
+        gs_UsuarioSql = dt.Rows(0).Item("usuario")
+        gs_ClaveSql = dt.Rows(0).Item("pass")
+        gs_NombreBD = "BD_VET" 'dt.Rows(0).Item("bd")
+        gs_CarpetaRaiz = dt.Rows(0).Item("froot")
+
+        L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
+    End Sub
     Private Sub btnIngresar_Click(sender As Object, e As EventArgs) Handles btnIngresar.Click
         Dim usu As String = txtUsuario.Text
         Dim pass As String = txtPassword.Text

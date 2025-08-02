@@ -169,7 +169,7 @@ Public Class F1_Fic_SegInternacion
                 LblPaginacion.Text = Str(JGBusqSeguimiento.Row + 1) + "/" + JGBusqSeguimiento.RowCount.ToString
 
                 'Muestra el bubblebar(que usuario registró el Seguimiento de la internación)
-                lbFecha.Text = CType(.GetValue("ihFecha"), Date).ToString("dd/MM/yyyy")
+                lbFecha.Text = CType(.GetValue("ihFecha"), Date).ToString("yyyy/MM/dd")
                 lbHora.Text = .GetValue("ihHora").ToString
                 lbUsuario.Text = .GetValue("ihUsuario").ToString
             End With

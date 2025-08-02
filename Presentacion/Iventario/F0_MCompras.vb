@@ -214,7 +214,7 @@ Public Class F0_MCompras
             '    tbFechaVenc.Visible = False
             'End If
 
-            lbFecha.Text = CType(.GetValue("cafact"), Date).ToString("dd/MM/yyyy")
+            lbFecha.Text = CType(.GetValue("cafact"), Date).ToString("yyyy/MM/dd")
             lbHora.Text = .GetValue("cahact").ToString
             lbUsuario.Text = .GetValue("cauact").ToString
 
@@ -248,7 +248,7 @@ Public Class F0_MCompras
                 .Width = 120
                 .Caption = "FECHA VENC."
                 .Visible = True
-                .FormatString = "dd/MM/yyyy"
+                .FormatString = "yyyy/MM/dd"
             End With
         Else
             With grdetalle.RootTable.Columns("cblote")
@@ -261,7 +261,7 @@ Public Class F0_MCompras
                 .Width = 150
                 .Caption = "FECHA VENC."
                 .Visible = False
-                .FormatString = "dd/MM/yyyy"
+                .FormatString = "yyyy/MM/dd"
             End With
         End If
 
@@ -607,7 +607,7 @@ Public Class F0_MCompras
         Dim img As New Bitmap(My.Resources.delete, 20, 20)
         img.Save(Bin, Imaging.ImageFormat.Png)
         CType(grdetalle.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, "", 0, 0, 0, "",
-                                                        0, Now.Date.ToString("dd/MM/yyyy"), Now.Date.ToShortDateString, 0, 0, 0, "", Now.Date, "", "", 0, Bin.GetBuffer, 0, 0)
+                                                        0, Now.Date.ToString("yyyy/MM/dd"), Now.Date.ToShortDateString, 0, 0, 0, "", Now.Date, "", "", 0, Bin.GetBuffer, 0, 0)
     End Sub
 
     Public Function _fnSiguienteNumi()
@@ -1222,15 +1222,18 @@ salirIf:
     Private Sub grdetalle_CellEdited(sender As Object, e As ColumnActionEventArgs) Handles grdetalle.CellEdited
         If (e.Column.Index = grdetalle.RootTable.Columns("cbcmin").Index) Then
             If (Not IsNumeric(grdetalle.GetValue("cbcmin")) Or grdetalle.GetValue("cbcmin").ToString = String.Empty Or IsDBNull(grdetalle.GetValue("cbcmin"))) Then
-
+                Dim cant As Integer = grdetalle.GetValue("cbcmin")
+                Dim total As Double = grdetalle.GetValue("cbptot")
                 grdetalle.SetValue("cbcmin", 0)
                 grdetalle.SetValue("cbptot", 0)
             Else
                 If (grdetalle.GetValue("cbcmin") > 0) Then
-
+                    Dim cant As Integer = grdetalle.GetValue("cbcmin")
+                    Dim total As Double = grdetalle.GetValue("cbptot")
 
                 Else
-
+                    Dim cant As Integer = grdetalle.GetValue("cbcmin")
+                    Dim total As Double = grdetalle.GetValue("cbptot")
                     grdetalle.SetValue("cbcmin", 0)
                     grdetalle.SetValue("cbptot", 0)
 

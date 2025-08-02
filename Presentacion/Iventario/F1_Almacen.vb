@@ -426,7 +426,7 @@ Public Class F1_Almacen
             tbTelf1.Text = .GetValue("aatel")
             _latitud = IIf(IsDBNull(.GetValue("aalat")), 0, .GetValue("aalat"))
             _longitud = IIf(IsDBNull(.GetValue("aalong")), 0, .GetValue("aalong"))
-            lbFecha.Text = CType(.GetValue("aafact"), Date).ToString("dd/MM/yyyy")
+            lbFecha.Text = CType(.GetValue("aafact"), Date).ToString("yyyy/MM/dd")
             lbHora.Text = .GetValue("aahact").ToString
             lbUsuario.Text = .GetValue("aauact").ToString
 

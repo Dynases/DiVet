@@ -393,6 +393,7 @@ Partial Class Pr_KardexProductos
         Me.CheckGeneralLote.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.CheckGeneralLote.TabIndex = 242
         Me.CheckGeneralLote.Text = "GENERAL POR LOTE"
+        Me.CheckGeneralLote.Visible = False
         '
         'LabelX5
         '
